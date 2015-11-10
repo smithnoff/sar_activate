@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey200">
+
+    <!-- Nota: El atributo android:alpha para opciones seleccionadas es igual a 1, para deseleccionadas: 0.3 -->
+
+    <TextView
+        android:id="@+id/nombre_partido"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/marco_nombre_partido"
+        android:text="@string/nombre_partido"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:background="@color/indigo"
+        android:textStyle="bold"
+        android:textSize="@dimen/texto_nombre_partido"/>
+    
+    <ImageView
+        android:id="@+id/pestana_circulo"
+        android:layout_centerVertical="true"
+        android:layout_width="@dimen/pestana_barra_menu"
+        android:layout_height="@dimen/pestana_barra_menu"
+        android:background="@drawable/circulo"/>
+
+    <ScrollView
+        android:id="@+id/menu_desplegable"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/indigo">
+        <LinearLayout
+            android:layout_width="@dimen/ancho_barra_menu"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/home"
+                android:layout_width="@dimen/iconos_menu"
+                android:layout_height="@dimen/iconos_menu"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margen_vertical_botones_menu"
+                android:background="@drawable/ic_pizarra_mensajes"
+                android:alpha="1"/>
+
+            <ImageView
+                android:id="@+id/mensajes_directos"
+                android:layout_width="@dimen/iconos_menu"
+                android:layout_height="@dimen/iconos_menu"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margen_vertical_botones_menu"
+                android:background="@drawable/ic_mensajes_directos"
+                android:alpha="0.3"/>
+
+            <ImageView
+                android:id="@+id/boletin_proyectos"
+                android:layout_width="@dimen/iconos_menu"
+                android:layout_height="@dimen/iconos_menu"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margen_vertical_botones_menu"
+                android:background="@drawable/ic_boletin_proyectos"
+                android:alpha="0.3"/>
+
+            <ImageView
+                android:id="@+id/edicion_proyectos"
+                android:layout_width="@dimen/iconos_menu"
+                android:layout_height="@dimen/iconos_menu"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margen_vertical_botones_menu"
+                android:background="@drawable/ic_edicion_proyectos"
+                android:alpha="0.3"/>
+
+            <ImageView
+                android:id="@+id/trivia_formacion"
+                android:layout_width="@dimen/iconos_menu"
+                android:layout_height="@dimen/iconos_menu"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margen_vertical_botones_menu"
+                android:background="@drawable/ic_trivia_formacion"
+                android:alpha="0.3"/>
+
+            <ImageView
+                android:id="@+id/tabla_puntuaciones"
+                android:layout_width="@dimen/iconos_menu"
+                android:layout_height="@dimen/iconos_menu"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margen_vertical_botones_menu"
+                android:background="@drawable/ic_tabla_puntuaciones"
+                android:alpha="0.3"/>
+
+            <ImageView
+                android:id="@+id/perfil_usuario"
+                android:layout_width="@dimen/iconos_menu"
+                android:layout_height="@dimen/iconos_menu"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margen_vertical_botones_menu"
+                android:background="@drawable/ic_perfil_usuario"
+                android:alpha="0.3"/>
+
+            <ImageView
+                android:id="@+id/agregar_usuario"
+                android:layout_width="@dimen/iconos_menu"
+                android:layout_height="@dimen/iconos_menu"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margen_vertical_botones_menu"
+                android:background="@drawable/ic_agregar_usuario"
+                android:alpha="0.3"/>
+
+            <ImageView
+                android:id="@+id/edicion_usuarios"
+                android:layout_width="@dimen/iconos_menu"
+                android:layout_height="@dimen/iconos_menu"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margen_vertical_botones_menu"
+                android:background="@drawable/ic_edicion_usuarios"
+                android:alpha="0.3"/>
+
+            <ImageView
+                android:id="@+id/edicion_partido"
+                android:layout_width="@dimen/iconos_menu"
+                android:layout_height="@dimen/iconos_menu"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margen_vertical_botones_menu"
+                android:layout_marginBottom="@dimen/margen_vertical_botones_menu"
+                android:background="@drawable/ic_edicion_partido"
+                android:alpha="0.3"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

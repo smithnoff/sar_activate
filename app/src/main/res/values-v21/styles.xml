@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Main theme colors (PARA LOLLIPOP EN ADELANTE!!!)-->
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/indigo</item>
+        <item name="colorPrimaryDark">@color/indigo</item>
+        <item name="colorAccent">@color/indigo</item>
+        <item name="android:windowBackground">@color/grey200</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:colorButtonNormal">@color/indigo</item>
+        <item name="android:actionButtonStyle">@color/blue500</item>
+        <item name="android:navigationBarColor">@color/indigo</item>
+    </style>
+    <style name="Theme_Dialog_Translucent" parent="Theme.AppCompat.Light.Dialog">
+
+
+        <item name="android:colorButtonNormal">@color/indigo</item>
+        <!--"android:Theme.Dialog"-->
+
+    </style>
+</resources>

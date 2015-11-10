@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Color de fondo -->
+    <color name="grey200">#EEEEEE</color>
+
+    <!-- Blanco y Negro -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Botones -->
+    <color name="indigo">#1A237E</color> <!-- Boton positivo -->
+    <color name="deeporange900">#BF360C</color> <!-- Boton negativo -->
+    
+    <!-- Colores permitidos para identidad del partido -->
+    <color name="red900">#b71c1c</color>
+    <color name="orange800">#ef6c00</color>
+    <color name="yellow600">#fdd835</color>
+    <color name="green600">#43a047</color>
+    <color name="blue500">#2196f3</color>
+    <color name="deeppurple600">#5e35b1</color>
+<!--color miselaneo-->
+    <color name="grisOscuro">#999999</color>
+</resources>

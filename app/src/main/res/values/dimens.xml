@@ -1,0 +1,24 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Barra menu -->
+    <dimen name="ancho_barra_menu">75dp</dimen>
+    <dimen name="pestana_barra_menu">100dp</dimen>
+
+    <!-- Elementos interfaz -->
+    <dimen name="marco_nombre_partido">75dp</dimen>
+
+    <!-- Iconos -->
+    <dimen name="iconos_menu">60dp</dimen>
+
+    <!-- Margenes -->
+    <dimen name="margen_logo_pantalla_principal">20dp</dimen>
+    <dimen name="margen_superior_botones">20dp</dimen>
+    <dimen name="margen_lateral_botones">30dp</dimen>
+    <dimen name="margen_vertical_botones_menu">15dp</dimen>
+
+    <!-- Textos -->
+    <dimen name="texto_nombre_partido">24sp</dimen>
+</resources>

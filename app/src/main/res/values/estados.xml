@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Estados">
+        <item>Distrito Capital</item>
+        <item>Amazonas</item>
+        <item>Anzoategui</item>
+        <item>Apure</item>
+        <item>Aragua</item>
+        <item>Barinas</item>
+        <item>Bolivar</item>
+        <item>Carabobo</item>
+        <item>Cojedes</item>
+        <item>Delta Amacuro</item>
+        <item>Falcon</item>
+        <item>Guarico</item>
+        <item>Lara</item>
+        <item>Merida</item>
+        <item>Miranda</item>
+        <item>Monagas</item>
+        <item>Nueva Esparta</item>
+        <item>Portuguesa</item>
+        <item>Sucre</item>
+        <item>Tachira</item>
+        <item>Trujillo</item>
+        <item>Vargas</item>
+        <item>Yaracuy</item>
+        <item>Zulia</item>
+    </string-array>
+    <string-array name="Distrito_Capital">
+        <item>Libertador</item>
+    </string-array>
+    <string-array name="Amazonas">
+        <item>Alto Orinoco</item>
+        <item> Atabapo</item>
+        <item>Atures</item>
+        <item>Autana</item>
+        <item>Manapiare</item>
+        <item>Maroa</item>
+        <item>Río Negro</item>
+    </string-array>
+    <string-array name="Anzoategui">
+        <item>Anaco</item>
+        <item>Aragua</item>
+        <item>Bolivar</item>
+        <item>Bruzal</item>
+        <item>Cajigal</item>
+        <item>Carvajal</item>
+        <item>Diego Bautista Urbaneja</item>
+        <item>Freites</item>
+        <item>Guanipa</item>
+        <item>Guanta</item>
+        <item>Independencia</item>
+        <item>Libertad</item>
+        <item>McGregor</item>
+        <item>Miranda</item>
+        <item>Monagas</item>
+        <item>Peñalver</item>
+        <item>Piritu</item>
+        <item>San Juan de Capistrano</item>
+        <item>Santa Ana</item>
+        <item>Simon Rodriguez</item>
+        <item>Sotillo</item>
+    </string-array>
+    <string-array name="Apure">
+        <item>Achaguas</item>
+        <item>Biruaca</item>
+        <item>Muñoz</item>
+        <item>Paez</item>
+        <item>Pedro Camejo</item>
+        <item>Romulo Gallegos</item>
+        <item>San Fernando</item>
+
+    </string-array>
+    <string-array name="Aragua">
+        <item>Bolivar</item>
+        <item>Camatagua</item>
+        <item>Francisco Linares Alcántara</item>
+        <item>Girardot</item>
+        <item>Jose Ángel Lamas</item>
+        <item>Jose Félix Ribas</item>
+        <item>Jose Rafael Revenga</item>
+        <item>Libertador</item>
+        <item>Mario Briceño Iragorry</item>
+        <item>Ocumare de la Costa de Oro</item>
+        <item>San Casimiro</item>
+        <item>San Sebastián</item>
+        <item>Santiago Mariño</item>
+        <item>Santos Michelena</item>
+        <item>Sucre</item>
+        <item>Tovar</item>
+        <item>Urdaneta</item>
+        <item>Zamora</item>
+    </string-array>
+    <string-array name="Barinas">
+        <item>Alberto Arvelo Torrealba</item>
+        <item>Andres Eloy Blanco</item>
+        <item>Antonio Jose de Sucre</item>
+        <item>Arismendi</item>
+        <item>Barinas</item>
+        <item>Bolivar</item>
+        <item>Cruz Paredes</item>
+        <item>Ezequiel Zamora</item>
+        <item>Obispos</item>
+        <item>Pedraza</item>
+        <item>Rojas</item>
+        <item>Sosa</item>
+    </string-array>
+    <string-array name="Bolivar">
+        <item>Caroni</item>
+        <item>Cedeño</item>
+        <item>El Callao</item>
+        <item>Gran Sabana</item>
+        <item>Heres</item>
+        <item>Piar</item>
+        <item>Raul Leoni</item>
+        <item>Roscio</item>
+        <item>Sifontes</item>
+        <item>Sucre</item>
+        <item>Padre Pedro Chen</item>
+
+    </string-array>
+    <string-array name="Carabobo">
+        <item>Bejuma</item>
+        <item>Carlos Arvelo</item>
+        <item>Diego Ibarra</item>
+        <item>Guacara</item>
+        <item>Juan José Mora</item>
+        <item>Libertador</item>
+        <item>Los Guayos</item>
+        <item>Miranda</item>
+        <item>Montalban</item>
+        <item>Naguanagua</item>
+        <item>Puerto Cabello</item>
+        <item>San Diego</item>
+        <item>San Joaquin</item>
+        <item>Valencia</item>
+    </string-array>
+    <string-array name="Cojedes">
+        <item>Anzoategui</item>
+        <item>Falcon</item>
+        <item>Girardot</item>
+        <item>Lima Blanco</item>
+        <item>Pao de San Juan Bautista</item>
+        <item>Ricaurte</item>
+        <item>Romulo</item>
+    </string-array>
+    <string-array name="Delta_Amacuro">
+        <item>Antonio Díaz</item>
+        <item>Casacoima</item>
+        <item>Pedernales</item>
+        <item>Tucupita</item>
+    </string-array>
+    <string-array name="Falcon">
+        <item>Acosta</item>
+        <item>Bolivar</item>
+        <item>Buchivacoa</item>
+        <item>Cacique Manaure</item>
+        <item>Carirubana</item>
+        <item>Colina</item>
+        <item>Dabajuro</item>
+        <item>Democracia</item>
+        <item>Falcon</item>
+        <item>Federacion</item>
+        <item>Jacura</item>
+        <item>Los Teques</item>
+        <item>Mauroa</item>
+        <item>Miranda</item>
+        <item>Monseñor Iturriza</item>
+        <item>Palmasola</item>
+        <item>Petit</item>
+        <item>Piritu</item>
+        <item>San Francisco</item>
+        <item>Silva</item>
+        <item>Sucre</item>
+        <item>Tocopero</item>
+        <item>Union</item>
+        <item>Urumaco</item>
+        <item>Zamora</item>
+    </string-array>
+    <string-array name="Guarico">
+        <item>Chaguaramas</item>
+        <item>El Socorro</item>
+        <item>Francisco de Miranda</item>
+        <item>Jose Félix Ribas</item>
+        <item>José Tadeo Monagas</item>
+        <item>Juan Germán Roscio</item>
+        <item>Julián Mellado</item>
+        <item>Las Mercedes</item>
+        <item>Leonardo Infante</item>
+        <item>Pedro Zaraza</item>
+        <item>Ortíz</item>
+        <item>San Gerónimo de Guayabal</item>
+        <item>San José de Guaribe</item>
+        <item>Santa María de Ipire</item>
+    </string-array>
+    <string-array name="Lara">
+        <item>Andrés Eloy Blanco</item>
+        <item>Crespo</item>
+        <item>Iribarren</item>
+        <item>Jiménez</item>
+        <item>Morán</item>
+        <item>Palavecino</item>
+        <item>Simón Planas</item>
+        <item>Torres</item>
+        <item>Urdaneta</item>
+    </string-array>
+    <string-array name="Merida">
+        <item>Alberto Adriani</item>
+        <item>Andrés Bello</item>
+        <item>Antonio Pinto Salinas</item>
+        <item>Aricagua</item>
+        <item>Arzobispo Chacón</item>
+        <item>Campo Elías</item>
+        <item>Caracciolo Parra Olmedo</item>
+        <item>Cardenal Quintero</item>
+        <item>Guaraque</item>
+        <item>Julio César Salas</item>
+        <item>Justo Briceño</item>
+        <item>Libertador</item>
+        <item>Miranda</item>
+        <item>Obispo Ramos de Lora</item>
+        <item>Padre Norega</item>
+        <item>Pueblo Llano</item>
+        <item>Rangel</item>
+        <item>Rivas Dávila</item>
+        <item>Santos Marquina</item>
+        <item>Sucre</item>
+        <item>Tovar</item>
+        <item>Tulio Febres Cordero</item>
+        <item>Zea</item>
+    </string-array>
+    <string-array name="Miranda">
+        <item>Acevedo</item>
+        <item>Andrés Bello</item>
+        <item>Baruta</item>
+        <item>Brión</item>
+        <item>Buroz</item>
+        <item>Carrizal</item>
+        <item>Chacao</item>
+        <item>Cristóbal Rojas</item>
+        <item>El Hatillo</item>
+        <item>Guaicaipuro</item>
+        <item>Independencia</item>
+        <item>Lander</item>
+        <item>Los Salias</item>
+        <item>Páez</item>
+        <item>Paz Castillo</item>
+        <item>Pedro Gual</item>
+        <item>Plaza</item>
+        <item>Simón Bolívar</item>
+        <item>Sucre</item>
+        <item>Urdaneta</item>
+        <item>Zamora</item>
+    </string-array>
+    <string-array name="Monagas">
+        <item>Acosta</item>
+        <item>Aguasay</item>
+        <item>Bolívar</item>
+        <item>Caripe</item>
+        <item>Cedeño</item>
+        <item>Ezequiel Zamora</item>
+        <item>Libertador</item>
+        <item>Maturín</item>
+        <item>Piar</item>
+        <item>Punceres</item>
+        <item>Santa Bárbara</item>
+        <item>Sotillo</item>
+        <item>Uracoa</item>
+    </string-array>
+
+    <string-array name="Nueva_Esparta">
+        <item>Antolín del Campo</item>
+        <item>Arismendi</item>
+        <item>Díaz</item>
+        <item>García</item>
+        <item>Gómez</item>
+        <item>Maneiro</item>
+        <item>Marcano</item>
+        <item>Mariño</item>
+        <item>Península de Macanao</item>
+        <item>Tubores</item>
+        <item>Villalba</item>
+
+    </string-array>
+    <string-array name="Portuguesa">
+        <item>Agua Blanca</item>
+        <item>Araure</item>
+        <item>Esteller</item>
+        <item>Guanare</item>
+        <item>Guanarito</item>
+        <item>Monseñor José Vicenti de Unda</item>
+        <item>Ospino</item>
+        <item>Páez</item>
+        <item>Papelón</item>
+        <item>San Genaro de Boconoíto</item>
+        <item>San Rafael de Onoto</item>
+        <item>Santa Rosalía</item>
+        <item>Sucre</item>
+        <item>Turén</item>
+    </string-array>
+
+    <string-array name="Sucre">
+        <item>Andrés Eloy Blanco.</item>
+        <item>Andrés Mata</item>
+        <item>Arismendi</item>
+        <item>Benítez</item>
+        <item>Bermúdez</item>
+        <item>Bolívar</item>
+        <item>Cajigal</item>
+        <item>Cruz Salmerón Acosta</item>
+        <item>Libertador</item>
+        <item>Mariño</item>
+        <item>Mejía</item>
+        <item>Montes</item>
+        <item>Ribero</item>
+        <item>Sucre</item>
+        <item>Valdez</item>
+    </string-array>
+    <string-array name="Tachira">
+        <item>Andres Bello</item>
+        <item>Antonio Romulo Costa</item>
+        <item>Ayacucho</item>
+        <item>Bolivar</item>
+        <item>Cardenas</item>
+        <item>Cordoba</item>
+        <item>Fernandez Feo</item>
+        <item>Francisco de Miranda</item>
+        <item>García de Hevia</item>
+        <item>Guásimos</item>
+        <item>Independencia</item>
+        <item>Jáuregui</item>
+        <item>José María Vargas</item>
+        <item>Junín</item>
+        <item>Libertad</item>
+        <item>Libertador</item>
+        <item>Lobatera</item>
+        <item>Michelena</item>
+        <item>Panamericano</item>
+        <item>Pedro María Ureña</item>
+        <item>Rafael Urdaneta</item>
+        <item>Samuel Darío Maldonado</item>
+        <item>San Cristóbal</item>
+        <item>Seboruco</item>
+        <item>Simón Rodríguez</item>
+        <item>Sucre</item>
+        <item>Torbes</item>
+        <item>Uribante</item>
+        <item>San Judas Tadeo</item>
+
+    </string-array>
+    <string-array name="Trujillo">
+        <item>Andrés Bello</item>
+        <item>Boconó</item>
+        <item>Candelaria</item>
+        <item>Carache</item>
+        <item>Escuque</item>
+        <item>José Felipe Márquez Cañizalez</item>
+        <item>Juan Vicente Campos Elías</item>
+        <item>La Ceiba</item>
+        <item>Miranda</item>
+        <item>Monte Carmelo</item>
+        <item>Motatán</item>
+        <item>Pampán</item>
+        <item>Pampanito</item>
+        <item>Rafael Rangel</item>
+        <item>San Rafael de Carvajal.</item>
+        <item>Sucre</item>
+        <item>Trujillo</item>
+        <item>Urdaneta</item>
+        <item>Valera</item>
+    </string-array>
+    <string-array name="Vargas">
+        <item>Vargas</item>
+    </string-array>
+    <string-array name="Yaracuy">
+        <item>Arístides Bastidas</item>
+        <item>Bolívar</item>
+        <item>Bolívar</item>
+        <item>Bruzual</item>
+        <item>Cocorote</item>
+        <item>Independencia</item>
+        <item>José Antonio Páez</item>
+        <item>La Trinidad</item>
+        <item>Manuel Monge</item>
+        <item>Nirgua</item>
+        <item>Peña</item>
+        <item>San Felipe</item>
+        <item>Sucre</item>
+        <item>Urachiche</item>
+        <item>Veroes</item>
+    </string-array>
+    <string-array name="Zulia">
+        <item>Almirante Padilla</item>
+        <item>Baralt</item>
+        <item>Cabimas</item>
+        <item>Catatumbo</item>
+        <item>Colón</item>
+        <item>Francisco Javier Pulgar</item>
+        <item>Jesús Enrique Losada</item>
+        <item>Jesús María Semprún</item>
+        <item>La Cañada de Urdaneta</item>
+        <item>Lagunillas</item>
+        <item>Machiques de Perijá</item>
+        <item>Mara</item>
+        <item>Maracaibo</item>
+        <item>Miranda</item>
+        <item>Páez</item>
+        <item>Rosario de Perijá</item>
+        <item>San Francisco</item>
+        <item>Santa Rita</item>
+        <item>Simón Bolívar</item>
+        <item>Sucre</item>
+        <item>Valmore Rodríguez</item>
+    </string-array>
+    <!-- comite de pertenencia-->
+    <string-array name="Comite">
+        <item>Nacional</item>
+        <item>Estadal</item>
+        <item>Municipal</item>
+    </string-array>
+
+</resources>

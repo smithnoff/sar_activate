@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/MenuDashBoard"
+            android:icon="@drawable/ic_pizarra_mensajes"
+            android:title="@string/boletinMensajes"/>
+        <item
+            android:id="@+id/MenuMensaje"
+            android:icon="@drawable/ic_mensajes_directos"
+            android:title="@string/mensajesDir"/>
+
+        <item
+            android:id="@+id/MenuBoletin"
+            android:icon="@drawable/ic_boletin_proyectos"
+            android:title="@string/boletinActividades"/>
+
+        <item
+            android:id="@+id/MenuAgregarActivi"
+            android:icon="@drawable/ic_edicion_proyectos"
+            android:title="@string/agregarActividades"/>
+
+        <item
+            android:id="@+id/MenuTrivia"
+            android:icon="@drawable/ic_trivia_formacion"
+            android:title="@string/trivia"/>
+
+        <item
+            android:id="@+id/MenuTablaPuntos"
+            android:icon="@drawable/ic_tabla_puntuaciones"
+            android:title="@string/agregarUsuario"/>
+
+        <item
+            android:id="@+id/MenuListarUsu"
+            android:icon="@drawable/ic_edicion_usuarios"
+            android:title="@string/listarUsuario"/>
+
+        <item
+            android:id="@+id/MenuAgregarUsu"
+            android:icon="@drawable/ic_agregar_usuario"
+            android:title="@string/agregarUsuario"/>
+        <item
+            android:id="@+id/MenuEditarPartido"
+            android:icon="@drawable/ic_edicion_partido"
+            android:title="@string/editarPartido"/>
+
+        <item
+            android:id="@+id/MenuMiPerfil"
+            android:icon="@drawable/ic_perfil_usuario"
+            android:title="@string/miPerfil"/>
+        <item
+            android:id="@+id/EliminarCuenta"
+            android:icon="@drawable/ic_highlight_off_white_24dp"
+            android:title="@string/elimarCuenta"/>
+       <!-- <item
+            android:id="@+id/menu_seccion_2"
+            android:icon="@drawable/ic_menu"
+            android:title="@string/seccion_2"/>
+        <item
+            android:id="@+id/menu_seccion_3"
+            android:icon="@drawable/ic_menu"
+            android:title="@string/seccion_3"/>-->
+    </group>
+
+   <!-- <item
+        android:id="@+id/navigation_subheader"
+        android:title="@string/otras_opciones">
+        <menu>
+            <item
+                android:id="@+id/menu_opcion_1"
+                android:icon="@drawable/ic_menu"
+                android:title="@string/opcion_1"/>
+            <item
+                android:id="@+id/menu_opcion_2"
+                android:icon="@drawable/ic_menu"
+                android:title="@string/opcion_2"/>
+        </menu>
+    </item>-->
+</menu>
