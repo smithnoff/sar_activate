@@ -46,7 +46,7 @@ public class MensajeAdapter extends RecyclerView.Adapter<MensajeAdapter.MensajeA
     @Override
     public void onBindViewHolder(MensajeAdapterViewHolder holder, int position) {
 
-        holder.adjuntado.setImageResource(items.get(position).getImagen());
+        holder.adjuntado.setImageBitmap(items.get(position).getImagen());
         holder.identificador.setText(items.get(position).getUsuario().getNombre()+" " +items.get(position).getUsuario().getApellido()+" ");
         holder.lugar.setText(" "+items.get(position).getUsuario().getEstado()+"-" +items.get(position).getUsuario().getMuncipio());
         holder.textoMensaje.setText(items.get(position).getMensaje());

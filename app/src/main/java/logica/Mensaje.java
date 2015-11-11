@@ -1,12 +1,14 @@
 package logica;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by Usuario on 29/10/2015.
  */
 public class Mensaje {
     private Usuario usuario;
     private String mensaje;
-    private int imagen;
+    private Bitmap imagen;
     private float latitud;
     private float longitud;
     private String horaPublicacion;
@@ -20,7 +22,7 @@ public class Mensaje {
         this.horaPublicacion = horaPublicacion;
     }
 
-    public Mensaje(Usuario usuario, String mensaje, int imagen/*, float latitud, float longitud, String horaPublicacion, String fechaPublicacion*/) {
+    public Mensaje(Usuario usuario, String mensaje, Bitmap imagen/*, float latitud, float longitud, String horaPublicacion, String fechaPublicacion*/) {
         this.usuario = usuario;
         this.mensaje = mensaje;
         this.imagen = imagen;
@@ -58,11 +60,11 @@ public class Mensaje {
         this.mensaje = mensaje;
     }
 
-    public int getImagen() {
+    public Bitmap getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(Bitmap imagen) {
         this.imagen = imagen;
     }
 
