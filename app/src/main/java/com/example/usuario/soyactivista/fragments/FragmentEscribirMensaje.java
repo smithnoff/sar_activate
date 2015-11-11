@@ -53,14 +53,14 @@ public class FragmentEscribirMensaje extends Fragment {
     private EditText textArea;
     private TextView contador;
     private TextView mensajeAviso;
-    public static String ubicacion=null;
+    public static String ubicacion=null; //aqui se guarda la ubicacion
     private Button publicar;
     private ImageButton botonUbicacion;
     private String mensaje;
     View vi;
     private ImageButton imagen;
     static int numero = (int) (Math.random() *1000) + 1;
-    private byte[] imagenSeleccionada = null;
+    private static byte[] imagenSeleccionada = null; //aqui se guarda la imagen
 
     private static final int ACTIVITY_SELECT_IMAGE = 1020;
 
@@ -132,7 +132,7 @@ public class FragmentEscribirMensaje extends Fragment {
 
                 DMap mapadialogo = new DMap();
                 mapadialogo.setmsn(mensajeAviso);
-                mapadialogo.show(getFragmentManager(),"dialog");
+                mapadialogo.show(getFragmentManager(), "dialog");
 
             }
         });
@@ -158,19 +158,22 @@ public class FragmentEscribirMensaje extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //Toast.makeText(getContext(), "Entre aca", Toast.LENGTH_SHORT).show();
-
         switch (requestCode){
-            case PHOTO_CODE:
+            case PHOTO_CODE:{
                 if(resultCode == Activity.RESULT_OK){
                     String dir =  Environment.getExternalStorageDirectory() + File.separator
                             + MEDIA_DIRECTORY + File.separator + TEMPORAL_PICTURE_NAME;
                     decodeBitmap(dir);
                 }
+                else{
+                    mensajeAviso.setVisibility(View.VISIBLE);
+                    mensajeAviso.setText("");
+                }
                 break;
+            }
 
-            case SELECT_PICTURE:
-                if(resultCode == Activity.RESULT_OK){
+            case SELECT_PICTURE: {
+                if (resultCode == Activity.RESULT_OK) {
                     Uri path = data.getData();
 
                     try {
@@ -181,11 +184,20 @@ public class FragmentEscribirMensaje extends Fragment {
                         yourSelectedImage.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 
                         this.imagenSeleccionada = stream.toByteArray();
+                        if(ubicacion!=null){
+                            ubicacion=null;
+                        }
+                        mensajeAviso.setVisibility(View.VISIBLE);
+                        mensajeAviso.setText("Se a adjuntado Una imagen");
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
+                } else {
+                    mensajeAviso.setVisibility(View.INVISIBLE);
+                    mensajeAviso.setText("");
                 }
                 break;
+            }
         }
     }
 
@@ -197,6 +209,12 @@ public class FragmentEscribirMensaje extends Fragment {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 
         this.imagenSeleccionada = stream.toByteArray();
+
+        if(ubicacion!=null){
+            ubicacion=null;
+        }
+        mensajeAviso.setVisibility(View.VISIBLE);
+        mensajeAviso.setText("Se a adjuntado Una imagen");
     }
 
 
@@ -234,7 +252,6 @@ public class FragmentEscribirMensaje extends Fragment {
                     Toast.makeText(getContext(), "Mensaje Publicado", Toast.LENGTH_SHORT).show();
                 } else {
                     pg.dismiss();
-                    //Toast.makeText(getContext(), "Mensaje NO Publicado", Toast.LENGTH_SHORT).show();
                     Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -268,14 +285,17 @@ public class FragmentEscribirMensaje extends Fragment {
                 public void onClick(View v) {
                     ubicacion = getUbicacionMarca();
                     if(ubicacion!=null) {
+                        if(imagenSeleccionada!=null)
+                        imagenSeleccionada=null;
                         mensaje.setVisibility(View.VISIBLE);
                         mensaje.setText("Se a adjuntado ubicación gps");
+
                     }
                     else{
                         mensaje.setVisibility(View.INVISIBLE);
                         mensaje.setText("");
                     }
-                    //Toast.makeText(getActivity(), getUbicacionMarca(), Toast.LENGTH_SHORT).show();
+
                     dismiss();
                 }
             });

@@ -24,7 +24,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:id="@+id/marcoSuperior"
-                        android:layout_height="80dp"/>
+                        android:layout_height="70dp"/>
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
@@ -121,15 +121,17 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:id="@+id/linearMensajeAviso"
                             android:orientation="vertical">
 
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
                                 android:id="@+id/avisoInsertado"
-                                android:visibility="invisible"/>
+                                android:text="asdadsad"/>
+
 
 
                         </LinearLayout>
@@ -143,6 +145,7 @@
                         android:id="@+id/button2"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/white"
+                        android:textStyle="bold"
                         android:layout_gravity="center_horizontal" />
                     <View
                         android:layout_width="match_parent"
