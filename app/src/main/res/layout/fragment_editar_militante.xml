@@ -130,6 +130,19 @@
                         android:id="@+id/spinPertenencia"
                         android:visibility="invisible"/>
 
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/rol_spinner_label"
+                        android:id="@+id/rolEditar"/>
+
+                    <Spinner
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinRol"
+                        android:visibility="invisible"/>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

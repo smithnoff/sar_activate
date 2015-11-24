@@ -93,6 +93,7 @@ public class FragmentListarUsuario extends Fragment {
         pg.setTitulo("Listando");
         pg.setMensajeCargando("Consultando...");
         pg.show(getFragmentManager(),"cargando");
+
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.findInBackground(new FindCallback<ParseUser>() {
 
@@ -107,8 +108,9 @@ public class FragmentListarUsuario extends Fragment {
                         usuario.setIdentificador(object.get(i).getUsername()/*.toLowerCase()*/);
                         usuario.setCargo((String) object.get(i).get("Cargo"));
                         usuario.setEstado((String) object.get(i).get("Estado"));
-                        usuario.setMuncipio((String) object.get(i).get("Municipio"));
+                        usuario.setMunicipio((String) object.get(i).get("Municipio"));
                         usuario.setPertenencia(object.get(i).getString("Comite"));
+                        usuario.setRol(object.get(i).getInt("Rol"));
                         US.add(usuario);
 
                     }
@@ -135,15 +137,21 @@ public class FragmentListarUsuario extends Fragment {
                             informacion.add(usuario.getCorreo());
                             informacion.add(usuario.getCargo());
                             informacion.add(usuario.getEstado());
-                            informacion.add(usuario.getMuncipio());
+                            informacion.add(usuario.getMunicipio());
                             informacion.add(usuario.getPetenencia());
+                            informacion.add(usuario.getRolName());
+
 
                             Bundle informacionUsuario = new Bundle();
                             informacionUsuario.putStringArrayList("Informacion",informacion);
 
                             Fragment fragment = new FragmentEditarMilitante();
                             fragment.setArguments(informacionUsuario);
-                            getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
+                            getFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.content_frame, fragment)
+                                    .addToBackStack(null)
+                                    .commit();
                         }
                     });
 

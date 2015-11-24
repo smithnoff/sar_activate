@@ -28,7 +28,7 @@
         <item
             android:id="@+id/MenuTablaPuntos"
             android:icon="@drawable/ic_tabla_puntuaciones"
-            android:title="@string/agregarUsuario"/>
+            android:title="@string/tablaPuntuaciones"/>
 
         <item
             android:id="@+id/MenuListarUsu"

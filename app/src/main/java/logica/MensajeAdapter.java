@@ -48,7 +48,7 @@ public class MensajeAdapter extends RecyclerView.Adapter<MensajeAdapter.MensajeA
 
         holder.adjuntado.setImageBitmap(items.get(position).getImagen());
         holder.identificador.setText(items.get(position).getUsuario().getNombre()+" " +items.get(position).getUsuario().getApellido()+" ");
-        holder.lugar.setText(" "+items.get(position).getUsuario().getEstado()+"-" +items.get(position).getUsuario().getMuncipio());
+        holder.lugar.setText(" "+items.get(position).getUsuario().getEstado()+"-" +items.get(position).getUsuario().getMunicipio());
         holder.textoMensaje.setText(items.get(position).getMensaje());
 
     }

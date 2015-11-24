@@ -4,12 +4,17 @@ package logica;
  * Created by Usuario on 19/10/2015.
  */
 public class Usuario {
-    private String nombre;
-    private String Apellido;
-    private String estado;
     private String identificador;
-    private String Pertenencia;
-    private String Correo;
+    private String nombre;
+    private String apellido;
+    private String estado;
+    private String pertenencia;
+    private String correo;
+    private String municipio;
+    private String cargo;
+    private Integer rol;
+
+    public Usuario(){}
 
     public String getIdentificador() {
         return identificador;
@@ -19,10 +24,8 @@ public class Usuario {
         this.identificador = identificador;
     }
 
-    public Usuario() { }
-
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public void setNombre(String nombre) {
@@ -30,27 +33,27 @@ public class Usuario {
     }
 
     public String getApellido() {
-        return Apellido;
+        return apellido;
     }
 
     public void setApellido(String apellido) {
-        Apellido = apellido;
+        this.apellido = apellido;
     }
 
     public String getEstado() {
-        return estado;
+        return this.estado;
     }
 
     public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public String getMuncipio() {
-        return muncipio;
+    public String getMunicipio() {
+        return municipio;
     }
 
-    public void setMuncipio(String muncipio) {
-        this.muncipio = muncipio;
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
     }
 
     public String getCargo() {
@@ -61,15 +64,34 @@ public class Usuario {
         this.cargo = cargo;
     }
 
-    public String getPetenencia() { return Pertenencia; }
+    public String getPetenencia() {
+        return this.pertenencia;
+    }
 
-    public  void setPertenencia(String pertenencia) { Pertenencia = pertenencia; }
+    public  void setPertenencia(String pertenencia) {
+        this.pertenencia = pertenencia;
+    }
 
-    public String getCorreo() { return Correo; }
+    public String getCorreo() {
+        return this.correo;
+    }
 
-    public void setCorreo(String correo) { Correo = correo; }
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
 
-    private String muncipio;
-    private String cargo;
+    public Integer getRol() {
+        return this.rol;
+    }
 
+    public void setRol(Integer rol) {
+        this.rol = rol;
+    }
+
+    public String getRolName() {
+        if(this.rol == 0)
+            return "Activista";
+        else
+            return "Registrante";
+    }
 }

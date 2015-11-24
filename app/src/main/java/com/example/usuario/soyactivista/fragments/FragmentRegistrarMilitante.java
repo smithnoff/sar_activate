@@ -1,6 +1,7 @@
 package com.example.usuario.soyactivista.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
+import logica.FActivityPantallaMenu;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 
@@ -32,6 +34,7 @@ public class FragmentRegistrarMilitante extends Fragment {
     Spinner spinEstado;
     Spinner spinMunicipio;
     Spinner spinPertinencia;
+    Spinner spinRol;
     String[] listaEstado;
     public FragmentRegistrarMilitante(){}
 
@@ -64,6 +67,11 @@ public class FragmentRegistrarMilitante extends Fragment {
             }
         });
 
+        spinRol = (Spinner)v.findViewById(R.id.spinRol);
+        this.llenarSpinnerdesdeId(spinRol,R.array.Roles);
+
+
+
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -77,7 +85,7 @@ public class FragmentRegistrarMilitante extends Fragment {
 
                 ParseUser user = new ParseUser();
                 user.setUsername(ide);
-                user.setPassword("1234");
+                user.setPassword("1234"); //TODO: Improve password generation to be random
                 user.put("Nombre", nom);
                 user.put("Apellido", ape);
                 user.setEmail(co);
@@ -85,15 +93,18 @@ public class FragmentRegistrarMilitante extends Fragment {
                 user.put("Estado", spinEstado.getSelectedItem().toString());
                 user.put("Municipio", spinMunicipio.getSelectedItem().toString());
                 user.put("Comite", spinPertinencia.getSelectedItem().toString());
-                user.put("Rol", 0);
+                user.put("Rol", spinRol.getSelectedItemPosition());
 
                 user.signUpInBackground(new SignUpCallback() {
                     @Override
                     public void done(ParseException e) {
                         if (e == null) {
                             dialog.dismiss();
-                            //user.getObjectId().toString();
                             Toast.makeText(getActivity(), "Usuario registrado correctamente", Toast.LENGTH_SHORT).show();
+                            // Redirect View to Dashboard
+                            Intent i = new Intent(getActivity(), FActivityPantallaMenu.class);
+                            startActivity(i);
+
 
                         } else {
                             dialog.dismiss();

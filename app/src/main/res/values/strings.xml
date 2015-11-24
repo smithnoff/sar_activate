@@ -40,7 +40,8 @@
     <string name="boletinMensajes">Boletin de mensajes</string>
     <string name="listarUsuario">Listar Usuario</string>
     <string name="boletinActividades">Boletin de actividades</string>
-    <string name="agregarActividades">Agregar y editar actividades</string>
+    <string name="agregarActividades">Actividades del partido</string>
+    <string name="tablaPuntuaciones">Tabla de Puntuaciones</string>
     <string name="trivia">Trivia de formacion</string>
     <string name="tablaPuntua">Tabla de puntuaciones</string>
     <string name="editarPartido">Editar partido politico</string>
@@ -64,5 +65,12 @@
     <string name="guardar">Guardar</string>
     <string name="buscador">aqui buscas</string>
     <string name="hintBuscador">Identificador de usuario...</string>
+    <string name="rol_spinner_label">Rol</string>
+
+    <!-- Roles -->
+    <string-array name="Roles">
+        <item>Activista</item>
+        <item>Registrador</item>
+    </string-array>
 
 </resources>
