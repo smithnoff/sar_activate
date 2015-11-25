@@ -121,7 +121,6 @@ public class FragmentRegistrarMilitante extends Fragment {
     }
 
     public void llenarSpinnerdesdeId(Spinner spin,int id){
-
         ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource(getActivity(), id, android.R.layout.simple_spinner_item);
         spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(spinner_adapter);

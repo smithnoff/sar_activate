@@ -44,10 +44,10 @@
     <string name="agregarActividades">Actividades del partido</string>
     <string name="tablaPuntuaciones">Tabla de Puntuaciones</string>
     <string name="trivia">Trivia de formacion</string>
-    <string name="tablaPuntua">Tabla de puntuaciones</string>
     <string name="editarPartido">Editar partido politico</string>
     <string name="miPerfil">Mi perfil</string>
     <string name="cerrarSesion">Cerrar Sesión</string>
+    <string name="crearActividad">Crear Actividad</string>
 
     <!--miselaneos-->
     <string name="identificador">Identificador</string>
@@ -73,5 +73,42 @@
         <item>Activista</item>
         <item>Registrador</item>
     </string-array>
+
+    <!--Actividades-->
+    <string name="actividad">Actividad</string>
+    <string name="hintActividad">Concentración, Pancartazo, Recolecta...</string>
+    <string name="puntaje">Puntaje</string>
+    <string name="hintPuntaje">100,200,300...900</string>
+    <string name="descripcion">Descripción</string>
+    <string name="hintDescripcion">Consiste en la...</string>
+    <string name="objetivo">Objetivo</string>
+    <string name="hintObjetivo">Mostrar, exponer, accionar...</string>
+    <string name="ubicacion">Ubicación</string>
+    <string-array name="Ubicaciones">
+        <item>Nacional</item>
+        <item>Estadal</item>
+    </string-array>
+    <string name="encargado">Encargado</string>
+    <string name="hintEncargado">Pedro Perez</string>
+    <string name="creador">Creador</string>
+    <string name="estatus">Estatus</string>
+    <string-array name="Estatuses">
+        <item>En Ejecución</item>
+        <item>Terminado</item>
+    </string-array>
+    <string name="inicio">Fecha de Inicio</string>
+    <string name="fin">Fecha de Finalización</string>
+    <string-array name="Puntuaciones">
+        <item>100</item>
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
+        <item>600</item>
+        <item>700</item>
+        <item>800</item>
+        <item>900</item>
+    </string-array>
+
 
 </resources>

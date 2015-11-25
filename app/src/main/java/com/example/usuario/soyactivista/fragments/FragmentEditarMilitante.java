@@ -64,9 +64,18 @@ public class FragmentEditarMilitante extends Fragment {
         correoEditar = (EditText)v.findViewById(R.id.EditarCorreo);
         cargoEditar = (EditText)v.findViewById(R.id.EditarCargo);
 
-        editar = (Button)v.findViewById(R.id.botonEditarCuenta);
         eliminar = (Button)v.findViewById(R.id.botonEliminarCuenta);
+        editar = (Button)v.findViewById(R.id.botonEditarCuenta);
         guardar = (Button)v.findViewById(R.id.botonGuardarDatos);
+
+
+        ParseUser usuarioActual = ParseUser.getCurrentUser();
+
+        // Showing Edit and Remove Buttons only if is admin
+        if(usuarioActual != null && usuarioActual.getInt("Rol") != 1){
+            editar.setVisibility(View.INVISIBLE);
+            guardar.setVisibility(View.INVISIBLE);
+        }
 
         estadoEditar = (TextView)v.findViewById(R.id.estadoEditar);
         municipioEditar = (TextView)v.findViewById(R.id.municipioEditar);
@@ -108,7 +117,7 @@ public class FragmentEditarMilitante extends Fragment {
             rolEditar.setText("Rol: "+getArguments().getStringArrayList("Informacion").get(8));
 
         }else{
-            ParseUser usuarioActual = ParseUser.getCurrentUser();
+
             if (usuarioActual != null){
 
                 Log.d(getClass().getName(),"Filling from Current User");

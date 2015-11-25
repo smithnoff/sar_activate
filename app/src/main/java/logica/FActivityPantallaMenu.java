@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.usuario.soyactivista.fragments.FragmentCrearActividad;
 import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -128,6 +129,15 @@ public class FActivityPantallaMenu extends AppCompatActivity {
                                 fragmentTransaction = true;
                                 break;
 
+                            /*
+                            case R.id.MenuCrearActividad:
+                                fragment = new FragmentCrearActividad();
+                                fragmentTransaction = true;
+                                break;
+                            */
+                            default:
+
+                                break;
                         }
 
                         if(fragmentTransaction) {
