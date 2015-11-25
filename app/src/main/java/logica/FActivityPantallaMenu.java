@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.usuario.soyactivista.fragments.FragmentBoletinActividades;
 import com.example.usuario.soyactivista.fragments.FragmentCrearActividad;
 import com.parse.ParseUser;
 
@@ -109,6 +110,11 @@ public class FActivityPantallaMenu extends AppCompatActivity {
 
                             case R.id.MenuCrearActividad:
                                 fragment = new FragmentCrearActividad();
+                                fragmentTransaction = true;
+                                break;
+
+                            case R.id.MenuBoletin:
+                                fragment = new FragmentBoletinActividades();
                                 fragmentTransaction = true;
                                 break;
 
