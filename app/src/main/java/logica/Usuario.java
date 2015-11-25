@@ -10,7 +10,7 @@ public class Usuario {
     private String estado;
     private String pertenencia;
     private String correo;
-    private String municipio;
+    private String muncipio;
     private String cargo;
     private Integer rol;
 
@@ -48,13 +48,6 @@ public class Usuario {
         this.estado = estado;
     }
 
-    public String getMunicipio() {
-        return municipio;
-    }
-
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
-    }
 
     public String getCargo() {
         return cargo;
@@ -80,6 +73,13 @@ public class Usuario {
         this.correo = correo;
     }
 
+    public String getMuncipio() {
+        return muncipio;
+    }
+
+    public void setMuncipio(String muncipio) {
+        this.muncipio = muncipio;
+    }
     public Integer getRol() {
         return this.rol;
     }

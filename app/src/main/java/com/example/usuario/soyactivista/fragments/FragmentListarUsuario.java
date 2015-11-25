@@ -108,7 +108,7 @@ public class FragmentListarUsuario extends Fragment {
                         usuario.setIdentificador(object.get(i).getUsername()/*.toLowerCase()*/);
                         usuario.setCargo((String) object.get(i).get("Cargo"));
                         usuario.setEstado((String) object.get(i).get("Estado"));
-                        usuario.setMunicipio((String) object.get(i).get("Municipio"));
+                        usuario.setMuncipio((String) object.get(i).get("Municipio"));
                         usuario.setPertenencia(object.get(i).getString("Comite"));
                         usuario.setRol(object.get(i).getInt("Rol"));
                         US.add(usuario);
@@ -137,7 +137,7 @@ public class FragmentListarUsuario extends Fragment {
                             informacion.add(usuario.getCorreo());
                             informacion.add(usuario.getCargo());
                             informacion.add(usuario.getEstado());
-                            informacion.add(usuario.getMunicipio());
+                            informacion.add(usuario.getMuncipio());
                             informacion.add(usuario.getPetenencia());
                             informacion.add(usuario.getRolName());
 
@@ -150,6 +150,7 @@ public class FragmentListarUsuario extends Fragment {
                             getFragmentManager()
                                     .beginTransaction()
                                     .replace(R.id.content_frame, fragment)
+                                    .addToBackStack(null)
                                     .commit();
                         }
                     });

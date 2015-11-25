@@ -21,7 +21,7 @@
             android:title="@string/crearActividad"/>
         -->
         <item
-            android:id="@+id/MenuActividades"
+            android:id="@+id/MenuAgregarActivi"
             android:icon="@drawable/ic_edicion_proyectos"
             android:title="@string/agregarActividades"/>
 
@@ -36,12 +36,12 @@
             android:title="@string/tablaPuntuaciones"/>
 
         <item
-            android:id="@+id/MenuListarUsuario"
+            android:id="@+id/MenuListarUsu"
             android:icon="@drawable/ic_edicion_usuarios"
             android:title="@string/listarUsuario"/>
 
         <item
-            android:id="@+id/MenuAgregarUsuario"
+            android:id="@+id/MenuAgregarUsu"
             android:icon="@drawable/ic_agregar_usuario"
             android:title="@string/agregarUsuario"/>
         <item
@@ -54,9 +54,9 @@
             android:icon="@drawable/ic_perfil_usuario"
             android:title="@string/miPerfil"/>
         <item
-            android:id="@+id/MenuCerrarSesion"
+            android:id="@+id/EliminarCuenta"
             android:icon="@drawable/ic_highlight_off_white_24dp"
-            android:title="@string/cerrarSesion"/>
+            android:title="@string/elimarCuenta"/>
        <!-- <item
             android:id="@+id/menu_seccion_2"
             android:icon="@drawable/ic_menu"

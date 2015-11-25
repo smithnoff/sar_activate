@@ -53,7 +53,7 @@ public class ListaUsuarioAdapter extends ArrayAdapter<Usuario> {
 
 
         txtNombre.setText(listaUsuario.get(position).getNombre() + " " + listaUsuario.get(position).getApellido());
-        txtEstado.setText(listaUsuario.get(position).getEstado()+" - "+listaUsuario.get(position).getMunicipio());
+        txtEstado.setText(listaUsuario.get(position).getEstado()+" - "+listaUsuario.get(position).getMuncipio());
         txtCargo.setText(listaUsuario.get(position).getCargo());
 
 
