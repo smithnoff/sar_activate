@@ -150,7 +150,6 @@ public class FragmentListarUsuario extends Fragment {
                             getFragmentManager()
                                     .beginTransaction()
                                     .replace(R.id.content_frame, fragment)
-                                    .addToBackStack(null)
                                     .commit();
                         }
                     });

@@ -16,7 +16,7 @@
             android:title="@string/boletinActividades"/>
 
         <item
-            android:id="@+id/MenuAgregarActivi"
+            android:id="@+id/MenuActividades"
             android:icon="@drawable/ic_edicion_proyectos"
             android:title="@string/agregarActividades"/>
 
@@ -31,12 +31,12 @@
             android:title="@string/tablaPuntuaciones"/>
 
         <item
-            android:id="@+id/MenuListarUsu"
+            android:id="@+id/MenuListarUsuario"
             android:icon="@drawable/ic_edicion_usuarios"
             android:title="@string/listarUsuario"/>
 
         <item
-            android:id="@+id/MenuAgregarUsu"
+            android:id="@+id/MenuAgregarUsuario"
             android:icon="@drawable/ic_agregar_usuario"
             android:title="@string/agregarUsuario"/>
         <item
@@ -49,9 +49,9 @@
             android:icon="@drawable/ic_perfil_usuario"
             android:title="@string/miPerfil"/>
         <item
-            android:id="@+id/EliminarCuenta"
+            android:id="@+id/MenuCerrarSesion"
             android:icon="@drawable/ic_highlight_off_white_24dp"
-            android:title="@string/elimarCuenta"/>
+            android:title="@string/cerrarSesion"/>
        <!-- <item
             android:id="@+id/menu_seccion_2"
             android:icon="@drawable/ic_menu"

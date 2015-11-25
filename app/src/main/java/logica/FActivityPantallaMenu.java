@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.parse.Parse;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import com.example.usuario.soyactivista.fragments.FragmentDashBoard;
@@ -38,18 +40,23 @@ public class FActivityPantallaMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pantalla_con_menu);
 
-        tv1 = (TextView)findViewById(R.id.usuarioPartido);
         tv2 = (TextView)findViewById(R.id.usuarioID);
         tv3 = (TextView)findViewById(R.id.usuarioCargo);
         tv4 = (TextView)findViewById(R.id.usuarioEstado);
 
-
-
         final ParseUser usuarioActual = ParseUser.getCurrentUser();
+
         if(usuarioActual != null){
+            // Print User Data on Header.
             tv2.setText(usuarioActual.getString("Nombre") +" "+ usuarioActual.getString("Apellido"));
             tv3.setText(usuarioActual.getString("Cargo"));
             tv4.setText(usuarioActual.getString("Estado") +", "+ usuarioActual.getString("Municipio"));
+        }
+        else{
+            // No User Logged In -> Redirect To Login.
+            Intent i = new Intent(getApplication(),pantalla_principal.class);
+            startActivity(i);
+            finish();
         }
 
         appbar = (Toolbar)findViewById(R.id.appbar);
@@ -65,6 +72,22 @@ public class FActivityPantallaMenu extends AppCompatActivity {
                 .commit();
 
         navView = (NavigationView)findViewById(R.id.navview);
+
+        Menu navMenu = navView.getMenu();
+
+        MenuItem actividadesPartido = navMenu.findItem(R.id.MenuActividades);
+        MenuItem listarUsuario = navMenu.findItem(R.id.MenuListarUsuario);
+        MenuItem agregarUsuario = navMenu.findItem(R.id.MenuAgregarUsuario);
+        MenuItem editarPartido = navMenu.findItem(R.id.MenuEditarPartido);
+
+        // Disable Menu Items if not admin user
+        if(usuarioActual.getInt("Rol") != 1){
+            actividadesPartido.setVisible(false);
+            listarUsuario.setVisible(false);
+            agregarUsuario.setVisible(false);
+            editarPartido.setVisible(false);
+        }
+
         navView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -80,21 +103,21 @@ public class FActivityPantallaMenu extends AppCompatActivity {
                                 fragmentTransaction = true;
                                 break;
 
-                            case R.id.MenuAgregarUsu:
+                            case R.id.MenuAgregarUsuario:
                                 fragment = new FragmentRegistrarMilitante();
                                 ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
-                            case R.id.MenuListarUsu: {
+                            case R.id.MenuListarUsuario: {
                                 fragment = FragmentListarUsuario.fragConstruct(null);/*new FragmentListarUsuario();*/
                                 ocultar(true,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
                             }
-                            case R.id.EliminarCuenta:
-                                ParseUser user = ParseUser.getCurrentUser();
-                                user.deleteInBackground();
+                            case R.id.MenuCerrarSesion:
+                                usuarioActual.logOut();
+                                // Redirects View to Login.
                                 Intent i = new Intent(getApplication(),pantalla_principal.class);
                                 startActivity(i);
                                 finish();
@@ -110,6 +133,7 @@ public class FActivityPantallaMenu extends AppCompatActivity {
                         if(fragmentTransaction) {
                             getSupportFragmentManager().beginTransaction()
                                     .replace(R.id.content_frame, fragment)
+                                    .addToBackStack(null)
                                     .commit();
 
                             menuItem.setChecked(true);
