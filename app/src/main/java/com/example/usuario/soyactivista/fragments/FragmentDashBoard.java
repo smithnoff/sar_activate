@@ -77,7 +77,7 @@ public class FragmentDashBoard extends Fragment {
                         usr.setIdentificador(objects.get(i).getParseObject("Autor").getString("username"));
                         usr.setNombre(objects.get(i).getParseObject("Autor").getString("Nombre"));
                         usr.setApellido(objects.get(i).getParseObject("Autor").getString("Apellido"));
-                        usr.setMunicipio(objects.get(i).getParseObject("Autor").getString("Municipio"));
+                        usr.setMuncipio(objects.get(i).getParseObject("Autor").getString("Municipio"));
                         usr.setEstado(objects.get(i).getParseObject("Autor").getString("Estado"));
 
                         ParseFile imagen = objects.get(i).getParseFile("Imagen");

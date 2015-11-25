@@ -34,7 +34,6 @@
     <string name="clave">Password</string>
     <string name="token">Token de Registro</string>
     <string name="codigo">Código de Identificación</string>
-
     <!--menu-->
     <string name="agregarUsuario">Agregar Usuario</string>
     <string name="mensajesDir">Mensajes directos</string>
@@ -47,7 +46,7 @@
     <string name="tablaPuntua">Tabla de puntuaciones</string>
     <string name="editarPartido">Editar partido politico</string>
     <string name="miPerfil">Mi perfil</string>
-    <string name="cerrarSesion">Cerrar Sesión</string>
+    <string name="elimarCuenta">Eliminar Cuenta</string>
 
     <!--miselaneos-->
     <string name="identificador">Identificador</string>

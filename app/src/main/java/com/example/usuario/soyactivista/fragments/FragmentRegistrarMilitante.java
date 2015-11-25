@@ -19,7 +19,6 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 import logica.FActivityPantallaMenu;
-import logica.pantalla_principal;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 
@@ -84,7 +83,7 @@ public class FragmentRegistrarMilitante extends Fragment {
                 co = correo.getText().toString();
                 car = cargo.getText().toString();
 
-                final ParseUser user = new ParseUser();
+                ParseUser user = new ParseUser();
                 user.setUsername(ide);
                 user.setPassword("1234"); //TODO: Improve password generation to be random
                 user.put("Nombre", nom);
@@ -102,9 +101,8 @@ public class FragmentRegistrarMilitante extends Fragment {
                         if (e == null) {
                             dialog.dismiss();
                             Toast.makeText(getActivity(), "Usuario registrado correctamente", Toast.LENGTH_SHORT).show();
-                            // Logout User & Redirect View to Dashboard
-                            user.logOut();
-                            Intent i = new Intent(getActivity(), pantalla_principal.class);
+                            // Redirect View to Dashboard
+                            Intent i = new Intent(getActivity(), FActivityPantallaMenu.class);
                             startActivity(i);
 
 

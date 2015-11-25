@@ -9,21 +9,21 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/listUsuariosView"
+            android:id="@+id/listActividadesView"
             android:layout_marginTop="8dp"
             />
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabEstados"
+            android:id="@+id/fabActividadesNuevas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_mapa"
+            android:src="@drawable/ic_add"
             app:fabSize="normal"
             app:borderWidth="0dp"
 
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="7dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="3dp"
-            android:layout_marginEnd="3dp" />
+            android:layout_marginRight="7dp"
+            android:layout_marginEnd="7dp" />
     </RelativeLayout>
 </FrameLayout>
