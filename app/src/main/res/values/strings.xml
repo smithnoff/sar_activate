@@ -23,6 +23,8 @@
     <string name="editar_cuenta">Editar</string>
     <string name="eliminar_cuenta">Eliminar</string>
     <string name="guardar_datos">Guardar</string>
+    <string name="crear">Crear</string>
+    <string name="cancelar">Cancelar</string>
 
     <!-- Titulos -->
     <string name="nombre_partido">NOMBRE PARTIDO</string>
@@ -76,20 +78,22 @@
 
     <!--Actividades-->
     <string name="actividad">Actividad</string>
-    <string name="hintActividad">Concentración, Pancartazo, Recolecta...</string>
+    <string name="hintActividad">Nombre de la actividad</string>
     <string name="puntaje">Puntaje</string>
     <string name="hintPuntaje">100,200,300...900</string>
     <string name="descripcion">Descripción</string>
-    <string name="hintDescripcion">Consiste en la...</string>
+    <string name="hintDescripcion">Describa las acciones</string>
     <string name="objetivo">Objetivo</string>
-    <string name="hintObjetivo">Mostrar, exponer, accionar...</string>
+    <string name="hintObjetivo">Describa el objetivo a lograr</string>
     <string name="ubicacion">Ubicación</string>
     <string-array name="Ubicaciones">
         <item>Nacional</item>
         <item>Estadal</item>
     </string-array>
+    <string name="parroquia">Parroquia</string>
+    <string name="hintParroquia">Nombre de la Parroquia</string>
     <string name="encargado">Encargado</string>
-    <string name="hintEncargado">Pedro Perez</string>
+    <string name="hintEncargado">Nombre del Responsable</string>
     <string name="creador">Creador</string>
     <string name="estatus">Estatus</string>
     <string-array name="Estatuses">
@@ -97,7 +101,9 @@
         <item>Terminado</item>
     </string-array>
     <string name="inicio">Fecha de Inicio</string>
+    <string name="hintInicio">dd/MM/yyyy</string>
     <string name="fin">Fecha de Finalización</string>
+    <string name="hintFin">dd/MM/yyyy</string>
     <string-array name="Puntuaciones">
         <item>100</item>
         <item>200</item>
@@ -109,6 +115,8 @@
         <item>800</item>
         <item>900</item>
     </string-array>
+    <string name="estado">Estado</string>
+    <string name="municipio">Municipio</string>
 
 
 </resources>

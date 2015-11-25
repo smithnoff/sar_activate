@@ -27,6 +27,7 @@
                     android:orientation="vertical"
                     >
 
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -86,23 +87,48 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/spinUbicacion"/>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/estado"
+                        android:id="@+id/labelEstado"
+                        android:visibility="gone"/>
+
                     <Spinner
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/spinEstado"
-                        android:visibility="invisible"/>
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/municipio"
+                        android:id="@+id/labelMunicipio"
+                        android:visibility="gone"/>
 
                     <Spinner
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/spinMunicipio"
-                        android:visibility="invisible"/>
+                        android:visibility="gone"/>
 
-                    <Spinner
-                        android:layout_width="fill_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/spinParroquia"
-                        android:visibility="invisible"/>
+                        android:layout_marginTop="6dp"
+                        android:text="@string/parroquia"
+                        android:id="@+id/labelParroquia"
+                        android:visibility="gone"/>
+
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:hint="@string/hintParroquia"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editParroquia"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -151,6 +177,7 @@
                         android:inputType="date"
                         android:ems="10"
                         android:id="@+id/editInicio"
+                        android:hint="@string/hintInicio"
                         android:layout_gravity="center_horizontal" />
 
                     <TextView
@@ -165,23 +192,46 @@
                         android:layout_marginTop="6dp"
                         android:inputType="date"
                         android:ems="10"
+                        android:hint="@string/hintFin"
                         android:id="@+id/editFin"
                         android:layout_gravity="center_horizontal" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_gravity="center_horizontal"
+                        android:weightSum="100">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="20"/>
 
                         <Button
-                            android:layout_marginTop="2dp"
-                            android:layout_marginBottom="2dp"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="30"
                             android:layout_height="wrap_content"
-                            android:text="@string/guardar"
-                            android:textColor="@color/white"
-                            android:id="@+id/buttonRegistro"
-                            android:layout_gravity="center_horizontal" />
+                            android:text="@string/crear"
+                            android:id="@+id/botonCrearActividad"
+                            android:textColor="@color/white" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"/>
+
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_weight="32"
+                            android:id="@+id/botonCancelar"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cancelar"
+                            android:textColor="@color/white"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"/>
                     </LinearLayout>
 
                 </LinearLayout>

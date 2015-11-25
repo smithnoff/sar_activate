@@ -13,12 +13,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.usuario.soyactivista.fragments.FragmentCrearActividad;
 import com.parse.ParseUser;
 
 import com.example.usuario.soyactivista.fragments.FragmentDashBoard;
 import com.example.usuario.soyactivista.fragments.FragmentEditarMilitante;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentRegistrarMilitante;
+import com.example.usuario.soyactivista.fragments.FragmentCrearActividad;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 
@@ -105,12 +107,11 @@ public class FActivityPantallaMenu extends AppCompatActivity {
                                 fragmentTransaction = true;
                                 break;
 
-                            /*
                             case R.id.MenuCrearActividad:
                                 fragment = new FragmentCrearActividad();
                                 fragmentTransaction = true;
                                 break;
-                            */
+
                             default:
 
                                 break;

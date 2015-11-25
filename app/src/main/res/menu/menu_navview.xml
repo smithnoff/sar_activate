@@ -14,12 +14,12 @@
             android:id="@+id/MenuBoletin"
             android:icon="@drawable/ic_boletin_proyectos"
             android:title="@string/boletinActividades"/>
-        <!--
+
         <item
             android:id="@+id/MenuCrearActividad"
             android:icon="@drawable/ic_boletin_proyectos"
             android:title="@string/crearActividad"/>
-        -->
+
         <item
             android:id="@+id/MenuAgregarActivi"
             android:icon="@drawable/ic_edicion_proyectos"
