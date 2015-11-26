@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:text="En ejecucion"
-                    android:textColor="@color/green600"/>
+                    android:textColor="@color/verde"/>
             </LinearLayout>
 
             <LinearLayout
@@ -131,6 +131,12 @@
                     android:layout_marginTop="3dp"
                     android:text="01/01/2000"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="5dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="5dp" />
         </LinearLayout>
 
     </RelativeLayout>

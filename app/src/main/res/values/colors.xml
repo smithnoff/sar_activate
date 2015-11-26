@@ -20,4 +20,7 @@
     <color name="deeppurple600">#5e35b1</color>
 <!--color miselaneo-->
     <color name="grisOscuro">#999999</color>
+
+    <color name="verde">#64dd17</color>
+    <color name="rojo">#b71c1c</color>
 </resources>

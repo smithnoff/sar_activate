@@ -1,8 +1,6 @@
 package logica;
 
 import android.app.Activity;
-import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +9,6 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -49,6 +46,10 @@ public class ActividadAdapter extends ArrayAdapter<Actividad> {
 
     private void llenarFila(TextView nombre, TextView estatus,TextView creador, TextView inicio, TextView fin, int position) {
         nombre.setText(items.get(position).getNombre());
+
+        if(items.get(position).getEstatus().equals("Terminado"))
+            estatus.setTextColor(getContext().getResources().getColor(R.color.rojo));
+
         estatus.setText(items.get(position).getEstatus());
         creador.setText(items.get(position).getCreador());
 
