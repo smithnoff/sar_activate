@@ -1,8 +1,5 @@
 package logica;
 
-/**
- * Created by Usuario on 19/10/2015.
- */
 public class Usuario {
     private String identificador;
     private String nombre;
@@ -14,6 +11,7 @@ public class Usuario {
     private String cargo;
     private Integer rol;
 
+    // Class Constructor
     public Usuario(){}
 
     public String getIdentificador() {

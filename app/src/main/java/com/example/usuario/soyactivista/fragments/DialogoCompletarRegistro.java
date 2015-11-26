@@ -32,15 +32,19 @@ public class DialogoCompletarRegistro extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
-
+        // Completar Registro Dialog
         customDialog = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
         customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         customDialog.setCancelable(false);
         customDialog.setContentView(R.layout.completar_registro);
+
+        // Declare Edit Text Fields
         t1 = (EditText) customDialog.findViewById(R.id.textCIdentificador);
         t2 = (EditText) customDialog.findViewById(R.id.textCToken);
 
-        ((Button) customDialog.findViewById(R.id.ingresar)).setOnClickListener(new View.OnClickListener() {
+
+        // Ingresar Button
+        (customDialog.findViewById(R.id.ingresar)).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -58,11 +62,12 @@ public class DialogoCompletarRegistro extends DialogFragment {
                         if (object == null)
                         {
                             dialog.dismiss();
-                            Toast.makeText(getActivity(), "Datos no encontrados", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Datos Incorrectos", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
                             dialog.dismiss();
+                            // Open new Dialog for password
                             nuevaPass(identificador);
                         }
                     }
@@ -70,7 +75,7 @@ public class DialogoCompletarRegistro extends DialogFragment {
             }
         });
 
-        ((Button) customDialog.findViewById(R.id.regresar)).setOnClickListener(new View.OnClickListener() {
+        (customDialog.findViewById(R.id.regresar)).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {

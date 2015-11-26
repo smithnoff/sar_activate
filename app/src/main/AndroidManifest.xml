@@ -15,7 +15,7 @@
     <uses-feature android:glEsVersion="0x00020000"
         android:required="true"/>
     <application
-        android:name="soy_activista.StarterApplication"
+        android:name="soy_activista.SoyActivistaApp"
         android:screenOrientation="portrait"
         android:configChanges="keyboardHidden|orientation"
         android:allowBackup="true"

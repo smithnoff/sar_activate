@@ -23,7 +23,7 @@ public class ActivityLogin extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pantallalogin);
+        setContentView(R.layout.pantalla_login);
 
         //asignamos los controles a las variables
         identificador=(EditText)findViewById(R.id.textMail);

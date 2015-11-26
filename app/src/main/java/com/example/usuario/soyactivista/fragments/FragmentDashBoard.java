@@ -8,13 +8,12 @@ import android.support.v4.app.Fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -24,7 +23,6 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-import logica.FActivityPantallaMenu;
 import logica.Mensaje;
 import logica.MensajeAdapter;
 import logica.Usuario;
@@ -35,7 +33,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
  * Created by Usuario on 07/10/2015.
  */
 public class FragmentDashBoard extends Fragment {
-    private FloatingActionButton fabBoton;
+    private FloatingActionButton botonCrearMensaje;
 
     public FragmentDashBoard(){}
 
@@ -45,42 +43,60 @@ public class FragmentDashBoard extends Fragment {
 
     //iniciar lista
     List<Mensaje> items = new ArrayList<>();
-    Usuario usr;
+    Usuario usuario;
     View v;
     Bitmap bitmap;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
         final ProgressDialogFragment pg = new ProgressDialogFragment();
         pg.setTitulo("Listando");
         pg.setMensajeCargando("Consultando...");
         pg.show(getFragmentManager(),"cargando");
+
         v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        fabBoton=(FloatingActionButton)v.findViewById(R.id.fabMensajeNuevo);
-        fabBoton.setOnClickListener(new View.OnClickListener() {
+        botonCrearMensaje =(FloatingActionButton)v.findViewById(R.id.fabMensajeNuevo);
+
+        // CREATE MESSAGE BUTTON
+        botonCrearMensaje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentEscribirMensaje fragMensaje  = new FragmentEscribirMensaje();
-                getFragmentManager().beginTransaction().replace(R.id.content_frame, fragMensaje).commit();
+                Fragment fragment = new FragmentEscribirMensaje();
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Mensajes");
-        query.include("Autor");
+        // Query for Messages
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Mensaje");
+        // Recent messages
+        query.orderByDescending("createdAt");
+        // Only 10 most recent
+        query.setLimit(10);
+        //Include message author
+        query.include("autor");
+        //Execute
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
-            public void done(List<ParseObject> objects, ParseException e) {
+            public void done(List<ParseObject> mensajes, ParseException e) {
                 if (e == null) { //no hay error
-                    for (int i = 0; i < objects.size(); i++) {
-                        usr = new Usuario();
-                        usr.setIdentificador(objects.get(i).getParseObject("Autor").getString("username"));
-                        usr.setNombre(objects.get(i).getParseObject("Autor").getString("Nombre"));
-                        usr.setApellido(objects.get(i).getParseObject("Autor").getString("Apellido"));
-                        usr.setMuncipio(objects.get(i).getParseObject("Autor").getString("Municipio"));
-                        usr.setEstado(objects.get(i).getParseObject("Autor").getString("Estado"));
+                    Log.d(getActivity().getClass().getName(), "Retrieved " + mensajes.size() + " mensajes");
+                    for (int i = 0; i < mensajes.size(); i++) {
+                        usuario = new Usuario();
+                        usuario.setIdentificador(mensajes.get(i).getParseObject("autor").getString("username"));
+                        usuario.setNombre(mensajes.get(i).getParseObject("autor").getString("nombre"));
+                        usuario.setApellido(mensajes.get(i).getParseObject("autor").getString("apellido"));
+                        usuario.setMuncipio(mensajes.get(i).getParseObject("autor").getString("municipio"));
+                        usuario.setEstado(mensajes.get(i).getParseObject("autor").getString("estado"));
 
-                        ParseFile imagen = objects.get(i).getParseFile("Imagen");
+                        ParseFile imagen = mensajes.get(i).getParseFile("adjunto");
 
                         if (imagen != null) {
                             try {
@@ -94,7 +110,7 @@ public class FragmentDashBoard extends Fragment {
                             bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.ic_attach_file);
                         }
 
-                        items.add(new Mensaje(usr, objects.get(i).getString("Mensaje"), bitmap));
+                        items.add(new Mensaje(usuario, mensajes.get(i).getString("mensaje"), bitmap));
                     }
                     pg.dismiss();
                 } else {
@@ -106,9 +122,11 @@ public class FragmentDashBoard extends Fragment {
 
         // Obtener el Recycler
         recycler = (RecyclerView) v.findViewById(R.id.reciclador);
+
         // Usar un administrador para LinearLayout
         lManager = new LinearLayoutManager(getActivity());
         recycler.setLayoutManager(lManager);
+
         // Crear un nuevo adaptador
         adapter = new MensajeAdapter(items);
         recycler.setAdapter(adapter);
@@ -116,5 +134,3 @@ public class FragmentDashBoard extends Fragment {
         return v;
     }
 }
-/*View image = v.findViewById(R.id.imagenAdjuntado);
-           image.setVisibility(View.GONE);*/

@@ -21,4 +21,5 @@
 
     <!-- Textos -->
     <dimen name="texto_nombre_partido">24sp</dimen>
+    <dimen name="textLabel">18sp</dimen>
 </resources>

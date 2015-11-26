@@ -112,6 +112,7 @@
                             android:layout_height="0dip"
                             android:layout_weight="15"
                             android:text="@string/iniciar_sesion"
+                            android:onClick="iniciarSesion"
                             android:textColor="@color/white"/>
                         <View
                             android:layout_width="match_parent"
@@ -124,7 +125,7 @@
                             android:layout_weight="15"
                             android:text="@string/recuperar_contrasena"
                             android:textColor="@color/white"
-                            android:onClick="recuperarpasw"/>
+                            android:onClick="recuperarContraseña"/>
 
                         <View
                             android:layout_width="match_parent"
@@ -136,7 +137,7 @@
                             android:layout_height="0dip"
                             android:layout_weight="15"
                             android:text="@string/recuperar_cuenta"
-                            android:onClick="recuperaridentificador"
+                            android:onClick="recuperarIdentificador"
                             android:textColor="@color/white"/>
                         <View
                             android:layout_width="match_parent"

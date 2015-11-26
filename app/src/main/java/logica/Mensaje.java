@@ -14,13 +14,6 @@ public class Mensaje {
     private String horaPublicacion;
     private String fechaPublicacion;
 
-    public String getHoraPublicacion() {
-        return horaPublicacion;
-    }
-
-    public void setHoraPublicacion(String horaPublicacion) {
-        this.horaPublicacion = horaPublicacion;
-    }
 
     public Mensaje(Usuario usuario, String mensaje, Bitmap imagen/*, float latitud, float longitud, String horaPublicacion, String fechaPublicacion*/) {
         this.usuario = usuario;
@@ -30,6 +23,15 @@ public class Mensaje {
         this.longitud = longitud;
         this.horaPublicacion = horaPublicacion;
         this.fechaPublicacion = fechaPublicacion;*/
+    }
+
+
+    public String getHoraPublicacion() {
+        return horaPublicacion;
+    }
+
+    public void setHoraPublicacion(String horaPublicacion) {
+        this.horaPublicacion = horaPublicacion;
     }
 
     public String getFechaPublicacion() {

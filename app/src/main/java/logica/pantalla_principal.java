@@ -15,39 +15,10 @@ import soy_activista.quartzapp.com.soy_activista.R;
 
 public class pantalla_principal extends AppCompatActivity {
 
-    Button botonIniciar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pantalla_principal);
-
-        botonIniciar = (Button)findViewById(R.id.boton_iniciar_sesion);
-
-        botonIniciar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplication(),ActivityLogin.class);
-                startActivity(i);
-            }
-        });
-
-        /*ParseAnalytics.trackAppOpenedInBackground(getIntent());
-
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "hola");
-        testObject.saveInBackground();*/
-    }
-    public void recuperarpasw(View view){
-        FragmentManager fragmentManager = getFragmentManager();
-        DialogoRecuperarPassw dialogo = new DialogoRecuperarPassw();
-        dialogo.show(fragmentManager, "tagAlerta");
-    }
-
-    public void recuperaridentificador(View view){
-        FragmentManager fragmentManager = getFragmentManager();
-        DialogoRecuperarIdentificador dialogo = new DialogoRecuperarIdentificador();
-        dialogo.show(fragmentManager, "tagAlerta");
     }
 
     public void completarRegistro(View view){
@@ -55,4 +26,24 @@ public class pantalla_principal extends AppCompatActivity {
         DialogoCompletarRegistro dialogo = new DialogoCompletarRegistro();
         dialogo.show(fragmentManager, "tagAlerta");
     }
+
+    public void iniciarSesion(View view){
+        Intent i = new Intent(getApplication(),ActivityLogin.class);
+        startActivity(i);
+    }
+
+
+    public void recuperarContraseña(View view){
+        FragmentManager fragmentManager = getFragmentManager();
+        DialogoRecuperarPassw dialogo = new DialogoRecuperarPassw();
+        dialogo.show(fragmentManager, "tagAlerta");
+    }
+
+    public void recuperarIdentificador(View view){
+        FragmentManager fragmentManager = getFragmentManager();
+        DialogoRecuperarIdentificador dialogo = new DialogoRecuperarIdentificador();
+        dialogo.show(fragmentManager, "tagAlerta");
+    }
+
+
 }

@@ -33,15 +33,14 @@ import logica.MensajeAdapter;
 import logica.Usuario;
 import soy_activista.quartzapp.com.soy_activista.R;
 
-/**
- * Created by Joisacris on 25/11/2015.
- */
 public class FragmentBoletinActividades extends Fragment {
+
     private FloatingActionButton fabBoton;
 
     public FragmentBoletinActividades(){}
 
     View v;
+
     //iniciar lista
     ArrayList<Actividad> items = new ArrayList<>();
     Bitmap bitmap1,bitmap2,bitmap3,bitmap4;
@@ -50,10 +49,12 @@ public class FragmentBoletinActividades extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         final ProgressDialogFragment pg = new ProgressDialogFragment();
         pg.setTitulo("Listando");
         pg.setMensajeCargando("Consultando...");
         pg.show(getFragmentManager(), "cargando");
+
         v = inflater.inflate(R.layout.fragment_listar_boletin_actividades, container, false);
 
         ListaActividadesView=(ListView)v.findViewById(R.id.listActividadesView);
@@ -62,7 +63,12 @@ public class FragmentBoletinActividades extends Fragment {
         fabBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Fragment fragment = new FragmentCrearActividad();
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
@@ -90,18 +96,6 @@ public class FragmentBoletinActividades extends Fragment {
                 }
             }
         });
-
-        /*for (int i = 0; i < 10; i++) {
-            //usr.setIdentificador(objects.get(i).getParseObject("Autor").getString("username"));
-
-            Calendar calendario = GregorianCalendar.getInstance();
-            Date inicio = calendario.getTime();
-
-            items.add(new Actividad("Nombre Actividad", "Terminado", "Joisamar Garcia", inicio, inicio));
-        }
-        pg.dismiss();*/
-
-
 
         return v;
     }

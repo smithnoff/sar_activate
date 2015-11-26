@@ -35,10 +35,9 @@ public class MensajeAdapter extends RecyclerView.Adapter<MensajeAdapter.MensajeA
         }
     }
 
-
-
     @Override
     public MensajeAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // Create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_dashboard,parent,false);
         return new MensajeAdapterViewHolder(v);
     }

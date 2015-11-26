@@ -26,6 +26,16 @@ public class Actividad {
     private Bitmap imagen3;
     private Bitmap imagen4;
 
+    public Actividad(){ }
+
+    public Actividad(String nombre, String estatus, String creador, Date inicio, Date fin){
+        this.nombre = nombre;
+        this.estatus = estatus;
+        this.creador = creador;
+        this.inicio = inicio;
+        this.fin = fin;
+    }
+
     public String getObjectId() { return objectId; }
 
     public void setObjectId(String objectId) { this.objectId = objectId; }
@@ -96,13 +106,4 @@ public class Actividad {
 
     public void setImagen4(Bitmap imagen4) { this.imagen4 = imagen4; }
 
-    public Actividad(){ }
-
-    public Actividad(String nombre, String estatus, String creador, Date inicio, Date fin){
-        this.nombre = nombre;
-        this.estatus = estatus;
-        this.creador = creador;
-        this.inicio = inicio;
-        this.fin = fin;
-    }
 }

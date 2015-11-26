@@ -33,26 +33,34 @@ public class FActivityPantallaMenu extends AppCompatActivity {
     private Toolbar appbar;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
-    private TextView tv1, tv2, tv3, tv4;
+    private TextView nombrePartido, nombreUsuario, cargoUsuario, ubicacionUsuario;
     private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.pantalla_con_menu);
 
-        tv1 = (TextView)findViewById(R.id.usuarioPartido);
-        tv2 = (TextView)findViewById(R.id.usuarioID);
-        tv3 = (TextView)findViewById(R.id.usuarioCargo);
-        tv4 = (TextView)findViewById(R.id.usuarioEstado);
+        // Menu Header Text
+        nombrePartido = (TextView)findViewById(R.id.usuarioPartido);
+        nombreUsuario = (TextView)findViewById(R.id.usuarioID);
+        cargoUsuario = (TextView)findViewById(R.id.usuarioCargo);
+        ubicacionUsuario = (TextView)findViewById(R.id.usuarioEstado);
 
-
-
+        // Gets Current User
         final ParseUser usuarioActual = ParseUser.getCurrentUser();
-        if(usuarioActual != null){
-            tv2.setText(usuarioActual.getString("Nombre") +" "+ usuarioActual.getString("Apellido"));
-            tv3.setText(usuarioActual.getString("Cargo"));
-            tv4.setText(usuarioActual.getString("Estado") +", "+ usuarioActual.getString("Municipio"));
+
+        if(usuarioActual != null) {
+            nombreUsuario.setText(usuarioActual.getString("Nombre") + " " + usuarioActual.getString("Apellido"));
+            cargoUsuario.setText(usuarioActual.getString("Cargo"));
+            ubicacionUsuario.setText(usuarioActual.getString("Estado") + ", " + usuarioActual.getString("Municipio"));
+        }
+        else{
+            // TODO:No user logged in -> Redirect to Login.
+            Intent i = new Intent(getApplication(),pantalla_principal.class);
+            startActivity(i);
+            finish();
         }
 
         appbar = (Toolbar)findViewById(R.id.appbar);
@@ -60,14 +68,34 @@ public class FActivityPantallaMenu extends AppCompatActivity {
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_nav_menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        appbar.setTitle("PRUEBA");
+
+        appbar.setTitle("Soy Activista");
+
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 
-        getSupportFragmentManager().beginTransaction()
+        // Load Message Dashboard As Main Screen
+        getSupportFragmentManager()
+                .beginTransaction()
                 .replace(R.id.content_frame, new FragmentDashBoard()/*new FragmentMenuPrincipal()*/)
                 .commit();
 
         navView = (NavigationView)findViewById(R.id.navview);
+
+        Menu navMenu = navView.getMenu();
+
+        MenuItem actividadesPartido = navMenu.findItem(R.id.menuManejarActividades);
+        MenuItem listarUsuario = navMenu.findItem(R.id.menuListarUsuario);
+        MenuItem agregarUsuario = navMenu.findItem(R.id.menuAgregarUsuario);
+        MenuItem editarPartido = navMenu.findItem(R.id.menuEditarPartido);
+
+        // Disable Menu Items if not admin user
+        if(usuarioActual.getInt("Rol") != 1){
+            actividadesPartido.setVisible(false);
+            listarUsuario.setVisible(false);
+            agregarUsuario.setVisible(false);
+            editarPartido.setVisible(false);
+        }
+
         navView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -77,61 +105,72 @@ public class FActivityPantallaMenu extends AppCompatActivity {
                         Fragment fragment = null;
 
                         switch (menuItem.getItemId()) {
-                            case R.id.MenuDashBoard:
+                            case R.id.menuDashBoard:
                                 fragment = new FragmentDashBoard();
                                 ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
-                            case R.id.MenuAgregarUsu:
+                            // PLACEHOLDER MENSAJES DIRECTOS
+
+                            case R.id.menuBoletinActividades:
+                                fragment = new FragmentBoletinActividades();
+                                fragmentTransaction = true;
+                                break;
+
+                            // PLACEHOLDER ACTIVIDADES DEL PARTIDO
+
+                            // PLACEHOLDER TRIVIA
+
+                            // PLACEHOLDER PUNTUACIONES
+
+                            case R.id.menuListarUsuario:
+                                fragment = FragmentListarUsuario.fragConstruct(null);/*new FragmentListarUsuario();*/
+                                ocultar(true,R.id.buscador);
+                                fragmentTransaction = true;
+                                break;
+
+                            case R.id.menuAgregarUsuario:
                                 fragment = new FragmentRegistrarMilitante();
                                 ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
-                            case R.id.MenuListarUsu: {
-                                fragment = FragmentListarUsuario.fragConstruct(null);/*new FragmentListarUsuario();*/
-                                ocultar(true,R.id.buscador);
+                            // PLACEHOLDER EDITAR PARTIDO POLITICO
+
+                            case R.id.menuMiPerfil:
+                                fragment = new FragmentEditarMilitante();
                                 fragmentTransaction = true;
                                 break;
-                            }
-                            case R.id.EliminarCuenta:
-                                ParseUser user = ParseUser.getCurrentUser();
-                                user.deleteInBackground();
+
+                            case R.id.menuCerrarSesion:
+                                usuarioActual.logOutInBackground();
                                 Intent i = new Intent(getApplication(),pantalla_principal.class);
                                 startActivity(i);
                                 finish();
                                 break;
 
-                            case R.id.MenuMiPerfil:
-                                fragment = new FragmentEditarMilitante();
-                                fragmentTransaction = true;
-                                break;
-
-                            case R.id.MenuCrearActividad:
-                                fragment = new FragmentCrearActividad();
-                                fragmentTransaction = true;
-                                break;
-
-                            case R.id.MenuBoletin:
-                                fragment = new FragmentBoletinActividades();
-                                fragmentTransaction = true;
-                                break;
 
                             default:
-
+                                fragment = new FragmentDashBoard();
+                                ocultar(false,R.id.buscador);
+                                fragmentTransaction = true;
                                 break;
                         }
 
+                        // Conclude Fragment loading/view Change
                         if(fragmentTransaction) {
-                            getSupportFragmentManager().beginTransaction()
+                            getSupportFragmentManager()
+                                    .beginTransaction()
                                     .replace(R.id.content_frame, fragment)
+                                    .addToBackStack(null)
                                     .commit();
 
                             menuItem.setChecked(true);
                             getSupportActionBar().setTitle(menuItem.getTitle());
                         }
 
+                        // Close Menu
                         drawerLayout.closeDrawers();
 
                         return true;

@@ -89,7 +89,7 @@
                         <View
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="10"/>
+                            android:layout_weight="15"/>
 
                         <Button
                             android:layout_width="0dp"
@@ -103,11 +103,11 @@
                         <View
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="20"/>
+                            android:layout_weight="10"/>
 
                         <Button
                             android:layout_width="0dp"
-                            android:layout_weight="25"
+                            android:layout_weight="30"
                             android:layout_height="wrap_content"
                             android:text="@string/salir"
                             android:textColor="@color/white"/>
@@ -133,141 +133,3 @@
     </RelativeLayout>
 
 </LinearLayout>
-
-
-
-<!--<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent" android:layout_height="fill_parent"
-    android:id="@+id/layoutContainer" android:orientation="horizontal">
-
-    <RelativeLayout
-        android:layout_width="0dip"
-        android:layout_height="fill_parent"
-        android:layout_weight="0.05">
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="0dip"
-        android:layout_height="fill_parent"
-        android:layout_weight="0.9">
-
-
-<LinearLayout
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:layout_centerInParent="true"
-android:orientation="vertical"
-android:id="@+id/linearLayout">
-<ScrollView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/scrollView" >
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_width="108dp"
-                android:layout_height="122dp"
-                android:id="@+id/logo"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/logo_soyactivista"
-                android:layout_gravity="center_horizontal" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/usuario"
-            android:id="@+id/Lusuario"
-            android:textStyle="bold|italic" />
-
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:id="@+id/textMail"
-            android:hint="@string/usuario"
-            android:textStyle="italic" />
-
-        <TextView
-            android:layout_marginTop="4dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/clave"
-            android:id="@+id/Lclave"
-            android:textStyle="bold|italic"
-            android:layout_gravity="center_horizontal" />
-
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-
-            android:id="@+id/editTextPass"
-            android:hint="****************"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"
-            android:weightSum="100">
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"/>
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="30"
-                android:layout_height="match_parent"
-                android:text="@string/entrar"
-                android:id="@+id/botonEntrar"
-                android:textColor="@color/white"
-                android:onClick="iniciarSesion" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="20"/>
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="25"
-                android:layout_height="wrap_content"
-                android:text="@string/salir"
-                android:textColor="@color/white"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="15"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-</ScrollView>
-
-</LinearLayout>
-
-
-    </RelativeLayout>
-<RelativeLayout
-android:layout_width="0dip"
-android:layout_height="fill_parent"
-android:layout_weight="0.05">
-</RelativeLayout>
-
-    </LinearLayout>-->

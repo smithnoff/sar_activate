@@ -50,6 +50,7 @@
     <string name="cerrarSesion">Cerrar Sesión</string>
     <string name="crearActividad">Crear Actividad</string>
     <string name="elimarCuenta">Eliminar Cuenta</string>
+    <string name="manejarActividades">Actividades del partido</string>
 
     <!--miselaneos-->
     <string name="identificador">Identificador</string>
