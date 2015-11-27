@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -53,7 +54,7 @@ public class FragmentEscribirMensaje extends Fragment {
     private EditText textArea;
     private TextView contador;
     private TextView mensajeAviso;
-    public static String ubicacion=null; //aqui se guarda la ubicacion
+    public static ParseGeoPoint ubicacion = null; //aqui se guarda la ubicacion
     private Button publicar;
     private ImageButton botonUbicacion;
     private String mensaje;
@@ -71,6 +72,7 @@ public class FragmentEscribirMensaje extends Fragment {
     private final int PHOTO_CODE = 100;
     private final int SELECT_PICTURE = 200;
 
+    // Fragment COnstructor
     public FragmentEscribirMensaje(){}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -92,6 +94,8 @@ public class FragmentEscribirMensaje extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {}
         });
+
+        // Attach image button behavior
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,14 +122,15 @@ public class FragmentEscribirMensaje extends Fragment {
         });
 
 
+        // Create Message Button
         publicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-
                 publicar();
             }
         });
 
+        // Add location button
         botonUbicacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -229,18 +234,18 @@ public class FragmentEscribirMensaje extends Fragment {
         ParseUser usuarioActual = ParseUser.getCurrentUser();
 
         //Nuevo mensaje simple
-        ParseObject post = new ParseObject("Mensajes");
-        post.put("Mensaje", mensaje);
-        post.put("Autor", usuarioActual);
+        ParseObject post = new ParseObject("Mensaje");
+        post.put("texto", mensaje);
+        post.put("autor", usuarioActual);
 
         if (imagenSeleccionada != null){
             String nombreArchivo = usuarioActual.getUsername()+ numero +".jpg";
             ParseFile fileImagen = new ParseFile(nombreArchivo, imagenSeleccionada);
             fileImagen.saveInBackground();
-            post.put("Imagen",fileImagen);
+            post.put("adjunto",fileImagen);
         }
         if(ubicacion!=null) {
-         post.put("Ubicacion",ubicacion);
+         post.put("ubicacion",ubicacion);
         }
 
 

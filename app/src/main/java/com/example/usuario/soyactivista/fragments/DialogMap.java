@@ -16,6 +16,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.parse.ParseGeoPoint;
+
 import soy_activista.quartzapp.com.soy_activista.R;
 
 
@@ -24,7 +26,7 @@ public class DialogMap extends DialogFragment {
 
     /**CLASE GENERAL PARA METER UN MAPA EN UN DIALOGO, PARA
      * IMPLEMENTAR SE EXTIENDE DE ESTA CLASE**/
-    private String ubicacionMarca=null;
+    private ParseGeoPoint ubicacionMarca = null;
     private Button mapBotonCancelar;
     private Button mapBotonAceptar;
      GoogleMap googleMap;
@@ -34,7 +36,7 @@ public class DialogMap extends DialogFragment {
         return mapBotonAceptar;
     }
 
-    public String getUbicacionMarca() {
+    public ParseGeoPoint getUbicacionMarca() {
         return ubicacionMarca;
     }
 
@@ -63,9 +65,6 @@ public class DialogMap extends DialogFragment {
         /*googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(7.3596096,-66.6874229),19));*/
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(7.3596096,-66.6874229),5));
 
-
-
-
         googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
@@ -77,9 +76,7 @@ public class DialogMap extends DialogFragment {
 
                  googleMap.addMarker(new MarkerOptions().title("Adjuntar").position(point));
 
-                ubicacionMarca=String.valueOf(point.latitude)+"|"+String.valueOf(point.longitude);
-
-
+                ubicacionMarca=  new ParseGeoPoint(point.latitude,point.longitude);
             }
         });
 
@@ -109,8 +106,6 @@ public class DialogMap extends DialogFragment {
         super.onLowMemory();
         mMapView.onLowMemory();
     }
-
-
 
     public static DialogMap newInstance(int title) {
         DialogMap frag = new DialogMap();
