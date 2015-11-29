@@ -1,9 +1,316 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.ProgressDialog;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parse.GetCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import soy_activista.quartzapp.com.soy_activista.R;
+
+import static java.lang.Integer.parseInt;
 
 /**
  * Created by Brahyam on 25/11/2015.
  */
 public class FragmentDetalleActividad extends Fragment {
+
+    private TextView labelPuntaje, labelDescripcion, labelEstado, labelMunicipio, labelParroquia, nombreActual, ubicacionActual, estadoActual, municipioActual;
+    private EditText puntaje, descripcion, objetivo, encargado, creador,  inicio, fin, parroquia; // Edit Field holders
+    private Spinner nombre, ubicacion, estado, municipio, estatus; // Spinner holders
+    private Button guardar,editar,eliminar; // Button holders
+    private ProgressDialog dialog;
+    private ParseObject tipoActividad; // TipoActividad to be associated with Actividad
+
+    // Class Constructor
+    public FragmentDetalleActividad(){}
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
+        //Choose fragment to inflate
+        View v = inflater.inflate(R.layout.fragment_detalle_actividad, container, false);
+
+        //Gets Current User
+        final ParseUser usuarioActual = ParseUser.getCurrentUser();
+
+        //Asign TextViews to Holders
+        nombreActual = (TextView)v.findViewById(R.id.valueNombre);
+        labelPuntaje = (TextView)v.findViewById(R.id.labelPuntaje);
+        labelDescripcion = (TextView)v.findViewById(R.id.labelDescripcion);
+        ubicacionActual = (TextView)v.findViewById(R.id.valueUbicacion);
+        labelEstado = (TextView)v.findViewById(R.id.labelEstado);
+        estadoActual = (TextView)v.findViewById(R.id.estadoActual);
+        labelMunicipio = (TextView)v.findViewById(R.id.labelMunicipio);
+        municipioActual = (TextView)v.findViewById(R.id.municipioActual);
+        labelParroquia = (TextView)v.findViewById(R.id.labelParroquia);
+
+
+        //Asign Text Edit to holders
+        puntaje = (EditText)v.findViewById(R.id.editPuntaje);
+        descripcion = (EditText)v.findViewById(R.id.editDescripcion);
+        objetivo = (EditText)v.findViewById(R.id.editObjetivo);
+        encargado = (EditText)v.findViewById(R.id.editEncargado);
+        creador = (EditText)v.findViewById(R.id.editCreador);
+        inicio = (EditText)v.findViewById(R.id.editInicio);
+        fin = (EditText)v.findViewById(R.id.editFin);
+        parroquia = (EditText)v.findViewById(R.id.editParroquia);
+
+        // Asigns Spinners to holders
+        nombre = (Spinner)v.findViewById(R.id.spinNombreActividad);
+        ubicacion = (Spinner)v.findViewById(R.id.spinUbicacion);
+        estado = (Spinner)v.findViewById(R.id.spinEstado);
+        municipio = (Spinner)v.findViewById(R.id.spinMunicipio);
+        //parroquia = (Spinner)v.findViewById(R.id.spinParroquia); Commented as will be used as Edit Text while data is parsed.
+        estatus = (Spinner)v.findViewById(R.id.spinEstatus);
+        estatus.setEnabled(false);
+
+        // Asign Buttons to holders
+        editar = (Button)v.findViewById(R.id.botonEditar);
+        guardar = (Button)v.findViewById(R.id.botonGuardar);
+        eliminar = (Button)v.findViewById(R.id.botonEliminar);
+
+        // Show buttons depending on Role or if user is owner
+        if(usuarioActual.getInt("rol") == 1 || usuarioActual.getObjectId() == getArguments().getString("creadorId")){
+            editar.setVisibility(View.VISIBLE);
+            eliminar.setVisibility(View.VISIBLE);
+        }
+
+        // Load Defaults from Arguments bundle
+
+        nombreActual.setText(getArguments().getString("nombre"));
+        // Fill Name Spinner from parse
+        ParseQueryAdapter.QueryFactory<ParseObject> factory = new ParseQueryAdapter.QueryFactory<ParseObject>() {
+            public ParseQuery create() {
+                ParseQuery query = new ParseQuery("TipoActividad");
+                return query;
+            }
+        };
+        // Overrriding ParseQueryAdapter getViewTypeCount method to get past issue 79011
+        final ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(this.getActivity(), factory){
+            @Override
+            public int getViewTypeCount(){
+                return 1;
+            }
+        };
+        adapter.setTextKey("nombre");
+        nombre.setAdapter(adapter);
+
+        puntaje.setText(getArguments().getString("puntaje"));
+        descripcion.setText(getArguments().getString("descripcion"));
+        objetivo.setText(getArguments().getString("objetivo"));
+        ubicacionActual.setText(getArguments().getString("ubicacion"));
+
+        // Show other location fields if its on state level
+        if(getArguments().getString("ubicacion") == "Estadal"){
+            labelEstado.setVisibility(View.VISIBLE);
+            estadoActual.setVisibility(View.VISIBLE);
+            estadoActual.setText(getArguments().getString("estado"));
+            labelMunicipio.setVisibility(View.VISIBLE);
+            municipioActual.setVisibility(View.VISIBLE);
+            municipioActual.setText(getArguments().getString("municipio"));
+            labelParroquia.setVisibility(View.VISIBLE);
+            parroquia.setVisibility(View.VISIBLE);
+            parroquia.setText(getArguments().getString("parroquia"));
+        }
+
+        encargado.setText(getArguments().getString("encargado"));
+        creador.setText(getArguments().getString("creador"));
+
+        this.llenarSpinnerdesdeId(estatus, R.array.Estatuses);
+        if(getArguments().getString("estatus") == "En Ejecución")
+            estatus.setSelection(0);
+        else
+            estatus.setSelection(1);
+
+        inicio.setText(getArguments().getString("inicio"));
+        fin.setText(getArguments().getString("fin"));
+
+        //Fill Spinners with Preset Options
+        this.llenarSpinnerdesdeId(ubicacion, R.array.Ubicaciones);
+        this.llenarSpinnerdesdeId(estado, R.array.Estados);
+
+        // On Activity selected populate puntaje and descripcion
+        nombre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                tipoActividad = adapter.getItem(position);
+                puntaje.setText(Integer.toString(tipoActividad.getInt("puntaje")));
+                labelPuntaje.setVisibility(View.VISIBLE);
+                puntaje.setVisibility(View.VISIBLE);
+                descripcion.setText(tipoActividad.getString("descripcion"));
+                labelDescripcion.setVisibility(View.VISIBLE);
+                descripcion.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        // Spinner OnItemSelected Listeners
+        ubicacion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position != 0){ // Estadal Selected
+                    //Show remaining Text/Spinners/Fields
+                    labelEstado.setVisibility(View.VISIBLE);
+                    estado.setVisibility(View.VISIBLE);
+                    labelMunicipio.setVisibility(View.VISIBLE);
+                    municipio.setVisibility(View.VISIBLE);
+                    labelParroquia.setVisibility(View.VISIBLE);
+                    parroquia.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        estado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                municipio.setAdapter(null);
+                llenarSpinnerdesdeId(municipio, getResources().getIdentifier(estado.getSelectedItem().toString().replace(' ', '_'), "array", getActivity().getPackageName()));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        // Buttons Behavior
+        editar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //Hide Edit button/show save
+                editar.setVisibility(View.GONE);
+                guardar.setVisibility(View.VISIBLE);
+
+                //Show/enable all editors
+                nombreActual.setVisibility(View.GONE);
+                nombre.setVisibility(View.VISIBLE);
+
+                objetivo.setEnabled(true);
+                ubicacionActual.setVisibility(View.GONE);
+                ubicacion.setVisibility(View.VISIBLE);
+                ubicacion.setEnabled(true);
+
+                encargado.setEnabled(true);
+
+                estatus.setEnabled(true);
+
+                inicio.setEnabled(true);
+                fin.setEnabled(true);
+
+            }
+        });
+
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                dialog = ProgressDialog.show(getActivity(),"","Guardando Actividad",true);
+
+                final ParseObject tipoActividad = ParseObject.createWithoutData("TipoActividad",getArguments().getString("tipoId"));
+
+                // Retrieve the object by id from parse
+                final ParseQuery<ParseObject> query = ParseQuery.getQuery("Actividad");
+                query.getInBackground(getArguments().getString("id"), new GetCallback<ParseObject>() {
+                    public void done(ParseObject actividad, ParseException e) {
+                        if (e == null) {
+                            actividad.put("tipoActividad",tipoActividad);
+                            actividad.put("objetivo",objetivo.getText().toString());
+                            actividad.put("ubicacion",ubicacion.getSelectedItem().toString());
+                            if(ubicacion.getSelectedItem().toString() == "Estadal" && estado.getSelectedItem() != null )
+                            {
+                                actividad.put("estado",estado.getSelectedItem().toString());
+                                actividad.put("municipio",municipio.getSelectedItem().toString());
+                                actividad.put("parroquia",parroquia.getText().toString());
+                            }
+                            actividad.put("encargado",encargado.getText().toString());
+
+                            actividad.put("estatus",estatus.getSelectedItem().toString());
+                            // Declare Date Format
+                            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                            try{
+                                actividad.put("inicio",df.parse(inicio.getText().toString()));
+                                actividad.put("fin",df.parse(fin.getText().toString()));
+                            } catch (java.text.ParseException ex){
+                                dialog.dismiss();
+                                Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_SHORT).show();
+                            }
+
+                            actividad.saveInBackground(new SaveCallback() {
+                                public void done(ParseException e) {
+                                    if (e == null) {
+                                        dialog.dismiss();
+                                        Toast.makeText(getActivity(), "Actividad Guardada", Toast.LENGTH_SHORT).show();
+                                        // Redirect View to Boletin de Actividades
+                                        Fragment fragment = new FragmentListarActividad();
+                                        getFragmentManager()
+                                                .beginTransaction()
+                                                .replace(R.id.content_frame, fragment)
+                                                .commit();
+                                    } else {
+                                        dialog.dismiss();
+                                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                        } else {
+                            // Object not found in Parse
+                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
+        eliminar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View arg0){
+                // Redirect View to list
+                Fragment fragment = new FragmentListarActividad();
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .commit();
+            }
+        });
+
+        return v;
+    }
+
+    //Auxiliar method for filling spinners with String Arrays
+    public void llenarSpinnerdesdeId(Spinner spin,int id){
+        ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource(getActivity(), id, android.R.layout.simple_spinner_item);
+        spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin.setAdapter(spinner_adapter);
+    }
+
+
 }

@@ -34,35 +34,41 @@
                         android:layout_marginTop="2dp"
                         android:text="@string/actividad"/>
 
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editActividad"
-
-                        android:hint="@string/hintActividad"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/puntaje"/>
-
                     <Spinner
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/spinPuntaje"/>
+                        android:id="@+id/spinNombreActividad"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="@string/descripcion"/>
+                        android:id="@+id/labelPuntaje"
+                        android:text="@string/puntaje"
+                        android:visibility="gone"/>
+
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editPuntaje"
+                        android:enabled="false"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:id="@+id/labelDescripcion"
+                        android:text="@string/descripcion"
+                        android:visibility="gone"/>
 
                     <EditText
                         android:layout_width="fill_parent"
                         android:hint="@string/hintDescripcion"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editDescripcion" />
+                        android:id="@+id/editDescripcion"
+                        android:enabled="false"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -157,17 +163,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="@string/estatus"/>
-
-                    <Spinner
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinEstatus"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
                         android:text="@string/inicio"/>
 
                     <EditText
@@ -222,7 +217,7 @@
 
                         <Button
                             android:layout_width="0dp"
-                            android:layout_weight="32"
+                            android:layout_weight="30"
                             android:id="@+id/botonCancelar"
                             android:layout_height="wrap_content"
                             android:text="@string/cancelar"

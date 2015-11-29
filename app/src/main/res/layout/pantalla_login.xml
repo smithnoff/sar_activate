@@ -50,7 +50,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/usuario"
+                        android:text="@string/autor"
                         android:id="@+id/Lusuario"
                         android:textStyle="bold|italic" />
 
@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
                         android:id="@+id/textMail"
-                        android:hint="@string/usuario"
+                        android:hint="@string/autor"
                         android:textStyle="italic" />
 
                     <TextView

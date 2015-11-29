@@ -16,10 +16,9 @@ public class FragmentDetalleMensaje extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_editar_militante, container, false);
+
+        v = inflater.inflate(R.layout.fragment_detalle_mensaje, container, false);
         padre=(LinearLayout)v.findViewById(R.id.LinearMensajeDetallaAdjunto);
-
-
 
         return v;
     }

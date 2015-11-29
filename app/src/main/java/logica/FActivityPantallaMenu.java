@@ -15,6 +15,9 @@ import android.widget.TextView;
 
 import com.example.usuario.soyactivista.fragments.FragmentBoletinActividades;
 import com.example.usuario.soyactivista.fragments.FragmentCrearActividad;
+import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
+import com.example.usuario.soyactivista.fragments.FragmentListarMensajes;
+import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.parse.ParseUser;
 
 import com.example.usuario.soyactivista.fragments.FragmentDashBoard;
@@ -52,9 +55,9 @@ public class FActivityPantallaMenu extends AppCompatActivity {
         final ParseUser usuarioActual = ParseUser.getCurrentUser();
 
         if(usuarioActual != null) {
-            nombreUsuario.setText(usuarioActual.getString("Nombre") + " " + usuarioActual.getString("Apellido"));
-            cargoUsuario.setText(usuarioActual.getString("Cargo"));
-            ubicacionUsuario.setText(usuarioActual.getString("Estado") + ", " + usuarioActual.getString("Municipio"));
+            nombreUsuario.setText(usuarioActual.getString("nombre") + " " + usuarioActual.getString("apellido"));
+            cargoUsuario.setText(usuarioActual.getString("cargo"));
+            ubicacionUsuario.setText(usuarioActual.getString("estado") + ", " + usuarioActual.getString("municipio"));
         }
         else{
             // TODO:No user logged in -> Redirect to Login.
@@ -89,7 +92,7 @@ public class FActivityPantallaMenu extends AppCompatActivity {
         MenuItem editarPartido = navMenu.findItem(R.id.menuEditarPartido);
 
         // Disable Menu Items if not admin user
-        if(usuarioActual.getInt("Rol") != 1){
+        if(usuarioActual.getInt("rol") != 1){
             actividadesPartido.setVisible(false);
             listarUsuario.setVisible(false);
             agregarUsuario.setVisible(false);
@@ -114,11 +117,14 @@ public class FActivityPantallaMenu extends AppCompatActivity {
                             // PLACEHOLDER MENSAJES DIRECTOS
 
                             case R.id.menuBoletinActividades:
-                                fragment = new FragmentBoletinActividades();
+                                fragment = new FragmentListarActividad();
                                 fragmentTransaction = true;
                                 break;
 
-                            // PLACEHOLDER ACTIVIDADES DEL PARTIDO
+                            case R.id.menuManejarActividades:
+                                fragment = new FragmentListarTipoActividad();
+                                fragmentTransaction = true;
+                                break;
 
                             // PLACEHOLDER TRIVIA
 
@@ -149,7 +155,6 @@ public class FActivityPantallaMenu extends AppCompatActivity {
                                 startActivity(i);
                                 finish();
                                 break;
-
 
                             default:
                                 fragment = new FragmentDashBoard();

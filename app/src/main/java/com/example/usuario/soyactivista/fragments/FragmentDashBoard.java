@@ -55,7 +55,7 @@ public class FragmentDashBoard extends Fragment {
         final ProgressDialogFragment pg = new ProgressDialogFragment();
         pg.setTitulo("Listando");
         pg.setMensajeCargando("Consultando...");
-        pg.show(getFragmentManager(),"cargando");
+        pg.show(getFragmentManager(), "cargando");
 
         v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
@@ -74,13 +74,15 @@ public class FragmentDashBoard extends Fragment {
             }
         });
 
+        // Obtener el Recycler
+        recycler = (RecyclerView) v.findViewById(R.id.reciclador);
+
+        // Usar un administrador para LinearLayout
+        lManager = new LinearLayoutManager(getActivity());
+        recycler.setLayoutManager(lManager);
+
         // Query for Messages
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Mensaje");
-        // Recent messages
-        query.orderByDescending("createdAt");
-        // Only 10 most recent
-        query.setLimit(10);
-        //Include message author
         query.include("autor");
         //Execute
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -113,24 +115,17 @@ public class FragmentDashBoard extends Fragment {
                         items.add(new Mensaje(usuario, mensajes.get(i).getString("mensaje"), bitmap));
                     }
                     pg.dismiss();
+
+                    // Crear un nuevo adaptador
+                    adapter = new MensajeAdapter(items);
+                    recycler.setAdapter(adapter);
+
                 } else {
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     pg.dismiss();
                 }
             }
         });
-
-        // Obtener el Recycler
-        recycler = (RecyclerView) v.findViewById(R.id.reciclador);
-
-        // Usar un administrador para LinearLayout
-        lManager = new LinearLayoutManager(getActivity());
-        recycler.setLayoutManager(lManager);
-
-        // Crear un nuevo adaptador
-        adapter = new MensajeAdapter(items);
-        recycler.setAdapter(adapter);
-
         return v;
     }
 }

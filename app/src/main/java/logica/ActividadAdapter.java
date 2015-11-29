@@ -1,6 +1,7 @@
 package logica;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,8 @@ public class ActividadAdapter extends ArrayAdapter<Actividad> {
 
         SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
 
+        Log.d("ACTIVIDADES","Fecha INI: "+items.get(position).getInicio());
+        Log.d("ACTIVIDADES","Fecha FIN: "+items.get(position).getFin());
         inicio.setText(formatoDeFecha.format(items.get(position).getInicio()));
         fin.setText(formatoDeFecha.format(items.get(position).getFin()));
     }

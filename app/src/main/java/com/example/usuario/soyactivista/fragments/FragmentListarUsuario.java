@@ -24,8 +24,6 @@ import logica.Usuario;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 
-
-
 public class FragmentListarUsuario extends Fragment {
 
 
@@ -39,7 +37,7 @@ public class FragmentListarUsuario extends Fragment {
         return f;
     }
 
-    ArrayList<Usuario>US=new ArrayList<>();
+    ArrayList<Usuario> usuarioArrayList = new ArrayList<>();
     Usuario usuario;
     Dialog dialogo;
     private FloatingActionButton boton;
@@ -102,25 +100,25 @@ public class FragmentListarUsuario extends Fragment {
                 if (e == null) { //no hay error
                     for (int i = 0; i < object.size(); i++) {
                         usuario = new Usuario();
-                        usuario.setNombre((String) object.get(i).get("Nombre"));
-                        usuario.setApellido((String) object.get(i).get("Apellido"));
+                        usuario.setNombre((String) object.get(i).get("nombre"));
+                        usuario.setApellido((String) object.get(i).get("apellido"));
                         usuario.setCorreo(object.get(i).getEmail());
                         usuario.setIdentificador(object.get(i).getUsername()/*.toLowerCase()*/);
-                        usuario.setCargo((String) object.get(i).get("Cargo"));
-                        usuario.setEstado((String) object.get(i).get("Estado"));
-                        usuario.setMuncipio((String) object.get(i).get("Municipio"));
-                        usuario.setPertenencia(object.get(i).getString("Comite"));
-                        usuario.setRol(object.get(i).getInt("Rol"));
-                        US.add(usuario);
+                        usuario.setCargo((String) object.get(i).get("cargo"));
+                        usuario.setEstado((String) object.get(i).get("estado"));
+                        usuario.setMuncipio((String) object.get(i).get("municipio"));
+                        usuario.setComite(object.get(i).getString("comite"));
+                        usuario.setRol(object.get(i).getInt("rol"));
+                        usuarioArrayList.add(usuario);
 
                     }
                     listaUsuarioView.setAdapter(null);
                     ListaUsuarioAdapter adaptador;
                     if(arg!=null){
-                        adaptador = new ListaUsuarioAdapter(getActivity(), filtrarPorID(arg.getString("query")/*.toLowerCase()*/,US), R.layout.items_listado_usuarios);
+                        adaptador = new ListaUsuarioAdapter(getActivity(), filtrarPorID(arg.getString("query")/*.toLowerCase()*/, usuarioArrayList), R.layout.items_listado_usuarios);
                     }
                     else{
-                        adaptador = new ListaUsuarioAdapter(getActivity(), US, R.layout.items_listado_usuarios);
+                        adaptador = new ListaUsuarioAdapter(getActivity(), usuarioArrayList, R.layout.items_listado_usuarios);
                     }
                     listaUsuarioView.setAdapter(adaptador);
                     pg.dismiss();
@@ -138,7 +136,7 @@ public class FragmentListarUsuario extends Fragment {
                             informacion.add(usuario.getCargo());
                             informacion.add(usuario.getEstado());
                             informacion.add(usuario.getMuncipio());
-                            informacion.add(usuario.getPetenencia());
+                            informacion.add(usuario.getComite());
                             informacion.add(usuario.getRolName());
 
 
@@ -167,19 +165,20 @@ public class FragmentListarUsuario extends Fragment {
     private void filtrar(String item){
         ArrayList<Usuario>resultado=new ArrayList<>();
         ListaUsuarioAdapter adaptador;
-        if(!US.isEmpty()){
+        if(!usuarioArrayList.isEmpty()){
 
                 if(item.equalsIgnoreCase("Todos los estados")){
                     ListaUsuarioView.setAdapter(null);
-                    adaptador = new ListaUsuarioAdapter(getActivity(), US, R.layout.items_listado_usuarios);
+                    adaptador = new ListaUsuarioAdapter(getActivity(), usuarioArrayList, R.layout.items_listado_usuarios);
                     ListaUsuarioView.setAdapter(adaptador);
                 }
                 else{
-                    for(int i=0; i<US.size(); i++){
-                        if(item.equals((String)US.get(i).getEstado()))
-                            resultado.add(US.get(i));
+                    for(int i=0; i< usuarioArrayList.size(); i++){
+                        if(item.equals((String) usuarioArrayList.get(i).getEstado()))
+                            resultado.add(usuarioArrayList.get(i));
                     }
                     if(!resultado.isEmpty()){
+                        Toast.makeText(getActivity(), "No existen usuarios en esta seleccion.", Toast.LENGTH_SHORT).show();
                         ListaUsuarioView.setAdapter(null);
                         adaptador = new ListaUsuarioAdapter(getActivity(), resultado, R.layout.items_listado_usuarios);
                         ListaUsuarioView.setAdapter(adaptador);

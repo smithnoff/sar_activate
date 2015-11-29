@@ -1,38 +1,61 @@
 package logica;
 
-import android.graphics.Bitmap;
+import android.content.Context;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
-/**
- * Created by Usuario on 29/10/2015.
- */
-public class MensajeAdapter extends RecyclerView.Adapter<MensajeAdapter.MensajeAdapterViewHolder> {
-    private List<Mensaje> items;
+public class MensajeAdapter extends RecyclerView.Adapter<MensajeAdapter.MensajeAdapterViewHolder> implements View.OnClickListener {
 
-    public static class MensajeAdapterViewHolder extends RecyclerView.ViewHolder {
+    private List<Mensaje> items;
+    public static int position;
+
+    public MensajeAdapter(List<Mensaje> items) {
+        this.items = items;
+    }
+
+    public class MensajeAdapterViewHolder extends RecyclerView.ViewHolder {
+
         private ImageView adjuntado;
         private TextView identificador;
         private TextView lugar; //estado y municipio
         private TextView textoMensaje;
 
         public MensajeAdapterViewHolder(View itemView) {
+
             super(itemView);
             adjuntado = (ImageView)itemView.findViewById(R.id.imagenAdjuntado); //imagen iconico del mapa o archivo
             identificador = (TextView)itemView.findViewById(R.id.cardTextNombre); //identificador Persona
             lugar = (TextView)itemView.findViewById(R.id.cardTextLugar);         //estado - municipio
             textoMensaje = (TextView)itemView.findViewById(R.id.cardTextMensaje);// el propio mensaje
+            itemView.setOnClickListener(MensajeAdapter.this);
         }
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        Log.d("MENSAJE","Mensaje Seleccionado "+position);
+        /*
+        Intent intent = new Intent(mContext, FragmentDetalleMensaje.class);
+        Fragment fragment = new FragmentDetalleMensaje();
+        ((Activity)mContext).getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content_frame, fragment)
+                .addToBackStack(null)
+                .commit();
+
+        mContext.startActivity(intent);
+        */
     }
 
     @Override
@@ -43,12 +66,12 @@ public class MensajeAdapter extends RecyclerView.Adapter<MensajeAdapter.MensajeA
     }
 
     @Override
-    public void onBindViewHolder(MensajeAdapterViewHolder holder, int position) {
+    public void onBindViewHolder(MensajeAdapterViewHolder holder, final int position) {
 
-        holder.adjuntado.setImageBitmap(items.get(position).getImagen());
-        holder.identificador.setText(items.get(position).getUsuario().getNombre()+" " +items.get(position).getUsuario().getApellido()+" ");
-        holder.lugar.setText(" "+items.get(position).getUsuario().getEstado()+"-" +items.get(position).getUsuario().getMuncipio());
-        holder.textoMensaje.setText(items.get(position).getMensaje());
+        holder.adjuntado.setImageBitmap(items.get(position).getAdjunto());
+        holder.identificador.setText(items.get(position).getAutor().getNombre() + " " + items.get(position).getAutor().getApellido() + " ");
+        holder.lugar.setText(" "+items.get(position).getAutor().getEstado()+"-" +items.get(position).getAutor().getMuncipio());
+        holder.textoMensaje.setText(items.get(position).getTexto());
 
     }
 
@@ -56,9 +79,4 @@ public class MensajeAdapter extends RecyclerView.Adapter<MensajeAdapter.MensajeA
     public int getItemCount() {
         return items.size();
     }
-
-    public MensajeAdapter(List<Mensaje> items) {
-        this.items = items;
-    }
-
 }

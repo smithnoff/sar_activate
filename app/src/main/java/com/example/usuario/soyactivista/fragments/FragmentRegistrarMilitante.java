@@ -86,14 +86,14 @@ public class FragmentRegistrarMilitante extends Fragment {
                 ParseUser user = new ParseUser();
                 user.setUsername(ide);
                 user.setPassword("1234"); //TODO: Improve password generation to be random
-                user.put("Nombre", nom);
-                user.put("Apellido", ape);
+                user.put("nombre", nom);
+                user.put("apellido", ape);
                 user.setEmail(co);
-                user.put("Cargo", car);
-                user.put("Estado", spinEstado.getSelectedItem().toString());
-                user.put("Municipio", spinMunicipio.getSelectedItem().toString());
-                user.put("Comite", spinPertinencia.getSelectedItem().toString());
-                user.put("Rol", spinRol.getSelectedItemPosition());
+                user.put("cargo", car);
+                user.put("estado", spinEstado.getSelectedItem().toString());
+                user.put("municipio", spinMunicipio.getSelectedItem().toString());
+                user.put("comite", spinPertinencia.getSelectedItem().toString());
+                user.put("rol", spinRol.getSelectedItemPosition());
 
                 user.signUpInBackground(new SignUpCallback() {
                     @Override

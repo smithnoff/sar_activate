@@ -32,7 +32,7 @@
     <string name="mapaTitulo"><b>Seleccione un punto en el mapa</b></string>
 
     <!-- placehold-->
-    <string name="usuario">Identificador</string>
+    <string name="autor">Identificador</string>
     <string name="clave">Password</string>
     <string name="token">Token de Registro</string>
     <string name="codigo">Código de Identificación</string>
@@ -68,8 +68,9 @@
     <string name="comitePertenencia">Comite de Pertenencia</string>
     <string name="guardar">Guardar</string>
     <string name="buscador">aqui buscas</string>
-    <string name="hintBuscador">Identificador de usuario...</string>
+    <string name="hintBuscador">Identificador de autor...</string>
     <string name="rol_spinner_label">Rol</string>
+    <string name="prueba">Prueba</string>
 
     <!-- Roles -->
     <string-array name="Roles">
@@ -102,8 +103,10 @@
         <item>Terminado</item>
     </string-array>
     <string name="inicio">Fecha de Inicio</string>
+    <string name="inicioCorto">Inicio:</string>
     <string name="hintInicio">dd/MM/yyyy</string>
     <string name="fin">Fecha de Finalización</string>
+    <string name="finCorto">Fin:</string>
     <string name="hintFin">dd/MM/yyyy</string>
     <string-array name="Puntuaciones">
         <item>100</item>
@@ -118,6 +121,7 @@
     </string-array>
     <string name="estado">Estado</string>
     <string name="municipio">Municipio</string>
+    <string name="eliminar">Eliminar</string>
 
 
 </resources>

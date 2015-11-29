@@ -4,12 +4,14 @@ public class Usuario {
     private String identificador;
     private String nombre;
     private String apellido;
-    private String estado;
-    private String pertenencia;
-    private String correo;
-    private String muncipio;
     private String cargo;
     private Integer rol;
+    private String estado;
+    private String muncipio;
+    private String comite;
+    private String correo;
+
+
 
     // Class Constructor
     public Usuario(){}
@@ -46,7 +48,6 @@ public class Usuario {
         this.estado = estado;
     }
 
-
     public String getCargo() {
         return cargo;
     }
@@ -55,12 +56,12 @@ public class Usuario {
         this.cargo = cargo;
     }
 
-    public String getPetenencia() {
-        return this.pertenencia;
+    public String getComite() {
+        return this.comite;
     }
 
-    public  void setPertenencia(String pertenencia) {
-        this.pertenencia = pertenencia;
+    public  void setComite(String comite) {
+        this.comite = comite;
     }
 
     public String getCorreo() {

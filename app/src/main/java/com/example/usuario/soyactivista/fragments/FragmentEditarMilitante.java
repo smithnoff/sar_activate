@@ -72,7 +72,7 @@ public class FragmentEditarMilitante extends Fragment {
         ParseUser usuarioActual = ParseUser.getCurrentUser();
 
         // Showing Edit and Remove Buttons only if is admin
-        if(usuarioActual != null && usuarioActual.getInt("Rol") != 1){
+        if(usuarioActual != null && usuarioActual.getInt("rol") != 1){
             editar.setVisibility(View.INVISIBLE);
             guardar.setVisibility(View.INVISIBLE);
         }
@@ -123,14 +123,14 @@ public class FragmentEditarMilitante extends Fragment {
                 Log.d(getClass().getName(),"Filling from Current User");
 
                 idEditar.setText(usuarioActual.getUsername());
-                nombreEditar.setText(usuarioActual.getString("Nombre"));
-                apellidoEditar.setText(usuarioActual.getString("Apellido"));
+                nombreEditar.setText(usuarioActual.getString("nombre"));
+                apellidoEditar.setText(usuarioActual.getString("apellido"));
                 correoEditar.setText(usuarioActual.getEmail());
-                cargoEditar.setText(usuarioActual.getString("Cargo"));
-                estadoEditar.setText("Eatado de inscripcion: "+ usuarioActual.getString("Estado"));
-                municipioEditar.setText("Municipio de inscripcion: "+ usuarioActual.getString("Municipio"));
-                pertenenciaEditar.setText("Comite de pertenencia: "+ usuarioActual.getString("Comite"));
-                if(usuarioActual.getInt("Rol")==0)
+                cargoEditar.setText(usuarioActual.getString("cargo"));
+                estadoEditar.setText("Eatado de inscripcion: "+ usuarioActual.getString("estado"));
+                municipioEditar.setText("Municipio de inscripcion: "+ usuarioActual.getString("municipio"));
+                pertenenciaEditar.setText("Comite de pertenencia: "+ usuarioActual.getString("comite"));
+                if(usuarioActual.getInt("rol")==0)
                     rolEditar.setText("Rol: Activista");
                 else
                     rolEditar.setText("Rol: Registrante");
@@ -215,7 +215,7 @@ public class FragmentEditarMilitante extends Fragment {
                                 Intent i = new Intent(getActivity(), FActivityPantallaMenu.class);
                                 startActivity(i);
                             } else {
-                                Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde."+e.toString(), Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -225,14 +225,14 @@ public class FragmentEditarMilitante extends Fragment {
                     if (user != null) {
                         Log.d(getClass().getName(),"Filling from Current User");
 
-                        user.put("Nombre", nombreEditar.getText().toString());
-                        user.put("Apellido", apellidoEditar.getText().toString());
+                        user.put("nombre", nombreEditar.getText().toString());
+                        user.put("apellido", apellidoEditar.getText().toString());
                         user.setEmail(correoEditar.getText().toString());
-                        user.put("Cargo", cargoEditar.getText().toString());
-                        user.put("Estado", spinEstado.getSelectedItem().toString());
-                        user.put("Municipio", spinMunicipio.getSelectedItem().toString());
-                        user.put("Comite", spinPertinencia.getSelectedItem().toString());
-                        user.put("Rol", spinRol.getSelectedItemPosition());
+                        user.put("cargo", cargoEditar.getText().toString());
+                        user.put("estado", spinEstado.getSelectedItem().toString());
+                        user.put("municipio", spinMunicipio.getSelectedItem().toString());
+                        user.put("comite", spinPertinencia.getSelectedItem().toString());
+                        user.put("rol", spinRol.getSelectedItemPosition());
                         user.saveInBackground();
                     }
                     Toast.makeText(getActivity(), "Perfil Editado", Toast.LENGTH_SHORT).show();

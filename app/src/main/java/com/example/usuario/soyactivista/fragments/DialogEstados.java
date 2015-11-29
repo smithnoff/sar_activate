@@ -46,5 +46,4 @@ public class DialogEstados extends DialogFragment {
         dialogo=builder.create();
         return dialogo;
     }
-
 }

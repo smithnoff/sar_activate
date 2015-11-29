@@ -6,25 +6,33 @@ import android.graphics.Bitmap;
  * Created by Usuario on 29/10/2015.
  */
 public class Mensaje {
-    private Usuario usuario;
-    private String mensaje;
-    private Bitmap imagen;
-    private float latitud;
-    private float longitud;
+    private Usuario autor;
+    private String texto;
+    private Bitmap adjunto;
+    private GeoLocalizacion localizacion;
     private String horaPublicacion;
     private String fechaPublicacion;
 
+    // Class COnstructors
+    public Mensaje(){}
 
-    public Mensaje(Usuario usuario, String mensaje, Bitmap imagen/*, float latitud, float longitud, String horaPublicacion, String fechaPublicacion*/) {
-        this.usuario = usuario;
-        this.mensaje = mensaje;
-        this.imagen = imagen;
+    public Mensaje(Usuario autor, String texto, Bitmap adjunto/*, float latitud, float longitud, String horaPublicacion, String fechaPublicacion*/) {
+        this.autor = autor;
+        this.texto = texto;
+        this.adjunto = adjunto;
         /*this.latitud = latitud;
         this.longitud = longitud;
         this.horaPublicacion = horaPublicacion;
         this.fechaPublicacion = fechaPublicacion;*/
     }
 
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
 
     public String getHoraPublicacion() {
         return horaPublicacion;
@@ -42,47 +50,28 @@ public class Mensaje {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public Mensaje(){
-
+    public Usuario getAutor() {
+        return autor;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public void setAutor(Usuario autor) {
+        this.autor = autor;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public Bitmap getAdjunto() {
+        return adjunto;
     }
 
-    public String getMensaje() {
-        return mensaje;
+    public void setAdjunto(Bitmap adjunto) {
+        this.adjunto = adjunto;
     }
 
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
+    public void setLocalizacion(GeoLocalizacion localizacion){
+        this.localizacion = localizacion;
     }
 
-    public Bitmap getImagen() {
-        return imagen;
+    public GeoLocalizacion getLocalizacion(){
+        return this.localizacion;
     }
 
-    public void setImagen(Bitmap imagen) {
-        this.imagen = imagen;
-    }
-
-    public float getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(float latitud) {
-        this.latitud = latitud;
-    }
-
-    public float getLongitud() {
-        return longitud;
-    }
-
-    public void setLongitud(float longitud) {
-        this.longitud = longitud;
-    }
 }

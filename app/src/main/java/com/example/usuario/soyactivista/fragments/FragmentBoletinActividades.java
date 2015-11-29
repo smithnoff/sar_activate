@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,8 +81,16 @@ public class FragmentBoletinActividades extends Fragment {
                 if (e == null) { //no hay error
                     Toast.makeText(getActivity(), String.valueOf(objects.size()), Toast.LENGTH_SHORT).show();
                     for (int i = 0; i < objects.size(); i++) {
+                        Log.d("ACTIVIDADES", "Fecha FIN: " + objects.get(i).getDate("fin"));
 
-                        items.add(new Actividad(objects.get(i).getString("nombre"), objects.get(i).getString("estatus"), objects.get(i).getParseObject("creador").getString("username"), objects.get(i).getDate("inicio"), objects.get(i).getDate("fin")));
+                        items.add(
+                                new Actividad(
+                                        objects.get(i).getString("nombre"),
+                                        objects.get(i).getString("estatus"),
+                                        objects.get(i).getParseObject("creador").getString("username"),
+                                        objects.get(i).getDate("inicio"),
+                                        objects.get(i).getDate("fin"))
+                        );
                     }
 
                     ListaActividadesView.setAdapter(null);

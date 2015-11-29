@@ -255,6 +255,11 @@ public class FragmentEscribirMensaje extends Fragment {
                 if (e == null) {
                     pg.dismiss();
                     Toast.makeText(getContext(), "Mensaje Publicado", Toast.LENGTH_SHORT).show();
+                    Fragment fragment = new FragmentDashBoard();
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.content_frame, fragment)
+                            .commit();
                 } else {
                     pg.dismiss();
                     Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
@@ -325,6 +330,4 @@ public void mostrarRemoverMapa(View v,boolean mostrar){
         v.findViewById(R.id.marcoSuperior).setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,height));
         View layoutMapa=v.findViewById(R.id.relativeMapa);
         layoutMapa.setVisibility(estado);
-
-
     }*/

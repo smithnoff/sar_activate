@@ -1,86 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="100">
+    <!-- Nombre de Actividad -->
+    <TextView
+        android:id="@+id/nombreActividad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="20dp"
+        android:text="@string/nombreEjemplo"
+        />
 
+    <!-- Estatus -->
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="65">
+    <TextView
+        android:id="@+id/labelEjecucion"
+        android:layout_marginLeft="15dp"
+        android:textSize="15dp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nombreActividad"
+        android:text="@string/estatus"
+        />
 
+    <TextView
+        android:id="@+id/valueEjecucion"
+        android:layout_marginLeft="15dp"
+        android:textSize="15dp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/labelEjecucion"
+        android:layout_below="@+id/nombreActividad"
+        android:text="@string/prueba"
+        />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:weightSum="100">
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="10"/>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center_vertical"
-                    android:layout_weight="90">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/listaNombre"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/listaestado"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        />
-                </LinearLayout>
+    <!-- Creador -->
 
-            </LinearLayout>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"/>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="31">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:weightSum="100">
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="10"/>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center_vertical"
-                    android:layout_weight="90">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:id="@+id/listaCargo"
-                        android:gravity="center|center_horizontal"/>
-                </LinearLayout>
+    <TextView
+        android:id="@+id/labelCreador"
+        android:layout_marginLeft="15dp"
+        android:textSize="15dp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelEjecucion"
+        android:text="@string/creador"
+        />
 
-            </LinearLayout>
+    <TextView
+        android:id="@+id/valueCreador"
+        android:layout_marginLeft="15dp"
+        android:textSize="15dp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/labelEjecucion"
+        android:layout_below="@+id/valueEjecucion"
+        android:text="@string/prueba"
+        />
 
-        </RelativeLayout>
-    </LinearLayout>
+    <!-- Start/END Dates -->
+
+    <TextView
+        android:id="@+id/labelInicio"
+        android:layout_marginLeft="15dp"
+        android:textSize="15dp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelCreador"
+        android:text="@string/inicioCorto"
+        />
+
+    <TextView
+        android:id="@+id/valueInicio"
+        android:layout_marginLeft="2dp"
+        android:textSize="15dp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/labelInicio"
+        android:layout_below="@+id/valueCreador"
+        android:text="@string/prueba"
+        />
+
+    <TextView
+        android:id="@+id/labelFin"
+        android:layout_marginLeft="2dp"
+        android:textSize="15dp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelCreador"
+        android:layout_toRightOf="@+id/valueInicio"
+        android:text="@string/finCorto"
+        />
+
+    <TextView
+        android:id="@+id/valueFin"
+        android:layout_marginLeft="2dp"
+        android:textSize="15dp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/labelFin"
+        android:layout_below="@+id/valueCreador"
+        android:text="@string/prueba"
+        />
+
+    <ImageView
+        android:id="@+id/imageLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_below="@+id/nombreActividad"
+        android:background="@drawable/ic_thumb_up"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:id="@+id/valueLikes"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:textSize="15dp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageLike"
+        android:layout_alignParentRight="true"
+        android:text="@string/prueba"
+        />
+
 </RelativeLayout>

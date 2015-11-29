@@ -34,6 +34,7 @@ public class Actividad {
         this.creador = creador;
         this.inicio = inicio;
         this.fin = fin;
+
     }
 
     public String getObjectId() { return objectId; }
