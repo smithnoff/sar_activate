@@ -115,7 +115,7 @@
         />
 
     <ImageView
-        android:id="@+id/imageLike"
+        android:id="@+id/botonMeGusta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
@@ -132,9 +132,34 @@
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageLike"
+        android:layout_below="@+id/botonMeGusta"
         android:layout_alignParentRight="true"
         android:text="@string/prueba"
         />
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="1dp"
+        android:layout_below="@+id/labelInicio"
+        android:layout_marginTop="8dp"
+        android:background="@color/grisOscuro"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:id="@+id/imagen1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelInicio"
+        android:layout_margin="15dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        />
+
+
+
 
 </RelativeLayout>

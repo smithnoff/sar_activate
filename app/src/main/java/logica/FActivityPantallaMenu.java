@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.usuario.soyactivista.fragments.FragmentBoletinActividades;
 import com.example.usuario.soyactivista.fragments.FragmentCrearActividad;
+import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
 import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensajes;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
@@ -79,7 +80,7 @@ public class FActivityPantallaMenu extends AppCompatActivity {
         // Load Message Dashboard As Main Screen
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content_frame, new FragmentDashBoard()/*new FragmentMenuPrincipal()*/)
+                .replace(R.id.content_frame, new FragmentListarMensajes() /*new FragmentMenuPrincipal()*/)
                 .commit();
 
         navView = (NavigationView)findViewById(R.id.navview);
@@ -109,7 +110,7 @@ public class FActivityPantallaMenu extends AppCompatActivity {
 
                         switch (menuItem.getItemId()) {
                             case R.id.menuDashBoard:
-                                fragment = new FragmentDashBoard();
+                                fragment = new FragmentListarMensajes();
                                 ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
@@ -142,7 +143,11 @@ public class FActivityPantallaMenu extends AppCompatActivity {
                                 fragmentTransaction = true;
                                 break;
 
-                            // PLACEHOLDER EDITAR PARTIDO POLITICO
+                            case R.id.menuEditarPartido:
+                                fragment = new FragmentEditarPartido();
+                                ocultar(false,R.id.buscador);
+                                fragmentTransaction = true;
+                                break;
 
                             case R.id.menuMiPerfil:
                                 fragment = new FragmentEditarMilitante();

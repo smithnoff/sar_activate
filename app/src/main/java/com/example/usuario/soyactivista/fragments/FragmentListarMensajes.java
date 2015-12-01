@@ -1,29 +1,23 @@
 package com.example.usuario.soyactivista.fragments;
 
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
-import com.parse.FindCallback;
-import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
 
+import logica.ListarActividadAdapter;
 import logica.ListarMensajesAdapter;
-import logica.Mensaje;
-import logica.Usuario;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -31,81 +25,86 @@ import soy_activista.quartzapp.com.soy_activista.R;
  */
 public class FragmentListarMensajes extends Fragment {
 
-    View vistaListado;
 
-    // Card View Elements
-    RecyclerView recyclerView;
-
-
-    // Data Source
-    List<Mensaje> mensajes;
-
+    private ListarMensajesAdapter listarMensajesAdapter;
+    private ListView listView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
-        vistaListado = inflater.inflate(R.layout.fragment_listar_mensajes, container, false);
 
-        recyclerView = (RecyclerView)vistaListado.findViewById(R.id.vista_listar_mensajes);
-        recyclerView.setHasFixedSize(true);
+        // Inflate View
+        View view = inflater.inflate(R.layout.fragment_listar_mensajes, container, false);
 
-        // TODO: In previous fragment is using getActviity() instead of getContext(). Check!
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(linearLayoutManager);
+        // Initialize main ParseQueryAdapter
+        listarMensajesAdapter = new ListarMensajesAdapter(this.getContext());
 
-        initializeData();
+        // Initialize list view
+        listView = (ListView) view.findViewById(R.id.mensajesListView);
 
-        return vistaListado;
+        if (listarMensajesAdapter != null) {
+            listView.setAdapter(listarMensajesAdapter);
+            listarMensajesAdapter.loadObjects();
+        } else {
+            Log.d("ADAPTER", "Adapter returned null!");
+        }
 
-
-    }
-
-    // Query for data from Parse.com to initialize message list.
-    private void initializeData(){
-
-        mensajes = new ArrayList<>();
-        Log.d(getActivity().getClass().getName(), "Initializing Data");
-        // Query for 10 top recent Messages including author information
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Mensaje");
-        query.include("autor");
-        query.findInBackground(new FindCallback<ParseObject>() {
+        // Handle Item OnClick Events
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void done(List<ParseObject> mensajesParse, ParseException e) {
-                if (e == null) { //no hay error
-                    Log.d(getActivity().getClass().getName(), "Fragment Retrieved " + mensajesParse.size() + " mensajes");
-                    mensajes = new ArrayList<>();
-                    for (ParseObject mensajeBuscado : mensajesParse) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        ParseUser autorBuscado = mensajeBuscado.getParseUser("autor");
+                // Store data in bundle to send to next fragment
+                ParseObject mensaje = (ParseObject) listView.getItemAtPosition(position);
+                ParseUser autor = mensaje.getParseUser("autor");
+                ParseFile adjunto;
 
-                        Usuario autor = new Usuario();
-                        autor.setNombre(autorBuscado.getString("nombre"));
-                        autor.setApellido(autorBuscado.getString("apellido"));
-                        autor.setEstado(autorBuscado.getString("estado"));
-                        autor.setMuncipio(autorBuscado.getString("municipio"));
+                adjunto = mensaje.getParseFile("adjunto");
 
-                        Mensaje mensaje = new Mensaje();
-                        mensaje.setTexto(mensajeBuscado.getString("texto"));
-                        mensaje.setAutor(autor);
+                SimpleDateFormat format = new SimpleDateFormat("HH:mm dd/MM/yyyy");
 
-                        mensajes.add(mensaje);
-                    }
+                Bundle datos = new Bundle();
+                datos.putString("id", mensaje.getObjectId());
+                datos.putString("nombre", autor.getString("nombre") + " " + autor.getString("Apellido"));
+                datos.putString("estado",autor.getString("estado"));
+                datos.putString("municipio", autor.getString("municipio"));
+                datos.putString("texto", mensaje.getString("texto"));
+                datos.putString("ubicacion", mensaje.getString("ubicacion"));
+                datos.putString("fechaCreacion", format.format(mensaje.getCreatedAt()));
+                datos.putBoolean("reportado",mensaje.getBoolean("reportado"));
 
-                    initializeAdapter();
-                } else {
-                    // TODO: Something Went Wrong
-                    Log.d(getActivity().getClass().getName(), "Error!!!");
-                }
+                // Check if images are null and save URLs
+                if (adjunto != null)
+                    datos.putString("adjunto", adjunto.getUrl());
+
+                // Redirect View to next Fragment
+                Fragment fragment = new FragmentDetalleMensaje();
+                fragment.setArguments(datos);
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
-        Log.d(getActivity().getClass().getName(), "Finished Querying");
-    }
 
-    private void initializeAdapter(){
-        Log.d(getActivity().getClass().getName(), "Initializing Adapter");
-        ListarMensajesAdapter listarMensajesAdapter = new ListarMensajesAdapter(mensajes);
-        recyclerView.setAdapter(listarMensajesAdapter);
+        FloatingActionButton botonCrearMensaje = (FloatingActionButton) view.findViewById(R.id.botonCrearMensaje);
+
+        // Create new Activity Type Button
+        botonCrearMensaje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Fragment fragment = new FragmentEscribirMensaje();
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+        return view;
     }
 }

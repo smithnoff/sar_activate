@@ -123,5 +123,23 @@
     <string name="municipio">Municipio</string>
     <string name="eliminar">Eliminar</string>
 
+    <!-- Edicion de Partido -->
+    <string name="labelNombrePartido">Nombre del Partido Político:</string>
+    <string name="hintNombrePartido">Nombre partido político</string>
+    <string name="labelColorPartido">Color del Partido Político:</string>
+    <string name="guardarCambios">Guardar Cambios</string>
+
+    <!-- FOTOS -->
+    <string name="fotosAdjuntadas">/4</string>
+    <string name="totalFotosInit">0</string>
+    <string name="adjuntarImagenes">Adjuntar Imágenes:</string>
+
+    <!-- MENSAJE -->
+    <string name="mensajePrueba">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare et mauris ut lacinia. Mauris at urna at nibh volutpat.</string>
+    <string name="reportar">Reportar</string>
+
+    <!-- Visualizer -->
+    <string name="regresar">Regresar</string>
+
 
 </resources>

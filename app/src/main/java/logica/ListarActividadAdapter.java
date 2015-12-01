@@ -5,10 +5,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.parse.GetCallback;
+import com.parse.GetDataCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
@@ -37,7 +43,7 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
         });
     }
 
-    public View getItemView(ParseObject object, View v, ViewGroup parent){
+    public View getItemView(final ParseObject object, View v, ViewGroup parent){
         if(v == null){
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_actividades,parent,false);
         }
@@ -51,19 +57,19 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
         // Objects
         try{
             tipoActividad = object.getParseObject("tipoActividad").fetchIfNeeded();
-            Log.d("BUSCAR", "Actividad buscada ."+tipoActividad.getObjectId()+" "+tipoActividad.getString("nombre"));
         }
         catch (com.parse.ParseException e){
+            // TODO: Catch case when object does not have TipoACtividad and the app crashes
             Log.d("BUSCAR", "Fetch object failed.");
         }
 
         ParseUser creador = object.getParseUser("creador");
-        Log.d("BUSCAR", "Usuario buscado ."+creador.getObjectId()+" "+creador.getString("nombre"));
-
-
 
         //Declare all fields
-        TextView textNombre,textEstatus,textCreador,textInicio,textFin,textLikes;
+        final TextView textNombre,textEstatus,textCreador,textInicio,textFin,textLikes;
+        final ImageButton botonMeGusta;
+        final ImageView imageView;
+        final View separator;
 
         // Assign to holders
         textNombre = (TextView)v.findViewById(R.id.nombreActividad);
@@ -72,6 +78,12 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
         textInicio = (TextView)v.findViewById(R.id.valueInicio);
         textFin = (TextView)v.findViewById(R.id.valueFin);
         textLikes = (TextView)v.findViewById(R.id.valueLikes);
+
+        separator = (View)v.findViewById(R.id.separator);
+
+        //botonMeGusta = (ImageButton) v.findViewById(R.id.botonMeGusta);
+
+        imageView = (ImageView)v.findViewById(R.id.imagen1);
 
         // Load Values
         textNombre.setText(tipoActividad.getString("nombre"));
@@ -90,6 +102,50 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
 
         else
             textEstatus.setTextColor(getContext().getResources().getColor(R.color.rojo));
+
+        // Load Images
+
+        ParseFile imagen = object.getParseFile("imagen1");
+        if(imagen != null){
+            separator.setVisibility(View.VISIBLE);
+            imageView.setVisibility(View.VISIBLE);
+            String url = imagen.getUrl();
+            Glide.with(getContext())
+                    .load(url)
+                    .placeholder(R.mipmap.ic_placeholder)
+                    .centerCrop()
+                    .into(imageView);
+        }
+        else{
+            Glide.clear(imageView);
+            imageView.setImageDrawable(null);
+        }
+
+
+        /*
+        final ParseUser usuarioActual = ParseUser.getCurrentUser();
+
+
+        botonMeGusta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseObject like = new ParseObject("MeGusta");
+                like.put("usuario",usuarioActual);
+                like.put("actividad",object);
+                like.saveInBackground();
+
+                object.increment("meGusta");
+                object.saveInBackground();
+
+                textLikes.setText(String.valueOf(object.getInt("meGusta")+1));
+                // Paint Like button green
+
+                botonMeGusta.setEnabled(false);
+
+            }
+        });
+        */
+
 
         return v;
     }

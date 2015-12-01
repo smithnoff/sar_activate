@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginRight="15dp"
+    android:layout_marginLeft="15dp"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="@string/labelNombrePartido"/>
+
+    <EditText
+        android:id="@+id/editNombrePartido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hintNombrePartido"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="@string/labelColorPartido"/>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/circulo"
+            android:backgroundTint="@color/brown"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/circulo"
+            android:backgroundTint="@color/red900"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/circulo"
+            android:backgroundTint="@color/orange800"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/circulo"
+            android:backgroundTint="@color/yellow600"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/circulo"
+            android:backgroundTint="@color/green600"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/circulo"
+            android:backgroundTint="@color/blue500"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/circulo"
+            android:backgroundTint="@color/deeppurple600"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/circulo"
+            android:backgroundTint="@color/indigo"
+            />
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guardarCambios"
+        android:textColor="@color/white"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

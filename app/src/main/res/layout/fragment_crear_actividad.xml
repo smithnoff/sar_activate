@@ -191,6 +191,72 @@
                         android:id="@+id/editFin"
                         android:layout_gravity="center_horizontal" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/adjuntarImagenes"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="1dp"
+                        android:background="@color/grisOscuro"
+                        />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        >
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="20"/>
+
+
+                        <ImageButton
+                            android:id="@+id/botonAdjuntarFoto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:background="@drawable/ic_image"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="10"
+                            />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"/>
+
+                        <TextView
+                            android:id="@+id/valueFoto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginRight="-30dp"
+                            android:text="@string/totalFotosInit"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:layout_marginTop="6dp"
+                            android:text="@string/fotosAdjuntadas"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="20"/>
+
+                    </LinearLayout>
+
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

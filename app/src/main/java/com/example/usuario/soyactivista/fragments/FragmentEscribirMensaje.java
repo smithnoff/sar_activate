@@ -59,9 +59,12 @@ public class FragmentEscribirMensaje extends Fragment {
     private ImageButton botonUbicacion;
     private String mensaje;
     View vi;
+
+
     private ImageButton imagen;
     static int numero = (int) (Math.random() *1000) + 1;
     private static byte[] imagenSeleccionada = null; //aqui se guarda la imagen
+    private Bitmap bitmap;
 
     private static final int ACTIVITY_SELECT_IMAGE = 1020;
 
@@ -168,7 +171,8 @@ public class FragmentEscribirMensaje extends Fragment {
                 if(resultCode == Activity.RESULT_OK){
                     String dir =  Environment.getExternalStorageDirectory() + File.separator
                             + MEDIA_DIRECTORY + File.separator + TEMPORAL_PICTURE_NAME;
-                    decodeBitmap(dir);
+                    bitmap = BitmapFactory.decodeFile(dir);
+                    preparePhoto(bitmap);
                 }
                 else{
                     mensajeAviso.setVisibility(View.VISIBLE);
@@ -183,12 +187,9 @@ public class FragmentEscribirMensaje extends Fragment {
 
                     try {
                         InputStream imageStream = getContext().getContentResolver().openInputStream(path);
-                        Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+                        bitmap = BitmapFactory.decodeStream(imageStream);
 
-                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                        yourSelectedImage.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-
-                        this.imagenSeleccionada = stream.toByteArray();
+                        preparePhoto(bitmap);
                         if(ubicacion!=null){
                             ubicacion=null;
                         }
@@ -237,6 +238,7 @@ public class FragmentEscribirMensaje extends Fragment {
         ParseObject post = new ParseObject("Mensaje");
         post.put("texto", mensaje);
         post.put("autor", usuarioActual);
+        post.put("reportado",false);
 
         if (imagenSeleccionada != null){
             String nombreArchivo = usuarioActual.getUsername()+ numero +".jpg";
@@ -255,7 +257,7 @@ public class FragmentEscribirMensaje extends Fragment {
                 if (e == null) {
                     pg.dismiss();
                     Toast.makeText(getContext(), "Mensaje Publicado", Toast.LENGTH_SHORT).show();
-                    Fragment fragment = new FragmentDashBoard();
+                    Fragment fragment = new FragmentListarMensajes();
                     getFragmentManager()
                             .beginTransaction()
                             .replace(R.id.content_frame, fragment)
@@ -267,6 +269,20 @@ public class FragmentEscribirMensaje extends Fragment {
             }
         });
 
+
+    }
+
+    //Process Photo
+    private void preparePhoto(Bitmap bitmap){
+        // RESIZE
+        this.bitmap = Bitmap.createScaledBitmap(bitmap, 600, 600
+                * bitmap.getHeight() / bitmap.getWidth(), false);
+        // COMPRESS
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        this.bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+
+        //Store in local to be saved after
+        imagenSeleccionada = bos.toByteArray();
 
     }
 
@@ -310,24 +326,7 @@ public class FragmentEscribirMensaje extends Fragment {
                 }
             });
         }
+
     }
 
 }
-/*
-NO BORRAR ESTE PROTOTIPO
-public void mostrarRemoverMapa(View v,boolean mostrar){
-
-        int estado=0;
-        int height =0;
-        if(!mostrar){
-            estado=View.GONE;
-            height=(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics());
-        }
-        else{
-            estado=View.VISIBLE;
-            height=(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
-        }
-        v.findViewById(R.id.marcoSuperior).setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,height));
-        View layoutMapa=v.findViewById(R.id.relativeMapa);
-        layoutMapa.setVisibility(estado);
-    }*/

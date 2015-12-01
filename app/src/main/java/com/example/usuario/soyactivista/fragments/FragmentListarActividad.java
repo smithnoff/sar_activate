@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.parse.Parse;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -59,10 +60,17 @@ public class FragmentListarActividad extends Fragment {
                 ParseObject actividad = (ParseObject)listView.getItemAtPosition(position);
                 ParseObject tipoActividad = actividad.getParseObject("tipoActividad");
                 ParseUser creador = actividad.getParseUser("creador");
+                ParseFile imagen1,imagen2,imagen3,imagen4;
+
+                imagen1 = actividad.getParseFile("imagen1");
+                imagen2 = actividad.getParseFile("imagen2");
+                imagen3 = actividad.getParseFile("imagen3");
+                imagen4 = actividad.getParseFile("imagen4");
 
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
                 Bundle datos = new Bundle();
+                Log.d("LISTAR", "Valor MeGusta: "+actividad.getObjectId());
                 datos.putString("id",actividad.getObjectId());
                 datos.putString("tipoId",tipoActividad.getObjectId());
                 datos.putString("nombre", tipoActividad.getString("nombre"));
@@ -74,7 +82,20 @@ public class FragmentListarActividad extends Fragment {
                 datos.putString("creador",creador.getString("nombre")+" "+creador.getString("apellido"));
                 datos.putString("estatus",actividad.getString("estatus"));
                 datos.putString("inicio",format.format(actividad.getDate("inicio")));
-                datos.putString("fin",format.format(actividad.getDate("fin")));
+                datos.putString("fin", format.format(actividad.getDate("fin")));
+                Log.d("LISTAR", "Valor MeGusta: "+actividad.getInt("meGusta"));
+                datos.putInt("meGusta",actividad.getInt("meGusta"));
+
+                // Check if images are null and save URLs
+                if(imagen1 != null)
+                    datos.putString("imagen1",imagen1.getUrl());
+                if(imagen2 != null)
+                    datos.putString("imagen2",imagen1.getUrl());
+                if(imagen3 != null)
+                    datos.putString("imagen3",imagen1.getUrl());
+                if(imagen4 != null)
+                    datos.putString("imagen4",imagen1.getUrl());
+
 
                 // Redirect View to next Fragment
                 Fragment fragment = new FragmentDetalleActividad();

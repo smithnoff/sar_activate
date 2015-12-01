@@ -2,315 +2,344 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="100"
-        >
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="90">
-            <ScrollView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/actividad"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/actividad"
+                android:textColor="@color/black"
+                android:id="@+id/valueNombre"
+                />
+
+            <Spinner
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinNombreActividad"
+                android:visibility="gone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:id="@+id/labelPuntaje"
+                android:text="@string/puntaje"
+                />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editPuntaje"
+                android:enabled="false"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:id="@+id/labelDescripcion"
+                android:text="@string/descripcion"
+                />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:hint="@string/hintDescripcion"
+                android:layout_height="wrap_content"
+                android:id="@+id/editDescripcion"
+                android:enabled="false"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/objetivo"
+                />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:hint="@string/hintObjetivo"
+                android:layout_height="wrap_content"
+                android:id="@+id/editObjetivo"
+                android:enabled="false"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/ubicacion"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/prueba"
+                android:id="@+id/valueUbicacion"
+                />
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinUbicacion"
+                android:enabled="false"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/estado"
+                android:id="@+id/labelEstado"
+                android:visibility="gone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/estado"
+                android:id="@+id/estadoActual"
+                android:visibility="gone"/>
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinEstado"
+                android:visibility="gone"
+                android:enabled="false"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/municipio"
+                android:id="@+id/labelMunicipio"
+                android:visibility="gone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/prueba"
+                android:id="@+id/municipioActual"
+                android:visibility="gone"/>
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinMunicipio"
+                android:visibility="gone"
+                android:enabled="false"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/parroquia"
+                android:id="@+id/labelParroquia"
+                android:visibility="gone"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:hint="@string/hintParroquia"
+                android:layout_height="wrap_content"
+                android:id="@+id/editParroquia"
+                android:visibility="gone"
+                android:enabled="false"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/encargado"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:hint="@string/hintEncargado"
+                android:layout_height="wrap_content"
+                android:id="@+id/editEncargado"
+                android:enabled="false"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/creador"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editCreador"
+                android:enabled="false"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/estatus"/>
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinEstatus"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/inicio"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/editInicio"
+                android:hint="@string/hintInicio"
+                android:layout_gravity="center_horizontal"
+                android:enabled="false"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/fin"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:inputType="date"
+                android:ems="10"
+                android:hint="@string/hintFin"
+                android:id="@+id/editFin"
+                android:layout_gravity="center_horizontal"
+                android:enabled="false"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/grisOscuro"
+                />
+
+            <ImageView
+                android:id="@+id/imagen1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/imagen2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/imagen3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/imagen4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <ImageButton
+                android:id="@+id/botonMeGusta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/ic_thumb_up"
+                android:layout_gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/valueMeGusta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/prueba"
+                android:layout_gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:weightSum="100">
+
+                <View
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+                    android:layout_weight="20"/>
 
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="30"
+                    android:layout_height="wrap_content"
+                    android:text="@string/guardar"
+                    android:id="@+id/botonGuardar"
+                    android:textColor="@color/white"
+                    android:visibility="gone"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="@string/actividad"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="30"
+                    android:layout_height="wrap_content"
+                    android:text="@string/editar_cuenta"
+                    android:id="@+id/botonEditar"
+                    android:textColor="@color/white"
+                    android:visibility="gone"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="@string/actividad"
-                        android:textColor="@color/black"
-                        android:id="@+id/valueNombre"
-                        />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"/>
 
-                    <Spinner
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinNombreActividad"
-                        android:visibility="gone"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="30"
+                    android:id="@+id/botonEliminar"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eliminar"
+                    android:textColor="@color/white"
+                    android:visibility="gone"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:id="@+id/labelPuntaje"
-                        android:text="@string/puntaje"
-                        />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"/>
+            </LinearLayout>
 
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editPuntaje"
-                        android:enabled="false"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:id="@+id/labelDescripcion"
-                        android:text="@string/descripcion"
-                        />
-
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:hint="@string/hintDescripcion"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editDescripcion"
-                        android:enabled="false"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/objetivo"
-                        />
-
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:hint="@string/hintObjetivo"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editObjetivo"
-                        android:enabled="false"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/ubicacion"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/prueba"
-                        android:id="@+id/valueUbicacion"
-                        />
-
-                    <Spinner
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinUbicacion"
-                        android:enabled="false"
-                        android:visibility="gone"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/estado"
-                        android:id="@+id/labelEstado"
-                        android:visibility="gone"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/estado"
-                        android:id="@+id/estadoActual"
-                        android:visibility="gone"/>
-
-                    <Spinner
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinEstado"
-                        android:visibility="gone"
-                        android:enabled="false"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/municipio"
-                        android:id="@+id/labelMunicipio"
-                        android:visibility="gone"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/prueba"
-                        android:id="@+id/municipioActual"
-                        android:visibility="gone"/>
-
-                    <Spinner
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinMunicipio"
-                        android:visibility="gone"
-                        android:enabled="false"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/parroquia"
-                        android:id="@+id/labelParroquia"
-                        android:visibility="gone"/>
-
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:hint="@string/hintParroquia"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editParroquia"
-                        android:visibility="gone"
-                        android:enabled="false"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/encargado"/>
-
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:hint="@string/hintEncargado"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editEncargado"
-                        android:enabled="false"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/creador"/>
-
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editCreador"
-                        android:enabled="false"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/estatus"/>
-
-                    <Spinner
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinEstatus"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/inicio"/>
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:inputType="date"
-                        android:ems="10"
-                        android:id="@+id/editInicio"
-                        android:hint="@string/hintInicio"
-                        android:layout_gravity="center_horizontal"
-                        android:enabled="false"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/fin"/>
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:inputType="date"
-                        android:ems="10"
-                        android:hint="@string/hintFin"
-                        android:id="@+id/editFin"
-                        android:layout_gravity="center_horizontal"
-                        android:enabled="false"
-                        />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:weightSum="100">
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="20"/>
-
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_weight="30"
-                            android:layout_height="wrap_content"
-                            android:text="@string/guardar"
-                            android:id="@+id/botonGuardar"
-                            android:textColor="@color/white"
-                            android:visibility="gone"/>
-
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_weight="30"
-                            android:layout_height="wrap_content"
-                            android:text="@string/editar_cuenta"
-                            android:id="@+id/botonEditar"
-                            android:textColor="@color/white"
-                            android:visibility="gone"/>
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"/>
-
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_weight="30"
-                            android:id="@+id/botonEliminar"
-                            android:layout_height="wrap_content"
-                            android:text="@string/eliminar"
-                            android:textColor="@color/white"
-                            android:visibility="gone"/>
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"/>
-                    </LinearLayout>
-
-                </LinearLayout>
-            </ScrollView>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5"/>
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>

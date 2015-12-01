@@ -3,6 +3,7 @@ package com.example.usuario.soyactivista.fragments;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -35,10 +39,12 @@ import static java.lang.Integer.parseInt;
  */
 public class FragmentDetalleActividad extends Fragment {
 
-    private TextView labelPuntaje, labelDescripcion, labelEstado, labelMunicipio, labelParroquia, nombreActual, ubicacionActual, estadoActual, municipioActual;
+    private TextView labelPuntaje, labelDescripcion, labelEstado, labelMunicipio, labelParroquia, nombreActual, ubicacionActual, estadoActual, municipioActual, textMeGusta;
     private EditText puntaje, descripcion, objetivo, encargado, creador,  inicio, fin, parroquia; // Edit Field holders
     private Spinner nombre, ubicacion, estado, municipio, estatus; // Spinner holders
     private Button guardar,editar,eliminar; // Button holders
+    private ImageButton botonMeGusta;
+    private ImageView imagen1,imagen2,imagen3,imagen4;
     private ProgressDialog dialog;
     private ParseObject tipoActividad; // TipoActividad to be associated with Actividad
 
@@ -63,6 +69,8 @@ public class FragmentDetalleActividad extends Fragment {
         labelMunicipio = (TextView)v.findViewById(R.id.labelMunicipio);
         municipioActual = (TextView)v.findViewById(R.id.municipioActual);
         labelParroquia = (TextView)v.findViewById(R.id.labelParroquia);
+        textMeGusta = (TextView)v.findViewById(R.id.valueMeGusta);
+
 
 
         //Asign Text Edit to holders
@@ -88,6 +96,14 @@ public class FragmentDetalleActividad extends Fragment {
         editar = (Button)v.findViewById(R.id.botonEditar);
         guardar = (Button)v.findViewById(R.id.botonGuardar);
         eliminar = (Button)v.findViewById(R.id.botonEliminar);
+
+        botonMeGusta = (ImageButton)v.findViewById(R.id.botonMeGusta);
+
+        // Assign Images to PlaceHolders
+        imagen1 = (ImageView)v.findViewById(R.id.imagen1);
+        imagen2 = (ImageView)v.findViewById(R.id.imagen2);
+        imagen3 = (ImageView)v.findViewById(R.id.imagen3);
+        imagen4 = (ImageView)v.findViewById(R.id.imagen4);
 
         // Show buttons depending on Role or if user is owner
         if(usuarioActual.getInt("rol") == 1 || usuarioActual.getObjectId() == getArguments().getString("creadorId")){
@@ -202,6 +218,60 @@ public class FragmentDetalleActividad extends Fragment {
             }
         });
 
+        // Load Images
+        if(getArguments().getString("imagen1") != null){
+            imagen1.setVisibility(View.VISIBLE);
+            Glide.with(getContext())
+                    .load(getArguments().getString("imagen1"))
+                    .placeholder(R.mipmap.ic_placeholder)
+                    .centerCrop()
+                    .into(imagen1);
+
+            imagen1.setOnClickListener(seeImageDetail(getArguments().getString("imagen1")));
+        }
+
+
+
+        if(getArguments().getString("imagen2") != null){
+            imagen2.setVisibility(View.VISIBLE);
+            Glide.with(getContext())
+                    .load(getArguments().getString("imagen2"))
+                    .placeholder(R.mipmap.ic_placeholder)
+                    .centerCrop()
+                    .into(imagen2);
+
+            imagen2.setOnClickListener(seeImageDetail(getArguments().getString("imagen2")));
+        }
+
+        if(getArguments().getString("imagen3") != null){
+            imagen3.setVisibility(View.VISIBLE);
+            Glide.with(getContext())
+                    .load(getArguments().getString("imagen3"))
+                    .placeholder(R.mipmap.ic_placeholder)
+                    .centerCrop()
+                    .into(imagen3);
+
+            imagen3.setOnClickListener(seeImageDetail(getArguments().getString("imagen3")));
+        }
+
+        if(getArguments().getString("imagen4") != null){
+            imagen4.setVisibility(View.VISIBLE);
+            Glide.with(getContext())
+                    .load(getArguments().getString("imagen4"))
+                    .placeholder(R.mipmap.ic_placeholder)
+                    .centerCrop()
+                    .into(imagen4);
+
+            imagen4.setOnClickListener(seeImageDetail(getArguments().getString("imagen4")));
+        }
+
+        //Load Likes
+        Log.d("DETALLE", "Value Likes; "+getArguments().getInt("meGusta"));
+        String procureLikes = String.valueOf(getArguments().getInt("meGusta"));
+        Log.d("DETALLE", "String Likes; "+procureLikes);
+        textMeGusta.setText(procureLikes);
+
+
         // Buttons Behavior
         editar.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -241,24 +311,23 @@ public class FragmentDetalleActividad extends Fragment {
                 query.getInBackground(getArguments().getString("id"), new GetCallback<ParseObject>() {
                     public void done(ParseObject actividad, ParseException e) {
                         if (e == null) {
-                            actividad.put("tipoActividad",tipoActividad);
-                            actividad.put("objetivo",objetivo.getText().toString());
-                            actividad.put("ubicacion",ubicacion.getSelectedItem().toString());
-                            if(ubicacion.getSelectedItem().toString() == "Estadal" && estado.getSelectedItem() != null )
-                            {
-                                actividad.put("estado",estado.getSelectedItem().toString());
-                                actividad.put("municipio",municipio.getSelectedItem().toString());
-                                actividad.put("parroquia",parroquia.getText().toString());
+                            actividad.put("tipoActividad", tipoActividad);
+                            actividad.put("objetivo", objetivo.getText().toString());
+                            actividad.put("ubicacion", ubicacion.getSelectedItem().toString());
+                            if (ubicacion.getSelectedItem().toString() == "Estadal" && estado.getSelectedItem() != null) {
+                                actividad.put("estado", estado.getSelectedItem().toString());
+                                actividad.put("municipio", municipio.getSelectedItem().toString());
+                                actividad.put("parroquia", parroquia.getText().toString());
                             }
-                            actividad.put("encargado",encargado.getText().toString());
+                            actividad.put("encargado", encargado.getText().toString());
 
-                            actividad.put("estatus",estatus.getSelectedItem().toString());
+                            actividad.put("estatus", estatus.getSelectedItem().toString());
                             // Declare Date Format
                             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                            try{
-                                actividad.put("inicio",df.parse(inicio.getText().toString()));
-                                actividad.put("fin",df.parse(fin.getText().toString()));
-                            } catch (java.text.ParseException ex){
+                            try {
+                                actividad.put("inicio", df.parse(inicio.getText().toString()));
+                                actividad.put("fin", df.parse(fin.getText().toString()));
+                            } catch (java.text.ParseException ex) {
                                 dialog.dismiss();
                                 Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_SHORT).show();
                             }
@@ -302,6 +371,31 @@ public class FragmentDetalleActividad extends Fragment {
             }
         });
 
+        botonMeGusta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseObject like = new ParseObject("MeGusta");
+                ParseObject actividadLiked = ParseObject.createWithoutData("Actividad",getArguments().getString("id"));
+                like.put("usuario", usuarioActual);
+                like.put("actividad", actividadLiked);
+                like.saveInBackground();
+
+                actividadLiked.increment("meGusta");
+                actividadLiked.saveInBackground();
+
+
+                Log.d("DETALLE", "Value Likes; " + getArguments().getInt("meGusta"));
+                String procureLikes = String.valueOf(getArguments().getInt("meGusta")+1);
+                textMeGusta.setText(procureLikes);
+                // Paint Like button green
+                botonMeGusta.setColorFilter(R.color.verde);
+
+                botonMeGusta.setEnabled(false);
+            }
+        });
+
+
+
         return v;
     }
 
@@ -312,5 +406,24 @@ public class FragmentDetalleActividad extends Fragment {
         spin.setAdapter(spinner_adapter);
     }
 
+    // Listener for image details
+    public View.OnClickListener seeImageDetail(final String url){
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle data = new Bundle();
+                data.putString("imageUrl",url);
+                // Redirect View to next Fragment
+                Fragment fragment = new FragmentVerImagen();
+                fragment.setArguments(data);
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        };
+        return listener;
+    }
 
 }
