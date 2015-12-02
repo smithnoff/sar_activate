@@ -129,7 +129,17 @@ public class FragmentEscribirMensaje extends Fragment {
         publicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                publicar();
+                textArea.getText().toString();
+                if(textArea.getText().toString().trim().length()>0)
+                {
+                    publicar();
+                }
+                else{
+                    Toast.makeText(getContext(),"Escribe un mensaje",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
             }
         });
 

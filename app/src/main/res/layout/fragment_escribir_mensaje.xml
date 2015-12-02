@@ -13,145 +13,145 @@
         android:layout_weight="92"
         android:orientation="vertical">
 
-            <ScrollView
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:id="@+id/marcoSuperior"
+                    android:layout_height="70dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:id="@+id/editTextMensaje"
+                    android:layout_gravity="center_horizontal"
+                    android:maxLength="200"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20sp"
+                    android:id="@+id/txtContadorCaracteres"
+                    android:textColor="@color/grisOscuro"
+                    android:text="0/200"
+                    android:layout_gravity="right" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_horizontal">
+                    <!-- aqui van los botones de enviar imagen, ubicacion y archivo-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:weightSum="100"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="10"/>
+                        <ImageButton
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="12"
+                            android:id="@+id/imageButton"
+                            android:background="@drawable/ic_attach_file"/>
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="10"/>
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="fill_parent"
+                            android:background="@color/grisOscuro" />
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="10"/>
+                        <ImageButton
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="14"
+                            android:id="@+id/imageButton2"
+                            android:background="@drawable/ic_image"/>
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="10"/>
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="fill_parent"
+                            android:background="@color/grisOscuro" />
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="10"/>
+                        <ImageButton
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="12"
+                            android:id="@+id/imageButton3"
+                            android:background="@drawable/ic_place"/>
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="10"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <View
-                        android:layout_width="match_parent"
-                        android:id="@+id/marcoSuperior"
-                        android:layout_height="70dp"/>
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:id="@+id/editTextMensaje"
-                        android:layout_gravity="center_horizontal"
-                        android:maxLength="200"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20sp"
-                        android:id="@+id/txtContadorCaracteres"
-                        android:textColor="@color/grisOscuro"
-                        android:text="0/200"
-                        android:layout_gravity="right" />
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"/>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:gravity="center_horizontal">
-                        <!-- aqui van los botones de enviar imagen, ubicacion y archivo-->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:weightSum="100"
-                            android:orientation="horizontal">
-
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="10"/>
-                            <ImageButton
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="12"
-                                android:id="@+id/imageButton"
-                                android:background="@drawable/ic_attach_file"/>
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="10"/>
-                            <View
-                                android:layout_width="2dp"
-                                android:layout_height="fill_parent"
-                                android:background="@color/grisOscuro" />
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="10"/>
-                            <ImageButton
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="14"
-                                android:id="@+id/imageButton2"
-                                android:background="@drawable/ic_image"/>
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="10"/>
-                            <View
-                                android:layout_width="2dp"
-                                android:layout_height="fill_parent"
-                                android:background="@color/grisOscuro" />
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="10"/>
-                            <ImageButton
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="12"
-                                android:id="@+id/imageButton3"
-                                android:background="@drawable/ic_place"/>
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="10"/>
-
-                        </LinearLayout>
-                    </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"/>
-
+                    android:layout_height="20dp"
+                    android:orientation="vertical"
+                    >
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:orientation="vertical"
-                        >
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:id="@+id/linearMensajeAviso"
-                            android:orientation="vertical">
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:id="@+id/linearMensajeAviso"
+                        android:orientation="vertical">
 
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/avisoInsertado"
-                                android:visibility="invisible"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/avisoInsertado"
+                            android:visibility="invisible"/>
 
 
 
-                        </LinearLayout>
                     </LinearLayout>
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/publicar"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:id="@+id/button2"
-                        android:layout_marginTop="10dp"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:layout_gravity="center_horizontal" />
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="12dp"/>
                 </LinearLayout>
-            </ScrollView>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/publicar"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/button2"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
     <View
@@ -161,4 +161,3 @@
 
 
 </LinearLayout>
-
