@@ -1,5 +1,7 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -8,14 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseFile;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.SaveCallback;
 
@@ -25,7 +25,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class FragmentDetalleMensaje extends Fragment {
 
     private TextView valueNombre,valueEstado,valueMunicipio,valueFecha,valueTexto;
-    private ImageView valueAdjunto;
+    private ImageView previewAdjunto;
     private Button botonReportar;
 
     @Override
@@ -40,7 +40,7 @@ public class FragmentDetalleMensaje extends Fragment {
         valueFecha = (TextView)v.findViewById(R.id.valueFecha);
         valueTexto = (TextView)v.findViewById(R.id.valueTexto);
 
-        valueAdjunto = (ImageView)v.findViewById(R.id.valueAdjunto);
+        previewAdjunto = (ImageView)v.findViewById(R.id.valueAdjunto);
 
         botonReportar = (Button)v.findViewById(R.id.botonReportar);
 
@@ -50,21 +50,47 @@ public class FragmentDetalleMensaje extends Fragment {
         valueMunicipio.setText(getArguments().getString("municipio"));
         valueFecha.setText(getArguments().getString("fechaCreacion"));
         valueTexto.setText(getArguments().getString("texto"));
-        Log.d("DETALLE", "adjunto value: "+getArguments().getString("adjunto"));
 
         if(getArguments().getString("adjunto") != null){
-            valueAdjunto.setVisibility(View.VISIBLE);
-            Glide.with(getContext())
-                    .load(getArguments().getString("adjunto"))
-                    .placeholder(R.mipmap.ic_placeholder)
-                    .centerCrop()
-                    .into(valueAdjunto);
 
-            valueAdjunto.setOnClickListener(seeImageDetail(getArguments().getString("adjunto")));
-        }else {
-            Glide.clear(valueAdjunto);
-            valueAdjunto.setImageDrawable(null);
-            Log.d("DETALLE", "Adjunto URL was Null");
+            previewAdjunto.setVisibility(View.VISIBLE);
+            String fileName = getArguments().getString("nombreAdjunto");
+            String extension = fileName.substring((fileName.lastIndexOf(".") + 1), fileName.length());
+
+            //Attached File is an Image
+            if(extension.equalsIgnoreCase("jpg")) {
+                String url = getArguments().getString("adjunto");
+                Glide.with(getContext())
+                        .load(url)
+                        .placeholder(R.drawable.ic_image)
+                        .centerCrop()
+                        .into(previewAdjunto);
+
+                previewAdjunto.setOnClickListener(seeImageDetail(getArguments().getString("adjunto")));
+            }
+            else{
+                // Attached is a PDF File
+                Glide.with(getContext())
+                        .load(R.drawable.ic_archivo)
+                        .centerCrop()
+                        .into(previewAdjunto);
+
+                previewAdjunto.setOnClickListener(seePDFDetail(getArguments().getString("adjunto")));
+
+            }
+
+        }
+
+        // Have Attached location
+        if(getArguments().getString("ubicacion") != null){
+            previewAdjunto.setVisibility(View.VISIBLE);
+            Glide.with(getContext())
+                    .load(R.drawable.ic_place)
+                    .centerCrop()
+                    .into(previewAdjunto);
+
+            Log.d("INTENT LOCATION","Location is:"+getArguments().getString("ubicacion"));
+            previewAdjunto.setOnClickListener(seeLocationDetail(getArguments().getString("ubicacion")));
         }
 
         // Show reported button only if the message was not reported before
@@ -109,6 +135,33 @@ public class FragmentDetalleMensaje extends Fragment {
                         .replace(R.id.content_frame, fragment)
                         .addToBackStack(null)
                         .commit();
+            }
+        };
+        return listener;
+    }
+
+    // Listener for PDFs
+    public View.OnClickListener seePDFDetail(final String url){
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+
+            }
+        };
+        return listener;
+    }
+
+    // Listener for PDFs
+    public View.OnClickListener seeLocationDetail(final String location){
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Creates an Intent that will load a map
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+location));
+                startActivity(intent);
             }
         };
         return listener;

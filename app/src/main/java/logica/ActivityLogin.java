@@ -41,7 +41,7 @@ public class ActivityLogin extends AppCompatActivity {
                     public void done(ParseUser user, ParseException e) {
                         if(user != null){
                             dialog.dismiss();
-                            Intent i = new Intent(getApplication(),FActivityPantallaMenu.class);
+                            Intent i = new Intent(getApplication(), ActivityPantallaMenu.class);
                             startActivity(i);
                             finish();
                         }else{

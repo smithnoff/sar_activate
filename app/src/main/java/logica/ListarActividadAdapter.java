@@ -10,17 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.parse.GetCallback;
-import com.parse.GetDataCallback;
-import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 
@@ -45,7 +39,7 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
 
     public View getItemView(final ParseObject object, View v, ViewGroup parent){
         if(v == null){
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_actividades,parent,false);
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_actividad,parent,false);
         }
 
         super.getItemView(object, v, parent);

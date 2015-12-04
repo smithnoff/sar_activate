@@ -18,7 +18,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
-import logica.FActivityPantallaMenu;
+import logica.ActivityPantallaMenu;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 
@@ -102,7 +102,7 @@ public class FragmentRegistrarMilitante extends Fragment {
                             dialog.dismiss();
                             Toast.makeText(getActivity(), "Usuario registrado correctamente", Toast.LENGTH_SHORT).show();
                             // Redirect View to Dashboard
-                            Intent i = new Intent(getActivity(), FActivityPantallaMenu.class);
+                            Intent i = new Intent(getActivity(), ActivityPantallaMenu.class);
                             startActivity(i);
 
 

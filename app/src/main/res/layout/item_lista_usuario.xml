@@ -2,25 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
-
-    <!-- PlaceHolder Adjunto -->
-    <ImageView
-        android:id="@+id/valueAdjunto"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/ic_image"
-        android:visibility="gone"
-        />
+    android:padding="15dp"
+    android:layout_marginLeft="15dp">
 
     <!-- Nombre del Creador -->
     <TextView
-        android:id="@+id/valueCreador"
+        android:id="@+id/valueNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@id/valueAdjunto"
         android:textSize="15dp"
         android:text="@string/nombreEjemplo"
         />
@@ -28,11 +19,11 @@
     <!-- Separator -->
     <View
         android:layout_width="2dp"
-        android:layout_height="10dp"
+        android:layout_height="15dp"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:background="@color/grisOscuro"
-        android:layout_toRightOf="@id/valueCreador"/>
+        android:layout_toRightOf="@id/valueNombre"/>
 
     <!-- Estado -->
 
@@ -44,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/valueCreador"
+        android:layout_toRightOf="@+id/valueNombre"
         android:text="@string/estado"
         />
 
@@ -65,15 +56,14 @@
     <!-- Texto -->
 
     <TextView
-        android:id="@+id/valueTexto"
+        android:id="@+id/valueCargo"
         android:layout_marginLeft="5dp"
         android:textSize="15dp"
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/valueCreador"
-        android:layout_toRightOf="@id/valueAdjunto"
-        android:text="@string/mensajePrueba"
+        android:layout_below="@+id/valueNombre"
+        android:text="@string/cargoEjemplo"
         />
 
 

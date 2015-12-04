@@ -106,13 +106,12 @@ public class FragmentDetalleActividad extends Fragment {
         imagen4 = (ImageView)v.findViewById(R.id.imagen4);
 
         // Show buttons depending on Role or if user is owner
-        if(usuarioActual.getInt("rol") == 1 || usuarioActual.getObjectId() == getArguments().getString("creadorId")){
+        if(usuarioActual.getInt("rol") == 1 || usuarioActual.getObjectId().equals(getArguments().getString("creadorId"))){
             editar.setVisibility(View.VISIBLE);
             eliminar.setVisibility(View.VISIBLE);
         }
 
         // Load Defaults from Arguments bundle
-
         nombreActual.setText(getArguments().getString("nombre"));
         // Fill Name Spinner from parse
         ParseQueryAdapter.QueryFactory<ParseObject> factory = new ParseQueryAdapter.QueryFactory<ParseObject>() {

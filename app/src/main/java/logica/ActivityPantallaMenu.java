@@ -13,19 +13,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.usuario.soyactivista.fragments.FragmentBoletinActividades;
-import com.example.usuario.soyactivista.fragments.FragmentCrearActividad;
 import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
 import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
-import com.example.usuario.soyactivista.fragments.FragmentListarMensajes;
+import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
+import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
+import com.example.usuario.soyactivista.fragments.FragmentListarUsuarioOLD;
 import com.parse.ParseUser;
 
-import com.example.usuario.soyactivista.fragments.FragmentDashBoard;
 import com.example.usuario.soyactivista.fragments.FragmentEditarMilitante;
-import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentRegistrarMilitante;
-import com.example.usuario.soyactivista.fragments.FragmentCrearActividad;
+
 import soy_activista.quartzapp.com.soy_activista.R;
 
 
@@ -33,7 +31,8 @@ import soy_activista.quartzapp.com.soy_activista.R;
  * Created by Usuario on 07/10/2015.
  */
 
-public class FActivityPantallaMenu extends AppCompatActivity {
+public class ActivityPantallaMenu extends AppCompatActivity {
+
     private Toolbar appbar;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
@@ -80,7 +79,7 @@ public class FActivityPantallaMenu extends AppCompatActivity {
         // Load Message Dashboard As Main Screen
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content_frame, new FragmentListarMensajes() /*new FragmentMenuPrincipal()*/)
+                .replace(R.id.content_frame, new FragmentListarMensaje() /*new FragmentMenuPrincipal()*/)
                 .commit();
 
         navView = (NavigationView)findViewById(R.id.navview);
@@ -110,7 +109,7 @@ public class FActivityPantallaMenu extends AppCompatActivity {
 
                         switch (menuItem.getItemId()) {
                             case R.id.menuDashBoard:
-                                fragment = new FragmentListarMensajes();
+                                fragment = new FragmentListarMensaje();
                                 ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
@@ -132,7 +131,7 @@ public class FActivityPantallaMenu extends AppCompatActivity {
                             // PLACEHOLDER PUNTUACIONES
 
                             case R.id.menuListarUsuario:
-                                fragment = FragmentListarUsuario.fragConstruct(null);/*new FragmentListarUsuario();*/
+                                fragment = new FragmentListarUsuario();/*new FragmentListarUsuarioOLD();*/
                                 ocultar(true,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
@@ -162,7 +161,7 @@ public class FActivityPantallaMenu extends AppCompatActivity {
                                 break;
 
                             default:
-                                fragment = new FragmentDashBoard();
+                                fragment = new FragmentListarMensaje();
                                 ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
@@ -203,7 +202,7 @@ public class FActivityPantallaMenu extends AppCompatActivity {
                 if(query.length() > 0){ //si escribió algo!
                     Bundle parametro = new Bundle();
                     parametro.putString("query",query);
-                    Fragment fragment=FragmentListarUsuario.fragConstruct(parametro);
+                    Fragment fragment= FragmentListarUsuarioOLD.fragConstruct(parametro);
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.content_frame, fragment)
                             .commit();

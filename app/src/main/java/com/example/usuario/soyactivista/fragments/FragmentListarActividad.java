@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.parse.Parse;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -34,7 +33,7 @@ public class FragmentListarActividad extends Fragment {
 
 
         // Inflate View
-        View view = inflater.inflate(R.layout.fragment_listar_actividades, container, false);
+        View view = inflater.inflate(R.layout.fragment_listar_actividad, container, false);
 
         // Initialize main ParseQueryAdapter
         listarActividadAdapter = new ListarActividadAdapter(this.getContext());

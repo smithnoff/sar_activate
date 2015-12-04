@@ -15,7 +15,7 @@
     <string name="recuperar_contrasena">Olvidé mi contraseña</string>
     <string name="recuperar_cuenta">Olvidé mi cuenta</string>
     <string name="ingresar">Ingresar</string>
-    <string name="regreaar">Regresar</string>
+    <string name="regresar">Regresar</string>
     <string name="publicar">Publicar</string>
     <string name="new_pass">Nueva Contraseña</string>
     <string name="comprobar_passw">Introducir Contraseña</string>
@@ -56,16 +56,16 @@
     <string name="identificador">Identificador</string>
     <string name="ID">identificador</string>
     <string name="nombre">Nombre</string>
-    <string name="nombreEjemplo">El Nombre</string>
+    <string name="nombreEjemplo">Juan Garcia</string>
     <string name="apellido">Apellido</string>
-    <string name="apellidoEjemplo">El Apellido</string>
+    <string name="apellidoEjemplo">Morales</string>
     <string name="correo">Correo Electronico</string>
     <string name="correoEjemplo">abc@dominio.com</string>
     <string name="cargo">Cargo</string>
     <string name="cargoejemplo">Un Cargo</string>
     <string name="estadoSuscripcion">Estado de Suscripción</string>
     <string name="municipioSuscripcion">Municipio de Suscripción</string>
-    <string name="comitePertenencia">Comite de Pertenencia</string>
+    <string name="comitePertenencia">Comité de Pertenencia</string>
     <string name="guardar">Guardar</string>
     <string name="buscador">aqui buscas</string>
     <string name="hintBuscador">Identificador de autor...</string>
@@ -137,9 +137,12 @@
     <!-- MENSAJE -->
     <string name="mensajePrueba">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare et mauris ut lacinia. Mauris at urna at nibh volutpat.</string>
     <string name="reportar">Reportar</string>
-
-    <!-- Visualizer -->
-    <string name="regresar">Regresar</string>
+    <string name="comite">Comité</string>
+    <string name="comiteEjemplo">Nacional</string>
+    <string name="cargoEjemplo">Director de Salud</string>
+    <string name="tipoUsuario">Tipo de Usuario</string>
+    <string name="tipoUsuarioEjemplo">Activista</string>
+    <string name="totalChars">0/200</string>
 
 
 </resources>

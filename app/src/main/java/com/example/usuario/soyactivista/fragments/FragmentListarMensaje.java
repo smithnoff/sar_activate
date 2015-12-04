@@ -11,22 +11,22 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.parse.ParseFile;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.text.SimpleDateFormat;
 
-import logica.ListarActividadAdapter;
-import logica.ListarMensajesAdapter;
+import logica.ListarMensajeAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
  * Created by root on 26/11/15.
  */
-public class FragmentListarMensajes extends Fragment {
+public class FragmentListarMensaje extends Fragment {
 
 
-    private ListarMensajesAdapter listarMensajesAdapter;
+    private ListarMensajeAdapter listarMensajeAdapter;
     private ListView listView;
 
     @Override
@@ -35,17 +35,17 @@ public class FragmentListarMensajes extends Fragment {
 
 
         // Inflate View
-        View view = inflater.inflate(R.layout.fragment_listar_mensajes, container, false);
+        View view = inflater.inflate(R.layout.fragment_listar_mensaje, container, false);
 
         // Initialize main ParseQueryAdapter
-        listarMensajesAdapter = new ListarMensajesAdapter(this.getContext());
+        listarMensajeAdapter = new ListarMensajeAdapter(this.getContext());
 
         // Initialize list view
         listView = (ListView) view.findViewById(R.id.mensajesListView);
 
-        if (listarMensajesAdapter != null) {
-            listView.setAdapter(listarMensajesAdapter);
-            listarMensajesAdapter.loadObjects();
+        if (listarMensajeAdapter != null) {
+            listView.setAdapter(listarMensajeAdapter);
+            listarMensajeAdapter.loadObjects();
         } else {
             Log.d("ADAPTER", "Adapter returned null!");
         }
@@ -59,24 +59,35 @@ public class FragmentListarMensajes extends Fragment {
                 ParseObject mensaje = (ParseObject) listView.getItemAtPosition(position);
                 ParseUser autor = mensaje.getParseUser("autor");
                 ParseFile adjunto;
+                ParseGeoPoint ubicacion;
 
                 adjunto = mensaje.getParseFile("adjunto");
+                ubicacion = mensaje.getParseGeoPoint("ubicacion");
+
 
                 SimpleDateFormat format = new SimpleDateFormat("HH:mm dd/MM/yyyy");
 
                 Bundle datos = new Bundle();
                 datos.putString("id", mensaje.getObjectId());
-                datos.putString("nombre", autor.getString("nombre") + " " + autor.getString("Apellido"));
+                datos.putString("nombre", autor.getString("nombre") + " " + autor.getString("apellido"));
                 datos.putString("estado",autor.getString("estado"));
                 datos.putString("municipio", autor.getString("municipio"));
                 datos.putString("texto", mensaje.getString("texto"));
-                datos.putString("ubicacion", mensaje.getString("ubicacion"));
                 datos.putString("fechaCreacion", format.format(mensaje.getCreatedAt()));
                 datos.putBoolean("reportado",mensaje.getBoolean("reportado"));
 
                 // Check if images are null and save URLs
-                if (adjunto != null)
+                if (adjunto != null){
+                    datos.putString("nombreAdjunto",adjunto.getName());
                     datos.putString("adjunto", adjunto.getUrl());
+                }
+
+                // Check if location available
+                if (ubicacion != null){
+                    Log.d("ENVIO", ubicacion.toString());
+                    datos.putString("ubicacion", String.valueOf(ubicacion.getLatitude())+","+String.valueOf(ubicacion.getLongitude()));
+                }
+
 
                 // Redirect View to next Fragment
                 Fragment fragment = new FragmentDetalleMensaje();
@@ -96,7 +107,7 @@ public class FragmentListarMensajes extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Fragment fragment = new FragmentEscribirMensaje();
+                Fragment fragment = new FragmentCrearMensaje();
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, fragment)

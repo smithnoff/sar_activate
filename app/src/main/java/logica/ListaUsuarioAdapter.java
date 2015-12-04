@@ -1,7 +1,6 @@
 package logica;
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +24,7 @@ public class ListaUsuarioAdapter extends ArrayAdapter<Usuario> {
 
 
     public ListaUsuarioAdapter(Activity context,ArrayList<Usuario>lista,int layoutAInflar) {
-        super(context, R.layout.fragment_listar_usuario,lista);
+        super(context, R.layout.fragment_listar_usuarioold,lista);
        /* this.arrayUsuario=arrayUsuario;*/
         this.listaUsuario=lista;
         this.context=context;

@@ -22,7 +22,7 @@ import com.parse.ParseUser;
 
 import java.util.HashMap;
 
-import logica.FActivityPantallaMenu;
+import logica.ActivityPantallaMenu;
 import logica.Usuario;
 import logica.pantalla_principal;
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -170,7 +170,7 @@ public class FragmentEditarMilitante extends Fragment {
                             if (e == null) {
                                 Toast.makeText(getActivity(), "Usuario eliminado correctamente.", Toast.LENGTH_SHORT).show();
                                 getFragmentManager().beginTransaction()
-                                        .replace(R.id.content_frame,new FragmentListarUsuario())
+                                        .replace(R.id.content_frame,new FragmentListarUsuarioOLD())
                                         .addToBackStack(null)
                                         .commit();
                             } else {
@@ -212,7 +212,7 @@ public class FragmentEditarMilitante extends Fragment {
                         public void done(Object response, ParseException e) {
                             if (e == null) {
                                 Toast.makeText(getActivity(), "Usuario editado correctamente.", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(getActivity(), FActivityPantallaMenu.class);
+                                Intent i = new Intent(getActivity(), ActivityPantallaMenu.class);
                                 startActivity(i);
                             } else {
                                 Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde."+e.toString(), Toast.LENGTH_LONG).show();
