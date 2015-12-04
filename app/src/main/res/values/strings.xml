@@ -25,6 +25,7 @@
     <string name="guardar_datos">Guardar</string>
     <string name="crear">Crear</string>
     <string name="cancelar">Cancelar</string>
+    <string name="eliminarMensaje">Eliminar</string>
 
     <!-- Titulos -->
     <string name="nombre_partido">NOMBRE PARTIDO</string>

@@ -17,7 +17,10 @@ import com.bumptech.glide.Glide;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
+import java.util.Objects;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -27,6 +30,7 @@ public class FragmentDetalleMensaje extends Fragment {
     private TextView valueNombre,valueEstado,valueMunicipio,valueFecha,valueTexto;
     private ImageView previewAdjunto;
     private Button botonReportar;
+    private Button botonEliminar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -43,6 +47,10 @@ public class FragmentDetalleMensaje extends Fragment {
         previewAdjunto = (ImageView)v.findViewById(R.id.valueAdjunto);
 
         botonReportar = (Button)v.findViewById(R.id.botonReportar);
+        botonEliminar = (Button)v.findViewById(R.id.botonEliminar);
+
+        //Gets Current User
+        final ParseUser usuarioActual = ParseUser.getCurrentUser();
 
         // Set Values
         valueNombre.setText(getArguments().getString("nombre"));
@@ -99,6 +107,11 @@ public class FragmentDetalleMensaje extends Fragment {
             botonReportar.setEnabled(false);
         }
 
+        //Show EliminarMensaje button only if the user role is "1" or owner message.
+        if(usuarioActual.getInt("rol")== 1 || usuarioActual.equals(getArguments().get("creadorId"))){
+            botonEliminar.setVisibility(View.VISIBLE);
+            botonEliminar.setEnabled(true);
+        }
 
         // On Click listener to report Message
         botonReportar.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +127,28 @@ public class FragmentDetalleMensaje extends Fragment {
                         botonReportar.setEnabled(false);
                     }
                 });
+            }
+        });
+
+        // On Click listener to Eliminated Message
+        botonEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseObject mensaje = ParseObject.createWithoutData("Mensaje",getArguments().getString("id"));
+                mensaje.deleteInBackground();
+                mensaje.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        Toast.makeText(getContext(), "Mensaje eliminado.", Toast.LENGTH_SHORT).show();
+                        botonEliminar.setVisibility(View.GONE);
+                        botonEliminar.setEnabled(false);
+                    }
+                });
+                Fragment fragment = new FragmentListarMensajes();
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .commit();;
             }
         });
 
