@@ -15,12 +15,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.parse.ParseException;
-import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-
-import java.util.Objects;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -144,7 +141,7 @@ public class FragmentDetalleMensaje extends Fragment {
                         botonEliminar.setEnabled(false);
                     }
                 });
-                Fragment fragment = new FragmentListarMensajes();
+                Fragment fragment = new FragmentListarMensaje();
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, fragment)
