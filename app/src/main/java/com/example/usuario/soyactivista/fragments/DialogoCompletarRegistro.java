@@ -36,7 +36,7 @@ public class DialogoCompletarRegistro extends DialogFragment {
         customDialog = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
         customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         customDialog.setCancelable(false);
-        customDialog.setContentView(R.layout.completar_registro);
+        customDialog.setContentView(R.layout.fragment_completar_registro);
 
         // Declare Edit Text Fields
         t1 = (EditText) customDialog.findViewById(R.id.textCIdentificador);
@@ -92,11 +92,9 @@ public class DialogoCompletarRegistro extends DialogFragment {
         nueva = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
         nueva.requestWindowFeature(Window.FEATURE_NO_TITLE);
         nueva.setCancelable(false);
-        nueva.setContentView(R.layout.comprobar_passw);
+        nueva.setContentView(R.layout.fragment_completar_password);
 
-        tv1 = (TextView) nueva.findViewById(R.id.CIdentificador);
-        t3 = (EditText) nueva.findViewById(R.id.CNpasw);
-        t4 = (EditText) nueva.findViewById(R.id.CNOpasw);
+
 
         tv1.setText(identificador);
 
