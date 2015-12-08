@@ -90,6 +90,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
         MenuItem listarUsuario = navMenu.findItem(R.id.menuListarUsuario);
         MenuItem agregarUsuario = navMenu.findItem(R.id.menuAgregarUsuario);
         MenuItem editarPartido = navMenu.findItem(R.id.menuEditarPartido);
+        MenuItem mensajeReport = navMenu.findItem(R.id.menuMensajeReportado);
 
         // Disable Menu Items if not admin user
         if(usuarioActual.getInt("rol") != 1){
@@ -97,6 +98,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
             listarUsuario.setVisible(false);
             agregarUsuario.setVisible(false);
             editarPartido.setVisible(false);
+            mensajeReport.setVisible(false);
         }
 
         navView.setNavigationItemSelectedListener(
@@ -129,6 +131,12 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                             // PLACEHOLDER TRIVIA
 
                             // PLACEHOLDER PUNTUACIONES
+
+                            //FALTA EL FRAGMENT CORRESPONDIENTE A MENSAJES REPORTADOS
+                            case R.id.menuMensajeReportado:
+                                fragment = new FragmentListarMensaje();
+                                fragmentTransaction = true;
+                                break;
 
                             case R.id.menuListarUsuario:
                                 fragment = new FragmentListarUsuario();/*new FragmentListarUsuarioOLD();*/

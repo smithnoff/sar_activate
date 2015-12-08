@@ -179,7 +179,6 @@ public class FragmentDetalleMensaje extends Fragment {
             public void onClick(View v) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(browserIntent);
-
             }
         };
         return listener;
