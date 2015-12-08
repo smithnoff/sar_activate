@@ -75,6 +75,7 @@ public class FragmentListarMensaje extends Fragment {
                 datos.putString("texto", mensaje.getString("texto"));
                 datos.putString("fechaCreacion", format.format(mensaje.getCreatedAt()));
                 datos.putBoolean("reportado",mensaje.getBoolean("reportado"));
+                datos.putString("autor",autor.getObjectId());
 
                 // Check if images are null and save URLs
                 if (adjunto != null){

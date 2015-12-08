@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#eee"
     >
 
     <ImageView
@@ -21,77 +22,81 @@
         android:layout_gravity="center"
         android:id="@+id/slogan"
         android:layout_below="@+id/logo"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+
         android:layout_marginRight="20dp"
         android:layout_below="@+id/slogan"
         android:background="@drawable/border">
 
         <TextView
-            android:id="@+id/headerText"
+            android:id="@+id/headerCompletarRegistro"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:background="#eee"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/indigo"
+            android:text="Completar Registro"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:gravity="center"/>
         <TextView
-            android:id="@+id/Lusuario"
+            android:id="@+id/Lcodigo"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:padding="15dp"
-            android:text="Identificador"
-            android:layout_marginTop="5dp"
+            android:text="@string/autor"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="5dp"/>
         <EditText
-            android:id="@+id/textMail"
+            android:id="@+id/textCIdentificador"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/Lusuario" />
+            android:layout_below="@+id/Lcodigo" />
         <TextView
-            android:id="@+id/Lpassword"
+            android:id="@+id/LclaveCodigo"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:padding="15dp"
-            android:text="Password"
+            android:text="@string/token"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
-            android:layout_below="@+id/textMail"/>
+            android:layout_below="@+id/textCIdentificador"/>
         <EditText
-            android:id="@+id/editTextPass"
+            android:id="@+id/textCToken"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/Lpassword"
-            android:inputType="textPassword"
+            android:layout_below="@+id/LclaveCodigo"
+            android:inputType="text"
             />
         <Button
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:text="@string/entrar"
-            android:id="@+id/botonEntrar"
+            android:id="@+id/ingresar"
             android:textColor="@color/white"
-            android:onClick="iniciarSesion"
-            android:layout_below="@+id/editTextPass"
+            android:layout_below="@+id/textCToken"
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="15dp"
             android:layout_marginRight="10dp"/>
         <Button
             android:layout_width="140dp"
             android:layout_height="50dp"
-            android:text="Regresar"
-            android:id="@+id/botonSalir"
+            android:text="@string/regresar"
+            android:id="@+id/regresar"
             android:textColor="@color/white"
             android:onClick="iniciarSesion"
-            android:layout_below="@+id/editTextPass"
+            android:layout_below="@+id/textCToken"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="15dp"
             android:layout_marginRight="15dp"

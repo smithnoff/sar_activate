@@ -108,7 +108,7 @@ public class FragmentDetalleMensaje extends Fragment {
         }
 
         //Show EliminarMensaje button only if the user role is "1" or owner message.
-        if(usuarioActual.getInt("rol")== 1 || usuarioActual.equals(getArguments().get("creadorId"))){
+        if(usuarioActual.getInt("rol")== 1 || usuarioActual.equals(getArguments().get("autor"))){
             botonEliminar.setVisibility(View.VISIBLE);
             botonEliminar.setEnabled(true);
         }
@@ -144,7 +144,7 @@ public class FragmentDetalleMensaje extends Fragment {
                         botonEliminar.setEnabled(false);
                     }
                 });
-                Fragment fragment = new FragmentListarMensajes();
+                Fragment fragment = new FragmentListarMensaje();
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, fragment)
