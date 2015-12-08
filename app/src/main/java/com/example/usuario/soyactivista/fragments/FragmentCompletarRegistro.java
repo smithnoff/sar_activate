@@ -1,7 +1,5 @@
 package com.example.usuario.soyactivista.fragments;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +17,6 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.SaveCallback;
 
 import logica.pantalla_principal;
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -75,10 +72,14 @@ public class FragmentCompletarRegistro extends Fragment {
                             dialog.dismiss();
                             // Open new Fragment for password
                             Fragment fragment = new FragmentCompletarPassword();
+                            Bundle parametro = new Bundle();
+
+                            parametro.putString("key",identificador);
+                            fragment.setArguments(parametro);
                             getFragmentManager()
                                     .beginTransaction()
-                                    .replace(android.R.id.content, fragment)
-                                    .commit();
+                                    .replace(android.R.id.content, fragment, "tag").addToBackStack("tag")
+                            .commit();
                         }
                     }
                 });

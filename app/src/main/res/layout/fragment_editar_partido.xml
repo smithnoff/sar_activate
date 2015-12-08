@@ -41,12 +41,14 @@
             android:layout_height="50dp"
             android:background="@drawable/circulo"
             android:backgroundTint="@color/brown"
+            android:id="@+id/themeBrown"
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/circulo"
+
             android:backgroundTint="@color/red900"
             />
         <View

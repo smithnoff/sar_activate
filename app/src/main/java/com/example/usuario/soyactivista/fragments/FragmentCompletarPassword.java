@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,7 +22,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
  */
 public class FragmentCompletarPassword extends Fragment{
     EditText t1,t2,t3,t4;
-    String identificador,token, passw, otrapassw;
+    String token, passw, otrapassw;
     TextView tv1;
     private ProgressDialog dialog,dia;
     private Button botonIngresar;
@@ -40,8 +39,10 @@ public class FragmentCompletarPassword extends Fragment{
         t4 =  (EditText)v.findViewById(R.id.CNOpasw);
         botonIngresar = (Button) v.findViewById(R.id.ingresar);
         botonRegresar = (Button) v.findViewById(R.id.regresar);
-        FragmentCompletarRegistro ident = new FragmentCompletarRegistro();
-        tv1.setText(ident.identificador);
+        //FragmentCompletarRegistro ident = new FragmentCompletarRegistro();
+
+
+        tv1.setText(getArguments().getString("key"));
 
         botonIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +52,7 @@ public class FragmentCompletarPassword extends Fragment{
 
                 try {
                     if (passw.equals(otrapassw)) {
-                        ParseUser user = ParseUser.logIn(identificador, "1234");
+                        ParseUser user = ParseUser.logIn(getArguments().getString("key"), "1234");
                         user.setPassword(passw);
                         user.saveInBackground();
 
