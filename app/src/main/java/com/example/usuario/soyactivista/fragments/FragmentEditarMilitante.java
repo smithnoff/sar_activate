@@ -26,6 +26,8 @@ import logica.ActivityPantallaMenu;
 import logica.Usuario;
 import logica.pantalla_principal;
 import soy_activista.quartzapp.com.soy_activista.R;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 
 /**
@@ -54,6 +56,7 @@ public class FragmentEditarMilitante extends Fragment {
     Spinner spinRol;
     private String identificador,nombre,apellido,email,cargo;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_editar_militante, container, false);
@@ -70,7 +73,6 @@ public class FragmentEditarMilitante extends Fragment {
 
 
         ParseUser usuarioActual = ParseUser.getCurrentUser();
-
         // Showing Edit and Remove Buttons only if is admin
         if(usuarioActual != null && usuarioActual.getInt("rol") != 1){
             editar.setVisibility(View.INVISIBLE);
@@ -193,50 +195,78 @@ public class FragmentEditarMilitante extends Fragment {
             public void onClick(View arg0) {
                 Log.d(getClass().getName(),"Guardar Clicked");
 
-                if (getArguments()!= null){
+             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Confirmar");
+                builder.setMessage("¿Estas Seguro?");
 
-                    Log.d(getClass().getName(),"MOdifying from Arguments");
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
 
-                    final HashMap<String, Object> params = new HashMap<>();
-                    params.put("username", idEditar.getText().toString());
-                    params.put("nombre", nombreEditar.getText().toString());
-                    params.put("apellido", apellidoEditar.getText().toString());
-                    params.put("correo", correoEditar.getText().toString());
-                    params.put("cargo", cargoEditar.getText().toString());
-                    params.put("estado", spinEstado.getSelectedItem().toString());
-                    params.put("municipio", spinMunicipio.getSelectedItem().toString());
-                    params.put("comite", spinPertinencia.getSelectedItem().toString());
-                    params.put("rol", String.valueOf(spinRol.getSelectedItemPosition()));
-                    ParseCloud.callFunctionInBackground("modifyUser", params, new FunctionCallback<Object>(){
-                        @Override
-                        public void done(Object response, ParseException e) {
-                            if (e == null) {
-                                Toast.makeText(getActivity(), "Usuario editado correctamente.", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(getActivity(), ActivityPantallaMenu.class);
-                                startActivity(i);
-                            } else {
-                                Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde."+e.toString(), Toast.LENGTH_LONG).show();
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing but close the dialog
+
+                        if (getArguments()!= null){
+
+                            Log.d(getClass().getName(),"MOdifying from Arguments");
+
+                            final HashMap<String, Object> params = new HashMap<>();
+                            params.put("username", idEditar.getText().toString());
+                            params.put("nombre", nombreEditar.getText().toString());
+                            params.put("apellido", apellidoEditar.getText().toString());
+                            params.put("correo", correoEditar.getText().toString());
+                            params.put("cargo", cargoEditar.getText().toString());
+                            params.put("estado", spinEstado.getSelectedItem().toString());
+                            params.put("municipio", spinMunicipio.getSelectedItem().toString());
+                            params.put("comite", spinPertinencia.getSelectedItem().toString());
+                            params.put("rol", String.valueOf(spinRol.getSelectedItemPosition()));
+                            ParseCloud.callFunctionInBackground("modifyUser", params, new FunctionCallback<Object>(){
+                                @Override
+                                public void done(Object response, ParseException e) {
+                                    if (e == null) {
+                                        Toast.makeText(getActivity(), "Usuario editado correctamente.", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(getActivity(), ActivityPantallaMenu.class);
+                                        startActivity(i);
+                                    } else {
+                                        Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde."+e.toString(), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        }else {
+
+                            ParseUser user = ParseUser.getCurrentUser();
+                            if (user != null) {
+                                Log.d(getClass().getName(),"Filling from Current User");
+
+                                user.put("nombre", nombreEditar.getText().toString());
+                                user.put("apellido", apellidoEditar.getText().toString());
+                                user.setEmail(correoEditar.getText().toString());
+                                user.put("cargo", cargoEditar.getText().toString());
+                                user.put("estado", spinEstado.getSelectedItem().toString());
+                                user.put("municipio", spinMunicipio.getSelectedItem().toString());
+                                user.put("comite", spinPertinencia.getSelectedItem().toString());
+                                user.put("rol", spinRol.getSelectedItemPosition());
+                                user.saveInBackground();
                             }
+                            Toast.makeText(getActivity(), "Perfil Editado", Toast.LENGTH_SHORT).show();
                         }
-                    });
-                }else {
-
-                    ParseUser user = ParseUser.getCurrentUser();
-                    if (user != null) {
-                        Log.d(getClass().getName(),"Filling from Current User");
-
-                        user.put("nombre", nombreEditar.getText().toString());
-                        user.put("apellido", apellidoEditar.getText().toString());
-                        user.setEmail(correoEditar.getText().toString());
-                        user.put("cargo", cargoEditar.getText().toString());
-                        user.put("estado", spinEstado.getSelectedItem().toString());
-                        user.put("municipio", spinMunicipio.getSelectedItem().toString());
-                        user.put("comite", spinPertinencia.getSelectedItem().toString());
-                        user.put("rol", spinRol.getSelectedItemPosition());
-                        user.saveInBackground();
+                        dialog.dismiss();
                     }
-                    Toast.makeText(getActivity(), "Perfil Editado", Toast.LENGTH_SHORT).show();
-                }
+
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
+
             }
         });
 
