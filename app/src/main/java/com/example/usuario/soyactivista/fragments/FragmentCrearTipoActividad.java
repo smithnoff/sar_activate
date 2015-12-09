@@ -63,33 +63,41 @@ public class FragmentCrearTipoActividad extends Fragment {
         crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                dialog = ProgressDialog.show(getActivity(),"","Creando Tipo de Actividad",true);
+                if(nombre.getText().toString().trim().length()>0 && descripcion.getText().toString().trim().length()>0 ) {
+                    dialog = ProgressDialog.show(getActivity(), "", "Creando Tipo de Actividad", true);
 
-                // Fill ParseObject to send
-                ParseObject tipoActividad = new ParseObject("TipoActividad");
-                tipoActividad.put("nombre", nombre.getText().toString());
-                tipoActividad.put("puntaje", parseInt(puntaje.getSelectedItem().toString()));
-                tipoActividad.put("descripcion", descripcion.getText().toString());
-                tipoActividad.put("creador", usuarioActual);
+                    // Fill ParseObject to send
+                    ParseObject tipoActividad = new ParseObject("TipoActividad");
+                    tipoActividad.put("nombre", nombre.getText().toString());
+                    tipoActividad.put("puntaje", parseInt(puntaje.getSelectedItem().toString()));
+                    tipoActividad.put("descripcion", descripcion.getText().toString());
+                    tipoActividad.put("creador", usuarioActual);
 
-                tipoActividad.saveInBackground(new SaveCallback() {
-                    public void done(ParseException e) {
-                        if (e == null) {
-                            dialog.dismiss();
-                            Toast.makeText(getActivity(), "Tipo de actividad creada", Toast.LENGTH_SHORT).show();
-                            // Redirect View to Boletin de Actividades
-                            Fragment fragment = new FragmentListarTipoActividad();
-                            getFragmentManager()
-                                    .beginTransaction()
-                                    .replace(R.id.content_frame, fragment)
-                                    .commit();
-                        } else {
-                            dialog.dismiss();
-                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                    tipoActividad.saveInBackground(new SaveCallback() {
+                        public void done(ParseException e) {
+                            if (e == null) {
+                                dialog.dismiss();
+                                Toast.makeText(getActivity(), "Tipo de actividad creada", Toast.LENGTH_SHORT).show();
+                                // Redirect View to Boletin de Actividades
+                                Fragment fragment = new FragmentListarTipoActividad();
+                                getFragmentManager()
+                                        .beginTransaction()
+                                        .replace(R.id.content_frame, fragment)
+                                        .commit();
+                            } else {
+                                dialog.dismiss();
+                                Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+                }
+                else
+                {
+                    Toast.makeText(getContext(),"Completa los campos vacíos",Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
+
         });
 
         cancelar.setOnClickListener(new View.OnClickListener(){
