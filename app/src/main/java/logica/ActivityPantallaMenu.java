@@ -18,7 +18,6 @@ import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
-import com.example.usuario.soyactivista.fragments.FragmentListarUsuarioOLD;
 import com.parse.ParseUser;
 
 import com.example.usuario.soyactivista.fragments.FragmentEditarMilitante;
@@ -199,12 +198,20 @@ public class ActivityPantallaMenu extends AppCompatActivity {
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if(query.length() > 0){ //si escribió algo!
-                    Bundle parametro = new Bundle();
-                    parametro.putString("query",query);
-                    Fragment fragment= FragmentListarUsuarioOLD.fragConstruct(parametro);
-                    getSupportFragmentManager().beginTransaction()
+                if(query.length() > 0){ // If any word was queried
+
+                    // Bundle Query with arguments for fragment
+                    Bundle data = new Bundle();
+                    data.putString("busqueda", query);
+
+                    // Create new Fragment
+                    // Redirect View to next Fragment
+                    Fragment fragment = new FragmentListarUsuario();
+                    fragment.setArguments(data);
+                    getSupportFragmentManager()
+                            .beginTransaction()
                             .replace(R.id.content_frame, fragment)
+                            .addToBackStack(null)
                             .commit();
                 }
                 return false;

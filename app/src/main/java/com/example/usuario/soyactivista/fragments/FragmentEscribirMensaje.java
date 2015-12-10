@@ -267,7 +267,7 @@ public class FragmentEscribirMensaje extends Fragment {
                 if (e == null) {
                     pg.dismiss();
                     Toast.makeText(getContext(), "Mensaje Publicado", Toast.LENGTH_SHORT).show();
-                    Fragment fragment = new FragmentListarMensajes();
+                    Fragment fragment = new FragmentListarMensaje();
                     getFragmentManager()
                             .beginTransaction()
                             .replace(R.id.content_frame, fragment)

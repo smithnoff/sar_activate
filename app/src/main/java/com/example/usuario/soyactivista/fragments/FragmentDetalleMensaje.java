@@ -144,7 +144,7 @@ public class FragmentDetalleMensaje extends Fragment {
                         botonEliminar.setEnabled(false);
                     }
                 });
-                Fragment fragment = new FragmentListarMensajes();
+                Fragment fragment = new FragmentListarMensaje();
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, fragment)

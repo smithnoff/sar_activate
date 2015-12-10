@@ -12,6 +12,20 @@
             android:id="@+id/usuariosListView"
             android:layout_marginTop="8dp"
             />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/botonFiltrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_place"
+            app:fabSize="normal"
+            app:borderWidth="0dp"
+
+            android:layout_marginBottom="7dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="7dp" />
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/botonCrearUsuario"
             android:layout_width="wrap_content"
