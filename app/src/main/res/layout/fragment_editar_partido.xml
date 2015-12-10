@@ -47,6 +47,7 @@
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/circulorojo"
+            android:id="@+id/themeRed"
 
             />
         <View
@@ -54,12 +55,14 @@
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/circulonaranja"
+            android:id="@+id/themeOrange"
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/circuloamarillo"
+            android:id="@+id/themeYellow"
             />
 
     </LinearLayout>
@@ -75,13 +78,14 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/circuloverde"
-
+            android:id="@+id/themeGreen"
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/circuloazul"
+            android:id="@+id/themeCyan"
 
             />
         <View
@@ -89,13 +93,14 @@
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/circulopurpura"
-
+            android:id="@+id/themePurple"
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/circuloindigo"
+            android:id="@+id/themeBlue"
             />
     </LinearLayout>
 

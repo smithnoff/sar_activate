@@ -272,16 +272,15 @@ colorChecked=v.getId();
           {
 
               case R.id.themeBrown:
-
                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BROWN);
                   break;
-              case R.id.themeBlue:
+              case R.id.themeCyan:
                   Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BLUE);
                   break;
               case R.id.themeRed:
                   Selector_de_Tema.changeToTheme(this, Selector_de_Tema.RED);
                   break;
-              case R.id.themeDefault:
+              case R.id.themeBlue:
                   Selector_de_Tema.changeToTheme(this, Selector_de_Tema.DEFAULT);
                   break;
               case R.id.themeOrange:
