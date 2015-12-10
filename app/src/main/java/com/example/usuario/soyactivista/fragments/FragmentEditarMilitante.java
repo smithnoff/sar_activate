@@ -160,32 +160,64 @@ public class FragmentEditarMilitante extends Fragment {
         eliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                if (getArguments() != null) {
-                    Log.d(getClass().getName(), "Deleting User"+idEditar.getText().toString());
 
-                    final HashMap<String, Object> params = new HashMap<>();
-                    params.put("username", idEditar.getText().toString());
-                    ParseCloud.callFunctionInBackground("deleteUser", params, new FunctionCallback<Object>(){
-                        @Override
-                        public void done(Object response, ParseException e) {
-                            if (e == null) {
-                                Toast.makeText(getActivity(), "Usuario eliminado correctamente.", Toast.LENGTH_SHORT).show();
-                                getFragmentManager().beginTransaction()
-                                        .replace(R.id.content_frame,new FragmentListarUsuarioOLD())
-                                        .addToBackStack(null)
-                                        .commit();
-                            } else {
-                                Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde.", Toast.LENGTH_SHORT).show();
-                            }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Confirmar");
+                builder.setMessage("¿Estas Seguro?");
+
+
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialogo, int which) {
+                        if (getArguments() != null) {
+                            Log.d(getClass().getName(), "Deleting User" + idEditar.getText().toString());
+
+                            final HashMap<String, Object> params = new HashMap<>();
+                            params.put("username", idEditar.getText().toString());
+                            ParseCloud.callFunctionInBackground("deleteUser", params, new FunctionCallback<Object>() {
+                                @Override
+                                public void done(Object response, ParseException e) {
+                                    if (e == null) {
+                                        Toast.makeText(getActivity(), "Usuario eliminado correctamente.", Toast.LENGTH_SHORT).show();
+                                        getFragmentManager().beginTransaction()
+                                                .replace(R.id.content_frame, new FragmentListarUsuarioOLD())
+                                                .addToBackStack(null)
+                                                .commit();
+                                    } else {
+                                        Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                        } else {
+                            ParseUser user = ParseUser.getCurrentUser();
+                            user.deleteInBackground();
+                            Intent i = new Intent(getContext(), pantalla_principal.class);
+                            startActivity(i);
                         }
-                    });
+                        dialogo.dismiss();
+                    }
 
-                } else {
-                    ParseUser user = ParseUser.getCurrentUser();
-                    user.deleteInBackground();
-                    Intent i = new Intent(getContext(), pantalla_principal.class);
-                    startActivity(i);
-                }
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogo, int which) {
+                        // Do nothing
+                        dialogo.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
+
+
+
+
             }
         });
 
