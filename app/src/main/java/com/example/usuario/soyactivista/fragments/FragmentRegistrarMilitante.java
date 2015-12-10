@@ -75,44 +75,64 @@ public class FragmentRegistrarMilitante extends Fragment {
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                dialog = ProgressDialog.show(getActivity(), "", "Registrando usuario...", true);
 
                 ide = identificador.getText().toString();
                 nom = nombre.getText().toString();
                 ape = apellido.getText().toString();
                 co = correo.getText().toString();
                 car = cargo.getText().toString();
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-                ParseUser user = new ParseUser();
-                user.setUsername(ide);
-                user.setPassword("1234"); //TODO: Improve password generation to be random
-                user.put("nombre", nom);
-                user.put("apellido", ape);
-                user.setEmail(co);
-                user.put("cargo", car);
-                user.put("estado", spinEstado.getSelectedItem().toString());
-                user.put("municipio", spinMunicipio.getSelectedItem().toString());
-                user.put("comite", spinPertinencia.getSelectedItem().toString());
-                user.put("rol", spinRol.getSelectedItemPosition());
+                if (ide.trim().length()> 0 && nom.trim().length()>0 && ape.trim().length()>0 && car.trim().length()>0
+                        && co.trim().length()>0)
+                {
+                    if(co.matches(emailPattern))
+                    {
+                        dialog = ProgressDialog.show(getActivity(), "", "Registrando usuario...", true);
 
-                user.signUpInBackground(new SignUpCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (e == null) {
-                            dialog.dismiss();
-                            Toast.makeText(getActivity(), "Usuario registrado correctamente", Toast.LENGTH_SHORT).show();
-                            // Redirect View to Dashboard
-                            Intent i = new Intent(getActivity(), ActivityPantallaMenu.class);
-                            startActivity(i);
+                        ParseUser user = new ParseUser();
+                        user.setUsername(ide);
+                        user.setPassword("1234"); //TODO: Improve password generation to be random
+                        user.put("nombre", nom);
+                        user.put("apellido", ape);
+                        user.setEmail(co);
+                        user.put("cargo", car);
+                        user.put("estado", spinEstado.getSelectedItem().toString());
+                        user.put("municipio", spinMunicipio.getSelectedItem().toString());
+                        user.put("comite", spinPertinencia.getSelectedItem().toString());
+                        user.put("rol", spinRol.getSelectedItemPosition());
+
+                        user.signUpInBackground(new SignUpCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e == null) {
+                                    dialog.dismiss();
+                                    Toast.makeText(getActivity(), "Usuario registrado correctamente", Toast.LENGTH_SHORT).show();
+                                    // Redirect View to Dashboard
+                                    Intent i = new Intent(getActivity(), ActivityPantallaMenu.class);
+                                    startActivity(i);
 
 
-                        } else {
-                            dialog.dismiss();
-                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
-                        }
+                                } else {
+                                    dialog.dismiss();
+                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                     }
-                });
+                    else
+                    {
+                        Toast.makeText(getContext(),"Correo Inválido",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                else
+                {
+                        Toast.makeText(getContext(),"Completa los campos vacíos",Toast.LENGTH_SHORT).show();
+                        return;
+                }
             }
+
         });
 
         return v;
