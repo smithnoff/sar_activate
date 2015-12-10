@@ -333,7 +333,7 @@ vistaAntrior=v;
               case R.id.themeBrown:
                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BROWN);
                   break;
-              case R.id.themeCyan:
+              case R.id.themeDefault:
                   Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BLUE);
                   break;
               case R.id.themeRed:
