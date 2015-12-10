@@ -39,30 +39,37 @@
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/circulo"
+            android:background="@drawable/circulobr"
             android:backgroundTint="@color/brown"
+            android:onClick="checkedView"
             android:id="@+id/themeBrown"
+
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circulo"
-
+            android:background="@drawable/circulor"
+            android:onClick="checkedView"
+            android:id="@+id/themeRed"
             android:backgroundTint="@color/red900"
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circulo"
+            android:background="@drawable/circulon"
+            android:onClick="checkedView"
+            android:id="@+id/themeOrange"
             android:backgroundTint="@color/orange800"
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circulo"
+            android:background="@drawable/circuloam"
+            android:onClick="checkedView"
+            android:id="@+id/themeYellow"
             android:backgroundTint="@color/yellow600"
             />
 
@@ -78,21 +85,27 @@
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/circulo"
+            android:background="@drawable/circulov"
+            android:onClick="checkedView"
             android:backgroundTint="@color/green600"
+            android:id="@+id/themeGreen"
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circulo"
+            android:background="@drawable/circuloaz"
+            android:id="@+id/themeBlue"
+            android:onClick="checkedView"
             android:backgroundTint="@color/blue500"
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circulo"
+            android:background="@drawable/circulop"
+            android:onClick="checkedView"
+            android:id="@+id/themePurple"
             android:backgroundTint="@color/deeppurple600"
             />
         <View
@@ -100,7 +113,9 @@
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/circulo"
-            android:backgroundTint="@color/indigo"
+            android:onClick="checkedView"
+            android:id="@+id/themeDefault"
+            android:backgroundTintMode="@color/indigo"
             />
     </LinearLayout>
 
@@ -109,6 +124,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/guardarCambios"
+        android:onClick="cambiarTema"
         android:textColor="@color/white"/>
 
 

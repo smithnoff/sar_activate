@@ -27,4 +27,104 @@
         <!--"android:Theme.Dialog"-->
 
     </style>
+    <!-- tema marron-->
+
+    <style name="BrownTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/brown</item>
+        <item name="colorPrimaryDark">@color/brown</item>
+        <item name="colorAccent">@color/brown</item>
+        <item name="android:windowBackground">@color/grey200</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:colorButtonNormal">@color/brown</item>
+        <item name="android:actionButtonStyle">@color/brown</item>
+        <item name="android:navigationBarColor">@color/brown</item>
+
+    </style>
+    <!-- tema rojo-->
+
+    <style name="RedTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/red900</item>
+        <item name="colorPrimaryDark">@color/red900</item>
+        <item name="colorAccent">@color/red900</item>
+        <item name="android:windowBackground">@color/grey200</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:colorButtonNormal">@color/red900</item>
+        <item name="android:actionButtonStyle">@color/red900</item>
+        <item name="android:navigationBarColor">@color/red900</item>
+    </style>
+    <!-- tema naranja-->
+
+    <style name="OrangeTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/orange800</item>
+        <item name="colorPrimaryDark">@color/orange800</item>
+        <item name="colorAccent">@color/orange800</item>
+        <item name="android:windowBackground">@color/grey200</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:colorButtonNormal">@color/orange800</item>
+        <item name="android:actionButtonStyle">@color/orange800</item>
+        <item name="android:navigationBarColor">@color/orange800</item>
+    </style>
+    <!-- tema AZUL-->
+
+    <style name="BlueTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/blue500</item>
+        <item name="colorPrimaryDark">@color/blue500</item>
+        <item name="colorAccent">@color/blue500</item>
+        <item name="android:windowBackground">@color/grey200</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:colorButtonNormal">@color/blue500</item>
+        <item name="android:actionButtonStyle">@color/blue500</item>
+        <item name="android:navigationBarColor">@color/blue500</item>
+    </style>
+    <!-- tema amarillo-->
+
+    <style name="YellowTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/yellow600</item>
+        <item name="colorPrimaryDark">@color/yellow600</item>
+        <item name="colorAccent">@color/yellow600</item>
+        <item name="android:windowBackground">@color/grey200</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:colorButtonNormal">@color/yellow600</item>
+        <item name="android:actionButtonStyle">@color/yellow600</item>
+        <item name="android:navigationBarColor">@color/yellow600</item>
+    </style>
+    <!-- tema verde-->
+
+    <style name="GreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/green600</item>
+        <item name="colorPrimaryDark">@color/green600</item>
+        <item name="colorAccent">@color/green600</item>
+        <item name="android:windowBackground">@color/grey200</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:colorButtonNormal">@color/green600</item>
+        <item name="android:actionButtonStyle">@color/green600</item>
+        <item name="android:navigationBarColor">@color/green600</item>
+    </style>
+    <!-- tema purpura-->
+
+    <style name="PurpleTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/deeppurple600</item>
+        <item name="colorPrimaryDark">@color/deeppurple600</item>
+        <item name="colorAccent">@color/deeppurple600</item>
+        <item name="android:windowBackground">@color/grey200</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:colorButtonNormal">@color/deeppurple600</item>
+        <item name="android:actionButtonStyle">@color/deeppurple600</item>
+        <item name="android:navigationBarColor">@color/deeppurple600</item>
+    </style>
+
 </resources>
