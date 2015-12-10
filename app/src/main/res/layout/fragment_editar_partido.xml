@@ -39,27 +39,35 @@
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/circulo"
+            android:background="@drawable/circulobr"
+              android:onClick="checkedView"
+
             android:id="@+id/themeBrown"
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circulorojo"
+            android:id="@+id/themeRed"
+            android:onClick="checkedView"
+            android:background="@drawable/circulor"
 
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circulonaranja"
+            android:id="@+id/themeOrange"
+            android:onClick="checkedView"
+            android:background="@drawable/circulon"
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circuloamarillo"
+            android:id="@+id/themeYellow"
+            android:onClick="checkedView"
+            android:background="@drawable/circuloam"
             />
 
     </LinearLayout>
@@ -74,28 +82,33 @@
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/circuloverde"
-
+            android:id="@+id/themeGreen"
+            android:background="@drawable/circulov"
+            android:onClick="checkedView"
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circuloazul"
-
+            android:id="@+id/themeBlue"
+            android:background="@drawable/circuloaz"
+            android:onClick="checkedView"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/themePurple"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/circulop"
+            android:onClick="checkedView"
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circulopurpura"
-
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/circuloindigo"
+            android:id="@+id/themeDefault"
+            android:onClick="checkedView"
+            android:background="@drawable/circulo"
             />
     </LinearLayout>
 
@@ -104,6 +117,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/guardarCambios"
+        android:onClick="cambiarTema"
         android:textColor="@color/white"/>
 
 

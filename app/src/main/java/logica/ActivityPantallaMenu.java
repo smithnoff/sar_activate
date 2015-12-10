@@ -1,6 +1,9 @@
 package logica;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -14,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.usuario.soyactivista.fragments.FragmentEditarMilitante;
 import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
@@ -42,6 +44,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
     private Menu menu;
     private LinearLayout barDraw;
     private int colorChecked;
+    private  View vistaAntrior;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +84,11 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
 
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
           barDraw= (LinearLayout) findViewById(R.id.barraDrawer);
-
+        int color = Color.TRANSPARENT;
+        Drawable background = barDraw.getBackground();
+        if (background instanceof ColorDrawable)
+            color = ((ColorDrawable) background).getColor();
+   barDraw.setBackgroundColor(color);
         // Load Message Dashboard As Main Screen
         getSupportFragmentManager()
                 .beginTransaction()
@@ -251,16 +258,68 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
     private void ocultar(boolean visible,int QueOculto){
         this.menu.findItem(QueOculto).setVisible(visible);
     }
-public void checkedView(View v)
-{
+public void checkedView(View v) {
 
     //set the selected color
-colorChecked=v.getId();
-    Toast.makeText(ActivityPantallaMenu.this, "id: "+colorChecked, Toast.LENGTH_SHORT).show();
+    colorChecked = v.getId();
+if(vistaAntrior==null)
+    vistaAntrior=v;
+
+    if(v.getId()==R.id.themeBrown) {
+        v.setBackground(getResources().getDrawable(R.drawable.circulomarron));
+    }else {
+        if(vistaAntrior.getId()==R.id.themeBrown)
+        vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulobr));
+    }
+    if(v.getId()==R.id.themeOrange) {
+        v.setBackground(getResources().getDrawable(R.drawable.circulonaranja));
+    }else {
+        if(vistaAntrior.getId()==R.id.themeOrange)
+        vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulon));
+    }
+    if(v.getId()==R.id.themeBlue) {
+        v.setBackground(getResources().getDrawable(R.drawable.circuloazul));
+    }else {
+        if(vistaAntrior.getId()==R.id.themeBlue)
+            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circuloaz));
+    }
+    if(v.getId()==R.id.themeRed) {
+        v.setBackground(getResources().getDrawable(R.drawable.circulorojo));
+    }else {
+        if(vistaAntrior.getId()==R.id.themeRed)
+            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulor));
+    }
+    if(v.getId()==R.id.themeGreen) {
+        v.setBackground(getResources().getDrawable(R.drawable.circuloverde));
+    }else {
+        if(vistaAntrior.getId()==R.id.themeGreen)
+            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulov));
+    }
+    if(v.getId()==R.id.themeYellow) {
+        v.setBackground(getResources().getDrawable(R.drawable.circuloamarillo));
+    }else {
+        if(vistaAntrior.getId()==R.id.themeYellow)
+            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circuloam));
+    }
+    if(v.getId()==R.id.themePurple) {
+        v.setBackground(getResources().getDrawable(R.drawable.circulopurpura));
+    }else {
+        if(vistaAntrior.getId()==R.id.themePurple)
+            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulop));
+    }
+    if(v.getId()==R.id.themeDefault) {
+        v.setBackground(getResources().getDrawable(R.drawable.circuloindigo));
+    }else {
+        if(vistaAntrior.getId()==R.id.themeDefault)
+            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulo));
+    }
+vistaAntrior=v;
+
 }
+
     public void cambiarTema(View v)
     {
-        Toast.makeText(ActivityPantallaMenu.this, "idb: "+R.id.themeBrown, Toast.LENGTH_SHORT).show();
+       //select de theme color
           switch(colorChecked)
           {
 
