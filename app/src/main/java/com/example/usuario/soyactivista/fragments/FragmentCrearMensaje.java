@@ -25,6 +25,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.content.DialogInterface;
+
 import com.bumptech.glide.Glide;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -223,93 +225,124 @@ public class FragmentCrearMensaje extends Fragment {
         buttonCreateMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Confirmar");
+                builder.setMessage("¿Estas Seguro?");
 
-                if(editText.getText().toString().trim().length()>0)
-                {
-                    dialog = ProgressDialog.show(getActivity(), "", "Creando Mensaje", true);
 
-                    // Fill ParseObject to send
-                    final ParseObject mensaje = new ParseObject("Mensaje");
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
 
-                    mensaje.put("texto",editText.getText().toString());
-                    mensaje.put("autor",usuarioActual);
-                    mensaje.put("reportado",false);
+                    public void onClick(DialogInterface dialogo, int which) {
+                        if (editText.getText().toString().trim().length() > 0) {
+                            dialog = ProgressDialog.show(getActivity(), "", "Creando Mensaje", true);
 
-                    // Handle Image uploading
-                    if (selectedImage != null) {
-                        // Save the scaled image to Parse
-                        location = null; // Disabling other attachments
-                        selectedFile = null;
-                        location = null;
+                            // Fill ParseObject to send
+                            final ParseObject mensaje = new ParseObject("Mensaje");
 
-                        ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + ".jpg", selectedImage);
-                        mensaje.put("adjunto", fotoFinal);
-                        fotoFinal.saveInBackground(new SaveCallback() {
-                            public void done(ParseException e) {
-                                if (e != null) {
-                                    Toast.makeText(getActivity(),
-                                            "Error saving: " + e.getMessage(),
-                                            Toast.LENGTH_LONG).show();
-                                    Log.d(TAG, e.toString());
-                                } else {
-                                    Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                            mensaje.put("texto", editText.getText().toString());
+                            mensaje.put("autor", usuarioActual);
+                            mensaje.put("reportado", false);
+
+                            // Handle Image uploading
+                            if (selectedImage != null) {
+                                // Save the scaled image to Parse
+                                location = null; // Disabling other attachments
+                                selectedFile = null;
+                                location = null;
+
+                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + ".jpg", selectedImage);
+                                mensaje.put("adjunto", fotoFinal);
+                                fotoFinal.saveInBackground(new SaveCallback() {
+                                    public void done(ParseException e) {
+                                        if (e != null) {
+                                            Toast.makeText(getActivity(),
+                                                    "Error saving: " + e.getMessage(),
+                                                    Toast.LENGTH_LONG).show();
+                                            Log.d(TAG, e.toString());
+                                        } else {
+                                            Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+
+                            if (selectedFile != null) {
+
+                                ParseFile finalFile = new ParseFile(usuarioActual.getUsername() + random + ".pdf", selectedFile);
+                                selectedImage = null;
+                                location = null;
+                                mensaje.put("adjunto", finalFile);
+                                finalFile.saveInBackground(new SaveCallback() {
+                                    public void done(ParseException e) {
+                                        if (e != null) {
+                                            Toast.makeText(getActivity(),
+                                                    "Error saving: " + e.getMessage(),
+                                                    Toast.LENGTH_LONG).show();
+                                            Log.d(TAG, e.toString());
+                                        } else {
+                                            Toast.makeText(getActivity(), "PDF Cargado.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+
+
+                            }
+
+                            // Handle Location
+                            if (location != null) {
+                                mensaje.put("ubicacion", location);
+                            }
+
+                            // Save Message
+                            mensaje.saveInBackground(new SaveCallback() {
+                                public void done(ParseException e) {
+                                    if (e == null) {
+                                        dialog.dismiss();
+                                        Toast.makeText(getActivity(), "Mensaje Publicado", Toast.LENGTH_SHORT).show();
+                                        // Redirect View to ListarMensajes
+                                        Fragment fragment = new FragmentListarMensaje();
+                                        getFragmentManager()
+                                                .beginTransaction()
+                                                .replace(R.id.content_frame, fragment)
+                                                .commit();
+                                    } else {
+                                        dialog.dismiss();
+                                        Log.d(TAG, e.toString());
+                                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
-                    }
-
-                    if(selectedFile != null){
-
-                        ParseFile finalFile = new ParseFile(usuarioActual.getUsername() + random + ".pdf", selectedFile);
-                        selectedImage = null;
-                        location = null;
-                        mensaje.put("adjunto",finalFile);
-                        finalFile.saveInBackground(new SaveCallback() {
-                            public void done(ParseException e) {
-                                if (e != null) {
-                                    Toast.makeText(getActivity(),
-                                            "Error saving: " + e.getMessage(),
-                                            Toast.LENGTH_LONG).show();
-                                    Log.d(TAG, e.toString());
-                                } else {
-                                    Toast.makeText(getActivity(), "PDF Cargado.", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-
-
-                    }
-
-                    // Handle Location
-                    if(location != null){
-                        mensaje.put("ubicacion", location);
-                    }
-
-                    // Save Message
-                    mensaje.saveInBackground(new SaveCallback() {
-                        public void done(ParseException e) {
-                            if (e == null) {
-                                dialog.dismiss();
-                                Toast.makeText(getActivity(), "Mensaje Publicado", Toast.LENGTH_SHORT).show();
-                                // Redirect View to ListarMensajes
-                                Fragment fragment = new FragmentListarMensaje();
-                                getFragmentManager()
-                                        .beginTransaction()
-                                        .replace(R.id.content_frame, fragment)
-                                        .commit();
-                            } else {
-                                dialog.dismiss();
-                                Log.d(TAG, e.toString());
-                                Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
-                            }
+                            });
+                        } else {
+                            Toast.makeText(getContext(), "Escribe un mensaje", Toast.LENGTH_SHORT).show();
+                            return;
                         }
-                    });
-                }
-                else
-                {
-                    Toast.makeText(getContext(),"Escribe un mensaje",Toast.LENGTH_SHORT).show();
-                    return;
-                }
+
+                        dialogo.dismiss();
+                    }
+
+                });
+
+
+
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogo, int which) {
+                        // Do nothing
+                        dialogo.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
+
+
+
+
+
             }
         });
 

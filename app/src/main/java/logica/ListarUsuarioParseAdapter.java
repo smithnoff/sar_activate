@@ -17,12 +17,16 @@ import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
+
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
  * Created by Brahyam on 2/12/2015.
  */
-public class ListarUsuarioParseAdapter extends ParseQueryAdapter<ParseObject> {
+public class ListarUsuarioParseAdapter extends ParseQueryAdapter<ParseObject> implements Filterable {
+
+    private ArrayList<ParseUser> userArrayList;
 
     // Modify Default query to look for objects Actividad
     public ListarUsuarioParseAdapter(Context context) {
@@ -60,4 +64,46 @@ public class ListarUsuarioParseAdapter extends ParseQueryAdapter<ParseObject> {
         return v;
     }
 
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                // Write your logic for PUBLISHING RESULTS and notify your dataset for change
+
+
+                notifyDataSetChanged();
+            }
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                // Write your logic here to PERFORM FILTERING and return filtered result
+                userArrayList = new ArrayList<>();
+                FilterResults results = new FilterResults();
+
+                // if no constraint given return current list.
+                if(constraint == null || constraint.length() == 0){
+                    results.count = getCount();
+                    for (int i = 0; i < getCount();i++)
+                    {
+                        userArrayList.add((ParseUser)getItem(i));
+                    }
+                    results.values = userArrayList;
+                    return  results;
+                }
+
+                // if constraint given- Filter by (Name/LastName/Id)
+                constraint = constraint.toString().toLowerCase();
+                for (int i = 0; i < getCount(); i++ )
+                {
+                    ParseUser data = (ParseUser) getItem(i);
+                    if(data.getUsername().toLowerCase().startsWith(constraint.toString()))
+                        userArrayList.add(data);
+                }
+                results.count = userArrayList.size();
+                results.values = userArrayList;
+                return results;
+            }
+        };
+    }
 }

@@ -7,7 +7,7 @@ public class Usuario {
     private String cargo;
     private Integer rol;
     private String estado;
-    private String muncipio;
+    private String municipio;
     private String comite;
     private String correo;
 
@@ -72,12 +72,12 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public String getMuncipio() {
-        return muncipio;
+    public String getMunicipio() {
+        return municipio;
     }
 
-    public void setMuncipio(String muncipio) {
-        this.muncipio = muncipio;
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
     }
     public Integer getRol() {
         return this.rol;

@@ -24,9 +24,8 @@ import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
-import com.example.usuario.soyactivista.fragments.FragmentListarUsuarioOLD;
-import com.example.usuario.soyactivista.fragments.FragmentRegistrarMilitante;
 import com.parse.ParseUser;
+import com.example.usuario.soyactivista.fragments.FragmentRegistrarMilitante;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -220,12 +219,20 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if(query.length() > 0){ //si escribió algo!
-                    Bundle parametro = new Bundle();
-                    parametro.putString("query",query);
-                    Fragment fragment= FragmentListarUsuarioOLD.fragConstruct(parametro);
-                    getSupportFragmentManager().beginTransaction()
+                if(query.length() > 0){ // If any word was queried
+
+                    // Bundle Query with arguments for fragment
+                    Bundle data = new Bundle();
+                    data.putString("busqueda", query);
+
+                    // Create new Fragment
+                    // Redirect View to next Fragment
+                    Fragment fragment = new FragmentListarUsuario();
+                    fragment.setArguments(data);
+                    getSupportFragmentManager()
+                            .beginTransaction()
                             .replace(R.id.content_frame, fragment)
+                            .addToBackStack(null)
                             .commit();
                 }
                 return false;
@@ -324,16 +331,15 @@ vistaAntrior=v;
           {
 
               case R.id.themeBrown:
-
                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BROWN);
                   break;
-              case R.id.themeBlue:
+              case R.id.themeCyan:
                   Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BLUE);
                   break;
               case R.id.themeRed:
                   Selector_de_Tema.changeToTheme(this, Selector_de_Tema.RED);
                   break;
-              case R.id.themeDefault:
+              case R.id.themeBlue:
                   Selector_de_Tema.changeToTheme(this, Selector_de_Tema.DEFAULT);
                   break;
               case R.id.themeOrange:

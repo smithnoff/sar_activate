@@ -12,6 +12,7 @@
             android:id="@+id/usuariosListView"
             android:layout_marginTop="8dp"
             />
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/botonCrearUsuario"
             android:layout_width="56dp"

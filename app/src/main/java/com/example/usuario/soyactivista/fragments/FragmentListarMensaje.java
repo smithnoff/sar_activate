@@ -30,7 +30,6 @@ public class FragmentListarMensaje extends Fragment  {
 
     private ListarMensajeAdapter listarMensajeAdapter;
     private ListView listView;
-    private Spinner spEstado,spParroquia;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,10 +44,6 @@ public class FragmentListarMensaje extends Fragment  {
 
         // Initialize list view
         listView = (ListView) view.findViewById(R.id.mensajesListView);
-        spEstado= (Spinner) view.findViewById(R.id.spinnerEstados);
-          llenarSpinnerdesdeId(spEstado,R.array.Estados);
-
-
 
         if (listarMensajeAdapter != null) {
             listView.setAdapter(listarMensajeAdapter);
@@ -126,12 +121,5 @@ public class FragmentListarMensaje extends Fragment  {
 
         return view;
     }
-    public void llenarSpinnerdesdeId(Spinner spin,int id){
-        ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource(getActivity(), id, android.R.layout.simple_spinner_item);
-        spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin.setAdapter(spinner_adapter);
-    }
-
-
 
 }
