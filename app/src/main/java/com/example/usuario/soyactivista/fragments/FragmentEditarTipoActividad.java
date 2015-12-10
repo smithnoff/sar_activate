@@ -23,6 +23,9 @@ import soy_activista.quartzapp.com.soy_activista.R;
 
 import static java.lang.Integer.parseInt;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
 /**
  * Created by Brahyam on 28/11/2015.
  */
@@ -70,46 +73,101 @@ public class FragmentEditarTipoActividad extends Fragment {
         editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                dialog = ProgressDialog.show(getActivity(),"","Editando Tipo de Actividad",true);
 
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("TipoActividad");
 
-                // Retrieve the object by id from parse
-                query.getInBackground(getArguments().getString("id"), new GetCallback<ParseObject>() {
-                    public void done(ParseObject tipoActividad, ParseException e) {
-                        if (e == null) {
-                            // Fill ParseObject to send
-                            tipoActividad.put("nombre", nombre.getText().toString());
-                            tipoActividad.put("puntaje", parseInt(puntaje.getSelectedItem().toString()));
-                            tipoActividad.put("descripcion", descripcion.getText().toString());
-                            tipoActividad.put("creador", usuarioActual);
 
-                            // Save
-                            tipoActividad.saveInBackground(new SaveCallback() {
-                                public void done(ParseException e) {
-                                    if (e == null) {
-                                        dialog.dismiss();
-                                        Toast.makeText(getActivity(), "Cambios guardados correctamente", Toast.LENGTH_SHORT).show();
-                                        // Redirect View to Boletin de Actividades
-                                        Fragment fragment = new FragmentListarTipoActividad();
-                                        getFragmentManager()
-                                                .beginTransaction()
-                                                .replace(R.id.content_frame, fragment)
-                                                .commit();
-                                    } else {
-                                        // Saving could not be done
-                                        dialog.dismiss();
-                                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
-                                    }
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Confirmar");
+                builder.setMessage("¿Estas Seguro?");
+
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialogo, int which) {
+                        // Do nothing but close the dialog
+                        dialogo.dismiss();
+                        dialog = ProgressDialog.show(getActivity(), "", "Editando Tipo de Actividad", true);
+
+                        ParseQuery<ParseObject> query = ParseQuery.getQuery("TipoActividad");
+
+                        // Retrieve the object by id from parse
+                        query.getInBackground(getArguments().getString("id"), new GetCallback<ParseObject>() {
+                            public void done(ParseObject tipoActividad, ParseException e) {
+
+                                if (e == null) {
+                                    // Fill ParseObject to send
+                                    tipoActividad.put("nombre", nombre.getText().toString());
+                                    tipoActividad.put("puntaje", parseInt(puntaje.getSelectedItem().toString()));
+                                    tipoActividad.put("descripcion", descripcion.getText().toString());
+                                    tipoActividad.put("creador", usuarioActual);
+
+                                    // Save
+                                    tipoActividad.saveInBackground(new SaveCallback() {
+                                        public void done(ParseException e) {
+                                            if (e == null) {
+                                                dialog.dismiss();
+                                                Toast.makeText(getActivity(), "Cambios guardados correctamente", Toast.LENGTH_SHORT).show();
+                                                // Redirect View to Boletin de Actividades
+                                                Fragment fragment = new FragmentListarTipoActividad();
+                                                getFragmentManager()
+                                                        .beginTransaction()
+                                                        .replace(R.id.content_frame, fragment)
+                                                        .commit();
+                                            } else {
+                                                // Saving could not be done
+                                                dialog.dismiss();
+                                                Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+
+                                } else {
+                                    // Object not found in Parse
+                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
                                 }
-                            });
+                            }
 
-                        } else {
-                            // Object not found in Parse
-                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
-                        }
+                        });
+
+
+                    }
+
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogo, int which) {
+                        // Do nothing
+                        dialogo.dismiss();
                     }
                 });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             }

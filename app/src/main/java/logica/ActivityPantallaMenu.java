@@ -11,16 +11,18 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.usuario.soyactivista.fragments.FragmentEditarMilitante;
 import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
 import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
 import com.parse.ParseUser;
-
-import com.example.usuario.soyactivista.fragments.FragmentEditarMilitante;
 import com.example.usuario.soyactivista.fragments.FragmentRegistrarMilitante;
 
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -37,10 +39,13 @@ public class ActivityPantallaMenu extends AppCompatActivity {
     private NavigationView navView;
     private TextView nombrePartido, nombreUsuario, cargoUsuario, ubicacionUsuario;
     private Menu menu;
+    private LinearLayout barDraw;
+    private int colorChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+Selector_de_Tema.onActivityCreateSetTheme(this);
 
         setContentView(R.layout.pantalla_con_menu);
 
@@ -74,6 +79,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
         appbar.setTitle("Soy Activista");
 
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+          barDraw= (LinearLayout) findViewById(R.id.barraDrawer);
 
         // Load Message Dashboard As Main Screen
         getSupportFragmentManager()
@@ -89,6 +95,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
         MenuItem listarUsuario = navMenu.findItem(R.id.menuListarUsuario);
         MenuItem agregarUsuario = navMenu.findItem(R.id.menuAgregarUsuario);
         MenuItem editarPartido = navMenu.findItem(R.id.menuEditarPartido);
+        MenuItem mensajeReport = navMenu.findItem(R.id.menuMensajeReportado);
 
         // Disable Menu Items if not admin user
         if(usuarioActual.getInt("rol") != 1){
@@ -96,6 +103,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
             listarUsuario.setVisible(false);
             agregarUsuario.setVisible(false);
             editarPartido.setVisible(false);
+            mensajeReport.setVisible(false);
         }
 
         navView.setNavigationItemSelectedListener(
@@ -128,6 +136,12 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                             // PLACEHOLDER TRIVIA
 
                             // PLACEHOLDER PUNTUACIONES
+
+                            //FALTA EL FRAGMENT CORRESPONDIENTE A MENSAJES REPORTADOS
+                            case R.id.menuMensajeReportado:
+                                fragment = new FragmentListarMensaje();
+                                fragmentTransaction = true;
+                                break;
 
                             case R.id.menuListarUsuario:
                                 fragment = new FragmentListarUsuario();/*new FragmentListarUsuarioOLD();*/
@@ -244,4 +258,50 @@ public class ActivityPantallaMenu extends AppCompatActivity {
     private void ocultar(boolean visible,int QueOculto){
         this.menu.findItem(QueOculto).setVisible(visible);
     }
+public void checkedView(View v)
+{
+
+    //set the selected color
+colorChecked=v.getId();
+    Toast.makeText(ActivityPantallaMenu.this, "id: "+colorChecked, Toast.LENGTH_SHORT).show();
+}
+    public void cambiarTema(View v)
+    {
+        Toast.makeText(ActivityPantallaMenu.this, "idb: "+R.id.themeBrown, Toast.LENGTH_SHORT).show();
+          switch(colorChecked)
+          {
+
+              case R.id.themeBrown:
+
+                 Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BROWN);
+                  break;
+              case R.id.themeBlue:
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BLUE);
+                  break;
+              case R.id.themeRed:
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.RED);
+                  break;
+              case R.id.themeDefault:
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.DEFAULT);
+                  break;
+              case R.id.themeOrange:
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.ORANGE);
+                  break;
+              case R.id.themeGreen:
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.GREEN);
+                  break;
+              case R.id.themePurple:
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.PURPLE);
+                  break;
+              case R.id.themeYellow:
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.YELLOW);
+                  break;
+          }
+
+
+
+    }
+
+
+
 }

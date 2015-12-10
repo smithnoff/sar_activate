@@ -12,15 +12,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import com.bumptech.glide.Glide;
 import com.parse.ParseException;
-import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-
-import java.util.Objects;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -108,7 +107,7 @@ public class FragmentDetalleMensaje extends Fragment {
         }
 
         //Show EliminarMensaje button only if the user role is "1" or owner message.
-        if(usuarioActual.getInt("rol")== 1 || usuarioActual.equals(getArguments().get("creadorId"))){
+        if(usuarioActual.getInt("rol")== 1 || usuarioActual.equals(getArguments().get("autor"))){
             botonEliminar.setVisibility(View.VISIBLE);
             botonEliminar.setEnabled(true);
         }
@@ -117,16 +116,45 @@ public class FragmentDetalleMensaje extends Fragment {
         botonReportar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ParseObject mensaje = ParseObject.createWithoutData("Mensaje",getArguments().getString("id"));
-                mensaje.put("reportado",true);
-                mensaje.saveInBackground(new SaveCallback() {
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Confirmar");
+                builder.setMessage("¿Estas Seguro?");
+
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialogo, int which) {
+                        ParseObject mensaje = ParseObject.createWithoutData("Mensaje", getArguments().getString("id"));
+                        mensaje.put("reportado", true);
+                        mensaje.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                Toast.makeText(getContext(), "Mensaje reportado.", Toast.LENGTH_SHORT).show();
+                                botonReportar.setVisibility(View.GONE);
+                                botonReportar.setEnabled(false);
+                            }
+                        });
+                        dialogo.dismiss();
+                    }
+
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
                     @Override
-                    public void done(ParseException e) {
-                        Toast.makeText(getContext(), "Mensaje reportado.", Toast.LENGTH_SHORT).show();
-                        botonReportar.setVisibility(View.GONE);
-                        botonReportar.setEnabled(false);
+                    public void onClick(DialogInterface dialogo, int which) {
+                        // Do nothing
+                        dialogo.dismiss();
                     }
                 });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
+
+
             }
         });
 
@@ -134,21 +162,47 @@ public class FragmentDetalleMensaje extends Fragment {
         botonEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ParseObject mensaje = ParseObject.createWithoutData("Mensaje",getArguments().getString("id"));
-                mensaje.deleteInBackground();
-                mensaje.saveInBackground(new SaveCallback() {
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Confirmar");
+                builder.setMessage("¿Estas Seguro?");
+
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialogo, int which) {
+                        dialogo.dismiss();
+                        ParseObject mensaje = ParseObject.createWithoutData("Mensaje", getArguments().getString("id"));
+                        mensaje.deleteInBackground();
+                        mensaje.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                Toast.makeText(getContext(), "Mensaje eliminado.", Toast.LENGTH_SHORT).show();
+                                botonEliminar.setVisibility(View.GONE);
+                                botonEliminar.setEnabled(false);
+                            }
+                        });
+                        Fragment fragment = new FragmentListarMensaje();
+                        getFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.content_frame, fragment)
+                                .commit();
+
+                    }
+
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
                     @Override
-                    public void done(ParseException e) {
-                        Toast.makeText(getContext(), "Mensaje eliminado.", Toast.LENGTH_SHORT).show();
-                        botonEliminar.setVisibility(View.GONE);
-                        botonEliminar.setEnabled(false);
+                    public void onClick(DialogInterface dialogo, int which) {
+                        // Do nothing
+                        dialogo.dismiss();
                     }
                 });
-                Fragment fragment = new FragmentListarMensaje();
-                getFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.content_frame, fragment)
-                        .commit();;
+
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
 
@@ -182,7 +236,6 @@ public class FragmentDetalleMensaje extends Fragment {
             public void onClick(View v) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(browserIntent);
-
             }
         };
         return listener;

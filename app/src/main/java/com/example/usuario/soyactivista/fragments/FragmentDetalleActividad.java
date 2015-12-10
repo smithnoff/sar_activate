@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import com.bumptech.glide.Glide;
 import com.parse.GetCallback;
@@ -301,72 +303,132 @@ public class FragmentDetalleActividad extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                dialog = ProgressDialog.show(getActivity(),"","Guardando Actividad",true);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Confirmar");
+                builder.setMessage("¿Estas Seguro?");
 
-                final ParseObject tipoActividad = ParseObject.createWithoutData("TipoActividad",getArguments().getString("tipoId"));
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
 
-                // Retrieve the object by id from parse
-                final ParseQuery<ParseObject> query = ParseQuery.getQuery("Actividad");
-                query.getInBackground(getArguments().getString("id"), new GetCallback<ParseObject>() {
-                    public void done(ParseObject actividad, ParseException e) {
-                        if (e == null) {
-                            actividad.put("tipoActividad", tipoActividad);
-                            actividad.put("objetivo", objetivo.getText().toString());
-                            actividad.put("ubicacion", ubicacion.getSelectedItem().toString());
-                            if (ubicacion.getSelectedItem().toString() == "Estadal" && estado.getSelectedItem() != null) {
-                                actividad.put("estado", estado.getSelectedItem().toString());
-                                actividad.put("municipio", municipio.getSelectedItem().toString());
-                                actividad.put("parroquia", parroquia.getText().toString());
-                            }
-                            actividad.put("encargado", encargado.getText().toString());
+                    public void onClick(DialogInterface dialogo, int which) {
 
-                            actividad.put("estatus", estatus.getSelectedItem().toString());
-                            // Declare Date Format
-                            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                            try {
-                                actividad.put("inicio", df.parse(inicio.getText().toString()));
-                                actividad.put("fin", df.parse(fin.getText().toString()));
-                            } catch (java.text.ParseException ex) {
-                                dialog.dismiss();
-                                Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_SHORT).show();
-                            }
+                        dialog = ProgressDialog.show(getActivity(), "", "Guardando Actividad", true);
 
-                            actividad.saveInBackground(new SaveCallback() {
-                                public void done(ParseException e) {
-                                    if (e == null) {
-                                        dialog.dismiss();
-                                        Toast.makeText(getActivity(), "Actividad Guardada", Toast.LENGTH_SHORT).show();
-                                        // Redirect View to Boletin de Actividades
-                                        Fragment fragment = new FragmentListarActividad();
-                                        getFragmentManager()
-                                                .beginTransaction()
-                                                .replace(R.id.content_frame, fragment)
-                                                .commit();
-                                    } else {
-                                        dialog.dismiss();
-                                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                        final ParseObject tipoActividad = ParseObject.createWithoutData("TipoActividad", getArguments().getString("tipoId"));
+
+                        // Retrieve the object by id from parse
+                        final ParseQuery<ParseObject> query = ParseQuery.getQuery("Actividad");
+                        query.getInBackground(getArguments().getString("id"), new GetCallback<ParseObject>() {
+                            public void done(ParseObject actividad, ParseException e) {
+                                if (e == null) {
+                                    actividad.put("tipoActividad", tipoActividad);
+                                    actividad.put("objetivo", objetivo.getText().toString());
+                                    actividad.put("ubicacion", ubicacion.getSelectedItem().toString());
+                                    if (ubicacion.getSelectedItem().toString() == "Estadal" && estado.getSelectedItem() != null) {
+                                        actividad.put("estado", estado.getSelectedItem().toString());
+                                        actividad.put("municipio", municipio.getSelectedItem().toString());
+                                        actividad.put("parroquia", parroquia.getText().toString());
                                     }
-                                }
-                            });
+                                    actividad.put("encargado", encargado.getText().toString());
 
-                        } else {
-                            // Object not found in Parse
-                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
-                        }
+                                    actividad.put("estatus", estatus.getSelectedItem().toString());
+                                    // Declare Date Format
+                                    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                                    try {
+                                        actividad.put("inicio", df.parse(inicio.getText().toString()));
+                                        actividad.put("fin", df.parse(fin.getText().toString()));
+                                    } catch (java.text.ParseException ex) {
+                                        dialog.dismiss();
+                                        Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    actividad.saveInBackground(new SaveCallback() {
+                                        public void done(ParseException e) {
+                                            if (e == null) {
+                                                dialog.dismiss();
+                                                Toast.makeText(getActivity(), "Actividad Guardada", Toast.LENGTH_SHORT).show();
+                                                // Redirect View to Boletin de Actividades
+                                                Fragment fragment = new FragmentListarActividad();
+                                                getFragmentManager()
+                                                        .beginTransaction()
+                                                        .replace(R.id.content_frame, fragment)
+                                                        .commit();
+                                            } else {
+                                                dialog.dismiss();
+                                                Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+
+                                } else {
+                                    // Object not found in Parse
+                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                        dialogo.dismiss();
+                    }
+
+                });
+
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogo, int which) {
+                        // Do nothing
+                        dialogo.dismiss();
                     }
                 });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
+
+
+
+
+
+
             }
         });
 
         eliminar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0){
-                // Redirect View to list
-                Fragment fragment = new FragmentListarActividad();
-                getFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.content_frame, fragment)
-                        .commit();
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Confirmar");
+                builder.setMessage("¿Estas Seguro?");
+
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialogo, int which) {
+                        // Redirect View to list
+                        Fragment fragment = new FragmentListarActividad();
+                        getFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.content_frame, fragment)
+                                .commit();
+                        dialogo.dismiss();
+                    }
+
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogo, int which) {
+                        // Do nothing
+                        dialogo.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
             }
         });
 

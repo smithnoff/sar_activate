@@ -19,6 +19,7 @@
         android:layout_height="200dp"
         android:background="@color/indigo"
         android:weightSum="100"
+        android:id="@+id/barraDrawer"
         android:orientation="vertical">
         <View
             android:layout_width="match_parent"

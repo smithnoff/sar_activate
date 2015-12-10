@@ -3,6 +3,7 @@ package logica;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -10,10 +11,13 @@ import android.widget.Button;
 import com.example.usuario.soyactivista.fragments.DialogoCompletarRegistro;
 import com.example.usuario.soyactivista.fragments.DialogoRecuperarIdentificador;
 import com.example.usuario.soyactivista.fragments.DialogoRecuperarPassw;
+import com.example.usuario.soyactivista.fragments.FragmentCompletarRegistro;
+
 import soy_activista.quartzapp.com.soy_activista.R;
 
 
 public class pantalla_principal extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +26,13 @@ public class pantalla_principal extends AppCompatActivity {
     }
 
     public void completarRegistro(View view){
-        FragmentManager fragmentManager = getFragmentManager();
-        DialogoCompletarRegistro dialogo = new DialogoCompletarRegistro();
-        dialogo.show(fragmentManager, "tagAlerta");
+
+        Fragment frag = new FragmentCompletarRegistro();
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, frag).commit();
     }
+
+
 
     public void iniciarSesion(View view){
         Intent i = new Intent(getApplication(),ActivityLogin.class);

@@ -25,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -42,7 +43,11 @@ import java.text.SimpleDateFormat;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
+import android.content.DialogInterface;
+
+
 import static java.lang.Integer.parseInt;
+
 
 /**
  * Created by Brahyam on 25/11/2015.
@@ -222,74 +227,113 @@ public class FragmentCrearActividad extends Fragment {
         crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                dialog = ProgressDialog.show(getActivity(),"","Creando Actividad",true);
 
-                // Fill ParseObject to send
-                final ParseObject actividad = new ParseObject("Actividad");
-                actividad.put("tipoActividad",tipoActividad);
-                actividad.put("objetivo",objetivo.getText().toString());
-                actividad.put("ubicacion",ubicacion.getSelectedItem().toString());
-                if(ubicacion.getSelectedItem().toString() == "Estadal" && estado.getSelectedItem() != null )
-                {
-                    actividad.put("estado",estado.getSelectedItem().toString());
-                    actividad.put("municipio",municipio.getSelectedItem().toString());
-                    actividad.put("parroquia",parroquia.getText().toString());
-                }
-                actividad.put("encargado",encargado.getText().toString());
-                actividad.put("creador",usuarioActual);
-                actividad.put("estatus","En Ejecución");
-                // Declare Date Format
-                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                try{
-                    actividad.put("inicio",df.parse(inicio.getText().toString()));
-                    actividad.put("fin",df.parse(fin.getText().toString()));
-                } catch (java.text.ParseException e){
-                    dialog.dismiss();
-                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, e.toString());
-                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Confirmar");
+                builder.setMessage("¿Estas Seguro?");
 
-                actividad.put("meGusta",0);
 
-                // Handle Image uploading
-                if(imagenSeleccionada!=null)
-                {
-                    // Save the scaled image to Parse
-                    ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername()+ random +".jpg", imagenSeleccionada);
-                    actividad.put("imagen1", fotoFinal);
-                    fotoFinal.saveInBackground(new SaveCallback() {
-                        public void done(ParseException e) {
-                            if (e != null) {
-                                Toast.makeText(getActivity(),
-                                        "Error saving: " + e.getMessage(),
-                                        Toast.LENGTH_LONG).show();
-                                Log.d(TAG,e.toString());
-                            } else {
-                                Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                }
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
 
-                // Save Activity
-                actividad.saveInBackground(new SaveCallback() {
-                    public void done(ParseException e) {
-                        if (e == null) {
-                            dialog.dismiss();
-                            Toast.makeText(getActivity(), "Actividad Creada", Toast.LENGTH_SHORT).show();
-                            // Redirect View to Boletin de Actividades
-                            Fragment fragment = new FragmentListarActividad();
-                            getFragmentManager()
-                                    .beginTransaction()
-                                    .replace(R.id.content_frame, fragment)
-                                    .commit();
+                    public void onClick(DialogInterface dialogo, int which) {
+
+                        if
+                                (
+                                objetivo.getText().toString().trim().length() == 0 ||
+                                        encargado.getText().toString().trim().length() == 0 ||
+                                        inicio.getText().toString().trim().length() == 0 ||
+                                        fin.getText().toString().trim().length() == 0
+                                ) {
+                            Toast.makeText(getContext(), "Completa los campos vacíos", Toast.LENGTH_SHORT).show();
+                            return;
                         } else {
-                            dialog.dismiss();
-                            Log.d(TAG, e.toString());
-                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                            dialog = ProgressDialog.show(getActivity(), "", "Creando Actividad", true);
+
+                            // Fill ParseObject to send
+                            final ParseObject actividad = new ParseObject("Actividad");
+                            actividad.put("tipoActividad", tipoActividad);
+                            actividad.put("objetivo", objetivo.getText().toString());
+                            actividad.put("ubicacion", ubicacion.getSelectedItem().toString());
+                            if (ubicacion.getSelectedItem().toString() == "Estadal" && estado.getSelectedItem() != null) {
+                                actividad.put("estado", estado.getSelectedItem().toString());
+                                actividad.put("municipio", municipio.getSelectedItem().toString());
+                                actividad.put("parroquia", parroquia.getText().toString());
+                            }
+                            actividad.put("encargado", encargado.getText().toString());
+                            actividad.put("creador", usuarioActual);
+                            actividad.put("estatus", "En Ejecución");
+                            // Declare Date Format
+                            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                            try {
+                                actividad.put("inicio", df.parse(inicio.getText().toString()));
+                                actividad.put("fin", df.parse(fin.getText().toString()));
+                            } catch (java.text.ParseException e) {
+                                dialog.dismiss();
+                                Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, e.toString());
+                            }
+
+                            actividad.put("meGusta", 0);
+
+                            // Handle Image uploading
+                            if (imagenSeleccionada != null) {
+                                // Save the scaled image to Parse
+                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada);
+                                actividad.put("imagen1", fotoFinal);
+                                fotoFinal.saveInBackground(new SaveCallback() {
+                                    public void done(ParseException e) {
+                                        if (e != null) {
+                                            Toast.makeText(getActivity(),
+                                                    "Error saving: " + e.getMessage(),
+                                                    Toast.LENGTH_LONG).show();
+                                            Log.d(TAG, e.toString());
+                                        } else {
+                                            Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+
+                            // Save Activity
+                            actividad.saveInBackground(new SaveCallback() {
+                                public void done(ParseException e) {
+                                    if (e == null) {
+                                        dialog.dismiss();
+                                        Toast.makeText(getActivity(), "Actividad Creada", Toast.LENGTH_SHORT).show();
+                                        // Redirect View to Boletin de Actividades
+                                        Fragment fragment = new FragmentListarActividad();
+                                        getFragmentManager()
+                                                .beginTransaction()
+                                                .replace(R.id.content_frame, fragment)
+                                                .commit();
+                                    } else {
+                                        dialog.dismiss();
+                                        Log.d(TAG, e.toString());
+                                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
                         }
+
+
+                        dialogo.dismiss();
+                    }
+
+                });
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogo, int which) {
+                        // Do nothing
+                        dialogo.dismiss();
                     }
                 });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
             }
         });
 

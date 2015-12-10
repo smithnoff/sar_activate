@@ -40,28 +40,26 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/circulo"
-            android:backgroundTint="@color/brown"
+            android:id="@+id/themeBrown"
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circulo"
-            android:backgroundTint="@color/red900"
+            android:background="@drawable/circulorojo"
+
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circulo"
-            android:backgroundTint="@color/orange800"
+            android:background="@drawable/circulonaranja"
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circulo"
-            android:backgroundTint="@color/yellow600"
+            android:background="@drawable/circuloamarillo"
             />
 
     </LinearLayout>
@@ -76,29 +74,28 @@
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/circulo"
-            android:backgroundTint="@color/green600"
+            android:background="@drawable/circuloverde"
+
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circulo"
-            android:backgroundTint="@color/blue500"
+            android:background="@drawable/circuloazul"
+
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circulo"
-            android:backgroundTint="@color/deeppurple600"
+            android:background="@drawable/circulopurpura"
+
             />
         <View
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circulo"
-            android:backgroundTint="@color/indigo"
+            android:background="@drawable/circuloindigo"
             />
     </LinearLayout>
 
