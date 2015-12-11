@@ -10,6 +10,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
  */
 public class Selector_de_Tema {
     private static int cTheme;
+    private static String nPartido="Nombre del partido";
     public final static int DEFAULT = 0;
     public final static int BLUE = 1;
     public final static int BROWN = 2;
@@ -21,12 +22,12 @@ public class Selector_de_Tema {
 
 
 
-    public static void changeToTheme(Activity activity, int theme)
+    public static void changeToTheme(Activity activity, int theme, String partido)
 
     {
         //reset main activity
         cTheme = theme;
-
+        nPartido=partido;
         activity.finish();
 
 
@@ -34,6 +35,9 @@ public class Selector_de_Tema {
         activity.startActivity(new Intent(activity, activity.getClass()));
 
 
+    }
+    public static String getnPartido(){
+        return nPartido;
     }
 
     public static void onActivityCreateSetTheme(Activity activity)

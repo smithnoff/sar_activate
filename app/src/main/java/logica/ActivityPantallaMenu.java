@@ -10,21 +10,23 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.usuario.soyactivista.fragments.FragmentCrearUsuario;
+import com.example.usuario.soyactivista.fragments.FragmentEditarMilitante;
 import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
 import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
-import com.example.usuario.soyactivista.fragments.FragmenteEditarUsuario;
 import com.parse.ParseUser;
+import com.example.usuario.soyactivista.fragments.FragmentRegistrarMilitante;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -59,7 +61,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
 
         // Gets Current User
         final ParseUser usuarioActual = ParseUser.getCurrentUser();
-
+            nombrePartido.setText(Selector_de_Tema.getnPartido());
         if(usuarioActual != null) {
             nombreUsuario.setText(usuarioActual.getString("nombre") + " " + usuarioActual.getString("apellido"));
             cargoUsuario.setText(usuarioActual.getString("cargo"));
@@ -123,6 +125,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                         switch (menuItem.getItemId()) {
                             case R.id.menuDashBoard:
                                 fragment = new FragmentListarMensaje();
+                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
@@ -149,22 +152,25 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                                 break;
 
                             case R.id.menuListarUsuario:
-                                fragment = new FragmentListarUsuario();
+                                fragment = new FragmentListarUsuario();/*new FragmentListarUsuarioOLD();*/
+                                ocultar(true,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
                             case R.id.menuAgregarUsuario:
-                                fragment = new FragmentCrearUsuario();
+                                fragment = new FragmentRegistrarMilitante();
+                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
                             case R.id.menuEditarPartido:
                                 fragment = new FragmentEditarPartido();
+                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
                             case R.id.menuMiPerfil:
-                                fragment = new FragmenteEditarUsuario();
+                                fragment = new FragmentEditarMilitante();
                                 fragmentTransaction = true;
                                 break;
 
@@ -177,6 +183,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
 
                             default:
                                 fragment = new FragmentListarMensaje();
+                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
                         }
@@ -203,9 +210,41 @@ public class ActivityPantallaMenu extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflates Main Menu ( Menu Drawer Item)
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_pantalla_principal, menu);
         this.menu=menu;
+        this.ocultar(false, R.id.buscador);
+        SearchView sv = (SearchView) menu.findItem(R.id.buscador).getActionView();
+        sv.setQueryHint(getString(R.string.hintBuscador));
+
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if(query.length() > 0){ // If any word was queried
+
+                    // Bundle Query with arguments for fragment
+                    Bundle data = new Bundle();
+                    data.putString("busqueda", query);
+
+                    // Create new Fragment
+                    // Redirect View to next Fragment
+                    Fragment fragment = new FragmentListarUsuario();
+                    fragment.setArguments(data);
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.content_frame, fragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
         return true;
     }
 
@@ -213,17 +252,22 @@ public class ActivityPantallaMenu extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch(item.getItemId()) {
-            // Adds functionality to app drawer menu item.
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
+                return true;
+            case R.id.action_settings:
+                ParseUser.logOut();
+                finish();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+    private void ocultar(boolean visible,int QueOculto){
+        this.menu.findItem(QueOculto).setVisible(visible);
+    }
+public void checkedView(View v) {
 
-public void checkedView(View v)
-{
     //set the selected color
     colorChecked = v.getId();
 if(vistaAntrior==null)
@@ -283,32 +327,35 @@ vistaAntrior=v;
 
     public void cambiarTema(View v)
     {
+        EditText nPartido= (EditText) findViewById(R.id.editNombrePartido);
+
+       //select de theme color
           switch(colorChecked)
           {
 
               case R.id.themeBrown:
-                 Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BROWN);
-                  break;
-              case R.id.themeDefault:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BLUE);
-                  break;
-              case R.id.themeRed:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.RED);
+                 Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BROWN,nPartido.getText().toString());
                   break;
               case R.id.themeBlue:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.DEFAULT);
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BLUE,nPartido.getText().toString());
+                  break;
+              case R.id.themeRed:
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.RED,nPartido.getText().toString());
+                  break;
+              case R.id.themeDefault:
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.DEFAULT,nPartido.getText().toString());
                   break;
               case R.id.themeOrange:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.ORANGE);
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.ORANGE,nPartido.getText().toString());
                   break;
               case R.id.themeGreen:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.GREEN);
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.GREEN,nPartido.getText().toString());
                   break;
               case R.id.themePurple:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.PURPLE);
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.PURPLE,nPartido.getText().toString());
                   break;
               case R.id.themeYellow:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.YELLOW);
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.YELLOW,nPartido.getText().toString());
                   break;
           }
 
