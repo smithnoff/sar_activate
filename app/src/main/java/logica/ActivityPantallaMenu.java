@@ -1,6 +1,10 @@
 package logica;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -12,18 +16,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.usuario.soyactivista.fragments.FragmentEditarMilitante;
+import com.example.usuario.soyactivista.fragments.FragmentCrearUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
 import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
+import com.example.usuario.soyactivista.fragments.FragmenteEditarUsuario;
 import com.parse.ParseUser;
-import com.example.usuario.soyactivista.fragments.FragmentRegistrarMilitante;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -41,6 +45,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
     private Menu menu;
     private LinearLayout barDraw;
     private int colorChecked;
+    private  View vistaAntrior;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +62,7 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
 
         // Gets Current User
         final ParseUser usuarioActual = ParseUser.getCurrentUser();
-
+            nombrePartido.setText(Selector_de_Tema.getnPartido());
         if(usuarioActual != null) {
             nombreUsuario.setText(usuarioActual.getString("nombre") + " " + usuarioActual.getString("apellido"));
             cargoUsuario.setText(usuarioActual.getString("cargo"));
@@ -65,7 +70,7 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
         }
         else{
             // TODO:No user logged in -> Redirect to Login.
-            Intent i = new Intent(getApplication(),pantalla_principal.class);
+            Intent i = new Intent(getApplication(),ActivityPantallaInicio.class);
             startActivity(i);
             finish();
         }
@@ -80,7 +85,14 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
 
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
           barDraw= (LinearLayout) findViewById(R.id.barraDrawer);
-
+        int color = Color.TRANSPARENT;
+        Drawable background = appbar.getBackground();
+        if (background instanceof ColorDrawable)
+            color = ((ColorDrawable) background).getColor();
+   barDraw.setBackgroundColor(color);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(color);
+        }
         // Load Message Dashboard As Main Screen
         getSupportFragmentManager()
                 .beginTransaction()
@@ -150,7 +162,7 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
                                 break;
 
                             case R.id.menuAgregarUsuario:
-                                fragment = new FragmentRegistrarMilitante();
+                                fragment = new FragmentCrearUsuario();
                                 ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
@@ -162,13 +174,13 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
                                 break;
 
                             case R.id.menuMiPerfil:
-                                fragment = new FragmentEditarMilitante();
+                                fragment = new FragmenteEditarUsuario();
                                 fragmentTransaction = true;
                                 break;
 
                             case R.id.menuCerrarSesion:
                                 usuarioActual.logOutInBackground();
-                                Intent i = new Intent(getApplication(),pantalla_principal.class);
+                                Intent i = new Intent(getApplication(),ActivityPantallaInicio.class);
                                 startActivity(i);
                                 finish();
                                 break;
@@ -258,42 +270,96 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
     private void ocultar(boolean visible,int QueOculto){
         this.menu.findItem(QueOculto).setVisible(visible);
     }
-public void checkedView(View v)
-{
+public void checkedView(View v) {
 
     //set the selected color
-colorChecked=v.getId();
-    Toast.makeText(ActivityPantallaMenu.this, "id: "+colorChecked, Toast.LENGTH_SHORT).show();
+    colorChecked = v.getId();
+if(vistaAntrior==null)
+    vistaAntrior=v;
+
+    if(v.getId()==R.id.themeBrown) {
+        v.setBackground(getResources().getDrawable(R.drawable.circulomarron));
+    }else {
+        if(vistaAntrior.getId()==R.id.themeBrown)
+        vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulobr));
+    }
+    if(v.getId()==R.id.themeOrange) {
+        v.setBackground(getResources().getDrawable(R.drawable.circulonaranja));
+    }else {
+        if(vistaAntrior.getId()==R.id.themeOrange)
+        vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulon));
+    }
+    if(v.getId()==R.id.themeBlue) {
+        v.setBackground(getResources().getDrawable(R.drawable.circuloazul));
+    }else {
+        if(vistaAntrior.getId()==R.id.themeBlue)
+            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circuloaz));
+    }
+    if(v.getId()==R.id.themeRed) {
+        v.setBackground(getResources().getDrawable(R.drawable.circulorojo));
+    }else {
+        if(vistaAntrior.getId()==R.id.themeRed)
+            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulor));
+    }
+    if(v.getId()==R.id.themeGreen) {
+        v.setBackground(getResources().getDrawable(R.drawable.circuloverde));
+    }else {
+        if(vistaAntrior.getId()==R.id.themeGreen)
+            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulov));
+    }
+    if(v.getId()==R.id.themeYellow) {
+        v.setBackground(getResources().getDrawable(R.drawable.circuloamarillo));
+    }else {
+        if(vistaAntrior.getId()==R.id.themeYellow)
+            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circuloam));
+    }
+    if(v.getId()==R.id.themePurple) {
+        v.setBackground(getResources().getDrawable(R.drawable.circulopurpura));
+    }else {
+        if(vistaAntrior.getId()==R.id.themePurple)
+            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulop));
+    }
+    if(v.getId()==R.id.themeDefault) {
+        v.setBackground(getResources().getDrawable(R.drawable.circuloindigo));
+    }else {
+        if(vistaAntrior.getId()==R.id.themeDefault)
+            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulo));
+    }
+vistaAntrior=v;
+
 }
+
     public void cambiarTema(View v)
     {
-        Toast.makeText(ActivityPantallaMenu.this, "idb: "+R.id.themeBrown, Toast.LENGTH_SHORT).show();
+        EditText nPartido= (EditText) findViewById(R.id.editNombrePartido);
+
+       //select de theme color
           switch(colorChecked)
           {
 
               case R.id.themeBrown:
-                 Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BROWN);
-                  break;
-              case R.id.themeCyan:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BLUE);
-                  break;
-              case R.id.themeRed:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.RED);
+                 Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BROWN,nPartido.getText().toString());
                   break;
               case R.id.themeBlue:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.DEFAULT);
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BLUE,nPartido.getText().toString());
+                  break;
+              case R.id.themeRed:
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.RED,nPartido.getText().toString());
+                  break;
+              case R.id.themeDefault:
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.DEFAULT,nPartido.getText().toString());
                   break;
               case R.id.themeOrange:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.ORANGE);
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.ORANGE,nPartido.getText().toString());
                   break;
               case R.id.themeGreen:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.GREEN);
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.GREEN,nPartido.getText().toString());
                   break;
               case R.id.themePurple:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.PURPLE);
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.PURPLE,nPartido.getText().toString());
                   break;
               case R.id.themeYellow:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.YELLOW);
+                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.YELLOW,nPartido.getText().toString());
                   break;
           }
 

@@ -18,7 +18,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import logica.pantalla_principal;
+import logica.ActivityPantallaInicio;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -89,7 +89,7 @@ public class FragmentCompletarRegistro extends Fragment {
         botonRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, pantalla_principal.class);
+                Intent intent = new Intent(context, ActivityPantallaInicio.class);
                 startActivity(intent);
             }
         });

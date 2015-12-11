@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,40 +17,71 @@ import soy_activista.quartzapp.com.soy_activista.R;
 
 
 public class ActivityLogin extends AppCompatActivity {
-    private EditText identificador,pass;
+    private EditText editUsername, editPassword;
+    private Button buttonIngresar, buttonRegresar;
     private String usuario, contrasena;
     private ProgressDialog dialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.pantalla_login);
 
         //asignamos los controles a las variables
-        identificador=(EditText)findViewById(R.id.textMail);
-        pass=(EditText)findViewById(R.id.editTextPass);
-    }
+        editUsername = (EditText) findViewById (R.id.editUsername);
+        editPassword = (EditText) findViewById (R.id.editEmail);
 
-    public void iniciarSesion(View view) {
-        dialog = ProgressDialog.show(ActivityLogin.this, "","Verificando usuario...", true);
-        usuario = identificador.getText().toString();
-        contrasena = pass.getText().toString();
+        buttonIngresar = (Button) findViewById(R.id.buttonIngresar);
+        buttonRegresar = (Button) findViewById(R.id.buttonRegresar);
 
-        ParseUser.logInInBackground(usuario, contrasena,
-                new LogInCallback() {
-                    @Override
-                    public void done(ParseUser user, ParseException e) {
-                        if(user != null){
-                            dialog.dismiss();
-                            Intent i = new Intent(getApplication(), ActivityPantallaMenu.class);
-                            startActivity(i);
-                            finish();
-                        }else{
-                            dialog.dismiss();
-                            Toast.makeText(getApplicationContext(), "Identificador o Contraseña incorrecta", Toast.LENGTH_SHORT).show();
-                        }
+        buttonIngresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                {
+                    // Validate Fields before posting
+                    if (editUsername.getText().toString().trim().length() > 0 &&
+                            editPassword.getText().toString().trim().length() > 0){
+
+
+                        dialog = ProgressDialog.show(ActivityLogin.this, "Verificando usuario","Enviando datos...", true);
+                        usuario = editUsername.getText().toString();
+                        contrasena = editPassword.getText().toString();
+
+                        ParseUser.logInInBackground(usuario, contrasena,
+                                new LogInCallback() {
+                                    @Override
+                                    public void done(ParseUser user, ParseException e) {
+                                        if(user != null){
+                                            dialog.dismiss();
+                                            Intent i = new Intent(getApplication(), ActivityPantallaMenu.class);
+                                            startActivity(i);
+                                            finish();
+                                        }else{
+                                            dialog.dismiss();
+                                            // TODO: discern between different exceptions and show appropiate message.
+                                            Toast.makeText(getApplicationContext(), "Identificador o Contraseña incorrecta."+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+
                     }
-                });
+                    else{
+                        Toast.makeText(getBaseContext(),"No puede haber campos vacíos.",Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                }
+            }
+        });
+
+        buttonRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplication(), ActivityPantallaInicio.class);
+                startActivity(i);
+            }
+        });
     }
 
 }

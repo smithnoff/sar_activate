@@ -1,6 +1,7 @@
 package logica;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.TextView;
-
-import com.parse.ParseUser;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -75,6 +75,8 @@ public class ListarUsuarioAdapter extends ArrayAdapter<Usuario> {
                 // Write your logic here to PERFORM FILTERING and return filtered result
                 FilterResults results = new FilterResults();
 
+                ProgressDialog dialog = ProgressDialog.show(getContext(),"Filtrando","Cargando...",true);
+
                 ArrayList<Usuario> resultArrayList;
 
                 // if no constraint given return current list.
@@ -87,17 +89,62 @@ public class ListarUsuarioAdapter extends ArrayAdapter<Usuario> {
 
                 // if constraint given- Filter by id
                 constraint = constraint.toString().toLowerCase();
+
+                // Determine type of constraint
+                String[] stringQuery = constraint.toString().split("=");
+                String value = stringQuery[1].toLowerCase();
                 resultArrayList  = new ArrayList<>();
-                for (int i = 0; i < getCount(); i++ )
-                {
-                    Usuario data = getItem(i);
-                    Log.d(TAG,"Comparing "+constraint.toString()+" to "+data.getIdentificador());
-                    if(data.getIdentificador().toLowerCase().startsWith(constraint.toString()))
-                        resultArrayList.add(data);
+
+                switch (stringQuery[0]){
+                    case "estado":
+
+                        // Query is asking for whole list skip search.
+                        if(value.equals("todos"))
+                            break;
+
+                        for (int i = 0; i < getCount(); i++ )
+                        {
+                            Usuario data = getItem(i);
+                            Log.d(TAG,"Comparing "+value+" to "+data.getEstado());
+                            if(data.getEstado().toLowerCase().startsWith(value))
+                                resultArrayList.add(data);
+                        }
+
+                        break;
+
+                    case "texto":
+                        for (int i = 0; i < getCount(); i++ )
+                        {
+                            Usuario data = getItem(i);
+                            Log.d(TAG,"Comparing "+value+" to "+data.getUsername());
+                            if(data.getUsername().toLowerCase().startsWith(value))
+                                resultArrayList.add(data);
+                        }
+                        break;
+
+                    default:
+                        Log.d(TAG,"Returning Default Result");
+                        resultArrayList = new ArrayList<>(usuarioArrayList);
+
+                        break;
                 }
+
+
                 Log.d(TAG,"Final Result list contains "+resultArrayList.size()+" elements.");
+
+                // If result list is empty, return whole list.
+                if( resultArrayList.size() == 0)
+                {
+                    if (!value.equals("todos"))
+                        Toast.makeText(getContext(), "Ningun elemento encontrado.", Toast.LENGTH_SHORT).show();
+
+                    resultArrayList = new ArrayList<>(usuarioArrayList);
+                }
+
+
                 results.count = resultArrayList.size();
                 results.values = resultArrayList;
+                dialog.dismiss();
                 return results;
             }
         };

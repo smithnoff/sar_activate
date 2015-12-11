@@ -1,7 +1,9 @@
 package logica;
 
 public class Usuario {
-    private String identificador;
+
+    private String id;
+    private String username;
     private String nombre;
     private String apellido;
     private String cargo;
@@ -9,19 +11,27 @@ public class Usuario {
     private String estado;
     private String municipio;
     private String comite;
-    private String correo;
+    private String email;
 
 
 
     // Class Constructor
     public Usuario(){}
 
-    public String getIdentificador() {
-        return identificador;
+    public String getId() {
+        return id;
     }
 
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNombre() {
@@ -64,12 +74,12 @@ public class Usuario {
         this.comite = comite;
     }
 
-    public String getCorreo() {
-        return this.correo;
+    public String getEmail() {
+        return this.email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getMunicipio() {

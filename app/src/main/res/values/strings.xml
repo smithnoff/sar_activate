@@ -55,10 +55,10 @@
     <string name="manejarActividades">Actividades del partido</string>
 
     <!--miselaneos-->
-    <string name="identificador">Identificador</string>
-    <string name="ID">identificador</string>
+    <string name="username">Identificador</string>
+    <string name="usernameEjemplo">aB12G81n</string>
     <string name="nombre">Nombre</string>
-    <string name="nombreEjemplo">Juan Garcia</string>
+    <string name="nombreEjemplo">Juan</string>
     <string name="apellido">Apellido</string>
     <string name="apellidoEjemplo">Morales</string>
     <string name="correo">Correo Electronico</string>
@@ -145,6 +145,17 @@
     <string name="tipoUsuario">Tipo de Usuario</string>
     <string name="tipoUsuarioEjemplo">Activista</string>
     <string name="totalChars">0/200</string>
+    <string name="registrar">Registrar</string>
+    <string name="tempPassword">D2xBwRhV</string>
+    <string name="estadoEjemplo">Monagas</string>
+    <string name="municipioEjemplo">San josé</string>
+    <string name="rolEjemplo">Activista</string>
+    <string name="editar">Editar</string>
+    <string name="filtroEstados">Filtrar por estado</string>
+    <string name="filtroComite">Filtrar por Comite</string>
+    <string name="filtroRol">Filtrar por Rol</string>
+    <string name="enviar">Enviar</string>
+    <string name="emailLargo">Correo Electrónico</string>
 
 
 </resources>
