@@ -10,6 +10,7 @@ import android.view.View;
 import com.example.usuario.soyactivista.fragments.DialogoRecuperarIdentificador;
 import com.example.usuario.soyactivista.fragments.FragmentCompletarRegistro;
 import com.example.usuario.soyactivista.fragments.FragmentRecuperarContrasena;
+import com.example.usuario.soyactivista.fragments.FragmentRecuperarIdentificador;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -43,15 +44,18 @@ public class ActivityPantallaInicio extends AppCompatActivity {
         Fragment fragment = new FragmentRecuperarContrasena();
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(android.R.id.content,fragment)
+                .add(android.R.id.content, fragment)
                 .addToBackStack(null)
                 .commit();
     }
 
     public void recuperarIdentificador(View view){
-        FragmentManager fragmentManager = getFragmentManager();
-        DialogoRecuperarIdentificador dialogo = new DialogoRecuperarIdentificador();
-        dialogo.show(fragmentManager, "tagAlerta");
+        Fragment fragment = new FragmentRecuperarIdentificador();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(android.R.id.content,fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
 

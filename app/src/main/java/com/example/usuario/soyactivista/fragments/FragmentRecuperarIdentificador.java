@@ -12,9 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.FunctionCallback;
+import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.RequestPasswordResetCallback;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 import logica.ActivityPantallaInicio;
 import logica.ActivityPantallaMenu;
@@ -23,9 +28,9 @@ import soy_activista.quartzapp.com.soy_activista.R;
 /**
  * Created by Brahyam on 11/12/2015.
  */
-public class FragmentRecuperarContrasena extends Fragment {
+public class FragmentRecuperarIdentificador extends Fragment {
 
-    private static final String TAG = "FRecuperarContraseña"; // For Debug purposes
+    private static final String TAG = "FRecuperarIdentificador"; // For Debug purposes
     private EditText editEmail;
     private Button buttonEnviar, buttonRegresar;
     private ProgressDialog dialog;
@@ -54,23 +59,22 @@ public class FragmentRecuperarContrasena extends Fragment {
                 {
                     // Validate Email Pattern
                     if (editEmail.getText().toString().matches(emailPattern)){
-                        dialog = ProgressDialog.show(getContext(),"Recuperando Contraseña","Enviando Datos...",true);
-                        ParseUser.requestPasswordResetInBackground(editEmail.toString().trim(), new RequestPasswordResetCallback() {
+                        dialog = ProgressDialog.show(getContext(),"Recuperando Identificador","Enviando Datos...",true);
+                        final HashMap<String, Object> params = new HashMap<>();
+                        params.put("email", editEmail.getText().toString());
+                        ParseCloud.callFunctionInBackground("recoverUsername", params, new FunctionCallback< Map<String, Object> >() {
                             @Override
-                            public void done(ParseException e) {
-                                if (e == null) {
-                                    dialog.dismiss();
-                                    Toast.makeText(getActivity(), "Se envió a su email un link para reestablecer la contraseña.", Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(getContext(), ActivityPantallaMenu.class);
+                            public void done(Map<String, Object> response, ParseException e) {
+                                dialog.dismiss();
+                                Log.d(TAG,"response value is "+response);
+                                if (response != null && Integer.valueOf((String)response.get("code")) == 0) {
+                                    Toast.makeText(getActivity(), "Se ha enviado un email a su dirección con los datos solicitados..", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(getActivity(), ActivityPantallaMenu.class);
                                     startActivity(i);
                                 } else {
-                                    dialog.dismiss();
-                                    // Email not found
-                                    Log.d(TAG,"Exception returned with code "+e.getCode());
-                                    if(e.getCode() == 125)
-                                        Toast.makeText(getActivity(), "Su email no se encuentra registrado.", Toast.LENGTH_LONG).show();
-                                    else
-                                        Toast.makeText(getActivity(), "Ocurrio un error al enviar correo."+e.getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde.", Toast.LENGTH_LONG).show();
+                                    if(response != null)
+                                        Toast.makeText(getActivity(), response.get("message").toString(), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });

@@ -60,7 +60,7 @@
             />
 
         <TextView
-            android:id="@+id/labelPassword"
+            android:id="@+id/labelEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Password"
@@ -73,7 +73,7 @@
             android:layout_marginRight="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/labelPassword"
+            android:layout_below="@+id/labelEmail"
             android:inputType="textPassword"
             />
         <Button
