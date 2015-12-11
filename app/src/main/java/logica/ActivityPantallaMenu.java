@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -19,14 +20,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.usuario.soyactivista.fragments.FragmentEditarMilitante;
+import com.example.usuario.soyactivista.fragments.FragmentCrearUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
 import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
+import com.example.usuario.soyactivista.fragments.FragmenteEditarUsuario;
 import com.parse.ParseUser;
-import com.example.usuario.soyactivista.fragments.FragmentRegistrarMilitante;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -85,10 +86,13 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
           barDraw= (LinearLayout) findViewById(R.id.barraDrawer);
         int color = Color.TRANSPARENT;
-        Drawable background = barDraw.getBackground();
+        Drawable background = appbar.getBackground();
         if (background instanceof ColorDrawable)
             color = ((ColorDrawable) background).getColor();
    barDraw.setBackgroundColor(color);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(color);
+        }
         // Load Message Dashboard As Main Screen
         getSupportFragmentManager()
                 .beginTransaction()
@@ -157,8 +161,8 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
                                 fragmentTransaction = true;
                                 break;
 
-                            case R.id.menuAgregarUsuario:
-                                fragment = new FragmentRegistrarMilitante();
+                 case R.id.menuAgregarUsuario:
+                                fragment = new FragmentCrearUsuario();
                                 ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
@@ -170,7 +174,7 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
                                 break;
 
                             case R.id.menuMiPerfil:
-                                fragment = new FragmentEditarMilitante();
+                                fragment = new FragmenteEditarUsuario();
                                 fragmentTransaction = true;
                                 break;
 
@@ -327,8 +331,11 @@ vistaAntrior=v;
 
     public void cambiarTema(View v)
     {
-        EditText nPartido= (EditText) findViewById(R.id.editNombrePartido);
 
+
+        EditText nPartido= (EditText) findViewById(R.id.editNombrePartido);
+        if(nPartido.getText().toString()=="")
+            nPartido.setText(nombrePartido.getText().toString());
        //select de theme color
           switch(colorChecked)
           {
