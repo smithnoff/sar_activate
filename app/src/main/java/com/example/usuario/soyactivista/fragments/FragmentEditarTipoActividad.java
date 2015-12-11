@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.GetCallback;
@@ -33,7 +34,8 @@ public class FragmentEditarTipoActividad extends Fragment {
 
     private EditText nombre, descripcion; // Edit Field holders
     private Spinner puntaje; // Spinner holders
-    private Button editar,cancelar; // Button holders
+    private Button editar,eliminar,guardar; // Button holders
+    private TextView TextPuntaje;
     private ProgressDialog dialog;
 
     // Class Constructor
@@ -55,8 +57,12 @@ public class FragmentEditarTipoActividad extends Fragment {
         puntaje = (Spinner)v.findViewById(R.id.spinPuntaje);
 
         // Asign Buttons to holders
-        editar = (Button)v.findViewById(R.id.botonEditarTipoActividad);
-        cancelar = (Button)v.findViewById(R.id.botonCancelar);
+
+        editar= (Button)v.findViewById(R.id.btnEditarTipoActividad);
+        eliminar=(Button)v.findViewById(R.id.btnEliminarTipoActividad);
+        guardar=(Button)v.findViewById(R.id.btnGuardarTipoActividad);
+        TextPuntaje = (TextView)v.findViewById(R.id.TextPuntaje);
+
 
         //Fill Spinners with Preset Options
         this.llenarSpinnerdesdeId(puntaje, R.array.Puntuaciones);
@@ -67,10 +73,24 @@ public class FragmentEditarTipoActividad extends Fragment {
         descripcion.setText(getArguments().getString("descripcion"));
         ArrayAdapter<String> array_spinner=(ArrayAdapter<String>)puntaje.getAdapter();
         puntaje.setSelection(array_spinner.getPosition(getArguments().getString("puntaje")));
+        TextPuntaje.setText("Puntaje: "+getArguments().getString("puntaje"));
 
 
         // Buttons Behavior
         editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                nombre.setEnabled(true);
+                descripcion.setEnabled(true);
+                puntaje.setVisibility(View.VISIBLE);
+
+                editar.setEnabled(false);
+                guardar.setEnabled(true);
+            }
+        });
+
+
+        guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
 
@@ -145,35 +165,62 @@ public class FragmentEditarTipoActividad extends Fragment {
                 AlertDialog alert = builder.create();
                 alert.show();
 
+            }
+        });
 
 
 
+        eliminar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View arg0){
 
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Confirmar");
+                builder.setMessage("¿Estas Seguro?");
 
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
 
+                    public void onClick(DialogInterface dialogo, int which) {
+                        dialogo.dismiss();
+                        ParseObject mensaje = ParseObject.createWithoutData("TipoActividad", getArguments().getString("id"));
+                        mensaje.deleteInBackground();
+                        mensaje.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                Toast.makeText(getContext(), "Tipo de Actividad eliminada.", Toast.LENGTH_SHORT).show();
+                                eliminar.setVisibility(View.GONE);
+                                eliminar.setEnabled(false);
+                            }
+                        });
 
+                        Fragment fragment = new FragmentListarTipoActividad();
+                        getFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.content_frame, fragment)
+                                .commit();
 
+                    }
 
+                });
 
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
 
+                    @Override
+                    public void onClick(DialogInterface dialogo, int which) {
+                        // Do nothing
+                        dialogo.dismiss();
+                    }
+                });
 
-
-
-
-
-
-
-
-
-
-
-
+                AlertDialog alert = builder.create();
+                alert.show();
 
             }
         });
 
-        cancelar.setOnClickListener(new View.OnClickListener(){
+
+      /*  cancelar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0){
                 // Redirect View to Boletin de Actividades
@@ -183,7 +230,7 @@ public class FragmentEditarTipoActividad extends Fragment {
                         .replace(R.id.content_frame, fragment)
                         .commit();
             }
-        });
+        });*/
         return v;
     }
 

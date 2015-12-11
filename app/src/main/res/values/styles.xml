@@ -21,9 +21,112 @@
         <item name="android:windowBackground">@android:color/transparent</item>
 
         <item name="colorButtonNormal">@color/indigo</item>
+    </style>
 
+    <style name="BrownTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
+        <!-- Main theme colors -->
+        <!--   your app branding color for the app bar -->
+        <item name="colorPrimary">@color/brown</item>
+        <item name="colorButtonNormal">@color/brown</item>
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="colorPrimaryDark">@color/brown</item>
+        <!--  theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">@color/brown</item>
+        <item name="actionBarStyle">@color/brown</item>
+        <!-- <item name="android:colorButtonNormal">@color/brown</item>-->
+        <item name="android:actionButtonStyle">@color/brown</item>
+        <item name="android:windowBackground">@color/grey200</item>
+    </style>
+    <style name="OrangeTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
+        <!-- Main theme colors -->
+        <!--   your app branding color for the app bar -->
+        <item name="colorPrimary">@color/orange800</item>
+        <item name="colorButtonNormal">@color/orange800</item>
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="colorPrimaryDark">@color/orange800</item>
+        <!--  theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">@color/orange800</item>
+        <item name="actionBarStyle">@color/orange800</item>
+        <!-- <item name="android:colorButtonNormal">@color/orange800</item>-->
+        <item name="android:actionButtonStyle">@color/orange800</item>
+        <item name="android:windowBackground">@color/grey200</item>
+    </style>
+    <style name="RedTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- Main theme colors -->
+        <!--   your app branding color for the app bar -->
+        <item name="colorPrimary">@color/red900</item>
+        <item name="colorButtonNormal">@color/red900</item>
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="colorPrimaryDark">@color/red900</item>
+        <!--  theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">@color/red900</item>
+        <item name="actionBarStyle">@color/red900</item>
+        <!-- <item name="android:colorButtonNormal">@color/red900</item>-->
+        <item name="android:actionButtonStyle">@color/red900</item>
+        <item name="android:windowBackground">@color/grey200</item>
+    </style>
+    <style name="YellowTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <!-- Main theme colors -->
+    <!--   your app branding color for the app bar -->
+    <item name="colorPrimary">@color/yellow600</item>
+    <item name="colorButtonNormal">@color/yellow600</item>
+    <!--   darker variant for the status bar and contextual app bars -->
+    <item name="colorPrimaryDark">@color/yellow600</item>
+    <!--  theme UI controls like checkboxes and text fields -->
+    <item name="colorAccent">@color/yellow600</item>
+    <item name="actionBarStyle">@color/yellow600</item>
+    <!-- <item name="android:colorButtonNormal">@color/yellow600</item>-->
+    <item name="android:actionButtonStyle">@color/yellow600</item>
+    <item name="android:windowBackground">@color/grey200</item>
+</style>
+    <style name="BlueTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- Main theme colors -->
+        <!--   your app branding color for the app bar -->
+        <item name="colorPrimary">@color/blue500</item>
+        <item name="colorButtonNormal">@color/blue500</item>
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="colorPrimaryDark">@color/blue500</item>
+        <!--  theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">@color/blue500</item>
+        <item name="actionBarStyle">@color/blue500</item>
+        <!-- <item name="android:colorButtonNormal">@color/blue500</item>-->
+        <item name="android:actionButtonStyle">@color/blue500</item>
+        <item name="android:windowBackground">@color/grey200</item>
+    </style>
+    <style name="GreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- Main theme colors -->
+        <!--   your app branding color for the app bar -->
+        <item name="colorPrimary">@color/green600</item>
+        <item name="colorButtonNormal">@color/green600</item>
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="colorPrimaryDark">@color/green600</item>
+        <!--  theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">@color/green600</item>
+        <item name="actionBarStyle">@color/green600</item>
+        <!-- <item name="android:colorButtonNormal">@color/green600</item>-->
+        <item name="android:actionButtonStyle">@color/green600</item>
+        <item name="android:windowBackground">@color/grey200</item>
+    </style>
+    <style name="PurpleTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- Main theme colors -->
+        <!--   your app branding color for the app bar -->
+        <item name="colorPrimary">@color/deeppurple600</item>
+        <item name="colorButtonNormal">@color/deeppurple600</item>
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="colorPrimaryDark">@color/deeppurple600</item>
+        <!--  theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">@color/deeppurple600</item>
+        <item name="actionBarStyle">@color/deeppurple600</item>
+        <!-- <item name="android:colorButtonNormal">@color/deeppurple600</item>-->
+        <item name="android:actionButtonStyle">@color/deeppurple600</item>
+        <item name="android:windowBackground">@color/grey200</item>
     </style>
 </resources>
 

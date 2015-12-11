@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -49,7 +50,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Selector_de_Tema.onActivityCreateSetTheme(this);
+Selector_de_Tema.onActivityCreateSetTheme(this);
 
         setContentView(R.layout.pantalla_con_menu);
 
@@ -69,7 +70,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
         }
         else{
             // TODO:No user logged in -> Redirect to Login.
-            Intent i = new Intent(getApplication(), ActivityPantallaInicio.class);
+            Intent i = new Intent(getApplication(),ActivityPantallaInicio.class);
             startActivity(i);
             finish();
         }
@@ -85,10 +86,13 @@ public class ActivityPantallaMenu extends AppCompatActivity {
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
           barDraw= (LinearLayout) findViewById(R.id.barraDrawer);
         int color = Color.TRANSPARENT;
-        Drawable background = barDraw.getBackground();
+        Drawable background = appbar.getBackground();
         if (background instanceof ColorDrawable)
             color = ((ColorDrawable) background).getColor();
    barDraw.setBackgroundColor(color);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(color);
+        }
         // Load Message Dashboard As Main Screen
         getSupportFragmentManager()
                 .beginTransaction()
@@ -106,7 +110,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
         MenuItem mensajeReport = navMenu.findItem(R.id.menuMensajeReportado);
 
         // Disable Menu Items if not admin user
-        if(usuarioActual != null && usuarioActual.getInt("rol") != 1){
+        if(usuarioActual.getInt("rol") != 1){
             actividadesPartido.setVisible(false);
             listarUsuario.setVisible(false);
             agregarUsuario.setVisible(false);
@@ -125,6 +129,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                         switch (menuItem.getItemId()) {
                             case R.id.menuDashBoard:
                                 fragment = new FragmentListarMensaje();
+                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
@@ -151,17 +156,20 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                                 break;
 
                             case R.id.menuListarUsuario:
-                                fragment = new FragmentListarUsuario();
+                                fragment = new FragmentListarUsuario();/*new FragmentListarUsuarioOLD();*/
+                                ocultar(true,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
                             case R.id.menuAgregarUsuario:
                                 fragment = new FragmentCrearUsuario();
+                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
                             case R.id.menuEditarPartido:
                                 fragment = new FragmentEditarPartido();
+                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
@@ -172,13 +180,14 @@ public class ActivityPantallaMenu extends AppCompatActivity {
 
                             case R.id.menuCerrarSesion:
                                 usuarioActual.logOutInBackground();
-                                Intent i = new Intent(getApplication(), ActivityPantallaInicio.class);
+                                Intent i = new Intent(getApplication(),ActivityPantallaInicio.class);
                                 startActivity(i);
                                 finish();
                                 break;
 
                             default:
                                 fragment = new FragmentListarMensaje();
+                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
                         }
@@ -207,7 +216,38 @@ public class ActivityPantallaMenu extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_pantalla_principal, menu);
-        this.menu = menu;
+        this.menu=menu;
+        this.ocultar(false, R.id.buscador);
+        SearchView sv = (SearchView) menu.findItem(R.id.buscador).getActionView();
+        sv.setQueryHint(getString(R.string.hintBuscador));
+
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if(query.length() > 0){ // If any word was queried
+
+                    // Bundle Query with arguments for fragment
+                    Bundle data = new Bundle();
+                    data.putString("busqueda", query);
+
+                    // Create new Fragment
+                    // Redirect View to next Fragment
+                    Fragment fragment = new FragmentListarUsuario();
+                    fragment.setArguments(data);
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.content_frame, fragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
         return true;
     }
@@ -219,11 +259,17 @@ public class ActivityPantallaMenu extends AppCompatActivity {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
+            case R.id.action_settings:
+                ParseUser.logOut();
+                finish();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
+    private void ocultar(boolean visible,int QueOculto){
+        this.menu.findItem(QueOculto).setVisible(visible);
+    }
 public void checkedView(View v) {
 
     //set the selected color

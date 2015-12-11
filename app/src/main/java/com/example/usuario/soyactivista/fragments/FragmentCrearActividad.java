@@ -67,7 +67,10 @@ public class FragmentCrearActividad extends Fragment {
     // Image Storing Variables/Constants
     private Bitmap bitmap;
     static int random = (int) (Math.random() *1000) + 1;
-    private static byte[] imagenSeleccionada = null; //Array to store Image
+    private static byte[] imagenSeleccionada = null;
+    private static byte[] imagenSeleccionada2 = null;
+    private static byte[] imagenSeleccionada3 = null;
+    private static byte[] imagenSeleccionada4 = null;//Array to store Image
     private String APP_DIRECTORY = "fotosSoyActivista/";
     private String MEDIA_DIRECTORY = APP_DIRECTORY + "media";
     private String TEMPORAL_PICTURE_NAME = "temporal"+ random +".jpg";
@@ -280,6 +283,64 @@ public class FragmentCrearActividad extends Fragment {
                                 // Save the scaled image to Parse
                                 ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada);
                                 actividad.put("imagen1", fotoFinal);
+
+                                fotoFinal.saveInBackground(new SaveCallback() {
+                                    public void done(ParseException e) {
+                                        if (e != null) {
+                                            Toast.makeText(getActivity(),
+                                                    "Error saving: " + e.getMessage(),
+                                                    Toast.LENGTH_LONG).show();
+                                            Log.d(TAG, e.toString());
+                                        } else {
+                                            Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+
+                            if (imagenSeleccionada2 != null) {
+                                // Save the scaled image to Parse
+                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada2);
+                                actividad.put("imagen2", fotoFinal);
+
+                                fotoFinal.saveInBackground(new SaveCallback() {
+                                    public void done(ParseException e) {
+                                        if (e != null) {
+                                            Toast.makeText(getActivity(),
+                                                    "Error saving: " + e.getMessage(),
+                                                    Toast.LENGTH_LONG).show();
+                                            Log.d(TAG, e.toString());
+                                        } else {
+                                            Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+
+                            if (imagenSeleccionada3 != null) {
+                                // Save the scaled image to Parse
+                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada3);
+                                actividad.put("imagen3", fotoFinal);
+
+                                fotoFinal.saveInBackground(new SaveCallback() {
+                                    public void done(ParseException e) {
+                                        if (e != null) {
+                                            Toast.makeText(getActivity(),
+                                                    "Error saving: " + e.getMessage(),
+                                                    Toast.LENGTH_LONG).show();
+                                            Log.d(TAG, e.toString());
+                                        } else {
+                                            Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+
+                            if (imagenSeleccionada4 != null) {
+                                // Save the scaled image to Parse
+                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada4);
+                                actividad.put("imagen4", fotoFinal);
+
                                 fotoFinal.saveInBackground(new SaveCallback() {
                                     public void done(ParseException e) {
                                         if (e != null) {
@@ -401,10 +462,10 @@ public class FragmentCrearActividad extends Fragment {
 
                     try {
                         InputStream imageStream = getContext().getContentResolver().openInputStream(path);
-                       bitmap = BitmapFactory.decodeStream(imageStream);
+                        bitmap = BitmapFactory.decodeStream(imageStream);
 
                         preparePhoto(bitmap);
-
+                        
                         Toast.makeText(getActivity(),"Se ha adjuntado una imagen correctamente.", Toast.LENGTH_SHORT).show();
                         labelFotos.setText("1");
                     } catch (FileNotFoundException e) {
@@ -428,7 +489,40 @@ public class FragmentCrearActividad extends Fragment {
         this.bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
 
         //Store in local to be saved after
-        imagenSeleccionada = bos.toByteArray();
+
+        if(imagenSeleccionada == null)
+        {
+            imagenSeleccionada = bos.toByteArray();
+            labelFotos.setText("1");
+        }
+        else
+        {
+            if(imagenSeleccionada2 == null)
+            {
+                imagenSeleccionada2 = bos.toByteArray();
+                labelFotos.setText("2");
+            }
+            else
+            {
+                if(imagenSeleccionada3 == null)
+                {
+                    imagenSeleccionada3 = bos.toByteArray();
+                    labelFotos.setText("3");
+                }
+                else
+                {
+                    if(imagenSeleccionada4 == null)
+                    {
+                        imagenSeleccionada4 = bos.toByteArray();
+                        labelFotos.setText("4");
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(),"No se puede adjuntar más de 4 imagenes", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }
 
     }
 
