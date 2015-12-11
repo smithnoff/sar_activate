@@ -24,7 +24,7 @@ public class Selector_de_Tema {
     public static void changeToTheme(Activity activity, int theme)
 
     {
-
+        //reset main activity
         cTheme = theme;
 
         activity.finish();
@@ -39,7 +39,7 @@ public class Selector_de_Tema {
     public static void onActivityCreateSetTheme(Activity activity)
 
     {
-
+             //set choosed theme
         switch (cTheme)
 
         {
