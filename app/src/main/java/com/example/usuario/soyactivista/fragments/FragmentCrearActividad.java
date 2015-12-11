@@ -300,10 +300,10 @@ public class FragmentCrearActividad extends Fragment {
 
                             if (imagenSeleccionada2 != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada2);
-                                actividad.put("imagen2", fotoFinal);
+                                ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada2);
+                                actividad.put("imagen2", fotoFinal2);
 
-                                fotoFinal.saveInBackground(new SaveCallback() {
+                                fotoFinal2.saveInBackground(new SaveCallback() {
                                     public void done(ParseException e) {
                                         if (e != null) {
                                             Toast.makeText(getActivity(),
@@ -319,10 +319,10 @@ public class FragmentCrearActividad extends Fragment {
 
                             if (imagenSeleccionada3 != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada3);
-                                actividad.put("imagen3", fotoFinal);
+                                ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada3);
+                                actividad.put("imagen3", fotoFinal3);
 
-                                fotoFinal.saveInBackground(new SaveCallback() {
+                                fotoFinal3.saveInBackground(new SaveCallback() {
                                     public void done(ParseException e) {
                                         if (e != null) {
                                             Toast.makeText(getActivity(),
@@ -338,10 +338,10 @@ public class FragmentCrearActividad extends Fragment {
 
                             if (imagenSeleccionada4 != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada4);
-                                actividad.put("imagen4", fotoFinal);
+                                ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada4);
+                                actividad.put("imagen4", fotoFinal4);
 
-                                fotoFinal.saveInBackground(new SaveCallback() {
+                                fotoFinal4.saveInBackground(new SaveCallback() {
                                     public void done(ParseException e) {
                                         if (e != null) {
                                             Toast.makeText(getActivity(),
@@ -465,9 +465,10 @@ public class FragmentCrearActividad extends Fragment {
                         bitmap = BitmapFactory.decodeStream(imageStream);
 
                         preparePhoto(bitmap);
-                        
+
+
                         Toast.makeText(getActivity(),"Se ha adjuntado una imagen correctamente.", Toast.LENGTH_SHORT).show();
-                        labelFotos.setText("1");
+                        //labelFotos.setText("1");
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }

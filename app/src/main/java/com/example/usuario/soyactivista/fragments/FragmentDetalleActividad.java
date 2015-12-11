@@ -231,8 +231,6 @@ public class FragmentDetalleActividad extends Fragment {
             imagen1.setOnClickListener(seeImageDetail(getArguments().getString("imagen1")));
         }
 
-
-
         if(getArguments().getString("imagen2") != null){
             imagen2.setVisibility(View.VISIBLE);
             Glide.with(getContext())
