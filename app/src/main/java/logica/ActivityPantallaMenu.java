@@ -19,14 +19,15 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.usuario.soyactivista.fragments.FragmentEditarMilitante;
+import com.example.usuario.soyactivista.fragments.FragmentCrearUsuario;
+
 import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
 import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
+import com.example.usuario.soyactivista.fragments.FragmenteEditarUsuario;
 import com.parse.ParseUser;
-import com.example.usuario.soyactivista.fragments.FragmentRegistrarMilitante;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -69,7 +70,7 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
         }
         else{
             // TODO:No user logged in -> Redirect to Login.
-            Intent i = new Intent(getApplication(),pantalla_principal.class);
+            Intent i = new Intent(getApplication(),ActivityPantallaInicio.class);
             startActivity(i);
             finish();
         }
@@ -170,13 +171,13 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
                                 break;
 
                             case R.id.menuMiPerfil:
-                                fragment = new FragmentEditarMilitante();
+                                fragment = new FragmenteEditarUsuario();
                                 fragmentTransaction = true;
                                 break;
 
                             case R.id.menuCerrarSesion:
                                 usuarioActual.logOutInBackground();
-                                Intent i = new Intent(getApplication(),pantalla_principal.class);
+                                Intent i = new Intent(getApplication(),ActivityPantallaInicio.class);
                                 startActivity(i);
                                 finish();
                                 break;
