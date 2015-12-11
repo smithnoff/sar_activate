@@ -38,18 +38,21 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/editActividad"
 
-                        android:hint="@string/hintActividad"/>
+                        android:hint="@string/hintActividad"
+                        android:enabled="false" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="@string/puntaje"/>
+                        android:text="@string/puntaje"
+                        android:id="@+id/TextPuntaje"/>
 
                     <Spinner
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/spinPuntaje"/>
+                        android:id="@+id/spinPuntaje"
+                        android:visibility="invisible"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -61,7 +64,9 @@
                         android:layout_width="fill_parent"
                         android:hint="@string/hintDescripcion"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editDescripcion" />
+                        android:id="@+id/editDescripcion"
+                        android:enabled="false"/>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -72,14 +77,14 @@
                         <View
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="20"/>
+                            android:layout_weight="2"/>
 
                         <Button
                             android:layout_width="0dp"
                             android:layout_weight="30"
                             android:layout_height="wrap_content"
-                            android:text="@string/guardar"
-                            android:id="@+id/botonEditarTipoActividad"
+                            android:text="@string/editar_cuenta"
+                            android:id="@+id/btnEditarTipoActividad"
                             android:textColor="@color/white" />
 
                         <View
@@ -89,17 +94,32 @@
 
                         <Button
                             android:layout_width="0dp"
-                            android:layout_weight="30"
-                            android:id="@+id/botonCancelar"
+                            android:layout_weight="32"
+                            android:id="@+id/btnEliminarTipoActividad"
                             android:layout_height="wrap_content"
-                            android:text="@string/cancelar"
+                            android:text="@string/eliminar_cuenta"
                             android:textColor="@color/white"/>
 
                         <View
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"/>
+
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_weight="34"
+                            android:id="@+id/btnGuardarTipoActividad"
+                            android:layout_height="wrap_content"
+                            android:text="@string/guardar_datos"
+                            android:textColor="@color/white"
+                            android:enabled="false"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"/>
                     </LinearLayout>
+
 
                 </LinearLayout>
             </ScrollView>
