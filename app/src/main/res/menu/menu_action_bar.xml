@@ -8,19 +8,5 @@
         app:showAsAction="always"
         app:actionViewClass="android.support.v7.widget.SearchView"
         android:title="@string/buscador"/>
-    <!--<item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="Accion"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_search"
-        android:title="@string/buscador"
-        android:orderInCategory="200"
-        android:icon="@drawable/ic_search"
-        app:showAsAction="ifRoom"/>-->
-
-
 
 </menu>

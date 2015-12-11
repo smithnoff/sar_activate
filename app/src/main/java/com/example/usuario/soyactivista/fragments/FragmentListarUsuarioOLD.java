@@ -103,8 +103,8 @@ public class FragmentListarUsuarioOLD extends Fragment {
                         usuario = new Usuario();
                         usuario.setNombre((String) object.get(i).get("nombre"));
                         usuario.setApellido((String) object.get(i).get("apellido"));
-                        usuario.setCorreo(object.get(i).getEmail());
-                        usuario.setIdentificador(object.get(i).getUsername()/*.toLowerCase()*/);
+                        usuario.setEmail(object.get(i).getEmail());
+                        usuario.setUsername(object.get(i).getUsername()/*.toLowerCase()*/);
                         usuario.setCargo((String) object.get(i).get("cargo"));
                         usuario.setEstado((String) object.get(i).get("estado"));
                         usuario.setMunicipio((String) object.get(i).get("municipio"));
@@ -130,10 +130,10 @@ public class FragmentListarUsuarioOLD extends Fragment {
                             usuario = (Usuario) listaUsuarioView.getItemAtPosition(position);
 
                             ArrayList<String> informacion = new ArrayList<String>();
-                            informacion.add(usuario.getIdentificador());
+                            informacion.add(usuario.getUsername());
                             informacion.add(usuario.getNombre());
                             informacion.add(usuario.getApellido());
-                            informacion.add(usuario.getCorreo());
+                            informacion.add(usuario.getEmail());
                             informacion.add(usuario.getCargo());
                             informacion.add(usuario.getEstado());
                             informacion.add(usuario.getMunicipio());
@@ -144,7 +144,7 @@ public class FragmentListarUsuarioOLD extends Fragment {
                             Bundle informacionUsuario = new Bundle();
                             informacionUsuario.putStringArrayList("Informacion",informacion);
 
-                            Fragment fragment = new FragmentEditarMilitante();
+                            Fragment fragment = new FragmenteEditarUsuario();
                             fragment.setArguments(informacionUsuario);
                             getFragmentManager()
                                     .beginTransaction()
@@ -196,7 +196,7 @@ public class FragmentListarUsuarioOLD extends Fragment {
     ArrayList<Usuario>filtrarPorID(String id,ArrayList<Usuario> listaUsuario){
         ArrayList<Usuario> retorno = new ArrayList<>();
         for(int i=0; i<listaUsuario.size(); i++){
-            if( (id.equalsIgnoreCase((String)listaUsuario.get(i).getIdentificador())) || (id.equalsIgnoreCase((String)listaUsuario.get(i).getNombre()))
+            if( (id.equalsIgnoreCase((String)listaUsuario.get(i).getUsername())) || (id.equalsIgnoreCase((String)listaUsuario.get(i).getNombre()))
                     || (id.equalsIgnoreCase((String)listaUsuario.get(i).getApellido())) )
                 retorno.add(listaUsuario.get(i));
         }

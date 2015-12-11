@@ -26,9 +26,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editUsername"
-                android:hint="@string/usernameEjemplo"
-                android:enabled="false"/>
-
+                android:hint="@string/usernameEjemplo"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -40,8 +38,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/nombreEjemplo"
-                android:id="@+id/editNombre"
-                android:enabled="false"/>
+                android:id="@+id/editNombre" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -53,8 +50,7 @@
                 android:layout_width="fill_parent"
                 android:hint="@string/apellidoEjemplo"
                 android:layout_height="wrap_content"
-                android:id="@+id/editApellido"
-                android:enabled="false"/>
+                android:id="@+id/editApellido" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -66,8 +62,7 @@
                 android:layout_width="fill_parent"
                 android:hint="@string/correoEjemplo"
                 android:layout_height="wrap_content"
-                android:id="@+id/editEmail"
-                android:enabled="false"/>
+                android:id="@+id/editEmail" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,52 +73,27 @@
                 android:layout_width="fill_parent"
                 android:hint="@string/cargoEjemplo"
                 android:layout_height="wrap_content"
-                android:id="@+id/editCargo"
-                android:enabled="false"/>
+                android:id="@+id/editCargo" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/estadoSuscripcion"/>
-
-            <TextView
-                android:id="@+id/valueEstado"
-                android:text="@string/estadoEjemplo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                />
-
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinEstado"
-                android:visibility="gone"/>
-
+                android:id="@+id/spinEstado"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/municipioSuscripcion"/>
 
-            <TextView
-                android:id="@+id/valueMunicipio"
-                android:text="@string/municipioEjemplo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                />
-
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinMunicipio"
-                android:visibility="gone"/>
+                android:id="@+id/spinMunicipio" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -131,21 +101,10 @@
                 android:layout_marginTop="6dp"
                 android:text="@string/comitePertenencia"/>
 
-            <TextView
-                android:id="@+id/valueComite"
-                android:text="@string/comiteEjemplo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                />
-
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinComite"
-                android:visibility="gone"/>
+                android:id="@+id/spinComite"/>
 
             <TextView
                 android:layout_width="fill_parent"
@@ -153,64 +112,22 @@
                 android:layout_marginTop="6dp"
                 android:text="@string/rol_spinner_label"/>
 
-            <TextView
-                android:id="@+id/valueRol"
-                android:text="@string/rolEjemplo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                />
-
             <Spinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinRol"
-                android:visibility="gone"/>
+                android:id="@+id/spinRol"/>
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/buttonRegistrar"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <Button
-                    android:id="@+id/buttonEditar"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/editar"
-                    android:textColor="@color/white"
-                    android:layout_gravity="center_horizontal" />
-
-                <Button
-                    android:id="@+id/buttonGuardar"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/guardar"
-                    android:textColor="@color/white"
-                    android:layout_gravity="center_horizontal"
-                    android:visibility="gone"/>
-
-                <Button
-                    android:id="@+id/buttonEliminar"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/eliminar"
-                    android:textColor="@color/white"
-                    android:layout_gravity="center_horizontal" />
-
-
-
-
-            </LinearLayout>
+                android:text="@string/registrar"
+                android:textColor="@color/white"
+                android:paddingRight="30dp"
+                android:paddingLeft="30dp"
+                android:layout_gravity="center_horizontal" />
 
         </LinearLayout>
 

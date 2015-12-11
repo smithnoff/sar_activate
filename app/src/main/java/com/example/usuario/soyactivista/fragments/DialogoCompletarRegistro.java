@@ -107,7 +107,7 @@ public class DialogoCompletarRegistro extends DialogFragment {
 
                 try {
                     if(passw.equals(otrapassw)) {
-                        ParseUser user = ParseUser.logIn(identificador, "1234");
+                        ParseUser user = ParseUser.logIn(identificador, getResources().getString(R.string.tempPassword));
                         user.setPassword(passw);
                         user.saveInBackground();
 

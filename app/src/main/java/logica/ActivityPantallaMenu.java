@@ -16,14 +16,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.usuario.soyactivista.fragments.FragmentEditarMilitante;
+import com.example.usuario.soyactivista.fragments.FragmentCrearUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
 import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
+import com.example.usuario.soyactivista.fragments.FragmenteEditarUsuario;
 import com.parse.ParseUser;
-import com.example.usuario.soyactivista.fragments.FragmentRegistrarMilitante;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -117,7 +117,6 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
                         switch (menuItem.getItemId()) {
                             case R.id.menuDashBoard:
                                 fragment = new FragmentListarMensaje();
-                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
@@ -144,25 +143,22 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
                                 break;
 
                             case R.id.menuListarUsuario:
-                                fragment = new FragmentListarUsuario();/*new FragmentListarUsuarioOLD();*/
-                                ocultar(true,R.id.buscador);
+                                fragment = new FragmentListarUsuario();
                                 fragmentTransaction = true;
                                 break;
 
                             case R.id.menuAgregarUsuario:
-                                fragment = new FragmentRegistrarMilitante();
-                                ocultar(false,R.id.buscador);
+                                fragment = new FragmentCrearUsuario();
                                 fragmentTransaction = true;
                                 break;
 
                             case R.id.menuEditarPartido:
                                 fragment = new FragmentEditarPartido();
-                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
                             case R.id.menuMiPerfil:
-                                fragment = new FragmentEditarMilitante();
+                                fragment = new FragmenteEditarUsuario();
                                 fragmentTransaction = true;
                                 break;
 
@@ -175,7 +171,6 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
 
                             default:
                                 fragment = new FragmentListarMensaje();
-                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
                         }
@@ -202,41 +197,9 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflates Main Menu ( Menu Drawer Item)
         getMenuInflater().inflate(R.menu.menu_pantalla_principal, menu);
         this.menu=menu;
-        this.ocultar(false, R.id.buscador);
-        SearchView sv = (SearchView) menu.findItem(R.id.buscador).getActionView();
-        sv.setQueryHint(getString(R.string.hintBuscador));
-
-        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                if(query.length() > 0){ // If any word was queried
-
-                    // Bundle Query with arguments for fragment
-                    Bundle data = new Bundle();
-                    data.putString("busqueda", query);
-
-                    // Create new Fragment
-                    // Redirect View to next Fragment
-                    Fragment fragment = new FragmentListarUsuario();
-                    fragment.setArguments(data);
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.content_frame, fragment)
-                            .addToBackStack(null)
-                            .commit();
-                }
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
         return true;
     }
 
@@ -244,20 +207,15 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch(item.getItemId()) {
+            // Adds functionality to app drawer menu item.
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
-                return true;
-            case R.id.action_settings:
-                ParseUser.logOut();
-                finish();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-    private void ocultar(boolean visible,int QueOculto){
-        this.menu.findItem(QueOculto).setVisible(visible);
-    }
+
 public void checkedView(View v)
 {
 
@@ -267,7 +225,7 @@ colorChecked=v.getId();
 }
     public void cambiarTema(View v)
     {
-        Toast.makeText(ActivityPantallaMenu.this, "idb: "+R.id.themeBrown, Toast.LENGTH_SHORT).show();
+        Toast.makeText(ActivityPantallaMenu.this, "idb: " + R.id.themeBrown, Toast.LENGTH_SHORT).show();
           switch(colorChecked)
           {
 
