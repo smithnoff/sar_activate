@@ -96,7 +96,7 @@ public class FragmentListarUsuario extends Fragment{
                     datos.putString("municipio", usuario.getMunicipio());
                     datos.putString("cargo", usuario.getCargo());
                     datos.putString("comite", usuario.getComite());
-                    datos.putInt("rol", usuario.getRol());
+                    datos.putString("rol", usuario.getRolName());
 
                     // Redirect View to next Fragment
                     Fragment fragment = new FragmenteEditarUsuario();

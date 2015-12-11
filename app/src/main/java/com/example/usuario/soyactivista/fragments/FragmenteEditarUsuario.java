@@ -169,9 +169,9 @@ public class FragmenteEditarUsuario extends Fragment {
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                         builder.setTitle("Confirmar");
-                        builder.setMessage("¿Estas Seguro?");
+                        builder.setMessage("¿Está seguro de que desea guardar los cambios?");
 
-                        builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                        builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 if (getArguments() != null) {
@@ -221,7 +221,7 @@ public class FragmenteEditarUsuario extends Fragment {
 
                         });
 
-                        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -248,7 +248,32 @@ public class FragmenteEditarUsuario extends Fragment {
             }
         });
 
+        buttonEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG,"Eliminar Button Clicked");
 
+                // TODO: Action Confirmation Dialog
+                final HashMap<String, Object> params = new HashMap<>();
+                params.put("username", editUsername.getText().toString());
+                ParseCloud.callFunctionInBackground("deleteUser", params, new FunctionCallback<Object>() {
+                    @Override
+                    public void done(Object response, ParseException e) {
+                        if (e == null) {
+                            Toast.makeText(getActivity(), "Usuario eliminado correctamente.", Toast.LENGTH_SHORT).show();
+                            Fragment fragment = new FragmentListarUsuario();
+                            getFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.content_frame, fragment)
+                                    .addToBackStack(null)
+                                    .commit();
+                        } else {
+                            Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde." + e.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+        });
 
         return v;
     }

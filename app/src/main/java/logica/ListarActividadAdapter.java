@@ -117,6 +117,7 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
 
 
         /*
+        // Method for storing
         final ParseUser usuarioActual = ParseUser.getCurrentUser();
 
 

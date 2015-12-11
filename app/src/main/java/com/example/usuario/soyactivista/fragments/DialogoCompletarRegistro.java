@@ -3,8 +3,10 @@ package com.example.usuario.soyactivista.fragments;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -18,138 +20,171 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import logica.ActivityPantallaInicio;
+import logica.ActivityPantallaMenu;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 public class DialogoCompletarRegistro extends DialogFragment {
 
-    Dialog customDialog = null;
-    Dialog nueva = null;
-    Dialog mensaje = null;
-    EditText t1,t2,t3,t4;
-    String identificador,token, passw, otrapassw;
-    TextView tv1;
-    private ProgressDialog dialog,dia;
+    private static final String TAG = "CompletarRegistro";
+
+    // View Elements
+    private TextView username, valueMensaje;
+    private EditText editPassword, editRepeatPasword, editUsername, editToken;
+    private Button buttonIngresar,buttonRegresar;
+
+    // Dialogs needed for flow
+    Dialog completarRegistro, nuevaContraseña;
+
+    // Progress Dialog
+    ProgressDialog progressDialog;
+
+    private ProgressDialog dialog;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
-        // Completar Registro Dialog
-        customDialog = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
-        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        customDialog.setCancelable(false);
-        customDialog.setContentView(R.layout.fragment_completar_registro);
 
-        // Declare Edit Text Fields
-        t1 = (EditText) customDialog.findViewById(R.id.textCIdentificador);
-        t2 = (EditText) customDialog.findViewById(R.id.textCToken);
+        // Initialize COmpletar Registro Dialog
+        completarRegistro = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
+        completarRegistro.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        completarRegistro.setCancelable(false);
+        completarRegistro.setContentView(R.layout.fragment_completar_registro); // assign View
 
+        // Asociate Fields
+        editUsername = (EditText) completarRegistro.findViewById(R.id.editUsername);
+        editToken = (EditText) completarRegistro.findViewById(R.id.editToken);
 
+        buttonIngresar = (Button) completarRegistro.findViewById(R.id.buttonIngresar);
+        buttonRegresar = (Button) completarRegistro.findViewById(R.id.buttonRegresar);
+
+        //TODO: declare buttons and properly instantiate clicklisteners.
         // Ingresar Button
-        (customDialog.findViewById(R.id.ingresar)).setOnClickListener(new View.OnClickListener() {
 
+        buttonIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 dialog = ProgressDialog.show(getActivity(), "", "Verificando Datos...", true);
-                identificador = t1.getText().toString();
-                token = t2.getText().toString();
 
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("_User");
-                query.whereEqualTo("username",identificador);
-                query.whereEqualTo("objectId", token);
-                query.getFirstInBackground(new GetCallback<ParseObject>()
-                {
-                    public void done(ParseObject object, ParseException e)
-                    {
-                        if (object == null)
-                        {
+                query.whereEqualTo("username", editUsername.getText().toString());
+                query.whereEqualTo("objectId", editToken.getText().toString());
+                query.getFirstInBackground(new GetCallback<ParseObject>() {
+                    public void done(ParseObject object, ParseException e) {
+                        if (object == null) {
                             dialog.dismiss();
                             Toast.makeText(getActivity(), "Datos Incorrectos", Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
+                        } else {
                             dialog.dismiss();
+                            completarRegistro.dismiss();
                             // Open new Dialog for password
-                            nuevaPass(identificador);
+                            setNewPassword(editUsername.getText().toString());
                         }
                     }
                 });
             }
         });
 
-        (customDialog.findViewById(R.id.regresar)).setOnClickListener(new View.OnClickListener() {
-
+        buttonRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                customDialog.dismiss();
+            public void onClick(View v) {
+                completarRegistro.dismiss();
             }
         });
 
-        return customDialog;
+        return completarRegistro;
     }
 
-    public void nuevaPass(final String identificador){
-        customDialog.dismiss();
+    // Dialog that enables the user to set a new password.
+    public void setNewPassword(final String identificador){
 
-        nueva = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
-        nueva.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        nueva.setCancelable(false);
-        nueva.setContentView(R.layout.fragment_completar_password);
+        nuevaContraseña = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
+        nuevaContraseña.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        nuevaContraseña.setCancelable(false);
+        nuevaContraseña.setContentView(R.layout.fragment_completar_password);
 
+        // Assign Holders
+        username = (TextView) nuevaContraseña.findViewById(R.id.valueUsername);
+        editPassword = (EditText) nuevaContraseña.findViewById(R.id.editPassword);
+        editRepeatPasword = (EditText) nuevaContraseña.findViewById(R.id.editRepeatPassword);
 
+        buttonIngresar = (Button) nuevaContraseña.findViewById(R.id.buttonIngresar);
+        buttonRegresar = (Button) nuevaContraseña.findViewById(R.id.buttonRegresar);
 
-        tv1.setText(identificador);
+        // Set Defaults
+        username.setText(identificador);
 
-        ((Button) nueva.findViewById(R.id.ingresar)).setOnClickListener(new View.OnClickListener() {
-
+        // Buttons Behavior
+        buttonIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                passw = t3.getText().toString();
-                otrapassw = t4.getText().toString();
+            public void onClick(View v) {
+
+                Log.d(TAG, "Ingresar Clicked");
 
                 try {
-                    if(passw.equals(otrapassw)) {
+                    // Validate if Passwords are equal.
+                    // TODO: Validate security measures for password (longitude, characters type)
+                    if (editPassword.getText().toString().equals(editRepeatPasword.getText().toString())) {
+                        // Logs user with default password to be able to change it.
                         ParseUser user = ParseUser.logIn(identificador, getResources().getString(R.string.tempPassword));
-                        user.setPassword(passw);
+                        // Set new Password & Save
+                        user.setPassword(editPassword.getText().toString());
+                        // TODO: Save Callback catch
                         user.saveInBackground();
 
-                        nueva.dismiss();
+                        nuevaContraseña.dismiss();
 
-                        nueva.setContentView(R.layout.mensajes);
-                        ((TextView) nueva.findViewById(R.id.mensaje)).setText("Su cuenta ha sido registrada satisfactoriamente");
+                        // Assign new Content with Result Message to Dialog
+                        nuevaContraseña = new Dialog(getActivity(), R.style.Theme_Dialog_Translucent);
+                        nuevaContraseña.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        nuevaContraseña.setCancelable(false);
+                        nuevaContraseña.setContentView(R.layout.mensajes);
 
-                        ((Button) nueva.findViewById(R.id.ingresar)).setOnClickListener(new View.OnClickListener() {
+                        valueMensaje = (TextView) nuevaContraseña.findViewById(R.id.valueMensaje);
 
+                        valueMensaje.setText("Su cuenta ha sido registrada satisfactoriamente");
+
+                        buttonIngresar = (Button) nuevaContraseña.findViewById(R.id.buttonIngresar);
+                        buttonRegresar = (Button) nuevaContraseña.findViewById(R.id.buttonRegresar);
+
+                        // Button Ingresar Behavior
+                        buttonIngresar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                nueva.dismiss();
+                                // Redirect to Dashboard
+                                nuevaContraseña.dismiss();
+                                Intent i = new Intent(getActivity().getApplicationContext(), ActivityPantallaMenu.class);
+                                startActivity(i);
                             }
                         });
 
-                        ((Button) nueva.findViewById(R.id.regresar)).setOnClickListener(new View.OnClickListener() {
-
+                        // Button Regresar Behavior
+                        buttonRegresar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                nueva.dismiss();
+                                nuevaContraseña.dismiss();
+                                Intent i = new Intent(getActivity().getApplicationContext(), ActivityPantallaInicio.class);
+                                startActivity(i);
                             }
                         });
-                        nueva.show();
-                    }else{
-                        tv1.setText("Las contraseñas no coinciden");
-                        tv1.setTextColor(Color.RED);
+
+                    } else {
+                        Toast.makeText(getActivity().getApplicationContext(), "Las contraseñas no coinciden.", Toast.LENGTH_LONG).show();
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+
             }
         });
 
-        ((Button) nueva.findViewById(R.id.regresar)).setOnClickListener(new View.OnClickListener() {
-
+        buttonRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                nueva.dismiss();
+            public void onClick(View v) {
+                nuevaContraseña.dismiss();
+                Intent i = new Intent(getActivity().getApplicationContext(), ActivityPantallaInicio.class);
+                startActivity(i);
             }
         });
 
-        nueva.show();
     }
 }

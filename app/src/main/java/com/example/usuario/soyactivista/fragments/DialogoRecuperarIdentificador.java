@@ -38,7 +38,7 @@ public class DialogoRecuperarIdentificador extends DialogFragment {
         customDialog.setContentView(R.layout.recuperar_identificador);
         t1 = (EditText) customDialog.findViewById(R.id.CorreoRecuperar);
 
-        ((Button) customDialog.findViewById(R.id.ingresar)).setOnClickListener(new View.OnClickListener() {
+        ((Button) customDialog.findViewById(R.id.buttonIngresar)).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -66,7 +66,7 @@ public class DialogoRecuperarIdentificador extends DialogFragment {
             }
         });
 
-        ((Button) customDialog.findViewById(R.id.regresar)).setOnClickListener(new View.OnClickListener() {
+        ((Button) customDialog.findViewById(R.id.buttonRegresar)).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -85,9 +85,9 @@ public class DialogoRecuperarIdentificador extends DialogFragment {
         nueva.setCancelable(false);
         nueva.setContentView(R.layout.mensajes);
 
-        ((TextView) nueva.findViewById(R.id.mensaje)).setText("Su identificador es: " + username);
+        ((TextView) nueva.findViewById(R.id.valueMensaje)).setText("Su identificador es: " + username);
 
-        ((Button) nueva.findViewById(R.id.ingresar)).setOnClickListener(new View.OnClickListener() {
+        ((Button) nueva.findViewById(R.id.buttonIngresar)).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -95,7 +95,7 @@ public class DialogoRecuperarIdentificador extends DialogFragment {
             }
         });
 
-        ((Button) nueva.findViewById(R.id.regresar)).setOnClickListener(new View.OnClickListener() {
+        ((Button) nueva.findViewById(R.id.buttonRegresar)).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {

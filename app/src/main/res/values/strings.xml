@@ -156,6 +156,8 @@
     <string name="filtroRol">Filtrar por Rol</string>
     <string name="enviar">Enviar</string>
     <string name="emailLargo">Correo Electrónico</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="repetirContraseña">Repetir Contraseña</string>
 
 
 </resources>

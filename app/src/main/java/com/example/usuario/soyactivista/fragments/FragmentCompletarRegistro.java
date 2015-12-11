@@ -1,10 +1,11 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,71 +27,75 @@ import soy_activista.quartzapp.com.soy_activista.R;
  */
 public class FragmentCompletarRegistro extends Fragment {
 
-    EditText t1,t2,t3,t4;
-    String identificador,token, passw, otrapassw;
-    TextView tv1;
-    private ProgressDialog dialog,dia;
-    private Button botonIngresar;
-    private Button botonRegresar;
-    Context context;
+    private static final String TAG = "CompletarRegistro";
+
+    // View Elements
+    private TextView username, valueMensaje;
+    private EditText editPassword, editRepeatPasword, editUsername, editToken;
+    private Button buttonIngresar,buttonRegresar;
+
+    // Dialogs needed for flow
+    Dialog v, nuevaContraseña;
+
+    // Progress Dialog
+    ProgressDialog progressDialog;
+
+    private ProgressDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_completar_registro, container, false);
-        context = v.getContext();
 
+        // Asociate Fields
+        editUsername = (EditText) v.findViewById(R.id.editUsername);
+        editToken = (EditText) v.findViewById(R.id.editToken);
 
+        buttonIngresar = (Button) v.findViewById(R.id.buttonIngresar);
+        buttonRegresar = (Button) v.findViewById(R.id.buttonRegresar);
 
-        // Declare Edit Text Fields and Buttons
+        //TODO: declare buttons and properly instantiate clicklisteners.
+        // Ingresar Button
 
-        t1 = (EditText)v.findViewById(R.id.textCIdentificador);
-        t2 = (EditText)v.findViewById(R.id.textCToken);
-        botonIngresar = (Button)v.findViewById(R.id.ingresar);
-        botonRegresar = (Button)v.findViewById(R.id.regresar);
-
-        botonIngresar.setOnClickListener(new View.OnClickListener() {
+        buttonIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog = ProgressDialog.show(getActivity(), "", "Verificando Datos...", true);
-                identificador = t1.getText().toString();
-                token = t2.getText().toString();
+                Log.d(TAG, "Searching for Username:"+editUsername.getText().toString().trim());
+                Log.d(TAG, "Searching for Token:"+editToken.getText().toString().trim());
 
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("_User");
-                query.whereEqualTo("username",identificador);
-                query.whereEqualTo("objectId", token);
-                query.getFirstInBackground(new GetCallback<ParseObject>()
-                {
-                    public void done(ParseObject object, ParseException e)
-                    {
-                        if (object == null)
-                        {
+                query.whereEqualTo("username", editUsername.getText().toString().trim());
+                query.whereEqualTo("objectId", editToken.getText().toString().trim());
+                query.getFirstInBackground(new GetCallback<ParseObject>() {
+                    public void done(ParseObject object, ParseException e) {
+                        if (object == null) {
                             dialog.dismiss();
                             Toast.makeText(getActivity(), "Datos Incorrectos", Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
+                        } else {
                             dialog.dismiss();
-                            // Open new Fragment for password
-                            Fragment fragment = new FragmentCompletarPassword();
-                            Bundle parametro = new Bundle();
+                            // Open new fragment for password
 
-                            parametro.putString("key",identificador);
-                            fragment.setArguments(parametro);
+                            // Pass Username
+                            Bundle data = new Bundle();
+                            data.putString("username",editUsername.getText().toString());
+                            Fragment fragment = new FragmentCompletarPassword();
+                            fragment.setArguments(data);
                             getFragmentManager()
                                     .beginTransaction()
-                                    .replace(android.R.id.content, fragment, "tag").addToBackStack("tag")
-                            .commit();
+                                    .add(android.R.id.content, fragment)
+                                    .addToBackStack(null)
+                                    .commit();
                         }
                     }
                 });
             }
         });
 
-        botonRegresar.setOnClickListener(new View.OnClickListener() {
+        buttonRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, ActivityPantallaInicio.class);
-                startActivity(intent);
+                Intent i = new Intent(getActivity().getApplicationContext(), ActivityPantallaInicio.class);
+                startActivity(i);
             }
         });
 
