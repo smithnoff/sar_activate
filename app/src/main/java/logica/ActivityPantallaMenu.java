@@ -19,14 +19,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.usuario.soyactivista.fragments.FragmentEditarMilitante;
+import com.example.usuario.soyactivista.fragments.FragmentCrearUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
 import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
+import com.example.usuario.soyactivista.fragments.FragmenteEditarUsuario;
 import com.parse.ParseUser;
-import com.example.usuario.soyactivista.fragments.FragmentRegistrarMilitante;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -106,7 +106,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
         MenuItem mensajeReport = navMenu.findItem(R.id.menuMensajeReportado);
 
         // Disable Menu Items if not admin user
-        if(usuarioActual.getInt("rol") != 1){
+        if(usuarioActual != null && usuarioActual.getInt("rol") != 1){
             actividadesPartido.setVisible(false);
             listarUsuario.setVisible(false);
             agregarUsuario.setVisible(false);
@@ -158,7 +158,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                                 break;
 
                             case R.id.menuAgregarUsuario:
-                                fragment = new FragmentRegistrarMilitante();
+                                fragment = new FragmentCrearUsuario();
                                 ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
@@ -170,7 +170,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                                 break;
 
                             case R.id.menuMiPerfil:
-                                fragment = new FragmentEditarMilitante();
+                                fragment = new FragmenteEditarUsuario();
                                 fragmentTransaction = true;
                                 break;
 
@@ -254,10 +254,6 @@ public class ActivityPantallaMenu extends AppCompatActivity {
         switch(item.getItemId()) {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
-                return true;
-            case R.id.action_settings:
-                ParseUser.logOut();
-                finish();
                 return true;
         }
 

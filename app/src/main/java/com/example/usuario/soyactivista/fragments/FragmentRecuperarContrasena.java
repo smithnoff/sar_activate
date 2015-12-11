@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.RequestPasswordResetCallback;
 
+import logica.ActivityPantallaInicio;
 import logica.ActivityPantallaMenu;
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -23,6 +25,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
  */
 public class FragmentRecuperarContrasena extends Fragment {
 
+    private static final String TAG = "FRecuperarContraseña"; // For Debug purposes
     private EditText editEmail;
     private Button buttonEnviar, buttonRegresar;
     private ProgressDialog dialog;
@@ -51,7 +54,7 @@ public class FragmentRecuperarContrasena extends Fragment {
                 {
                     // Validate Email Pattern
                     if (editEmail.getText().toString().matches(emailPattern)){
-
+                        dialog = ProgressDialog.show(getContext(),"Recuperando Contraseña","Enviando Datos...",true);
                         ParseUser.requestPasswordResetInBackground(editEmail.toString().trim(), new RequestPasswordResetCallback() {
                             @Override
                             public void done(ParseException e) {
@@ -62,7 +65,12 @@ public class FragmentRecuperarContrasena extends Fragment {
                                     startActivity(i);
                                 } else {
                                     dialog.dismiss();
-                                    Toast.makeText(getActivity(), "Ocurrio un error al enviar correo."+e.getMessage(), Toast.LENGTH_LONG).show();
+                                    // Email not found
+                                    Log.d(TAG,"Exception returned with code "+e.getCode());
+                                    if(e.getCode() == 125)
+                                        Toast.makeText(getActivity(), "Su email no se encuentra registrado.", Toast.LENGTH_LONG).show();
+                                    else
+                                        Toast.makeText(getActivity(), "Ocurrio un error al enviar correo."+e.getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
@@ -85,7 +93,7 @@ public class FragmentRecuperarContrasena extends Fragment {
         buttonRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(), ActivityPantallaMenu.class);
+                Intent i = new Intent(getContext(), ActivityPantallaInicio.class);
                 startActivity(i);
             }
         });
