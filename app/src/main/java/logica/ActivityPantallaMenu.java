@@ -47,7 +47,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-Selector_de_Tema.onActivityCreateSetTheme(this);
+        Selector_de_Tema.onActivityCreateSetTheme(this);
 
         setContentView(R.layout.pantalla_con_menu);
 
@@ -67,7 +67,7 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
         }
         else{
             // TODO:No user logged in -> Redirect to Login.
-            Intent i = new Intent(getApplication(),pantalla_principal.class);
+            Intent i = new Intent(getApplication(), ActivityPantallaInicio.class);
             startActivity(i);
             finish();
         }
@@ -170,7 +170,7 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
 
                             case R.id.menuCerrarSesion:
                                 usuarioActual.logOutInBackground();
-                                Intent i = new Intent(getApplication(),pantalla_principal.class);
+                                Intent i = new Intent(getApplication(), ActivityPantallaInicio.class);
                                 startActivity(i);
                                 finish();
                                 break;

@@ -6,17 +6,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 
-import com.example.usuario.soyactivista.fragments.DialogoCompletarRegistro;
 import com.example.usuario.soyactivista.fragments.DialogoRecuperarIdentificador;
-import com.example.usuario.soyactivista.fragments.DialogoRecuperarPassw;
 import com.example.usuario.soyactivista.fragments.FragmentCompletarRegistro;
+import com.example.usuario.soyactivista.fragments.FragmentRecuperarContrasena;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
 
-public class pantalla_principal extends AppCompatActivity {
+public class ActivityPantallaInicio extends AppCompatActivity {
 
 
     @Override
@@ -28,10 +26,11 @@ public class pantalla_principal extends AppCompatActivity {
     public void completarRegistro(View view){
 
         Fragment frag = new FragmentCompletarRegistro();
-        getSupportFragmentManager().beginTransaction()
-                .add(android.R.id.content, frag).commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(android.R.id.content, frag)
+                .commit();
     }
-
 
 
     public void iniciarSesion(View view){
@@ -41,9 +40,12 @@ public class pantalla_principal extends AppCompatActivity {
 
 
     public void recuperarContraseña(View view){
-        FragmentManager fragmentManager = getFragmentManager();
-        DialogoRecuperarPassw dialogo = new DialogoRecuperarPassw();
-        dialogo.show(fragmentManager, "tagAlerta");
+        Fragment fragment = new FragmentRecuperarContrasena();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(android.R.id.content,fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     public void recuperarIdentificador(View view){

@@ -154,6 +154,8 @@
     <string name="filtroEstados">Filtrar por estado</string>
     <string name="filtroComite">Filtrar por Comite</string>
     <string name="filtroRol">Filtrar por Rol</string>
+    <string name="enviar">Enviar</string>
+    <string name="emailLargo">Correo Electrónico</string>
 
 
 </resources>

@@ -2,8 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     >
-
+    <!-- Added White Background to prevent activity from showing -->
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
@@ -37,40 +38,23 @@
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:background="#eee"
+            android:background="@color/white"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:id="@+id/labelUsername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/username"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"/>
-
-        <EditText
-            android:id="@+id/editUsername"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/labelUsername"
-            android:singleLine="true"
-            />
 
         <TextView
             android:id="@+id/labelPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password"
-            android:layout_marginTop="20dp"
+            android:text="@string/emailLargo"
+            android:layout_marginTop="60dp"
             android:layout_marginLeft="20dp"
             android:layout_below="@+id/editUsername"/>
         <EditText
             android:id="@+id/editEmail"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/labelPassword"
@@ -79,8 +63,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ingresar"
-            android:id="@+id/buttonIngresar"
+            android:text="@string/enviar"
+            android:id="@+id/buttonEnviar"
             android:textColor="@color/white"
             android:layout_below="@+id/editEmail"
             android:layout_marginBottom="15dp"
