@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
@@ -67,6 +68,13 @@ public class FragmentCompletarPassword extends Fragment{
                 // Validate if Passwords are equal.
                 // TODO: Validate security measures for password (longitude, characters type)
                 if (editPassword.getText().toString().equals(editRepeatPasword.getText().toString())) {
+
+                    ParseUser currentUser = ParseUser.getCurrentUser();
+
+                    if (currentUser != null) {
+                        Log.d(TAG,"Checking if User is logged."+currentUser);
+                        currentUser.logOut();
+                    }
                     // Logs user with default password to be able to change it.
                     ParseUser.logInInBackground(getArguments().getString("username"), getResources().getString(R.string.tempPassword), new LogInCallback() {
                         public void done(ParseUser user, ParseException e) {

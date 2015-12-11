@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.DeleteCallback;
 import com.parse.FunctionCallback;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
@@ -25,6 +26,7 @@ import com.parse.ParseUser;
 
 import java.util.HashMap;
 
+import logica.ActivityPantallaInicio;
 import logica.ActivityPantallaMenu;
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -192,8 +194,13 @@ public class FragmenteEditarUsuario extends Fragment {
                                         public void done(Object response, ParseException e) {
                                             if (e == null) {
                                                 Toast.makeText(getActivity(), "Usuario editado correctamente.", Toast.LENGTH_SHORT).show();
-                                                Intent i = new Intent(getActivity(), ActivityPantallaMenu.class);
-                                                startActivity(i);
+
+                                                // Redirect to User List
+                                                Fragment fragment = new FragmentListarUsuario();
+                                                getFragmentManager()
+                                                        .beginTransaction()
+                                                        .replace(R.id.content_frame, fragment)
+                                                        .commit();
                                             } else {
                                                 Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde." + e.toString(), Toast.LENGTH_LONG).show();
                                             }
@@ -204,7 +211,7 @@ public class FragmenteEditarUsuario extends Fragment {
                                     if (currentUser != null) {
                                         Log.d(getClass().getName(), "Filling from Current User");
 
-                                        currentUser.put("nombre",editNombre.getText().toString());
+                                        currentUser.put("nombre", editNombre.getText().toString());
                                         currentUser.put("apellido", editApellido.getText().toString());
                                         currentUser.setEmail(editEmail.getText().toString());
                                         currentUser.put("cargo", editCargo.getText().toString());
@@ -215,6 +222,14 @@ public class FragmenteEditarUsuario extends Fragment {
                                         currentUser.saveInBackground();
                                     }
                                     Toast.makeText(getActivity(), "Perfil Editado", Toast.LENGTH_SHORT).show();
+
+                                    // Redirect to Dashboard
+                                    Fragment fragment = new FragmentListarMensaje();
+                                    getFragmentManager()
+                                            .beginTransaction()
+                                            .replace(R.id.content_frame, fragment)
+                                            .commit();
+
                                 }
                                 dialog.dismiss();
                             }
@@ -230,6 +245,7 @@ public class FragmenteEditarUsuario extends Fragment {
                             }
                         });
 
+                        // After Dialog is Completely defined - Show Dialog.
                         AlertDialog alert = builder.create();
                         alert.show();
 
@@ -251,27 +267,65 @@ public class FragmenteEditarUsuario extends Fragment {
         buttonEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG,"Eliminar Button Clicked");
+                Log.d(TAG, "Eliminar Button Clicked");
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Confirmar");
+                builder.setMessage("¿Está seguro de que desea eliminar al usuario?");
 
-                // TODO: Action Confirmation Dialog
-                final HashMap<String, Object> params = new HashMap<>();
-                params.put("username", editUsername.getText().toString());
-                ParseCloud.callFunctionInBackground("deleteUser", params, new FunctionCallback<Object>() {
-                    @Override
-                    public void done(Object response, ParseException e) {
-                        if (e == null) {
-                            Toast.makeText(getActivity(), "Usuario eliminado correctamente.", Toast.LENGTH_SHORT).show();
-                            Fragment fragment = new FragmentListarUsuario();
-                            getFragmentManager()
-                                    .beginTransaction()
-                                    .replace(R.id.content_frame, fragment)
-                                    .addToBackStack(null)
-                                    .commit();
-                        } else {
-                            Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde." + e.toString(), Toast.LENGTH_LONG).show();
+                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Check if deleting self account or anotheruser
+                        if(getArguments() != null){
+                            final HashMap<String, Object> params = new HashMap<>();
+                            params.put("username", editUsername.getText().toString());
+                            ParseCloud.callFunctionInBackground("deleteUser", params, new FunctionCallback<Object>() {
+                                @Override
+                                public void done(Object response, ParseException e) {
+                                    if (e == null) {
+                                        Toast.makeText(getActivity(), "Usuario eliminado correctamente.", Toast.LENGTH_SHORT).show();
+                                        Fragment fragment = new FragmentListarUsuario();
+                                        getFragmentManager()
+                                                .beginTransaction()
+                                                .replace(R.id.content_frame, fragment)
+                                                .addToBackStack(null)
+                                                .commit();
+                                    } else {
+                                        Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde." + e.toString(), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        }
+                        else{
+                            // Deleting Own Account
+                            currentUser.deleteInBackground(new DeleteCallback() {
+                                @Override
+                                public void done(ParseException e) {
+                                    if(e == null){
+                                        Toast.makeText(getActivity(), "Tu cuenta ha sido eliminada correctamente..", Toast.LENGTH_SHORT).show();
+                                        // Redirect to init Screen
+                                        Intent i = new Intent(getContext(), ActivityPantallaInicio.class);
+                                        startActivity(i);
+                                    }
+                                }
+                            });
                         }
                     }
                 });
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing
+                        dialog.dismiss();
+                    }
+                });
+
+                // After Dialog is Completely defined - Show Dialog.
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
 

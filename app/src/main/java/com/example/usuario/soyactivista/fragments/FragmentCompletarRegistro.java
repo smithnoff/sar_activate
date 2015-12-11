@@ -70,7 +70,7 @@ public class FragmentCompletarRegistro extends Fragment {
                     public void done(ParseObject object, ParseException e) {
                         if (object == null) {
                             dialog.dismiss();
-                            Toast.makeText(getActivity(), "Datos Incorrectos", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Datos Incorrectos"+e.getMessage(), Toast.LENGTH_SHORT).show();
                         } else {
                             dialog.dismiss();
                             // Open new fragment for password
