@@ -465,6 +465,7 @@ public class FragmentCrearActividad extends Fragment {
                         bitmap = BitmapFactory.decodeStream(imageStream);
 
                         preparePhoto(bitmap);
+                        
                         Toast.makeText(getActivity(),"Se ha adjuntado una imagen correctamente.", Toast.LENGTH_SHORT).show();
                         labelFotos.setText("1");
                     } catch (FileNotFoundException e) {
@@ -492,25 +493,35 @@ public class FragmentCrearActividad extends Fragment {
         if(imagenSeleccionada == null)
         {
             imagenSeleccionada = bos.toByteArray();
+            labelFotos.setText("1");
         }
-
-        if(imagenSeleccionada != null)
+        else
         {
-            imagenSeleccionada2 = bos.toByteArray();
-        }
-
-        if(imagenSeleccionada2 != null)
-        {
-            imagenSeleccionada3 = bos.toByteArray();
-        }
-
-        if(imagenSeleccionada3 != null)
-        {
-            imagenSeleccionada4 = bos.toByteArray();
-        }
-        if(imagenSeleccionada4 != null)
-        {
-            Toast.makeText(getActivity(),"Se ha adjuntado una imagen correctamente.", Toast.LENGTH_SHORT).show();
+            if(imagenSeleccionada2 == null)
+            {
+                imagenSeleccionada2 = bos.toByteArray();
+                labelFotos.setText("2");
+            }
+            else
+            {
+                if(imagenSeleccionada3 == null)
+                {
+                    imagenSeleccionada3 = bos.toByteArray();
+                    labelFotos.setText("3");
+                }
+                else
+                {
+                    if(imagenSeleccionada4 == null)
+                    {
+                        imagenSeleccionada4 = bos.toByteArray();
+                        labelFotos.setText("4");
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(),"No se puede adjuntar más de 4 imagenes", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
         }
 
     }
