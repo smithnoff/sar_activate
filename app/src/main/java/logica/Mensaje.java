@@ -2,10 +2,19 @@ package logica;
 
 import android.graphics.Bitmap;
 
+import com.parse.ParseClassName;
+import com.parse.ParseFile;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+
+import java.util.Date;
+
 /**
  * Created by Usuario on 29/10/2015.
  */
-public class Mensaje {
+
+public class Mensaje  {
     private Usuario autor;
     private String texto;
     private Bitmap adjunto;
@@ -73,5 +82,4 @@ public class Mensaje {
     public GeoLocalizacion getLocalizacion(){
         return this.localizacion;
     }
-
 }

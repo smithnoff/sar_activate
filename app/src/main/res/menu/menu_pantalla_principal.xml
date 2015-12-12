@@ -4,12 +4,6 @@
     tools:context=".pantalla_principal">
 
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/buscador"
         android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="200"

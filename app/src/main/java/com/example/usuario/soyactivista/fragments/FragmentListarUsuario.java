@@ -58,10 +58,10 @@ public class FragmentListarUsuario extends Fragment{
         View view = inflater.inflate(R.layout.fragment_listar_usuario, container, false);
 
         // Initialize list view
-        listView = (ListView) view.findViewById(R.id.usuariosListView);
+        listView = (ListView) view.findViewById(R.id.mensajesListView);
 
         // Initialize Buttons
-        botonCrearUsuario = (FloatingActionButton) view.findViewById(R.id.botonCrearUsuario);
+        botonCrearUsuario = (FloatingActionButton) view.findViewById(R.id.botonCrearMensaje);
 
 
         Log.d(TAG,"List contains "+usuarioArrayList.size()+" elements");

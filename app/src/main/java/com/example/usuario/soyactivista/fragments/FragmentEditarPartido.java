@@ -21,8 +21,6 @@ public class FragmentEditarPartido extends Fragment {
 
         // TODO: Implement Theme Editing.
 
-
-
         return v;
     }
 

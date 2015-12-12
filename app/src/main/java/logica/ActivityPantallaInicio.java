@@ -1,13 +1,11 @@
 package logica;
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.example.usuario.soyactivista.fragments.DialogoRecuperarIdentificador;
 import com.example.usuario.soyactivista.fragments.FragmentCompletarRegistro;
 import com.example.usuario.soyactivista.fragments.FragmentRecuperarContrasena;
 import com.example.usuario.soyactivista.fragments.FragmentRecuperarIdentificador;

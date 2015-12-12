@@ -27,7 +27,6 @@ import com.parse.ParseUser;
 import java.util.HashMap;
 
 import logica.ActivityPantallaInicio;
-import logica.ActivityPantallaMenu;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**

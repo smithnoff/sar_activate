@@ -21,7 +21,6 @@ import android.content.DialogInterface;
 
 import com.bumptech.glide.Glide;
 import com.parse.GetCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -44,7 +43,7 @@ public class FragmentDetalleActividad extends Fragment {
     private TextView labelPuntaje, labelDescripcion, labelEstado, labelMunicipio, labelParroquia, nombreActual, ubicacionActual, estadoActual, municipioActual, textMeGusta;
     private EditText puntaje, descripcion, objetivo, encargado, creador,  inicio, fin, parroquia; // Edit Field holders
     private Spinner nombre, ubicacion, estado, municipio, estatus; // Spinner holders
-    private Button guardar,editar,eliminar; // Button holders
+    private Button guardar,editar,eliminar,cancelar; // Button holders
     private ImageButton botonMeGusta;
     private ImageView imagen1,imagen2,imagen3,imagen4;
     private ProgressDialog dialog;
@@ -98,6 +97,7 @@ public class FragmentDetalleActividad extends Fragment {
         editar = (Button)v.findViewById(R.id.botonEditar);
         guardar = (Button)v.findViewById(R.id.botonGuardar);
         eliminar = (Button)v.findViewById(R.id.botonEliminar);
+        cancelar = (Button)v.findViewById(R.id.botonCancelar);
 
         botonMeGusta = (ImageButton)v.findViewById(R.id.botonMeGusta);
 
@@ -276,8 +276,6 @@ public class FragmentDetalleActividad extends Fragment {
             @Override
             public void onClick(View v) {
                 //Hide Edit button/show save
-                editar.setVisibility(View.GONE);
-                guardar.setVisibility(View.VISIBLE);
 
                 //Show/enable all editors
                 nombreActual.setVisibility(View.GONE);
@@ -295,6 +293,39 @@ public class FragmentDetalleActividad extends Fragment {
                 inicio.setEnabled(true);
                 fin.setEnabled(true);
 
+                eliminar.setVisibility(View.GONE);
+                editar.setVisibility(View.GONE);
+                guardar.setVisibility(View.VISIBLE);
+                cancelar.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        cancelar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                //Show/enable all editors
+                nombreActual.setVisibility(View.VISIBLE);
+                nombre.setVisibility(View.GONE);
+
+                objetivo.setEnabled(false);
+                ubicacionActual.setVisibility(View.VISIBLE);
+                ubicacion.setVisibility(View.GONE);
+                ubicacion.setEnabled(false);
+
+                encargado.setEnabled(false);
+
+                estatus.setEnabled(false);
+
+                inicio.setEnabled(false);
+                fin.setEnabled(false);
+
+                eliminar.setVisibility(View.VISIBLE);
+                editar.setVisibility(View.VISIBLE);
+                guardar.setVisibility(View.GONE);
+                cancelar.setVisibility(View.GONE);
+
             }
         });
 
@@ -303,9 +334,9 @@ public class FragmentDetalleActividad extends Fragment {
             public void onClick(View arg0) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Confirmar");
-                builder.setMessage("¿Estas Seguro?");
+                builder.setMessage("¿Está seguro de que desea editar la actividad?");
 
-                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialogo, int which) {
 
@@ -370,7 +401,7 @@ public class FragmentDetalleActividad extends Fragment {
                 });
 
 
-                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialogo, int which) {
@@ -381,13 +412,6 @@ public class FragmentDetalleActividad extends Fragment {
 
                 AlertDialog alert = builder.create();
                 alert.show();
-
-
-
-
-
-
-
 
             }
         });

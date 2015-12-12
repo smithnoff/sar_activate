@@ -60,7 +60,7 @@ public class ActivityLogin extends AppCompatActivity {
                                         }else{
                                             dialog.dismiss();
                                             // TODO: discern between different exceptions and show appropiate message.
-                                            Toast.makeText(getApplicationContext(), "Identificador o Contraseña incorrecta."+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), "Identificador o Contraseña incorrecta.", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });

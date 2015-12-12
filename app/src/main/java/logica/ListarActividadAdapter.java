@@ -25,6 +25,8 @@ import soy_activista.quartzapp.com.soy_activista.R;
  */
 public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
 
+    private String TAG = "ListarActividadAdapter";
+
     // Modify Default query to look for objects Actividad
     public ListarActividadAdapter(Context context) {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
@@ -37,8 +39,64 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
         });
     }
 
+    // Modify Default query to look for objects Actividad
+    public ListarActividadAdapter(Context context, final String constraint) {
+        super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
+            public ParseQuery create() {
+                // Start Query
+                ParseQuery query = new ParseQuery("Actividad");
+
+                // Determine type of constraint
+                String[] queryArray = constraint.toString().split("=");
+                String value = queryArray[1];
+
+                switch (queryArray[0]){
+                    case "estatus":
+                        query.whereEqualTo("estatus",value);
+
+                        break;
+                    case "ubicacion":
+                        query.whereEqualTo("ubicacion",value);
+
+                        break;
+                    case "estado":
+                        // Query is asking for whole list, skip search.
+                        if(value.equals("Todos"))
+                            break;
+
+                        query.whereEqualTo("ubicacion","Estadal");
+                        query.whereEqualTo("estado",value);
+                        break;
+
+                    case "propios":
+
+                        ParseQuery<ParseObject> innerQuery2 = ParseQuery.getQuery("_User");
+                        innerQuery2.whereEqualTo("username", value);
+                        query.whereMatchesQuery("creador", innerQuery2);
+                        break;
+
+                    case "meGusta":
+
+                        query.orderByDescending("meGusta");
+                        break;
+
+                    default:
+
+                        break;
+                }
+
+
+                query.include("tipoActividad");
+                query.include("creador");
+                query.orderByDescending("createdAt");
+                return query;
+            }
+        });
+    }
+
     public View getItemView(final ParseObject object, View v, ViewGroup parent){
         if(v == null){
+            // Choose which template to inflate depending of photo amount.
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_actividad,parent,false);
         }
 
@@ -62,9 +120,10 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
         //Declare all fields
         final TextView textNombre,textEstatus,textCreador,textInicio,textFin,textLikes;
         final ImageButton botonMeGusta;
-        final ImageView imageView;
+        final ImageView imageView1,imageView2,imageView3,imageView4;
         final View separator;
 
+        // TODO: Use ViewHolder to improve performance.
         // Assign to holders
         textNombre = (TextView)v.findViewById(R.id.nombreActividad);
         textEstatus = (TextView)v.findViewById(R.id.valueEjecucion);
@@ -77,7 +136,10 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
 
         //botonMeGusta = (ImageButton) v.findViewById(R.id.botonMeGusta);
 
-        imageView = (ImageView)v.findViewById(R.id.imagen1);
+        imageView1 = (ImageView)v.findViewById(R.id.imagen1);
+        imageView2 = (ImageView)v.findViewById(R.id.imagen2);
+        imageView3 = (ImageView)v.findViewById(R.id.imagen3);
+        imageView4= (ImageView)v.findViewById(R.id.imagen4);
 
         // Load Values
         textNombre.setText(tipoActividad.getString("nombre"));
@@ -99,48 +161,68 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
 
         // Load Images
 
-        ParseFile imagen = object.getParseFile("imagen1");
-        if(imagen != null){
+        ParseFile imagen1 = object.getParseFile("imagen1");
+        ParseFile imagen2 = object.getParseFile("imagen2");
+        ParseFile imagen3 = object.getParseFile("imagen3");
+        ParseFile imagen4 = object.getParseFile("imagen4");
+
+        String url;
+
+        if(imagen1 != null){
             separator.setVisibility(View.VISIBLE);
-            imageView.setVisibility(View.VISIBLE);
-            String url = imagen.getUrl();
+            imageView1.setVisibility(View.VISIBLE);
+            url = imagen1.getUrl();
             Glide.with(getContext())
                     .load(url)
-                    .placeholder(R.mipmap.ic_placeholder)
                     .centerCrop()
-                    .into(imageView);
+                    .into(imageView1);
         }
         else{
-            Glide.clear(imageView);
-            imageView.setImageDrawable(null);
+            Glide.clear(imageView1);
+            imageView1.setImageDrawable(null);
         }
 
+        if(imagen2 != null){
+            separator.setVisibility(View.VISIBLE);
+            imageView2.setVisibility(View.VISIBLE);
+            url = imagen2.getUrl();
+            Glide.with(getContext())
+                    .load(url)
+                    .centerCrop()
+                    .into(imageView2);
+        }
+        else{
+            Glide.clear(imageView2);
+            imageView2.setImageDrawable(null);
+        }
 
-        /*
-        // Method for storing
-        final ParseUser usuarioActual = ParseUser.getCurrentUser();
+        if(imagen3 != null){
+            separator.setVisibility(View.VISIBLE);
+            imageView3.setVisibility(View.VISIBLE);
+            url = imagen3.getUrl();
+            Glide.with(getContext())
+                    .load(url)
+                    .centerCrop()
+                    .into(imageView3);
+        }
+        else{
+            Glide.clear(imageView3);
+            imageView3.setImageDrawable(null);
+        }
 
-
-        botonMeGusta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ParseObject like = new ParseObject("MeGusta");
-                like.put("usuario",usuarioActual);
-                like.put("actividad",object);
-                like.saveInBackground();
-
-                object.increment("meGusta");
-                object.saveInBackground();
-
-                textLikes.setText(String.valueOf(object.getInt("meGusta")+1));
-                // Paint Like button green
-
-                botonMeGusta.setEnabled(false);
-
-            }
-        });
-        */
-
+        if(imagen4 != null){
+            separator.setVisibility(View.VISIBLE);
+            imageView4.setVisibility(View.VISIBLE);
+            url = imagen4.getUrl();
+            Glide.with(getContext())
+                    .load(url)
+                    .centerCrop()
+                    .into(imageView4);
+        }
+        else{
+            Glide.clear(imageView4);
+            imageView4.setImageDrawable(null);
+        }
 
         return v;
     }

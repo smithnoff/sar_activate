@@ -3,20 +3,29 @@ package com.example.usuario.soyactivista.fragments;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import logica.ListarActividadAdapter;
+import logica.ListarMensajeParseAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -24,8 +33,10 @@ import soy_activista.quartzapp.com.soy_activista.R;
  */
 public class FragmentListarActividad extends Fragment {
 
+    private static final String TAG = "FragmentListarActividad";
     private ListarActividadAdapter listarActividadAdapter;
     private ListView listView;
+    private ParseUser currentUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,6 +45,9 @@ public class FragmentListarActividad extends Fragment {
 
         // Inflate View
         View view = inflater.inflate(R.layout.fragment_listar_actividad, container, false);
+
+        // Ask for current User
+        currentUser = ParseUser.getCurrentUser();
 
         // Initialize main ParseQueryAdapter
         listarActividadAdapter = new ListarActividadAdapter(this.getContext());
@@ -123,6 +137,196 @@ public class FragmentListarActividad extends Fragment {
             }
         });
 
+        // Let the fragment know we will be loading some options for this fragment
+        setHasOptionsMenu(true);
+
         return view;
     }
+
+
+    // Inflates custom menu for fragment.
+    @Override
+    public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){
+        super.onCreateOptionsMenu(menu, inflater);
+        // Inflate Custom Menu
+        inflater.inflate(R.menu.menu_listar_actividad, menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        switch (item.getItemId()) {
+
+            case R.id.filtroEstatus:
+                // Generate List Holder
+                final AlertDialog alertDialogEstatus;
+                AlertDialog.Builder builderEstatus = new AlertDialog.Builder(getActivity());
+                builderEstatus.setTitle("Filtrar por Estatus");
+
+                // Fill Holder with State List from String Array
+                final ListView listViewDialogEstatus = new ListView(getActivity());
+                final ArrayList<String> arrayListEstatus = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.Estatuses)));
+
+                ArrayAdapter<String> stringArrayAdapterEstatus = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,arrayListEstatus);
+                listViewDialogEstatus.setAdapter(stringArrayAdapterEstatus);
+                builderEstatus.setView(listViewDialogEstatus);
+
+                // Show Dialog
+                alertDialogEstatus = builderEstatus.create();
+                alertDialogEstatus.show();
+
+                listViewDialogEstatus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        alertDialogEstatus.dismiss();
+                        // Request List to filter
+                        // TODO: Create Progress Dialog
+
+                        Log.d(TAG, "Filtering by Status");
+
+                        listarActividadAdapter.clear();
+
+                        listarActividadAdapter = new ListarActividadAdapter(getContext(), "estatus=" + listViewDialogEstatus.getItemAtPosition(position).toString());
+
+                        listView.setAdapter(listarActividadAdapter);
+
+                        listarActividadAdapter.loadObjects();
+
+                        listarActividadAdapter.notifyDataSetChanged();
+
+                        Log.d(TAG, "Adapter has " + listarActividadAdapter.getCount() + " items");
+
+
+                    }
+                });
+
+                return true;
+
+            case R.id.filtroNacionales:
+
+                // Request List to filter
+                // TODO: Create Progress Dialog
+
+                listarActividadAdapter.clear();
+
+                listarActividadAdapter = new ListarActividadAdapter(getContext(),"ubicacion=Nacional");
+
+                listView.setAdapter(listarActividadAdapter);
+
+                listarActividadAdapter.loadObjects();
+
+                listarActividadAdapter.notifyDataSetChanged();
+
+                Log.d(TAG, "Adapter has " + listarActividadAdapter.getCount() + " items");
+
+                break;
+
+            case R.id.filtroEstadales:
+                // Generate List Holder
+                final AlertDialog filterDialogEstadales;
+                AlertDialog.Builder builderEstadales = new AlertDialog.Builder(getActivity());
+                builderEstadales.setTitle("Filtrar por estado");
+
+                // Fill Holder with State List from String Array
+                final ListView listViewDialogEstadales = new ListView(getActivity());
+                final ArrayList<String> arrayListEstadales = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.Estados)));
+
+                // Add element All.
+                arrayListEstadales.add(0, "Todos");
+
+                ArrayAdapter<String> stringArrayAdapterEstadales = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,arrayListEstadales);
+                listViewDialogEstadales.setAdapter(stringArrayAdapterEstadales);
+                builderEstadales.setView(listViewDialogEstadales);
+
+                // Show Dialog
+                filterDialogEstadales = builderEstadales.create();
+                filterDialogEstadales.show();
+
+                listViewDialogEstadales.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        filterDialogEstadales.dismiss();
+                        // Request List to filter
+                        // TODO: Create Progress Dialog
+
+                        Log.d(TAG, "Filtering by State");
+
+                        listarActividadAdapter.clear();
+
+                        listarActividadAdapter = new ListarActividadAdapter(getContext(), "estado=" + listViewDialogEstadales.getItemAtPosition(position).toString());
+
+                        listView.setAdapter(listarActividadAdapter);
+
+                        listarActividadAdapter.loadObjects();
+
+                        listarActividadAdapter.notifyDataSetChanged();
+
+                        Log.d(TAG, "Adapter has " + listarActividadAdapter.getCount() + " items");
+
+
+                    }
+                });
+
+                return true;
+
+            case R.id.filtroMeGusta:
+
+                // Request List to filter
+                // TODO: Create Progress Dialog
+
+                listarActividadAdapter.clear();
+
+                listarActividadAdapter = new ListarActividadAdapter(getContext(),"meGusta=true");
+
+                listView.setAdapter(listarActividadAdapter);
+
+                listarActividadAdapter.loadObjects();
+
+                listarActividadAdapter.notifyDataSetChanged();
+
+                Log.d(TAG, "Adapter has " + listarActividadAdapter.getCount() + " items");
+
+                break;
+
+            case R.id.filtroPropios:
+
+                // Request List to filter
+                // TODO: Create Progress Dialog
+                if(currentUser != null){
+
+                    listarActividadAdapter.clear();
+
+                    listarActividadAdapter = new ListarActividadAdapter(getContext(),"propios="+currentUser.getUsername());
+
+                    listView.setAdapter(listarActividadAdapter);
+
+                    listarActividadAdapter.loadObjects();
+
+                    listarActividadAdapter.notifyDataSetChanged();
+
+                    Log.d(TAG, "Adapter has " + listarActividadAdapter.getCount() + " items");
+
+                }
+                break;
+
+            case R.id.filtroTodas:
+
+                    listarActividadAdapter.clear();
+
+                    listarActividadAdapter = new ListarActividadAdapter(getContext());
+
+                    listView.setAdapter(listarActividadAdapter);
+
+                    listarActividadAdapter.loadObjects();
+
+                    listarActividadAdapter.notifyDataSetChanged();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
 }

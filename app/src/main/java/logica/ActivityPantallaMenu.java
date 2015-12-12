@@ -1,5 +1,7 @@
 package logica;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -50,7 +52,8 @@ public class ActivityPantallaMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-Selector_de_Tema.onActivityCreateSetTheme(this);
+
+        Selector_de_Tema.onActivityCreateSetTheme(this);
 
         setContentView(R.layout.pantalla_con_menu);
 
@@ -107,7 +110,6 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
         MenuItem listarUsuario = navMenu.findItem(R.id.menuListarUsuario);
         MenuItem agregarUsuario = navMenu.findItem(R.id.menuAgregarUsuario);
         MenuItem editarPartido = navMenu.findItem(R.id.menuEditarPartido);
-        MenuItem mensajeReport = navMenu.findItem(R.id.menuMensajeReportado);
 
         // Disable Menu Items if not admin user
         if(usuarioActual.getInt("rol") != 1){
@@ -115,7 +117,6 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
             listarUsuario.setVisible(false);
             agregarUsuario.setVisible(false);
             editarPartido.setVisible(false);
-            mensajeReport.setVisible(false);
         }
 
         navView.setNavigationItemSelectedListener(
@@ -148,12 +149,6 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
                             // PLACEHOLDER TRIVIA
 
                             // PLACEHOLDER PUNTUACIONES
-
-                            //FALTA EL FRAGMENT CORRESPONDIENTE A MENSAJES REPORTADOS
-                            case R.id.menuMensajeReportado:
-                                fragment = new FragmentListarMensaje();
-                                fragmentTransaction = true;
-                                break;
 
                             case R.id.menuListarUsuario:
                                 fragment = new FragmentListarUsuario();/*new FragmentListarUsuarioOLD();*/
@@ -259,17 +254,17 @@ Selector_de_Tema.onActivityCreateSetTheme(this);
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
-            case R.id.action_settings:
-                ParseUser.logOut();
-                finish();
-                return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    // TODO: Remove this method
     private void ocultar(boolean visible,int QueOculto){
         this.menu.findItem(QueOculto).setVisible(visible);
     }
+
+
 public void checkedView(View v) {
 
     //set the selected color
@@ -329,44 +324,64 @@ vistaAntrior=v;
 
 }
 
+    // Receive Actions from Edit Party Theme. Saves Values and redraws as needed
     public void cambiarTema(View v)
     {
-        EditText nPartido= (EditText) findViewById(R.id.editNombrePartido);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+        builder.setTitle("Confirmar");
+        builder.setMessage("¿Está seguro de que desea cambiar los datos del partido?");
 
-       //select de theme color
-          switch(colorChecked)
-          {
+        builder.setPositiveButton("Cambiar", new DialogInterface.OnClickListener() {
 
-              case R.id.themeBrown:
-                 Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BROWN,nPartido.getText().toString());
-                  break;
-              case R.id.themeBlue:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.BLUE,nPartido.getText().toString());
-                  break;
-              case R.id.themeRed:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.RED,nPartido.getText().toString());
-                  break;
-              case R.id.themeDefault:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.DEFAULT,nPartido.getText().toString());
-                  break;
-              case R.id.themeOrange:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.ORANGE,nPartido.getText().toString());
-                  break;
-              case R.id.themeGreen:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.GREEN,nPartido.getText().toString());
-                  break;
-              case R.id.themePurple:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.PURPLE,nPartido.getText().toString());
-                  break;
-              case R.id.themeYellow:
-                  Selector_de_Tema.changeToTheme(this, Selector_de_Tema.YELLOW,nPartido.getText().toString());
-                  break;
-          }
+            public void onClick(DialogInterface dialog, int which) {
 
+                EditText nPartido= (EditText) findViewById(R.id.editNombrePartido);
 
+                //select de theme color
+                switch(colorChecked)
+                {
 
+                    case R.id.themeBrown:
+                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.BROWN,nPartido.getText().toString());
+                        break;
+                    case R.id.themeBlue:
+                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.BLUE,nPartido.getText().toString());
+                        break;
+                    case R.id.themeRed:
+                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.RED,nPartido.getText().toString());
+                        break;
+                    case R.id.themeDefault:
+                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.DEFAULT,nPartido.getText().toString());
+                        break;
+                    case R.id.themeOrange:
+                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.ORANGE,nPartido.getText().toString());
+                        break;
+                    case R.id.themeGreen:
+                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.GREEN,nPartido.getText().toString());
+                        break;
+                    case R.id.themePurple:
+                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.PURPLE,nPartido.getText().toString());
+                        break;
+                    case R.id.themeYellow:
+                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.YELLOW,nPartido.getText().toString());
+                        break;
+                }
+
+            }
+        });
+
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        // After Dialog is Completely defined - Show Dialog.
+        AlertDialog alert = builder.create();
+        alert.show();
     }
-
-
 
 }

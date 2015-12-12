@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/filtroEstados"
+        android:title="@string/filtroEstados"
+        />
+    <item
+        android:id="@+id/filtroPropios"
+        android:title="@string/filtroPropios"
+        />
+
+    <item
+        android:id="@+id/filtroReportados"
+        android:title="@string/filtroReportados"
+        android:visible="false"
+        />
+
+</menu>

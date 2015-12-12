@@ -297,31 +297,43 @@
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/guardar"
-                    android:id="@+id/botonGuardar"
-                    android:textColor="@color/white"
-                    android:visibility="gone"/>
-
-                <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="30"
                     android:layout_height="wrap_content"
                     android:text="@string/editar_cuenta"
                     android:id="@+id/botonEditar"
+                    android:textColor="@color/white"
+                    />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="30"
+                    android:layout_height="wrap_content"
+                    android:text="@string/guardar"
+                    android:id="@+id/botonGuardar"
                     android:textColor="@color/white"
                     android:visibility="gone"
                     />
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="30"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancelar"
+                    android:id="@+id/botonCancelar"
+                    android:textColor="@color/white"
+                    android:visibility="gone"
+                    />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="30"
                     android:layout_height="wrap_content"
                     android:id="@+id/botonEliminar"
                     android:text="@string/eliminar"
                     android:textColor="@color/white"
-                    android:visibility="gone"/>
+                    />
 
             </LinearLayout>
 

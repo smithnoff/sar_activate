@@ -3,6 +3,11 @@ package soy_activista;
 import android.app.Application;
 
 import com.parse.Parse;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+
+import logica.Mensaje;
+import logica.Usuario;
 
 public class SoyActivistaApp extends Application{
 
