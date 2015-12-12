@@ -1,5 +1,6 @@
 package logica;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,13 +11,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.parse.FindCallback;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
 import java.text.SimpleDateFormat;
+import java.util.List;
+import com.parse.ParseException;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -25,8 +36,11 @@ import soy_activista.quartzapp.com.soy_activista.R;
  */
 public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
 
+    private ImageView botonMeGusta;
+
     // Modify Default query to look for objects Actividad
     public ListarActividadAdapter(Context context) {
+
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 ParseQuery query = new ParseQuery("Actividad");
@@ -35,7 +49,11 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
                 return query;
             }
         });
+
     }
+
+
+
 
     public View getItemView(final ParseObject object, View v, ViewGroup parent){
         if(v == null){
@@ -61,7 +79,7 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
 
         //Declare all fields
         final TextView textNombre,textEstatus,textCreador,textInicio,textFin,textLikes;
-        final ImageButton botonMeGusta;
+        final ImageView botonMeGusta;
         final ImageView imageView;
         final View separator;
 
@@ -75,7 +93,9 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
 
         separator = (View)v.findViewById(R.id.separator);
 
-        //botonMeGusta = (ImageButton) v.findViewById(R.id.botonMeGusta);
+     //   botonMeGusta = (ImageView)v.findViewById(R.id.botonMeGusta);
+
+        botonMeGusta = (ImageView) v.findViewById(R.id.botonMeGustaperro);
 
         imageView = (ImageView)v.findViewById(R.id.imagen1);
 
@@ -116,13 +136,14 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
         }
 
 
-        /*
+
         final ParseUser usuarioActual = ParseUser.getCurrentUser();
 
 
         botonMeGusta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 ParseObject like = new ParseObject("MeGusta");
                 like.put("usuario",usuarioActual);
                 like.put("actividad",object);
@@ -131,14 +152,14 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
                 object.increment("meGusta");
                 object.saveInBackground();
 
-                textLikes.setText(String.valueOf(object.getInt("meGusta")+1));
+                textLikes.setText(String.valueOf(object.getInt("meGusta")));
                 // Paint Like button green
 
                 botonMeGusta.setEnabled(false);
 
             }
         });
-        */
+
 
 
         return v;
