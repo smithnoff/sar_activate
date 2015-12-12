@@ -20,6 +20,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 
 import com.bumptech.glide.Glide;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -30,6 +31,7 @@ import com.parse.SaveCallback;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -40,11 +42,12 @@ import static java.lang.Integer.parseInt;
  */
 public class FragmentDetalleActividad extends Fragment {
 
+    private static final String TAG = "FragDetalleActividad";
     private TextView labelPuntaje, labelDescripcion, labelEstado, labelMunicipio, labelParroquia, nombreActual, ubicacionActual, estadoActual, municipioActual, textMeGusta;
     private EditText puntaje, descripcion, objetivo, encargado, creador,  inicio, fin, parroquia; // Edit Field holders
     private Spinner nombre, ubicacion, estado, municipio, estatus; // Spinner holders
     private Button guardar,editar,eliminar,cancelar; // Button holders
-    private ImageButton botonMeGusta;
+    private ImageButton botonMeGusta, botonNoMeGusta;
     private ImageView imagen1,imagen2,imagen3,imagen4;
     private ProgressDialog dialog;
     private ParseObject tipoActividad; // TipoActividad to be associated with Actividad
@@ -100,6 +103,7 @@ public class FragmentDetalleActividad extends Fragment {
         cancelar = (Button)v.findViewById(R.id.botonCancelar);
 
         botonMeGusta = (ImageButton)v.findViewById(R.id.botonMeGusta);
+        botonNoMeGusta = (ImageButton)v.findViewById(R.id.botonNoMeGusta);
 
         // Assign Images to PlaceHolders
         imagen1 = (ImageView)v.findViewById(R.id.imagen1);
@@ -107,10 +111,19 @@ public class FragmentDetalleActividad extends Fragment {
         imagen3 = (ImageView)v.findViewById(R.id.imagen3);
         imagen4 = (ImageView)v.findViewById(R.id.imagen4);
 
+
         // Show buttons depending on Role or if user is owner
         if(usuarioActual.getInt("rol") == 1 || usuarioActual.getObjectId().equals(getArguments().getString("creadorId"))){
             editar.setVisibility(View.VISIBLE);
             eliminar.setVisibility(View.VISIBLE);
+        }
+
+        // Disable like button if activity already liked
+        if(getArguments().getBoolean("liked")){
+            botonMeGusta.setEnabled(false);
+            textMeGusta.setTextColor(getContext().getResources().getColor(R.color.verde));
+            botonMeGusta.setVisibility(View.GONE);
+            botonNoMeGusta.setVisibility(View.VISIBLE);
         }
 
         // Load Defaults from Arguments bundle
@@ -266,7 +279,7 @@ public class FragmentDetalleActividad extends Fragment {
 
         //Load Likes
         Log.d("DETALLE", "Value Likes; "+getArguments().getInt("meGusta"));
-        String procureLikes = String.valueOf(getArguments().getInt("meGusta"));
+        final String procureLikes = String.valueOf(getArguments().getInt("meGusta"));
         Log.d("DETALLE", "String Likes; "+procureLikes);
         textMeGusta.setText(procureLikes);
 
@@ -454,6 +467,7 @@ public class FragmentDetalleActividad extends Fragment {
             }
         });
 
+        // Likes Behavior
         botonMeGusta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -471,9 +485,54 @@ public class FragmentDetalleActividad extends Fragment {
                 String procureLikes = String.valueOf(getArguments().getInt("meGusta")+1);
                 textMeGusta.setText(procureLikes);
                 // Paint Like button green
+                botonMeGusta.setVisibility(View.GONE);
                 botonMeGusta.setColorFilter(R.color.verde);
-
                 botonMeGusta.setEnabled(false);
+
+                // Activate tinted button
+                botonNoMeGusta.setVisibility(View.VISIBLE);
+                botonNoMeGusta.setEnabled(true);
+            }
+        });
+
+        // Likes Behavior
+        botonNoMeGusta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ParseObject actividadLiked = ParseObject.createWithoutData("Actividad",getArguments().getString("id"));
+
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("MeGusta");
+                query.whereEqualTo("actividad", actividadLiked);
+                query.whereEqualTo("usuario", usuarioActual);
+
+                query.getFirstInBackground(new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(ParseObject object, ParseException e) {
+                        if(e == null){
+                            object.deleteInBackground();
+                        }
+                        else{
+                            Log.d(TAG,e.getMessage());
+                        }
+                    }
+                });
+
+                actividadLiked.increment("meGusta",-1);
+                actividadLiked.saveInBackground();
+
+                Log.d("DETALLE", "Value Likes; " + getArguments().getInt("meGusta"));
+                String procureLikes = String.valueOf(getArguments().getInt("meGusta")-1);
+                textMeGusta.setText(procureLikes);
+
+                // Paint Like button green
+                botonNoMeGusta.setVisibility(View.GONE);
+                botonNoMeGusta.setEnabled(false);
+                textMeGusta.setTextColor(getContext().getResources().getColor(R.color.grisOscuro));
+
+
+                botonMeGusta.setVisibility(View.VISIBLE);
+                botonMeGusta.setEnabled(true);
             }
         });
 

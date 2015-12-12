@@ -16,13 +16,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import logica.ListarActividadAdapter;
 import logica.ListarMensajeParseAdapter;
@@ -37,6 +41,7 @@ public class FragmentListarActividad extends Fragment {
     private ListarActividadAdapter listarActividadAdapter;
     private ListView listView;
     private ParseUser currentUser;
+    private ArrayList<String> likes;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,25 +49,49 @@ public class FragmentListarActividad extends Fragment {
 
 
         // Inflate View
-        View view = inflater.inflate(R.layout.fragment_listar_actividad, container, false);
+        final View view = inflater.inflate(R.layout.fragment_listar_actividad, container, false);
 
         // Ask for current User
         currentUser = ParseUser.getCurrentUser();
 
-        // Initialize main ParseQueryAdapter
-        listarActividadAdapter = new ListarActividadAdapter(this.getContext());
-
         // Initialize list view
         listView = (ListView)view.findViewById(R.id.actividadesListView);
 
-        if(listarActividadAdapter !=null){
-            Log.d("ADAPTER", "Adapter is not null!");
-            listView.setAdapter(listarActividadAdapter);
-            listarActividadAdapter.loadObjects();
-        }
-        else{
-            Log.d("ADAPTER", "Adapter returned null!");
-        }
+        likes = new ArrayList<>();
+
+        // Get current user likes
+        // TODO: Limit returning likes number
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("MeGusta");
+        query.whereEqualTo("usuario", currentUser);
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> parseLikes, ParseException e) {
+                if (e == null) {
+                    Log.d("Likes", "Retrieved " + parseLikes.size() + " likes");
+                    // Add user likes to list
+                    for (int i = 0; i < parseLikes.size(); i++) {
+                        likes.add(parseLikes.get(i).getParseObject("actividad").getObjectId());
+                    }
+                    Log.d("Likes", "Likes list contains " + likes.size() + " likes");
+
+                    // Initialize main ParseQueryAdapter
+                    listarActividadAdapter = new ListarActividadAdapter(getContext(),likes);
+
+                    if(listarActividadAdapter !=null){
+                        Log.d("ADAPTER", "Adapter is not null!");
+                        listView.setAdapter(listarActividadAdapter);
+                        listarActividadAdapter.loadObjects();
+                    }
+                    else{
+                        Log.d("ADAPTER", "Adapter returned null!");
+                    }
+
+                } else {
+                    Log.d("Likes", "Error: " + e.getMessage());
+                }
+            }
+        });
+
 
         // Handle Item OnClick Events
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -82,9 +111,11 @@ public class FragmentListarActividad extends Fragment {
 
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
+                Boolean liked = likes.contains(actividad.getObjectId());
+
                 Bundle datos = new Bundle();
                 Log.d("LISTAR", "Valor MeGusta: "+actividad.getObjectId());
-                datos.putString("id",actividad.getObjectId());
+                datos.putString("id", actividad.getObjectId());
                 datos.putString("tipoId",tipoActividad.getObjectId());
                 datos.putString("nombre", tipoActividad.getString("nombre"));
                 datos.putString("descripcion",tipoActividad.getString("descripcion"));
@@ -96,6 +127,8 @@ public class FragmentListarActividad extends Fragment {
                 datos.putString("estatus",actividad.getString("estatus"));
                 datos.putString("inicio",format.format(actividad.getDate("inicio")));
                 datos.putString("fin", format.format(actividad.getDate("fin")));
+                datos.putBoolean("liked",liked);
+
                 Log.d("LISTAR", "Valor MeGusta: "+actividad.getInt("meGusta"));
                 datos.putInt("meGusta",actividad.getInt("meGusta"));
 
@@ -187,7 +220,7 @@ public class FragmentListarActividad extends Fragment {
 
                         listarActividadAdapter.clear();
 
-                        listarActividadAdapter = new ListarActividadAdapter(getContext(), "estatus=" + listViewDialogEstatus.getItemAtPosition(position).toString());
+                        listarActividadAdapter = new ListarActividadAdapter(getContext(),likes, "estatus=" + listViewDialogEstatus.getItemAtPosition(position).toString());
 
                         listView.setAdapter(listarActividadAdapter);
 
@@ -210,7 +243,7 @@ public class FragmentListarActividad extends Fragment {
 
                 listarActividadAdapter.clear();
 
-                listarActividadAdapter = new ListarActividadAdapter(getContext(),"ubicacion=Nacional");
+                listarActividadAdapter = new ListarActividadAdapter(getContext(),likes,"ubicacion=Nacional");
 
                 listView.setAdapter(listarActividadAdapter);
 
@@ -254,7 +287,7 @@ public class FragmentListarActividad extends Fragment {
 
                         listarActividadAdapter.clear();
 
-                        listarActividadAdapter = new ListarActividadAdapter(getContext(), "estado=" + listViewDialogEstadales.getItemAtPosition(position).toString());
+                        listarActividadAdapter = new ListarActividadAdapter(getContext(),likes, "estado=" + listViewDialogEstadales.getItemAtPosition(position).toString());
 
                         listView.setAdapter(listarActividadAdapter);
 
@@ -277,7 +310,7 @@ public class FragmentListarActividad extends Fragment {
 
                 listarActividadAdapter.clear();
 
-                listarActividadAdapter = new ListarActividadAdapter(getContext(),"meGusta=true");
+                listarActividadAdapter = new ListarActividadAdapter(getContext(),likes,"meGusta=true");
 
                 listView.setAdapter(listarActividadAdapter);
 
@@ -297,7 +330,7 @@ public class FragmentListarActividad extends Fragment {
 
                     listarActividadAdapter.clear();
 
-                    listarActividadAdapter = new ListarActividadAdapter(getContext(),"propios="+currentUser.getUsername());
+                    listarActividadAdapter = new ListarActividadAdapter(getContext(),likes,"propios="+currentUser.getUsername());
 
                     listView.setAdapter(listarActividadAdapter);
 
@@ -314,7 +347,7 @@ public class FragmentListarActividad extends Fragment {
 
                     listarActividadAdapter.clear();
 
-                    listarActividadAdapter = new ListarActividadAdapter(getContext());
+                    listarActividadAdapter = new ListarActividadAdapter(getContext(),likes);
 
                     listView.setAdapter(listarActividadAdapter);
 

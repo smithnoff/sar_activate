@@ -122,20 +122,24 @@ public class FragmentEditarTipoActividad extends Fragment {
                         // Retrieve the object by id from parse
                         query.getInBackground(getArguments().getString("id"), new GetCallback<ParseObject>() {
                             public void done(ParseObject tipoActividad, ParseException e) {
-
                                 if (e == null) {
-                                    // Fill ParseObject to send
+                                    // Disable tipoActividad
+                                    tipoActividad.put("activa", false);
+                                    tipoActividad.saveInBackground();
+
+                                    // Fill new ParseObject to send
+                                    ParseObject newTipoActividad = new ParseObject("TipoActividad");
                                     tipoActividad.put("nombre", nombre.getText().toString());
                                     tipoActividad.put("puntaje", parseInt(puntaje.getSelectedItem().toString()));
                                     tipoActividad.put("descripcion", descripcion.getText().toString());
                                     tipoActividad.put("creador", usuarioActual);
+                                    tipoActividad.put("activa",true);
 
-                                    // Save
                                     tipoActividad.saveInBackground(new SaveCallback() {
                                         public void done(ParseException e) {
                                             if (e == null) {
                                                 dialog.dismiss();
-                                                Toast.makeText(getActivity(), "Cambios guardados correctamente", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getActivity(), "Tipo de actividad Guardada", Toast.LENGTH_SHORT).show();
                                                 // Redirect View to Boletin de Actividades
                                                 Fragment fragment = new FragmentListarTipoActividad();
                                                 getFragmentManager()
@@ -143,9 +147,8 @@ public class FragmentEditarTipoActividad extends Fragment {
                                                         .replace(R.id.content_frame, fragment)
                                                         .commit();
                                             } else {
-                                                // Saving could not be done
                                                 dialog.dismiss();
-                                                Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                                Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
@@ -205,7 +208,7 @@ public class FragmentEditarTipoActividad extends Fragment {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Confirmar");
-                builder.setMessage("¿Está seguro que desea eliminar el tipo de actividad? TODAS las actividades relacionadas al mismo serán removidas.");
+                builder.setMessage("¿Está seguro que desea eliminar el tipo de actividad?.");
 
                 builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
 
@@ -213,24 +216,18 @@ public class FragmentEditarTipoActividad extends Fragment {
                         dialogo.dismiss();
 
                         ParseObject delTipoActividad = ParseObject.createWithoutData("TipoActividad", getArguments().getString("id"));
-                        // Remove all activities related to type.
-                        ParseQuery<ParseObject> query = ParseQuery.getQuery("Actividad");
-                        query.whereEqualTo("tipoActividad", delTipoActividad);
-                        query.findInBackground(new FindCallback<ParseObject>() {
-                            public void done(List<ParseObject> activityList, ParseException e) {
-                                if (e == null) {
-                                    for (int i = 0; i < activityList.size(); i++) {
-                                        activityList.get(i).deleteInBackground();
-                                    }
+                        // Disable tipoActividad
+                        delTipoActividad.put("activa", false);
+                        delTipoActividad.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e != null) {
+                                    Toast.makeText(getActivity(), "Tipo de actividad eliminada correctamente.", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getActivity(), "Ocurrió un error eliminando la actividad."+e.getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
-
-                        delTipoActividad.deleteInBackground();
-
-                        Toast.makeText(getActivity(), "Tipo de actividad y subactividades eliminadas correctamente.", Toast.LENGTH_SHORT).show();
 
                         Fragment fragment = new FragmentListarTipoActividad();
                         getFragmentManager()

@@ -23,7 +23,7 @@
 
     <item
         android:id="@+id/filtroPropios"
-        android:title="@string/filtroPropios"
+        android:title="@string/filtroActividadesPropias"
         />
 
     <item

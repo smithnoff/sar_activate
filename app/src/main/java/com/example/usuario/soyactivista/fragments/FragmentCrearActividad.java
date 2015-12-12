@@ -281,7 +281,7 @@ public class FragmentCrearActividad extends Fragment {
                             // Handle Image uploading
                             if (imagenSeleccionada != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada);
+                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + "1.jpg", imagenSeleccionada);
                                 actividad.put("imagen1", fotoFinal);
 
                                 fotoFinal.saveInBackground(new SaveCallback() {
@@ -300,7 +300,7 @@ public class FragmentCrearActividad extends Fragment {
 
                             if (imagenSeleccionada2 != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada2);
+                                ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + random + "2.jpg", imagenSeleccionada2);
                                 actividad.put("imagen2", fotoFinal2);
 
                                 fotoFinal2.saveInBackground(new SaveCallback() {
@@ -319,7 +319,7 @@ public class FragmentCrearActividad extends Fragment {
 
                             if (imagenSeleccionada3 != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada3);
+                                ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + random + "3.jpg", imagenSeleccionada3);
                                 actividad.put("imagen3", fotoFinal3);
 
                                 fotoFinal3.saveInBackground(new SaveCallback() {
@@ -338,7 +338,7 @@ public class FragmentCrearActividad extends Fragment {
 
                             if (imagenSeleccionada4 != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada4);
+                                ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + random + "4.jpg", imagenSeleccionada4);
                                 actividad.put("imagen4", fotoFinal4);
 
                                 fotoFinal4.saveInBackground(new SaveCallback() {

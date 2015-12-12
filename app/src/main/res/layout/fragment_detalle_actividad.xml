@@ -253,25 +253,30 @@
                 android:id="@+id/imagen1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:layout_marginTop="10dp"/>
 
             <ImageView
                 android:id="@+id/imagen2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                />
 
             <ImageView
                 android:id="@+id/imagen3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:layout_marginTop="10dp"/>
 
             <ImageView
                 android:id="@+id/imagen4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:layout_marginTop="10dp"/>
 
             <ImageButton
                 android:id="@+id/botonMeGusta"
@@ -280,6 +285,17 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/ic_thumb_up"
                 android:layout_gravity="center"
+                />
+
+            <ImageButton
+                android:id="@+id/botonNoMeGusta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/ic_thumb_up"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/verde"
+                android:visibility="gone"
                 />
 
             <TextView

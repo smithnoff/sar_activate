@@ -125,7 +125,19 @@
         android:background="@drawable/ic_thumb_up"
         android:layout_alignParentRight="true"
         android:clickable="true"
-        android:onClick="imageClick"
+        />
+
+    <ImageButton
+        android:id="@+id/botonNoMeGusta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/nombreActividad"
+        android:background="@drawable/ic_thumb_up"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:backgroundTint="@color/verde"
+        android:visibility="gone"
         />
 
     <TextView
@@ -139,6 +151,7 @@
         android:layout_below="@+id/botonMeGusta"
         android:layout_alignParentRight="true"
         android:text="@string/prueba"
+        android:visibility="visible"
         />
 
     <View
