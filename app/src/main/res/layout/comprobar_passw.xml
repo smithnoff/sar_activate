@@ -77,7 +77,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/repita_pass"
-                        android:id="@+id/LclaveCodigo"
+                        android:id="@+id/labelToken"
                         android:textStyle="bold|italic"
                         android:layout_gravity="center_horizontal" />
 
@@ -109,7 +109,7 @@
                 android:layout_weight="0">
 
                 <Button
-                    android:id="@+id/ingresar"
+                    android:id="@+id/buttonIngresar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -117,7 +117,7 @@
                     android:textColor="@android:color/white" />
 
                 <Button
-                    android:id="@+id/regresar"
+                    android:id="@+id/buttonRegresar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"

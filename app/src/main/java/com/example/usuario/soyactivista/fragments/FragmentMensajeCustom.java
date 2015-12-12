@@ -21,8 +21,8 @@ public class FragmentMensajeCustom extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.mensajes, container, false);
 
-        botonIngresar = (Button) v.findViewById(R.id.ingresar);
-        botonRegresar = (Button) v.findViewById(R.id.regresar);
+        botonIngresar = (Button) v.findViewById(R.id.buttonIngresar);
+        botonRegresar = (Button) v.findViewById(R.id.buttonRegresar);
 
         return v;
     }
