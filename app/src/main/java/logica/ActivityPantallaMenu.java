@@ -1,6 +1,6 @@
 package logica;
 
-import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,8 +13,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +29,7 @@ import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
 import com.example.usuario.soyactivista.fragments.FragmenteEditarUsuario;
+import com.parse.ParseException;
 import com.parse.ParseUser;
 
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -40,6 +41,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 
 public class ActivityPantallaMenu extends AppCompatActivity {
 
+    private static final String TAG = "Act-Menu";
     private Toolbar appbar;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
@@ -49,11 +51,15 @@ public class ActivityPantallaMenu extends AppCompatActivity {
     private int colorChecked;
     private  View vistaAntrior;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Selector_de_Tema.onActivityCreateSetTheme(this);
+        try {
+            Selector_de_Tema.onActivityCreateSetTheme(this);
+        } catch (ParseException e) {
+            Log.d(TAG,"Theme could not be retrieved.");
+        }
 
         setContentView(R.layout.pantalla_con_menu);
 
@@ -65,7 +71,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
 
         // Gets Current User
         final ParseUser usuarioActual = ParseUser.getCurrentUser();
-            nombrePartido.setText(Selector_de_Tema.getnPartido());
+            nombrePartido.setText(Selector_de_Tema.getNombrePartido());
         if(usuarioActual != null) {
             nombreUsuario.setText(usuarioActual.getString("nombre") + " " + usuarioActual.getString("apellido"));
             cargoUsuario.setText(usuarioActual.getString("cargo"));
@@ -130,7 +136,6 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                         switch (menuItem.getItemId()) {
                             case R.id.menuDashBoard:
                                 fragment = new FragmentListarMensaje();
-                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
@@ -151,20 +156,17 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                             // PLACEHOLDER PUNTUACIONES
 
                             case R.id.menuListarUsuario:
-                                fragment = new FragmentListarUsuario();/*new FragmentListarUsuarioOLD();*/
-                                ocultar(true,R.id.buscador);
+                                fragment = new FragmentListarUsuario();
                                 fragmentTransaction = true;
                                 break;
 
                             case R.id.menuAgregarUsuario:
                                 fragment = new FragmentCrearUsuario();
-                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
                             case R.id.menuEditarPartido:
                                 fragment = new FragmentEditarPartido();
-                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
 
@@ -182,7 +184,6 @@ public class ActivityPantallaMenu extends AppCompatActivity {
 
                             default:
                                 fragment = new FragmentListarMensaje();
-                                ocultar(false,R.id.buscador);
                                 fragmentTransaction = true;
                                 break;
                         }
@@ -212,38 +213,6 @@ public class ActivityPantallaMenu extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_pantalla_principal, menu);
         this.menu=menu;
-        this.ocultar(false, R.id.buscador);
-        SearchView sv = (SearchView) menu.findItem(R.id.buscador).getActionView();
-        sv.setQueryHint(getString(R.string.hintBuscador));
-
-        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                if(query.length() > 0){ // If any word was queried
-
-                    // Bundle Query with arguments for fragment
-                    Bundle data = new Bundle();
-                    data.putString("busqueda", query);
-
-                    // Create new Fragment
-                    // Redirect View to next Fragment
-                    Fragment fragment = new FragmentListarUsuario();
-                    fragment.setArguments(data);
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.content_frame, fragment)
-                            .addToBackStack(null)
-                            .commit();
-                }
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
         return true;
     }
 
@@ -259,129 +228,99 @@ public class ActivityPantallaMenu extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // TODO: Remove this method
-    private void ocultar(boolean visible,int QueOculto){
-        this.menu.findItem(QueOculto).setVisible(visible);
-    }
 
 
-public void checkedView(View v) {
+    public void checkedView(View v) {
 
-    //set the selected color
-    colorChecked = v.getId();
-if(vistaAntrior==null)
-    vistaAntrior=v;
+        //set the selected color
+        colorChecked = v.getId();
+        if(vistaAntrior==null)
+            vistaAntrior=v;
 
-    if(v.getId()==R.id.themeBrown) {
-        v.setBackground(getResources().getDrawable(R.drawable.circulomarron));
-    }else {
-        if(vistaAntrior.getId()==R.id.themeBrown)
-        vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulobr));
-    }
-    if(v.getId()==R.id.themeOrange) {
-        v.setBackground(getResources().getDrawable(R.drawable.circulonaranja));
-    }else {
-        if(vistaAntrior.getId()==R.id.themeOrange)
-        vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulon));
-    }
-    if(v.getId()==R.id.themeBlue) {
-        v.setBackground(getResources().getDrawable(R.drawable.circuloazul));
-    }else {
-        if(vistaAntrior.getId()==R.id.themeBlue)
-            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circuloaz));
-    }
-    if(v.getId()==R.id.themeRed) {
-        v.setBackground(getResources().getDrawable(R.drawable.circulorojo));
-    }else {
-        if(vistaAntrior.getId()==R.id.themeRed)
-            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulor));
-    }
-    if(v.getId()==R.id.themeGreen) {
-        v.setBackground(getResources().getDrawable(R.drawable.circuloverde));
-    }else {
-        if(vistaAntrior.getId()==R.id.themeGreen)
-            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulov));
-    }
-    if(v.getId()==R.id.themeYellow) {
-        v.setBackground(getResources().getDrawable(R.drawable.circuloamarillo));
-    }else {
-        if(vistaAntrior.getId()==R.id.themeYellow)
-            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circuloam));
-    }
-    if(v.getId()==R.id.themePurple) {
-        v.setBackground(getResources().getDrawable(R.drawable.circulopurpura));
-    }else {
-        if(vistaAntrior.getId()==R.id.themePurple)
-            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulop));
-    }
-    if(v.getId()==R.id.themeDefault) {
-        v.setBackground(getResources().getDrawable(R.drawable.circuloindigo));
-    }else {
-        if(vistaAntrior.getId()==R.id.themeDefault)
-            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulo));
-    }
-vistaAntrior=v;
+        if(v.getId()==R.id.themeBrown) {
+            v.setBackground(getResources().getDrawable(R.drawable.circulomarron));
+        }else {
+            if(vistaAntrior.getId()==R.id.themeBrown)
+                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulobr));
+        }
+        if(v.getId()==R.id.themeOrange) {
+            v.setBackground(getResources().getDrawable(R.drawable.circulonaranja));
+        }else {
+            if(vistaAntrior.getId()==R.id.themeOrange)
+                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulon));
+        }
+        if(v.getId()==R.id.themeBlue) {
+            v.setBackground(getResources().getDrawable(R.drawable.circuloazul));
+        }else {
+            if(vistaAntrior.getId()==R.id.themeBlue)
+                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circuloaz));
+        }
+        if(v.getId()==R.id.themeRed) {
+            v.setBackground(getResources().getDrawable(R.drawable.circulorojo));
+        }else {
+            if(vistaAntrior.getId()==R.id.themeRed)
+                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulor));
+        }
+        if(v.getId()==R.id.themeGreen) {
+            v.setBackground(getResources().getDrawable(R.drawable.circuloverde));
+        }else {
+            if(vistaAntrior.getId()==R.id.themeGreen)
+                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulov));
+        }
+        if(v.getId()==R.id.themeYellow) {
+            v.setBackground(getResources().getDrawable(R.drawable.circuloamarillo));
+        }else {
+            if(vistaAntrior.getId()==R.id.themeYellow)
+                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circuloam));
+        }
+        if(v.getId()==R.id.themePurple) {
+            v.setBackground(getResources().getDrawable(R.drawable.circulopurpura));
+        }else {
+            if(vistaAntrior.getId()==R.id.themePurple)
+                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulop));
+        }
+        if(v.getId()==R.id.themeDefault) {
+            v.setBackground(getResources().getDrawable(R.drawable.circuloindigo));
+        }else {
+            if(vistaAntrior.getId()==R.id.themeDefault)
+                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulo));
+        }
+        vistaAntrior=v;
 
-}
+    }
 
     // Receive Actions from Edit Party Theme. Saves Values and redraws as needed
     public void cambiarTema(View v)
     {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
-        builder.setTitle("Confirmar");
-        builder.setMessage("¿Está seguro de que desea cambiar los datos del partido?");
+        EditText nPartido= (EditText) findViewById(R.id.editNombrePartido);
 
-        builder.setPositiveButton("Cambiar", new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface dialog, int which) {
-
-                EditText nPartido= (EditText) findViewById(R.id.editNombrePartido);
-
-                //select de theme color
-                switch(colorChecked)
-                {
-
-                    case R.id.themeBrown:
-                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.BROWN,nPartido.getText().toString());
-                        break;
-                    case R.id.themeBlue:
-                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.BLUE,nPartido.getText().toString());
-                        break;
-                    case R.id.themeRed:
-                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.RED,nPartido.getText().toString());
-                        break;
-                    case R.id.themeDefault:
-                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.DEFAULT,nPartido.getText().toString());
-                        break;
-                    case R.id.themeOrange:
-                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.ORANGE,nPartido.getText().toString());
-                        break;
-                    case R.id.themeGreen:
-                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.GREEN,nPartido.getText().toString());
-                        break;
-                    case R.id.themePurple:
-                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.PURPLE,nPartido.getText().toString());
-                        break;
-                    case R.id.themeYellow:
-                        Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.YELLOW,nPartido.getText().toString());
-                        break;
-                }
-
-            }
-        });
-
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Do nothing
-                dialog.dismiss();
-            }
-        });
-
-        // After Dialog is Completely defined - Show Dialog.
-        AlertDialog alert = builder.create();
-        alert.show();
+        //select de theme color
+        switch(colorChecked)
+        {
+            case R.id.themeBrown:
+                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.BROWN,nPartido.getText().toString());
+                break;
+            case R.id.themeBlue:
+                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.BLUE,nPartido.getText().toString());
+                break;
+            case R.id.themeRed:
+                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.RED,nPartido.getText().toString());
+                break;
+            case R.id.themeDefault:
+                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.DEFAULT,nPartido.getText().toString());
+                break;
+            case R.id.themeOrange:
+                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.ORANGE,nPartido.getText().toString());
+                break;
+            case R.id.themeGreen:
+                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.GREEN,nPartido.getText().toString());
+                break;
+            case R.id.themePurple:
+                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.PURPLE,nPartido.getText().toString());
+                break;
+            case R.id.themeYellow:
+                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.YELLOW,nPartido.getText().toString());
+                break;
+        }
     }
-
 }

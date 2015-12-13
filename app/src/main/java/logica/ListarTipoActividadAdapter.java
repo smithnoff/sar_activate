@@ -23,6 +23,7 @@ public class ListarTipoActividadAdapter extends ParseQueryAdapter<ParseObject> {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 ParseQuery query = new ParseQuery("TipoActividad");
+                query.whereEqualTo("activa",true);
                 return query;
             }
         });

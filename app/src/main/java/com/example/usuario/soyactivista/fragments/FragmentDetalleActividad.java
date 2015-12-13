@@ -436,9 +436,9 @@ public class FragmentDetalleActividad extends Fragment {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Confirmar");
-                builder.setMessage("¿Estas Seguro?");
+                builder.setMessage("¿Está seguro que desea eliminar la actividad?");
 
-                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialogo, int which) {
                         // Redirect View to list
@@ -452,7 +452,7 @@ public class FragmentDetalleActividad extends Fragment {
 
                 });
 
-                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialogo, int which) {
