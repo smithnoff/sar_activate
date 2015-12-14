@@ -36,7 +36,7 @@ public class DialogDatePicker extends DialogFragment
         Calendar c = Calendar.getInstance();
         c.set(year, month, day);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         formattedDate = sdf.format(c.getTime());
 
         if (((EditText) getActivity().findViewById(R.id.editInicio)).isFocused())

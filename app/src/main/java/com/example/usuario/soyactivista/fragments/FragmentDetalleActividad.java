@@ -43,7 +43,7 @@ public class FragmentDetalleActividad extends Fragment {
     private EditText puntaje, descripcion, objetivo, encargado, creador,  inicio, fin, parroquia; // Edit Field holders
     private Spinner nombre, ubicacion, estado, municipio, estatus; // Spinner holders
     private Button guardar,editar,eliminar,cancelar; // Button holders
-    private ImageButton botonMeGusta, botonNoMeGusta;
+    private ImageButton botonMeGusta, botonNoMeGusta,calendarInicio,calendarFin;
     private ImageView imagen1,imagen2,imagen3,imagen4;
     private ProgressDialog dialog;
     private ParseObject tipoActividad; // TipoActividad to be associated with Actividad
@@ -82,29 +82,32 @@ public class FragmentDetalleActividad extends Fragment {
         inicio = (EditText)v.findViewById(R.id.editInicio);
         fin = (EditText)v.findViewById(R.id.editFin);
         parroquia = (EditText)v.findViewById(R.id.editParroquia);
-        inicio.setOnClickListener(new View.OnClickListener() {
+        calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
+        calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
+        calendarInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fin.setText("");
+                inicio.requestFocus();
+                inicio.setText("");
                 DialogDatePicker picker2 = new DialogDatePicker();
-                picker2.show(getFragmentManager(), "Fecha de Final");
+                picker2.show(getFragmentManager(), "Fecha de inicio");
 
 
 
             }
         });
-        fin.setOnClickListener(new View.OnClickListener() {
+        calendarFin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fin.requestFocus();
                 fin.setText("");
                 DialogDatePicker picker2 = new DialogDatePicker();
-                picker2.show(getFragmentManager(), "Fecha de Final");
+                picker2.show(getFragmentManager(), "Fecha de Fin");
 
 
 
             }
         });
-
         // Asigns Spinners to holders
         nombre = (Spinner)v.findViewById(R.id.spinNombreActividad);
         ubicacion = (Spinner)v.findViewById(R.id.spinUbicacion);
