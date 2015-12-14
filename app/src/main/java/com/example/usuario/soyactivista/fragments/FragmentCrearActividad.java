@@ -10,10 +10,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -24,7 +24,6 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -42,11 +41,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import soy_activista.quartzapp.com.soy_activista.R;
-
-import android.content.DialogInterface;
-
-
-import static java.lang.Integer.parseInt;
 
 
 /**
@@ -107,7 +101,28 @@ public class FragmentCrearActividad extends Fragment {
         inicio = (EditText)v.findViewById(R.id.editInicio);
         fin = (EditText)v.findViewById(R.id.editFin);
         parroquia = (EditText)v.findViewById(R.id.editParroquia);
+inicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fin.setText("");
+                DialogDatePicker picker2 = new DialogDatePicker();
+                picker2.show(getFragmentManager(), "Fecha de Final");
 
+
+
+            }
+        });
+        fin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fin.setText("");
+                DialogDatePicker picker2 = new DialogDatePicker();
+                picker2.show(getFragmentManager(), "Fecha de Final");
+
+
+
+            }
+        });
         // Asigns Spinners to holders
         nombre = (Spinner)v.findViewById(R.id.spinNombreActividad);
         ubicacion = (Spinner)v.findViewById(R.id.spinUbicacion);

@@ -1,6 +1,8 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,11 +18,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 
 import com.bumptech.glide.Glide;
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -31,11 +30,8 @@ import com.parse.SaveCallback;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 import soy_activista.quartzapp.com.soy_activista.R;
-
-import static java.lang.Integer.parseInt;
 
 /**
  * Created by Brahyam on 25/11/2015.
@@ -86,6 +82,28 @@ public class FragmentDetalleActividad extends Fragment {
         inicio = (EditText)v.findViewById(R.id.editInicio);
         fin = (EditText)v.findViewById(R.id.editFin);
         parroquia = (EditText)v.findViewById(R.id.editParroquia);
+        inicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fin.setText("");
+                DialogDatePicker picker2 = new DialogDatePicker();
+                picker2.show(getFragmentManager(), "Fecha de Final");
+
+
+
+            }
+        });
+        fin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fin.setText("");
+                DialogDatePicker picker2 = new DialogDatePicker();
+                picker2.show(getFragmentManager(), "Fecha de Final");
+
+
+
+            }
+        });
 
         // Asigns Spinners to holders
         nombre = (Spinner)v.findViewById(R.id.spinNombreActividad);
