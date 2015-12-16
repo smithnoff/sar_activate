@@ -4,19 +4,29 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.ConfigCallback;
+import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.LogInCallback;
+import com.parse.ParseConfig;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import java.util.List;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
 
 public class ActivityLogin extends AppCompatActivity {
+    private static final String TAG = "LoginAct";
     private EditText editUsername, editPassword;
     private Button buttonIngresar, buttonRegresar;
     private String usuario, contrasena;
@@ -54,13 +64,16 @@ public class ActivityLogin extends AppCompatActivity {
                                     public void done(ParseUser user, ParseException e) {
                                         if(user != null){
                                             dialog.dismiss();
+
+                                            Log.d(TAG,"User Logged In");
+
                                             Intent i = new Intent(getApplication(), ActivityPantallaMenu.class);
                                             startActivity(i);
                                             finish();
                                         }else{
                                             dialog.dismiss();
                                             // TODO: discern between different exceptions and show appropiate message.
-                                            Toast.makeText(getApplicationContext(), "Identificador o Contraseña incorrecta."+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), "Identificador o Contraseña incorrecta.", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });

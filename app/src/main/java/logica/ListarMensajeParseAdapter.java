@@ -1,6 +1,7 @@
 package logica;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +16,75 @@ import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
+
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
  * Created by Brahyam on 27/11/2015.
  */
-public class ListarMensajeAdapter extends ParseQueryAdapter<ParseObject> {
+public class ListarMensajeParseAdapter extends ParseQueryAdapter<ParseObject> {
 
 
-    // Modify Default query to look for objects Actividad
-    public ListarMensajeAdapter(Context context) {
+    private static final String TAG = "MensajeAdapter";
+
+    // Modify Default query to look for objects Mensaje
+    public ListarMensajeParseAdapter(Context context) {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 ParseQuery query = new ParseQuery("Mensaje");
+                query.include("autor");
+                query.orderByDescending("createdAt");
+                return query;
+            }
+        });
+    }
+
+    // Modify Default query to look for objects Mensaje with Constraint
+    public ListarMensajeParseAdapter(Context context, final String constraint) {
+        super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
+            public ParseQuery create() {
+
+                Log.d(TAG, "Filtering with query "+constraint);
+
+                // Initialize Query on table Mensaje
+                ParseQuery query = new ParseQuery("Mensaje");
+
+                // Determine type of constraint
+                String[] queryArray = constraint.toString().split("=");
+                String value = queryArray[1];
+
+                switch (queryArray[0]){
+                    case "estado":
+
+                        // Query is asking for whole list skip search.
+                        if(value.equals("Todos"))
+                            break;
+
+                        Log.d(TAG, "value " + value);
+                        // Set new Query
+                        ParseQuery<ParseObject> innerQuery = ParseQuery.getQuery("_User");
+                        innerQuery.whereEqualTo("estado", value);
+                        query.whereMatchesQuery("autor", innerQuery);
+                        break;
+
+                    case "propios":
+                        Log.d(TAG, "value "+value);
+                        ParseQuery<ParseObject> innerQuery2 = ParseQuery.getQuery("_User");
+                        innerQuery2.whereEqualTo("username", value);
+                        query.whereMatchesQuery("autor", innerQuery2);
+                        break;
+
+                    case "reportados":
+                        Log.d(TAG, "value "+value);
+                        query.whereEqualTo("reportado", true);
+                        break;
+
+                    default:
+                        Log.d(TAG, "Returning Default Result");
+                        break;
+                }
+
                 query.include("autor");
                 query.orderByDescending("createdAt");
                 return query;

@@ -120,9 +120,9 @@ public class FragmentDetalleMensaje extends Fragment {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Confirmar");
-                builder.setMessage("¿Estas Seguro?");
+                builder.setMessage("¿Está seguro que desea reportar este mensaje?");
 
-                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Reportar", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialogo, int which) {
                         ParseObject mensaje = ParseObject.createWithoutData("Mensaje", getArguments().getString("id"));
@@ -140,7 +140,7 @@ public class FragmentDetalleMensaje extends Fragment {
 
                 });
 
-                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialogo, int which) {
@@ -162,37 +162,27 @@ public class FragmentDetalleMensaje extends Fragment {
         botonEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Confirmar");
-                builder.setMessage("¿Estas Seguro?");
+                builder.setMessage("¿Está seguro que desea eliminar el mensaje?");
 
-                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialogo, int which) {
                         dialogo.dismiss();
                         ParseObject mensaje = ParseObject.createWithoutData("Mensaje", getArguments().getString("id"));
                         mensaje.deleteInBackground();
-                        mensaje.saveInBackground(new SaveCallback() {
-                            @Override
-                            public void done(ParseException e) {
-                                Toast.makeText(getContext(), "Mensaje eliminado.", Toast.LENGTH_SHORT).show();
-                                botonEliminar.setVisibility(View.GONE);
-                                botonEliminar.setEnabled(false);
-                            }
-                        });
+                        Toast.makeText(getContext(), "Mensaje eliminado.", Toast.LENGTH_SHORT).show();
                         Fragment fragment = new FragmentListarMensaje();
                         getFragmentManager()
                                 .beginTransaction()
                                 .replace(R.id.content_frame, fragment)
                                 .commit();
-
                     }
 
                 });
 
-                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialogo, int which) {
@@ -241,7 +231,7 @@ public class FragmentDetalleMensaje extends Fragment {
         return listener;
     }
 
-    // Listener for PDFs
+    // Listener for Locations
     public View.OnClickListener seeLocationDetail(final String location){
         View.OnClickListener listener = new View.OnClickListener() {
             @Override

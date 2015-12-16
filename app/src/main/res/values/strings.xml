@@ -152,10 +152,20 @@
     <string name="rolEjemplo">Activista</string>
     <string name="editar">Editar</string>
     <string name="filtroEstados">Filtrar por estado</string>
-    <string name="filtroComite">Filtrar por Comite</string>
-    <string name="filtroRol">Filtrar por Rol</string>
+    <string name="filtroComite">Filtrar por comite</string>
+    <string name="filtroRol">Filtrar por rol</string>
     <string name="enviar">Enviar</string>
     <string name="emailLargo">Correo Electrónico</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="repetirContraseña">Repetir Contraseña</string>
+    <string name="filtroPropios">Mis Mensajes</string>
+    <string name="filtroReportados">Filtrar reportados</string>
+    <string name="filtroEstatus">Filtrar por estatus</string>
+    <string name="filtroNacionales">Filtrar nacionales</string>
+    <string name="filtroEstadales">Filtrar estadales</string>
+    <string name="filtroMeGusta">Filtrar por #meGusta</string>
+    <string name="filtroTodas">Mostrar todas</string>
+    <string name="filtroActividadesPropias">Mis Actividades</string>
 
 
 </resources>

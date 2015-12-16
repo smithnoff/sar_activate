@@ -1,5 +1,10 @@
 package logica;
 
+import com.parse.ParseClassName;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+
+
 public class Usuario {
 
     private String id;

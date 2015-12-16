@@ -110,6 +110,7 @@ public class FragmentCrearUsuario extends Fragment {
                                             .commit();
 
                                 } else {
+                                    // TODO: Discern error types by examining error code.
                                     dialog.dismiss();
                                     Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde." + e.toString(), Toast.LENGTH_LONG).show();
                                 }

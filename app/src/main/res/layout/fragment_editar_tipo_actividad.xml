@@ -2,131 +2,103 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="100"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
         >
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/actividad"/>
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="90">
-            <ScrollView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editActividad"
+            android:singleLine="true"
+            android:hint="@string/hintActividad"
+            android:enabled="false" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="@string/actividad"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/puntaje"
+            android:id="@+id/TextPuntaje"/>
 
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editActividad"
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinPuntaje"
+            />
 
-                        android:hint="@string/hintActividad"
-                        android:enabled="false" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/descripcion"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/puntaje"
-                        android:id="@+id/TextPuntaje"/>
-
-                    <Spinner
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinPuntaje"
-                        android:visibility="invisible"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/descripcion"/>
-
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:hint="@string/hintDescripcion"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/editDescripcion"
-                        android:enabled="false"/>
+        <EditText
+            android:layout_width="fill_parent"
+            android:hint="@string/hintDescripcion"
+            android:layout_height="wrap_content"
+            android:id="@+id/editDescripcion"
+            android:enabled="false"/>
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:weightSum="100">
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"/>
-
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_weight="30"
-                            android:layout_height="wrap_content"
-                            android:text="@string/editar_cuenta"
-                            android:id="@+id/btnEditarTipoActividad"
-                            android:textColor="@color/white" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"/>
-
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_weight="32"
-                            android:id="@+id/btnEliminarTipoActividad"
-                            android:layout_height="wrap_content"
-                            android:text="@string/eliminar_cuenta"
-                            android:textColor="@color/white"/>
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"/>
-
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_weight="34"
-                            android:id="@+id/btnGuardarTipoActividad"
-                            android:layout_height="wrap_content"
-                            android:text="@string/guardar_datos"
-                            android:textColor="@color/white"
-                            android:enabled="false"/>
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"/>
-                    </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-                </LinearLayout>
-            </ScrollView>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="30"
+                android:layout_height="wrap_content"
+                android:text="@string/editar_cuenta"
+                android:id="@+id/btnEditarTipoActividad"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="30"
+                android:id="@+id/btnGuardarTipoActividad"
+                android:layout_height="wrap_content"
+                android:text="@string/guardar_datos"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="30"
+                android:id="@+id/buttonCancelar"
+                android:layout_height="wrap_content"
+                android:text="@string/cancelar"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                />
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="30"
+                android:id="@+id/btnEliminarTipoActividad"
+                android:layout_height="wrap_content"
+                android:text="@string/eliminar_cuenta"
+                android:textColor="@color/white"/>
+
+
+
+
+        </LinearLayout>
+
     </LinearLayout>
 </FrameLayout>

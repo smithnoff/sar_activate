@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/filtroEstatus"
+        android:title="@string/filtroEstatus"
+        />
+
+    <item
+        android:id="@+id/filtroNacionales"
+        android:title="@string/filtroNacionales"
+        />
+
+    <item
+        android:id="@+id/filtroEstadales"
+        android:title="@string/filtroEstadales"
+        />
+
+    <item
+        android:id="@+id/filtroMeGusta"
+        android:title="@string/filtroMeGusta"
+        />
+
+    <item
+        android:id="@+id/filtroPropios"
+        android:title="@string/filtroActividadesPropias"
+        />
+
+    <item
+        android:id="@+id/filtroTodas"
+        android:title="@string/filtroTodas"
+        />
+
+</menu>

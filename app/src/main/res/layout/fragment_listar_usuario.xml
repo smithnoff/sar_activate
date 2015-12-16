@@ -9,12 +9,12 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/usuariosListView"
+            android:id="@+id/mensajesListView"
             android:layout_marginTop="8dp"
             />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/botonCrearUsuario"
+            android:id="@+id/botonCrearMensaje"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:src="@drawable/ic_add"

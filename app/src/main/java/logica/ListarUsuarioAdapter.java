@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +19,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 /**
  * Created by Usuario on 19/10/2015.
  */
-public class ListarUsuarioAdapter extends ArrayAdapter<Usuario> {
+public class ListarUsuarioAdapter extends ArrayAdapter<Usuario> implements Filterable {
 
     private String TAG = "ListarUsuarioAdapter";
 

@@ -40,8 +40,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/circulobr"
-              android:onClick="checkedView"
-
+            android:onClick="checkedView"
             android:id="@+id/themeBrown"
             />
         <View

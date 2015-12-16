@@ -2,6 +2,12 @@ package logica;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
+
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -9,8 +15,9 @@ import soy_activista.quartzapp.com.soy_activista.R;
  * Created by RSMAPP on 09/12/2015.
  */
 public class Selector_de_Tema {
-    private static int cTheme;
-    private static String nPartido="Nombre del partido";
+    private static final String TAG = "SelectorDeTema";
+    private static int tema;
+    private static String nombrePartido ="Nombre del partido";
     public final static int DEFAULT = 0;
     public final static int BLUE = 1;
     public final static int BROWN = 2;
@@ -20,34 +27,57 @@ public class Selector_de_Tema {
     public final static int PURPLE = 6;
     public final static int GREEN = 7;
 
+    public static String getNombrePartido(){
+        return nombrePartido;
+    }
+    public static void setNombrePartido(String nombre){
+        nombrePartido = nombre;
+    }
 
+    public static int getTema(){
+        return tema;
+    }
+
+    public static void setTema(int newTema){
+        tema = newTema;
+    }
 
     public static void changeToTheme(Activity activity, int theme, String partido)
-
     {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Config");
+        query.fromLocalDatastore();
+        try {
+            ParseObject config = query.getFirst();
+
+            if(config != null){
+                config.put("nombrePartido",partido);
+                config.put("tema",theme);
+                config.saveInBackground();
+            }
+        } catch (ParseException e) {
+            Log.d(TAG,"Theme could not be found");
+        }
         //reset main activity
-        cTheme = theme;
-        nPartido=partido;
+        tema = theme;
+        nombrePartido =partido;
         activity.finish();
-
-
-
         activity.startActivity(new Intent(activity, activity.getClass()));
 
 
     }
-    public static String getnPartido(){
-        return nPartido;
-    }
 
-    public static void onActivityCreateSetTheme(Activity activity)
 
-    {
-             //set choosed theme
-        switch (cTheme)
+    public static void onActivityCreateSetTheme(Activity activity) throws ParseException {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Config");
+        ParseObject config = query.getFirst();
+        Log.d(TAG, "Theme Queried " + config.getString("nombrePartido") + " " + config.getInt("tema"));
+        Selector_de_Tema.setNombrePartido(config.getString("nombrePartido"));
+        Selector_de_Tema.setTema(config.getInt("tema"));
+        config.pinInBackground();
+
+        switch (tema)
 
         {
-
             default:
 
             case DEFAULT:
@@ -91,9 +121,6 @@ public class Selector_de_Tema {
                 activity.setTheme(R.style.PurpleTheme);
 
                 break;
-
         }
-
     }
-
 }

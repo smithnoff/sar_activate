@@ -1,16 +1,21 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
@@ -18,8 +23,10 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-import logica.ListarMensajeAdapter;
+import logica.ListarMensajeParseAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -28,8 +35,14 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class FragmentListarMensaje extends Fragment  {
 
 
-    private ListarMensajeAdapter listarMensajeAdapter;
+    private static final String TAG = "ListMensajeParse";
+    private ListarMensajeParseAdapter listarMensajeMainAdapter, listarMensajeEstadoAdapter, listarMensajePropiosAdapter, listarMensajeReportadoAdapter;
+    private MenuItem filtroReportados;
+    View view;
     private ListView listView;
+    private ParseUser currentUser;
+    private ProgressDialog progressDialog;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,20 +50,22 @@ public class FragmentListarMensaje extends Fragment  {
 
 
         // Inflate View
-        View view = inflater.inflate(R.layout.fragment_listar_mensaje, container, false);
+        view = inflater.inflate(R.layout.fragment_listar_mensaje, container, false);
 
         // Initialize main ParseQueryAdapter
-        listarMensajeAdapter = new ListarMensajeAdapter(this.getContext());
+        listarMensajeMainAdapter = new ListarMensajeParseAdapter(this.getContext());
 
         // Initialize list view
         listView = (ListView) view.findViewById(R.id.mensajesListView);
 
-        if (listarMensajeAdapter != null) {
-            listView.setAdapter(listarMensajeAdapter);
-            listarMensajeAdapter.loadObjects();
+        if (listarMensajeMainAdapter != null) {
+            listView.setAdapter(listarMensajeMainAdapter);
+            listarMensajeMainAdapter.loadObjects();
         } else {
             Log.d("ADAPTER", "Adapter returned null!");
         }
+
+        currentUser = ParseUser.getCurrentUser();
 
         // Handle Item OnClick Events
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -119,7 +134,122 @@ public class FragmentListarMensaje extends Fragment  {
             }
         });
 
+        // Let the fragment know we will be loading some options for this fragment
+        setHasOptionsMenu(true);
+
         return view;
+    }
+
+    // Inflates custom menu for fragment.
+    @Override
+    public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){
+        super.onCreateOptionsMenu(menu, inflater);
+        // Inflate Custom Menu
+        inflater.inflate(R.menu.menu_listar_mensaje, menu);
+
+        filtroReportados = menu.findItem(R.id.filtroReportados);
+
+        if(currentUser != null && currentUser.getInt("rol") == 1){
+            filtroReportados.setVisible(true);
+        }
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case R.id.filtroEstados:
+                // Generate List Holder
+                final AlertDialog filterDialog;
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Filtrar por estado");
+
+                // Fill Holder with State List from String Array
+                final ListView listViewDialog = new ListView(getActivity());
+                final ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.Estados)));
+
+                // Add element All.
+                arrayList.add(0, "Todos");
+
+                ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,arrayList);
+                listViewDialog.setAdapter(stringArrayAdapter);
+                builder.setView(listViewDialog);
+
+                // Show Dialog
+                filterDialog = builder.create();
+                filterDialog.show();
+
+                listViewDialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        filterDialog.dismiss();
+                        // Request List to filter
+                        // TODO: Create Progress Dialog
+
+                        Log.d(TAG, "Filtering by State");
+
+                        listarMensajeMainAdapter.clear();
+
+                        listarMensajeEstadoAdapter = new ListarMensajeParseAdapter(getContext(), "estado="+listViewDialog.getItemAtPosition(position).toString());
+
+                        listView.setAdapter(listarMensajeEstadoAdapter);
+
+                        listarMensajeEstadoAdapter.loadObjects();
+
+                        listarMensajeEstadoAdapter.notifyDataSetChanged();
+
+                        Log.d(TAG, "Adapter has " + listarMensajeEstadoAdapter.getCount() + " items");
+
+
+                    }
+                });
+
+                return true;
+
+            case R.id.filtroPropios:
+
+                // Request List to filter
+                // TODO: Create Progress Dialog
+                if(currentUser != null){
+
+                    listarMensajeMainAdapter.clear();
+
+                    listarMensajePropiosAdapter = new ListarMensajeParseAdapter(getContext(),"propios="+currentUser.getUsername());
+
+                    listView.setAdapter(listarMensajePropiosAdapter);
+
+                    listarMensajePropiosAdapter.loadObjects();
+
+                    listarMensajePropiosAdapter.notifyDataSetChanged();
+
+                    Log.d(TAG, "Adapter has " + listarMensajePropiosAdapter.getCount() + " items");
+
+                }
+                break;
+
+            case R.id.filtroReportados:
+
+                // User is admin
+                if(currentUser.getInt("rol") == 1){
+                    listarMensajeMainAdapter.clear();
+
+                    listarMensajeReportadoAdapter = new ListarMensajeParseAdapter(getContext(),"reportados=true");
+
+                    listView.setAdapter(listarMensajeReportadoAdapter);
+
+                    listarMensajeReportadoAdapter.loadObjects();
+
+                    listarMensajeReportadoAdapter.notifyDataSetChanged();
+                }
+                else{
+                    Toast.makeText(getContext(), "Credenciales Invalidas.", Toast.LENGTH_LONG).show();
+                }
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
 }

@@ -52,7 +52,7 @@
             android:paddingTop="30dp"
             android:paddingLeft="15dp"
             android:text="@string/correo"
-            android:id="@+id/LclaveCodigo"
+            android:id="@+id/labelToken"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"/>
         <EditText
@@ -61,14 +61,14 @@
             android:layout_marginRight="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/LclaveCodigo" />
+            android:layout_below="@+id/labelToken" />
 
         />
         <Button
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:text="@string/ingresar"
-            android:id="@+id/ingresar"
+            android:id="@+id/buttonIngresar"
             android:textColor="@color/white"
             android:layout_below="@+id/CorreoRecuperar"
             android:layout_marginLeft="15dp"
@@ -79,7 +79,7 @@
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:text="@string/regresar"
-            android:id="@+id/regresar"
+            android:id="@+id/buttonRegresar"
             android:textColor="@color/white"
             android:onClick="iniciarSesion"
             android:layout_below="@+id/CorreoRecuperar"

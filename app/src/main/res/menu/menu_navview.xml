@@ -9,10 +9,7 @@
             android:id="@+id/menuMensaje"
             android:icon="@drawable/ic_mensajes_directos"
             android:title="@string/mensajesDir"/>
-        <item
-            android:id="@+id/menuMensajeReportado"
-            android:icon="@drawable/ic_report_mensaje"
-            android:title="@string/mensajeReport"/>
+
         <item
             android:id="@+id/menuBoletinActividades"
             android:icon="@drawable/ic_boletin_proyectos"

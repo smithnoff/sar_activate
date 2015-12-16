@@ -53,14 +53,14 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/autor"
-                        android:id="@+id/Lcodigo"
+                        android:id="@+id/labelUsername"
                         android:textStyle="bold|italic" />
 
                     <EditText
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:id="@+id/textCIdentificador"
+                        android:id="@+id/editUsername"
                         android:hint="@string/autor"
                         android:textStyle="italic"
                         android:textColor="@android:color/black"/>
@@ -70,7 +70,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/token"
-                        android:id="@+id/LclaveCodigo"
+                        android:id="@+id/labelToken"
                         android:textStyle="bold|italic"
                         android:layout_gravity="center_horizontal" />
 
@@ -78,7 +78,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:id="@+id/textCToken"
+                        android:id="@+id/editToken"
                         android:hint="@string/token"
                         android:textStyle="italic"
                         android:textColor="@android:color/black"/>
@@ -102,7 +102,7 @@
                 android:layout_weight="0">
 
                 <Button
-                    android:id="@+id/ingresar"
+                    android:id="@+id/buttonIngresar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -110,7 +110,7 @@
                     android:textColor="@android:color/white" />
 
                 <Button
-                    android:id="@+id/regresar"
+                    android:id="@+id/buttonRegresar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"

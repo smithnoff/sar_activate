@@ -1,6 +1,8 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,12 +18,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 
 import com.bumptech.glide.Glide;
 import com.parse.GetCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -34,18 +33,17 @@ import java.text.SimpleDateFormat;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
-import static java.lang.Integer.parseInt;
-
 /**
  * Created by Brahyam on 25/11/2015.
  */
 public class FragmentDetalleActividad extends Fragment {
 
+    private static final String TAG = "FragDetalleActividad";
     private TextView labelPuntaje, labelDescripcion, labelEstado, labelMunicipio, labelParroquia, nombreActual, ubicacionActual, estadoActual, municipioActual, textMeGusta;
     private EditText puntaje, descripcion, objetivo, encargado, creador,  inicio, fin, parroquia; // Edit Field holders
     private Spinner nombre, ubicacion, estado, municipio, estatus; // Spinner holders
-    private Button guardar,editar,eliminar; // Button holders
-    private ImageButton botonMeGusta;
+    private Button guardar,editar,eliminar,cancelar; // Button holders
+    private ImageButton botonMeGusta, botonNoMeGusta,calendarInicio,calendarFin;
     private ImageView imagen1,imagen2,imagen3,imagen4;
     private ProgressDialog dialog;
     private ParseObject tipoActividad; // TipoActividad to be associated with Actividad
@@ -84,7 +82,32 @@ public class FragmentDetalleActividad extends Fragment {
         inicio = (EditText)v.findViewById(R.id.editInicio);
         fin = (EditText)v.findViewById(R.id.editFin);
         parroquia = (EditText)v.findViewById(R.id.editParroquia);
+        calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
+        calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
+        calendarInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inicio.requestFocus();
+                inicio.setText("");
+                DialogDatePicker picker2 = new DialogDatePicker();
+                picker2.show(getFragmentManager(), "Fecha de inicio");
 
+
+
+            }
+        });
+        calendarFin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fin.requestFocus();
+                fin.setText("");
+                DialogDatePicker picker2 = new DialogDatePicker();
+                picker2.show(getFragmentManager(), "Fecha de Fin");
+
+
+
+            }
+        });
         // Asigns Spinners to holders
         nombre = (Spinner)v.findViewById(R.id.spinNombreActividad);
         ubicacion = (Spinner)v.findViewById(R.id.spinUbicacion);
@@ -98,8 +121,10 @@ public class FragmentDetalleActividad extends Fragment {
         editar = (Button)v.findViewById(R.id.botonEditar);
         guardar = (Button)v.findViewById(R.id.botonGuardar);
         eliminar = (Button)v.findViewById(R.id.botonEliminar);
+        cancelar = (Button)v.findViewById(R.id.botonCancelar);
 
         botonMeGusta = (ImageButton)v.findViewById(R.id.botonMeGusta);
+        botonNoMeGusta = (ImageButton)v.findViewById(R.id.botonNoMeGusta);
 
         // Assign Images to PlaceHolders
         imagen1 = (ImageView)v.findViewById(R.id.imagen1);
@@ -107,10 +132,19 @@ public class FragmentDetalleActividad extends Fragment {
         imagen3 = (ImageView)v.findViewById(R.id.imagen3);
         imagen4 = (ImageView)v.findViewById(R.id.imagen4);
 
+
         // Show buttons depending on Role or if user is owner
         if(usuarioActual.getInt("rol") == 1 || usuarioActual.getObjectId().equals(getArguments().getString("creadorId"))){
             editar.setVisibility(View.VISIBLE);
             eliminar.setVisibility(View.VISIBLE);
+        }
+
+        // Disable like button if activity already liked
+        if(getArguments().getBoolean("liked")){
+            botonMeGusta.setEnabled(false);
+            textMeGusta.setTextColor(getContext().getResources().getColor(R.color.verde));
+            botonMeGusta.setVisibility(View.GONE);
+            botonNoMeGusta.setVisibility(View.VISIBLE);
         }
 
         // Load Defaults from Arguments bundle
@@ -266,7 +300,7 @@ public class FragmentDetalleActividad extends Fragment {
 
         //Load Likes
         Log.d("DETALLE", "Value Likes; "+getArguments().getInt("meGusta"));
-        String procureLikes = String.valueOf(getArguments().getInt("meGusta"));
+        final String procureLikes = String.valueOf(getArguments().getInt("meGusta"));
         Log.d("DETALLE", "String Likes; "+procureLikes);
         textMeGusta.setText(procureLikes);
 
@@ -276,8 +310,6 @@ public class FragmentDetalleActividad extends Fragment {
             @Override
             public void onClick(View v) {
                 //Hide Edit button/show save
-                editar.setVisibility(View.GONE);
-                guardar.setVisibility(View.VISIBLE);
 
                 //Show/enable all editors
                 nombreActual.setVisibility(View.GONE);
@@ -295,6 +327,39 @@ public class FragmentDetalleActividad extends Fragment {
                 inicio.setEnabled(true);
                 fin.setEnabled(true);
 
+                eliminar.setVisibility(View.GONE);
+                editar.setVisibility(View.GONE);
+                guardar.setVisibility(View.VISIBLE);
+                cancelar.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        cancelar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                //Show/enable all editors
+                nombreActual.setVisibility(View.VISIBLE);
+                nombre.setVisibility(View.GONE);
+
+                objetivo.setEnabled(false);
+                ubicacionActual.setVisibility(View.VISIBLE);
+                ubicacion.setVisibility(View.GONE);
+                ubicacion.setEnabled(false);
+
+                encargado.setEnabled(false);
+
+                estatus.setEnabled(false);
+
+                inicio.setEnabled(false);
+                fin.setEnabled(false);
+
+                eliminar.setVisibility(View.VISIBLE);
+                editar.setVisibility(View.VISIBLE);
+                guardar.setVisibility(View.GONE);
+                cancelar.setVisibility(View.GONE);
+
             }
         });
 
@@ -303,9 +368,9 @@ public class FragmentDetalleActividad extends Fragment {
             public void onClick(View arg0) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Confirmar");
-                builder.setMessage("¿Estas Seguro?");
+                builder.setMessage("¿Está seguro de que desea editar la actividad?");
 
-                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialogo, int which) {
 
@@ -370,7 +435,7 @@ public class FragmentDetalleActividad extends Fragment {
                 });
 
 
-                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialogo, int which) {
@@ -382,13 +447,6 @@ public class FragmentDetalleActividad extends Fragment {
                 AlertDialog alert = builder.create();
                 alert.show();
 
-
-
-
-
-
-
-
             }
         });
 
@@ -399,9 +457,9 @@ public class FragmentDetalleActividad extends Fragment {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Confirmar");
-                builder.setMessage("¿Estas Seguro?");
+                builder.setMessage("¿Está seguro que desea eliminar la actividad?");
 
-                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialogo, int which) {
                         // Redirect View to list
@@ -415,7 +473,7 @@ public class FragmentDetalleActividad extends Fragment {
 
                 });
 
-                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialogo, int which) {
@@ -430,6 +488,7 @@ public class FragmentDetalleActividad extends Fragment {
             }
         });
 
+        // Likes Behavior
         botonMeGusta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -447,9 +506,54 @@ public class FragmentDetalleActividad extends Fragment {
                 String procureLikes = String.valueOf(getArguments().getInt("meGusta")+1);
                 textMeGusta.setText(procureLikes);
                 // Paint Like button green
+                botonMeGusta.setVisibility(View.GONE);
                 botonMeGusta.setColorFilter(R.color.verde);
-
                 botonMeGusta.setEnabled(false);
+
+                // Activate tinted button
+                botonNoMeGusta.setVisibility(View.VISIBLE);
+                botonNoMeGusta.setEnabled(true);
+            }
+        });
+
+        // Likes Behavior
+        botonNoMeGusta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ParseObject actividadLiked = ParseObject.createWithoutData("Actividad",getArguments().getString("id"));
+
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("MeGusta");
+                query.whereEqualTo("actividad", actividadLiked);
+                query.whereEqualTo("usuario", usuarioActual);
+
+                query.getFirstInBackground(new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(ParseObject object, ParseException e) {
+                        if(e == null){
+                            object.deleteInBackground();
+                        }
+                        else{
+                            Log.d(TAG,e.getMessage());
+                        }
+                    }
+                });
+
+                actividadLiked.increment("meGusta",-1);
+                actividadLiked.saveInBackground();
+
+                Log.d("DETALLE", "Value Likes; " + getArguments().getInt("meGusta"));
+                String procureLikes = String.valueOf(getArguments().getInt("meGusta")-1);
+                textMeGusta.setText(procureLikes);
+
+                // Paint Like button green
+                botonNoMeGusta.setVisibility(View.GONE);
+                botonNoMeGusta.setEnabled(false);
+                textMeGusta.setTextColor(getContext().getResources().getColor(R.color.grisOscuro));
+
+
+                botonMeGusta.setVisibility(View.VISIBLE);
+                botonMeGusta.setEnabled(true);
             }
         });
 
