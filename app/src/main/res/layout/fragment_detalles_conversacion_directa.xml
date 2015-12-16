@@ -19,6 +19,20 @@
         tools:listitem="@layout/left" >
     </ListView>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/botonCrearMensaje"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/ic_add"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:elevation="3dp"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_gravity="bottom|right"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
