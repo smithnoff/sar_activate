@@ -67,6 +67,9 @@ public class FragmentCrearActividad extends Fragment {
     // Image Storing Variables/Constants
     private Bitmap bitmap;
     static int random = (int) (Math.random() *1000) + 1;
+    static int random2 = (int) (Math.random() *1000) + 1;
+    static int random3 = (int) (Math.random() *1000) + 1;
+    static int random4 = (int) (Math.random() *1000) + 1;
     private static byte[] imagenSeleccionada = null;
     private static byte[] imagenSeleccionada2 = null;
     private static byte[] imagenSeleccionada3 = null;
@@ -281,7 +284,8 @@ public class FragmentCrearActividad extends Fragment {
                             // Handle Image uploading
                             if (imagenSeleccionada != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada);
+                                int value = (int)(Math.random() * 1000 + 2);
+                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + value + ".jpg", imagenSeleccionada);
                                 actividad.put("imagen1", fotoFinal);
 
                                 fotoFinal.saveInBackground(new SaveCallback() {
@@ -300,7 +304,8 @@ public class FragmentCrearActividad extends Fragment {
 
                             if (imagenSeleccionada2 != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada2);
+                                int value2 = (int)(Math.random() * 1000 + 3);
+                                ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + value2 + ".jpg", imagenSeleccionada2);
                                 actividad.put("imagen2", fotoFinal2);
 
                                 fotoFinal2.saveInBackground(new SaveCallback() {
@@ -319,7 +324,8 @@ public class FragmentCrearActividad extends Fragment {
 
                             if (imagenSeleccionada3 != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada3);
+                                int value3 = (int)(Math.random() * 1000 + 5);
+                                ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + value3 + ".jpg", imagenSeleccionada3);
                                 actividad.put("imagen3", fotoFinal3);
 
                                 fotoFinal3.saveInBackground(new SaveCallback() {
@@ -338,7 +344,8 @@ public class FragmentCrearActividad extends Fragment {
 
                             if (imagenSeleccionada4 != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + random + ".jpg", imagenSeleccionada4);
+                                int value4 = (int)(Math.random() * 1000 + 7);
+                                ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + value4 + ".jpg", imagenSeleccionada4);
                                 actividad.put("imagen4", fotoFinal4);
 
                                 fotoFinal4.saveInBackground(new SaveCallback() {
@@ -354,7 +361,6 @@ public class FragmentCrearActividad extends Fragment {
                                     }
                                 });
                             }
-
                             // Save Activity
                             actividad.saveInBackground(new SaveCallback() {
                                 public void done(ParseException e) {
@@ -374,10 +380,7 @@ public class FragmentCrearActividad extends Fragment {
                                     }
                                 }
                             });
-
                         }
-
-
                         dialogo.dismiss();
                     }
 
@@ -390,11 +393,8 @@ public class FragmentCrearActividad extends Fragment {
                         dialogo.dismiss();
                     }
                 });
-
                 AlertDialog alert = builder.create();
                 alert.show();
-
-
             }
         });
 
