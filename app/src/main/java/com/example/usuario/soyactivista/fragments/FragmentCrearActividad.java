@@ -61,6 +61,9 @@ public class FragmentCrearActividad extends Fragment {
     // Image Storing Variables/Constants
     private Bitmap bitmap;
     static int random = (int) (Math.random() *1000) + 1;
+    static int random2 = (int) (Math.random() *1000) + 1;
+    static int random3 = (int) (Math.random() *1000) + 1;
+    static int random4 = (int) (Math.random() *1000) + 1;
     private static byte[] imagenSeleccionada = null;
     private static byte[] imagenSeleccionada2 = null;
     private static byte[] imagenSeleccionada3 = null;
@@ -300,7 +303,12 @@ calendarInicio.setOnClickListener(new View.OnClickListener() {
                             // Handle Image uploading
                             if (imagenSeleccionada != null) {
                                 // Save the scaled image to Parse
+<<<<<<< HEAD
+                                int value = (int)(Math.random() * 1000 + 2);
+                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + value + ".jpg", imagenSeleccionada);
+=======
                                 ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + "1.jpg", imagenSeleccionada);
+>>>>>>> 1c419c968b68f51e3efbd0811564b838c617fced
                                 actividad.put("imagen1", fotoFinal);
 
                                 fotoFinal.saveInBackground(new SaveCallback() {
@@ -319,7 +327,12 @@ calendarInicio.setOnClickListener(new View.OnClickListener() {
 
                             if (imagenSeleccionada2 != null) {
                                 // Save the scaled image to Parse
+<<<<<<< HEAD
+                                int value2 = (int)(Math.random() * 1000 + 3);
+                                ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + value2 + ".jpg", imagenSeleccionada2);
+=======
                                 ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + random + "2.jpg", imagenSeleccionada2);
+>>>>>>> 1c419c968b68f51e3efbd0811564b838c617fced
                                 actividad.put("imagen2", fotoFinal2);
 
                                 fotoFinal2.saveInBackground(new SaveCallback() {
@@ -338,7 +351,12 @@ calendarInicio.setOnClickListener(new View.OnClickListener() {
 
                             if (imagenSeleccionada3 != null) {
                                 // Save the scaled image to Parse
+<<<<<<< HEAD
+                                int value3 = (int)(Math.random() * 1000 + 5);
+                                ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + value3 + ".jpg", imagenSeleccionada3);
+=======
                                 ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + random + "3.jpg", imagenSeleccionada3);
+>>>>>>> 1c419c968b68f51e3efbd0811564b838c617fced
                                 actividad.put("imagen3", fotoFinal3);
 
                                 fotoFinal3.saveInBackground(new SaveCallback() {
@@ -357,7 +375,12 @@ calendarInicio.setOnClickListener(new View.OnClickListener() {
 
                             if (imagenSeleccionada4 != null) {
                                 // Save the scaled image to Parse
+<<<<<<< HEAD
+                                int value4 = (int)(Math.random() * 1000 + 7);
+                                ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + value4 + ".jpg", imagenSeleccionada4);
+=======
                                 ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + random + "4.jpg", imagenSeleccionada4);
+>>>>>>> 1c419c968b68f51e3efbd0811564b838c617fced
                                 actividad.put("imagen4", fotoFinal4);
 
                                 fotoFinal4.saveInBackground(new SaveCallback() {
@@ -373,7 +396,6 @@ calendarInicio.setOnClickListener(new View.OnClickListener() {
                                     }
                                 });
                             }
-
                             // Save Activity
                             actividad.saveInBackground(new SaveCallback() {
                                 public void done(ParseException e) {
@@ -393,10 +415,7 @@ calendarInicio.setOnClickListener(new View.OnClickListener() {
                                     }
                                 }
                             });
-
                         }
-
-
                         dialogo.dismiss();
                     }
 
@@ -409,11 +428,8 @@ calendarInicio.setOnClickListener(new View.OnClickListener() {
                         dialogo.dismiss();
                     }
                 });
-
                 AlertDialog alert = builder.create();
                 alert.show();
-
-
             }
         });
 
