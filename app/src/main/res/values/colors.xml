@@ -24,4 +24,9 @@
 
     <color name="verde">#64dd17</color>
     <color name="rojo">#b71c1c</color>
+
+    <color name="main_color_gray">#7d7d7d</color>
+    <color name="main_color_gray_dk">#3b3b3b</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="gray_light">#e8e8e8</color>
 </resources>

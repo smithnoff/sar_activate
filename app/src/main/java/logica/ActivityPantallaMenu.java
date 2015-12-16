@@ -29,6 +29,7 @@ import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
 import com.example.usuario.soyactivista.fragments.FragmenteEditarUsuario;
+import com.example.usuario.soyactivista.fragments.FragmenteListarMensajesDirectos;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
@@ -174,7 +175,10 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                                 fragment = new FragmenteEditarUsuario();
                                 fragmentTransaction = true;
                                 break;
-
+                            case R.id.PruebaDarwin:
+                                fragment = new FragmenteListarMensajesDirectos();
+                                fragmentTransaction = true;
+                                break;
                             case R.id.menuCerrarSesion:
                                 usuarioActual.logOutInBackground();
                                 Intent i = new Intent(getApplication(),ActivityPantallaInicio.class);
