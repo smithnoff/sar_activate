@@ -16,7 +16,7 @@
         android:fastScrollEnabled="true"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
-        tools:listitem="@layout/left" >
+        tools:listitem="@layout/msg_left" >
     </ListView>
 
     <android.support.design.widget.FloatingActionButton
