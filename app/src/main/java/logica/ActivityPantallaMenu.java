@@ -1,7 +1,5 @@
 package logica;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -25,11 +23,11 @@ import android.widget.TextView;
 import com.example.usuario.soyactivista.fragments.FragmentCrearUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
 import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
+import com.example.usuario.soyactivista.fragments.FragmentListarConversacion;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
 import com.example.usuario.soyactivista.fragments.FragmenteEditarUsuario;
-import com.example.usuario.soyactivista.fragments.FragmenteListarMensajesDirectos;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
@@ -176,7 +174,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                                 fragmentTransaction = true;
                                 break;
                             case R.id.PruebaDarwin:
-                                fragment = new FragmenteListarMensajesDirectos();
+                                fragment = new FragmentListarConversacion();
                                 fragmentTransaction = true;
                                 break;
                             case R.id.menuCerrarSesion:

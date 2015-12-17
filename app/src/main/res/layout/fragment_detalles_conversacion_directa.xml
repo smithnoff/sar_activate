@@ -1,46 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
-
-    <ListView
-        android:id="@+id/chatlist"
+    android:layout_height="match_parent">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:divider="@color/white"
-        android:dividerHeight="5dp"
-        android:fastScrollEnabled="true"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        tools:listitem="@layout/left" >
-    </ListView>
+        android:layout_height="match_parent">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/botonCrearMensaje"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:src="@drawable/ic_add"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:elevation="3dp"
-        android:layout_marginBottom="16dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="7dp"
-        android:layout_marginEnd="7dp"
-        android:layout_gravity="bottom|right"/>
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mensajesListView"
+            android:layout_marginTop="8dp"
+            />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/botonCrearMensaje"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_add"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:elevation="3dp"
+            app:fabSize="normal"
+            app:borderWidth="0dp"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#e8e8e8"
-        android:gravity="center_vertical"
-        android:padding="5dp"
-        tools:context=".MainActivity" >
+            android:layout_marginBottom="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="7dp"
+            android:layout_marginEnd="7dp" />
 
-    </LinearLayout>
-
-</LinearLayout>
+    </RelativeLayout>
+</FrameLayout>
