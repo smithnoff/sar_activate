@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import logica.ListarUsuarioAdapter;
+import logica.ListarUsuarioParseAdapter;
 import logica.Usuario;
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -40,7 +40,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
     private String TAG = "FragmentListarUsuarioConversacion";
 
     // Data Holders
-    private ListarUsuarioAdapter listarUsuarioAdapter;
+    private ListarUsuarioParseAdapter listarUsuarioAdapter;
     private ListView listView;
     private ArrayList<Usuario> usuarioArrayList = new ArrayList<>();
 
@@ -88,8 +88,9 @@ public class FragmentListarUsuariosConversacion extends Fragment{
 
                 Bundle datos = new Bundle();
                 datos.putString("id", usuario.getId());
+                Toast.makeText(getActivity(), "id: "+usuario.getId(), Toast.LENGTH_SHORT).show();
                 datos.putString("username", usuario.getUsername());
-
+                Toast.makeText(getActivity(), "id: "+usuario.getUsername(), Toast.LENGTH_SHORT).show();
                 // Redirect View to next Fragment
                 Fragment fragment = new FragmentCrearMensajeDirecto();
                 fragment.setArguments(datos);
@@ -215,7 +216,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                         list.add(usuario);
                     }
                     Log.d(TAG, "List have " + list.size() + " items.");
-                    listarUsuarioAdapter = new ListarUsuarioAdapter(getActivity(),list);
+                    listarUsuarioAdapter = new ListarUsuarioParseAdapter(getActivity());
                     listView.setAdapter(listarUsuarioAdapter);
 
                     // If no Search/Filter Argument initialize list, else filter.

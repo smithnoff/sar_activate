@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -26,12 +25,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -82,7 +78,9 @@ public class FragmentCrearMensajeDirecto extends Fragment{
     private byte[] selectedFile;
 
     // Class Constructor
-    public FragmentCrearMensajeDirecto(){}
+    public FragmentCrearMensajeDirecto(){
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
@@ -245,11 +243,14 @@ public class FragmentCrearMensajeDirecto extends Fragment{
                             final ParseObject conversacion = new ParseObject("Conversacion");
 
                             user2 = getArguments().getString("id");
+                            conversacion.put("usuario1",usuarioActual);
+                            conversacion.put("usuario2",user2);
+                            conversacion.saveInBackground();
                             ParseUser usuario2 = new ParseUser();
-                            ParseUser usuario = ParseUser.createWithoutData("Conversacion",user2);
+
 
                             conversacion.put("usuario1",usuarioActual);
-                            conversacion.put("usuario2",usuario);
+                            conversacion.put("usuario2",usuario2);
                             conversacion.saveInBackground();
 
                             mensaje.put("texto", editText.getText().toString());
