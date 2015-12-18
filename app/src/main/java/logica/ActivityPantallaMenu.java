@@ -138,7 +138,10 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                                 fragmentTransaction = true;
                                 break;
 
-                            // PLACEHOLDER MENSAJES DIRECTOS
+                            case R.id.menuMensajeDirecto:
+                                fragment = new FragmentListarConversacion();
+                                fragmentTransaction = true;
+                                break;
 
                             case R.id.menuBoletinActividades:
                                 fragment = new FragmentListarActividad();

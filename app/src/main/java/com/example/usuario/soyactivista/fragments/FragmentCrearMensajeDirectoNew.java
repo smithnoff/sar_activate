@@ -47,15 +47,15 @@ import java.io.InputStream;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
- * Created by Luis Adrian on 17/12/2015.
+ * Created by Brahyam on 1/12/2015.
  */
-public class FragmentCrearMensajeDirecto extends Fragment{
+public class FragmentCrearMensajeDirectoNew extends Fragment {
+
     // Variable Declaration
-    private String TAG = "FragmentCrearMensajeDirecto"; // For Log.d
+    private String TAG = "FCrearMensajeDir"; // For Log.d
 
     private ProgressDialog dialog;
 
-    private String user2;
     private TextView textCharCount;
     private EditText editText;
     private ImageButton buttonAddImage, buttonAddFile, buttonAddLocation;
@@ -83,7 +83,7 @@ public class FragmentCrearMensajeDirecto extends Fragment{
     private byte[] selectedFile;
 
     // Class Constructor
-    public FragmentCrearMensajeDirecto(){}
+    public FragmentCrearMensajeDirectoNew(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
@@ -104,9 +104,12 @@ public class FragmentCrearMensajeDirecto extends Fragment{
         buttonCreateMessage= (Button)v.findViewById(R.id.buttonCreateMessage);
 
 
+
         buttonAddFile = (ImageButton)v.findViewById(R.id.buttonAddFile);
         buttonAddImage = (ImageButton)v.findViewById(R.id.buttonAddImage);
         buttonAddLocation = (ImageButton)v.findViewById(R.id.buttonAddLocation);
+
+
 
         // Update CharCount on writting
         editText.addTextChangedListener(new TextWatcher() {
@@ -126,8 +129,7 @@ public class FragmentCrearMensajeDirecto extends Fragment{
 
         // Buttons Behavior
         // ADD IMAGE
-
-        /* buttonAddImage.setOnClickListener(new View.OnClickListener() {
+        buttonAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -164,11 +166,10 @@ public class FragmentCrearMensajeDirecto extends Fragment{
                 builder.show();
 
             }
-        });*/
+        });
 
         // ADD FILE
-
-        /*buttonAddFile.setOnClickListener(new View.OnClickListener() {
+        buttonAddFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String minmeType = "application/pdf";
@@ -201,10 +202,8 @@ public class FragmentCrearMensajeDirecto extends Fragment{
 
             }
         });
-        */
 
         // ADD LOCATION
-        /*
         buttonAddLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -219,7 +218,6 @@ public class FragmentCrearMensajeDirecto extends Fragment{
 
             }
         });
-        */
 
 
         // CREATE MESSAGE
@@ -243,22 +241,13 @@ public class FragmentCrearMensajeDirecto extends Fragment{
                             // Fill ParseObject to send
                             final ParseObject mensaje = new ParseObject("MensajeDirecto");
 
-                            final ParseObject conversacion = new ParseObject("Conversacion");
-
-                            user2 = getArguments().getString("id");
-
-                            ParseUser usuario2 = (ParseUser) ParseUser.createWithoutData("_User",user2);
-
-                            conversacion.put("usuario1",usuarioActual);
-                            conversacion.put("usuario2",usuario2);
-                            conversacion.saveInBackground();
-
                             mensaje.put("texto", editText.getText().toString());
                             mensaje.put("autor", usuarioActual);
+
+                            ParseObject conversacion = ParseObject.createWithoutData("Conversacion",getArguments().getString("conversacionId"));
                             mensaje.put("conversacion",conversacion);
 
                             // Handle Image uploading
-                            /*
                             if (selectedImage != null) {
                                 // Save the scaled image to Parse
                                 location = null; // Disabling other attachments
@@ -306,7 +295,7 @@ public class FragmentCrearMensajeDirecto extends Fragment{
                             // Handle Location
                             if (location != null) {
                                 mensaje.put("ubicacion", location);
-                            }*/
+                            }
 
                             // Save Message
                             mensaje.saveInBackground(new SaveCallback() {
@@ -315,7 +304,7 @@ public class FragmentCrearMensajeDirecto extends Fragment{
                                         dialog.dismiss();
                                         Toast.makeText(getActivity(), "Mensaje Publicado", Toast.LENGTH_SHORT).show();
                                         // Redirect View to ListarMensajes
-                                        Fragment fragment = new FragmentListarConversacion();
+                                        Fragment fragment = new FragmentListarMensaje();
                                         getFragmentManager()
                                                 .beginTransaction()
                                                 .replace(R.id.content_frame, fragment)

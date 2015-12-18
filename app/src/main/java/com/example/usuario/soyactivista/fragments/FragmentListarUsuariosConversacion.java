@@ -19,9 +19,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,6 +46,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
     private ListarUsuarioAdapter listarUsuarioAdapter;
     private ListView listView;
     private ArrayList<Usuario> usuarioArrayList = new ArrayList<>();
+    private ParseUser currentUser = ParseUser.getCurrentUser();
 
     // Buttons
     FloatingActionButton botonCrearUsuario;
@@ -60,8 +64,9 @@ public class FragmentListarUsuariosConversacion extends Fragment{
         // Initialize list view
         listView = (ListView) view.findViewById(R.id.mensajesListView);
 
-        // Initialize Buttons
-        botonCrearUsuario = (FloatingActionButton) view.findViewById(R.id.botonCrearMensaje);
+        // Initialize Buttons / Hide
+        botonCrearUsuario = (FloatingActionButton) view.findViewById(R.id.botonCrearUsuario);
+        botonCrearUsuario.setVisibility(View.GONE);
 
 
         Log.d(TAG,"List contains "+usuarioArrayList.size()+" elements");
@@ -83,32 +88,41 @@ public class FragmentListarUsuariosConversacion extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                // Creates New Conversation and Adds Users to conversation
+                final ParseObject nuevaConversacion = new ParseObject("Conversacion");
+                nuevaConversacion.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e == null) {
+                            ParseObject nuevoParticipante = new ParseObject("ParticipanteConversacion");
+                            nuevoParticipante.put("conversacion", nuevaConversacion);
+                            nuevoParticipante.put("usuario", currentUser);
+                            nuevoParticipante.saveInBackground();
+
+                            ParseObject nuevoParticipante2 = new ParseObject("ParticipanteConversacion");
+                            nuevoParticipante.put("conversacion", nuevaConversacion);
+                            nuevoParticipante.put("usuario", currentUser);
+                            nuevoParticipante2.saveInBackground();
+
+
+
+                        }
+
+                    }
+                });
+
+
                 // Store data in bundle to send to next fragment
                 Usuario usuario = (Usuario) listView.getItemAtPosition(position);
 
                 Bundle datos = new Bundle();
-                datos.putString("id", usuario.getId());
+                datos.putString("userId", usuario.getId());
                 datos.putString("username", usuario.getUsername());
+                datos.putString("conversacionId",nuevaConversacion.getObjectId());
 
                 // Redirect View to next Fragment
-                Fragment fragment = new FragmentCrearMensajeDirecto();
+                Fragment fragment = new FragmentCrearMensajeDirectoNew();
                 fragment.setArguments(datos);
-                getFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.content_frame, fragment)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
-
-
-
-        // Create new User Button
-        botonCrearUsuario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Fragment fragment = new FragmentCrearUsuario();
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, fragment)
@@ -195,9 +209,93 @@ public class FragmentListarUsuariosConversacion extends Fragment{
     // TODO: Find a way to provide search query from within the fragment, so list doesnt have to be initialized again.
     // Initializes list and sets listView adapter to the newly createde adapter.
     public void initializeList(final ArrayList<Usuario> list){
+
         dialog = ProgressDialog.show(getContext(),"Buscando Usuarios","Cargando",true);
-        ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.findInBackground(new FindCallback<ParseUser>() {
+
+        // Query List
+        List<ParseQuery<ParseUser>> queries = new ArrayList<ParseQuery<ParseUser>>();
+
+        switch (currentUser.getString(("comite"))){
+            case "Estadal":
+
+                // Users from Comité Nacinal.
+                ParseQuery<ParseUser> query0 = ParseUser.getQuery();
+                query0.whereEqualTo("comite","Nacional");
+                queries.add(query0);
+
+                // Users from Comité Estadal.
+                ParseQuery<ParseUser> query1 = ParseUser.getQuery();
+                query1.whereEqualTo("comite","Estadal");
+                queries.add(query1);
+
+                // Users from Comité Municipal from my State.
+                ParseQuery<ParseUser> query2 = ParseUser.getQuery();
+                query2.whereEqualTo("comite","Municipal");
+                query2.whereEqualTo("estado",currentUser.getString("estado"));
+                queries.add(query2);
+
+                // Users from Comité Municipal from my State.
+                ParseQuery<ParseUser> query3 = ParseUser.getQuery();
+                query3.whereEqualTo("comite","Municipal");
+                query3.whereEqualTo("estado",currentUser.getString("estado"));
+                queries.add(query3);
+
+                // Users from Comité Parroquial from my State.
+                ParseQuery<ParseUser> query4 = ParseUser.getQuery();
+                query4.whereEqualTo("comite","Parroquial");
+                query4.whereEqualTo("estado",currentUser.getString("estado"));
+                queries.add(query4);
+
+                break;
+
+            case "Municipal":
+                // Users from Comité Estadal from my state.
+                ParseQuery<ParseUser> query00 = ParseUser.getQuery();
+                query00.whereEqualTo("comite", "Estadal");
+                query00.whereEqualTo("estado",currentUser.getString("estado"));
+                queries.add(query00);
+
+                // Users from Comité Municipal from my State.
+                ParseQuery<ParseUser> query11 = ParseUser.getQuery();
+                query11.whereEqualTo("comite","Municipal");
+                query11.whereEqualTo("estado",currentUser.getString("estado"));
+                queries.add(query11);
+
+                // Users from Comité Parroquial from my State.
+                ParseQuery<ParseUser> query22 = ParseUser.getQuery();
+                query22.whereEqualTo("comite","Parroquial");
+                query22.whereEqualTo("estado",currentUser.getString("estado"));
+                queries.add(query22);
+
+                break;
+
+            case "Parroquial":
+
+                // Users from Comité Municipal from my State.
+                ParseQuery<ParseUser> query000= ParseUser.getQuery();
+                query000.whereEqualTo("comite","Municipal");
+                query000.whereEqualTo("estado",currentUser.getString("estado"));
+                queries.add(query000);
+
+                // Users from Comité Parroquial from my State.
+                ParseQuery<ParseUser> query111 = ParseUser.getQuery();
+                query111.whereEqualTo("comite","Parroquial");
+                query111.whereEqualTo("estado",currentUser.getString("estado"));
+                queries.add(query111);
+
+                break;
+            default:
+                break;
+        }
+
+        ParseQuery<ParseUser> mainQuery;
+
+        if(!queries.isEmpty())
+            mainQuery = ParseQuery.or(queries);
+        else
+            mainQuery = ParseUser.getQuery();
+
+        mainQuery.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> object, ParseException e) {
                 if (e == null) { //no hay error
                     Usuario usuario;

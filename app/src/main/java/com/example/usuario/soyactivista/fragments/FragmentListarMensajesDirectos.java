@@ -19,8 +19,9 @@ import soy_activista.quartzapp.com.soy_activista.R;
 /**
  * Created by darwin on 16/12/2015.
  */
-public class FragmenteListarMensajesDirectos extends Fragment {
-    private static final String TAG = "ChatActivity";
+public class FragmentListarMensajesDirectos extends Fragment {
+
+    private static final String TAG = "";
 
     //private ChatArrayAdapter chatArrayAdapter;
     private ListView listView;
@@ -50,10 +51,6 @@ public class FragmenteListarMensajesDirectos extends Fragment {
         mainAdapter.loadObjects();
 
 
-
-
-
-        // TODO: Implement Theme Editing. Right now all login on Main Activity
         return v;
     }
 

@@ -11,15 +11,14 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:layout_marginLeft="5dp"
-        android:textSize="25dp"
+        android:textSize="18dp"
         android:text="@string/nombreEjemplo"
         />
 
     <!-- Separator -->
     <View
         android:layout_width="2dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="18dp"
         android:layout_marginLeft="5dp"
         android:background="@color/grisOscuro"
         android:layout_toRightOf="@id/valueNombre"/>
@@ -29,11 +28,11 @@
     <TextView
         android:id="@+id/valueEstado"
         android:layout_marginLeft="15dp"
-        android:textSize="10dp"
+        android:textSize="12dp"
         android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/valueNombre"
         android:text="@string/estado"
         />
@@ -46,7 +45,7 @@
         android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="7dp"
         android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/valueEstado"
         android:text="@string/municipio"
@@ -57,7 +56,7 @@
     <TextView
         android:id="@+id/labelCargo"
         android:layout_marginLeft="5dp"
-        android:textSize="15dp"
+        android:textSize="13dp"
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,7 +68,7 @@
     <TextView
         android:id="@+id/valueCargo"
         android:layout_marginLeft="5dp"
-        android:textSize="15dp"
+        android:textSize="13dp"
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,7 +82,7 @@
     <TextView
         android:id="@+id/labelComite"
         android:layout_marginLeft="5dp"
-        android:textSize="15dp"
+        android:textSize="13dp"
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,7 +93,7 @@
     <TextView
         android:id="@+id/valueComite"
         android:layout_marginLeft="5dp"
-        android:textSize="15dp"
+        android:textSize="13dp"
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,7 +105,7 @@
     <TextView
         android:id="@+id/labelRol"
         android:layout_marginLeft="5dp"
-        android:textSize="15dp"
+        android:textSize="13dp"
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -117,7 +116,7 @@
     <TextView
         android:id="@+id/valueRol"
         android:layout_marginLeft="5dp"
-        android:textSize="15dp"
+        android:textSize="13dp"
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
