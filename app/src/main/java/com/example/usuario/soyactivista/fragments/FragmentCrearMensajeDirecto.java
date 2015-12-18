@@ -246,10 +246,10 @@ public class FragmentCrearMensajeDirecto extends Fragment{
 
                             user2 = getArguments().getString("id");
                             ParseUser usuario2 = new ParseUser();
-                            ParseUser usuario = ParseUser.createWithoutData("Conversacion",user2);
+                            //ParseUser usuario = ParseUser.createWithoutData("Conversacion",user2);
 
                             conversacion.put("usuario1",usuarioActual);
-                            conversacion.put("usuario2",usuario);
+                            conversacion.put("usuario2",usuario2);
                             conversacion.saveInBackground();
 
                             mensaje.put("texto", editText.getText().toString());
