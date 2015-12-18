@@ -6,12 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.parse.ParseFile;
-import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
@@ -56,6 +52,7 @@ public class ListarUsuarioParseAdapter extends ParseQueryAdapter<ParseObject> im
 
 
         // Load Values
+
         valueNombre.setText(user.getString("nombre") + " " + user.getString("apellido"));
         valueEstado.setText(user.getString("estado"));
         valueMunicipio.setText(user.getString("municipio"));

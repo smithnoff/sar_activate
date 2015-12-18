@@ -88,6 +88,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
 
                 Bundle datos = new Bundle();
                 datos.putString("id", usuario.getId());
+
                 datos.putString("username", usuario.getUsername());
 
                 // Redirect View to next Fragment
