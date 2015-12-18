@@ -10,10 +10,10 @@
         android:id="@+id/v1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="25dp"
+        android:layout_marginRight="30dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:background="#8A95C0"
+        android:background="#9FA8DA"
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:paddingBottom="10dp"
@@ -39,8 +39,9 @@
 
         <ImageView
             android:id="@+id/valueAdjunto"
+            android:layout_marginTop="5dp"
+            android:layout_height="80dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:visibility="gone"
             />
 

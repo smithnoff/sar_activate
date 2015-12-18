@@ -12,10 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="25dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
-        android:background="#727AA7"
+        android:background="#C5CAE9"
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:paddingBottom="10dp"
@@ -36,15 +36,20 @@
             android:layout_height="wrap_content"
             android:text="sd"
             android:textColor="#3b3b3b"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:maxLines="4"/>
 
         <ImageView
             android:id="@+id/valueAdjunto"
+            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:visibility="gone"
+            android:adjustViewBounds="true"
             />
+
+
+
 
     </LinearLayout>
 

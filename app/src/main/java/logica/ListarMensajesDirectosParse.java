@@ -1,12 +1,21 @@
 package logica;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.usuario.soyactivista.fragments.FragmentVerImagen;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
@@ -22,13 +31,15 @@ public class ListarMensajesDirectosParse extends ParseQueryAdapter<ParseObject> 
 
     final String usuarioActual = ParseUser.getCurrentUser().getObjectId();
     private String usuario_sent_msg="";
+    private ImageView previewAdjunto;
 
-    public ListarMensajesDirectosParse(Context context) {
+
+    public ListarMensajesDirectosParse(Context context, final String conversacionid) {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
 
                 ParseQuery innerQuery = new ParseQuery("Conversacion");
-                innerQuery.whereEqualTo("objectId", "HkiiYh9kXy");
+                innerQuery.whereEqualTo("objectId", conversacionid);
 
                 ParseQuery query = new ParseQuery("MensajeDirecto");
                 query.whereMatchesQuery("conversacion", innerQuery);
@@ -45,6 +56,7 @@ public class ListarMensajesDirectosParse extends ParseQueryAdapter<ParseObject> 
 
         ParseUser user = object.getParseUser("autor");
         usuario_sent_msg=user.getObjectId();
+
         if(v == null){
 
             if(usuarioActual.equals(usuario_sent_msg))
@@ -55,7 +67,7 @@ public class ListarMensajesDirectosParse extends ParseQueryAdapter<ParseObject> 
             {
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.msg_left,parent,false);
             }
-
+            previewAdjunto = (ImageView)v.findViewById(R.id.valueAdjunto);
         }
 
         super.getItemView(object, v, parent);
@@ -64,9 +76,53 @@ public class ListarMensajesDirectosParse extends ParseQueryAdapter<ParseObject> 
         TextView escritor_msg = (TextView)v.findViewById(R.id.lbl1);
         TextView body_msg = (TextView)v.findViewById(R.id.lbl2);
 
-        escritor_msg.setText(user.getString("nombre")+" "+user.getString("nombre")+" | "+user.getString("estado")+"-"+user.getString("municipio"));
+        escritor_msg.setText(user.getString("nombre") + " " + user.getString("apellido") + " | " + user.getString("estado") + "-" + user.getString("municipio"));
         body_msg.setText(object.getString("texto"));
 
+
+
+
+        if(object.getParseFile("adjunto")!= null){
+
+            previewAdjunto.setVisibility(View.VISIBLE);
+            String fileName = object.getParseFile("adjunto").getName();
+            String extension = fileName.substring((fileName.lastIndexOf(".") + 1), fileName.length());
+
+
+
+
+            //Attached File is an Image
+            if(extension.equalsIgnoreCase("jpg")) {
+
+
+
+                String url = object.getParseFile("adjunto").getUrl();
+
+
+               Glide.with(getContext())
+                        .load(url)
+                        .placeholder(R.drawable.ic_image)
+                        .centerCrop()
+                        .into(previewAdjunto);
+            }
+            else{
+                // Attached is a PDF File
+                Glide.with(getContext())
+                        .load(R.drawable.ic_archivo)
+                        .centerCrop()
+                        .into(previewAdjunto);
+                previewAdjunto.setAdjustViewBounds(true);
+            }
+
+        }
+        else
+        {
+            previewAdjunto.setVisibility(View.GONE);
+
+
+        }
+
+        
         return v;
     }
 

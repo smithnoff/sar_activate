@@ -27,6 +27,7 @@ public class FragmenteListarMensajesDirectos extends Fragment {
     private EditText chatText;
     private Button buttonSend;
     private boolean side = false;
+    private String conversacionID;
 
     private ListarMensajesDirectosParse mainAdapter;
 
@@ -37,40 +38,24 @@ public class FragmenteListarMensajesDirectos extends Fragment {
         View v = inflater.inflate(R.layout.fragment_detalles_conversacion_directa, container, false);
 
         // Initialize main ParseQueryAdapter
-        mainAdapter = new ListarMensajesDirectosParse(this.getContext());
+        conversacionID = getArguments().getString("id");
+        mainAdapter = new ListarMensajesDirectosParse(this.getContext(),conversacionID);
 
 
 
-        listView = (ListView) v.findViewById(R.id.chatlist);
-        listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
-        listView.setStackFromBottom(true);
+        listView = (ListView) v.findViewById(R.id.mensajesListView);
+     /*   listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+        listView.setStackFromBottom(true);*/
         listView.setAdapter(mainAdapter);
         mainAdapter.loadObjects();
 
-/*
-        // Defined Array values to show in ListView
-        String[] values = new String[] { "Android List View",
-                "Adapter implementation",
-                "Simple List View In Android",
-                "Create List View Android",
-                "Android Example",
-                "List View Source Code",
-                "List View Array Adapter",
-                "Android Example List View"
-        };
 
-     //   ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.msg_left,values);
-
-        //ArrayAdapter adapter = new ArrayAdapter(this, R.layout.msg_left, values);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),R.layout.msg_right, R.id.lbl1, values);
-        listView.setAdapter(adapter);*/
 
 
 
         // TODO: Implement Theme Editing. Right now all login on Main Activity
         return v;
     }
-
 
 
 }
