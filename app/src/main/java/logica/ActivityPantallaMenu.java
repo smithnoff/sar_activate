@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.example.usuario.soyactivista.fragments.FragmentCrearUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
 import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
+import com.example.usuario.soyactivista.fragments.FragmentListarConversacion;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
@@ -172,7 +173,10 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                                 fragment = new FragmentEditarUsuario();
                                 fragmentTransaction = true;
                                 break;
-
+                            case R.id.PruebaDarwin:
+                                fragment = new FragmentListarConversacion();
+                                fragmentTransaction = true;
+                                break;
                             case R.id.menuCerrarSesion:
                                 usuarioActual.logOutInBackground();
                                 Intent i = new Intent(getApplication(),ActivityPantallaInicio.class);

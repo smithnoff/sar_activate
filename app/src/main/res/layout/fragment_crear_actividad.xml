@@ -164,32 +164,56 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:text="@string/inicio"/>
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="4"
+                    android:orientation="horizontal">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:inputType="date"
+                        android:layout_weight="3"
                         android:ems="10"
                         android:id="@+id/editInicio"
                         android:hint="@string/hintInicio"
                         android:layout_gravity="center_horizontal" />
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:id="@+id/imgCalendarInicio"
+                        android:src="@android:drawable/ic_menu_my_calendar"
+                        android:layout_height="match_parent" />
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:text="@string/fin"/>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:weightSum="4"
+                   android:orientation="horizontal">
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:inputType="date"
-                        android:ems="10"
-                        android:hint="@string/hintFin"
-                        android:id="@+id/editFin"
-                        android:layout_gravity="center_horizontal" />
+                   <EditText
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="3"
+                       android:layout_marginTop="6dp"
+                       android:inputType="date"
+                       android:ems="10"
+                       android:hint="@string/hintFin"
+                       android:id="@+id/editFin"
+                       android:layout_gravity="center_horizontal" />
+                   <ImageButton
+                       android:layout_width="wrap_content"
+                       android:id="@+id/imgCalendarFin"
+                       android:src="@android:drawable/ic_menu_my_calendar"
+                       android:layout_height="match_parent" />
+               </LinearLayout>
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -268,7 +292,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="20"/>
 
-                        <Button
+                        <android.support.design.widget.FloatingActionButton
                             android:layout_width="0dp"
                             android:layout_weight="30"
                             android:layout_height="wrap_content"

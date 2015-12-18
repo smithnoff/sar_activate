@@ -53,6 +53,7 @@
     <string name="crearActividad">Crear Actividad</string>
     <string name="elimarCuenta">Eliminar Cuenta</string>
     <string name="manejarActividades">Actividades del partido</string>
+    <string name="MensajesDarwin">Darwin</string>
 
     <!--miselaneos-->
     <string name="username">Identificador</string>

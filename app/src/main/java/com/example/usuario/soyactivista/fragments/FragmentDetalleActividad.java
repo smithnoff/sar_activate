@@ -1,6 +1,8 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,11 +18,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 
 import com.bumptech.glide.Glide;
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -31,11 +30,8 @@ import com.parse.SaveCallback;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 import soy_activista.quartzapp.com.soy_activista.R;
-
-import static java.lang.Integer.parseInt;
 
 /**
  * Created by Brahyam on 25/11/2015.
@@ -47,7 +43,7 @@ public class FragmentDetalleActividad extends Fragment {
     private EditText puntaje, descripcion, objetivo, encargado, creador,  inicio, fin, parroquia; // Edit Field holders
     private Spinner nombre, ubicacion, estado, municipio, estatus; // Spinner holders
     private Button guardar,editar,eliminar,cancelar; // Button holders
-    private ImageButton botonMeGusta, botonNoMeGusta;
+    private ImageButton botonMeGusta, botonNoMeGusta,calendarInicio,calendarFin;
     private ImageView imagen1,imagen2,imagen3,imagen4;
     private ProgressDialog dialog;
     private ParseObject tipoActividad; // TipoActividad to be associated with Actividad
@@ -86,7 +82,32 @@ public class FragmentDetalleActividad extends Fragment {
         inicio = (EditText)v.findViewById(R.id.editInicio);
         fin = (EditText)v.findViewById(R.id.editFin);
         parroquia = (EditText)v.findViewById(R.id.editParroquia);
+        calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
+        calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
+        calendarInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inicio.requestFocus();
+                inicio.setText("");
+                DialogDatePicker picker2 = new DialogDatePicker();
+                picker2.show(getFragmentManager(), "Fecha de inicio");
 
+
+
+            }
+        });
+        calendarFin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fin.requestFocus();
+                fin.setText("");
+                DialogDatePicker picker2 = new DialogDatePicker();
+                picker2.show(getFragmentManager(), "Fecha de Fin");
+
+
+
+            }
+        });
         // Asigns Spinners to holders
         nombre = (Spinner)v.findViewById(R.id.spinNombreActividad);
         ubicacion = (Spinner)v.findViewById(R.id.spinUbicacion);

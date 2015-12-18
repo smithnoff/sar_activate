@@ -10,10 +10,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -24,7 +24,6 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -43,11 +42,6 @@ import java.text.SimpleDateFormat;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
-import android.content.DialogInterface;
-
-
-import static java.lang.Integer.parseInt;
-
 
 /**
  * Created by Brahyam on 25/11/2015.
@@ -60,13 +54,16 @@ public class FragmentCrearActividad extends Fragment {
     private EditText puntaje, descripcion, objetivo, encargado, creador,  inicio, fin, parroquia; // Edit Field holders
     private Spinner nombre, ubicacion, estado, municipio; // Spinner holders
     private Button crear,cancelar; // Button holders
-    private ImageButton adjuntarFoto; // Add Image Button.
+    private ImageButton adjuntarFoto,calendarInicio,calendarFin; // Add Image Button.
     private ProgressDialog dialog;
     private ParseObject tipoActividad; // TipoActividad to be associated with Actividad
 
     // Image Storing Variables/Constants
     private Bitmap bitmap;
     static int random = (int) (Math.random() *1000) + 1;
+    static int random2 = (int) (Math.random() *1000) + 1;
+    static int random3 = (int) (Math.random() *1000) + 1;
+    static int random4 = (int) (Math.random() *1000) + 1;
     private static byte[] imagenSeleccionada = null;
     private static byte[] imagenSeleccionada2 = null;
     private static byte[] imagenSeleccionada3 = null;
@@ -107,7 +104,32 @@ public class FragmentCrearActividad extends Fragment {
         inicio = (EditText)v.findViewById(R.id.editInicio);
         fin = (EditText)v.findViewById(R.id.editFin);
         parroquia = (EditText)v.findViewById(R.id.editParroquia);
+        calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
+        calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
+calendarInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inicio.requestFocus();
+            inicio.setText("");
+                DialogDatePicker picker2 = new DialogDatePicker();
+                picker2.show(getFragmentManager(), "Fecha de inicio");
 
+
+
+            }
+        });
+        calendarFin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fin.requestFocus();
+                fin.setText("");
+                DialogDatePicker picker2 = new DialogDatePicker();
+                picker2.show(getFragmentManager(), "Fecha de Fin");
+
+
+
+            }
+        });
         // Asigns Spinners to holders
         nombre = (Spinner)v.findViewById(R.id.spinNombreActividad);
         ubicacion = (Spinner)v.findViewById(R.id.spinUbicacion);
@@ -281,7 +303,12 @@ public class FragmentCrearActividad extends Fragment {
                             // Handle Image uploading
                             if (imagenSeleccionada != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + "1.jpg", imagenSeleccionada);
+
+                                int value = (int)(Math.random() * 1000 + 2);
+                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + value + ".jpg", imagenSeleccionada);
+
+                                //ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + "1.jpg", imagenSeleccionada);
+
                                 actividad.put("imagen1", fotoFinal);
 
                                 fotoFinal.saveInBackground(new SaveCallback() {
@@ -300,7 +327,12 @@ public class FragmentCrearActividad extends Fragment {
 
                             if (imagenSeleccionada2 != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + random + "2.jpg", imagenSeleccionada2);
+
+                                int value2 = (int)(Math.random() * 1000 + 3);
+                                ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + value2 + ".jpg", imagenSeleccionada2);
+
+                                //ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + random + "2.jpg", imagenSeleccionada2);
+
                                 actividad.put("imagen2", fotoFinal2);
 
                                 fotoFinal2.saveInBackground(new SaveCallback() {
@@ -319,7 +351,11 @@ public class FragmentCrearActividad extends Fragment {
 
                             if (imagenSeleccionada3 != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + random + "3.jpg", imagenSeleccionada3);
+                                int value3 = (int)(Math.random() * 1000 + 5);
+                                ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + value3 + ".jpg", imagenSeleccionada3);
+
+                                //ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + random + "3.jpg", imagenSeleccionada3);
+
                                 actividad.put("imagen3", fotoFinal3);
 
                                 fotoFinal3.saveInBackground(new SaveCallback() {
@@ -338,7 +374,12 @@ public class FragmentCrearActividad extends Fragment {
 
                             if (imagenSeleccionada4 != null) {
                                 // Save the scaled image to Parse
-                                ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + random + "4.jpg", imagenSeleccionada4);
+
+                                int value4 = (int)(Math.random() * 1000 + 7);
+                                ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + value4 + ".jpg", imagenSeleccionada4);
+
+                                //ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + random + "4.jpg", imagenSeleccionada4);
+
                                 actividad.put("imagen4", fotoFinal4);
 
                                 fotoFinal4.saveInBackground(new SaveCallback() {
@@ -354,7 +395,6 @@ public class FragmentCrearActividad extends Fragment {
                                     }
                                 });
                             }
-
                             // Save Activity
                             actividad.saveInBackground(new SaveCallback() {
                                 public void done(ParseException e) {
@@ -374,10 +414,7 @@ public class FragmentCrearActividad extends Fragment {
                                     }
                                 }
                             });
-
                         }
-
-
                         dialogo.dismiss();
                     }
 
@@ -390,11 +427,8 @@ public class FragmentCrearActividad extends Fragment {
                         dialogo.dismiss();
                     }
                 });
-
                 AlertDialog alert = builder.create();
                 alert.show();
-
-
             }
         });
 
