@@ -49,32 +49,35 @@ public class FragmentRecuperarContrasena extends Fragment {
 
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
+                final String email = editEmail.getText().toString().trim();
+
                 //Validate Field not empty
-                if(editEmail.getText().toString().trim().length() > 0)
+                if( email.length() > 0)
                 {
                     // Validate Email Pattern
-                    if (editEmail.getText().toString().matches(emailPattern)){
+                    if (email.matches(emailPattern)){
                         dialog = ProgressDialog.show(getContext(),"Recuperando Contraseña","Enviando Datos...",true);
-                        ParseUser.requestPasswordResetInBackground(editEmail.toString().trim(), new RequestPasswordResetCallback() {
+
+                        Log.d("RecuperarContraseña","Solicitando recuperación para: "+email);
+                        ParseUser.requestPasswordResetInBackground(email, new RequestPasswordResetCallback() {
                             @Override
                             public void done(ParseException e) {
                                 if (e == null) {
                                     dialog.dismiss();
                                     Toast.makeText(getActivity(), "Se envió a su email un link para reestablecer la contraseña.", Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(getContext(), ActivityPantallaMenu.class);
+                                    Intent i = new Intent(getContext(), ActivityPantallaInicio.class);
                                     startActivity(i);
                                 } else {
                                     dialog.dismiss();
                                     // Email not found
-                                    Log.d(TAG,"Exception returned with code "+e.getCode());
+                                    Log.d(TAG,"Exception returned with code "+e.getCode()+" "+e.getMessage());
                                     if(e.getCode() == 125)
                                         Toast.makeText(getActivity(), "Su email no se encuentra registrado.", Toast.LENGTH_LONG).show();
                                     else
-                                        Toast.makeText(getActivity(), "Ocurrio un error al enviar correo."+e.getMessage(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), "Ocurrió un error al enviar correo."+e.getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
-
                     }
                     else{
                         Toast.makeText(getContext(), "El email no es válido.", Toast.LENGTH_LONG).show();

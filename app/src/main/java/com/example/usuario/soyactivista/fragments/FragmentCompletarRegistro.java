@@ -18,6 +18,7 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import logica.ActivityPantallaInicio;
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -61,23 +62,30 @@ public class FragmentCompletarRegistro extends Fragment {
             public void onClick(View v) {
                 dialog = ProgressDialog.show(getActivity(), "", "Verificando Datos...", true);
                 Log.d(TAG, "Searching for Username:"+editUsername.getText().toString().trim());
-                Log.d(TAG, "Searching for Token:"+editToken.getText().toString().trim());
+                Log.d(TAG, "Searching for Token:" + editToken.getText().toString().trim());
 
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("_User");
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                if(currentUser != null)
+                    currentUser.logOut();
+
+                ParseQuery<ParseUser> query = ParseUser.getQuery();
                 query.whereEqualTo("username", editUsername.getText().toString().trim());
                 query.whereEqualTo("objectId", editToken.getText().toString().trim());
-                query.getFirstInBackground(new GetCallback<ParseObject>() {
-                    public void done(ParseObject object, ParseException e) {
+                query.getFirstInBackground(new GetCallback<ParseUser>() {
+                    public void done(ParseUser object, ParseException e) {
                         if (object == null) {
                             dialog.dismiss();
-                            Toast.makeText(getActivity(), "Datos Incorrectos"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            if(e.getCode() == 101)
+                                Toast.makeText(getActivity(), "Datos Incorrectos", Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                         } else {
                             dialog.dismiss();
                             // Open new fragment for password
 
                             // Pass Username
                             Bundle data = new Bundle();
-                            data.putString("username",editUsername.getText().toString());
+                            data.putString("username",object.getString("username"));
                             Fragment fragment = new FragmentCompletarPassword();
                             fragment.setArguments(data);
                             getFragmentManager()

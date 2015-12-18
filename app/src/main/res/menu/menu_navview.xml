@@ -6,7 +6,7 @@
             android:icon="@drawable/ic_pizarra_mensajes"
             android:title="@string/boletinMensajes"/>
         <item
-            android:id="@+id/menuMensaje"
+            android:id="@+id/menuMensajeDirecto"
             android:icon="@drawable/ic_mensajes_directos"
             android:title="@string/mensajesDir"/>
 

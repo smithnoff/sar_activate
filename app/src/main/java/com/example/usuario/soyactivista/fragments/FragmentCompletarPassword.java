@@ -86,12 +86,12 @@ public class FragmentCompletarPassword extends Fragment{
                                 Toast.makeText(getActivity().getApplicationContext(), "Su cuenta ha sido registrada correctamente.", Toast.LENGTH_LONG).show();
 
                                 // Redirect to main dashboard
-                                Intent i = new Intent(getActivity().getApplicationContext(), ActivityPantallaMenu.class);
+                                Intent i = new Intent(getActivity().getApplicationContext(), ActivityPantallaInicio.class);
                                 startActivity(i);
 
                             } else {
                                 // Signup failed. Look at the ParseException to see what happened.
-                                Toast.makeText(getActivity().getApplicationContext(), "Ocurrió un error. " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity().getApplicationContext(), "Ya completó su registro previamente." + e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         }
                     });

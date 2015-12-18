@@ -53,24 +53,28 @@ public class FragmentRecuperarIdentificador extends Fragment {
 
 
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                final String email = editEmail.getText().toString().trim();
 
                 //Validate Field not empty
-                if(editEmail.getText().toString().trim().length() > 0)
+                if(email.length() > 0)
                 {
                     // Validate Email Pattern
-                    if (editEmail.getText().toString().matches(emailPattern)){
+                    if (email.matches(emailPattern)){
                         dialog = ProgressDialog.show(getContext(),"Recuperando Identificador","Enviando Datos...",true);
                         final HashMap<String, Object> params = new HashMap<>();
-                        params.put("email", editEmail.getText().toString());
+                        params.put("email",email);
                         ParseCloud.callFunctionInBackground("recoverUsername", params, new FunctionCallback< Map<String, Object> >() {
                             @Override
                             public void done(Map<String, Object> response, ParseException e) {
                                 dialog.dismiss();
                                 Log.d(TAG,"response value is "+response);
-                                if (response != null && Integer.valueOf((String)response.get("code")) == 0) {
+                                if (response != null && Integer.valueOf(response.get("code").toString()) == 0) {
                                     Toast.makeText(getActivity(), "Se ha enviado un email a su dirección con los datos solicitados..", Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(getActivity(), ActivityPantallaMenu.class);
+
+                                    // Redirect to Login
+                                    Intent i = new Intent(getActivity(), ActivityPantallaInicio.class);
                                     startActivity(i);
+
                                 } else {
                                     Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde.", Toast.LENGTH_LONG).show();
                                     if(response != null)

@@ -99,7 +99,7 @@ public class FragmentListarUsuario extends Fragment{
                     datos.putString("rol", usuario.getRolName());
 
                     // Redirect View to next Fragment
-                    Fragment fragment = new FragmenteEditarUsuario();
+                    Fragment fragment = new FragmentEditarUsuario();
                     fragment.setArguments(datos);
                     getFragmentManager()
                             .beginTransaction()

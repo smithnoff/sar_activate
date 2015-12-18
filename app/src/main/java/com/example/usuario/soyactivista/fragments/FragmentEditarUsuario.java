@@ -32,7 +32,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 /**
  * Created by Brahyam on 2/12/2015.
  */
-public class FragmenteEditarUsuario extends Fragment {
+public class FragmentEditarUsuario extends Fragment {
 
     // Variable Initialization
     String TAG = "FragmentEditarUsuario"; // For Log.d

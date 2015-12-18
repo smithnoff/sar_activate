@@ -45,7 +45,6 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
 
     // Modify Default query to look for objects Actividad
     public ListarActividadAdapter(Context context, ArrayList<String> likes) {
-
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 ParseQuery query = new ParseQuery("Actividad");

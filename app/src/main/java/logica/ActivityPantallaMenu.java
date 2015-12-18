@@ -1,7 +1,5 @@
 package logica;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -28,7 +26,7 @@ import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
-import com.example.usuario.soyactivista.fragments.FragmenteEditarUsuario;
+import com.example.usuario.soyactivista.fragments.FragmentEditarUsuario;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
@@ -58,7 +56,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
         try {
             Selector_de_Tema.onActivityCreateSetTheme(this);
         } catch (ParseException e) {
-            Log.d(TAG,"Theme could not be retrieved.");
+            Log.d(TAG,"Theme could not be retrieved. "+e.getMessage());
         }
 
         setContentView(R.layout.pantalla_con_menu);
@@ -171,7 +169,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                                 break;
 
                             case R.id.menuMiPerfil:
-                                fragment = new FragmenteEditarUsuario();
+                                fragment = new FragmentEditarUsuario();
                                 fragmentTransaction = true;
                                 break;
 
