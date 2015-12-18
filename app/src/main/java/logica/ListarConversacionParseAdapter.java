@@ -68,8 +68,9 @@ public class ListarConversacionParseAdapter  extends ParseQueryAdapter<ParseObje
         valueNombre.setText(creador.getString("nombre") + " " + creador.getString("apellido"));
         valueEstado.setText(creador.getString("estado"));
         valueMunicipio.setText(creador.getString("municipio"));
-        valueCargo.setText(object.getString("cargo"));
-        valueComite.setText(object.getString("comite"));
+        valueCargo.setText(creador.getString("cargo"));
+        valueComite.setText(creador.getString("comite"));
+        valueRol.setText(creador.getString("rol"));
 
         if(object.getInt("rol") == 0)
             valueRol.setText(object.getInt("Activista"));

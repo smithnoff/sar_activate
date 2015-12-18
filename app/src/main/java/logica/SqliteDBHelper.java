@@ -17,7 +17,8 @@ public class SqliteDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+//code below is to crate table
+      //db.execSQL(SqliteManager.Crear_Tabla_mensajes);
     }
 
     @Override
