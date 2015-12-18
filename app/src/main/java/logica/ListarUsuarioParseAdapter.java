@@ -23,7 +23,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class ListarUsuarioParseAdapter extends ParseQueryAdapter<ParseObject> implements Filterable {
 
     private ArrayList<ParseUser> userArrayList;
-    public String idus;
+
     // Modify Default query to look for objects Actividad
     public ListarUsuarioParseAdapter(Context context) {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
@@ -52,7 +52,7 @@ public class ListarUsuarioParseAdapter extends ParseQueryAdapter<ParseObject> im
 
 
         // Load Values
-        idus=user.getObjectId();
+
         valueNombre.setText(user.getString("nombre") + " " + user.getString("apellido"));
         valueEstado.setText(user.getString("estado"));
         valueMunicipio.setText(user.getString("municipio"));
