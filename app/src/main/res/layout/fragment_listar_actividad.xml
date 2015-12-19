@@ -12,10 +12,21 @@
             android:id="@+id/actividadesListView"
             android:layout_marginTop="8dp"
             />
-        Updates were rejected because the tip of your current branch is behind
-        hint: its remote counterpart. Integrate the remote changes (e.g.
-        hint: 'git pull ...') before pushing again.
-        hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/botonCrearActividad"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_add"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:elevation="3dp"
+            app:fabSize="normal"
+            app:borderWidth="0dp"
+
+            android:layout_marginBottom="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="7dp"
+            android:layout_marginEnd="7dp" />
 
     </RelativeLayout>
 </FrameLayout>

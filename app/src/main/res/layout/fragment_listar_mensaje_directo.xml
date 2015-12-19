@@ -9,7 +9,7 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mensajesListView"
+            android:id="@+id/mensajesDirectosListView"
             android:layout_marginTop="8dp"
             android:divider="@color/white"
             />
@@ -22,7 +22,6 @@
             android:elevation="3dp"
             app:fabSize="normal"
             app:borderWidth="0dp"
-
             android:layout_marginBottom="16dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"

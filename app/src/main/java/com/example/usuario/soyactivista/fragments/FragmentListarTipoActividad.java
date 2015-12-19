@@ -40,6 +40,7 @@ public class FragmentListarTipoActividad extends Fragment {
         // Initialize list view
         listView = (ListView)view.findViewById(R.id.listaTipoActividad);
 
+        mainAdapter.clear();
         listView.setAdapter(mainAdapter);
         mainAdapter.loadObjects();
 

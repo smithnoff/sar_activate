@@ -15,4 +15,9 @@
         android:visible="false"
         />
 
+    <item
+        android:id="@+id/filtroTodos"
+        android:title="@string/filtroTodos"
+        />
+
 </menu>

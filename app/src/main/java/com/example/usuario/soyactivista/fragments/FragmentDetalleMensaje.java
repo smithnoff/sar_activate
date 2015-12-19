@@ -79,9 +79,8 @@ public class FragmentDetalleMensaje extends Fragment {
                 // Attached is a PDF File
                 Glide.with(getContext())
                         .load(R.drawable.ic_archivo)
-                        .centerCrop()
                         .into(previewAdjunto);
-
+                previewAdjunto.setAdjustViewBounds(true);
                 previewAdjunto.setOnClickListener(seePDFDetail(getArguments().getString("adjunto")));
 
             }
@@ -93,21 +92,21 @@ public class FragmentDetalleMensaje extends Fragment {
             previewAdjunto.setVisibility(View.VISIBLE);
             Glide.with(getContext())
                     .load(R.drawable.ic_place)
-                    .centerCrop()
                     .into(previewAdjunto);
 
+            previewAdjunto.setAdjustViewBounds(true);
             Log.d("INTENT LOCATION","Location is:"+getArguments().getString("ubicacion"));
             previewAdjunto.setOnClickListener(seeLocationDetail(getArguments().getString("ubicacion")));
         }
 
-        // Show reported button only if the message was not reported before
-        if(getArguments().getBoolean("reportado")){
+        // Hide reported button if the message was reported before / Hide when Direct Message
+        if(getArguments().getBoolean("reportado") || getArguments().getBoolean("directo")){
             botonReportar.setVisibility(View.GONE);
             botonReportar.setEnabled(false);
         }
 
-        //Show EliminarMensaje button only if the user role is "1" or owner message.
-        if(usuarioActual.getInt("rol")== 1 || usuarioActual.equals(getArguments().get("autor"))){
+        //Show Delete button only if the user role is "1" & Not a direct Message or message owner.
+        if(usuarioActual.getInt("rol")== 1 && !getArguments().getBoolean("directo") || usuarioActual.getObjectId().equals(getArguments().get("autor"))){
             botonEliminar.setVisibility(View.VISIBLE);
             botonEliminar.setEnabled(true);
         }
@@ -170,14 +169,37 @@ public class FragmentDetalleMensaje extends Fragment {
 
                     public void onClick(DialogInterface dialogo, int which) {
                         dialogo.dismiss();
-                        ParseObject mensaje = ParseObject.createWithoutData("Mensaje", getArguments().getString("id"));
+                        ParseObject mensaje;
+                        if (getArguments().getBoolean("directo")) {
+                            mensaje = ParseObject.createWithoutData("MensajeDirecto", getArguments().getString("id"));
+                        } else {
+                            mensaje = ParseObject.createWithoutData("Mensaje", getArguments().getString("id"));
+                        }
+
                         mensaje.deleteInBackground();
                         Toast.makeText(getContext(), "Mensaje eliminado.", Toast.LENGTH_SHORT).show();
-                        Fragment fragment = new FragmentListarMensaje();
-                        getFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.content_frame, fragment)
-                                .commit();
+
+                        // Redirect User
+                        // If public message dashboard
+                        if (!getArguments().getBoolean("directo")) {
+                            Fragment fragment = new FragmentListarMensaje();
+                            getFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.content_frame, fragment)
+                                    .commit();
+
+                        } else { // Redirect to private Conversation
+                            Bundle datos = new Bundle();
+                            datos.putString("conversacionId", getArguments().getString("conversacionId"));
+
+                            Fragment fragment = new FragmentListarMensajeDirecto();
+                            fragment.setArguments(datos);
+                            getFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.content_frame, fragment)
+                                    .commit();
+                        }
+
                     }
 
                 });

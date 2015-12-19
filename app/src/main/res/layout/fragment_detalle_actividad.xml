@@ -14,6 +14,7 @@
             android:orientation="vertical"
             >
 
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -212,56 +213,70 @@
                 android:layout_marginTop="6dp"
                 android:text="@string/inicio"/>
 
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="4"
-        android:orientation="horizontal">
-            <EditText
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:inputType="date"
-                android:ems="10"
-                android:layout_weight="3"
-                android:id="@+id/editInicio"
-                android:hint="@string/hintInicio"
-                android:layout_gravity="center_horizontal"
-                android:enabled="false"
-                /><ImageButton
-          android:layout_width="wrap_content"
-          android:id="@+id/imgCalendarInicio"
-          android:src="@android:drawable/ic_menu_my_calendar"
-          android:layout_height="match_parent" />
-    </LinearLayout>
+                android:layout_height="match_parent"
+                android:weightSum="4"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:inputType="date"
+                    android:ems="10"
+                    android:layout_weight="3"
+                    android:id="@+id/editInicio"
+                    android:hint="@string/hintInicio"
+                    android:layout_gravity="center_horizontal"
+                    android:enabled="false"
+                    />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:id="@+id/imgCalendarInicio"
+                    android:src="@android:drawable/ic_menu_my_calendar"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="30dp"/>
+
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/fin"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="4"
-            android:orientation="horizontal">
-            <EditText
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:inputType="date"
-                android:layout_weight="3"
-                android:ems="10"
-                android:hint="@string/hintFin"
-                android:id="@+id/editFin"
-                android:layout_gravity="center_horizontal"
-                android:enabled="false"
-                />
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:id="@+id/imgCalendarFin"
-                android:src="@android:drawable/ic_menu_my_calendar"
-                android:layout_height="match_parent" />
-</LinearLayout>
+                android:layout_height="match_parent"
+                android:weightSum="4"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:inputType="date"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="@string/hintFin"
+                    android:id="@+id/editFin"
+                    android:layout_gravity="center_horizontal"
+                    android:enabled="false"
+                    />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:id="@+id/imgCalendarFin"
+                    android:src="@android:drawable/ic_menu_my_calendar"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="30dp"
+                    />
+
+            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
@@ -269,17 +284,59 @@
                 android:background="@color/grisOscuro"
                 />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+
+                <ImageButton
+                    android:id="@+id/botonAgregarImagenes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_add_to_photos"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:visibility="gone"
+                    />
+
+                <TextView
+                    android:id="@+id/labelImagenes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cantidadImagenesEjemplo"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginRight="40dp"
+                    android:visibility="gone"
+                    />
+
+                <ImageButton
+                    android:id="@+id/botonRemoverImagenes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_delete"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="18dp"
+                    android:visibility="gone"
+                    />
+
+
+            </LinearLayout>
+
+
             <ImageView
                 android:id="@+id/imagen1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
                 android:visibility="gone"
-                android:layout_marginTop="10dp"/>
+                />
 
             <ImageView
                 android:id="@+id/imagen2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:visibility="gone"
                 android:layout_marginTop="10dp"
                 />
@@ -287,14 +344,14 @@
             <ImageView
                 android:id="@+id/imagen3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:visibility="gone"
                 android:layout_marginTop="10dp"/>
 
             <ImageView
                 android:id="@+id/imagen4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:visibility="gone"
                 android:layout_marginTop="10dp"/>
 

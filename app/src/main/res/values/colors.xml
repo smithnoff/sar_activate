@@ -19,11 +19,18 @@
     <color name="blue500">#2196f3</color>
     <color name="deeppurple600">#5e35b1</color>
     <color name="brown">#5D4037</color>
+
 <!--color miselaneo-->
     <color name="grisOscuro">#999999</color>
 
+
+    <!-- Texto Actividades -->
     <color name="verde">#64dd17</color>
     <color name="rojo">#b71c1c</color>
+
+    <!-- Fondo Mensajes Directos -->
+    <color name="mensajeIzquierda">#9FA8DA</color>
+    <color name="mensajeDerecha">#C5CAE9</color>
 
     <color name="main_color_gray">#7d7d7d</color>
     <color name="main_color_gray_dk">#3b3b3b</color>

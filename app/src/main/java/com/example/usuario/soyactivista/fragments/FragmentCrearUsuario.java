@@ -3,6 +3,7 @@ package com.example.usuario.soyactivista.fragments;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.parse.FunctionCallback;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
 import java.util.HashMap;
+import java.util.Map;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -54,7 +56,7 @@ public class FragmentCrearUsuario extends Fragment {
         // Load Spinners
         fillSpinnerfromResource(spinEstado,R.array.Estados);
         fillSpinnerfromResource(spinComite,R.array.Comite);
-        fillSpinnerfromResource(spinRol,R.array.Roles);
+        fillSpinnerfromResource(spinRol, R.array.Roles);
 
         // Fill Municipios on Estado Selected
         spinEstado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -74,11 +76,11 @@ public class FragmentCrearUsuario extends Fragment {
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
                 // Validate fields are not empty
-                if (editUsername.getText().toString().trim().length()> 0
-                        && editNombre.getText().toString().trim().length()>0
-                        && editApellido.getText().toString().trim().length()>0
-                        && editCargo.getText().toString().trim().length()>0
-                        && editEmail.getText().toString().trim().length()>0) {
+                if (editUsername.getText().toString().trim().length() > 0
+                        && editNombre.getText().toString().trim().length() > 0
+                        && editApellido.getText().toString().trim().length() > 0
+                        && editCargo.getText().toString().trim().length() > 0
+                        && editEmail.getText().toString().trim().length() > 0) {
 
                     // Validate email address matches pattern
                     if (editEmail.getText().toString().matches(emailPattern)) {
@@ -97,11 +99,38 @@ public class FragmentCrearUsuario extends Fragment {
                         params.put("municipio", spinMunicipio.getSelectedItem().toString());
                         params.put("comite", spinComite.getSelectedItem().toString());
                         params.put("rol", String.valueOf(spinRol.getSelectedItemPosition()));
-                        ParseCloud.callFunctionInBackground("createUser", params, new FunctionCallback<Object>() {
+                        ParseCloud.callFunctionInBackground("createUser", params, new FunctionCallback<Map<String, Object>>() {
                             @Override
-                            public void done(Object response, ParseException e) {
+                            public void done(Map<String, Object> response, ParseException e) {
                                 if (e == null) {
                                     dialog.dismiss();
+                                    Log.d(TAG, "Usuario Registrado");
+                                    if (response.get("userId") != null) {
+
+                                        Log.d(TAG, "Response ID is " + response.get("userId").toString());
+                                        // Send Registration Mail in Background
+                                        HashMap<String, Object> params2 = new HashMap<>();
+                                        params2.put("email", editEmail.getText().toString());
+                                        params2.put("username", editUsername.getText().toString());
+                                        params2.put("nombre", editNombre.getText().toString());
+                                        params2.put("apellido", editApellido.getText().toString());
+                                        params2.put("cargo", editCargo.getText().toString());
+                                        params2.put("token", response.get("userId").toString());
+                                        ParseCloud.callFunctionInBackground("SendRegistrationMail", params2, new FunctionCallback<Map<String, Object>>() {
+                                            @Override
+                                            public void done(Map<String, Object> response, ParseException e) {
+                                                if (e == null && Integer.valueOf(response.get("code").toString()) == 0) {
+                                                    Toast.makeText(getActivity(), "Email enviado correctamente", Toast.LENGTH_SHORT).show();
+                                                    Log.d(TAG, "Email Enviado");
+                                                } else {
+                                                    Toast.makeText(getActivity(), "Error enviando Email." + e.getMessage() + response.get("message"), Toast.LENGTH_SHORT).show();
+                                                    Log.d(TAG, "Error enviando mail. " + e.getMessage() + " " + response.get("message").toString());
+                                                }
+
+                                            }
+                                        });
+                                    }
+
                                     Toast.makeText(getActivity(), "Usuario creado correctamente.", Toast.LENGTH_SHORT).show();
                                     Fragment fragment = new FragmentListarUsuario();
                                     getFragmentManager()
@@ -112,20 +141,17 @@ public class FragmentCrearUsuario extends Fragment {
                                 } else {
                                     // TODO: Discern error types by examining error code.
                                     dialog.dismiss();
+                                    Log.d(TAG, "Error: " + e.getMessage());
                                     Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde." + e.toString(), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
-                    }
-                    else
-                    {
-                        Toast.makeText(getContext(),"Correo inválido.",Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getContext(), "Correo inválido.", Toast.LENGTH_LONG).show();
                         return;
                     }
-                }
-                else
-                {
-                    Toast.makeText(getContext(),"No puede haber campos vacíos.",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "No puede haber campos vacíos.", Toast.LENGTH_LONG).show();
                     return;
                 }
 

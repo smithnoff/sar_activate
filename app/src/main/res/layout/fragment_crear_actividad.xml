@@ -292,12 +292,12 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="20"/>
 
-                        <android.support.design.widget.FloatingActionButton
+                        <Button
                             android:layout_width="0dp"
                             android:layout_weight="30"
                             android:layout_height="wrap_content"
                             android:text="@string/crear"
-                            android:id="@+id/botonCrearActividad"
+                            android:id="@+id/botonCrear"
                             android:textColor="@color/white" />
 
                         <View

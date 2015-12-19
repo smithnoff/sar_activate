@@ -79,6 +79,7 @@ public class FragmentListarActividad extends Fragment {
 
                     if(listarActividadAdapter !=null){
                         Log.d("ADAPTER", "Adapter is not null!");
+                        listarActividadAdapter.clear();
                         listView.setAdapter(listarActividadAdapter);
                         listarActividadAdapter.loadObjects();
                     }
@@ -136,11 +137,11 @@ public class FragmentListarActividad extends Fragment {
                 if(imagen1 != null)
                     datos.putString("imagen1",imagen1.getUrl());
                 if(imagen2 != null)
-                    datos.putString("imagen2",imagen1.getUrl());
+                    datos.putString("imagen2",imagen2.getUrl());
                 if(imagen3 != null)
-                    datos.putString("imagen3",imagen1.getUrl());
+                    datos.putString("imagen3",imagen3.getUrl());
                 if(imagen4 != null)
-                    datos.putString("imagen4",imagen1.getUrl());
+                    datos.putString("imagen4",imagen4.getUrl());
 
 
                 // Redirect View to next Fragment
@@ -154,7 +155,7 @@ public class FragmentListarActividad extends Fragment {
             }
         });
 
-        FloatingActionButton botonCrearActividad =(FloatingActionButton)view.findViewById(R.id.botonCrearActividad);
+        FloatingActionButton botonCrearActividad = (FloatingActionButton)view.findViewById(R.id.botonCrearActividad);
 
         // Create new Activity Type Button
         botonCrearActividad.setOnClickListener(new View.OnClickListener() {

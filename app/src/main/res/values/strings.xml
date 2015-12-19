@@ -167,6 +167,10 @@
     <string name="filtroMeGusta">Filtrar por #meGusta</string>
     <string name="filtroTodas">Mostrar todas</string>
     <string name="filtroActividadesPropias">Mis Actividades</string>
+    <string name="eliminarConversacion">Eliminar conversación</string>
+    <string name="likesEjemplo">100</string>
+    <string name="filtroTodos">Mostrar todos</string>
+    <string name="cantidadImagenesEjemplo">4 / 4</string>
 
 
 </resources>

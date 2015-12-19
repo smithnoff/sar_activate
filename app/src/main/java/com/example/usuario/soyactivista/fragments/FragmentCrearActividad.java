@@ -106,11 +106,13 @@ public class FragmentCrearActividad extends Fragment {
         parroquia = (EditText)v.findViewById(R.id.editParroquia);
         calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
         calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
-calendarInicio.setOnClickListener(new View.OnClickListener() {
+
+        calendarInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 inicio.requestFocus();
-            inicio.setText("");
+                inicio.setText("");
                 DialogDatePicker picker2 = new DialogDatePicker();
                 picker2.show(getFragmentManager(), "Fecha de inicio");
 
@@ -118,6 +120,7 @@ calendarInicio.setOnClickListener(new View.OnClickListener() {
 
             }
         });
+
         calendarFin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,7 +128,6 @@ calendarInicio.setOnClickListener(new View.OnClickListener() {
                 fin.setText("");
                 DialogDatePicker picker2 = new DialogDatePicker();
                 picker2.show(getFragmentManager(), "Fecha de Fin");
-
 
 
             }
@@ -138,7 +140,7 @@ calendarInicio.setOnClickListener(new View.OnClickListener() {
         //parroquia = (Spinner)v.findViewById(R.id.spinParroquia); Commented as will be used as Edit Text while data is parsed.
 
         // Asign Buttons to holders
-        crear = (Button)v.findViewById(R.id.botonCrearActividad);
+        crear = (Button)v.findViewById(R.id.botonCrear);
         cancelar = (Button)v.findViewById(R.id.botonCancelar);
         adjuntarFoto = (ImageButton)v.findViewById(R.id.botonAdjuntarFoto);
 
@@ -154,16 +156,18 @@ calendarInicio.setOnClickListener(new View.OnClickListener() {
         ParseQueryAdapter.QueryFactory<ParseObject> factory = new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 ParseQuery query = new ParseQuery("TipoActividad");
+                query.whereEqualTo("activa",true);
                 return query;
             }
         };
-        // Overrriding ParseQueryAdapter getViewTypeCount method to get past issue 79011
+        // Overriding ParseQueryAdapter getViewTypeCount method to get past issue 79011
         final ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(this.getActivity(), factory){
             @Override
             public int getViewTypeCount(){
                 return 1;
             }
         };
+
         adapter.setTextKey("nombre");
         nombre.setAdapter(adapter);
 
@@ -255,10 +259,10 @@ calendarInicio.setOnClickListener(new View.OnClickListener() {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Confirmar");
-                builder.setMessage("¿Estas Seguro?");
+                builder.setMessage("¿Estas seguro que desea crear la actividad?");
 
 
-                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Crear", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialogo, int which) {
 
@@ -401,6 +405,14 @@ calendarInicio.setOnClickListener(new View.OnClickListener() {
                                     if (e == null) {
                                         dialog.dismiss();
                                         Toast.makeText(getActivity(), "Actividad Creada", Toast.LENGTH_SHORT).show();
+
+                                        // Publish Notification of Activity Created.
+                                        ParseObject mensaje = new ParseObject("Mensaje");
+                                        mensaje.put("texto",usuarioActual.getString("nombre")+" ha iniciado una nueva actividad: "+tipoActividad.getString("nombre"));
+                                        mensaje.put("autor",usuarioActual);
+                                        mensaje.put("reportado",false);
+                                        mensaje.saveEventually();
+
                                         // Redirect View to Boletin de Actividades
                                         Fragment fragment = new FragmentListarActividad();
                                         getFragmentManager()
@@ -419,7 +431,7 @@ calendarInicio.setOnClickListener(new View.OnClickListener() {
                     }
 
                 });
-                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialogo, int which) {

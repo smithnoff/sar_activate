@@ -30,7 +30,8 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
-import com.parse.Parse;
+import com.parse.FunctionCallback;
+import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
@@ -43,6 +44,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -244,8 +246,8 @@ public class FragmentCrearMensajeDirectoNew extends Fragment {
                             mensaje.put("texto", editText.getText().toString());
                             mensaje.put("autor", usuarioActual);
 
-                            ParseObject conversacion = ParseObject.createWithoutData("Conversacion",getArguments().getString("conversacionId"));
-                            mensaje.put("conversacion",conversacion);
+                            ParseObject conversacion = ParseObject.createWithoutData("Conversacion", getArguments().getString("conversacionId"));
+                            mensaje.put("conversacion", conversacion);
 
                             // Handle Image uploading
                             if (selectedImage != null) {
@@ -303,8 +305,27 @@ public class FragmentCrearMensajeDirectoNew extends Fragment {
                                     if (e == null) {
                                         dialog.dismiss();
                                         Toast.makeText(getActivity(), "Mensaje Publicado", Toast.LENGTH_SHORT).show();
+
+                                        Bundle datos = new Bundle();
+                                        datos.putString("conversacionId", getArguments().getString("conversacionId"));
+                                        datos.putString("receptorId", getArguments().getString("receptorId"));
+
+                                        // Send Notification to User
+                                        HashMap<String, Object> params = new HashMap<String, Object>();
+                                        params.put("recipientId", getArguments().getString("receptorId"));
+                                        params.put("message",  editText.getText().toString());
+                                        ParseCloud.callFunctionInBackground("sendPushToUser", params, new FunctionCallback<String>() {
+                                            public void done(String success, ParseException e) {
+                                                if (e == null) {
+                                                    // Push sent successfully
+                                                    Log.d(TAG,"Push Sent");
+                                                }
+                                            }
+                                        });
+
                                         // Redirect View to ListarMensajes
-                                        Fragment fragment = new FragmentListarMensaje();
+                                        Fragment fragment = new FragmentListarMensajeDirecto();
+                                        fragment.setArguments(datos);
                                         getFragmentManager()
                                                 .beginTransaction()
                                                 .replace(R.id.content_frame, fragment)

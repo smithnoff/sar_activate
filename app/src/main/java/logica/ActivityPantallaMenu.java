@@ -176,10 +176,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                                 fragment = new FragmentEditarUsuario();
                                 fragmentTransaction = true;
                                 break;
-                            case R.id.PruebaDarwin:
-                                fragment = new FragmentListarConversacion();
-                                fragmentTransaction = true;
-                                break;
+
                             case R.id.menuCerrarSesion:
                                 usuarioActual.logOutInBackground();
                                 Intent i = new Intent(getApplication(),ActivityPantallaInicio.class);

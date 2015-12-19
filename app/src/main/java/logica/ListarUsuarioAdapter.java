@@ -117,16 +117,21 @@ public class ListarUsuarioAdapter extends ArrayAdapter<Usuario> implements Filte
                         for (int i = 0; i < getCount(); i++ )
                         {
                             Usuario data = getItem(i);
-                            Log.d(TAG,"Comparing "+value+" to "+data.getUsername());
+                            // Search by Username
                             if(data.getUsername().toLowerCase().startsWith(value))
                                 resultArrayList.add(data);
+                            else // Search by Name
+                                if(data.getNombre().toLowerCase().startsWith(value))
+                                    resultArrayList.add(data);
+                                else // Search by LastName
+                                    if(data.getApellido().toLowerCase().startsWith(value))
+                                        resultArrayList.add(data);
                         }
                         break;
 
                     default:
                         Log.d(TAG,"Returning Default Result");
                         resultArrayList = new ArrayList<>(usuarioArrayList);
-
                         break;
                 }
 
@@ -141,7 +146,6 @@ public class ListarUsuarioAdapter extends ArrayAdapter<Usuario> implements Filte
 
                     resultArrayList = new ArrayList<>(usuarioArrayList);
                 }
-
 
                 results.count = resultArrayList.size();
                 results.values = resultArrayList;

@@ -8,14 +8,18 @@ import java.util.Date;
 public class Conversacion {
 
     public Usuario usuario;
+    private String id;
+    private Date ultimaActiva;
 
     public Conversacion(){
         this.usuario = new Usuario();
     }
 
+    public String getId() {
+        return id;
+    }
 
-
-
-
-
+    public void setId(String id) {
+        this.id = id;
+    }
 }

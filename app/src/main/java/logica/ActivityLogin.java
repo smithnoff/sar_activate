@@ -16,6 +16,7 @@ import com.parse.GetCallback;
 import com.parse.LogInCallback;
 import com.parse.ParseConfig;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -66,10 +67,16 @@ public class ActivityLogin extends AppCompatActivity {
                                             dialog.dismiss();
 
                                             Log.d(TAG,"User Logged In");
+                                            // Associate user with Installation
+                                            ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+                                            ParseUser currentUser = ParseUser.getCurrentUser();
+                                            installation.put("usuario",currentUser);
+                                            installation.saveEventually();
 
                                             Intent i = new Intent(getApplication(), ActivityPantallaMenu.class);
                                             startActivity(i);
                                             finish();
+
                                         }else{
                                             dialog.dismiss();
                                             // TODO: discern between different exceptions and show appropiate message.

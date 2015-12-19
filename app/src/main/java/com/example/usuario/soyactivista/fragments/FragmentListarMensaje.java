@@ -59,6 +59,7 @@ public class FragmentListarMensaje extends Fragment  {
         listView = (ListView) view.findViewById(R.id.mensajesListView);
 
         if (listarMensajeMainAdapter != null) {
+            listarMensajeMainAdapter.clear();
             listView.setAdapter(listarMensajeMainAdapter);
             listarMensajeMainAdapter.loadObjects();
         } else {
@@ -93,6 +94,7 @@ public class FragmentListarMensaje extends Fragment  {
                 datos.putString("fechaCreacion", format.format(mensaje.getCreatedAt()));
                 datos.putBoolean("reportado",mensaje.getBoolean("reportado"));
                 datos.putString("autor",autor.getObjectId());
+                datos.putBoolean("directo",false);
 
                 // Check if images are null and save URLs
                 if (adjunto != null){
@@ -213,13 +215,9 @@ public class FragmentListarMensaje extends Fragment  {
                 if(currentUser != null){
 
                     listarMensajeMainAdapter.clear();
-
                     listarMensajePropiosAdapter = new ListarMensajeParseAdapter(getContext(),"propios="+currentUser.getUsername());
-
                     listView.setAdapter(listarMensajePropiosAdapter);
-
                     listarMensajePropiosAdapter.loadObjects();
-
                     listarMensajePropiosAdapter.notifyDataSetChanged();
 
                     Log.d(TAG, "Adapter has " + listarMensajePropiosAdapter.getCount() + " items");
@@ -232,18 +230,25 @@ public class FragmentListarMensaje extends Fragment  {
                 // User is admin
                 if(currentUser.getInt("rol") == 1){
                     listarMensajeMainAdapter.clear();
-
                     listarMensajeReportadoAdapter = new ListarMensajeParseAdapter(getContext(),"reportados=true");
-
                     listView.setAdapter(listarMensajeReportadoAdapter);
-
                     listarMensajeReportadoAdapter.loadObjects();
-
                     listarMensajeReportadoAdapter.notifyDataSetChanged();
                 }
                 else{
                     Toast.makeText(getContext(), "Credenciales Invalidas.", Toast.LENGTH_LONG).show();
                 }
+                return true;
+
+            case R.id.filtroTodos:
+
+                listarMensajeMainAdapter.clear();
+                listarMensajePropiosAdapter = new ListarMensajeParseAdapter(getContext(),"todos=true");
+                listView.setAdapter(listarMensajePropiosAdapter);
+                listarMensajePropiosAdapter.loadObjects();
+                listarMensajePropiosAdapter.notifyDataSetChanged();
+
+                Log.d(TAG, "Adapter has " + listarMensajePropiosAdapter.getCount() + " items");
                 return true;
 
             default:

@@ -120,7 +120,7 @@
         android:id="@+id/botonMeGusta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="30dp"
         android:layout_below="@+id/nombreActividad"
         android:background="@drawable/ic_thumb_up"
         android:layout_alignParentRight="true"
@@ -131,7 +131,7 @@
         android:id="@+id/botonNoMeGusta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="30dp"
         android:layout_below="@+id/nombreActividad"
         android:background="@drawable/ic_thumb_up"
         android:layout_alignParentRight="true"
@@ -143,14 +143,16 @@
     <TextView
         android:id="@+id/valueLikes"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="25dp"
+        android:layout_marginRight="40dp"
+        android:gravity="right"
         android:textSize="15dp"
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/botonMeGusta"
+        android:layout_toRightOf="@id/valueFin"
+        android:layout_below="@id/valueCreador"
         android:layout_alignParentRight="true"
-        android:text="@string/prueba"
+        android:text="@string/likesEjemplo"
         android:visibility="visible"
         />
 
@@ -182,7 +184,6 @@
             android:layout_weight="50"
             android:layout_below="@+id/labelInicio"
             android:layout_margin="5dp"
-            android:background="@color/grisOscuro"
             android:layout_centerHorizontal="true"
             android:visibility="gone"
             />
@@ -194,7 +195,6 @@
             android:layout_weight="50"
             android:layout_below="@+id/labelInicio"
             android:layout_margin="5dp"
-            android:background="@color/grisOscuro"
             android:layout_centerHorizontal="true"
             android:visibility="gone"
             />
@@ -217,7 +217,6 @@
             android:layout_weight="50"
             android:layout_below="@+id/labelInicio"
             android:layout_margin="5dp"
-            android:background="@color/grisOscuro"
             android:layout_centerHorizontal="true"
             android:visibility="gone"
             />
@@ -229,7 +228,6 @@
             android:layout_weight="50"
             android:layout_below="@+id/labelInicio"
             android:layout_margin="5dp"
-            android:background="@color/grisOscuro"
             android:layout_centerHorizontal="true"
             android:visibility="gone"
             />

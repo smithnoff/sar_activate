@@ -44,7 +44,6 @@ public class FragmentVerImagen extends Fragment {
             Glide.with(getContext())
                     .load(url)
                     .fitCenter()
-                    .placeholder(R.mipmap.ic_placeholder)
                     .into(imageView);
         }
         else{

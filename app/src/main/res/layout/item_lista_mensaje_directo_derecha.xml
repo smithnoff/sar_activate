@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:gravity="right"
+    >
+
+    <RelativeLayout
+        android:id="@+id/background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/mensajeDerecha"
+        android:padding="10dp"
+        android:layout_marginLeft="40dp">
+
+        <TextView
+            android:id="@+id/valueNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nombreEjemplo"
+            android:textSize="10sp"
+            />
+
+        <TextView
+            android:id="@+id/valueApellido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/apellidoEjemplo"
+            android:layout_toRightOf="@id/valueNombre"
+            android:textSize="10sp"
+            android:layout_marginLeft="5dp"
+            />
+
+        <!-- Separator -->
+        <View
+            android:id="@id/separator"
+            android:layout_width="2dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="3dp"
+            android:background="@color/grisOscuro"
+            android:layout_toRightOf="@id/valueApellido"/>
+
+        <TextView
+            android:id="@+id/valueEstado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/estadoEjemplo"
+            android:layout_toRightOf="@id/separator"
+            android:textSize="10sp"
+            android:layout_marginLeft="5dp"
+
+            />
+
+        <TextView
+            android:id="@+id/valueMunicipio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/municipioEjemplo"
+            android:layout_toRightOf="@id/valueEstado"
+            android:textSize="10sp"
+            android:layout_marginLeft="5dp"
+            />
+
+
+        <TextView
+            android:id="@+id/valueMensaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="text"
+            android:textSize="13sp"
+            android:layout_below="@id/valueNombre"
+            />
+
+        <ImageView
+            android:id="@+id/valueAdjunto"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_below="@id/valueMensaje"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            />
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

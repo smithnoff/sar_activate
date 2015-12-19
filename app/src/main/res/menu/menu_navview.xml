@@ -49,10 +49,6 @@
             android:icon="@drawable/ic_perfil_usuario"
             android:title="@string/miPerfil"/>
         <item
-            android:id="@+id/PruebaDarwin"
-            android:icon="@drawable/ic_perfil_usuario"
-            android:title="@string/MensajesDarwin"/>
-        <item
             android:id="@+id/menuCerrarSesion"
             android:icon="@drawable/ic_highlight_off_white_24dp"
             android:title="@string/cerrarSesion"/>
