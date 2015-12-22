@@ -25,13 +25,10 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import logica.ListarMensajeDirectoParseAdapter;
-
-import logica.ListarMensajeParseAdapter;
+import logica.SqliteManager;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -45,7 +42,7 @@ public class FragmentListarMensajeDirecto extends Fragment {
     private ListarMensajeDirectoParseAdapter listarMensajeDirectoParseAdapter;
     private ListView listView;
     ProgressDialog dialog;
-
+    public SqliteManager manager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG,"Creating View Detalle Conversacion");
@@ -56,7 +53,7 @@ public class FragmentListarMensajeDirecto extends Fragment {
         // Initialize main ParseQueryAdapter
         listarMensajeDirectoParseAdapter = new ListarMensajeDirectoParseAdapter(this.getContext(),getArguments().getString("conversacionId"));
         Log.d(TAG,"Mensaje Adapter contains: "+listarMensajeDirectoParseAdapter.getCount()+" items");
-
+          manager=new SqliteManager(getContext());
         // Initialize list view
         listView = (ListView) view.findViewById(R.id.mensajesDirectosListView);
 
@@ -157,12 +154,61 @@ public class FragmentListarMensajeDirecto extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
+
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
+        builder.setTitle("Confirmar");
         switch (item.getItemId()) {
+
+
+              case R.id.guardarConversacion:
+                  builder.setMessage("¿Está seguro que desea Guardar la conversación?");
+
+                  builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+
+                      public void onClick(DialogInterface dialogo, int which) {
+                          dialogo.dismiss();
+                         //TODO: verificar que parametro es null al enviarlo a la base de datos
+                         for (int i=0;i<listView.getCount();i++  ){
+
+                             ParseObject mensaje = (ParseObject) listView.getItemAtPosition(i);
+                            manager.GuardarMensajes(mensaje.getParseUser("autor").getString("nombre"),
+                                    mensaje.getParseFile("adjunto").toString(),"getArguments().getString(conversacionId)",mensaje.getString("texto"),
+                                    mensaje.getObjectId(),mensaje.getString("ubicacion").toString(),mensaje.getCreatedAt().toString());
+                         }
+                          Toast.makeText(getContext(), "Conversación Guardada.", Toast.LENGTH_SHORT).show();
+
+                          // Redirect user to conversation list
+                          Fragment fragment = new FragmentListarConversacion();
+                          getFragmentManager()
+                                  .beginTransaction()
+                                  .replace(R.id.content_frame, fragment)
+                                  .commit();
+                      }
+
+                  });
+
+                  builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+                      @Override
+                      public void onClick(DialogInterface dialogo, int which) {
+                          // Do nothing
+                          dialogo.dismiss();
+                      }
+                  });
+
+                  android.app.AlertDialog alert2 = builder.create();
+                  alert2.show();
+
+
+
+
+
+                  return true;
+
             case R.id.eliminarConversacion:
                 // Ask for confirmation
                 // On Click listener to Eliminated Message
-                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
-                    builder.setTitle("Confirmar");
+
                     builder.setMessage("¿Está seguro que desea eliminar la conversación?");
 
                     builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {

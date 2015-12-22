@@ -125,6 +125,7 @@ public class FragmentDetalleActividad extends Fragment {
         calendarInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 inicio.requestFocus();
                 inicio.setText("");
                 DialogDatePicker picker2 = new DialogDatePicker();
@@ -137,6 +138,7 @@ public class FragmentDetalleActividad extends Fragment {
         calendarFin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 fin.requestFocus();
                 fin.setText("");
                 DialogDatePicker picker2 = new DialogDatePicker();
@@ -146,8 +148,8 @@ public class FragmentDetalleActividad extends Fragment {
             }
         });
 
-        calendarInicio.setEnabled(false);
-        calendarFin.setEnabled(false);
+        //calendarInicio.setEnabled(false);
+       // calendarFin.setEnabled(false);
 
         // Asigns Spinners to holders
         nombre = (Spinner)v.findViewById(R.id.spinNombreActividad);
