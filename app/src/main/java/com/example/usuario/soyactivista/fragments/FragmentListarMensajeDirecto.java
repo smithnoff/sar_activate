@@ -183,29 +183,31 @@ public class FragmentListarMensajeDirecto extends Fragment {
                             query.findInBackground(new FindCallback<ParseObject>() {
                                 @Override
                                 public void done(List<ParseObject> objects, ParseException e) {
-                                    if(e == null){
-                                        if( objects.size() > 0){
+                                    if (e == null) {
+                                        if (objects.size() > 0) {
                                             ParseObject participante;
-                                            for(int i = 0; i<objects.size();i++){
+                                            for (int i = 0; i < objects.size(); i++) {
                                                 participante = objects.get(i);
                                                 participante.deleteInBackground();
                                             }
                                         }
-                                    }
-                                    else {
-                                        Toast.makeText(getContext(), "Error. "+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                        Toast.makeText(getContext(), "Conversación eliminada.", Toast.LENGTH_SHORT).show();
+
+                                        // Redirect user to conversation list
+                                        Fragment fragment = new FragmentListarConversacion();
+                                        getFragmentManager()
+                                                .beginTransaction()
+                                                .replace(R.id.content_frame, fragment)
+                                                .commit();
+
+                                    } else {
+                                        Toast.makeText(getContext(), "Error. " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
 
-                            Toast.makeText(getContext(), "Conversación eliminada.", Toast.LENGTH_SHORT).show();
 
-                            // Redirect user to conversation list
-                            Fragment fragment = new FragmentListarConversacion();
-                            getFragmentManager()
-                                    .beginTransaction()
-                                    .replace(R.id.content_frame, fragment)
-                                    .commit();
                         }
 
                     });
