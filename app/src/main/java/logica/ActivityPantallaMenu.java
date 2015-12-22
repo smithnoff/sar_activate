@@ -16,18 +16,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.usuario.soyactivista.fragments.FragmentCrearUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
+import com.example.usuario.soyactivista.fragments.FragmentEditarUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarConversacion;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
-import com.example.usuario.soyactivista.fragments.FragmentEditarUsuario;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
@@ -232,97 +231,5 @@ public class ActivityPantallaMenu extends AppCompatActivity {
 
 
 
-    public void checkedView(View v) {
 
-        //set the selected color
-        colorChecked = v.getId();
-        if(vistaAntrior==null)
-            vistaAntrior=v;
-
-        if(v.getId()==R.id.themeBrown) {
-            v.setBackground(getResources().getDrawable(R.drawable.circulomarron));
-        }else {
-            if(vistaAntrior.getId()==R.id.themeBrown)
-                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulobr));
-        }
-        if(v.getId()==R.id.themeOrange) {
-            v.setBackground(getResources().getDrawable(R.drawable.circulonaranja));
-        }else {
-            if(vistaAntrior.getId()==R.id.themeOrange)
-                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulon));
-        }
-        if(v.getId()==R.id.themeBlue) {
-            v.setBackground(getResources().getDrawable(R.drawable.circuloazul));
-        }else {
-            if(vistaAntrior.getId()==R.id.themeBlue)
-                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circuloaz));
-        }
-        if(v.getId()==R.id.themeRed) {
-            v.setBackground(getResources().getDrawable(R.drawable.circulorojo));
-        }else {
-            if(vistaAntrior.getId()==R.id.themeRed)
-                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulor));
-        }
-        if(v.getId()==R.id.themeGreen) {
-            v.setBackground(getResources().getDrawable(R.drawable.circuloverde));
-        }else {
-            if(vistaAntrior.getId()==R.id.themeGreen)
-                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulov));
-        }
-        if(v.getId()==R.id.themeYellow) {
-            v.setBackground(getResources().getDrawable(R.drawable.circuloamarillo));
-        }else {
-            if(vistaAntrior.getId()==R.id.themeYellow)
-                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circuloam));
-        }
-        if(v.getId()==R.id.themePurple) {
-            v.setBackground(getResources().getDrawable(R.drawable.circulopurpura));
-        }else {
-            if(vistaAntrior.getId()==R.id.themePurple)
-                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulop));
-        }
-        if(v.getId()==R.id.themeDefault) {
-            v.setBackground(getResources().getDrawable(R.drawable.circuloindigo));
-        }else {
-            if(vistaAntrior.getId()==R.id.themeDefault)
-                vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulo));
-        }
-        vistaAntrior=v;
-
-    }
-
-    // Receive Actions from Edit Party Theme. Saves Values and redraws as needed
-    public void cambiarTema(View v)
-    {
-        EditText nPartido= (EditText) findViewById(R.id.editNombrePartido);
-
-        //select de theme color
-        switch(colorChecked)
-        {
-            case R.id.themeBrown:
-                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.BROWN,nPartido.getText().toString());
-                break;
-            case R.id.themeBlue:
-                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.BLUE,nPartido.getText().toString());
-                break;
-            case R.id.themeRed:
-                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.RED,nPartido.getText().toString());
-                break;
-            case R.id.themeDefault:
-                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.DEFAULT,nPartido.getText().toString());
-                break;
-            case R.id.themeOrange:
-                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.ORANGE,nPartido.getText().toString());
-                break;
-            case R.id.themeGreen:
-                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.GREEN,nPartido.getText().toString());
-                break;
-            case R.id.themePurple:
-                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.PURPLE,nPartido.getText().toString());
-                break;
-            case R.id.themeYellow:
-                Selector_de_Tema.changeToTheme(ActivityPantallaMenu.this, Selector_de_Tema.YELLOW,nPartido.getText().toString());
-                break;
-        }
-    }
 }

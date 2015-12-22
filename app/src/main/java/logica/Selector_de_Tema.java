@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
-import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -59,6 +58,7 @@ public class Selector_de_Tema {
         }
         //reset main activity
         tema = theme;
+
         nombrePartido =partido;
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));

@@ -116,7 +116,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/guardarCambios"
-        android:onClick="cambiarTema"
+       android:id="@+id/btnguardarTema"
+
         android:textColor="@color/white"/>
 
 
