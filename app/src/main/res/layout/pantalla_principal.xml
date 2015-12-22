@@ -4,156 +4,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="100">
-        <RelativeLayout
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="5"/>
-        <RelativeLayout
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="90">
-            <!--parte central-->
-            <LinearLayout
+        android:background="#eee"
+        >
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/logo"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/logo_soyactivista"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/texto_soyactivista"
+            android:layout_gravity="center"
+            android:id="@+id/slogan"
+            android:layout_below="@+id/logo"
+            android:layout_centerHorizontal="true" />
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/slogan"
+            android:background="@drawable/border">
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="#eee"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/indigo"
+
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"/>
+            <Button
+                android:id="@+id/boton_completar_registro"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="100">
-                <!-- imagenes de arriba-->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="50">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:weightSum="100"
-                        android:orientation="vertical">
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="70">
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:weightSum="100"
-                                android:orientation="horizontal">
-                                <View
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="15"/>
-                                <ImageView
-                                    android:id="@+id/logo_soyactivista"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="70"
-                                    android:background="@drawable/logo_soyactivista"/>
-                                <View
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="15"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_weight="15"
+                android:text="@string/completar_registro"
+                android:textColor="@color/white"
+                android:onClick="completarRegistro" />
+            <Button
+                android:id="@+id/boton_iniciar_sesion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_weight="15"
+                android:layout_below="@+id/boton_completar_registro"
+                android:text="@string/iniciar_sesion"
+                android:onClick="iniciarSesion"
+                android:textColor="@color/white"/>
+            <Button
+                android:id="@+id/boton_recuperar_contrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_weight="15"
+                android:layout_below="@id/boton_iniciar_sesion"
+                android:text="@string/recuperar_contrasena"
+                android:textColor="@color/white"
+                android:onClick="recuperarContraseña"/>
+            <Button
+                android:id="@+id/boton_recuperar_cuenta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="25dp"
+                android:layout_weight="15"
+                android:layout_below="@id/boton_recuperar_contrasena"
+                android:text="@string/recuperar_cuenta"
+                android:onClick="recuperarIdentificador"
+                android:textColor="@color/white"/>
 
 
-                            </LinearLayout>
-                        </RelativeLayout>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="5"/>
-                        <ImageView
-                            android:id="@+id/logo_soyactivista_texto"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="25"
-                            android:background="@drawable/texto_soyactivista"/>
-
-
-                    </LinearLayout>
-                </RelativeLayout>
-
-
-                <!--botones-->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="50">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:weightSum="100">
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0dip"
-                            android:layout_weight="10"/>
-
-                        <Button
-                            android:id="@+id/boton_completar_registro"
-                            android:layout_below="@+id/logo_soyactivista_texto"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dip"
-                            android:layout_weight="15"
-                            android:text="@string/completar_registro"
-                            android:textColor="@color/white"
-                            android:onClick="completarRegistro" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0dip"
-                            android:layout_weight="5"/>
-                        <Button
-                            android:id="@+id/boton_iniciar_sesion"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dip"
-                            android:layout_weight="15"
-                            android:text="@string/iniciar_sesion"
-                            android:onClick="iniciarSesion"
-                            android:textColor="@color/white"/>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0dip"
-                            android:layout_weight="5"/>
-                        <Button
-                            android:id="@+id/boton_recuperar_contrasena"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dip"
-                            android:layout_weight="15"
-                            android:text="@string/recuperar_contrasena"
-                            android:textColor="@color/white"
-                            android:onClick="recuperarContraseña"/>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0dip"
-                            android:layout_weight="5"/>
-                        <Button
-                            android:id="@+id/boton_recuperar_cuenta"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dip"
-                            android:layout_weight="15"
-                            android:text="@string/recuperar_cuenta"
-                            android:onClick="recuperarIdentificador"
-                            android:textColor="@color/white"/>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0dip"
-                            android:layout_weight="25"/>
-
-                    </LinearLayout>
-                </RelativeLayout>
-
-            </LinearLayout>
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="5"/>
-    </LinearLayout>
+
+    </RelativeLayout>
 </FrameLayout>
     <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
