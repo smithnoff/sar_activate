@@ -221,7 +221,7 @@ public class FragmentEditarTipoActividad extends Fragment {
                         delTipoActividad.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(ParseException e) {
-                                if (e != null) {
+                                if (e == null) {
                                     Toast.makeText(getActivity(), "Tipo de actividad eliminada correctamente.", Toast.LENGTH_SHORT).show();
                                 } else {
                                     Toast.makeText(getActivity(), "Ocurrió un error eliminando la actividad."+e.getMessage(), Toast.LENGTH_LONG).show();
