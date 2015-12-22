@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
  * Created by RSMAPP on 16/12/2015.
  */
 public class SqliteManager {
-
+    ContentValues valores;
     private SqliteDBHelper helper;
     private SQLiteDatabase db;
     //tablas
@@ -38,8 +38,7 @@ public static final String ParseId="parseid";
 
 //query to create conversation store Table
     public static final String Crear_Tabla_conversaciones="create table "+tablaConversacion+" ("+
-            id_c+" integer primary key autoincrement,"+Usuario1+" text not null,"+Usuario2+" text not null,"+
-            ParseId+" text not null,"+Creado+" text not null);";
+            id_c+" integer primary key autoincrement,"+ParseId+" text not null,"+Creado+" text not null);";
 
     //query to create mensajes store Table
     public static final String Crear_Tabla_mensajes="create table "+tablaMensajes+" ("+
@@ -55,7 +54,7 @@ public static final String ParseId="parseid";
     // metodo para crear contendor
     private ContentValues generarContentValues(String autor,String adjunto,String conversa,String msj,String prsId,String ubica,String creacion  ) {
 
-        ContentValues valores = new ContentValues();
+         valores = new ContentValues();
        valores.put(Autor,autor);
        valores.put(Adjunto ,adjunto);
        valores.put(Conversacion,conversa);
@@ -67,14 +66,17 @@ public static final String ParseId="parseid";
     }
 
     //metodo agregar
-    public void GuardarMensajes(String tabla,String autor,String adjunto,String conversa,String msj,String prsId,String ubica,String creacion )
+    public void GuardarMensajes(String autor,String adjunto,String conversa,String msj,String prsId,String ubica,String creacion )
     {
-          db.insert(tabla, null, generarContentValues(autor, adjunto, conversa, msj, prsId, ubica, creacion));
+          db.insert(tablaMensajes, null, generarContentValues(autor, adjunto, conversa, msj, prsId, ubica, creacion));
     }
     //metodo agregar
-    public void GuardarConversaciones()
+    public void GuardarConversaciones(String convId, String createDate)
     {
-
+         valores = new ContentValues();
+        valores.put(ParseId,convId);
+        valores.put(Creado,createDate);
+        db.insert(tablaConversacion,null,valores);
     }
     public void eliminar(String tabla)
     { //delete all registers of a specific table

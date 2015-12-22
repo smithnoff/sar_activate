@@ -230,7 +230,7 @@
                     android:id="@+id/editInicio"
                     android:hint="@string/hintInicio"
                     android:layout_gravity="center_horizontal"
-                    android:enabled="false"
+
                     />
 
                 <ImageButton
@@ -264,7 +264,7 @@
                     android:hint="@string/hintFin"
                     android:id="@+id/editFin"
                     android:layout_gravity="center_horizontal"
-                    android:enabled="false"
+
                     />
 
                 <ImageButton

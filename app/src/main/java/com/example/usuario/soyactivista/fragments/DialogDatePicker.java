@@ -1,5 +1,6 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -26,15 +27,21 @@ public class DialogDatePicker extends DialogFragment
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog dpd = new DatePickerDialog(getActivity(), AlertDialog.THEME_HOLO_LIGHT,this,year, month, day);
+        DatePicker dp = dpd.getDatePicker();
+        //Set the DatePicker minimum date selection to current date
+        dp.setMinDate(c.getTimeInMillis());//get the current day
 
         // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(), this, year, month, day);
+        //return new DatePickerDialog(getActivity(), this, year, month, day);
+        return dpd;
     }
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
         //set date
         Calendar c = Calendar.getInstance();
         c.set(year, month, day);
+
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         formattedDate = sdf.format(c.getTime());

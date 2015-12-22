@@ -45,6 +45,8 @@ public class FragmentCompletarRegistro extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+
         View v = inflater.inflate(R.layout.fragment_completar_registro, container, false);
 
         // Asociate Fields

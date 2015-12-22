@@ -114,6 +114,7 @@ public class FragmentCrearActividad extends Fragment {
                 inicio.requestFocus();
                 inicio.setText("");
                 DialogDatePicker picker2 = new DialogDatePicker();
+
                 picker2.show(getFragmentManager(), "Fecha de inicio");
 
 
