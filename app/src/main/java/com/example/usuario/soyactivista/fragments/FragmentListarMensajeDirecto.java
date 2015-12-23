@@ -127,6 +127,7 @@ public class FragmentListarMensajeDirecto extends Fragment {
                 Bundle datos = new Bundle();
                 datos.putString("conversacionId",getArguments().getString("conversacionId"));
                 datos.putString("receptorId",getArguments().getString("receptorId"));
+                datos.putBoolean("conversacion_exists",true);
 
                 // Redirect View to next Fragment
                 Fragment fragment = new FragmentCrearMensajeDirectoNew();

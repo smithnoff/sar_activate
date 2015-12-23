@@ -94,130 +94,23 @@ public class FragmentListarUsuariosConversacion extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                // Creates New Conversation and Adds Users to conversation
-                final ParseObject nuevaConversacion = new ParseObject("Conversacion");
-                nuevaConversacion.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (e == null) {
+                // Store data in bundle to send to next fragment
+                Usuario usuarioSeleccionado = (Usuario) listView.getItemAtPosition(position);
+                Bundle datos = new Bundle();
 
-                            final ParseObject nuevoParticipante = new ParseObject("ParticipanteConversacion");
-                            Log.d(TAG, "Participante: " + nuevaConversacion.getObjectId() + " " + currentUser.getUsername());
-                            nuevoParticipante.put("conversacion", nuevaConversacion);
-                            nuevoParticipante.put("usuario", currentUser);
+                datos.putString("receptor_username", usuarioSeleccionado.getUsername());
+                datos.putBoolean("conversacion_exists",false);
 
 
-                            final ParseObject nuevoParticipante2 = new ParseObject("ParticipanteConversacion");
-                            nuevoParticipante2.put("conversacion", nuevaConversacion);
+                // Redirect View to next Fragment
+                Fragment fragment = new FragmentCrearMensajeDirectoNew();
+                fragment.setArguments(datos);
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .addToBackStack(null)
+                        .commit();
 
-                            // Store data in bundle to send to next fragment
-                            Usuario usuarioSeleccionado = (Usuario) listView.getItemAtPosition(position);
-
-                            Log.d(TAG, "Participante: " + nuevaConversacion.getObjectId() + " " + usuarioSeleccionado.getUsername());
-                            // Query for 2nd user
-                            ParseQuery query = ParseUser.getQuery();
-                            query.whereEqualTo("username", usuarioSeleccionado.getUsername());
-                            query.getFirstInBackground(new GetCallback() {
-                                @Override
-                                public void done(final ParseObject object, ParseException e) {
-                                    if (e == null && object != null) {
-                                        // User Retrieved
-                                        nuevoParticipante.put("receptor",object);
-                                        nuevoParticipante.saveInBackground(new SaveCallback() {
-                                            @Override
-                                            public void done(ParseException e) {
-                                                if (e == null)
-                                                    Log.d(TAG, "Participante 1 agregado correctamente");
-                                                else
-                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 1 " + e.getMessage());
-                                            }
-                                        });
-
-                                        nuevoParticipante2.put("usuario", object);
-                                        nuevoParticipante2.put("receptor",currentUser);
-                                        nuevoParticipante2.saveInBackground(new SaveCallback() {
-                                            @Override
-                                            public void done(ParseException e) {
-                                                if (e == null)
-                                                    Log.d(TAG, "Participante 2 agregado correctamente");
-                                                else
-                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 2 " + e.getMessage());
-
-                                                Bundle datos = new Bundle();
-                                                datos.putString("conversacionId", nuevaConversacion.getObjectId());
-                                                datos.putString("receptorId",object.getObjectId());
-
-                                                // Redirect View to next Fragment
-                                                Fragment fragment = new FragmentCrearMensajeDirectoNew();
-                                                fragment.setArguments(datos);
-                                                getFragmentManager()
-                                                        .beginTransaction()
-                                                        .replace(R.id.content_frame, fragment)
-                                                        .addToBackStack(null)
-                                                        .commit();
-                                            }
-                                        });
-
-                                    } else {
-                                        Log.d(TAG, " Ocurrió un error buscando al usuario " + e.getMessage());
-                                    }
-
-                                }
-
-                                @Override
-                                public void done(final Object o, Throwable throwable) {
-                                    if (o != null) {
-
-                                        final ParseUser user = (ParseUser) o;
-                                        Log.d(TAG, "Caso Desconocido " + o.toString());
-                                        // User Retrieved
-                                        nuevoParticipante.put("receptor",user);
-                                        nuevoParticipante.saveInBackground(new SaveCallback() {
-                                            @Override
-                                            public void done(ParseException e) {
-                                                if (e == null)
-                                                    Log.d(TAG, "Participante 1 agregado correctamente");
-                                                else
-                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 1 " + e.getMessage());
-                                            }
-                                        });
-
-
-                                        nuevoParticipante2.put("usuario", o);
-                                        nuevoParticipante2.put("receptor",currentUser);
-                                        nuevoParticipante2.saveInBackground(new SaveCallback() {
-                                            @Override
-                                            public void done(ParseException e) {
-                                                if (e == null)
-                                                    Log.d(TAG, "Participante 2 agregado correctamente");
-                                                else
-                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 2 " + e.getMessage());
-
-                                                Bundle datos = new Bundle();
-                                                datos.putString("conversacionId", nuevaConversacion.getObjectId());
-                                                datos.putString("receptorId",user.getObjectId());
-
-                                                // Redirect View to next Fragment
-                                                Fragment fragment = new FragmentCrearMensajeDirectoNew();
-                                                fragment.setArguments(datos);
-                                                getFragmentManager()
-                                                        .beginTransaction()
-                                                        .replace(R.id.content_frame, fragment)
-                                                        .addToBackStack(null)
-                                                        .commit();
-                                            }
-                                        });
-                                    } else
-                                        Log.d(TAG, "Caso Desconocido " + throwable.getMessage());
-
-                                }
-                            });
-                        }
-                        else{
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
             }
         });
 
