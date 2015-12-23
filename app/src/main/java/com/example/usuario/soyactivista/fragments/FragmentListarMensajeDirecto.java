@@ -167,13 +167,22 @@ public class FragmentListarMensajeDirecto extends Fragment {
 
                       public void onClick(DialogInterface dialogo, int which) {
                           dialogo.dismiss();
+                          android.app.AlertDialog.Builder builder2 = new android.app.AlertDialog.Builder(getActivity());
                          //TODO: verificar que parametro es null al enviarlo a la base de datos
                          for (int i=0;i<listView.getCount();i++  ){
 
                              ParseObject mensaje = (ParseObject) listView.getItemAtPosition(i);
-                            manager.GuardarMensajes(mensaje.getParseUser("autor").getString("nombre"),
-                                    mensaje.getParseFile("adjunto").toString(),"getArguments().getString(conversacionId)",mensaje.getString("texto"),
-                                    mensaje.getObjectId(),mensaje.getString("ubicacion").toString(),mensaje.getCreatedAt().toString());
+                             String valores="autor: "+mensaje.getParseUser("autor").getString("nombre").toString()+
+                                     "\nadjunto: "+//mensaje.getParseFile("adjunto").toString()+
+                                     "\nconversa"+getArguments().getString("conversacionId")+
+                                     "\nconversaid: "+  mensaje.getObjectId()+
+                                     "\nUbicacion: "+//mensaje.getString("ubicacion").toString()
+                                     "\nMnsaj. "+mensaje.getString("texto")+
+                                     "\ncreado. " + mensaje.getCreatedAt().toString();
+                             builder2.setMessage(valores).create().show();
+                          //   hacer metodo para insertar en bd;
+
+
                          }
                           Toast.makeText(getContext(), "Conversación Guardada.", Toast.LENGTH_SHORT).show();
 
