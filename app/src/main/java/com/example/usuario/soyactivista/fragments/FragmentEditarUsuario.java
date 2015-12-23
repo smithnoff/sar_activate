@@ -94,32 +94,50 @@ public class FragmentEditarUsuario extends Fragment {
         // Fill from Arguments if not empty
         if(getArguments() != null){
             userID = getArguments().getString("id");
+            int rolparse = getArguments().getInt("rol");
+            if(rolparse==0)
+            {
+                valueRol.setText("Activista");
+            }
+            else
+            {
+                valueRol.setText("Registrante");
+            }
+            //valueRol.setText(getArguments().getInt("rol"));
             editUsername.setText(getArguments().getString("username"));
             editNombre.setText(getArguments().getString("nombre"));
             editApellido.setText(getArguments().getString("apellido"));
             editEmail.setText(getArguments().getString("email"));
             editCargo.setText(getArguments().getString("cargo"));
-
             valueEstado.setText(getArguments().getString("estado"));
             valueMunicipio.setText(getArguments().getString("municipio"));
             valueComite.setText(getArguments().getString("comite"));
-            valueRol.setText(getArguments().getString("rol"));
+
 
         }
         // Fill From current user
         else{
 
             userID = currentUser.getObjectId();
+            //valueRol.setText(currentUser.getInt("rol"));
+            int rolparse = currentUser.getInt("rol");
+            if(rolparse==0)
+            {
+                valueRol.setText("Activista");
+            }
+            else
+            {
+                valueRol.setText("Registrante");
+            }
             editUsername.setText(currentUser.getUsername());
             editNombre.setText(currentUser.getString("nombre"));
             editApellido.setText(currentUser.getString("apellido"));
             editEmail.setText(currentUser.getString("email"));
             editCargo.setText(currentUser.getString("cargo"));
-
             valueEstado.setText(currentUser.getString("estado"));
             valueMunicipio.setText(currentUser.getString("municipio"));
             valueComite.setText(currentUser.getString("comite"));
-            valueRol.setText(currentUser.getString("rol"));
+
 
         }
 

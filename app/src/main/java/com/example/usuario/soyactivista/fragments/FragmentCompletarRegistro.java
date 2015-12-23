@@ -3,7 +3,10 @@ package com.example.usuario.soyactivista.fragments;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
+import android.R.drawable.*;
+import android.R.color.*;
 
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -34,6 +41,7 @@ public class FragmentCompletarRegistro extends Fragment {
     private TextView username, valueMensaje;
     private EditText editPassword, editRepeatPasword, editUsername, editToken;
     private Button buttonIngresar,buttonRegresar;
+    private CoordinatorLayout coordinatorLayout;
 
     // Dialogs needed for flow
     Dialog v, nuevaContraseña;
@@ -53,6 +61,10 @@ public class FragmentCompletarRegistro extends Fragment {
         editUsername = (EditText) v.findViewById(R.id.editUsername);
         editToken = (EditText) v.findViewById(R.id.editToken);
 
+        //Associate SnackBar
+        coordinatorLayout = (CoordinatorLayout)v.findViewById(R.id
+                .coordinatorLayout);
+
         buttonIngresar = (Button) v.findViewById(R.id.buttonIngresar);
         buttonRegresar = (Button) v.findViewById(R.id.buttonRegresar);
 
@@ -62,42 +74,67 @@ public class FragmentCompletarRegistro extends Fragment {
         buttonIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog = ProgressDialog.show(getActivity(), "", "Verificando Datos...", true);
-                Log.d(TAG, "Searching for Username:"+editUsername.getText().toString().trim());
-                Log.d(TAG, "Searching for Token:" + editToken.getText().toString().trim());
 
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                if(currentUser != null)
-                    currentUser.logOut();
+                if(editUsername.getText().toString().trim().length()>0 && editToken.getText().toString().trim().length()>0 )
+                {
+                    dialog = ProgressDialog.show(getActivity(), "", "Verificando Datos...", true);
+                    Log.d(TAG, "Searching for Username:" + editUsername.getText().toString().trim());
+                    Log.d(TAG, "Searching for Token:" + editToken.getText().toString().trim());
 
-                ParseQuery<ParseUser> query = ParseUser.getQuery();
-                query.whereEqualTo("username", editUsername.getText().toString().trim());
-                query.whereEqualTo("objectId", editToken.getText().toString().trim());
-                query.getFirstInBackground(new GetCallback<ParseUser>() {
-                    public void done(ParseUser object, ParseException e) {
-                        if (object == null) {
-                            dialog.dismiss();
-                            if(e.getCode() == 101)
-                                Toast.makeText(getActivity(), "Datos Incorrectos", Toast.LENGTH_SHORT).show();
-                            else
-                                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                        } else {
-                            dialog.dismiss();
-                            // Open new fragment for password
+                    ParseUser currentUser = ParseUser.getCurrentUser();
+                    if(currentUser != null)
+                        currentUser.logOut();
 
-                            // Pass Username
-                            Bundle data = new Bundle();
-                            data.putString("username",object.getString("username"));
-                            Fragment fragment = new FragmentCompletarPassword();
-                            fragment.setArguments(data);
-                            getFragmentManager()
-                                    .beginTransaction()
-                                    .add(android.R.id.content, fragment)
-                                    .addToBackStack(null)
-                                    .commit();
+                    ParseQuery<ParseUser> query = ParseUser.getQuery();
+                    query.whereEqualTo("username", editUsername.getText().toString().trim());
+                    query.whereEqualTo("objectId", editToken.getText().toString().trim());
+                    query.getFirstInBackground(new GetCallback<ParseUser>() {
+                        public void done(ParseUser object, ParseException e) {
+                            if (object == null) {
+                                dialog.dismiss();
+                                if(e.getCode() == 101)
+                                    Toast.makeText(getActivity(), "Datos Incorrectos", Toast.LENGTH_SHORT).show();
+                                else
+                                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            } else {
+                                dialog.dismiss();
+                                // Open new fragment for password
+
+                                // Pass Username
+                                Bundle data = new Bundle();
+                                data.putString("username",object.getString("username"));
+                                Fragment fragment = new FragmentCompletarPassword();
+                                fragment.setArguments(data);
+                                getFragmentManager()
+                                        .beginTransaction()
+                                        .add(android.R.id.content, fragment)
+                                        .addToBackStack(null)
+                                        .commit();
+                            }
                         }
-                    }
-                });
+                    });
+                }
+                else
+                {
+                    final Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "No debes dejar campos vacíos!", Snackbar.LENGTH_INDEFINITE)
+                            .setAction("CERRAR", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Snackbar snackbar = Snackbar.make(coordinatorLayout, "No debes dejar campos vacíos!", Snackbar.LENGTH_LONG);
+                                    snackbar.dismiss();
+                                }
+                            });
+
+                    // Changing action button text color
+                    View sbView = snackbar.getView();
+                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    snackbar.setActionTextColor(Color.RED);
+                    textView.setTextColor(Color.WHITE);
+                    textView.setTypeface(null, Typeface.BOLD);
+                    snackbar.show();
+                }
+
             }
         });
 
