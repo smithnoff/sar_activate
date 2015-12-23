@@ -18,6 +18,8 @@
         android:id="@+id/editNombrePartido"
         android:layout_width="match_parent"
         android:singleLine="true"
+        android:inputType="textPersonName|textCapWords"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
         android:layout_height="wrap_content"
         android:hint="@string/hintNombrePartido"/>
 
