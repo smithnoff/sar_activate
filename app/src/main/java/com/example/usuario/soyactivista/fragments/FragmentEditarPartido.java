@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import logica.Selector_de_Tema;
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -121,8 +122,11 @@ public class FragmentEditarPartido extends Fragment {
             public void onClick(View v) {
                 //select de theme color
 
-                if(editNombrePartido.getText().toString().length()==0 )
-                editNombrePartido.setText(nombrePartidonull);
+                if(editNombrePartido.getText().toString().trim().equals("") || editNombrePartido.getText().toString().trim()==null )
+                {
+                    Toast.makeText(getActivity(), "El Nombre de Partido no puede ir vacio", Toast.LENGTH_LONG).show();
+                    editNombrePartido.requestFocus();
+                }else
                 switch(colorChecked)
                 {
                     case R.id.themeBrown:
