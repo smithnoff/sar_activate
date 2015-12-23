@@ -146,6 +146,7 @@
     <string name="tipoUsuario">Tipo de Usuario</string>
     <string name="tipoUsuarioEjemplo">Activista</string>
     <string name="totalChars">0/200</string>
+    <string name="totalCharsObjective">0/500</string>
     <string name="registrar">Registrar</string>
     <string name="tempPassword">D2xBwRhV</string>
     <string name="estadoEjemplo">Monagas</string>

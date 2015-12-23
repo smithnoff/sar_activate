@@ -12,6 +12,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +53,7 @@ public class FragmentCrearActividad extends Fragment {
 
     private String TAG = "CREAR-ACTIVIDAD";
     private TextView labelPuntaje, labelDescripcion, labelEstado, labelMunicipio, labelParroquia, labelFotos;
+    private TextView textCharCountObjetive;
     private EditText puntaje, descripcion, objetivo, encargado, creador,  inicio, fin, parroquia; // Edit Field holders
     private Spinner nombre, ubicacion, estado, municipio; // Spinner holders
     private Button crear,cancelar; // Button holders
@@ -93,6 +96,7 @@ public class FragmentCrearActividad extends Fragment {
         labelMunicipio = (TextView)v.findViewById(R.id.labelMunicipio);
         labelParroquia = (TextView)v.findViewById(R.id.labelParroquia);
         labelFotos = (TextView)v.findViewById(R.id.valueFoto);
+        textCharCountObjetive = (TextView)v.findViewById(R.id.textCharCountObjetive);
 
 
         //Asign Text Edit to holders
@@ -106,6 +110,22 @@ public class FragmentCrearActividad extends Fragment {
         parroquia = (EditText)v.findViewById(R.id.editParroquia);
         calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
         calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
+
+        // Update CharCount on writting
+        objetivo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                textCharCountObjetive.setText(String.valueOf(objetivo.getText().length()) + "/500");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 
         calendarInicio.setOnClickListener(new View.OnClickListener() {
             @Override
