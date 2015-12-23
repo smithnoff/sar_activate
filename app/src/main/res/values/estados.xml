@@ -417,6 +417,8 @@
         <item>Nacional</item>
         <item>Estadal</item>
         <item>Municipal</item>
+        <item>Parroquial</item>
+        <item>Activista</item>
     </string-array>
 
 </resources>
