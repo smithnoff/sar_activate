@@ -398,7 +398,7 @@ public class FragmentDetalleActividad extends Fragment {
                 labelImagenes.setVisibility(View.VISIBLE);
                 botonAgregarImagenes.setVisibility(View.VISIBLE);
                 botonRemoverImagenes.setVisibility(View.VISIBLE);
-                
+
 
             }
         });
