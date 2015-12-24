@@ -99,8 +99,10 @@ public class FragmentDetalleMensaje extends Fragment {
             previewAdjunto.setOnClickListener(seeLocationDetail(getArguments().getString("ubicacion")));
         }
 
-        // Hide reported button if the message was reported before / Hide when Direct Message
-        if(getArguments().getBoolean("reportado") || getArguments().getBoolean("directo")){
+        // Hide reported button if the message was reported before / Hide when Direct Message / Hide when is owner message
+        if(getArguments().getBoolean("reportado")
+                || getArguments().getBoolean("directo")
+                || usuarioActual.getObjectId().equals(getArguments().get("autor"))){
             botonReportar.setVisibility(View.GONE);
             botonReportar.setEnabled(false);
         }
@@ -110,7 +112,7 @@ public class FragmentDetalleMensaje extends Fragment {
             botonEliminar.setVisibility(View.VISIBLE);
             botonEliminar.setEnabled(true);
         }
-
+        
         // On Click listener to report Message
         botonReportar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -260,7 +262,7 @@ public class FragmentDetalleMensaje extends Fragment {
             public void onClick(View v) {
 
                 // Creates an Intent that will load a map
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+location));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q="+location));
                 startActivity(intent);
             }
         };

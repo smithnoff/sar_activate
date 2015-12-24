@@ -31,11 +31,13 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.parse.FunctionCallback;
+import com.parse.GetCallback;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -46,6 +48,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import logica.Usuario;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -57,6 +60,14 @@ public class FragmentCrearMensajeDirectoNew extends Fragment {
     private String TAG = "FCrearMensajeDir"; // For Log.d
 
     private ProgressDialog dialog;
+
+    private ParseUser currentUser;
+    private String   receptor_username;
+    private boolean conversacion_exists;
+
+
+
+
 
     private TextView textCharCount;
     private EditText editText;
@@ -76,7 +87,7 @@ public class FragmentCrearMensajeDirectoNew extends Fragment {
     private final int SELECT_PICTURE = 200;
     private static final int PICKFILE_RESULT_CODE = 300;
     private static final int PLACE_PICKER_REQUEST = 400;
-
+    final ParseUser usuarioActual = ParseUser.getCurrentUser();
     //Location
     private ParseGeoPoint location;
     PlacePicker.IntentBuilder builder;
@@ -93,7 +104,7 @@ public class FragmentCrearMensajeDirectoNew extends Fragment {
         View v = inflater.inflate(R.layout.fragment_crear_mensaje, container, false);
 
         //Gets Current User
-        final ParseUser usuarioActual = ParseUser.getCurrentUser();
+
 
         //Asign Visuals to Holders
 
@@ -240,104 +251,144 @@ public class FragmentCrearMensajeDirectoNew extends Fragment {
                         public void onClick(DialogInterface dialogo, int which) {
                             dialog = ProgressDialog.show(getActivity(), "", "Creando Mensaje", true);
 
-                            // Fill ParseObject to send
-                            final ParseObject mensaje = new ParseObject("MensajeDirecto");
+                            receptor_username=getArguments().getString("receptor_username");
+                            currentUser = ParseUser.getCurrentUser();
+                            conversacion_exists=getArguments().getBoolean("conversacion_exists");
 
-                            mensaje.put("texto", editText.getText().toString());
-                            mensaje.put("autor", usuarioActual);
 
-                            ParseObject conversacion = ParseObject.createWithoutData("Conversacion", getArguments().getString("conversacionId"));
-                            mensaje.put("conversacion", conversacion);
 
-                            // Handle Image uploading
-                            if (selectedImage != null) {
-                                // Save the scaled image to Parse
-                                location = null; // Disabling other attachments
-                                selectedFile = null;
-                                location = null;
-
-                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + ".jpg", selectedImage);
-                                mensaje.put("adjunto", fotoFinal);
-                                fotoFinal.saveInBackground(new SaveCallback() {
+                            if(conversacion_exists==false)
+                            {
+                                //darwin
+                                // Creates New Conversation and Adds Users to conversation
+                                final ParseObject nuevaConversacion = new ParseObject("Conversacion");
+                                nuevaConversacion.saveInBackground(new SaveCallback() {
+                                    @Override
                                     public void done(ParseException e) {
-                                        if (e != null) {
-                                            Toast.makeText(getActivity(),
-                                                    "Error saving: " + e.getMessage(),
-                                                    Toast.LENGTH_LONG).show();
-                                            Log.d(TAG, e.toString());
-                                        } else {
-                                            Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                            }
+                                        if (e == null) {
 
-                            if (selectedFile != null) {
-
-                                ParseFile finalFile = new ParseFile(usuarioActual.getUsername() + random + ".pdf", selectedFile);
-                                selectedImage = null;
-                                location = null;
-                                mensaje.put("adjunto", finalFile);
-                                finalFile.saveInBackground(new SaveCallback() {
-                                    public void done(ParseException e) {
-                                        if (e != null) {
-                                            Toast.makeText(getActivity(),
-                                                    "Error saving: " + e.getMessage(),
-                                                    Toast.LENGTH_LONG).show();
-                                            Log.d(TAG, e.toString());
-                                        } else {
-                                            Toast.makeText(getActivity(), "PDF Cargado.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
+                                            final ParseObject nuevoParticipante = new ParseObject("ParticipanteConversacion");
+                                            Log.d(TAG, "Participante: " + nuevaConversacion.getObjectId() + " " + currentUser.getUsername());
+                                            nuevoParticipante.put("conversacion", nuevaConversacion);
+                                            nuevoParticipante.put("usuario", currentUser);
 
 
-                            }
+                                            final ParseObject nuevoParticipante2 = new ParseObject("ParticipanteConversacion");
+                                            nuevoParticipante2.put("conversacion", nuevaConversacion);
 
-                            // Handle Location
-                            if (location != null) {
-                                mensaje.put("ubicacion", location);
-                            }
 
-                            // Save Message
-                            mensaje.saveInBackground(new SaveCallback() {
-                                public void done(ParseException e) {
-                                    if (e == null) {
-                                        dialog.dismiss();
-                                        Toast.makeText(getActivity(), "Mensaje Publicado", Toast.LENGTH_SHORT).show();
+                                            Log.d(TAG, "Participante: " + nuevaConversacion.getObjectId() + " " + receptor_username);
+                                            Log.d(TAG, "Participante: " + nuevaConversacion.getObjectId() + " " + receptor_username);
+                                            // Query for 2nd user
+                                            ParseQuery query = ParseUser.getQuery();
+                                            query.whereEqualTo("username", receptor_username);
+                                            query.getFirstInBackground(new GetCallback() {
+                                                @Override
+                                                public void done(final ParseObject object, ParseException e) {
+                                                    if (e == null && object != null) {
+                                                        // User Retrieved
+                                                        nuevoParticipante.put("receptor",object);
+                                                        nuevoParticipante.saveInBackground(new SaveCallback() {
+                                                            @Override
+                                                            public void done(ParseException e) {
+                                                                if (e == null)
+                                                                    Log.d(TAG, "Participante 1 agregado correctamente");
+                                                                else
+                                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 1 " + e.getMessage());
+                                                            }
+                                                        });
 
-                                        Bundle datos = new Bundle();
-                                        datos.putString("conversacionId", getArguments().getString("conversacionId"));
-                                        datos.putString("receptorId", getArguments().getString("receptorId"));
+                                                        nuevoParticipante2.put("usuario", object);
+                                                        nuevoParticipante2.put("receptor",currentUser);
+                                                        nuevoParticipante2.saveInBackground(new SaveCallback() {
+                                                            @Override
+                                                            public void done(ParseException e) {
+                                                                if (e == null)
+                                                                {
+                                                                    Log.d(TAG, "Participante 2 agregado correctamente");
 
-                                        // Send Notification to User
-                                        HashMap<String, Object> params = new HashMap<String, Object>();
-                                        params.put("recipientId", getArguments().getString("receptorId"));
-                                        params.put("message",  editText.getText().toString());
-                                        ParseCloud.callFunctionInBackground("sendPushToUser", params, new FunctionCallback<String>() {
-                                            public void done(String success, ParseException e) {
-                                                if (e == null) {
-                                                    // Push sent successfully
-                                                    Log.d(TAG,"Push Sent");
+
+                                                                    saveMensajeDirecto(nuevaConversacion.getObjectId(), object.getObjectId());
+
+                                                                }
+
+                                                                else {
+                                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 2 " + e.getMessage());
+
+                                                                }
+
+
+                                                            }
+                                                        });
+
+                                                    } else {
+                                                        Log.d(TAG, " Ocurrió un error buscando al usuario " + e.getMessage());
+                                                    }
+
                                                 }
-                                            }
-                                        });
 
-                                        // Redirect View to ListarMensajes
-                                        Fragment fragment = new FragmentListarMensajeDirecto();
-                                        fragment.setArguments(datos);
-                                        getFragmentManager()
-                                                .beginTransaction()
-                                                .replace(R.id.content_frame, fragment)
-                                                .commit();
-                                    } else {
-                                        dialog.dismiss();
-                                        Log.d(TAG, e.toString());
-                                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                                                @Override
+                                                public void done(final Object o, Throwable throwable) {
+                                                    if (o != null) {
+
+                                                        final ParseUser user = (ParseUser) o;
+                                                        Log.d(TAG, "Caso Desconocido " + o.toString());
+                                                        // User Retrieved
+                                                        nuevoParticipante.put("receptor",user);
+                                                        nuevoParticipante.saveInBackground(new SaveCallback() {
+                                                            @Override
+                                                            public void done(ParseException e) {
+                                                                if (e == null)
+                                                                    Log.d(TAG, "Participante 1 agregado correctamente");
+                                                                else
+                                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 1 " + e.getMessage());
+                                                            }
+                                                        });
+
+
+                                                        nuevoParticipante2.put("usuario", o);
+                                                        nuevoParticipante2.put("receptor",currentUser);
+                                                        nuevoParticipante2.saveInBackground(new SaveCallback() {
+                                                            @Override
+                                                            public void done(ParseException e) {
+                                                                if (e == null) {
+                                                                    Log.d(TAG, "Participante 2 agregado correctamente");
+
+                                                                    saveMensajeDirecto(nuevaConversacion.getObjectId(), user.getObjectId());
+
+                                                                }
+                                                                else {
+                                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 2 " + e.getMessage());
+
+
+                                                                }
+
+                                                            }
+                                                        });
+                                                    } else
+                                                        Log.d(TAG, "Caso Desconocido " + throwable.getMessage());
+
+                                                }
+                                            });
+                                        }
+                                        else{
+                                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+                                        }
                                     }
-                                }
-                            });
+                                });
 
+
+
+                                //fin darwin
+
+                            }
+                            //ya existe la conversacion
+                            else
+                            {
+
+                                saveMensajeDirecto(getArguments().getString("conversacionId"), getArguments().getString("receptorId"));
+
+                            }
 
                             dialogo.dismiss();
                         }
@@ -492,6 +543,130 @@ public class FragmentCrearMensajeDirectoNew extends Fragment {
         }
         return byteBuffer.toByteArray();
     }
+
+
+    private void saveMensajeDirecto(final String conversationId, final String receptorId)
+    {
+
+
+        // Fill ParseObject to send
+        final ParseObject mensaje = new ParseObject("MensajeDirecto");
+
+        mensaje.put("texto", editText.getText().toString());
+        mensaje.put("autor", usuarioActual);
+
+        ParseObject conversacion = ParseObject.createWithoutData("Conversacion", conversationId);
+        mensaje.put("conversacion", conversacion);
+
+        // Handle Image uploading
+        if (selectedImage != null) {
+            // Save the scaled image to Parse
+            location = null; // Disabling other attachments
+            selectedFile = null;
+            location = null;
+
+            ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + ".jpg", selectedImage);
+            mensaje.put("adjunto", fotoFinal);
+            fotoFinal.saveInBackground(new SaveCallback() {
+                public void done(ParseException e) {
+                    if (e != null) {
+                        Toast.makeText(getActivity(),
+                                "Error saving: " + e.getMessage(),
+                                Toast.LENGTH_LONG).show();
+                        Log.d(TAG, e.toString());
+                    } else {
+                        Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+        if (selectedFile != null) {
+
+            ParseFile finalFile = new ParseFile(usuarioActual.getUsername() + random + ".pdf", selectedFile);
+            selectedImage = null;
+            location = null;
+            mensaje.put("adjunto", finalFile);
+            finalFile.saveInBackground(new SaveCallback() {
+                public void done(ParseException e) {
+                    if (e != null) {
+                        Toast.makeText(getActivity(),
+                                "Error saving: " + e.getMessage(),
+                                Toast.LENGTH_LONG).show();
+                        Log.d(TAG, e.toString());
+                    } else {
+                        Toast.makeText(getActivity(), "PDF Cargado.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+
+        }
+
+        // Handle Location
+        if (location != null) {
+            mensaje.put("ubicacion", location);
+        }
+
+        // Save Message
+        mensaje.saveInBackground(new SaveCallback() {
+            public void done(ParseException e) {
+                if (e == null) {
+                    dialog.dismiss();
+                    Toast.makeText(getActivity(), "Mensaje Publicado", Toast.LENGTH_SHORT).show();
+
+                    Bundle datos = new Bundle();
+
+
+                    datos.putString("conversacionId", conversationId);
+                    datos.putString("receptorId",receptorId);
+
+                    //   datos.putString("conversacionId", getArguments().getString("conversacionId"));
+                    HashMap<String, Object> params = new HashMap<String, Object>();
+                    params.put("recipientId", receptorId);
+                    params.put("message",  editText.getText().toString());
+                    ParseCloud.callFunctionInBackground("sendPushToUser", params, new FunctionCallback<String>() {
+                        public void done(String success, ParseException e) {
+                            if (e == null) {
+                                // Push sent successfully
+                                Log.d(TAG,"Push Sent");
+                            }
+                        }
+                    });
+
+                    // Redirect View to ListarMensajes
+                    Fragment fragment = new FragmentListarMensajeDirecto();
+                    fragment.setArguments(datos);
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.content_frame, fragment)
+                            .commit();
+                } else {
+                    dialog.dismiss();
+                    Log.d(TAG, e.toString());
+                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
 
 
 }

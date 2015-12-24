@@ -54,6 +54,17 @@ public static final String ParseId="parseid";
     // metodo para crear contendor
     private ContentValues generarContentValues(String autor,String adjunto,String conversa,String msj,String prsId,String ubica,String creacion  ) {
 
+
+        autor=verificarNull(autor);
+        adjunto=verificarNull(adjunto);
+        conversa=verificarNull(conversa);
+        msj=verificarNull(msj);
+        prsId=verificarNull(prsId);
+       ubica=verificarNull(ubica);
+       creacion=verificarNull(creacion);
+
+
+
          valores = new ContentValues();
        valores.put(Autor,autor);
        valores.put(Adjunto ,adjunto);
@@ -80,10 +91,21 @@ public static final String ParseId="parseid";
     }
     public void eliminar(String tabla)
     { //delete all registers of a specific table
-        db.delete(tabla,null,null);
+        db.delete(tabla, null, null);
 
     }
 
+public String verificarNull(String cadena)
+{
+    if (cadena==null    )
+    {
+     return "nulo";
+    }else {
+        return cadena;
+    }
 
+
+
+}
 
 }

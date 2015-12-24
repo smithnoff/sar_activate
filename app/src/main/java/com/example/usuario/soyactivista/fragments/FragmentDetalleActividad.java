@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +54,9 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class FragmentDetalleActividad extends Fragment {
 
     private static final String TAG = "FragDetalleActividad";
-    private TextView labelPuntaje, labelDescripcion, labelEstado, labelMunicipio, labelParroquia, nombreActual, ubicacionActual, estadoActual, municipioActual, textMeGusta, labelImagenes;
+    private TextView labelPuntaje, labelDescripcion, labelEstado, labelMunicipio, labelParroquia, nombreActual,
+            ubicacionActual, estadoActual, municipioActual, textMeGusta, labelImagenes;
+    private TextView textCharCountObjetive;
     private EditText puntaje, descripcion, objetivo, encargado, creador,  inicio, fin, parroquia; // Edit Field holders
     private Spinner nombre, ubicacion, estado, municipio, estatus; // Spinner holders
     private Button guardar,editar,eliminar,cancelar; // Button holders
@@ -101,9 +105,7 @@ public class FragmentDetalleActividad extends Fragment {
         labelParroquia = (TextView)v.findViewById(R.id.labelParroquia);
         textMeGusta = (TextView)v.findViewById(R.id.valueMeGusta);
         labelImagenes = (TextView)v.findViewById(R.id.labelImagenes);
-
-
-
+        textCharCountObjetive = (TextView)v.findViewById(R.id.textCharCountObjetive);
 
         //Asign Text Edit to holders
         puntaje = (EditText)v.findViewById(R.id.editPuntaje);
@@ -121,6 +123,22 @@ public class FragmentDetalleActividad extends Fragment {
 
         calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
         calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
+
+        // Update CharCount on writting
+        objetivo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                textCharCountObjetive.setText(String.valueOf(objetivo.getText().length()) + "/500");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 
         calendarInicio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -380,6 +398,7 @@ public class FragmentDetalleActividad extends Fragment {
                 labelImagenes.setVisibility(View.VISIBLE);
                 botonAgregarImagenes.setVisibility(View.VISIBLE);
                 botonRemoverImagenes.setVisibility(View.VISIBLE);
+
 
             }
         });

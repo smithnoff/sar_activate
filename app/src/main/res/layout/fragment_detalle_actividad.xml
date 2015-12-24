@@ -3,10 +3,10 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ScrollView
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,7 +80,17 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editObjetivo"
                 android:enabled="false"
-                />
+                android:maxLength="500" />
+
+            <TextView
+                android:id="@+id/textCharCountObjetive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:textSize="12dp"
+                android:text="@string/totalCharsObjective"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -221,7 +231,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:inputType="date"
@@ -238,7 +248,7 @@
                     android:id="@+id/imgCalendarInicio"
                     android:src="@android:drawable/ic_menu_my_calendar"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="30dp"/>
+                    android:layout_marginRight="30dp" />
 
             </LinearLayout>
 
@@ -255,7 +265,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:inputType="date"

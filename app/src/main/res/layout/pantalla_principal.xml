@@ -36,7 +36,7 @@
 
             android:layout_marginRight="20dp"
             android:layout_below="@+id/slogan"
-            android:background="@drawable/border">
+            >
 
             <TextView
                 android:layout_width="250dp"
