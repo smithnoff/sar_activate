@@ -53,5 +53,8 @@ dependencies {
     // Image manipulation
     compile 'com.github.bumptech.glide:glide:3.6.1'
 
+    // Progress Button
+    compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.0'
+
 
 }

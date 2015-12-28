@@ -29,6 +29,7 @@
     <string name="nueva_partida">Nueva Partida</string>
     <string name="estadisticas">Mis Estadísticas</string>
     <string name="administrar_preguntas">Administrar Preguntas</string>
+    <string name="carga_completa">Carga Completa, Boton deshabilitado</string>
 
     <!-- Titulos -->
     <string name="nombre_partido">NOMBRE PARTIDO</string>
