@@ -23,10 +23,42 @@ public class listarPreguntaParseAdapter extends ParseQueryAdapter<ParseObject> {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 ParseQuery query = new ParseQuery("Pregunta");
+                query.orderByDescending("puntaje");
                 return query;
             }
         });
     }
+
+    public listarPreguntaParseAdapter(Context context, final String constraint) {
+        super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
+            public ParseQuery create() {
+
+                ParseQuery query = new ParseQuery("Pregunta");
+
+                // Determine type of constraint
+                String[] queryArray = constraint.toString().split("=");
+                String value = queryArray[1];
+
+                switch (queryArray[0]){
+                    case "puntaje":
+                        query.whereEqualTo("puntaje", Integer.parseInt(value));
+                        break;
+                    case "nivel":
+                        query.whereEqualTo("dificultad", value);
+
+                        break;
+
+                    default:
+
+                        break;
+                }
+                query.orderByDescending("puntaje");
+                return query;
+            }
+        });
+    }
+
+
 
     public View getItemView(ParseObject object, View v, ViewGroup parent){
         if(v == null){

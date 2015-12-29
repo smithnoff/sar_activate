@@ -177,6 +177,8 @@
     <string name="likesEjemplo">100</string>
     <string name="filtroTodos">Mostrar todos</string>
     <string name="cantidadImagenesEjemplo">4 / 4</string>
+    <string name="filtroPuntaje">Filtrar por Puntaje</string>
+    <string name="filtroNivel">Filtrar por Nivel</string>
 
 
     <!-- DIFICULTAD -->
