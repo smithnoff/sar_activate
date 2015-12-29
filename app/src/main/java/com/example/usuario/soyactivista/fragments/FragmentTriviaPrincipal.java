@@ -18,7 +18,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class FragmentTriviaPrincipal extends Fragment implements ProgressGenerator.OnCompleteListener{
 
     public static final String EXTRAS_ENDLESS_MODE = "EXTRAS_ENDLESS_MODE";
-      private Button adminPreguntas;
+      private Button adminPreguntas, nuevaPartida, misEstadisticas;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -31,7 +31,20 @@ public class FragmentTriviaPrincipal extends Fragment implements ProgressGenerat
 
         btnSignIn.setMode(ActionProcessButton.Mode.PROGRESS);
 
-          adminPreguntas=(Button)v.findViewById(R.id.AdministrarPreguntas);
+        adminPreguntas=(Button)v.findViewById(R.id.AdministrarPreguntas);
+        nuevaPartida=(Button)v.findViewById(R.id.NuevaPartida);
+
+        nuevaPartida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new FragmentTriviaDificultad();
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .commit();
+            }
+        });
+
         adminPreguntas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

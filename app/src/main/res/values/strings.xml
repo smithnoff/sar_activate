@@ -30,6 +30,10 @@
     <string name="estadisticas">Mis Estadísticas</string>
     <string name="administrar_preguntas">Administrar Preguntas</string>
     <string name="carga_completa">Carga Completa, Boton deshabilitado</string>
+    <string name="volverMenuPrincipal">Volver al menu principal</string>
+    <string name="dificultadFacil">Fácil</string>
+    <string name="dificultadIntermedio">Intermedio</string>
+    <string name="dificultadDificil">Difícil</string>
 
     <!-- Titulos -->
     <string name="nombre_partido">NOMBRE PARTIDO</string>
@@ -78,6 +82,14 @@
     <string name="hintBuscador">Identificador de autor...</string>
     <string name="rol_spinner_label">Rol</string>
     <string name="prueba">Prueba</string>
+    <string name="finPartida">¡Fin de la partida!</string>
+    <string name="textPuntosConseguidos">Has conseguido:</string>
+    <string name="puntosConseguidos"># puntos</string>
+    <string name="textCorrectas">Respuestas Correctas:</string>
+    <string name="respuestasCorrectas">#</string>
+    <string name="textIncorrectas">Respuestas Incorrectas:</string>
+    <string name="respuestasIncorrectas">#</string>
+    <string name="elegirDificultad">Elige el nivel de dificultad de la partida</string>
 
     <!-- Roles -->
     <string-array name="Roles">
