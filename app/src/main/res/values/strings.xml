@@ -189,6 +189,25 @@
     <string name="likesEjemplo">100</string>
     <string name="filtroTodos">Mostrar todos</string>
     <string name="cantidadImagenesEjemplo">4 / 4</string>
+    <string name="filtroPuntaje">Filtrar por Puntaje</string>
+    <string name="filtroNivel">Filtrar por Nivel</string>
+
+
+    <!-- DIFICULTAD -->
+    <string-array name="Dificultad">
+        <item>facil</item>
+        <item>intermedio</item>
+        <item>dificil</item>
+    </string-array>
+
+    <!-- TIEMPO -->
+    <string-array name="Tiempo">
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+        <item>120</item>
+
+    </string-array>
 
 
 </resources>

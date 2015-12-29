@@ -48,7 +48,7 @@ public class FragmentTriviaPrincipal extends Fragment implements ProgressGenerat
         adminPreguntas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new FragmentCrearPreguntas();
+                Fragment fragment = new FragmentListarPreguntas();
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, fragment)
