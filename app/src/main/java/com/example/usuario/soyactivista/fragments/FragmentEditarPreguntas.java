@@ -15,8 +15,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.clans.fab.FloatingActionButton;
-import com.github.clans.fab.FloatingActionMenu;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -91,9 +89,11 @@ public class FragmentEditarPreguntas extends Fragment {
         opcion_tres.setText(getArguments().getString("opcion3"));
         opcion_cuatro.setText(getArguments().getString("opcion4"));
 
-        textPuntaje.setText(getArguments().getString("puntaje"));
-        textDificultad.setText( getArguments().getString("dificultad"));
-        textTiempo.setText(getArguments().getString("tiempo"));
+       this.ObtenerSpinnerdesdePosition(puntaje,getArguments().getString("puntaje"));
+       this.ObtenerSpinnerdesdePosition(dificultad,getArguments().getString("dificultad"));
+       this.ObtenerSpinnerdesdePosition(tiempo,getArguments().getString("tiempo"));
+
+
 
 
         // Buttons Behavior
@@ -139,10 +139,7 @@ public class FragmentEditarPreguntas extends Fragment {
 
                     public void onClick(DialogInterface dialogo, int which) {
                         // Do nothing but close the dialog
-                        dialogo.dismiss();
-                        dialog = ProgressDialog.show(getActivity(), "", "Editando Tipo de Actividad", true);
-
-                        ParseQuery<ParseObject> query = ParseQuery.getQuery("TipoActividad");
+                      ParseQuery<ParseObject> query = ParseQuery.getQuery("TipoActividad");
 
                         // Retrieve the object by id from parse
                         query.getInBackground(getArguments().getString("id"), new GetCallback<ParseObject>() {
@@ -297,5 +294,16 @@ public class FragmentEditarPreguntas extends Fragment {
         ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource(getActivity(), id, android.R.layout.simple_spinner_item);
         spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(spinner_adapter);
+    }
+    public void ObtenerSpinnerdesdePosition(Spinner spin,String opcion){
+
+
+        for (int i=0;i<spin.getCount();i++)
+        {
+           if( spin.getItemAtPosition(i).toString().trim().equals(opcion.trim()))
+            {
+                spin.setSelection(i);
+            }
+        }
     }
 }

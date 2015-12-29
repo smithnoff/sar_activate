@@ -12,7 +12,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
             android:layout_height="match_parent">
 
             <TextView
@@ -91,9 +92,10 @@
                 android:id="@+id/textView7" />
 
             <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinnerPuntaje" />
+                android:layout_width="220sp"
+                android:layout_height="60sp"
+                android:id="@+id/spinnerPuntaje"
+                android:spinnerMode="dialog" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -104,9 +106,10 @@
                 android:id="@+id/textView8" />
 
             <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinnerNivel" />
+                android:layout_width="220sp"
+                android:layout_height="60sp"
+                android:id="@+id/spinnerNivel"
+                android:spinnerMode="dialog" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -117,12 +120,14 @@
                 android:id="@+id/textView9" />
 
             <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="220sp"
+                android:layout_height="60sp"
+                 android:spinnerMode="dialog"
                 android:id="@+id/spinnerTiempoRespuesta" />
 
             <LinearLayout
                 android:layout_weight="2"
+                android:layout_marginTop="15sp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -133,7 +138,7 @@
                     android:textColor="@color/white"
                     android:text="Crear"
                     android:layout_weight="1"
-                    android:id="@+id/buttonCrearpregnta" />
+                    android:id="@+id/buttonCrearpregunta" />
 
                 <Button
                     android:layout_width="wrap_content"
