@@ -235,6 +235,7 @@ public class FragmentCrearMensaje extends Fragment {
                     builder.setPositiveButton("Publicar", new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface dialogo, int which) {
+
                                 dialog = ProgressDialog.show(getActivity(), "", "Creando Mensaje", true);
 
                                 // Fill ParseObject to send

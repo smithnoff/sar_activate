@@ -9,7 +9,10 @@ public class Conversacion {
 
     public Usuario usuario;
     private String id;
-    private Date ultimaActiva;
+
+
+
+    private Date ultimaActividad;
 
     public Conversacion(){
         this.usuario = new Usuario();
@@ -22,4 +25,14 @@ public class Conversacion {
     public void setId(String id) {
         this.id = id;
     }
+
+    public Date getUltimaActividad() {
+        return ultimaActividad;
+    }
+
+    public void setUltimaActividad(Date ultimaActividad) {
+        this.ultimaActividad = ultimaActividad;
+    }
+
+
 }

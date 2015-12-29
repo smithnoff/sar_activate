@@ -1,5 +1,6 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -25,6 +26,7 @@ public class FragmentVerImagen extends Fragment {
 
     private ImageView imageView;
     private Button botonSalir;
+    private ProgressDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -40,17 +42,19 @@ public class FragmentVerImagen extends Fragment {
 
         Log.d("DETALLE", "url "+url );
 
-        if(url != null){
+        if(url != null && !url.equals("")){
             Glide.with(getContext())
                     .load(url)
                     .fitCenter()
                     .into(imageView);
         }
         else{
-            Toast.makeText(getActivity(), "La imagen no pude ser cargada. Por favor intente de nuevo más tarde.", Toast.LENGTH_SHORT).show();
+            Glide.with(getContext())
+                    .load(getArguments().getByteArray("imageByteArray"))
+                    .fitCenter()
+                    .into(imageView);
+
         }
-
-
 
 
         // On Click listener to report Message

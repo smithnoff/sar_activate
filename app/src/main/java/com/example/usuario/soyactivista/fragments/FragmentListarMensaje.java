@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseFile;
@@ -40,6 +41,7 @@ public class FragmentListarMensaje extends Fragment  {
     private MenuItem filtroReportados;
     View view;
     private ListView listView;
+    private TextView listaVacia;
     private ParseUser currentUser;
     private ProgressDialog progressDialog;
 
@@ -57,6 +59,11 @@ public class FragmentListarMensaje extends Fragment  {
 
         // Initialize list view
         listView = (ListView) view.findViewById(R.id.mensajesListView);
+
+
+        // Set empty list message
+        listaVacia = (TextView) view.findViewById(R.id.listaVacia);
+        listView.setEmptyView(listaVacia);
 
         if (listarMensajeMainAdapter != null) {
             listarMensajeMainAdapter.clear();

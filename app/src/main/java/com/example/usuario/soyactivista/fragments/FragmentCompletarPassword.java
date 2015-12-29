@@ -21,6 +21,7 @@ import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import logica.ActivityPantallaInicio;
 import logica.ActivityPantallaMenu;
@@ -65,40 +66,55 @@ public class FragmentCompletarPassword extends Fragment{
 
                 Log.d(TAG, "Ingresar Clicked");
 
-                // Validate if Passwords are equal.
-                // TODO: Validate security measures for password (longitude, characters type)
-                if (editPassword.getText().toString().equals(editRepeatPasword.getText().toString())) {
+                if (editPassword.getText().toString().trim().length() > 0 && editRepeatPasword.getText().toString().trim().length() > 0 ) {
+                    // Validate if Passwords are equal.
+                    // TODO: Validate security measures for password (longitude, characters type)
+                    if (editPassword.getText().toString().equals(editRepeatPasword.getText().toString())) {
 
-                    ParseUser currentUser = ParseUser.getCurrentUser();
+                        ParseUser currentUser = ParseUser.getCurrentUser();
 
-                    if (currentUser != null) {
-                        Log.d(TAG,"Checking if User is logged."+currentUser);
-                        currentUser.logOut();
-                    }
-                    // Logs user with default password to be able to change it.
-                    ParseUser.logInInBackground(getArguments().getString("username"), getResources().getString(R.string.tempPassword), new LogInCallback() {
-                        public void done(ParseUser user, ParseException e) {
-                            if (user != null) {
-                                // Hooray! The user is logged in.
-                                user.setPassword(editPassword.getText().toString());
-                                user.saveInBackground();
-                                // Let user know everything went ok
-                                Toast.makeText(getActivity().getApplicationContext(), "Su cuenta ha sido registrada correctamente.", Toast.LENGTH_LONG).show();
-
-                                // Redirect to main dashboard
-                                Intent i = new Intent(getActivity().getApplicationContext(), ActivityPantallaInicio.class);
-                                startActivity(i);
-
-                            } else {
-                                // Signup failed. Look at the ParseException to see what happened.
-                                Toast.makeText(getActivity().getApplicationContext(), "Ya completó su registro previamente." + e.getMessage(), Toast.LENGTH_LONG).show();
-                            }
+                        if (currentUser != null) {
+                            Log.d(TAG,"User is logged."+currentUser);
+                            currentUser.logOut();
                         }
-                    });
-                } else {
-                    Toast.makeText(getActivity().getApplicationContext(), "Las contraseñas no coinciden.", Toast.LENGTH_LONG).show();
-                }
+                        // Logs user with default password to be able to change it.
+                        ParseUser.logInInBackground(getArguments().getString("username"), getResources().getString(R.string.tempPassword), new LogInCallback() {
+                            public void done(ParseUser user, ParseException e) {
+                                if (user != null) {
+                                    // Hooray! The user is logged in.
+                                    user.setPassword(editPassword.getText().toString());
+                                    user.saveInBackground();
+                                    user.saveInBackground(new SaveCallback() {
+                                        @Override
+                                        public void done(ParseException e) {
+                                            if(e == null){
+                                                // Let user know everything went ok
+                                                Toast.makeText(getActivity().getApplicationContext(), "Su cuenta ha sido registrada correctamente.", Toast.LENGTH_SHORT).show();
+                                                // Redirect to main dashboard
+                                                Intent i = new Intent(getActivity().getApplicationContext(), ActivityPantallaMenu.class);
+                                                startActivity(i);
+                                            }
+                                            else{
+                                                Toast.makeText(getActivity().getApplicationContext(), "Error. "+e.getMessage(), Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    });
 
+                                } else {
+                                    // TODO: Get error number and show appropiate message
+                                    // Signup failed. Look at the ParseException to see what happened.
+                                    Toast.makeText(getActivity().getApplicationContext(), "Ya completó su registro previamente." + e.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                    } else {
+                        Toast.makeText(getActivity().getApplicationContext(), "Las contraseñas no coinciden.", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+                else{
+                    Toast.makeText(getActivity().getApplicationContext(), "Los campos no pueden estar vacíos.", Toast.LENGTH_LONG).show();
+                }
             }
         });
 

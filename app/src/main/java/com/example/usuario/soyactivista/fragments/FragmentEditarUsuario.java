@@ -23,10 +23,13 @@ import com.parse.FunctionCallback;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import logica.ActivityPantallaInicio;
+import logica.ErrorCodeHelper;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -38,11 +41,11 @@ public class FragmentEditarUsuario extends Fragment {
     String TAG = "FragmentEditarUsuario"; // For Log.d
 
     private String userID;
-    private EditText editUsername, editNombre, editApellido, editEmail, editCargo;
+    private EditText editUsername, editNombre, editApellido, editEmail, editCargo, editParroquia;
     private TextView valueEstado, valueMunicipio, valueComite, valueRol;
     private Spinner spinEstado, spinMunicipio, spinComite, spinRol;
     private Button buttonEditar, buttonGuardar, buttonEliminar;
-    private ProgressDialog dialog;
+    private ProgressDialog progressDialog;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
@@ -55,6 +58,7 @@ public class FragmentEditarUsuario extends Fragment {
         editApellido = (EditText) v.findViewById(R.id.editApellido);
         editEmail = (EditText) v.findViewById(R.id.editEmail);
         editCargo = (EditText) v.findViewById(R.id.editCargo);
+        editParroquia = (EditText) v.findViewById(R.id.editParroquia);
 
         valueEstado = (TextView) v.findViewById(R.id.valueEstado);
         valueMunicipio = (TextView) v.findViewById(R.id.valueMunicipio);
@@ -69,6 +73,16 @@ public class FragmentEditarUsuario extends Fragment {
         buttonEditar = (Button) v.findViewById(R.id.buttonEditar);
         buttonGuardar = (Button) v.findViewById(R.id.buttonGuardar);
         buttonEliminar = (Button) v.findViewById(R.id.buttonEliminar);
+
+
+        // Fill Current Values (From Arguments or Current User
+        final ParseUser currentUser = ParseUser.getCurrentUser();
+
+
+        // Show edit button depending on Role
+        if( currentUser.getInt("rol") == 1){
+            buttonEditar.setVisibility(View.VISIBLE);
+        }
 
         // Load Spinners
         fillSpinnerfromResource(spinEstado, R.array.Estados);
@@ -88,19 +102,15 @@ public class FragmentEditarUsuario extends Fragment {
             }
         });
 
-        // Fill Current Values (From Arguments or Current User
-        final ParseUser currentUser = ParseUser.getCurrentUser();
-
         // Fill from Arguments if not empty
         if(getArguments() != null){
             userID = getArguments().getString("id");
             int rolparse = getArguments().getInt("rol");
-            if(rolparse==0)
-            {
+
+            if(rolparse == 0){
                 valueRol.setText("Activista");
             }
-            else
-            {
+            else{
                 valueRol.setText("Registrante");
             }
             //valueRol.setText(getArguments().getInt("rol"));
@@ -154,6 +164,7 @@ public class FragmentEditarUsuario extends Fragment {
                 editApellido.setEnabled(true);
                 editEmail.setEnabled(true);
                 editCargo.setEnabled(true);
+                editParroquia.setEnabled(true);
 
                 // Hide All Values
                 valueEstado.setVisibility(View.GONE);
@@ -181,7 +192,8 @@ public class FragmentEditarUsuario extends Fragment {
                         && editApellido.getText().toString().trim().length() > 0
                         && editUsername.getText().toString().trim().length() > 0
                         && editEmail.getText().toString().trim().length() > 0
-                        && editCargo.getText().toString().trim().length() > 0) {
+                        && editCargo.getText().toString().trim().length() > 0
+                        && editParroquia.getText().toString().trim().length() > 0) {
 
                     // Validate Email matches pattern
                     if (editEmail.getText().toString().matches(emailPattern)) {
@@ -192,6 +204,7 @@ public class FragmentEditarUsuario extends Fragment {
 
                         builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
+                                progressDialog = ProgressDialog.show(getActivity(), "", "Guardando Usuario.", true);
 
                                 if (getArguments() != null) {
 
@@ -204,12 +217,14 @@ public class FragmentEditarUsuario extends Fragment {
                                     params.put("cargo", editCargo.getText().toString());
                                     params.put("estado", spinEstado.getSelectedItem().toString());
                                     params.put("municipio", spinMunicipio.getSelectedItem().toString());
+                                    params.put("parroquia", editParroquia.getText().toString());
                                     params.put("comite", spinComite.getSelectedItem().toString());
                                     params.put("rol", String.valueOf(spinRol.getSelectedItemPosition()));
-                                    ParseCloud.callFunctionInBackground("modifyUser", params, new FunctionCallback<Object>() {
+                                    ParseCloud.callFunctionInBackground("modifyUser", params, new FunctionCallback<Map<String, Object>>() {
                                         @Override
-                                        public void done(Object response, ParseException e) {
-                                            if (e == null) {
+                                        public void done(Map<String, Object> response, ParseException e) {
+                                            if (response != null && response.get("status").toString() == "OK") {
+                                                progressDialog.dismiss();
                                                 Toast.makeText(getActivity(), "Usuario editado correctamente.", Toast.LENGTH_SHORT).show();
 
                                                 // Redirect to User List
@@ -219,7 +234,21 @@ public class FragmentEditarUsuario extends Fragment {
                                                         .replace(R.id.content_frame, fragment)
                                                         .commit();
                                             } else {
-                                                Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde." + e.toString(), Toast.LENGTH_LONG).show();
+                                                progressDialog.dismiss();
+                                                if(e != null){
+                                                    Log.d(TAG, "Error: " + e.getMessage());
+                                                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                                }
+
+                                                if(response != null){
+                                                    Log.d(TAG, "Error: " +response.get("code").toString()+" "+ response.get("message").toString());
+                                                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_LONG).show();
+                                                }
+
+                                                if(e == null && response == null){
+                                                    Log.d(TAG, "Error: unknown error");
+                                                    Toast.makeText(getActivity(), "Error, por favor intenta de nuevo mas tarde.", Toast.LENGTH_LONG).show();
+                                                }
                                             }
                                         }
                                     });
@@ -227,26 +256,38 @@ public class FragmentEditarUsuario extends Fragment {
 
                                     if (currentUser != null) {
                                         Log.d(getClass().getName(), "Filling from Current User");
-
+                                        currentUser.setUsername(editUsername.getText().toString());
                                         currentUser.put("nombre", editNombre.getText().toString());
                                         currentUser.put("apellido", editApellido.getText().toString());
                                         currentUser.setEmail(editEmail.getText().toString());
                                         currentUser.put("cargo", editCargo.getText().toString());
                                         currentUser.put("estado", spinEstado.getSelectedItem().toString());
                                         currentUser.put("municipio", spinMunicipio.getSelectedItem().toString());
+                                        currentUser.put("parroquia", editParroquia.getText().toString());
                                         currentUser.put("comite", spinComite.getSelectedItem().toString());
                                         currentUser.put("rol", spinRol.getSelectedItemPosition());
-                                        currentUser.saveInBackground();
+                                        currentUser.saveInBackground(new SaveCallback() {
+                                            @Override
+                                            public void done(ParseException e) {
+
+                                                if(e == null){
+                                                    Toast.makeText(getActivity(),"Usuario guardado correctamente.", Toast.LENGTH_SHORT).show();
+                                                    progressDialog.dismiss();
+                                                    // Redirect to Dashboard
+                                                    Fragment fragment = new FragmentListarMensaje();
+                                                    getFragmentManager()
+                                                            .beginTransaction()
+                                                            .replace(R.id.content_frame, fragment)
+                                                            .commit();
+                                                }
+                                                else{
+                                                    progressDialog.dismiss();
+                                                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                                }
+
+                                            }
+                                        });
                                     }
-                                    Toast.makeText(getActivity(), "Perfil Editado", Toast.LENGTH_SHORT).show();
-
-                                    // Redirect to Dashboard
-                                    Fragment fragment = new FragmentListarMensaje();
-                                    getFragmentManager()
-                                            .beginTransaction()
-                                            .replace(R.id.content_frame, fragment)
-                                            .commit();
-
                                 }
                                 dialog.dismiss();
                             }
@@ -293,14 +334,22 @@ public class FragmentEditarUsuario extends Fragment {
 
                     public void onClick(DialogInterface dialog, int which) {
 
-                        // Check if deleting self account or anotheruser
-                        if(getArguments() != null){
-                            final HashMap<String, Object> params = new HashMap<>();
-                            params.put("username", editUsername.getText().toString());
-                            ParseCloud.callFunctionInBackground("deleteUser", params, new FunctionCallback<Object>() {
-                                @Override
-                                public void done(Object response, ParseException e) {
-                                    if (e == null) {
+                        String deleteUsername;
+
+                        if(getArguments()!=null)
+                            deleteUsername = editUsername.getText().toString();
+                        else
+                            deleteUsername = currentUser.getUsername();
+
+                        final HashMap<String, Object> params = new HashMap<>();
+                        params.put("username", deleteUsername);
+                        ParseCloud.callFunctionInBackground("deleteUser", params, new FunctionCallback<Map<String, Object>>() {
+                            @Override
+                            public void done(Map<String, Object> response, ParseException e) {
+                                if (e == null && response != null && Integer.valueOf(response.get("code").toString()) == 0) {
+
+                                    if(getArguments() != null){
+                                        // Is another user account, redirect to user list
                                         Toast.makeText(getActivity(), "Usuario eliminado correctamente.", Toast.LENGTH_SHORT).show();
                                         Fragment fragment = new FragmentListarUsuario();
                                         getFragmentManager()
@@ -308,26 +357,34 @@ public class FragmentEditarUsuario extends Fragment {
                                                 .replace(R.id.content_frame, fragment)
                                                 .addToBackStack(null)
                                                 .commit();
-                                    } else {
-                                        Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde." + e.toString(), Toast.LENGTH_LONG).show();
                                     }
-                                }
-                            });
-                        }
-                        else{
-                            // Deleting Own Account
-                            currentUser.deleteInBackground(new DeleteCallback() {
-                                @Override
-                                public void done(ParseException e) {
-                                    if(e == null){
+                                    else{
+                                        currentUser.logOut();
                                         Toast.makeText(getActivity(), "Tu cuenta ha sido eliminada correctamente..", Toast.LENGTH_SHORT).show();
                                         // Redirect to init Screen
                                         Intent i = new Intent(getContext(), ActivityPantallaInicio.class);
                                         startActivity(i);
                                     }
                                 }
-                            });
-                        }
+                                else {
+                                    // TODO: Discern error types by examining error code.
+                                    if(e != null){
+                                        Log.d(TAG, "Error: " + e.getMessage());
+                                        Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                    }
+
+                                    if(response != null){
+                                        Log.d(TAG, "Error: " +response.get("code").toString()+" "+ response.get("message").toString());
+                                        Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_LONG).show();
+                                    }
+
+                                    if(e == null && response == null){
+                                        Log.d(TAG, "Error: unknown error");
+                                        Toast.makeText(getActivity(), "Error, por favor intenta de nuevo mas tarde.", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            }
+                        });
                     }
                 });
 

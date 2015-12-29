@@ -113,7 +113,7 @@ public class FragmentListarMensajeDirecto extends Fragment {
                 fragment.setArguments(datos);
                 getFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.content_frame, fragment)
+                        .replace(((ViewGroup)getView().getParent()).getId(), fragment)
                         .addToBackStack(null)
                         .commit();
             }
@@ -126,15 +126,15 @@ public class FragmentListarMensajeDirecto extends Fragment {
             public void onClick(View v) {
                 Bundle datos = new Bundle();
                 datos.putString("conversacionId",getArguments().getString("conversacionId"));
-                datos.putString("receptorId",getArguments().getString("receptorId"));
-                datos.putBoolean("conversacion_exists",true);
+                datos.putString("receptorId", getArguments().getString("receptorId"));
+                datos.putBoolean("existeConversacion",true);
 
                 // Redirect View to next Fragment
-                Fragment fragment = new FragmentCrearMensajeDirectoNew();
+                Fragment fragment = new FragmentCrearMensajeDirecto();
                 fragment.setArguments(datos);
                 getFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.content_frame, fragment)
+                        .replace(((ViewGroup)getView().getParent()).getId(), fragment)
                         .addToBackStack(null)
                         .commit();
             }
@@ -191,7 +191,7 @@ public class FragmentListarMensajeDirecto extends Fragment {
                           Fragment fragment = new FragmentListarConversacion();
                           getFragmentManager()
                                   .beginTransaction()
-                                  .replace(R.id.content_frame, fragment)
+                                  .replace(((ViewGroup)getView().getParent()).getId(), fragment)
                                   .commit();
                       }
 
@@ -254,7 +254,7 @@ public class FragmentListarMensajeDirecto extends Fragment {
                                         Fragment fragment = new FragmentListarConversacion();
                                         getFragmentManager()
                                                 .beginTransaction()
-                                                .replace(R.id.content_frame, fragment)
+                                                .replace(((ViewGroup)getView().getParent()).getId(), fragment)
                                                 .commit();
 
                                     } else {

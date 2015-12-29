@@ -100,12 +100,15 @@ public class ListarUsuarioAdapter extends ArrayAdapter<Usuario> implements Filte
                     case "estado":
 
                         // Query is asking for whole list skip search.
-                        if(value.equals("todos"))
+                        if(value.equals("todos")){
+                            resultArrayList = new ArrayList<>(usuarioArrayList);
                             break;
+                        }
 
-                        for (int i = 0; i < getCount(); i++ )
+
+                        for (int i = 0; i < usuarioArrayList.size(); i++ )
                         {
-                            Usuario data = getItem(i);
+                            Usuario data = usuarioArrayList.get(i);
                             Log.d(TAG,"Comparing "+value+" to "+data.getEstado());
                             if(data.getEstado().toLowerCase().startsWith(value))
                                 resultArrayList.add(data);
@@ -113,19 +116,25 @@ public class ListarUsuarioAdapter extends ArrayAdapter<Usuario> implements Filte
 
                         break;
 
-                    case "texto":
-                        for (int i = 0; i < getCount(); i++ )
+                    case "username":
+                        for (int i = 0; i < usuarioArrayList.size(); i++ )
                         {
-                            Usuario data = getItem(i);
+                            Usuario data = usuarioArrayList.get(i);
                             // Search by Username
                             if(data.getUsername().toLowerCase().startsWith(value))
                                 resultArrayList.add(data);
-                            else // Search by Name
-                                if(data.getNombre().toLowerCase().startsWith(value))
+                        }
+                        break;
+
+                    case "nombre":
+                        for (int i = 0; i < usuarioArrayList.size(); i++ )
+                        {
+                            Usuario data = usuarioArrayList.get(i);
+                            if(data.getNombre().toLowerCase().startsWith(value))
+                                resultArrayList.add(data);
+                            else // Search by LastName
+                                if(data.getApellido().toLowerCase().startsWith(value))
                                     resultArrayList.add(data);
-                                else // Search by LastName
-                                    if(data.getApellido().toLowerCase().startsWith(value))
-                                        resultArrayList.add(data);
                         }
                         break;
 
@@ -137,15 +146,6 @@ public class ListarUsuarioAdapter extends ArrayAdapter<Usuario> implements Filte
 
 
                 Log.d(TAG,"Final Result list contains "+resultArrayList.size()+" elements.");
-
-                // If result list is empty, return whole list.
-                if( resultArrayList.size() == 0)
-                {
-                    if (!value.equals("todos"))
-                        Toast.makeText(getContext(), "Ningun elemento encontrado.", Toast.LENGTH_SHORT).show();
-
-                    resultArrayList = new ArrayList<>(usuarioArrayList);
-                }
 
                 results.count = resultArrayList.size();
                 results.values = resultArrayList;

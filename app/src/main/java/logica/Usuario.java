@@ -15,6 +15,7 @@ public class Usuario {
     private Integer rol;
     private String estado;
     private String municipio;
+    private String parroquia;
     private String comite;
     private String email;
 
@@ -94,6 +95,15 @@ public class Usuario {
     public void setMunicipio(String municipio) {
         this.municipio = municipio;
     }
+
+    public String getParroquia() {
+        return parroquia;
+    }
+
+    public void setParroquia(String parroquia) {
+        this.parroquia = parroquia;
+    }
+
     public Integer getRol() {
         return this.rol;
     }

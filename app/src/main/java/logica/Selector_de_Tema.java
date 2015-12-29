@@ -29,6 +29,7 @@ public class Selector_de_Tema {
     public static String getNombrePartido(){
         return nombrePartido;
     }
+
     public static void setNombrePartido(String nombre){
         nombrePartido = nombre;
     }

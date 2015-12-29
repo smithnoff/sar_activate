@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -39,6 +40,7 @@ public class FragmentListarActividad extends Fragment {
 
     private static final String TAG = "FragmentListarActividad";
     private ListarActividadAdapter listarActividadAdapter;
+    private TextView listaVacia;
     private ListView listView;
     private ParseUser currentUser;
     private ArrayList<String> likes;
@@ -56,6 +58,11 @@ public class FragmentListarActividad extends Fragment {
 
         // Initialize list view
         listView = (ListView)view.findViewById(R.id.actividadesListView);
+
+
+        // Set empty list message
+        listaVacia = (TextView) view.findViewById(R.id.listaVacia);
+        listView.setEmptyView(listaVacia);
 
         likes = new ArrayList<>();
 

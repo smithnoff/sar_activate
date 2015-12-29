@@ -10,18 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.parse.ConfigCallback;
-import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.LogInCallback;
-import com.parse.ParseConfig;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
-import java.util.List;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -37,7 +29,7 @@ public class ActivityLogin extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.pantalla_login);
+        setContentView(R.layout.activity_pantalla_login);
 
         //asignamos los controles a las variables
         editUsername = (EditText) findViewById (R.id.editUsername);

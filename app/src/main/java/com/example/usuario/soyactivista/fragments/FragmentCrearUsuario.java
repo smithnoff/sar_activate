@@ -20,6 +20,7 @@ import com.parse.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
+import logica.ErrorCodeHelper;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -29,7 +30,7 @@ public class FragmentCrearUsuario extends Fragment {
 
     // Variable Declaration
     private String TAG = "FragmentCrearUsuario"; // For Log.d
-    private EditText editUsername, editNombre, editApellido, editEmail, editCargo;
+    private EditText editUsername, editNombre, editApellido, editEmail, editCargo, editParroquia;
     private Spinner spinEstado, spinMunicipio, spinComite, spinRol;
     private Button buttonRegistrar;
     private ProgressDialog dialog;
@@ -45,6 +46,8 @@ public class FragmentCrearUsuario extends Fragment {
         editApellido = (EditText)v.findViewById(R.id.editApellido);
         editEmail = (EditText)v.findViewById(R.id.editEmail);
         editCargo = (EditText)v.findViewById(R.id.editCargo);
+        editParroquia = (EditText)v.findViewById(R.id.editParroquia);
+
 
         spinEstado = (Spinner)v.findViewById(R.id.spinEstado);
         spinMunicipio = (Spinner)v.findViewById(R.id.spinMunicipio);
@@ -80,7 +83,9 @@ public class FragmentCrearUsuario extends Fragment {
                         && editNombre.getText().toString().trim().length() > 0
                         && editApellido.getText().toString().trim().length() > 0
                         && editCargo.getText().toString().trim().length() > 0
-                        && editEmail.getText().toString().trim().length() > 0) {
+                        && editEmail.getText().toString().trim().length() > 0
+                        && editParroquia.getText().toString().trim().length() > 0
+                        ) {
 
                     // Validate email address matches pattern
                     if (editEmail.getText().toString().matches(emailPattern)) {
@@ -97,12 +102,13 @@ public class FragmentCrearUsuario extends Fragment {
                         params.put("cargo", editCargo.getText().toString());
                         params.put("estado", spinEstado.getSelectedItem().toString());
                         params.put("municipio", spinMunicipio.getSelectedItem().toString());
+                        params.put("parroquia", editParroquia.getText().toString());
                         params.put("comite", spinComite.getSelectedItem().toString());
                         params.put("rol", String.valueOf(spinRol.getSelectedItemPosition()));
                         ParseCloud.callFunctionInBackground("createUser", params, new FunctionCallback<Map<String, Object>>() {
                             @Override
                             public void done(Map<String, Object> response, ParseException e) {
-                                if (e == null) {
+                                if (response != null && response.get("status").toString().equals("OK")) {
                                     dialog.dismiss();
                                     Log.d(TAG, "Usuario Registrado");
                                     if (response.get("userId") != null) {
@@ -123,7 +129,7 @@ public class FragmentCrearUsuario extends Fragment {
                                                     Toast.makeText(getActivity(), "Email enviado correctamente", Toast.LENGTH_SHORT).show();
                                                     Log.d(TAG, "Email Enviado");
                                                 } else {
-                                                    Toast.makeText(getActivity(), "Error enviando Email." + e.getMessage() + response.get("message"), Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getActivity(),ErrorCodeHelper.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_SHORT).show();
                                                     Log.d(TAG, "Error enviando mail. " + e.getMessage() + " " + response.get("message").toString());
                                                 }
 
@@ -141,8 +147,22 @@ public class FragmentCrearUsuario extends Fragment {
                                 } else {
                                     // TODO: Discern error types by examining error code.
                                     dialog.dismiss();
-                                    Log.d(TAG, "Error: " + e.getMessage());
-                                    Toast.makeText(getActivity(), "Ocurrió un error, por favor intente más tarde." + e.toString(), Toast.LENGTH_LONG).show();
+                                    if(e != null){
+                                        Log.d(TAG, "Error: " + e.getMessage());
+                                        Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                    }
+
+                                    if(response != null){
+                                        Log.d(TAG, "Error: " +response.get("code").toString()+" "+ response.get("message").toString());
+                                        Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_LONG).show();
+                                    }
+
+                                    if(e == null && response == null){
+                                        Log.d(TAG, "Error: unknown error");
+                                        Toast.makeText(getActivity(), "Error, por favor intenta de nuevo mas tarde.", Toast.LENGTH_LONG).show();
+                                    }
+
+
                                 }
                             }
                         });

@@ -19,13 +19,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
-import com.parse.GetCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -97,18 +93,17 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                 // Store data in bundle to send to next fragment
                 Usuario usuarioSeleccionado = (Usuario) listView.getItemAtPosition(position);
                 Bundle datos = new Bundle();
-
-                datos.putString("receptor_username", usuarioSeleccionado.getUsername());
-                datos.putBoolean("conversacion_exists",false);
+                Log.d(TAG,"Cargando en Bundle: Usuario "+usuarioSeleccionado.getId());
+                datos.putString("receptorId", usuarioSeleccionado.getId());
+                datos.putBoolean("existeConversacion",false);
 
 
                 // Redirect View to next Fragment
-                Fragment fragment = new FragmentCrearMensajeDirectoNew();
+                Fragment fragment = new FragmentCrearMensajeDirecto();
                 fragment.setArguments(datos);
                 getFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.content_frame, fragment)
-                        .addToBackStack(null)
+                        .replace(((ViewGroup) getView().getParent()).getId(), fragment)
                         .commit();
 
             }
@@ -280,6 +275,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
 
         Log.d(TAG,"Current user is: "+currentUser.getUsername());
         mainQuery.whereNotContainedIn("objectId",conversacionesAbiertas);
+        mainQuery.whereEqualTo("eliminado",false);
         mainQuery.whereNotEqualTo("objectId",currentUser.getObjectId());
         mainQuery.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> object, ParseException e) {
@@ -287,13 +283,14 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                     Usuario usuario;
                     for (int i = 0; i < object.size(); i++) {
                         usuario = new Usuario();
-                        usuario.setNombre((String) object.get(i).get("nombre"));
-                        usuario.setApellido((String) object.get(i).get("apellido"));
+                        usuario.setId(object.get(i).getObjectId());
+                        usuario.setNombre(object.get(i).getString("nombre"));
+                        usuario.setApellido(object.get(i).getString("apellido"));
                         usuario.setEmail(object.get(i).getEmail());
-                        usuario.setUsername(object.get(i).getUsername()/*.toLowerCase()*/);
-                        usuario.setCargo((String) object.get(i).get("cargo"));
-                        usuario.setEstado((String) object.get(i).get("estado"));
-                        usuario.setMunicipio((String) object.get(i).get("municipio"));
+                        usuario.setUsername(object.get(i).getUsername());
+                        usuario.setCargo(object.get(i).getString("cargo"));
+                        usuario.setEstado(object.get(i).getString("estado"));
+                        usuario.setMunicipio(object.get(i).getString("municipio"));
                         usuario.setComite(object.get(i).getString("comite"));
                         usuario.setRol(object.get(i).getInt("rol"));
                         list.add(usuario);

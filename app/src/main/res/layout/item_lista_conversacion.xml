@@ -125,5 +125,30 @@
         android:text="@string/tipoUsuarioEjemplo"
         />
 
+    <TextView
+        android:id="@+id/labelUltimaActividad"
+        android:layout_marginLeft="5dp"
+        android:textSize="13dp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelRol"
+        android:text="@string/ultimaVezActiva"
+        />
+
+    <TextView
+        android:id="@+id/valueUltimaActividad"
+        android:layout_marginLeft="5dp"
+        android:textSize="13dp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/valueRol"
+        android:layout_toRightOf="@id/labelUltimaActividad"
+        android:text="@string/fechaEjemplo"
+        />
+
+
+
 
 </RelativeLayout>

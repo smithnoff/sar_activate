@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -40,6 +41,7 @@ public class FragmentListarUsuario extends Fragment{
     private String TAG = "FragmentListarUsuario";
 
     // Data Holders
+    private TextView noItems;
     private ListarUsuarioAdapter listarUsuarioAdapter;
     private ListView listView;
     private ArrayList<Usuario> usuarioArrayList = new ArrayList<>();
@@ -59,6 +61,11 @@ public class FragmentListarUsuario extends Fragment{
 
         // Initialize list view
         listView = (ListView) view.findViewById(R.id.mensajesListView);
+
+        noItems = (TextView) view.findViewById(R.id.listaVacia);
+
+        // Define message to show when empty
+        listView.setEmptyView(noItems);
 
         // Initialize Buttons
         botonCrearUsuario = (FloatingActionButton) view.findViewById(R.id.botonCrearUsuario);
@@ -146,7 +153,7 @@ public class FragmentListarUsuario extends Fragment{
             public boolean onQueryTextSubmit(String query) {
                 // If query has something filter adapter
                 if (query.length() > 0) {
-                    listarUsuarioAdapter.getFilter().filter("texto=" + query);
+                    listarUsuarioAdapter.getFilter().filter("username=" + query);
                 }
                 return false;
             }
@@ -200,24 +207,26 @@ public class FragmentListarUsuario extends Fragment{
         }
     }
 
-    // TODO: Find a way to provide search query from within the fragment, so list doesnt have to be initialized again.
-    // Initializes list and sets listView adapter to the newly createde adapter.
+    // Initializes list and sets listView adapter to the newly created adapter.
     public void initializeList(final ArrayList<Usuario> list){
         dialog = ProgressDialog.show(getContext(),"Buscando Usuarios","Cargando",true);
         ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("eliminado",false);
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> object, ParseException e) {
                 if (e == null) { //no hay error
                     Usuario usuario;
                     for (int i = 0; i < object.size(); i++) {
                         usuario = new Usuario();
-                        usuario.setNombre((String) object.get(i).get("nombre"));
-                        usuario.setApellido((String) object.get(i).get("apellido"));
+                        usuario.setId(object.get(i).getObjectId());
+                        usuario.setUsername(object.get(i).getUsername());
+                        usuario.setNombre(object.get(i).getString("nombre"));
+                        usuario.setApellido(object.get(i).getString("apellido"));
                         usuario.setEmail(object.get(i).getEmail());
-                        usuario.setUsername(object.get(i).getUsername()/*.toLowerCase()*/);
-                        usuario.setCargo((String) object.get(i).get("cargo"));
-                        usuario.setEstado((String) object.get(i).get("estado"));
-                        usuario.setMunicipio((String) object.get(i).get("municipio"));
+                        usuario.setCargo( object.get(i).getString("cargo"));
+                        usuario.setEstado( object.get(i).getString("estado"));
+                        usuario.setMunicipio( object.get(i).getString("municipio"));
+                        usuario.setParroquia( object.get(i).getString("parroquia"));
                         usuario.setComite(object.get(i).getString("comite"));
                         usuario.setRol(object.get(i).getInt("rol"));
                         list.add(usuario);
@@ -225,17 +234,12 @@ public class FragmentListarUsuario extends Fragment{
                     Log.d(TAG, "List have " + list.size() + " items.");
                     listarUsuarioAdapter = new ListarUsuarioAdapter(getActivity(),list);
                     listView.setAdapter(listarUsuarioAdapter);
-
-                    // If no Search/Filter Argument initialize list, else filter.
-                    if(getArguments() != null && getArguments().getString("busqueda") != null){
-                        listarUsuarioAdapter.getFilter().filter(getArguments().getString("busqueda"));
-                    }
-
                     dialog.dismiss();
 
                 } else {
                     dialog.dismiss();
-                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Error al buscar usuarios, por favor intente más tarde.", Toast.LENGTH_LONG).show();
+                    Log.d(TAG,"Error al buscar usuarios. "+e.getMessage());
                 }
             }
         });

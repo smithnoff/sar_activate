@@ -120,7 +120,6 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
 
     public View getItemView(final ParseObject object, View v, ViewGroup parent){
         if(v == null){
-            // Choose which template to inflate depending of photo amount.
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_actividad,parent,false);
         }
 
@@ -183,7 +182,6 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
         // Paint Status Accordingly
         if(object.getString("estatus") == "En Ejecución")
             textEstatus.setTextColor(getContext().getResources().getColor(R.color.verde));
-
         else
             textEstatus.setTextColor(getContext().getResources().getColor(R.color.rojo));
 
@@ -208,6 +206,7 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
         else{
             Glide.clear(imageView1);
             imageView1.setImageDrawable(null);
+            imageView1.setVisibility(View.GONE);
         }
 
         if(imagen2 != null){
@@ -222,6 +221,7 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
         else{
             Glide.clear(imageView2);
             imageView2.setImageDrawable(null);
+            imageView2.setVisibility(View.GONE);
         }
 
         if(imagen3 != null){
@@ -236,6 +236,7 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
         else{
             Glide.clear(imageView3);
             imageView3.setImageDrawable(null);
+            imageView3.setVisibility(View.GONE);
         }
 
         if(imagen4 != null){
@@ -250,6 +251,7 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
         else{
             Glide.clear(imageView4);
             imageView4.setImageDrawable(null);
+            imageView4.setVisibility(View.GONE);
         }
 
 

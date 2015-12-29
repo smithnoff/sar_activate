@@ -12,8 +12,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginRight="15dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
             >
 
             <TextView
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/nombreEjemplo"
                 android:inputType="textPersonName|textCapWords"
-                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóúÁÉÍÓÚ"
                 android:singleLine="true"
                 android:id="@+id/editNombre" />
 
@@ -54,7 +54,7 @@
                 android:layout_width="fill_parent"
                 android:hint="@string/apellidoEjemplo"
                 android:inputType="textPersonName|textCapWords"
-                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóúÁÉÍÓÚ"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:id="@+id/editApellido" />
@@ -104,6 +104,20 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/spinMunicipio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/parroquiaSuscripcion"/>
+
+            <EditText
+                android:id="@+id/editParroquia"
+                android:layout_width="fill_parent"
+                android:hint="@string/parroquiaEjemplo"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                />
 
             <TextView
                 android:layout_width="fill_parent"

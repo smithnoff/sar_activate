@@ -150,7 +150,7 @@
     <string name="registrar">Registrar</string>
     <string name="tempPassword">D2xBwRhV</string>
     <string name="estadoEjemplo">Monagas</string>
-    <string name="municipioEjemplo">San josé</string>
+    <string name="municipioEjemplo">El Hatillo</string>
     <string name="rolEjemplo">Activista</string>
     <string name="editar">Editar</string>
     <string name="filtroEstados">Filtrar por estado</string>
@@ -173,6 +173,12 @@
     <string name="likesEjemplo">100</string>
     <string name="filtroTodos">Mostrar todos</string>
     <string name="cantidadImagenesEjemplo">4 / 4</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="ultimaVezActiva">Última vez activa</string>
+    <string name="fechaEjemplo">10/06/2015</string>
+    <string name="parroquiaSuscripcion">Parroquia de Suscripción</string>
+    <string name="parroquiaEjemplo">San José</string>
+    <string name="noExistenElementos">No existe ningún elemento.</string>
 
 
 </resources>

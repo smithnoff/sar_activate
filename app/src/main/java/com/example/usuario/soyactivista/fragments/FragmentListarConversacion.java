@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -43,6 +44,7 @@ public class FragmentListarConversacion extends Fragment {
     private ListarConversacionAdapter listarConversacionAdapter;
     private ListView listView;
     private ParseUser currentUser;
+    private TextView listaVacia;
     private ArrayList<Conversacion> conversacionArrayList = new ArrayList<>();
     private ProgressDialog dialog;
     private ArrayList<String> conversacionesAbiertas;
@@ -58,23 +60,17 @@ public class FragmentListarConversacion extends Fragment {
         // Initialize list view
         listView = (ListView) view.findViewById(R.id.conversacionesListView);
 
+        // Set empty list message
+        listaVacia = (TextView) view.findViewById(R.id.listaVacia);
+        listView.setEmptyView(listaVacia);
+
         // Initialize Buttons
         botonCrearConversacion = (FloatingActionButton) view.findViewById(R.id.botonCrearConversacion);
 
 
         Log.d(TAG,"List contains "+conversacionArrayList.size()+" elements");
 
-        // If adapter is null Initialize list and set adapter to view
-        if(listarConversacionAdapter == null){
-            Log.d(TAG, "Array Adapter is null");
-            initializeList(conversacionArrayList);
-        }
-        // List Already contains elements/ Just set adapter to view
-        else{
-            Log.d(TAG, "Array Adapter is OK with " + listarConversacionAdapter.getCount()+" elements");
-            // Add Elements to List and reset adapter
-            listView.setAdapter(listarConversacionAdapter);
-        }
+        initializeList(conversacionArrayList);
 
 
         botonCrearConversacion.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +101,7 @@ public class FragmentListarConversacion extends Fragment {
 
                 Bundle datos = new Bundle();
                 datos.putString("conversacionId", conversacion.getId());
-                datos.putString("receptorId",conversacion.usuario.getId());
+                datos.putString("receptorId", conversacion.usuario.getId());
                 Log.d(TAG, "Item Selected id "+conversacion.getId());
 
                 // Redirect View to next Fragment
@@ -113,7 +109,7 @@ public class FragmentListarConversacion extends Fragment {
                 fragment.setArguments(datos);
                 getFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.content_frame, fragment)
+                        .replace(((ViewGroup)getView().getParent()).getId(), fragment)
                         .addToBackStack(null)
                         .commit();
             }
@@ -226,8 +222,10 @@ public class FragmentListarConversacion extends Fragment {
                         // Get all conversations ids in a list.
                         Conversacion conversacion;
                         for (int i = 0; i < objects.size(); i++) {
+
                             conversacion = new Conversacion();
                             conversacion.setId(objects.get(i).getParseObject("conversacion").getObjectId());
+                            conversacion.setUltimaActividad(objects.get(i).getParseObject("conversacion").getDate("ultimaActividad"));
                             conversacion.usuario.setId(objects.get(i).getParseUser("receptor").getObjectId());
                             conversacion.usuario.setUsername(objects.get(i).getParseUser("receptor").getUsername());
                             conversacion.usuario.setNombre(objects.get(i).getParseUser("receptor").getString("nombre"));
@@ -237,14 +235,23 @@ public class FragmentListarConversacion extends Fragment {
                             conversacion.usuario.setMunicipio(objects.get(i).getParseUser("receptor").getString("municipio"));
                             conversacion.usuario.setRol(objects.get(i).getParseUser("receptor").getInt("rol"));
                             conversacionesAbiertas.add(conversacion.usuario.getId());
+                            Log.d(TAG, "Conversacion "+conversacion.getId()+" date "+conversacion.getUltimaActividad());
                             list.add(conversacion);
                         }
-                            Log.d(TAG,"Conversaciones Abiertas " + conversacionesAbiertas.size());
-                            Log.d(TAG,"List have " + list.size() + " items.");
+
+                        Log.d(TAG, "Conversaciones Abiertas " + conversacionesAbiertas.size());
+
+                        if(listarConversacionAdapter == null ){
                             listarConversacionAdapter = new ListarConversacionAdapter(getActivity(), list);
                             listView.setAdapter(listarConversacionAdapter);
+                        }
+                        else{
+                            listarConversacionAdapter.clear();
+                            listarConversacionAdapter.addAll(list);
+                            listarConversacionAdapter.notifyDataSetChanged();
+                        }
 
-                            dialog.dismiss();
+                        dialog.dismiss();
                     }
                     else // No Elements
                     {

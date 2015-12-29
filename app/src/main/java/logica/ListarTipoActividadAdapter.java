@@ -31,7 +31,7 @@ public class ListarTipoActividadAdapter extends ParseQueryAdapter<ParseObject> {
 
     public View getItemView(ParseObject object, View v, ViewGroup parent){
         if(v == null){
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_tipo_actividad,parent,false);
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_tipo_actividad,parent,false);
         }
 
         super.getItemView(object,v,parent);

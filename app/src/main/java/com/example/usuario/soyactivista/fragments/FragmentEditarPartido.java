@@ -21,10 +21,11 @@ public class FragmentEditarPartido extends Fragment {
 
     private int colorChecked;
     private EditText editNombrePartido;
-    private  View vistaAntrior;
+    private  View colorAnterior;
     private Button guardarTema;
     private View brown, red, orange, yellow, green, blue, purple, indigo;
-          private String nombrePartidonull;
+    private String nombrePartidonull;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -33,78 +34,119 @@ public class FragmentEditarPartido extends Fragment {
 
         // Assign Holders
         editNombrePartido = (EditText) v.findViewById(R.id.editNombrePartido);
-        brown = (View) v.findViewById(R.id.themeBrown);
-        red = (View) v.findViewById(R.id.themeRed);
-        orange = (View) v.findViewById(R.id.themeOrange);
-        yellow = (View) v.findViewById(R.id.themeYellow);
-        green = (View) v.findViewById(R.id.themeGreen);
-        blue = (View) v.findViewById(R.id.themeBlue);
-        purple = (View) v.findViewById(R.id.themePurple);
-        indigo = (View) v.findViewById(R.id.themeDefault);
+        brown = v.findViewById(R.id.themeBrown);
+        red =  v.findViewById(R.id.themeRed);
+        orange = v.findViewById(R.id.themeOrange);
+        yellow =  v.findViewById(R.id.themeYellow);
+        green = v.findViewById(R.id.themeGreen);
+        blue = v.findViewById(R.id.themeBlue);
+        purple = v.findViewById(R.id.themePurple);
+        indigo = v.findViewById(R.id.themeDefault);
 
+        guardarTema= (Button) v.findViewById(R.id.btnguardarTema);
+
+        // Load current name
         editNombrePartido.setText(Selector_de_Tema.getNombrePartido());
-         nombrePartidonull=editNombrePartido.getText().toString();
+
+        // Load current color
+        switch (Selector_de_Tema.getTema()){
+            case 0:
+                indigo.setBackground(getResources().getDrawable(R.drawable.circuloindigo));
+                colorAnterior = indigo;
+                break;
+            case 1:
+                blue.setBackground(getResources().getDrawable(R.drawable.circuloazul));
+                colorAnterior = blue;
+                break;
+            case 2:
+                brown.setBackground(getResources().getDrawable(R.drawable.circulomarron));
+                colorAnterior = brown;
+                break;
+            case 3:
+                red.setBackground(getResources().getDrawable(R.drawable.circulorojo));
+                colorAnterior = red;
+                break;
+            case 4:
+                orange.setBackground(getResources().getDrawable(R.drawable.circulonaranja));
+                colorAnterior = orange;
+                break;
+            case 5:
+                yellow.setBackground(getResources().getDrawable(R.drawable.circuloamarillo));
+                colorAnterior = yellow;
+                break;
+            case 6:
+                purple.setBackground(getResources().getDrawable(R.drawable.circulopurpura));
+                colorAnterior = purple;
+                break;
+            case 7:
+                green.setBackground(getResources().getDrawable(R.drawable.circuloverde));
+                colorAnterior = green;
+                break;
+            default:
+                indigo.setBackground(getResources().getDrawable(R.drawable.circuloindigo));
+                colorAnterior = indigo;
+                break;
+        }
+
+        nombrePartidonull = editNombrePartido.getText().toString();
+
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
-            public void onClick(final View v) {
+            public void onClick(final View clickedColor) {
+                colorChecked = clickedColor.getId();
 
+                if(colorAnterior == null)
+                    colorAnterior = clickedColor;
 
-
-                    colorChecked = v.getId();
-                    if(vistaAntrior==null)
-                        vistaAntrior=v;
-
-                    if(v.getId()==R.id.themeBrown) {
-                        v.setBackground(getResources().getDrawable(R.drawable.circulomarron));
-                    }else {
-                        if(vistaAntrior.getId()==R.id.themeBrown)
-                            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulobr));
-                    }
-                    if(v.getId()==R.id.themeOrange) {
-                        v.setBackground(getResources().getDrawable(R.drawable.circulonaranja));
-                    }else {
-                        if(vistaAntrior.getId()==R.id.themeOrange)
-                            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulon));
-                    }
-                    if(v.getId()==R.id.themeBlue) {
-                        v.setBackground(getResources().getDrawable(R.drawable.circuloazul));
-                    }else {
-                        if(vistaAntrior.getId()==R.id.themeBlue)
-                            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circuloaz));
-                    }
-                    if(v.getId()==R.id.themeRed) {
-                        v.setBackground(getResources().getDrawable(R.drawable.circulorojo));
-                    }else {
-                        if(vistaAntrior.getId()==R.id.themeRed)
-                            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulor));
-                    }
-                    if(v.getId()==R.id.themeGreen) {
-                        v.setBackground(getResources().getDrawable(R.drawable.circuloverde));
-                    }else {
-                        if(vistaAntrior.getId()==R.id.themeGreen)
-                            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulov));
-                    }
-                    if(v.getId()==R.id.themeYellow) {
-                        v.setBackground(getResources().getDrawable(R.drawable.circuloamarillo));
-                    }else {
-                        if(vistaAntrior.getId()==R.id.themeYellow)
-                            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circuloam));
-                    }
-                    if(v.getId()==R.id.themePurple) {
-                        v.setBackground(getResources().getDrawable(R.drawable.circulopurpura));
-                    }else {
-                        if(vistaAntrior.getId()==R.id.themePurple)
-                            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulop));
-                    }
-                    if(v.getId()==R.id.themeDefault) {
-                        v.setBackground(getResources().getDrawable(R.drawable.circuloindigo));
-                    }else {
-                        if(vistaAntrior.getId()==R.id.themeDefault)
-                            vistaAntrior.setBackground(getResources().getDrawable(R.drawable.circulo));
-                    }
-                    vistaAntrior=v;
-
-
+                if(clickedColor.getId()==R.id.themeBrown) {
+                    clickedColor.setBackground(getResources().getDrawable(R.drawable.circulomarron));
+                }else {
+                    if(colorAnterior.getId()==R.id.themeBrown)
+                        colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulobr));
+                }
+                if(clickedColor.getId()==R.id.themeOrange) {
+                    clickedColor.setBackground(getResources().getDrawable(R.drawable.circulonaranja));
+                }else {
+                    if(colorAnterior.getId()==R.id.themeOrange)
+                        colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulon));
+                }
+                if(clickedColor.getId()==R.id.themeBlue) {
+                    clickedColor.setBackground(getResources().getDrawable(R.drawable.circuloazul));
+                }else {
+                    if(colorAnterior.getId()==R.id.themeBlue)
+                        colorAnterior.setBackground(getResources().getDrawable(R.drawable.circuloaz));
+                }
+                if(clickedColor.getId()==R.id.themeRed) {
+                    clickedColor.setBackground(getResources().getDrawable(R.drawable.circulorojo));
+                }else {
+                    if(colorAnterior.getId()==R.id.themeRed)
+                        colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulor));
+                }
+                if(clickedColor.getId()==R.id.themeGreen) {
+                    clickedColor.setBackground(getResources().getDrawable(R.drawable.circuloverde));
+                }else {
+                    if(colorAnterior.getId()==R.id.themeGreen)
+                        colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulov));
+                }
+                if(clickedColor.getId()==R.id.themeYellow) {
+                    clickedColor.setBackground(getResources().getDrawable(R.drawable.circuloamarillo));
+                }else {
+                    if(colorAnterior.getId()==R.id.themeYellow)
+                        colorAnterior.setBackground(getResources().getDrawable(R.drawable.circuloam));
+                }
+                if(clickedColor.getId()==R.id.themePurple) {
+                    clickedColor.setBackground(getResources().getDrawable(R.drawable.circulopurpura));
+                }else {
+                    if(colorAnterior.getId()==R.id.themePurple)
+                        colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulop));
+                }
+                if(clickedColor.getId()==R.id.themeDefault) {
+                    clickedColor.setBackground(getResources().getDrawable(R.drawable.circuloindigo));
+                }else {
+                    if(colorAnterior.getId()==R.id.themeDefault)
+                        colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulo));
+                }
+                colorAnterior = clickedColor;
             }
         };
 
@@ -116,7 +158,8 @@ public class FragmentEditarPartido extends Fragment {
         brown.setOnClickListener(clickListener);
         purple.setOnClickListener(clickListener);
         yellow.setOnClickListener(clickListener);
-          guardarTema= (Button) v.findViewById(R.id.btnguardarTema);
+
+
         guardarTema.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,9 +167,11 @@ public class FragmentEditarPartido extends Fragment {
 
                 if(editNombrePartido.getText().toString().trim().equals("") || editNombrePartido.getText().toString().trim()==null )
                 {
-                    Toast.makeText(getActivity(), "El Nombre de Partido no puede ir vacio", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "El nombre de partido no puede estar vacio.", Toast.LENGTH_LONG).show();
                     editNombrePartido.requestFocus();
+
                 }else
+
                 switch(colorChecked)
                 {
                     case R.id.themeBrown:
