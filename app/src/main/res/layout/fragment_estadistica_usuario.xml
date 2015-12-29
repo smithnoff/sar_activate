@@ -4,27 +4,16 @@
     android:layout_height="match_parent"
     android:background="@color/indigo">
 
-<TextView
-    android:id="@+id/finPartida"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/finPartida"
-    android:textColor="@color/white"
-    android:layout_gravity="center"
-    android:layout_marginTop="50dp"
-    android:textSize="@dimen/txt_20sp"/>
-    <RatingBar
+    <ImageView
+        android:id="@+id/finPartida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:layout_gravity="center_horizontal"
-        android:numStars="3"
-        android:layout_marginTop="15dp"
-        android:stepSize="0.1"
-        android:rating="1.5"
-        android:theme="@style/RatingBar"
-        style="?android:attr/ratingBarStyle"
-        />
+        android:text="@string/finPartida"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:textSize="@dimen/txt_20sp"
+        android:background="@drawable/ic_trivia_formacion"/>
     <View
         android:id="@+id/viewRating"
         android:layout_width="200dp"
