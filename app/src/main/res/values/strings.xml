@@ -26,6 +26,10 @@
     <string name="crear">Crear</string>
     <string name="cancelar">Cancelar</string>
     <string name="eliminarMensaje">Eliminar</string>
+    <string name="nueva_partida">Nueva Partida</string>
+    <string name="estadisticas">Mis Estadísticas</string>
+    <string name="administrar_preguntas">Administrar Preguntas</string>
+    <string name="carga_completa">Carga Completa, Boton deshabilitado</string>
 
     <!-- Titulos -->
     <string name="nombre_partido">NOMBRE PARTIDO</string>
@@ -173,6 +177,23 @@
     <string name="likesEjemplo">100</string>
     <string name="filtroTodos">Mostrar todos</string>
     <string name="cantidadImagenesEjemplo">4 / 4</string>
+
+
+    <!-- DIFICULTAD -->
+    <string-array name="Dificultad">
+        <item>facil</item>
+        <item>intermedio</item>
+        <item>dificil</item>
+    </string-array>
+
+    <!-- TIEMPO -->
+    <string-array name="Tiempo">
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+        <item>120</item>
+
+    </string-array>
 
 
 </resources>

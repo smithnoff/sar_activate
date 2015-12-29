@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.parse.ParseObject;
 
@@ -55,9 +57,10 @@ public class FragmentListarPreguntas extends Fragment {
                 datos.putString("opcion4",actividad.getString("opcion4"));
                 datos.putString("dificultad",actividad.getString("dificultad"));
                 datos.putString("puntaje", Integer.toString(actividad.getInt("puntaje")));
+                datos.putString("tiempo", Integer.toString(actividad.getInt("tiempo")));
 
                 // Redirect View to next Fragment
-                Fragment fragment = new FragmentEditarTipoActividad();
+                Fragment fragment = new FragmentEditarPreguntas();
                 fragment.setArguments(datos);
                 getFragmentManager()
                         .beginTransaction()
@@ -75,7 +78,7 @@ public class FragmentListarPreguntas extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Fragment fragment = new FragmentCrearTipoActividad();
+                Fragment fragment = new FragmentCrearPreguntas();
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, fragment)
@@ -87,4 +90,6 @@ public class FragmentListarPreguntas extends Fragment {
         return view;
 
     }
+
+
 }

@@ -28,6 +28,7 @@ import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarPreguntas;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
+import com.example.usuario.soyactivista.fragments.FragmentTriviaPrincipal;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
@@ -152,14 +153,17 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                                 fragment = new FragmentListarTipoActividad();
                                 fragmentTransaction = true;
                                 break;
-
-                            // PLACEHOLDER TRIVIA
-
-
                             case R.id.menuTrivia:
-                                fragment = new FragmentListarPreguntas();
+                                fragment = new FragmentTriviaPrincipal();
                                 fragmentTransaction = true;
                                 break;
+
+
+
+                      //      case R.id.menuTrivia:
+                      //          fragment = new FragmentListarPreguntas();
+                        //        fragmentTransaction = true;
+                          //      break;
 
                             // PLACEHOLDER PUNTUACIONES
 
