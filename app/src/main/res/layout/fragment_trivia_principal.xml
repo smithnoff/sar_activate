@@ -20,7 +20,7 @@
             android:background="@drawable/ic_trivia_formacion"
             android:layout_gravity="center_vertical"/>
         <View
-            android:layout_width="5dp"
+            android:layout_width="1dp"
             android:layout_height="100dp"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"

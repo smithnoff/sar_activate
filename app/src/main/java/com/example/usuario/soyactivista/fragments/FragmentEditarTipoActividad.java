@@ -1,5 +1,25 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
+import android.view.ContextThemeWrapper;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.OvershootInterpolator;
+import android.widget.Toast;
+
+import soy_activista.quartzapp.com.soy_activista.R;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
+
+import java.util.ArrayList;
+import java.util.List;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -42,16 +62,33 @@ public class FragmentEditarTipoActividad extends Fragment {
     private TextView TextPuntaje;
     private ProgressDialog dialog;
 
+    //Floating Button
+    private FloatingActionButton fabcrear;
+    private FloatingActionButton fabcancelar;
+    private FloatingActionButton fabeditar;
+    private FloatingActionButton fabeliminar;
+
+    private List<FloatingActionMenu> menus = new ArrayList<>();
+    private Handler mUiHandler = new Handler();
+
     // Class Constructor
     public FragmentEditarTipoActividad(){}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
+    {
         //Choose fragment to inflate
         View v = inflater.inflate(R.layout.fragment_editar_tipo_actividad, container, false);
 
         //Gets Current User
         final ParseUser usuarioActual = ParseUser.getCurrentUser();
+
+        final FloatingActionMenu menu1 = (FloatingActionMenu)v.findViewById(R.id.menu1);
+
+        fabcrear = (FloatingActionButton) v.findViewById(R.id.fabcrear);
+        fabcancelar = (FloatingActionButton) v.findViewById(R.id.fabcancelar);
+        fabeditar = (FloatingActionButton) v.findViewById(R.id.fabeditar);
+        fabeliminar = (FloatingActionButton) v.findViewById(R.id.fabeliminar);
 
         //Asign Text Edit to holders
         nombre = (EditText)v.findViewById(R.id.editActividad);
@@ -80,6 +117,38 @@ public class FragmentEditarTipoActividad extends Fragment {
         ArrayAdapter<String> array_spinner=(ArrayAdapter<String>)puntaje.getAdapter();
         puntaje.setSelection(array_spinner.getPosition(getArguments().getString("puntaje")));
         TextPuntaje.setText("Puntaje: " + getArguments().getString("puntaje"));
+
+
+        menu1.setOnMenuButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                menu1.toggle(true);
+            }
+        });
+
+        menus.add(menu1);
+
+        menu1.hideMenuButton(false);
+
+        int delay = 400;
+        for (final FloatingActionMenu menu : menus) {
+            mUiHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    menu.showMenuButton(true);
+                }
+            }, delay);
+            delay += 150;
+        }
+
+        menu1.setClosedOnTouchOutside(true);
+
+        /*fabeditar.setOnClickListener(clickListener);
+        fabeliminar.setOnClickListener(clickListener);
+        fabcancelar.setOnClickListener(clickListener);
+        fabcrear.setOnClickListener(cliclListener);*/
+
 
 
         // Buttons Behavior
@@ -256,6 +325,39 @@ public class FragmentEditarTipoActividad extends Fragment {
 
         return v;
     }
+
+    //ONLICK FLOATINGBUTTONACTION
+    /*private View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String text = "";
+
+            switch (v.getId()) {
+                case R.id.fab1:
+                    text = fab1.getLabelText();
+                    break;
+                case R.id.fab2:
+                    text = fab2.getLabelText();
+                    fab2.setVisibility(View.GONE);
+                    break;
+                case R.id.fab3:
+                    text = fab3.getLabelText();
+                    fab2.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.fab12:
+                    text = fab12.getLabelText();
+                    break;
+                case R.id.fab22:
+                    text = fab22.getLabelText();
+                    break;
+                case R.id.fab32:
+                    text = fab32.getLabelText();
+                    break;
+            }
+
+            Toast.makeText(FloatingMenusActivity.this, text, Toast.LENGTH_SHORT).show();
+        }
+    };*/
 
     //Auxiliar method for filling spinners with String Arrays
     public void llenarSpinnerdesdeId(Spinner spin,int id){

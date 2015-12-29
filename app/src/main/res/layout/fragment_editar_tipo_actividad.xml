@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -10,6 +13,8 @@
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         >
+
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,4 +106,53 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/menu1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        fab:menu_labels_ellipsize="end"
+        fab:menu_labels_singleLine="true"
+        fab:menu_backgroundColor="#ccffffff"
+        fab:menu_fab_label=""
+        android:layout_gravity="center_horizontal|bottom">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabcrear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            fab:fab_size="mini"
+            fab:fab_label="Crear" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabcancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            fab:fab_size="mini"
+            fab:fab_label="Cancelar" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabeditar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            fab:fab_size="mini"
+            fab:fab_label="Editar" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabeliminar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            fab:fab_size="mini"
+            fab:fab_label="Eliminar" />
+
+    </com.github.clans.fab.FloatingActionMenu>
 </FrameLayout>

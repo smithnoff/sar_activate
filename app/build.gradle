@@ -56,5 +56,8 @@ dependencies {
     // Progress Button
     compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.0'
 
+    // MenuFloatingButton
+    compile 'com.github.clans:fab:1.6.2'
+
 
 }
