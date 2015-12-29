@@ -1,23 +1,16 @@
 package com.example.usuario.soyactivista.fragments;
 
-import com.dd.processbutton.iml.ActionProcessButton;
-import logica.ProgressGenerator;
-
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-import android.widget.Toolbar;
+import android.widget.Button;
 
+import com.dd.processbutton.iml.ActionProcessButton;
 
-
-
+import logica.ProgressGenerator;
 import soy_activista.quartzapp.com.soy_activista.R;
-
-import static android.widget.Toast.*;
 
 /**
  * Created by Luis Adrian on 28/12/2015.
@@ -25,7 +18,7 @@ import static android.widget.Toast.*;
 public class FragmentTriviaPrincipal extends Fragment implements ProgressGenerator.OnCompleteListener{
 
     public static final String EXTRAS_ENDLESS_MODE = "EXTRAS_ENDLESS_MODE";
-
+      private Button adminPreguntas;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -38,7 +31,17 @@ public class FragmentTriviaPrincipal extends Fragment implements ProgressGenerat
 
         btnSignIn.setMode(ActionProcessButton.Mode.PROGRESS);
 
-
+          adminPreguntas=(Button)v.findViewById(R.id.AdministrarPreguntas);
+        adminPreguntas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new FragmentCrearPreguntas();
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .commit();
+            }
+        });
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
