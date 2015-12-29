@@ -26,6 +26,14 @@
     <string name="crear">Crear</string>
     <string name="cancelar">Cancelar</string>
     <string name="eliminarMensaje">Eliminar</string>
+    <string name="nueva_partida">Nueva Partida</string>
+    <string name="estadisticas">Mis Estadísticas</string>
+    <string name="administrar_preguntas">Administrar Preguntas</string>
+    <string name="carga_completa">Carga Completa, Boton deshabilitado</string>
+    <string name="volverMenuPrincipal">Volver al menu principal</string>
+    <string name="dificultadFacil">Fácil</string>
+    <string name="dificultadIntermedio">Intermedio</string>
+    <string name="dificultadDificil">Difícil</string>
 
     <!-- Titulos -->
     <string name="nombre_partido">NOMBRE PARTIDO</string>
@@ -74,6 +82,14 @@
     <string name="hintBuscador">Identificador de autor...</string>
     <string name="rol_spinner_label">Rol</string>
     <string name="prueba">Prueba</string>
+    <string name="finPartida">¡Fin de la partida!</string>
+    <string name="textPuntosConseguidos">Has conseguido:</string>
+    <string name="puntosConseguidos"># puntos</string>
+    <string name="textCorrectas">Respuestas Correctas:</string>
+    <string name="respuestasCorrectas">#</string>
+    <string name="textIncorrectas">Respuestas Incorrectas:</string>
+    <string name="respuestasIncorrectas">#</string>
+    <string name="elegirDificultad">Elige el nivel de dificultad de la partida</string>
 
     <!-- Roles -->
     <string-array name="Roles">
@@ -179,6 +195,26 @@
     <string name="parroquiaSuscripcion">Parroquia de Suscripción</string>
     <string name="parroquiaEjemplo">San José</string>
     <string name="noExistenElementos">No existe ningún elemento.</string>
+    <string name="filtroPuntaje">Filtrar por Puntaje</string>
+    <string name="filtroNivel">Filtrar por Nivel</string>
+
+
+    <!-- DIFICULTAD -->
+    <string-array name="Dificultad">
+        <item>facil</item>
+        <item>intermedio</item>
+        <item>dificil</item>
+    </string-array>
+
+    <!-- TIEMPO -->
+    <string-array name="Tiempo">
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+        <item>120</item>
+
+    </string-array>
+>>>>>>> c8a738bf0c3cabe93590dbaff59d7b76c9153151
 
 
 </resources>

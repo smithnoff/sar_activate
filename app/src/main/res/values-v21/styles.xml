@@ -127,4 +127,9 @@
         <item name="android:navigationBarColor">@color/deeppurple600</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#ffff</item>
+        <item name="android:minHeight">25dp</item>
+        <item name="android:maxHeight">25dp</item>
+    </style>
 </resources>

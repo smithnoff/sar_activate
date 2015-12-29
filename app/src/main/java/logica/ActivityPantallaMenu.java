@@ -24,8 +24,10 @@ import com.example.usuario.soyactivista.fragments.FragmentEditarUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentListarActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarConversacion;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
+import com.example.usuario.soyactivista.fragments.FragmentListarPreguntas;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
+import com.example.usuario.soyactivista.fragments.FragmentTriviaPrincipal;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
@@ -80,6 +82,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
             ubicacionUsuario = (TextView)findViewById(R.id.usuarioEstado);
 
             nombrePartido.setText(Selector_de_Tema.getNombrePartido());
+
 
             nombreUsuario.setText(currentUser.getString("nombre") + " " + currentUser.getString("apellido"));
             cargoUsuario.setText(currentUser.getString("cargo"));
@@ -159,7 +162,10 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                                     fragmentTransaction = true;
                                     break;
 
-                                // PLACEHOLDER TRIVIA
+                                case R.id.menuTrivia:
+                                    fragment = new FragmentTriviaPrincipal();
+                                    fragmentTransaction = true;
+                                    break;
 
                                 // PLACEHOLDER PUNTUACIONES
 

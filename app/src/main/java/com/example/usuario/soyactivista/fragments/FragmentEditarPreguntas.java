@@ -1,29 +1,10 @@
 package com.example.usuario.soyactivista.fragments;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
-import android.view.ContextThemeWrapper;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.view.animation.OvershootInterpolator;
-import android.widget.Toast;
-
-import soy_activista.quartzapp.com.soy_activista.R;
-import com.github.clans.fab.FloatingActionButton;
-import com.github.clans.fab.FloatingActionMenu;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -46,108 +26,73 @@ import soy_activista.quartzapp.com.soy_activista.R;
 
 import static java.lang.Integer.parseInt;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-
-import java.util.List;
-
 /**
- * Created by Brahyam on 28/11/2015.
+ * Created by darwin on 29/12/2015.
  */
-public class FragmentEditarTipoActividad extends Fragment {
+public class FragmentEditarPreguntas extends Fragment {
 
-    private EditText nombre, descripcion; // Edit Field holders
-    private Spinner puntaje; // Spinner holders
+    private EditText nombre, opcion_uno,opcion_dos,opcion_tres,opcion_cuatro; // Edit Field holders
+    private Spinner puntaje,dificultad,tiempo; // Spinner holders
     private Button editar,eliminar,guardar, cancelar; // Button holders
-    private TextView TextPuntaje;
+    private TextView textPuntaje,textDificultad,textTiempo;
     private ProgressDialog dialog;
-
-    //Floating Button
-    private FloatingActionButton fabcrear;
-    private FloatingActionButton fabcancelar;
-    private FloatingActionButton fabeditar;
-    private FloatingActionButton fabeliminar;
-
-    private List<FloatingActionMenu> menus = new ArrayList<>();
-    private Handler mUiHandler = new Handler();
-
-    // Class Constructor
-    public FragmentEditarTipoActividad(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
         //Choose fragment to inflate
-        View v = inflater.inflate(R.layout.fragment_editar_tipo_actividad, container, false);
+        View v = inflater.inflate(R.layout.fragment_editar_preguntas, container, false);
 
         //Gets Current User
         final ParseUser usuarioActual = ParseUser.getCurrentUser();
 
-        final FloatingActionMenu menu1 = (FloatingActionMenu)v.findViewById(R.id.menu1);
 
-        fabcrear = (FloatingActionButton) v.findViewById(R.id.fabcrear);
-        fabcancelar = (FloatingActionButton) v.findViewById(R.id.fabcancelar);
-        fabeditar = (FloatingActionButton) v.findViewById(R.id.fabeditar);
-        fabeliminar = (FloatingActionButton) v.findViewById(R.id.fabeliminar);
 
-        //Asign Text Edit to holders
-        nombre = (EditText)v.findViewById(R.id.editActividad);
-        descripcion = (EditText)v.findViewById(R.id.editDescripcion);
+        //Asign Text Edit and text view to holders
+        nombre          =   (EditText)v.findViewById(R.id.editPregunta);
+        opcion_uno      =   (EditText)v.findViewById(R.id.opcionUno);
+        opcion_dos      =   (EditText)v.findViewById(R.id.opcionDos);
+        opcion_tres     =   (EditText)v.findViewById(R.id.opcionTres);
+        opcion_cuatro   =   (EditText)v.findViewById(R.id.opcionCuatro);
+        textPuntaje     =   (TextView)v.findViewById(R.id.valuePuntaje);
+        textDificultad  =   (TextView)v.findViewById(R.id.valueDificultad);
+        textTiempo      =   (TextView)v.findViewById(R.id.valueTiempo);
+
+
 
         // Asigns Spinners to holders
-        puntaje = (Spinner)v.findViewById(R.id.spinPuntaje);
+        puntaje = (Spinner)v.findViewById(R.id.spinnerPuntaje);
+        dificultad = (Spinner)v.findViewById(R.id.spinnerDificultad);
+        tiempo = (Spinner)v.findViewById(R.id.spinnerTiempoRespuesta);
+
 
         // Asign Buttons to holders
 
-        editar = (Button)v.findViewById(R.id.btnEditarTipoActividad);
-        eliminar = (Button)v.findViewById(R.id.btnEliminarTipoActividad);
-        guardar = (Button)v.findViewById(R.id.btnGuardarTipoActividad);
+        editar = (Button)v.findViewById(R.id.buttonEditarPregunta);
+        eliminar = (Button)v.findViewById(R.id.buttonEliminarPregunta);
+        guardar = (Button)v.findViewById(R.id.buttonGuardarPreguntas);
         cancelar = (Button)v.findViewById(R.id.buttonCancelar);
 
-        TextPuntaje = (TextView)v.findViewById(R.id.TextPuntaje);
+
+
 
 
         //Fill Spinners with Preset Options
         this.llenarSpinnerdesdeId(puntaje, R.array.Puntuaciones);
-
+        this.llenarSpinnerdesdeId(dificultad, R.array.Dificultad);
+        this.llenarSpinnerdesdeId(tiempo, R.array.Tiempo);
 
         //Set Values from bundle
-        nombre.setText(getArguments().getString("nombre"));
-        descripcion.setText(getArguments().getString("descripcion"));
-        ArrayAdapter<String> array_spinner=(ArrayAdapter<String>)puntaje.getAdapter();
-        puntaje.setSelection(array_spinner.getPosition(getArguments().getString("puntaje")));
-        TextPuntaje.setText("Puntaje: " + getArguments().getString("puntaje"));
+        nombre.setText(getArguments().getString("pregunta"));
+        opcion_uno.setText(getArguments().getString("opcion1"));
+        opcion_dos.setText(getArguments().getString("opcion2"));
+        opcion_tres.setText(getArguments().getString("opcion3"));
+        opcion_cuatro.setText(getArguments().getString("opcion4"));
 
+       this.ObtenerSpinnerdesdePosition(puntaje,getArguments().getString("puntaje"));
+       this.ObtenerSpinnerdesdePosition(dificultad,getArguments().getString("dificultad"));
+       this.ObtenerSpinnerdesdePosition(tiempo,getArguments().getString("tiempo"));
 
-        menu1.setOnMenuButtonClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                menu1.toggle(true);
-            }
-        });
-
-        menus.add(menu1);
-
-        menu1.hideMenuButton(false);
-
-        int delay = 400;
-        for (final FloatingActionMenu menu : menus) {
-            mUiHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    menu.showMenuButton(true);
-                }
-            }, delay);
-            delay += 150;
-        }
-
-        menu1.setClosedOnTouchOutside(true);
-
-        /*fabeditar.setOnClickListener(clickListener);
-        fabeliminar.setOnClickListener(clickListener);
-        fabcancelar.setOnClickListener(clickListener);
-        fabcrear.setOnClickListener(cliclListener);*/
 
 
 
@@ -158,8 +103,19 @@ public class FragmentEditarTipoActividad extends Fragment {
 
                 // Turn fields editable
                 nombre.setEnabled(true);
-                descripcion.setEnabled(true);
+                opcion_uno.setEnabled(true);
+                opcion_dos.setEnabled(true);
+                opcion_tres.setEnabled(true);
+                opcion_cuatro.setEnabled(true);
+
+
+                textPuntaje.setVisibility(View.GONE);
+                textDificultad.setVisibility(View.GONE);
+                textTiempo.setVisibility(View.GONE);
+
                 puntaje.setVisibility(View.VISIBLE);
+                dificultad.setVisibility(View.VISIBLE);
+                tiempo.setVisibility(View.VISIBLE);
 
                 // Hide Delete/Edit Button.
                 editar.setVisibility(View.GONE);
@@ -183,10 +139,7 @@ public class FragmentEditarTipoActividad extends Fragment {
 
                     public void onClick(DialogInterface dialogo, int which) {
                         // Do nothing but close the dialog
-                        dialogo.dismiss();
-                        dialog = ProgressDialog.show(getActivity(), "", "Editando Tipo de Actividad", true);
-
-                        ParseQuery<ParseObject> query = ParseQuery.getQuery("TipoActividad");
+                      ParseQuery<ParseObject> query = ParseQuery.getQuery("TipoActividad");
 
                         // Retrieve the object by id from parse
                         query.getInBackground(getArguments().getString("id"), new GetCallback<ParseObject>() {
@@ -200,7 +153,7 @@ public class FragmentEditarTipoActividad extends Fragment {
                                     ParseObject newTipoActividad = new ParseObject("TipoActividad");
                                     tipoActividad.put("nombre", nombre.getText().toString());
                                     tipoActividad.put("puntaje", parseInt(puntaje.getSelectedItem().toString()));
-                                    tipoActividad.put("descripcion", descripcion.getText().toString());
+
                                     tipoActividad.put("creador", usuarioActual);
                                     tipoActividad.put("activa",true);
 
@@ -256,8 +209,18 @@ public class FragmentEditarTipoActividad extends Fragment {
             public void onClick(View v) {
                 // Turn fields not editable
                 nombre.setEnabled(false);
-                descripcion.setEnabled(false);
-                puntaje.setEnabled(false);
+                opcion_uno.setEnabled(false);
+                opcion_dos.setEnabled(false);
+                opcion_tres.setEnabled(false);
+                opcion_cuatro.setEnabled(false);
+
+                textPuntaje.setVisibility(View.VISIBLE);
+                textDificultad.setVisibility(View.VISIBLE);
+                textTiempo.setVisibility(View.VISIBLE);
+
+                puntaje.setVisibility(View.GONE);
+                dificultad.setVisibility(View.GONE);
+                tiempo.setVisibility(View.GONE);
 
                 // Hide Delete/Edit Button.
                 editar.setVisibility(View.VISIBLE);
@@ -326,43 +289,21 @@ public class FragmentEditarTipoActividad extends Fragment {
         return v;
     }
 
-    //ONLICK FLOATINGBUTTONACTION
-    /*private View.OnClickListener clickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            String text = "";
-
-            switch (v.getId()) {
-                case R.id.fab1:
-                    text = fab1.getLabelText();
-                    break;
-                case R.id.fab2:
-                    text = fab2.getLabelText();
-                    fab2.setVisibility(View.GONE);
-                    break;
-                case R.id.fab3:
-                    text = fab3.getLabelText();
-                    fab2.setVisibility(View.VISIBLE);
-                    break;
-                case R.id.fab12:
-                    text = fab12.getLabelText();
-                    break;
-                case R.id.fab22:
-                    text = fab22.getLabelText();
-                    break;
-                case R.id.fab32:
-                    text = fab32.getLabelText();
-                    break;
-            }
-
-            Toast.makeText(FloatingMenusActivity.this, text, Toast.LENGTH_SHORT).show();
-        }
-    };*/
-
     //Auxiliar method for filling spinners with String Arrays
     public void llenarSpinnerdesdeId(Spinner spin,int id){
         ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource(getActivity(), id, android.R.layout.simple_spinner_item);
         spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(spinner_adapter);
+    }
+    public void ObtenerSpinnerdesdePosition(Spinner spin,String opcion){
+
+
+        for (int i=0;i<spin.getCount();i++)
+        {
+           if( spin.getItemAtPosition(i).toString().trim().equals(opcion.trim()))
+            {
+                spin.setSelection(i);
+            }
+        }
     }
 }
