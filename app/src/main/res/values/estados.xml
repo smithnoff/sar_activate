@@ -421,4 +421,26 @@
         <item>Activista</item>
     </string-array>
 
+    <!-- puntaje de trivia-->
+    <string-array name="Puntajes">
+        <item>100</item>
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
+    </string-array>
+    <!-- Nivel de trivia-->
+    <string-array name="Niveles">
+        <item>Facil</item>
+        <item>Intermedio</item>
+        <item>Dificil</item>
+        </string-array>
+        <!-- Tiempo de trivia-->
+        <string-array name="Tiempos">
+            <item>20 segundos</item>
+            <item>30 segundos</item>
+            <item>40 segundos</item>
+            <item>50 segundos</item>
+            <item>60 segundos</item>
+        </string-array>
 </resources>
