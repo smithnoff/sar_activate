@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/NombrePregunta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textSize="20dp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consequat mi sit amet magna cursus posuere. Phasellus vel dolor vitae massa dignissim aliquam."
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:maxLines="1"
+        />
+
+    <TextView
+        android:id="@+id/puntajePregunta"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="15dp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nombreActividad"
+        android:text="puntaje: 500"
+        />
+    <TextView
+        android:id="@+id/NivelDificultad"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="15dp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nombreActividad"
+        android:text="Nivel: Intermedio"
+        />
+
+</LinearLayout>
