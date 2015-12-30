@@ -40,6 +40,7 @@
                 android:layout_marginTop="45sp"
                 android:layout_width="match_parent"
                 android:background="@color/white"
+
                 android:layout_height="wrap_content"
 
                 android:text="Respuesta 1"

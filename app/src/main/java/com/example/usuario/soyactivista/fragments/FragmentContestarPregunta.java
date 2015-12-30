@@ -30,8 +30,8 @@ public class FragmentContestarPregunta extends Fragment {
 
     private static final String FORMAT = "%02d:%02d:%02d";
 
-
-
+public static int i=0;
+        public int seconds;
       public TextView pregunta,tiempo;
     public Button respuesta1,respuesta2,respuesta3,respuesta4;
     @Nullable
@@ -44,35 +44,28 @@ public class FragmentContestarPregunta extends Fragment {
         respuesta2=(Button)v.findViewById(R.id.buttonRespuesta2);
         respuesta3=(Button)v.findViewById(R.id.buttonRespuesta3);
         respuesta4=(Button)v.findViewById(R.id.buttonRespuesta4);
-        Bundle bundle=this.getArguments();
-        String dificultadElegida=bundle.getString("dificultad");
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Pregunta");
-        query.whereEqualTo("dificultad", dificultadElegida);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> PreguntaList, ParseException e) {
-                if (e == null) {
-                    Log.d("score", "Retrieved " + PreguntaList.size() + " scores");
-                    pregunta.setText(PreguntaList.get(0).getString("pregunta"));
-                    respuesta1.setText(PreguntaList.get(0).getString("opcion1"));
-                    respuesta2.setText(PreguntaList.get(0).getString("opcion2"));
-                    respuesta3.setText(PreguntaList.get(0).getString("opcion3"));
-                    respuesta4.setText(PreguntaList.get(0).getString("opcion4"));
+
+        respuesta1.setOnClickListener(verificarCorrecta);
+        respuesta2.setOnClickListener(verificarCorrecta);
+        respuesta3.setOnClickListener(verificarCorrecta);
+        respuesta4.setOnClickListener(verificarCorrecta);
 
 
-                    // Store data in bundle to send to next fragment
-
-                } else {
-                    Toast.makeText(getActivity(), "No se trae datos", Toast.LENGTH_LONG);
-                    Log.d("score", "Error: " + e.getMessage());
-                }
-            }
-        });
+             setPregunta();
 
 
 
-        new CountDownTimer( 60000,1000) { // adjust the milli seconds here
+
+
+
+        return v;
+    }
+    public void contador(int segundos)
+    {
+        new CountDownTimer( segundos,1000) { // adjust the milli seconds here
 
             public void onTick(long millisUntilFinished) {
+
 
                 tiempo.setText("" + String.format(FORMAT,
                         TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
@@ -83,24 +76,60 @@ public class FragmentContestarPregunta extends Fragment {
             }
 
             public void onFinish() {
-               tiempo.setText("Hecho!");
+                tiempo.setText("Hecho!");
+                setPregunta();
             }
         }.start();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        return v;
     }
+
+    public void setPregunta()
+    {
+        Bundle bundle=this.getArguments();
+        String dificultadElegida=bundle.getString("dificultad");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Pregunta");
+        query.whereEqualTo("dificultad", dificultadElegida);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> PreguntaList, ParseException e) {
+                if (e == null) {
+                 if(i<PreguntaList.size()) {
+                     pregunta.setText(PreguntaList.get(i).getString("pregunta"));
+                     respuesta1.setText(PreguntaList.get(i).getString("opcion1"));
+                     respuesta2.setText(PreguntaList.get(i).getString("opcion2"));
+                     respuesta3.setText(PreguntaList.get(i).getString("opcion3"));
+                     respuesta4.setText(PreguntaList.get(i).getString("opcion4"));
+                     int timer = PreguntaList.get(i).getInt("tiempo");
+                     String tiempochar = String.valueOf(timer);
+
+                     seconds = Integer.parseInt(tiempochar) * 1000;
+                     contador(seconds);
+
+                     // Store data in bundle to send to next fragment
+                 }else {
+                     Toast.makeText(getActivity(), "FINALIZADO", Toast.LENGTH_SHORT).show();
+                 }
+                } else {
+                    Toast.makeText(getActivity(), "No se trae datos", Toast.LENGTH_LONG);
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
+
+    }
+
+ View.OnClickListener verificarCorrecta=new View.OnClickListener() {
+     @Override
+     public void onClick(View v) {
+         Button seleccion=(Button)v;
+         if(seleccion.getText().toString().equals(respuesta1.getText().toString()))
+         {
+             Toast.makeText(getActivity(), "CORRECTO", Toast.LENGTH_SHORT).show();
+         }else{
+             Toast.makeText(getActivity(), "INCORRECTO", Toast.LENGTH_SHORT).show();
+         }
+         i++;
+         setPregunta();
+     }
+ };
+
+
 }
