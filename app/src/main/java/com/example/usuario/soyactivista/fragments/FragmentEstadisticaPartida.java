@@ -46,7 +46,7 @@ public class FragmentEstadisticaPartida extends Fragment {
         float current = ratingBar.getRating();
 
         ObjectAnimator anim = ObjectAnimator.ofFloat(ratingBar, "rating", 0f, current);
-        anim.setDuration(1000);
+        anim.setDuration(3000);
         anim.start();
 
         menuPrincipal.setOnClickListener(new View.OnClickListener() {
