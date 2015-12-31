@@ -33,7 +33,7 @@ public class FragmentContestarPregunta extends Fragment {
 public static int i=0;
     public  ParseQuery<ParseObject> query ;
   public CountDownTimer contadorPreg;
-    public int seconds,aciertos=0;
+    public int seconds,aciertos=0,puntosPregunta=0,puntosAcumulados=0;
 
       public TextView pregunta,tiempo;
     public Button respuesta1,respuesta2,respuesta3,respuesta4;
@@ -102,6 +102,7 @@ public static int i=0;
                      respuesta2.setText(PreguntaList.get(i).getString("opcion2"));
                      respuesta3.setText(PreguntaList.get(i).getString("opcion3"));
                      respuesta4.setText(PreguntaList.get(i).getString("opcion4"));
+                     puntosPregunta=PreguntaList.get(i).getInt("puntaje");
                      int timer = PreguntaList.get(i).getInt("tiempo");
                      String tiempochar = String.valueOf(timer);
 
@@ -113,10 +114,11 @@ public static int i=0;
                      Toast.makeText(getActivity(), "FINALIZADO", Toast.LENGTH_SHORT).show();
                      Bundle datos = new Bundle();
                      datos.putInt("aciertos", aciertos);
+                     datos.putInt("puntos", puntosAcumulados);
                      i=0;
 
                      Fragment fragment = new FragmentEstadisticaPartida();
-                  //   fragment.setArguments(datos);
+                    fragment.setArguments(datos);
                      getFragmentManager()
                              .beginTransaction()
                              .replace(R.id.content_frame, fragment)
@@ -140,6 +142,7 @@ public static int i=0;
          if(seleccion.getText().toString().equals(respuesta1.getText().toString()))
          {
              Toast.makeText(getActivity(), "CORRECTO", Toast.LENGTH_SHORT).show();
+             puntosAcumulados+=puntosPregunta;
              aciertos++;
          }else{
              Toast.makeText(getActivity(), "INCORRECTO", Toast.LENGTH_SHORT).show();
@@ -150,6 +153,7 @@ public static int i=0;
 
      }
  };
+
 
 
 }
