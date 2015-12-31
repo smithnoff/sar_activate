@@ -31,7 +31,10 @@ public class FragmentContestarPregunta extends Fragment {
     private static final String FORMAT = "%02d:%02d:%02d";
 
 public static int i=0;
-        public int seconds;
+    public  ParseQuery<ParseObject> query ;
+  public CountDownTimer contadorPreg;
+    public int seconds,aciertos=0;
+
       public TextView pregunta,tiempo;
     public Button respuesta1,respuesta2,respuesta3,respuesta4;
     @Nullable
@@ -49,7 +52,10 @@ public static int i=0;
         respuesta2.setOnClickListener(verificarCorrecta);
         respuesta3.setOnClickListener(verificarCorrecta);
         respuesta4.setOnClickListener(verificarCorrecta);
-
+        Bundle bundle=this.getArguments();
+        String dificultadElegida=bundle.getString("dificultad");
+        query = ParseQuery.getQuery("Pregunta");
+        query.whereEqualTo("dificultad", dificultadElegida);
 
              setPregunta();
 
@@ -57,12 +63,13 @@ public static int i=0;
 
 
 
+//contiuar ogica para las preguntas
 
         return v;
     }
     public void contador(int segundos)
     {
-        new CountDownTimer( segundos,1000) { // adjust the milli seconds here
+       contadorPreg= new CountDownTimer( segundos,1000) { // adjust the milli seconds here
 
             public void onTick(long millisUntilFinished) {
 
@@ -84,13 +91,11 @@ public static int i=0;
 
     public void setPregunta()
     {
-        Bundle bundle=this.getArguments();
-        String dificultadElegida=bundle.getString("dificultad");
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Pregunta");
-        query.whereEqualTo("dificultad", dificultadElegida);
+
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> PreguntaList, ParseException e) {
                 if (e == null) {
+                    //TODO: change the if condition to 6 questions
                  if(i<PreguntaList.size()) {
                      pregunta.setText(PreguntaList.get(i).getString("pregunta"));
                      respuesta1.setText(PreguntaList.get(i).getString("opcion1"));
@@ -106,6 +111,18 @@ public static int i=0;
                      // Store data in bundle to send to next fragment
                  }else {
                      Toast.makeText(getActivity(), "FINALIZADO", Toast.LENGTH_SHORT).show();
+                     Bundle datos = new Bundle();
+                     datos.putInt("aciertos", aciertos);
+                     i=0;
+
+                     Fragment fragment = new FragmentEstadisticaPartida();
+                  //   fragment.setArguments(datos);
+                     getFragmentManager()
+                             .beginTransaction()
+                             .replace(R.id.content_frame, fragment)
+                             .addToBackStack(null)
+                             .commit();
+                     aciertos=0;
                  }
                 } else {
                     Toast.makeText(getActivity(), "No se trae datos", Toast.LENGTH_LONG);
@@ -123,11 +140,14 @@ public static int i=0;
          if(seleccion.getText().toString().equals(respuesta1.getText().toString()))
          {
              Toast.makeText(getActivity(), "CORRECTO", Toast.LENGTH_SHORT).show();
+             aciertos++;
          }else{
              Toast.makeText(getActivity(), "INCORRECTO", Toast.LENGTH_SHORT).show();
          }
          i++;
+         contadorPreg.cancel();
          setPregunta();
+
      }
  };
 
