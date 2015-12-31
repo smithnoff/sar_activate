@@ -2,12 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/indigo">
+    android:background="@color/indigo"
+    android:id="@+id/linearColor">
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/ListEstadisticaUsuario"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/triviaLogo"
@@ -171,5 +177,8 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="25dp"
         />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

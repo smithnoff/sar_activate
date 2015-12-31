@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Toast;
 
+import logica.Selector_de_Tema;
 import soy_activista.quartzapp.com.soy_activista.R;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -84,6 +85,7 @@ public class FragmentEditarTipoActividad extends Fragment {
         final ParseUser usuarioActual = ParseUser.getCurrentUser();
 
         final FloatingActionMenu menu1 = (FloatingActionMenu)v.findViewById(R.id.menu1);
+        menu1.setBackgroundColor(Selector_de_Tema.getTema());
 
         fabcrear = (FloatingActionButton) v.findViewById(R.id.fabcrear);
         fabcancelar = (FloatingActionButton) v.findViewById(R.id.fabcancelar);
