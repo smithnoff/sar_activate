@@ -55,7 +55,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/NuevaPartida"
+        android:id="@+id/nuevaPartida"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -65,7 +65,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginTop="50dp"/>
     <Button
-        android:id="@+id/MisEstadisticas"
+        android:id="@+id/misEstadisticas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -75,7 +75,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginTop="15dp"/>
     <Button
-        android:id="@+id/AdministrarPreguntas"
+        android:id="@+id/administrarPreguntas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -84,23 +84,5 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginTop="15dp"/>
-    <com.dd.processbutton.iml.ActionProcessButton
-        android:id="@+id/btnSignIn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:text="Nueva Partida"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        custom:pb_colorComplete="@color/green_complete"
-        custom:pb_colorNormal="@color/blue_normal"
-        custom:pb_colorPressed="@color/blue_pressed"
-        custom:pb_colorProgress="@color/purple_progress"
-        custom:pb_textComplete="Bienvenido"
-        custom:pb_textProgress="Cargando Preguntas"
-        custom:pb_textError="Error"
-        custom:pb_colorError="@color/red_error" />
 
 </LinearLayout>

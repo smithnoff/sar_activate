@@ -1,13 +1,11 @@
 package com.example.usuario.soyactivista.fragments;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -17,7 +15,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class FragmentTriviaDificultad extends Fragment {
 
     private Button dificultadFacil, dificultadIntermedio, dificultadDificil;
-    public int dificultad;
+    public String dificultad;
 
 
         @Override
@@ -31,23 +29,57 @@ public class FragmentTriviaDificultad extends Fragment {
             dificultadDificil = (Button)v.findViewById(R.id.btnDificil);
 
             dificultadFacil.setOnClickListener(new View.OnClickListener() {
+                                                   @Override
+                                                   public void onClick(View v) {
+                                                       dificultad = "facil";
+                                                       // Store data in bundle to send to next fragment
+                                                       Bundle data = new Bundle();
+                                                       data.putString("dificultad", dificultad);
+
+                                                       Fragment fragment = new FragmentContestarPregunta();
+                                                       fragment.setArguments(data);
+                                                       getFragmentManager()
+                                                               .beginTransaction()
+                                                               .replace(R.id.content_frame, fragment)
+                                                               .addToBackStack(null)
+                                                               .commit();
+                                                   }
+                                               });
+
+            dificultadIntermedio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    dificultad = 1;
-
+                    dificultad = "intermedio";
                     // Store data in bundle to send to next fragment
                     Bundle data = new Bundle();
-                    data.putInt("dificultad", dificultad);
+                    data.putString("dificultad", dificultad);
 
-                    // Redirect View to next Fragment
-                    Fragment fragment = new FragmentEstadisticaPartida();
+                    Fragment fragment = new FragmentContestarPregunta();
                     fragment.setArguments(data);
                     getFragmentManager()
                             .beginTransaction()
                             .replace(R.id.content_frame, fragment)
                             .addToBackStack(null)
                             .commit();
+                }
+            });
+
+            dificultadDificil.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dificultad = "dificil";
+                    // Store data in bundle to send to next fragment
+                    Bundle data = new Bundle();
+                    data.putString("dificultad", dificultad);
+
+                    Fragment fragment = new FragmentContestarPregunta();
+                    fragment.setArguments(data);
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.content_frame, fragment)
+                            .addToBackStack(null)
+                            .commit();
+
                 }
             });
 

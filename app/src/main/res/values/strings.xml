@@ -90,6 +90,16 @@
     <string name="textIncorrectas">Respuestas Incorrectas:</string>
     <string name="respuestasIncorrectas">#</string>
     <string name="elegirDificultad">Elige el nivel de dificultad de la partida</string>
+    <string name="logroTrivia">Actualmente eres un activista:</string>
+    <string name="tipoActivista">VETERANO</string>
+    <string name="suscripcion">En tu estado de suscripción eres el número:</string>
+    <string name="textPuntosTotal">Has acumulado hasta el momento:</string>
+    <string name="rankingUsuarios">#</string>
+    <string name="puntosTotales"># puntos</string>
+    <string name="textPartidasTotal">Has jugado hasta el momento</string>
+    <string name="partidasTotales"># partidas</string>
+    <string name="textDificultad">Te desempeñas mejor en preguntas de nivel:</string>
+    <string name="dificultad">Intermedio</string>
 
     <!-- Roles -->
     <string-array name="Roles">
