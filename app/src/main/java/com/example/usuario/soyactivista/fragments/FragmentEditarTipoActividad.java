@@ -84,42 +84,13 @@ public class FragmentEditarTipoActividad extends Fragment {
         //Gets Current User
         final ParseUser usuarioActual = ParseUser.getCurrentUser();
 
+        /* Commenting for realise version.
         final FloatingActionMenu menu1 = (FloatingActionMenu)v.findViewById(R.id.menu1);
         menu1.setBackgroundColor(Selector_de_Tema.getTema());
-
         fabcrear = (FloatingActionButton) v.findViewById(R.id.fabcrear);
         fabcancelar = (FloatingActionButton) v.findViewById(R.id.fabcancelar);
         fabeditar = (FloatingActionButton) v.findViewById(R.id.fabeditar);
         fabeliminar = (FloatingActionButton) v.findViewById(R.id.fabeliminar);
-
-        //Asign Text Edit to holders
-        nombre = (EditText)v.findViewById(R.id.editActividad);
-        descripcion = (EditText)v.findViewById(R.id.editDescripcion);
-
-        // Asigns Spinners to holders
-        puntaje = (Spinner)v.findViewById(R.id.spinPuntaje);
-
-        // Asign Buttons to holders
-
-        editar = (Button)v.findViewById(R.id.btnEditarTipoActividad);
-        eliminar = (Button)v.findViewById(R.id.btnEliminarTipoActividad);
-        guardar = (Button)v.findViewById(R.id.btnGuardarTipoActividad);
-        cancelar = (Button)v.findViewById(R.id.buttonCancelar);
-
-        TextPuntaje = (TextView)v.findViewById(R.id.TextPuntaje);
-
-
-        //Fill Spinners with Preset Options
-        this.llenarSpinnerdesdeId(puntaje, R.array.Puntuaciones);
-
-
-        //Set Values from bundle
-        nombre.setText(getArguments().getString("nombre"));
-        descripcion.setText(getArguments().getString("descripcion"));
-        ArrayAdapter<String> array_spinner=(ArrayAdapter<String>)puntaje.getAdapter();
-        puntaje.setSelection(array_spinner.getPosition(getArguments().getString("puntaje")));
-        TextPuntaje.setText("Puntaje: " + getArguments().getString("puntaje"));
-
 
         menu1.setOnMenuButtonClickListener(new View.OnClickListener() {
             @Override
@@ -149,8 +120,36 @@ public class FragmentEditarTipoActividad extends Fragment {
         /*fabeditar.setOnClickListener(clickListener);
         fabeliminar.setOnClickListener(clickListener);
         fabcancelar.setOnClickListener(clickListener);
-        fabcrear.setOnClickListener(cliclListener);*/
+        fabcrear.setOnClickListener(cliclListener);
+        */
 
+        //Asign Text Edit to holders
+        nombre = (EditText)v.findViewById(R.id.editActividad);
+        descripcion = (EditText)v.findViewById(R.id.editDescripcion);
+
+        // Asigns Spinners to holders
+        puntaje = (Spinner)v.findViewById(R.id.spinPuntaje);
+
+        // Asign Buttons to holders
+
+        editar = (Button)v.findViewById(R.id.btnEditarTipoActividad);
+        eliminar = (Button)v.findViewById(R.id.btnEliminarTipoActividad);
+        guardar = (Button)v.findViewById(R.id.btnGuardarTipoActividad);
+        cancelar = (Button)v.findViewById(R.id.buttonCancelar);
+
+        TextPuntaje = (TextView)v.findViewById(R.id.TextPuntaje);
+
+
+        //Fill Spinners with Preset Options
+        this.llenarSpinnerdesdeId(puntaje, R.array.Puntuaciones);
+
+
+        //Set Values from bundle
+        nombre.setText(getArguments().getString("nombre"));
+        descripcion.setText(getArguments().getString("descripcion"));
+        ArrayAdapter<String> array_spinner=(ArrayAdapter<String>)puntaje.getAdapter();
+        puntaje.setSelection(array_spinner.getPosition(getArguments().getString("puntaje")));
+        TextPuntaje.setText("Puntaje: " + getArguments().getString("puntaje"));
 
 
         // Buttons Behavior

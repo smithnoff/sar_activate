@@ -22,108 +22,117 @@
                 android:layout_marginTop="20sp"
                 android:textColor="@color/black"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Pregunta:"
-                android:id="@+id/textView2" />
+                android:text="@string/pregunta"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editPregunta" />
+                android:id="@+id/editPregunta"
+                android:maxLength="500"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:textColor="@color/black"
-                android:layout_marginTop="35sp"
+                android:layout_marginTop="5sp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Respuesta Correcta:"
-                android:id="@+id/textView3" />
+                android:text="@string/opcion1"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editRespuestaCorrecta" />
+                android:id="@+id/opcionUno"
+                android:maxLength="200"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:textColor="@color/black"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Respuesta Falsa 1:"
-                android:id="@+id/textView4" />
+                android:text="@string/opcion2"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editRespuestaFalsa1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Respuesta Falsa 2:"
-                android:id="@+id/textView5" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/editRespuestaFalsa2" />
+                android:id="@+id/opcionDos"
+                android:maxLength="200"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Respuesta Falsa 3:"
-                android:id="@+id/textView6" />
+                android:text="@string/opcion3"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editRespuestaFalsa3" />
+                android:id="@+id/opcionTres"
+                android:maxLength="200"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Puntaje:"
-                android:id="@+id/textView7" />
+                android:text="@string/opcion4"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/opcionCuatro"
+                android:maxLength="200"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/puntaje"/>
 
             <Spinner
-                android:layout_width="220sp"
-                android:layout_height="60sp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/spinnerPuntaje"
-                android:spinnerMode="dialog" />
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Nivel:"
-                android:id="@+id/textView8" />
+                android:text="@string/nivel"/>
 
             <Spinner
-                android:layout_width="220sp"
-                android:layout_height="60sp"
-                android:id="@+id/spinnerNivel"
-                android:spinnerMode="dialog" />
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerDificultad"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Tiempo Para Responder:"
-                android:id="@+id/textView9" />
+                android:text="@string/tiempoParaResponder"
+                android:layout_marginTop="5dp" />
 
             <Spinner
-                android:layout_width="220sp"
-                android:layout_height="60sp"
-                 android:spinnerMode="dialog"
-                android:id="@+id/spinnerTiempoRespuesta" />
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerTiempoRespuesta"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/opcionCorrecta"/>
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerOpcionCorrecta"
+                />
 
             <LinearLayout
                 android:layout_weight="2"

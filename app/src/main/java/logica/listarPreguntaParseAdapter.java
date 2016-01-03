@@ -15,11 +15,11 @@ import soy_activista.quartzapp.com.soy_activista.R;
 /**
  * Created by darwin on 28/12/2015.
  */
-public class listarPreguntaParseAdapter extends ParseQueryAdapter<ParseObject> {
+public class ListarPreguntaParseAdapter extends ParseQueryAdapter<ParseObject> {
 
 
 
-    public listarPreguntaParseAdapter(Context context) {
+    public ListarPreguntaParseAdapter(Context context) {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 ParseQuery query = new ParseQuery("Pregunta");
@@ -29,7 +29,7 @@ public class listarPreguntaParseAdapter extends ParseQueryAdapter<ParseObject> {
         });
     }
 
-    public listarPreguntaParseAdapter(Context context, final String constraint) {
+    public ListarPreguntaParseAdapter(Context context, final String constraint) {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
 

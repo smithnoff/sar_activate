@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:background="@color/indigo">
+    android:background="?colorPrimary">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +35,6 @@
             android:layout_marginLeft="5dp">
 
             <TextView
-                android:id="@+id/trivia_formacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/trivia"
@@ -42,10 +42,10 @@
                 android:layout_gravity="center_vertical"
                 android:textSize="16dp" />
             <TextView
-                android:id="@+id/nombre_partido"
+                android:id="@+id/valueNombrePartido"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/nombre_partido"
+                android:text="@string/nombrePartido"
                 android:textColor="@color/white"
                 android:layout_gravity="center_vertical"
                 android:textSize="18dp" />

@@ -36,7 +36,7 @@
     <string name="dificultadDificil">Difícil</string>
 
     <!-- Titulos -->
-    <string name="nombre_partido">NOMBRE PARTIDO</string>
+    <string name="nombrePartido">NOMBRE PARTIDO</string>
     <string name="login">Login</string>
     <string name="mapaTitulo"><b>Seleccione un punto en el mapa</b></string>
 
@@ -54,8 +54,8 @@
     <string name="boletinActividades">Boletin de actividades</string>
     <string name="agregarActividades">Actividades del partido</string>
     <string name="tablaPuntuaciones">Tabla de Puntuaciones</string>
-    <string name="trivia">Trivia de formacion</string>
-    <string name="editarPartido">Editar partido politico</string>
+    <string name="trivia">Trivia de formación</string>
+    <string name="editarPartido">Editar partido político</string>
     <string name="miPerfil">Mi perfil</string>
     <string name="cerrarSesion">Cerrar Sesión</string>
     <string name="crearActividad">Crear Actividad</string>
@@ -93,19 +93,13 @@
     <string name="logroTrivia">Actualmente eres un activista:</string>
     <string name="tipoActivista">VETERANO</string>
     <string name="suscripcion">En tu estado de suscripción eres el número:</string>
-    <string name="textPuntosTotal">Has acumulado hasta el momento:</string>
+    <string name="puntosAcumulados">Has acumulado hasta el momento:</string>
     <string name="rankingUsuarios">#</string>
     <string name="puntosTotales"># puntos</string>
     <string name="textPartidasTotal">Has jugado hasta el momento</string>
     <string name="partidasTotales"># partidas</string>
-    <string name="textDificultad">Te desempeñas mejor en preguntas de nivel:</string>
-    <string name="dificultad">Intermedio</string>
-
-    <!-- Roles -->
-    <string-array name="Roles">
-        <item>Activista</item>
-        <item>Registrador</item>
-    </string-array>
+    <string name="desempeñoPreguntas">Te desempeñas mejor en preguntas de nivel:</string>
+    <string name="dificultadEjemplo">Intermedio</string>
 
     <!--Actividades-->
     <string name="actividad">Actividad</string>
@@ -117,37 +111,21 @@
     <string name="objetivo">Objetivo</string>
     <string name="hintObjetivo">Describa el objetivo a lograr</string>
     <string name="ubicacion">Ubicación</string>
-    <string-array name="Ubicaciones">
-        <item>Nacional</item>
-        <item>Estadal</item>
-    </string-array>
+
     <string name="parroquia">Parroquia</string>
     <string name="hintParroquia">Nombre de la Parroquia</string>
     <string name="encargado">Encargado</string>
     <string name="hintEncargado">Nombre del Responsable</string>
     <string name="creador">Creador</string>
     <string name="estatus">Estatus</string>
-    <string-array name="Estatuses">
-        <item>En Ejecución</item>
-        <item>Terminado</item>
-    </string-array>
+
     <string name="inicio">Fecha de Inicio</string>
     <string name="inicioCorto">Inicio:</string>
     <string name="hintInicio">dd/MM/yyyy</string>
     <string name="fin">Fecha de Finalización</string>
     <string name="finCorto">Fin:</string>
     <string name="hintFin">dd/MM/yyyy</string>
-    <string-array name="Puntuaciones">
-        <item>100</item>
-        <item>200</item>
-        <item>300</item>
-        <item>400</item>
-        <item>500</item>
-        <item>600</item>
-        <item>700</item>
-        <item>800</item>
-        <item>900</item>
-    </string-array>
+
     <string name="estado">Estado</string>
     <string name="municipio">Municipio</string>
     <string name="eliminar">Eliminar</string>
@@ -207,24 +185,21 @@
     <string name="noExistenElementos">No existe ningún elemento.</string>
     <string name="filtroPuntaje">Filtrar por Puntaje</string>
     <string name="filtroNivel">Filtrar por Nivel</string>
-
-
-    <!-- DIFICULTAD -->
-    <string-array name="Dificultad">
-        <item>facil</item>
-        <item>intermedio</item>
-        <item>dificil</item>
-    </string-array>
-
-    <!-- TIEMPO -->
-    <string-array name="Tiempo">
-        <item>30</item>
-        <item>60</item>
-        <item>90</item>
-        <item>120</item>
-
-    </string-array>
->>>>>>> c8a738bf0c3cabe93590dbaff59d7b76c9153151
-
+    <string name="puntosSuspensivos">...</string>
+    <string name="puntosEjemplo">15698 puntos.</string>
+    <string name="partidasEjemplo">123 partidas.</string>
+    <string name="partidasJugadas">Has jugado hasta el momento:</string>
+    <string name="tiempoExtra">Más Tiempo</string>
+    <string name="saltarPregunta">Saltar Pregunta</string>
+    <string name="pregunta">Pregunta</string>
+    <string name="opcion1">Opción 1</string>
+    <string name="opcion2">Opción 2</string>
+    <string name="opcion3">Opción 3</string>
+    <string name="opcion4">Opción 4</string>
+    <string name="nivel">Nivel</string>
+    <string name="tiempoParaResponder">Tiempo para responder</string>
+    <string name="tiempoEjemplo">90 segundos</string>
+    <string name="opcionCorrecta">Opción correcta</string>
+    <string name="preguntaEjemplo">¿ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pellentesque.?</string>
 
 </resources>

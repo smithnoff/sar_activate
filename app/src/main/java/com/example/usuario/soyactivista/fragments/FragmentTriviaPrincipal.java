@@ -6,10 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
-
-import logica.ProgressGenerator;
+import logica.Selector_de_Tema;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -18,7 +18,8 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class FragmentTriviaPrincipal extends Fragment{
 
     public static final String EXTRAS_ENDLESS_MODE = "EXTRAS_ENDLESS_MODE";
-      private Button adminPreguntas, nuevaPartida, misEstadisticas;
+    private Button adminPreguntas, nuevaPartida, misEstadisticas;
+    private TextView valueNombrePartido;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -27,9 +28,14 @@ public class FragmentTriviaPrincipal extends Fragment{
         View v = inflater.inflate(R.layout.fragment_trivia_principal, container, false);
 
 
-        adminPreguntas=(Button)v.findViewById(R.id.administrarPreguntas);
-        nuevaPartida=(Button)v.findViewById(R.id.nuevaPartida);
-        misEstadisticas=(Button)v.findViewById(R.id.misEstadisticas);
+        // Assing to Holders
+        adminPreguntas = (Button)v.findViewById(R.id.administrarPreguntas);
+        nuevaPartida = (Button)v.findViewById(R.id.nuevaPartida);
+        misEstadisticas = (Button)v.findViewById(R.id.misEstadisticas);
+
+        valueNombrePartido = (TextView) v.findViewById(R.id.valueNombrePartido);
+
+        valueNombrePartido.setText(Selector_de_Tema.getNombrePartido());
 
         nuevaPartida.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +43,7 @@ public class FragmentTriviaPrincipal extends Fragment{
                 Fragment fragment = new FragmentTriviaDificultad();
                 getFragmentManager()
                         .beginTransaction()
+                        .addToBackStack(null)
                         .replace(R.id.content_frame, fragment)
                         .commit();
             }
@@ -45,9 +52,10 @@ public class FragmentTriviaPrincipal extends Fragment{
         adminPreguntas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new FragmentListarPreguntas();
+                Fragment fragment = new FragmentListarPregunta();
                 getFragmentManager()
                         .beginTransaction()
+                        .addToBackStack(null)
                         .replace(R.id.content_frame, fragment)
                         .commit();
             }
@@ -56,9 +64,10 @@ public class FragmentTriviaPrincipal extends Fragment{
         misEstadisticas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new FragmentEstadisticaUsuario();
+                Fragment fragment = new FragmentEstadisticasUsuario();
                 getFragmentManager()
                         .beginTransaction()
+                        .addToBackStack(null)
                         .replace(R.id.content_frame, fragment)
                         .commit();
             }

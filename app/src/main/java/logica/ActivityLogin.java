@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;
@@ -57,14 +58,22 @@ public class ActivityLogin extends AppCompatActivity {
                                     public void done(ParseUser user, ParseException e) {
                                         if(user != null){
                                             dialog.dismiss();
+                                            ParseUser currentUser = ParseUser.getCurrentUser();
+
+                                            // Check if user was deleted and redirect to Start.
+                                            if( currentUser.getBoolean("eliminado")){
+                                                Toast.makeText(getApplicationContext(), "Su cuenta ha sido eliminada. Pongase en contacto con un miembro registro." , Toast.LENGTH_LONG).show();
+                                                Intent i = new Intent(getApplication(), ActivityPantallaInicio.class);
+                                                startActivity(i);
+                                            }
 
                                             Log.d(TAG,"User Logged In");
-                                            // Associate user with Installation
+                                            // Associate user with Installation to receive push notifications
                                             ParseInstallation installation = ParseInstallation.getCurrentInstallation();
-                                            ParseUser currentUser = ParseUser.getCurrentUser();
                                             installation.put("usuario",currentUser);
                                             installation.saveEventually();
 
+                                            // Redirect to dash
                                             Intent i = new Intent(getApplication(), ActivityPantallaMenu.class);
                                             startActivity(i);
                                             finish();
@@ -72,7 +81,7 @@ public class ActivityLogin extends AppCompatActivity {
                                         }else{
                                             dialog.dismiss();
                                             // TODO: discern between different exceptions and show appropiate message.
-                                            Toast.makeText(getApplicationContext(), "Identificador o Contraseña incorrecta.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), ErrorCodeHelper.resolveErrorCode(e.getCode()) , Toast.LENGTH_LONG).show();
                                         }
                                     }
                                 });

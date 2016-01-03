@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,33 +13,31 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import logica.ListarActividadAdapter;
-import logica.listarPreguntaParseAdapter;
+import logica.ListarPreguntaParseAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
  * Created by darwin on 28/12/2015.
  */
-public class FragmentListarPreguntas extends Fragment {
+public class FragmentListarPregunta extends Fragment {
     private ListView listView;
-    private listarPreguntaParseAdapter mainAdapter;
+    private ListarPreguntaParseAdapter mainAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Inflate View
-        View view = inflater.inflate(R.layout.fragment_listar_preguntas, container, false);
+        View view = inflater.inflate(R.layout.fragment_listar_pregunta, container, false);
 
         // Initialize main ParseQueryAdapter
-        mainAdapter = new listarPreguntaParseAdapter(this.getContext());
+        mainAdapter = new ListarPreguntaParseAdapter(this.getContext());
 
         // Initialize list view
         listView = (ListView)view.findViewById(R.id.listaPreguntas);
@@ -55,21 +52,22 @@ public class FragmentListarPreguntas extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 // Store data in bundle to send to next fragment
-                ParseObject actividad = (ParseObject)listView.getItemAtPosition(position);
+                ParseObject pregunta = (ParseObject)listView.getItemAtPosition(position);
 
                 Bundle datos = new Bundle();
-                datos.putString("id",actividad.getObjectId());
-                datos.putString("pregunta",actividad.getString("pregunta"));
-                datos.putString("opcion1",actividad.getString("opcion1"));
-                datos.putString("opcion2",actividad.getString("opcion2"));
-                datos.putString("opcion3",actividad.getString("opcion3"));
-                datos.putString("opcion4",actividad.getString("opcion4"));
-                datos.putString("dificultad",actividad.getString("dificultad"));
-                datos.putString("puntaje", Integer.toString(actividad.getInt("puntaje")));
-                datos.putString("tiempo", Integer.toString(actividad.getInt("tiempo")));
+                datos.putString("id", pregunta.getObjectId());
+                datos.putString("pregunta", pregunta.getString("pregunta"));
+                datos.putString("opcion1", pregunta.getString("opcion1"));
+                datos.putString("opcion2", pregunta.getString("opcion2"));
+                datos.putString("opcion3", pregunta.getString("opcion3"));
+                datos.putString("opcion4", pregunta.getString("opcion4"));
+                datos.putString("dificultad", pregunta.getString("dificultad"));
+                datos.putString("puntaje", Integer.toString(pregunta.getInt("puntaje")));
+                datos.putString("tiempo", Integer.toString(pregunta.getInt("tiempo")));
+                datos.putString("correcta", Integer.toString(pregunta.getInt("correcta")));
 
                 // Redirect View to next Fragment
-                Fragment fragment = new FragmentEditarPreguntas();
+                Fragment fragment = new FragmentEditarPregunta();
                 fragment.setArguments(datos);
                 getFragmentManager()
                         .beginTransaction()
@@ -87,7 +85,7 @@ public class FragmentListarPreguntas extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Fragment fragment = new FragmentCrearPreguntas();
+                Fragment fragment = new FragmentCrearPregunta();
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, fragment)
@@ -145,7 +143,7 @@ public class FragmentListarPreguntas extends Fragment {
 
                         mainAdapter.clear();
 
-                        mainAdapter = new listarPreguntaParseAdapter(getContext(),"puntaje=" + listViewDialogPuntaje.getItemAtPosition(position).toString());
+                        mainAdapter = new ListarPreguntaParseAdapter(getContext(),"puntaje=" + listViewDialogPuntaje.getItemAtPosition(position).toString());
 
                         listView.setAdapter(mainAdapter);
 
@@ -191,7 +189,7 @@ public class FragmentListarPreguntas extends Fragment {
 
                         mainAdapter.clear();
 
-                        mainAdapter = new listarPreguntaParseAdapter(getContext(), "nivel=" + listViewDialogNivel.getItemAtPosition(position).toString());
+                        mainAdapter = new ListarPreguntaParseAdapter(getContext(), "nivel=" + listViewDialogNivel.getItemAtPosition(position).toString());
 
                         listView.setAdapter(mainAdapter);
 
@@ -217,7 +215,7 @@ public class FragmentListarPreguntas extends Fragment {
 
                 mainAdapter.clear();
 
-                mainAdapter = new listarPreguntaParseAdapter(getContext());
+                mainAdapter = new ListarPreguntaParseAdapter(getContext());
 
                 listView.setAdapter(mainAdapter);
 

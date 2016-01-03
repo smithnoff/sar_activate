@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- Roles -->
+    <string-array name="Roles">
+        <item>Activista</item>
+        <item>Registrador</item>
+    </string-array>
+
+    <string-array name="Ubicaciones">
+        <item>Nacional</item>
+        <item>Estadal</item>
+    </string-array>
+
+    <string-array name="Estatuses">
+        <item>En Ejecución</item>
+        <item>Terminado</item>
+    </string-array>
+
+    <string-array name="Puntuaciones">
+        <item>100</item>
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
+        <item>600</item>
+        <item>700</item>
+        <item>800</item>
+        <item>900</item>
+    </string-array>
+
+    <!-- Opciones de Pregunta -->
+    <string-array name="Opciones">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <!-- DIFICULTAD -->
+    <string-array name="Dificultad">
+        <item>facil</item>
+        <item>intermedio</item>
+        <item>dificil</item>
+    </string-array>
+
+    <!-- TIEMPO -->
+    <string-array name="Tiempo">
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+        <item>120</item>
+    </string-array>
+
+</resources>
