@@ -145,6 +145,8 @@ public class FragmentContestarPregunta extends Fragment {
         final int ordenRespuesta[] = {1, 2, 3, 4};
         int temp, num;
         Random r = new Random();
+        circularButtonRespuesta1.setProgress(0);
+        circularButtonRespuesta2.setProgress(0);
         for (int h = 0; h < 4; h++) {
             num = r.nextInt(4 - 1) + 1;
             temp = ordenRespuesta[h];
@@ -162,6 +164,10 @@ public class FragmentContestarPregunta extends Fragment {
                         respuesta2.setText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[1]));
                         respuesta3.setText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[2]));
                         respuesta4.setText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[3]));
+                        circularButtonRespuesta1.setText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[0]));
+                        circularButtonRespuesta2.setText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[1]));
+                        circularButtonRespuesta3.setText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[2]));
+                        circularButtonRespuesta4.setText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[3]));
                         correcta = PreguntaList.get(i).getInt("correcta");
                         respuestaCorrecta = PreguntaList.get(i).getString("opcion" + correcta);
 
