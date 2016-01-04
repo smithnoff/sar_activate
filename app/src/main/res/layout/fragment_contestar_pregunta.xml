@@ -92,7 +92,7 @@
                 app:cpb_cornerRadius="48dp"
                 app:cpb_iconComplete="@drawable/ic_action_accept"
                 app:cpb_iconError="@drawable/ic_action_cancel"
-                app:cpb_textIdle="@string/Upload"
+
                 app:cpb_selectorIdle="@drawable/idle_state_selector"
                 />
 

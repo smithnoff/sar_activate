@@ -145,8 +145,7 @@ public class FragmentContestarPregunta extends Fragment {
         final int ordenRespuesta[] = {1, 2, 3, 4};
         int temp, num;
         Random r = new Random();
-        circularButtonRespuesta1.setProgress(0);
-        circularButtonRespuesta2.setProgress(0);
+
         for (int h = 0; h < 4; h++) {
             num = r.nextInt(4 - 1) + 1;
             temp = ordenRespuesta[h];
@@ -159,6 +158,7 @@ public class FragmentContestarPregunta extends Fragment {
                 if (e == null) {
                     //TODO: change the if condition to 6 questions
                     if (i < PreguntaList.size()) {
+
                         pregunta.setText(PreguntaList.get(i).getString("pregunta"));
                         respuesta1.setText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[0]));
                         respuesta2.setText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[1]));
@@ -168,6 +168,15 @@ public class FragmentContestarPregunta extends Fragment {
                         circularButtonRespuesta2.setText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[1]));
                         circularButtonRespuesta3.setText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[2]));
                         circularButtonRespuesta4.setText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[3]));
+                        circularButtonRespuesta1.setProgress(0);
+                        circularButtonRespuesta2.setProgress(0);
+                        circularButtonRespuesta3.setProgress(0);
+                        circularButtonRespuesta4.setProgress(0);
+                        circularButtonRespuesta1.setIdleText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[0]));
+                        circularButtonRespuesta2.setIdleText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[1]));
+                        circularButtonRespuesta3.setIdleText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[2]));
+                        circularButtonRespuesta4.setIdleText(PreguntaList.get(i).getString("opcion" + ordenRespuesta[3]));
+
                         correcta = PreguntaList.get(i).getInt("correcta");
                         respuestaCorrecta = PreguntaList.get(i).getString("opcion" + correcta);
 
