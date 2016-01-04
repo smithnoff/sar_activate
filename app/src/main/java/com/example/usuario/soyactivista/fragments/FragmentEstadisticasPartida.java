@@ -1,6 +1,5 @@
 package com.example.usuario.soyactivista.fragments;
 
-import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -171,13 +170,17 @@ public class FragmentEstadisticasPartida extends Fragment {
 
     // Set star rating depending on correct answers
     private void asignarEstrellas() {
-        if(getArguments().getInt("respuestasCorrectas") <= 2)
-            ratingBar.setRating(1);
-        else{
-            if(getArguments().getInt("respuestasCorrectas") <= 5)
-                ratingBar.setRating(2);
-            else
-                ratingBar.setRating(3);
+        if(getArguments().getInt("respuestasCorrectas") < 1)
+            ratingBar.setRating(0);
+        else {
+            if (getArguments().getInt("respuestasCorrectas") <= 2)
+                ratingBar.setRating(1);
+            else {
+                if (getArguments().getInt("respuestasCorrectas") <= 5)
+                    ratingBar.setRating(2);
+                else
+                    ratingBar.setRating(3);
+            }
         }
     }
 }

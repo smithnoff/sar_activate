@@ -44,7 +44,7 @@
                 android:textColor="@color/white"
                 android:id="@+id/textViewTiempo"
                 android:layout_gravity="center_horizontal" />
-
+<!--
             <Button
                 android:layout_marginTop="45dp"
                 android:layout_width="match_parent"
@@ -80,7 +80,7 @@
                 android:background="@color/white"
                 android:id="@+id/buttonRespuesta4"
                 android:layout_gravity="center_horizontal"
-                />
+                />  -->
 
             <com.dd.CircularProgressButton
                 android:id="@+id/circularButton1"
