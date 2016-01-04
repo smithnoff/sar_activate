@@ -1,19 +1,23 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.animation.ValueAnimator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.dd.CircularProgressButton;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -33,11 +37,15 @@ public class FragmentContestarPregunta extends Fragment {
     private Boolean tiempoExtra,saltarPregunta;
     private String dificultad;
 
+    CircularProgressButton circularButtonRespuesta1,animar;
+    CircularProgressButton circularButtonRespuesta2;
+    CircularProgressButton circularButtonRespuesta3;
+    CircularProgressButton circularButtonRespuesta4;
 
     // Text Holders
     public TextView valuePregunta, valueTiempo;
     // Buttons
-    public Button buttonRespuesta1, buttonRespuesta2, buttonRespuesta3, buttonRespuesta4, buttonTiempoExtra, buttonSaltarPregunta;
+    public Button buttonTiempoExtra, buttonSaltarPregunta;
 
     public ImageButton buttonAbandonarPartida;
 
@@ -50,10 +58,11 @@ public class FragmentContestarPregunta extends Fragment {
 
         valueTiempo = (TextView)view.findViewById(R.id.textViewTiempo);
 
-        buttonRespuesta1 = (Button)view.findViewById(R.id.buttonRespuesta1);
-        buttonRespuesta2 = (Button)view.findViewById(R.id.buttonRespuesta2);
-        buttonRespuesta3 = (Button)view.findViewById(R.id.buttonRespuesta3);
-        buttonRespuesta4 = (Button)view.findViewById(R.id.buttonRespuesta4);
+        circularButtonRespuesta1 = (CircularProgressButton) view.findViewById(R.id.circularButton1);
+        circularButtonRespuesta2 = (CircularProgressButton) view.findViewById(R.id.circularButton2);
+        circularButtonRespuesta3 = (CircularProgressButton) view.findViewById(R.id.circularButton3);
+        circularButtonRespuesta4 = (CircularProgressButton) view.findViewById(R.id.circularButton4);
+
 
         buttonTiempoExtra = (Button) view.findViewById(R.id.buttonExtraTiempo);
         buttonSaltarPregunta = (Button) view.findViewById(R.id.buttonSaltarPregunta);
@@ -112,19 +121,25 @@ public class FragmentContestarPregunta extends Fragment {
         }
 
 
-        buttonRespuesta1.setOnClickListener(new View.OnClickListener() {
+        circularButtonRespuesta1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Integer.valueOf(correctas.get(preguntaActual)) == 1)
+                animar=(CircularProgressButton)v;
+                if(Integer.valueOf(correctas.get(preguntaActual)) == 1) {
                     respuestaCorrecta();
-                else
+                }else {
                     respuestaIncorrecta();
+                }
+
+
+
             }
         });
 
-        buttonRespuesta2.setOnClickListener(new View.OnClickListener() {
+        circularButtonRespuesta2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                animar=(CircularProgressButton)v;
                 if(Integer.valueOf(correctas.get(preguntaActual)) == 2)
                     respuestaCorrecta();
                 else
@@ -132,9 +147,10 @@ public class FragmentContestarPregunta extends Fragment {
             }
         });
 
-        buttonRespuesta3.setOnClickListener(new View.OnClickListener() {
+        circularButtonRespuesta3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                animar=(CircularProgressButton)v;
                 if (Integer.valueOf(correctas.get(preguntaActual)) == 3)
                     respuestaCorrecta();
                 else
@@ -142,15 +158,60 @@ public class FragmentContestarPregunta extends Fragment {
             }
         });
 
-        buttonRespuesta4.setOnClickListener(new View.OnClickListener() {
+        circularButtonRespuesta4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                animar=(CircularProgressButton)v;
                 if(Integer.valueOf(correctas.get(preguntaActual)) == 4)
                     respuestaCorrecta();
                 else
                     respuestaIncorrecta();
             }
         });
+
+      /*  circularButtonRespuesta1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (circularButtonRespuesta1.getProgress() == 0)
+                    simulateSuccessProgress(circularButtonRespuesta1);
+                else
+                    simulateErrorProgress(circularButtonRespuesta1);
+            }
+
+        });
+
+        circularButtonRespuesta2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (circularButtonRespuesta2.getProgress() == 0)
+                    simulateSuccessProgress(circularButtonRespuesta2);
+                else
+                    simulateErrorProgress(circularButtonRespuesta2);
+            }
+        });
+
+        circularButtonRespuesta3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (circularButtonRespuesta3.getProgress() == 0)
+                    simulateSuccessProgress(circularButtonRespuesta3);
+                else
+                    simulateErrorProgress(circularButtonRespuesta3);
+            }
+        });
+
+        circularButtonRespuesta4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (circularButtonRespuesta4.getProgress() == 0)
+                    simulateSuccessProgress(circularButtonRespuesta4);
+                else
+                    simulateErrorProgress(circularButtonRespuesta4);
+            }
+        });*/
+
 
         buttonAbandonarPartida.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,14 +257,26 @@ public class FragmentContestarPregunta extends Fragment {
         valueTiempo.setTextColor(getResources().getColor(R.color.red_error));
         valueTiempo.setText("- " + puntajes.get(preguntaActual) + " puntos");
 
+
         // remove points
         puntuacionPartida = puntuacionPartida - Integer.valueOf(puntajes.get(preguntaActual));
 
+        if(animar!=null)
+        simulateErrorProgress(animar);
         // Call next question/end
-        if(preguntaActual + 1 < totalPreguntas)
-            siguientePregunta();
-        else
-            finalizarPartida();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                // acciones que se ejecutan tras los milisegundos
+                if(preguntaActual +1  < totalPreguntas)
+                    siguientePregunta();
+                else
+                    finalizarPartida();
+            }
+        }, 2500);
+
+
     }
 
     // Show correct Message and add points
@@ -214,16 +287,29 @@ public class FragmentContestarPregunta extends Fragment {
         valueTiempo.setText("+ " + puntajes.get(preguntaActual) + " puntos");
         valueTiempo.setText("Correcto");
 
+
+
         // add points
         puntuacionPartida = puntuacionPartida + Integer.valueOf(puntajes.get(preguntaActual));
 
         respuestasCorrectas++;
+        if(animar!=null)
+        simulateSuccessProgress(animar);
+
 
         // Call next question/end
-        if(preguntaActual + 1 < totalPreguntas)
-            siguientePregunta();
-        else
-            finalizarPartida();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                // acciones que se ejecutan tras los milisegundos
+                if(preguntaActual +1  < totalPreguntas)
+                    siguientePregunta();
+                else
+                    finalizarPartida();
+            }
+        }, 2500);
+
+
 
     }
 
@@ -270,9 +356,11 @@ public class FragmentContestarPregunta extends Fragment {
         contadorPregunta.cancel();
 
         Bundle data = new Bundle();
+
+
         data.putInt("puntuacionPartida", puntuacionPartida);
         data.putInt("respuestasCorrectas", respuestasCorrectas);
-        data.putInt("totalPreguntas",totalPreguntas);
+        data.putInt("totalPreguntas", totalPreguntas);
         data.putString("dificultad", dificultad);
 
         // Store data in bundle to send to next fragment
@@ -337,13 +425,60 @@ public class FragmentContestarPregunta extends Fragment {
     public void cargarPregunta(){
         // Assign text to holders
         valuePregunta.setText(preguntas.get(preguntaActual));
-        buttonRespuesta1.setText(respuesta1.get(preguntaActual));
-        buttonRespuesta2.setText(respuesta2.get(preguntaActual));
-        buttonRespuesta3.setText(respuesta3.get(preguntaActual));
-        buttonRespuesta4.setText(respuesta4.get(preguntaActual));
+        circularButtonRespuesta1.setText(respuesta1.get(preguntaActual));
+        circularButtonRespuesta2.setText(respuesta2.get(preguntaActual));
+        circularButtonRespuesta3.setText(respuesta3.get(preguntaActual));
+        circularButtonRespuesta4.setText(respuesta4.get(preguntaActual));
+        circularButtonRespuesta1.setProgress(0);
+        circularButtonRespuesta2.setProgress(0);
+        circularButtonRespuesta3.setProgress(0);
+        circularButtonRespuesta4.setProgress(0);
 
         // Set & Start Clock
         contador(Integer.valueOf(tiempos.get(preguntaActual)) * 1000);
     }
 
+    private void simulateSuccessProgress(final CircularProgressButton button) {
+        ValueAnimator widthAnimation = ValueAnimator.ofInt(1, 100);
+        widthAnimation.setDuration(1500);
+        widthAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+        widthAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                Integer value = (Integer) animation.getAnimatedValue();
+                button.setProgress(value);
+
+            }
+        });
+        widthAnimation.start();
+
+    }
+
+    private void simulateErrorProgress(final CircularProgressButton button) {
+        ValueAnimator widthAnimation = ValueAnimator.ofInt(1, 99);
+        widthAnimation.setDuration(1500);
+        widthAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+        widthAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                Integer value = (Integer) animation.getAnimatedValue();
+                button.setProgress(value);
+                if (value == 99) {
+                    button.setProgress(-1);
+
+                }
+            }
+        });
+        widthAnimation.start();
+
+
+    }
+
+
+
+
 }
+
+
+
+

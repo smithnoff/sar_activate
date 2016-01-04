@@ -45,7 +45,7 @@
                 android:id="@+id/valueNombrePartido"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/nombrePartido"
+                android:text="@string/hintNombrePartido"
                 android:textColor="@color/white"
                 android:layout_gravity="center_vertical"
                 android:textSize="18dp" />
