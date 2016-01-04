@@ -96,7 +96,7 @@ public class FragmentEstadisticasUsuario extends Fragment {
                 }
             });
 
-            valuePuntos.setText(String.valueOf(puntos));
+            valuePuntos.setText(String.valueOf(puntos)+" puntos.");
 
             dialog = ProgressDialog.show(getContext(), "Consultando Estadísticas", "Cargando", true);
 
@@ -108,7 +108,7 @@ public class FragmentEstadisticasUsuario extends Fragment {
                 public void done(ParseObject estadisticas, ParseException e) {
                     if (e == null) {
 
-                        valuePartidas.setText(String.valueOf(estadisticas.getInt("partidas")));
+                        valuePartidas.setText(String.valueOf(estadisticas.getInt("partidas"))+" partidas.");
 
                         // Get best answer type.
                         if( estadisticas.getInt("faciles") == 0 &&

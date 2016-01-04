@@ -124,14 +124,11 @@ public class FragmentContestarPregunta extends Fragment {
         circularButtonRespuesta1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animar=(CircularProgressButton)v;
-                if(Integer.valueOf(correctas.get(preguntaActual)) == 1) {
+                animar = (CircularProgressButton)v;
+                if(Integer.valueOf(correctas.get(preguntaActual)) == 1)
                     respuestaCorrecta();
-                }else {
+                else
                     respuestaIncorrecta();
-                }
-
-
 
             }
         });
@@ -139,7 +136,7 @@ public class FragmentContestarPregunta extends Fragment {
         circularButtonRespuesta2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animar=(CircularProgressButton)v;
+                animar = (CircularProgressButton)v;
                 if(Integer.valueOf(correctas.get(preguntaActual)) == 2)
                     respuestaCorrecta();
                 else
@@ -168,50 +165,6 @@ public class FragmentContestarPregunta extends Fragment {
                     respuestaIncorrecta();
             }
         });
-
-      /*  circularButtonRespuesta1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (circularButtonRespuesta1.getProgress() == 0)
-                    simulateSuccessProgress(circularButtonRespuesta1);
-                else
-                    simulateErrorProgress(circularButtonRespuesta1);
-            }
-
-        });
-
-        circularButtonRespuesta2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (circularButtonRespuesta2.getProgress() == 0)
-                    simulateSuccessProgress(circularButtonRespuesta2);
-                else
-                    simulateErrorProgress(circularButtonRespuesta2);
-            }
-        });
-
-        circularButtonRespuesta3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (circularButtonRespuesta3.getProgress() == 0)
-                    simulateSuccessProgress(circularButtonRespuesta3);
-                else
-                    simulateErrorProgress(circularButtonRespuesta3);
-            }
-        });
-
-        circularButtonRespuesta4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (circularButtonRespuesta4.getProgress() == 0)
-                    simulateSuccessProgress(circularButtonRespuesta4);
-                else
-                    simulateErrorProgress(circularButtonRespuesta4);
-            }
-        });*/
-
 
         buttonAbandonarPartida.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -253,7 +206,6 @@ public class FragmentContestarPregunta extends Fragment {
     // Show incorrect Message and remove points
     private void respuestaIncorrecta() {
         // Show incorrect messages
-        Toast.makeText(getActivity(), "INCORRECTO", Toast.LENGTH_SHORT).show();
         valueTiempo.setTextColor(getResources().getColor(R.color.red_error));
         valueTiempo.setText("- " + puntajes.get(preguntaActual) + " puntos");
 
@@ -281,13 +233,10 @@ public class FragmentContestarPregunta extends Fragment {
 
     // Show correct Message and add points
     private void respuestaCorrecta() {
-        // Show incorrect messages
-        Toast.makeText(getActivity(), "CORRECTO", Toast.LENGTH_SHORT).show();
+        // Show correct messages
         valueTiempo.setTextColor(getResources().getColor(R.color.green_complete));
         valueTiempo.setText("+ " + puntajes.get(preguntaActual) + " puntos");
         valueTiempo.setText("Correcto");
-
-
 
         // add points
         puntuacionPartida = puntuacionPartida + Integer.valueOf(puntajes.get(preguntaActual));
@@ -295,7 +244,6 @@ public class FragmentContestarPregunta extends Fragment {
         respuestasCorrectas++;
         if(animar!=null)
         simulateSuccessProgress(animar);
-
 
         // Call next question/end
         Handler handler = new Handler();
@@ -308,9 +256,6 @@ public class FragmentContestarPregunta extends Fragment {
                     finalizarPartida();
             }
         }, 2500);
-
-
-
     }
 
 
@@ -356,7 +301,6 @@ public class FragmentContestarPregunta extends Fragment {
         contadorPregunta.cancel();
 
         Bundle data = new Bundle();
-
 
         data.putInt("puntuacionPartida", puntuacionPartida);
         data.putInt("respuestasCorrectas", respuestasCorrectas);
@@ -470,13 +414,7 @@ public class FragmentContestarPregunta extends Fragment {
             }
         });
         widthAnimation.start();
-
-
     }
-
-
-
-
 }
 
 
