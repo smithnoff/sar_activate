@@ -18,6 +18,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -29,11 +30,11 @@ public class FragmentContestarPregunta extends Fragment {
 
 
     private static final String FORMAT = "%02d:%02d:%02d";
-   private String dificultadElegida;
+   private String dificultadElegida,respuestaCorrecta;
 public static int i=0;
     public  ParseQuery<ParseObject> query ;
   public CountDownTimer contadorPreg;
-    public int seconds,aciertos=0,puntosPregunta=0,puntosAcumulados=0;
+    public int seconds,aciertos=0,puntosPregunta=0,puntosAcumulados=0,correcta;
 
       public TextView pregunta,tiempo;
     public Button respuesta1,respuesta2,respuesta3,respuesta4;
@@ -63,7 +64,7 @@ public static int i=0;
 
 
 
-//contiuar ogica para las preguntas
+
 
         return v;
     }
@@ -91,6 +92,16 @@ public static int i=0;
 
     public void setPregunta()
     {
+        final int ordenRespuesta[]={1,2,3,4};
+        int temp,num;
+        Random r=new Random();
+        for (int h = 0; h <4 ; h++) {
+            num=r.nextInt(4-1)+1;
+            temp=ordenRespuesta[h];
+            ordenRespuesta[h]=ordenRespuesta[num];
+            ordenRespuesta[num]=temp;
+        }
+
 
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> PreguntaList, ParseException e) {
@@ -98,10 +109,13 @@ public static int i=0;
                     //TODO: change the if condition to 6 questions
                  if(i<PreguntaList.size()) {
                      pregunta.setText(PreguntaList.get(i).getString("pregunta"));
-                     respuesta1.setText(PreguntaList.get(i).getString("opcion1"));
-                     respuesta2.setText(PreguntaList.get(i).getString("opcion2"));
-                     respuesta3.setText(PreguntaList.get(i).getString("opcion3"));
-                     respuesta4.setText(PreguntaList.get(i).getString("opcion4"));
+                     respuesta1.setText(PreguntaList.get(i).getString("opcion"+ordenRespuesta[0]));
+                     respuesta2.setText(PreguntaList.get(i).getString("opcion"+ordenRespuesta[1]));
+                     respuesta3.setText(PreguntaList.get(i).getString("opcion"+ordenRespuesta[2]));
+                     respuesta4.setText(PreguntaList.get(i).getString("opcion"+ordenRespuesta[3]));
+                     correcta=PreguntaList.get(i).getInt("correcta");
+                     respuestaCorrecta=PreguntaList.get(i).getString("opcion"+correcta);
+
                      puntosPregunta=PreguntaList.get(i).getInt("puntaje");
                      int timer = PreguntaList.get(i).getInt("tiempo");
                      String tiempochar = String.valueOf(timer);
@@ -141,7 +155,8 @@ public static int i=0;
      @Override
      public void onClick(View v) {
          Button seleccion=(Button)v;
-         if(seleccion.getText().toString().equals(respuesta1.getText().toString()))
+
+         if(seleccion.getText().toString().equals(respuestaCorrecta))
          {
              Toast.makeText(getActivity(), "CORRECTO", Toast.LENGTH_SHORT).show();
              puntosAcumulados+=puntosPregunta;
