@@ -278,5 +278,5 @@ public class ActivityPantallaMenu extends AppCompatActivity {
 
         mHandler.postDelayed(mRunnable, 2000);
     }
-    */
+ */
 }

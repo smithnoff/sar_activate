@@ -19,7 +19,7 @@ import com.parse.ParseObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import logica.ListarPreguntaParseAdapter;
+import logica.listarPreguntaParseAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -27,7 +27,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
  */
 public class FragmentListarPregunta extends Fragment {
     private ListView listView;
-    private ListarPreguntaParseAdapter mainAdapter;
+    private listarPreguntaParseAdapter mainAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class FragmentListarPregunta extends Fragment {
         View view = inflater.inflate(R.layout.fragment_listar_pregunta, container, false);
 
         // Initialize main ParseQueryAdapter
-        mainAdapter = new ListarPreguntaParseAdapter(this.getContext());
+        mainAdapter = new listarPreguntaParseAdapter(this.getContext());
 
         // Initialize list view
         listView = (ListView)view.findViewById(R.id.listaPreguntas);
@@ -143,7 +143,7 @@ public class FragmentListarPregunta extends Fragment {
 
                         mainAdapter.clear();
 
-                        mainAdapter = new ListarPreguntaParseAdapter(getContext(),"puntaje=" + listViewDialogPuntaje.getItemAtPosition(position).toString());
+                        mainAdapter = new listarPreguntaParseAdapter(getContext(),"puntaje=" + listViewDialogPuntaje.getItemAtPosition(position).toString());
 
                         listView.setAdapter(mainAdapter);
 
@@ -189,7 +189,7 @@ public class FragmentListarPregunta extends Fragment {
 
                         mainAdapter.clear();
 
-                        mainAdapter = new ListarPreguntaParseAdapter(getContext(), "nivel=" + listViewDialogNivel.getItemAtPosition(position).toString());
+                        mainAdapter = new listarPreguntaParseAdapter(getContext(), "nivel=" + listViewDialogNivel.getItemAtPosition(position).toString());
 
                         listView.setAdapter(mainAdapter);
 
@@ -215,7 +215,7 @@ public class FragmentListarPregunta extends Fragment {
 
                 mainAdapter.clear();
 
-                mainAdapter = new ListarPreguntaParseAdapter(getContext());
+                mainAdapter = new listarPreguntaParseAdapter(getContext());
 
                 listView.setAdapter(mainAdapter);
 
