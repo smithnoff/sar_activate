@@ -260,6 +260,8 @@ public class FragmentContestarPregunta extends Fragment {
 
         // remove points
         puntuacionPartida = puntuacionPartida - Integer.valueOf(puntajes.get(preguntaActual));
+
+        if(animar!=null)
         simulateErrorProgress(animar);
         // Call next question/end
 
@@ -291,6 +293,7 @@ public class FragmentContestarPregunta extends Fragment {
         puntuacionPartida = puntuacionPartida + Integer.valueOf(puntajes.get(preguntaActual));
 
         respuestasCorrectas++;
+        if(animar!=null)
         simulateSuccessProgress(animar);
 
 
@@ -353,6 +356,8 @@ public class FragmentContestarPregunta extends Fragment {
         contadorPregunta.cancel();
 
         Bundle data = new Bundle();
+
+
         data.putInt("puntuacionPartida", puntuacionPartida);
         data.putInt("respuestasCorrectas", respuestasCorrectas);
         data.putInt("totalPreguntas", totalPreguntas);
