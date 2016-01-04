@@ -118,6 +118,8 @@
         fab:menu_labels_singleLine="true"
         fab:menu_backgroundColor="#ccffffff"
         fab:menu_fab_label=""
+        fab:menu_colorNormal="?colorPrimary"
+        fab:menu_colorPressed="?colorPrimaryDark"
         android:layout_gravity="center_horizontal|bottom">
 
         <com.github.clans.fab.FloatingActionButton
@@ -126,7 +128,9 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_edit"
             fab:fab_size="mini"
-            fab:fab_label="Crear" />
+            fab:fab_label="Crear"
+            fab:fab_colorNormal="?colorPrimary"
+            fab:fab_colorPressed="?colorPrimaryDark"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fabcancelar"
@@ -134,7 +138,9 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_edit"
             fab:fab_size="mini"
-            fab:fab_label="Cancelar" />
+            fab:fab_label="Cancelar"
+            fab:fab_colorNormal="?colorPrimary"
+            fab:fab_colorPressed="?colorPrimaryDark"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fabeditar"
@@ -142,7 +148,9 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_edit"
             fab:fab_size="mini"
-            fab:fab_label="Editar" />
+            fab:fab_label="Editar"
+            fab:fab_colorNormal="?colorPrimary"
+            fab:fab_colorPressed="?colorPrimaryDark"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fabeliminar"
@@ -150,8 +158,10 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_edit"
             fab:fab_size="mini"
-            fab:fab_label="Eliminar" />
+            fab:fab_label="Eliminar"
+            fab:fab_colorNormal="?colorPrimary"
+            fab:fab_colorPressed="?colorPrimaryDark"/>
 
     </com.github.clans.fab.FloatingActionMenu>
-    -->
+-->
 </FrameLayout>

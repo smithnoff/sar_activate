@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?colorPrimary"
-    >
+    android:background="?colorPrimary">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/preguntaEjemplo"
+                android:text="@string/pregunta"
                 android:background="@color/white"
                 android:id="@+id/textViewPregunta"
                 android:layout_gravity="center_horizontal" />
@@ -79,7 +79,63 @@
                 android:text="Respuesta 4"
                 android:background="@color/white"
                 android:id="@+id/buttonRespuesta4"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                />
+
+            <com.dd.CircularProgressButton
+                android:id="@+id/circularButton1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:cpb_cornerRadius="48dp"
+                app:cpb_iconComplete="@drawable/ic_action_accept"
+                app:cpb_iconError="@drawable/ic_action_cancel"
+                app:cpb_textIdle="@string/Upload"
+                app:cpb_selectorIdle="@drawable/idle_state_selector"
+                />
+
+            <com.dd.CircularProgressButton
+                android:id="@+id/circularButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:cpb_textIdle="@string/Upload"
+                app:cpb_iconComplete="@drawable/ic_action_accept"
+                app:cpb_iconError="@drawable/ic_action_cancel"
+                app:cpb_cornerRadius="48dp"
+                app:cpb_selectorIdle="@drawable/idle_state_selector"/>
+
+            <com.dd.CircularProgressButton
+                android:id="@+id/circularButton3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:cpb_cornerRadius="48dp"
+                app:cpb_iconComplete="@drawable/ic_action_accept"
+                app:cpb_iconError="@drawable/ic_action_cancel"
+                app:cpb_textIdle="@string/Upload"
+                app:cpb_selectorIdle="@drawable/idle_state_selector"
+                />
+
+            <com.dd.CircularProgressButton
+                android:id="@+id/circularButton4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:cpb_cornerRadius="48dp"
+                app:cpb_iconComplete="@drawable/ic_action_accept"
+                app:cpb_iconError="@drawable/ic_action_cancel"
+                app:cpb_textIdle="@string/Upload"
+                app:cpb_selectorIdle="@drawable/idle_state_selector"
+                />
 
             <LinearLayout
                 android:orientation="horizontal"
