@@ -88,84 +88,81 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                app:cpb_cornerRadius="48dp"
+                android:textSize="14sp"
                 app:cpb_iconComplete="@drawable/ic_action_accept"
                 app:cpb_iconError="@drawable/ic_action_cancel"
-
                 app:cpb_selectorIdle="@drawable/idle_state_selector"
                 />
+            <!--app:cpb_cornerRadius="48dp" -->
 
-            <com.dd.CircularProgressButton
-                android:id="@+id/circularButton2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:cpb_textIdle="@string/Upload"
-                app:cpb_iconComplete="@drawable/ic_action_accept"
-                app:cpb_iconError="@drawable/ic_action_cancel"
-                app:cpb_cornerRadius="48dp"
-                app:cpb_selectorIdle="@drawable/idle_state_selector"/>
 
-            <com.dd.CircularProgressButton
-                android:id="@+id/circularButton3"
-                android:layout_width="match_parent"
+        <com.dd.CircularProgressButton
+            android:id="@+id/circularButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:cpb_textIdle="@string/Upload"
+            app:cpb_iconComplete="@drawable/ic_action_accept"
+            app:cpb_iconError="@drawable/ic_action_cancel"
+            app:cpb_selectorIdle="@drawable/idle_state_selector"/>
+
+        <com.dd.CircularProgressButton
+            android:id="@+id/circularButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:cpb_iconComplete="@drawable/ic_action_accept"
+            app:cpb_iconError="@drawable/ic_action_cancel"
+            app:cpb_textIdle="@string/Upload"
+            app:cpb_selectorIdle="@drawable/idle_state_selector"
+            />
+
+        <com.dd.CircularProgressButton
+            android:id="@+id/circularButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:cpb_iconComplete="@drawable/ic_action_accept"
+            app:cpb_iconError="@drawable/ic_action_cancel"
+            app:cpb_textIdle="@string/Upload"
+            app:cpb_selectorIdle="@drawable/idle_state_selector"
+            />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:weightSum="2"
+            android:layout_height="wrap_content"
+            android:paddingTop="45dp"
+            >
+
+            <Button
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:cpb_cornerRadius="48dp"
-                app:cpb_iconComplete="@drawable/ic_action_accept"
-                app:cpb_iconError="@drawable/ic_action_cancel"
-                app:cpb_textIdle="@string/Upload"
-                app:cpb_selectorIdle="@drawable/idle_state_selector"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:text="@string/tiempoExtra"
+                android:id="@+id/buttonExtraTiempo"
+                android:enabled="false"
                 />
 
-            <com.dd.CircularProgressButton
-                android:id="@+id/circularButton4"
-                android:layout_width="match_parent"
+            <Button
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:cpb_cornerRadius="48dp"
-                app:cpb_iconComplete="@drawable/ic_action_accept"
-                app:cpb_iconError="@drawable/ic_action_cancel"
-                app:cpb_textIdle="@string/Upload"
-                app:cpb_selectorIdle="@drawable/idle_state_selector"
+                android:background="@color/white"
+                android:layout_weight="1"
+                android:text="@string/saltarPregunta"
+                android:id="@+id/buttonSaltarPregunta"
+                android:enabled="false"
                 />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:weightSum="2"
-                android:layout_height="wrap_content"
-                android:paddingTop="45dp"
-                >
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:text="@string/tiempoExtra"
-                    android:id="@+id/buttonExtraTiempo"
-                    android:enabled="false"
-                    />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:layout_weight="1"
-                    android:text="@string/saltarPregunta"
-                    android:id="@+id/buttonSaltarPregunta"
-                    android:enabled="false"
-                    />
-
-            </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>
