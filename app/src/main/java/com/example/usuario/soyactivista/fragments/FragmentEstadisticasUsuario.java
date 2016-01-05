@@ -98,6 +98,7 @@ public class FragmentEstadisticasUsuario extends Fragment {
 
             valuePuntos.setText(String.valueOf(puntos)+" puntos.");
 
+
             dialog = ProgressDialog.show(getContext(), "Consultando Estadísticas", "Cargando", true);
 
             // Query stadistics
