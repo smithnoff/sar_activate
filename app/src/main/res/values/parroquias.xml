@@ -2,5 +2,2272 @@
 <resources>
 
 
+    <string-array name="amazonas_alto_orinoco">
+        <item>Alto Orinoco</item>
+        <item>Huachamacare Acanaña</item>
+        <item>Marawaka Toky Shamanaña</item>
+        <item>Mavaka Mavaka</item>
+        <item>Sierra Parima Parimabé</item>
+    </string-array>
 
+    <string-array name="amazonas_atabapo">
+        <item>Ucata Laja Lisa</item>
+        <item>Yapacana Macuruco</item>
+        <item>Caname Guarinuma</item>
+    </string-array>
+
+    <string-array name="amazonas_atures">
+        <item>Fernando Girón Tovar</item>
+        <item>Luis Alberto Gómez</item>
+        <item>Pahueña Limón de Parhueña</item>
+        <item>Platanillal Platanillal</item>
+    </string-array>
+
+    <string-array name="amazonas_autana">
+        <item>Samariapo</item>
+        <item>Sipapo</item>
+        <item>Munduapo</item>
+        <item>Guayapo</item>
+    </string-array>
+
+    <string-array name="amazonas_manapiare">
+        <item>Alto Ventuari</item>
+        <item>Medio Ventuari</item>
+        <item>Bajo Ventuari</item>
+    </string-array>
+
+    <string-array name="amazonas_maroa">
+        <item>Victorino</item>
+        <item>Comunidad</item>
+    </string-array>
+
+    <string-array name="amazonas_rio_negro">
+        <item>Casiquiare</item>
+        <item>Cocuy</item>
+        <item>San Carlos de Río Negro</item>
+        <item>Solano</item>
+    </string-array>
+
+    <string-array name="anzoategui_anaco">
+        <item>Anaco</item>
+        <item>San Joaquín</item>
+    </string-array>
+
+    <string-array name="anzoategui_aragua">
+        <item>Cachipo</item>
+        <item>Aragua de Barcelona</item>
+    </string-array>
+
+    <string-array name="anzoategui_manuel_ezequiel_bruzual">
+        <item>Clarines</item>
+        <item>Guanape</item>
+        <item>Sabana de Uchire</item>
+    </string-array>
+
+    <string-array name="anzoategui_diego_bautista_urbaneja">
+        <item>Lechería</item>
+        <item>El Morro</item>
+    </string-array>
+
+    <string-array name="anzoategui_fernando_penalver">
+        <item>Puerto Píritu</item>
+        <item>San Miguel</item>
+        <item>Sucre</item>
+    </string-array>
+
+    <string-array name="anzoategui_francisco_del_carmen_carvajal">
+        <item>Valle de Guanape</item>
+        <item>Santa Bárbara</item>
+    </string-array>
+
+    <string-array name="anzoategui_general_sir_arthur_mcGregor">
+        <item>El Chaparro</item>
+        <item>Tomás Alfaro</item>
+        <item>Calatrava</item>
+    </string-array>
+
+    <string-array name="anzoategui_guanta">
+        <item>Guanta</item>
+        <item>Chorrerón</item>
+    </string-array>
+
+    <string-array name="anzoategui_independencia">
+        <item>Mamo</item>
+        <item>Soledad</item>
+    </string-array>
+
+    <string-array name="anzoategui_jose_gregorio_monagas">
+        <item>Mapire</item>
+        <item>Piar</item>
+        <item>Santa Clara</item>
+        <item>San Diego de Cabrutica</item>
+        <item>Uverito</item>
+        <item>Zuata</item>
+    </string-array>
+
+    <string-array name="anzoategui_juan_antonio_sotillo">
+        <item>Puerto La Cruz</item>
+        <item>Pozuelos</item>
+    </string-array>
+
+    <string-array name="anzoategui_juan_manuel_cajigal">
+        <item>Onoto</item>
+        <item>San Pablo</item>
+    </string-array>
+
+    <string-array name="anzoategui_libertad">
+        <item>San Mateo</item>
+        <item>El Carito</item>
+        <item>Santa Inés</item>
+        <item>La Romereña</item>
+    </string-array>
+
+
+    <string-array name="anzoategui_francisco_de_miranda">
+        <item>Atapirire</item>
+        <item>Boca del Pao</item>
+        <item>El Pao</item>
+        <item>Pariaguán</item>
+    </string-array>
+
+    <string-array name="anzoategui_pedro_maria_freites">
+        <item>Cantaura</item>
+        <item>Libertador</item>
+        <item>Santa Rosa</item>
+        <item>Urica</item>
+    </string-array>
+
+
+    <string-array name="anzoategui_piritu">
+        <item>Píritu</item>
+        <item>San Francisco</item>
+    </string-array>
+
+    <string-array name="anzoategui_san_jose_de_guanipa">
+        <item>San José de Guanipa</item>
+    </string-array>
+
+    <string-array name="anzoategui_san_juan_de_capistrano">
+        <item>Boca de Uchire</item>
+        <item>Boca de Chávez</item>
+    </string-array>
+
+    <string-array name="anzoategui_santa_ana">
+        <item>Pueblo Nuevo</item>
+        <item>Santa Ana</item>
+    </string-array>
+
+    <string-array name="anzoategui_simon_bolivar">
+        <item>Bergatín</item>
+        <item>Caigua</item>
+        <item>El Carmen</item>
+        <item>El Pilar</item>
+        <item>Naricual</item>
+        <item>San Crsitóbal</item>
+    </string-array>
+
+
+
+    <string-array name="anzoategui_simon_rodriguez">
+        <item>Edmundo Barrios</item>
+        <item>Miguel Otero Silva</item>
+    </string-array>
+
+
+    <string-array name="apure_achaguas">
+        <item>Achaguas</item>
+        <item>Apurito</item>
+        <item>El Yagual</item>
+        <item>Guachara</item>
+        <item>Mucuritas</item>
+        <item>Queseras del medio</item>
+    </string-array>
+
+    <string-array name="apure_biruaca">
+        <item>Biruaca</item>
+    </string-array>
+
+    <string-array name="apure_munoz">
+        <item>Bruzual</item>
+        <item>Mantecal</item>
+        <item>Quintero</item>
+        <item>Rincón Hondo</item>
+        <item>San Vicente</item>
+    </string-array>
+
+
+    <string-array name="apure_paez">
+        <item>Guasdualito</item>
+        <item>Aramendi</item>
+        <item>El Amparo</item>
+        <item>San Camilo</item>
+        <item>Urdaneta</item>
+    </string-array>
+
+
+    <string-array name="apure_pedro_camejo">
+        <item>San Juan de Payara</item>
+        <item>Codazzi</item>
+        <item>Cunaviche</item>
+    </string-array>
+
+
+    <string-array name="apure_romulo_gallegos">
+        <item>Elorza</item>
+        <item>La Trinidad</item>
+    </string-array>
+
+
+    <string-array name="apure_san_fernando">
+        <item>San Fernando</item>
+        <item>El Recreo</item>
+        <item>Peñalver</item>
+        <item>San Rafael de Atamaica</item>
+    </string-array>
+
+
+    <string-array name="aragua_atanasio_girardot">
+        <item>Pedro José Ovalles</item>
+        <item>Joaquín Crespo</item>
+        <item>José Casanova Godoy</item>
+        <item>Madre María de San José</item>
+        <item>Andrés Eloy Blanco</item>
+        <item>Los Tacarigua</item>
+        <item>Las Delicias</item>
+        <item>Choroní</item>
+    </string-array>
+
+    <string-array name="aragua_bolivar">
+        <item>Bolívar</item>
+    </string-array>
+
+    <string-array name="aragua_camatagua">
+        <item>Camatagua</item>
+        <item>Carmen de Cura</item>
+    </string-array>
+
+    <string-array name="aragua_francisco_linares_alcantara">
+        <item>Santa Rita</item>
+        <item>Francisco de Miranda</item>
+        <item>Moseñor Feliciano González</item>
+    </string-array>
+
+    <string-array name="aragua_jose_angel_lamas">
+        <item>Santa Cruz</item>
+    </string-array>
+
+    <string-array name="aragua_jose_felix_ribas">
+        <item>José Félix Ribas</item>
+        <item>Castor Nieves Ríos</item>
+        <item>Las Guacamayas</item>
+        <item>Pao de Zárate</item>
+        <item>Zuata</item>
+    </string-array>
+
+    <string-array name="aragua_jose_rafael_revenga">
+        <item>José Rafael Revenga</item>
+    </string-array>
+
+    <string-array name="aragua_libertador">
+        <item>Palo Negro</item>
+        <item>San Martín de Porres</item>
+    </string-array>
+
+    <string-array name="aragua_mario_briceno_iragorry">
+        <item>El Limón</item>
+        <item>Caña de Azúcar</item>
+    </string-array>
+
+    <string-array name="aragua_ocumare_de_la_costa_de_oro">
+        <item>Ocumare de la Costa</item>
+    </string-array>
+
+    <string-array name="aragua_san_casimiro">
+        <item>San Casimiro</item>
+        <item>Güiripa</item>
+        <item>Ollas de Caramacate</item>
+        <item>Valle Morín</item>
+    </string-array>
+
+    <string-array name="aragua_san_sebastian">
+        <item>San Sebastián</item>
+    </string-array>
+
+    <string-array name="aragua_santiago_marino">
+        <item>Turmero</item>
+        <item>Arevalo Aponte</item>
+        <item>Chuao</item>
+        <item>Samán de Güere</item>
+        <item>Alfredo Pacheco Miranda</item>
+    </string-array>
+
+    <string-array name="aragua_santos_michelena">
+        <item>Santos Michelena</item>
+        <item>Tiara</item>
+    </string-array>
+
+    <string-array name="aragua_sucre">
+        <item>Cagua</item>
+        <item>Bella Vista</item>
+    </string-array>
+
+    <string-array name="aragua_tovar">
+        <item>Tovar</item>
+    </string-array>
+
+    <string-array name="aragua_urdaneta">
+        <item>Urdaneta</item>
+        <item>Las Peñitas</item>
+        <item>San Francisco de Cara</item>
+        <item>Taguay</item>
+    </string-array>
+
+    <string-array name="aragua_zamora">
+        <item>Zamora</item>
+        <item>Magdaleno</item>
+        <item>San Francisco de Asís</item>
+        <item>Valles de Tucutunemo</item>
+        <item>Augusto Mijares</item>
+    </string-array>
+
+    <string-array name="barinas_alberto_arvelo_torrealba">
+        <item>Sabaneta</item>
+        <item>Juan Antonio Rodríguez Domínguez</item>
+    </string-array>
+
+    <string-array name="barinas_andres_eloy_blanco">
+
+        <item>El Cantón</item>
+        <item>Santa Cruz de Guacas</item>
+        <item>Puerto Vivas</item>
+    </string-array>
+
+    <string-array name="barinas_antonio_jose_de_sucre">
+        <item>Ticoporo</item>
+        <item>Nicolás Pulido</item>
+        <item>Andrés Bello</item>
+    </string-array>
+
+    <string-array name="barinas_arismendi">
+        <item>Arismendi</item>
+        <item>Guadarrama</item>
+        <item>La Unión</item>
+        <item>San Antonio</item>
+    </string-array>
+
+    <string-array name="barinas_barinas">
+
+        <item>Barinas</item>
+        <item>Alberto Arvelo Larriva</item>
+        <item>San Silvestre</item>
+        <item>Santa Inés</item>
+        <item>Santa Lucía</item>
+        <item>Torumos</item>
+        <item>El Carmen</item>
+        <item>Rómulo Betancourt</item>
+        <item>Corazón de Jesús</item>
+        <item>Ramón Ignacio Méndez</item>
+        <item>Alto Barinas</item>
+        <item>Manuel Palacio Fajardo</item>
+        <item>Juan Antonio Rodríguez Domínguez</item>
+        <item>Dominga Ortiz de Páez</item>
+    </string-array>
+
+
+
+    <string-array name="barinas_bolivar">
+        <item>Barinitas</item>
+        <item>Altamira de Cáceres</item>
+        <item>Calderas</item>
+    </string-array>
+
+    <string-array name="barinas_cruz_paredes">
+        <item>Barrancas</item>
+        <item>El Socorro</item>
+        <item>Mazparrito</item>
+    </string-array>
+
+    <string-array name="barinas_ezequiel_zamora">
+
+        <item>Santa Bárbara</item>
+        <item>Pedro Briceño Méndez</item>
+        <item>Ramón Ignacio Méndez</item>
+        <item>José Ignacio del Pumar</item>
+    </string-array>
+
+    <string-array name="barinas_obispos">
+        <item>Obispos</item>
+        <item>Guasimitos</item>
+        <item>El Real</item>
+        <item>La Luz</item>
+    </string-array>
+
+    <string-array name="barinas_pedraza">
+        <item>Ciudad Bolívia</item>
+        <item>José Ignacio Briceño</item>
+        <item>José Félix Ribas</item>
+        <item>Páez</item>
+    </string-array>
+
+    <string-array name="barinas_rojas">
+        <item>Libertad</item>
+        <item>Dolores</item>
+        <item>Santa Rosa</item>
+        <item>Palacio Fajardo</item>
+    </string-array>
+
+    <string-array name="barinas_sosa">
+        <item>Ciudad de Nutrias</item>
+        <item>El Regalo</item>
+        <item>Puerto Nutrias</item>
+        <item>Santa Catalina</item>
+    </string-array>
+
+    <string-array name="bolivar_caroni">
+
+        <item>Cachamay</item>
+        <item>Chirica</item>
+        <item>Dalla Costa</item>
+        <item>Once de Abril</item>
+        <item>Simón Bolívar</item>
+        <item>Unare</item>
+        <item>Universidad</item>
+        <item>Vista al Sol</item>
+        <item>Pozo Verde</item>
+        <item>Yocoima</item>
+        <item>5 de Julio</item>
+    </string-array>
+
+    <string-array name="bolivar_cedeno">
+        <item>Cedeño</item>
+        <item>Altagracia</item>
+        <item>Ascensión Farreras</item>
+        <item>Guaniamo</item>
+        <item>La Urbana</item>
+        <item>Pijiguaos</item>
+    </string-array>
+
+    <string-array name="bolivar_el_callao">
+        <item>El Callao</item>
+    </string-array>
+
+    <string-array name="bolivar_gran_sabana">
+        <item>Gran Sabana</item>
+        <item>Ikabarú</item>
+    </string-array>
+
+    <string-array name="bolivar_heres">
+        <item>Catedral</item>
+        <item>Zea</item>
+        <item>Orinoco</item>
+        <item>José Antonio Páez</item>
+        <item>Marhuanta</item>
+        <item>Agua Salada</item>
+        <item>Vista Hermosa</item>
+        <item>La Sabanita</item>
+        <item>Panapana</item>
+    </string-array>
+
+    <string-array name="bolivar_piar">
+        <item>Andrés Eloy Blanco</item>
+        <item>Pedro Cova</item>
+    </string-array>
+
+    <string-array name="bolivar_raul_leoni">
+        <item>Raúl Leoni</item>
+        <item>Barceloneta</item>
+        <item>Santa Bárbara</item>
+        <item>San Francisco</item>
+    </string-array>
+
+    <string-array name="bolivar_roscio">
+        <item>Roscio</item>
+        <item>Salóm</item>
+    </string-array>
+
+    <string-array name="bolivar_sifontes">
+        <item>Sifontes</item>
+        <item>Dalla Costa</item>
+        <item>San Isidro</item>
+    </string-array>
+
+
+    <string-array name="bolivar_sucre">
+        <item>Sucre</item>
+        <item>Aripao</item>
+        <item>Guarataro</item>
+        <item>Las Majadas</item>
+        <item>Moitaco</item>
+    </string-array>
+
+    <string-array name="bolivar_padre_pedro_chien">
+        <item>Padre Pedro Chien</item>
+        <item>Río Grande</item>
+    </string-array>
+
+    <string-array name="carabobo_bejuma">
+        <item>Bejuma</item>
+        <item>Canoabo</item>
+        <item>Simón Bolívar</item>
+    </string-array>
+
+    <string-array name="carabobo_carlos_arvelo">
+        <item>Güigüe</item>
+        <item>Carabobo</item>
+        <item>Tacarigua</item>
+    </string-array>
+
+    <string-array name="carabobo_diego_ibarra">
+        <item>Mariara</item>
+        <item>Aguas Calientes</item>
+    </string-array>
+
+    <string-array name="carabobo_guacara">
+        <item>Ciudad Alianza</item>
+        <item>Guacara</item>
+        <item>Yagua</item>
+    </string-array>
+
+    <string-array name="carabobo_juan_jose_mora">
+        <item>Morón</item>
+        <item>Yagua</item>
+    </string-array>
+
+
+    <string-array name="carabobo_cibertador">
+        <item>Tocuyito</item>
+        <item>Independencia</item>
+    </string-array>
+
+    <string-array name="carabobo_los_guayos">
+        <item>Los Guayos</item>
+    </string-array>
+
+    <string-array name="carabobo_carabobo_miranda">
+        <item>Miranda</item>
+    </string-array>
+
+
+    <string-array name="carabobo_montalban">
+        <item>Montalbán</item>
+    </string-array>
+
+
+    <string-array name="carabobo_naguanagua">
+        <item>Naguanagua</item>
+    </string-array>
+
+
+    <string-array name="carabobo_puerto_cabello">
+        <item>Bartolomé Salóm</item>
+        <item>Democracia</item>
+        <item>Fraternidad</item>
+        <item>Goaigoaza</item>
+        <item>Juan José Flores</item>
+        <item>Unión</item>
+        <item>Borburata</item>
+        <item>Patanemo</item>
+    </string-array>
+
+    <string-array name="carabobo_san_diego">
+        <item>San Diego</item>
+    </string-array>
+
+    <string-array name="carabobo_san_joaquin">
+        <item>San Joaquín</item>
+    </string-array>
+
+    <string-array name="carabobo_valencia">
+        <item>Candelaria</item>
+        <item>Catedral</item>
+        <item>El Socorro</item>
+        <item>Miguel Peña</item>
+        <item>Rafael Urdaneta</item>
+        <item>San Blas</item>
+        <item>San José</item>
+        <item>Santa Rosa</item>
+        <item>Negro Primero</item>
+    </string-array>
+
+    <string-array name="cojedes_anzoategui">
+        <item>Cojedes</item>
+        <item>Juan de Mata Suárez</item>
+    </string-array>
+
+    <string-array name="cojedes_tinaquillo">
+        <item>Tinaquillo</item>
+    </string-array>
+
+    <string-array name="cojedes_girardot">
+        <item>El Baúl</item>
+        <item>Sucre</item>
+    </string-array>
+
+    <string-array name="cojedes_lima_blanco">
+        <item>La Aguadita</item>
+        <item>Macapo</item>
+    </string-array>
+
+    <string-array name="cojedes_pao_de_san_juan_bautista">
+        <item>El Pao</item>
+    </string-array>
+
+    <string-array name="cojedes_ricaurte">
+        <item>El Amparo</item>
+        <item>Libertad de Cojedes</item>
+    </string-array>
+
+    <string-array name="cojedes_romulo_gallegos">
+        <item>Rómulo Gallegos</item>
+    </string-array>
+
+    <string-array name="cojedes_san_carlos">
+        <item>San Carlos de Austria</item>
+        <item>Juan Ángel Bravo</item>
+
+        <item>Manuel Manrique</item>
+    </string-array>
+
+    <string-array name="cojedes_tinaco">
+        <item>General en Jefe José Laurencio Silva</item>
+    </string-array>
+
+    <string-array name="delta_amacuro_antonio_diaz">
+
+        <item>Curiapo</item>
+        <item>Almirante Luis Brión</item>
+        <item>Francisco Aniceto Lugo</item>
+        <item>Manuel Renaud</item>
+        <item>Padre Barral</item>
+        <item>Santos de Abelgas</item>
+    </string-array>
+
+
+    <string-array name="delta_amacuro_casacoima">
+
+        <item>Imataca</item>
+        <item>Cinco de Julio</item>
+        <item>Juan Bautista Arismendi</item>
+        <item>Manuel Piar</item>
+        <item>Rómulo Gallegos</item>
+    </string-array>
+
+    <string-array name="delta_amacuro_pedernales">
+        <item>Pedernales</item>
+        <item>Luis Beltrán Prieto Figueroa</item>
+    </string-array>
+
+    <string-array name="delta_amacuro_tucupita">
+        <item>San José (Delta Amacuro)</item>
+        <item>José Vidal Marcano</item>
+        <item>Juan Millán</item>
+        <item>Leonardo Ruíz Pineda</item>
+        <item>Mariscal Antonio José de Sucre</item>
+        <item>Monseñor Argimiro García</item>
+        <item>San Rafael (Delta Amacuro)</item>
+        <item>Virgen del Valle</item>
+    </string-array>
+
+    <string-array name="falcon_acosta">
+        <item>Capadare</item>
+        <item>La Pastora</item>
+        <item>Libertador</item>
+        <item>San Juan de los Cayos</item>
+    </string-array>
+
+    <!--esta repetido -->
+    <string-array name="falcon_bolivar">
+        <item>Aracua</item>
+        <item>La Peña</item>
+        <item>San Luis</item>
+    </string-array>
+
+    <string-array name="falcon_buchivacoa">
+
+        <item>Bariro</item>
+        <item>Borojó</item>
+        <item>Capatárida</item>
+        <item>Guajiro</item>
+        <item>Seque</item>
+        <item>Zazárida</item>
+        <item>Valle de Eroa</item>
+    </string-array>
+
+    <string-array name="falcon_cacique_manaure">
+        <item>Cacique Manaure</item>
+    </string-array>
+
+    <string-array name="falcon_carirubana">
+        <item>Norte</item>
+        <item>Carirubana</item>
+        <item>Santa Ana</item>
+        <item>Urbana Punta Cardón</item>
+    </string-array>
+
+    <string-array name="falcon_colina">
+        <item>La Vela de Coro</item>
+        <item>Acurigua</item>
+        <item>Guaibacoa</item>
+        <item>Las Calderas</item>
+        <item>Macoruca</item>
+    </string-array>
+
+    <string-array name="falcon_dabajuro">
+        <item>Dabajuro</item>
+    </string-array>
+
+    <string-array name="falcon_democracia">
+        <item>Agua Clara</item>
+        <item>Avaria</item>
+        <item>Pedregal</item>
+        <item>Piedra Grande</item>
+        <item>Purureche</item>
+    </string-array>
+
+    <string-array name="falcon_falcon">
+        <item>Adaure</item>
+        <item>Adícora</item>
+        <item>Baraived</item>
+        <item>Buena Vista</item>
+        <item>Jadacaquiva</item>
+        <item>El Vínculo</item>
+        <item>El Hato</item>
+        <item>Moruy</item>
+        <item>Pueblo Nuevo</item>
+    </string-array>
+
+    <string-array name="falcon_federacion">
+        <item>Agua Larga</item>
+        <item>El Paují</item>
+        <item>Independencia</item>
+        <item>Mapararí</item>
+        <item>Churuguara</item>
+    </string-array>
+
+    <string-array name="falcon_jacura">
+        <item>Agua Linda</item>
+        <item>Araurima</item>
+        <item>Jacura</item>
+    </string-array>
+
+    <string-array name="falcon_jose_laurencio_silva">
+        <item>Tucacas</item>
+        <item>Boca de Aroa</item>
+    </string-array>
+
+    <string-array name="falcon_los_taques">
+        <item>Los Taques</item>
+        <item>Judibana</item>
+    </string-array>
+
+    <string-array name="falcon_mauroa">
+        <item>Mene de Mauroa</item>
+        <item>San Félix</item>
+        <item>Casigua</item>
+    </string-array>
+
+    <string-array name="falcon_miranda">
+        <item>Guzmán Guillermo</item>
+        <item>Mitare</item>
+        <item>Río Seco</item>
+        <item>Sabaneta</item>
+        <item>San Antonio</item>
+        <item>San Gabriel</item>
+        <item>Santa Ana</item>
+
+    </string-array>
+
+    <string-array name="falcon_monsenor_iturriza">
+        <item>Boca del Tocuyo</item>
+        <item>Chichiriviche</item>
+        <item>Tocuyo de la Costa</item>
+    </string-array>
+
+    <string-array name="falcon_palmasola">
+        <item>Palmasola</item>
+    </string-array>
+
+
+
+    <string-array name="falcon_petit">
+        <item>Cabure</item>
+        <item>Colina</item>
+        <item>Curimagua</item>
+
+    </string-array>
+
+    <string-array name="falcon_piritu">
+        <item>San José de la Costa</item>
+        <item>Píritu</item>
+
+    </string-array>
+
+    <string-array name="falcon_san_francisco">
+        <item>San Francisco</item>
+
+    </string-array>
+    <string-array name="falcon_sucre">
+        <item>Sucre</item>
+        <item>Pecaya</item>
+
+    </string-array>
+
+
+    <string-array name="falcon_tocopero">
+        <item>Tocópero</item>
+
+    </string-array>
+
+    <string-array name="falcon_union">
+        <item>El Charal</item>
+        <item>Las Vegas del Tuy</item>
+        <item>Santa Cruz de Bucaral</item>
+    </string-array>
+
+    <string-array name="falcon_urumaco">
+        <item>Bruzual</item>
+        <item>Urumaco</item>
+    </string-array>
+
+    <!--esta repetido-->
+    <string-array name="falcon_zamora">
+        <item>Puerto Cumarebo</item>
+        <item>La Ciénaga</item>
+        <item>La Soledad</item>
+        <item>Pueblo Cumarebo</item>
+        <item>Zazárida</item>
+    </string-array>
+
+    <string-array name="guarico_camaguan">
+        <item>Camaguán</item>
+        <item>Puerto Miranda</item>
+        <item>Uverito</item>
+
+    </string-array>
+
+    <string-array name="guarico_chaguaramas">
+        <item>Chaguaramas</item>
+
+    </string-array>
+
+    <string-array name="guarico_el_socorro">
+        <item>El Socorro</item>
+
+    </string-array>
+
+
+    <string-array name="guarico_jose_felix_ribas">
+        <item>Tucupido</item>
+        <item>San Rafael de Laya</item>
+    </string-array>
+
+    <string-array name="guarico_jose_tadeo_monagas">
+
+        <item>Altagracia de Orituco</item>
+        <item>San Rafael de Orituco</item>
+        <item>San Francisco Javier de Lezama</item>
+        <item>Paso Real de Macaira</item>
+        <item>Carlos Soublette</item>
+        <item>San Francisco de Macaira</item>
+        <item>Libertad de Orituco</item>
+
+    </string-array>
+
+    <string-array name="guarico_juan_german_roscio">
+        <item>Cantaclaro</item>
+        <item>San Juan de los Morros</item>
+        <item>Parapara</item>
+    </string-array>
+
+    <string-array name="guarico_julian_mellado">
+        <item>El Sombrero</item>
+        <item>Sosa</item>
+    </string-array>
+
+    <string-array name="guarico_las_mercedes">
+        <item>Las Mercedes</item>
+        <item>Cabruta</item>
+        <item>Santa Rita de Manapire</item>
+    </string-array>
+
+    <string-array name="guarico_leonardo_infante">
+        <item>Valle de la Pascua</item>
+        <item>Espino</item>
+    </string-array>
+
+    <string-array name="guarico_pedro_zaraza">
+        <item>San José de Unare</item>
+        <item>Zaraza</item>
+    </string-array>
+
+    <string-array name="guarico_ortiz">
+        <item>San José de Tiznados</item>
+        <item>San Francisco de Tiznados</item>
+        <item>San Lorenzo de Tiznados</item>
+        <item>Ortiz</item>
+    </string-array>
+
+    <string-array name="guarico_san_geronimo_de_guayabal">
+        <item>Guayabal</item>
+        <item>Cazorla</item>
+    </string-array>
+
+    <string-array name="guarico_san_jose_de_guaribe">
+        <item>San José de Guaribe</item>
+        <item>Uveral</item>
+    </string-array>
+
+    <string-array name="guarico_santa_maria_de_ipire">
+        <item>Santa María de Ipire</item>
+        <item>Altamira</item>
+    </string-array>
+
+    <string-array name="guarico_sebastian_francisco_de_miranda">
+        <item>El Calvario</item>
+        <item>El Rastro</item>
+        <item>Guardatinajas</item>
+        <item>Capital Urbana Calabozo</item>
+    </string-array>
+
+
+    <string-array name="lara_andres_eloy_blanco">
+        <item>Quebrada Honda de Guache</item>
+        <item>Pío Tamayo</item>
+        <item>Yacambú</item>
+    </string-array>
+
+    <string-array name="lara_crespo">
+        <item>Fréitez</item>
+        <item>José María Blanco</item>
+    </string-array>
+
+    <string-array name="lara_iribarren">
+        <item>Catedral</item>
+        <item>Concepción</item>
+        <item>El Cují</item>
+        <item>Juan de Villegas</item>
+        <item>Santa Rosa</item>
+        <item>Tamaca</item>
+        <item>Unión</item>
+        <item>Aguedo Felipe Alvarado</item>
+        <item>Buena Vista</item>
+        <item>Juárez</item>
+    </string-array>
+
+    <string-array name="lara_jimenez">
+        <item>Juan Bautista Rodríguez</item>
+        <item>Cuara</item>
+        <item>Diego de Lozada</item>
+        <item>Paraíso de San José</item>
+        <item>San Miguel</item>
+        <item>Tintorero</item>
+        <item>José Bernardo Dorante</item>
+        <item>Coronel Mariano Peraza </item>
+    </string-array>
+
+    <string-array name="lara_moran">
+        <item>Bolívar</item>
+        <item>Anzoátegui</item>
+        <item>Guarico</item>
+        <item>Hilario Luna y Luna</item>
+        <item>Humocaro Alto</item>
+        <item>Humocaro Bajo</item>
+        <item>La Candelaria</item>
+        <item>Morán</item>
+    </string-array>
+
+    <string-array name="lara_palavecino">
+        <item>Cabudare</item>
+        <item>José Gregorio Bastidas</item>
+        <item>Agua Viva</item>
+    </string-array>
+
+    <string-array name="lara_simon_planas">
+        <item>Sarare</item>
+        <item>Buría</item>
+        <item>Gustavo Vegas León</item>
+    </string-array>
+
+    <string-array name="lara_torres">
+        <item>Trinidad Samuel</item>
+        <item>Antonio Díaz</item>
+        <item>Camacaro</item>
+        <item>Castañeda</item>
+        <item>Cecilio Zubillaga</item>
+        <item>Chiquinquirá</item>
+        <item>El Blanco</item>
+        <item>Espinoza de los Monteros</item>
+        <item>Lara</item>
+        <item>Las Mercedes</item>
+        <item>Manuel Morillo</item>
+        <item>Montaña Verde</item>
+        <item>Montes de Oca</item>
+        <item>Torres</item>
+        <item>Heriberto Arroyo</item>
+        <item>Reyes Vargas</item>
+        <item>Altagracia</item>
+    </string-array>
+
+
+    <string-array name="lara_urdaneta">
+        <item>Siquisique</item>
+        <item>Moroturo</item>
+        <item>San Miguel</item>
+        <item>Xaguas</item>
+    </string-array>
+
+    <string-array name="merida_alberto_adriani">
+        <item>Presidente Betancourt</item>
+        <item>Presidente Páez</item>
+        <item>Presidente Rómulo Gallegos</item>
+        <item>Gabriel Picón González</item>
+        <item>Héctor Amable Mora</item>
+        <item>José Nucete Sardi</item>
+        <item>Pulido Méndez</item>
+    </string-array>
+
+    <string-array name="merida_andres_bello">
+        <item>La Azulita</item>
+    </string-array>
+
+    <string-array name="merida_antonio_pinto_salinas">
+        <item>Santa Cruz de Mora</item>
+        <item>Mesa Bolívar</item>
+        <item>Mesa de Las Palmas</item>
+    </string-array>
+
+    <string-array name="merida_aricagua">
+        <item>Aricagua</item>
+        <item>San Antonio</item>
+
+    </string-array>
+
+    <string-array name="merida_arzobispo_chacon">
+        <item>Canagua</item>
+        <item>Capurí</item>
+        <item>Chacantá</item>
+        <item>El Molino</item>
+        <item>Guaimaral</item>
+        <item>Mucutuy</item>
+        <item>Mucuchachí</item>
+    </string-array>
+
+    <string-array name="merida_campo_elias">
+        <item>Fernández Peña</item>
+        <item>Matriz</item>
+        <item>Montalbán</item>
+        <item>Acequias</item>
+        <item>Jají</item>
+        <item>La Mesa</item>
+        <item>San José del Sur</item>
+    </string-array>
+
+    <string-array name="merida_caracciolo_parra_olmedo">
+        <item>Tucaní</item>
+        <item>Florencio Ramírez</item>
+    </string-array>
+
+    <string-array name="merida_cardenal_quintero">
+        <item>Santo Domingo</item>
+        <item>Las Piedras</item>
+    </string-array>
+
+    <string-array name="merida_guaraque">
+
+        <item>Guaraque</item>
+        <item>Mesa de Quintero</item>
+        <item>Río Negro</item>
+    </string-array>
+
+    <string-array name="merida_julio_cesar_salas">
+        <item>Arapuey</item>
+        <item>Palmira</item>
+    </string-array>
+
+
+    <string-array name="merida_justo_briceno">
+        <item>San Cristóbal de Torondoy</item>
+        <item>Torondoy</item>
+    </string-array>
+
+    <string-array name="merida_libertador">
+        <item>Antonio Spinetti Dini</item>
+        <item>Arias</item>
+        <item>Caracciolo Parra Pérez</item>
+        <item>Domingo Peña</item>
+        <item>El Llano</item>
+        <item>Gonzalo Picón Febres</item>
+        <item>Jacinto Plaza</item>
+        <item>Juan Rodríguez Suárez</item>
+        <item>Lasso de la Vega</item>
+        <item>Mariano Picón Salas</item>
+        <item>Milla</item>
+        <item>Osuna Rodríguez</item>
+        <item>Sagrario</item>
+        <item>El Morro</item>
+        <item>Los Nevados</item>
+    </string-array>
+
+
+    <string-array name="merida_miranda">
+        <item>Andrés Eloy Blanco</item>
+        <item>La Venta</item>
+        <item>Piñango</item>
+        <item>Timotes</item>
+    </string-array>
+
+    <string-array name="merida_obispo_ramos_de_lora">
+        <item>Eloy Paredes</item>
+        <item>San Rafael de Alcázar</item>
+        <item>Santa Elena de Arenales</item>
+    </string-array>
+
+    <string-array name="merida_padre_noguera">
+        <item>Santa María de Caparo</item>
+    </string-array>
+
+    <string-array name="merida_pueblo_llano">
+        <item>Pueblo Llano</item>
+    </string-array>
+
+    <string-array name="merida_rangel">
+        <item>Cacute</item>
+        <item>La Toma</item>
+        <item>Mucuchíes</item>
+        <item>Mucurubá</item>
+        <item>San Rafael</item>
+    </string-array>
+
+    <string-array name="merida_rivas_davila">
+        <item>Gerónimo Maldonado</item>
+        <item>Bailadores</item>
+    </string-array>
+
+    <string-array name="merida_santos_marquina">
+        <item>Tabay</item>
+    </string-array>
+
+
+    <string-array name="merida_sucre">
+        <item>Chiguará</item>
+        <item>Estánquez</item>
+        <item>Lagunillas</item>
+        <item>La Trampa</item>
+        <item>Pueblo Nuevo del Sur</item>
+        <item>San Juan</item>
+    </string-array>
+
+
+    <string-array name="merida_tovar">
+        <item>El Amparo</item>
+        <item>El Llano</item>
+        <item>San Francisco</item>
+        <item>Tovar</item>
+    </string-array>
+
+    <string-array name="merida_tulio_febres_cordero">
+
+        <item>Independencia</item>
+        <item>María de la Concepción Palacios Blanco</item>
+        <item>Nueva Bolivia</item>
+        <item>Santa Apolonia</item>
+    </string-array>
+
+    <string-array name="merida_zea">
+        <item>Caño El Tigre</item>
+        <item>Zea</item>
+    </string-array>
+
+    <string-array name="miranda_acevedo">
+        <item>Aragüita</item>
+        <item>Arévalo González</item>
+        <item>Capaya</item>
+        <item>Caucagua</item>
+        <item>Panaquire</item>
+        <item>Ribas</item>
+        <item>El Café</item>
+        <item>Marizapa</item>
+    </string-array>
+
+
+    <string-array name="miranda_andres_bello">
+        <item>Cumbo</item>
+        <item>San José de Barlovento</item>
+    </string-array>
+
+    <string-array name="miranda_baruta">
+        <item>El Cafetal</item>
+        <item>Las Minas</item>
+        <item>Nuestra Señora del Rosario</item>
+    </string-array>
+
+    <string-array name="miranda_brion">
+        <item>Higuerote</item>
+        <item>Curiepe</item>
+        <item>Tacarigua de Brión</item>
+    </string-array>
+
+    <string-array name="miranda_buroz">
+        <item>Mamporal</item>
+    </string-array>
+
+    <string-array name="miranda_carrizal">
+        <item>Carrizal</item>
+    </string-array>
+
+    <string-array name="miranda_chacao">
+        <item>Chacao</item>
+    </string-array>
+
+    <string-array name="miranda_cristobal_rojas">
+        <item>Charallave</item>
+        <item> Las Brisas</item>
+    </string-array>
+
+    <string-array name="miranda_el_hatillo">
+        <item>El Hatillo</item>
+    </string-array>
+
+    <string-array name="miranda_guaicaipuro">
+        <item>Altagracia de la Montaña</item>
+        <item>Cecilio Acosta</item>
+        <item>Los Teques</item>
+        <item>El Jarillo</item>
+        <item>San Pedro</item>
+        <item>Tácata</item>
+        <item>Paracotos</item>
+    </string-array>
+
+
+    <string-array name="miranda_independencia">
+        <item>Cartanal</item>
+        <item>Santa Teresa del Tuy</item>
+    </string-array>
+
+    <string-array name="miranda_lander">
+        <item>La Democracia</item>
+        <item>Ocumare del Tuy</item>
+        <item>Santa Bárbara</item>
+    </string-array>
+
+    <string-array name="miranda_los_salias">
+        <item>San Antonio de los Altos</item>
+    </string-array>
+
+
+    <string-array name="miranda_paez">
+        <item>Río Chico</item>
+        <item>El Guapo</item>
+        <item>Tacarigua de la Laguna</item>
+        <item>Paparo</item>
+        <item>San Fernando del Guapo</item>
+    </string-array>
+
+    <string-array name="miranda_paz_castillo">
+        <item>Santa Lucía del Tuy</item>
+    </string-array>
+
+    <string-array name="miranda_pedro_gual">
+        <item>Cúpira</item>
+        <item>Machurucuto</item>
+    </string-array>
+
+    <string-array name="miranda_plaza">
+        <item>Guarenas</item>
+    </string-array>
+
+
+    <string-array name="miranda_simon_bolivar">
+        <item>San Antonio de Yare</item>
+        <item>San Francisco de Yare</item>
+    </string-array>
+
+
+    <string-array name="miranda_sucre">
+        <item>Leoncio Martínez</item>
+        <item>Petare</item>
+        <item>Caucagüita</item>
+        <item>Filas de Mariche</item>
+        <item>La Dolorita</item>
+    </string-array>
+
+
+    <string-array name="miranda_urdaneta">
+        <item>Cúa</item>
+        <item>Nueva Cúa</item>
+    </string-array>
+
+
+
+    <string-array name="miranda_zamora">
+        <item>Guatire</item>
+        <item>Bolívar</item>
+    </string-array>
+
+
+    <string-array name="monagas_acosta">
+        <item>San Antonio de Maturín</item>
+        <item>San Francisco de Maturín</item>
+    </string-array>
+
+    <string-array name="monagas_aguasay">
+        <item>Aguasay</item>
+    </string-array>
+
+
+    <string-array name="monagas_bolivar">
+        <item>Caripito</item>
+    </string-array>
+
+    <string-array name="monagas_caripe">
+        <item>El Guácharo</item>
+        <item>La Guanota</item>
+        <item>Sabana de Piedra</item>
+        <item>San Agustín</item>
+        <item>Teresen</item>
+        <item>Caripe</item>
+    </string-array>
+
+
+
+    <string-array name="monagas_cedeno">
+        <item>Areo</item>
+        <item>Capital Cedeño</item>
+        <item>San Félix de Cantalicio</item>
+        <item>Viento Fresco</item>
+    </string-array>
+
+
+    <string-array name="monagas_ezequiel_zamora">
+        <item>El Tejero</item>
+        <item>Punta de Mata</item>
+    </string-array>
+
+
+    <string-array name="monagas_libertador">
+        <item>Chaguaramas</item>
+        <item>Las Alhuacas</item>
+        <item>Tabasca</item>
+        <item>Temblador</item>
+    </string-array>
+
+    <string-array name="monagas_maturin">
+        <item>Alto de los Godos</item>
+        <item>Boquerón</item>
+        <item>Las Cocuizas</item>
+        <item>La Cruz</item>
+        <item>San Simón</item>
+        <item>El Corozo</item>
+        <item>El Furrial</item>
+        <item>Jusepín</item>
+        <item>La Pica</item>
+        <item>San Vicente</item>
+    </string-array>
+
+
+    <string-array name="monagas_piar">
+        <item>Aparicio</item>
+        <item>Aragua de Maturín</item>
+        <item>Chaguamal</item>
+        <item>El Pinto</item>
+        <item>Guanaguana</item>
+        <item>La Toscana</item>
+        <item>Taguaya</item>
+    </string-array>
+
+    <string-array name="monagas_punceres">
+        <item>Cachipo</item>
+        <item>Quiriquire</item>
+    </string-array>
+
+
+    <string-array name="monagas_santa_barbara">
+        <item>Santa Bárbara</item>
+    </string-array>
+
+    <string-array name="monagas_sotillo">
+        <item>Barrancas</item>
+        <item>Los Barrancos de Fajardo</item>
+    </string-array>
+
+    <string-array name="monagas_uracoa">
+        <item>Uracoa</item>
+    </string-array>
+
+    <string-array name="nueva_esparta_antolin_del_campo">
+        <item>Antolín del Campo</item>
+    </string-array>
+
+
+    <string-array name="nueva_esparta_arismendi">
+        <item>Arismendi</item>
+    </string-array>
+
+    <string-array name="nueva_esparta_garcia">
+        <item>García</item>
+        <item>Francisco Fajardo</item>
+    </string-array>
+
+    <string-array name="nueva_esparta_gomez">
+        <item>Bolívar</item>
+        <item>Guevara</item>
+        <item>Matasiete</item>
+        <item>Santa Ana</item>
+        <item>Sucre</item>
+    </string-array>
+
+    <string-array name="nueva_esparta_maneiro">
+        <item>Aguirre</item>
+        <item>Maneiro</item>
+    </string-array>
+
+    <string-array name="nueva_esparta_marcano">
+        <item>Adrián</item>
+        <item>Juan Griego</item>
+        <item>Yaguaraparo</item>
+    </string-array>
+
+
+
+    <string-array name="nueva_esparta_marino">
+        <item>Porlamar</item>
+    </string-array>
+
+    <string-array name="nueva_esparta_peninsula_de_macanao">
+        <item>San Francisco de Macanao</item>
+        <item>Boca de Río</item>
+    </string-array>
+
+    <string-array name="nueva_esparta_tubores">
+        <item>Tubores</item>
+        <item>Los Baleales</item>
+    </string-array>
+
+    <string-array name="nueva_esparta_villalba">
+        <item>Vicente Fuentes</item>
+        <item>Villalba</item>
+    </string-array>
+
+    <string-array name="nueva_esparta_diaz">
+        <item>San Juan Bautista</item>
+        <item>Zabala</item>
+    </string-array>
+
+    <string-array name="portuguesa_agua_blanca">
+        <item>Agua Blanca</item>
+
+    </string-array>
+
+    <string-array name="portuguesa_araure">
+        <item>Capital Araure</item>
+        <item>Río Acarigua</item>
+    </string-array>
+
+
+    <string-array name="portuguesa_esteller">
+        <item>Capital Esteller</item>
+        <item>Uveral</item>
+    </string-array>
+
+    <string-array name="portuguesa_guanare">
+        <item>Guanare</item>
+        <item>Córdoba</item>
+        <item>San José de la Montaña</item>
+        <item>San Juan de Guanaguanare</item>
+        <item>Virgen de la Coromoto</item>
+    </string-array>
+
+    <string-array name="portuguesa_guanarito">
+        <item>Guanarito</item>
+        <item>Trinidad de la Capilla</item>
+        <item>Divina Pastora</item>
+    </string-array>
+
+    <string-array name="portuguesa_monsenor_jose_vicente_de_unda">
+        <item>Monseñor José Vicente de Unda</item>
+        <item>Peña Blanca</item>
+    </string-array>
+
+    <string-array name="portuguesa_ospino">
+        <item>Capital Ospino</item>
+        <item>Aparición</item>
+        <item>La Estación</item>
+    </string-array>
+
+
+    <string-array name="portuguesa_paez">
+        <item>Páez</item>
+        <item>Payara</item>
+        <item>Pimpinela</item>
+        <item>Ramón Peraza</item>
+    </string-array>
+
+    <string-array name="portuguesa_papelon">
+        <item>Papelón</item>
+        <item>Caño Delgadito</item>
+    </string-array>
+
+    <string-array name="portuguesa_san_genaro_de_boconoito">
+        <item>San Genaro de Boconoito</item>
+        <item>Antolín Tovar</item>
+    </string-array>
+
+    <string-array name="portuguesa_san_rafael_de_onoto">
+        <item>San Rafael de Onoto</item>
+        <item>Santa Fe</item>
+        <item>Thermo Morles</item>
+    </string-array>
+
+    <string-array name="portuguesa_santa_rosalia">
+        <item>Santa Rosalía</item>
+        <item>Florida</item>
+    </string-array>
+
+
+    <string-array name="portuguesa_sucre">
+        <item>Sucre</item>
+        <item>Concepción</item>
+        <item>San Rafael de Palo Alzado</item>
+        <item>Uvencio Antonio Velásquez</item>
+        <item>San José de Saguaz</item>
+        <item>Villa Rosa</item>
+    </string-array>
+
+    <string-array name="portuguesa_turen">
+        <item>Turén</item>
+        <item>Canelones</item>
+        <item>Santa Cruz</item>
+        <item>San Isidro Labrador</item>
+    </string-array>
+
+
+    <string-array name="sucre_andres_eloy_blanco">
+        <item>Mariño</item>
+        <item>Rómulo Gallegos</item>
+    </string-array>
+
+    <string-array name="sucre_andres_mata">
+        <item>San José de Aerocuar</item>
+        <item>Tavera Acosta</item>
+    </string-array>
+
+
+    <string-array name="sucre_arismendi">
+        <item>Río Caribe</item>
+        <item>Antonio José de Sucre</item>
+        <item>El Morro de Puerto Santo</item>
+        <item>Puerto Santo</item>
+        <item>San Juan de las Galdonas</item>
+    </string-array>
+
+    <string-array name="sucre_benitez">
+        <item>El Pilar</item>
+        <item>El Rincón</item>
+        <item>General Francisco Antonio Váquez</item>
+        <item>Guaraúnos</item>
+        <item>Tunapuicito</item>
+        <item>Unión</item>
+    </string-array>
+
+    <string-array name="sucre_bermudez">
+        <item>Santa Catalina</item>
+        <item>Santa Rosa</item>
+        <item>Santa Teresa</item>
+        <item>Bolívar</item>
+        <item>Maracapana</item>
+    </string-array>
+
+    <string-array name="sucre_cajigal">
+        <item>Libertad</item>
+        <item>El Paujil</item>
+        <item>Yaguaraparo</item>
+    </string-array>
+
+    <string-array name="sucre_cruz_salmeron_acosta">
+        <item>Cruz Salmerón Acosta</item>
+        <item>Chacopata</item>
+        <item>Manicuare</item>
+    </string-array>
+
+
+
+    <string-array name="sucre_libertador">
+        <item>Tunapuy</item>
+        <item>Campo Elías</item>
+    </string-array>
+
+    <string-array name="sucre_marino">
+        <item>Irapa</item>
+        <item>Campo Claro</item>
+        <item>Maraval</item>
+        <item>San Antonio de Irapa</item>
+        <item>Soro</item>
+    </string-array>
+
+    <string-array name="sucre_mejia">
+        <item>Mejía</item>
+    </string-array>
+
+    <string-array name="sucre_montes">
+        <item>Cumanacoa</item>
+        <item>Arenas</item>
+        <item>Aricagua</item>
+        <item>Cogollar</item>
+        <item>San Fernando</item>
+        <item>San Lorenzo</item>
+    </string-array>
+
+
+    <string-array name="sucre_ribero">
+        <item>Villa Frontado (Muelle de Cariaco)</item>
+        <item>Catuaro</item>
+        <item>Rendón</item>
+        <item>San Cruz</item>
+        <item>Santa María</item>
+    </string-array>
+
+
+
+    <string-array name="sucre_sucre">
+        <item>Altagracia</item>
+        <item>Santa Inés</item>
+        <item>Valentín Valiente</item>
+        <item>Ayacucho</item>
+        <item>San Juan</item>
+        <item>Raúl Leoni</item>
+        <item>Gran Mariscal</item>
+    </string-array>
+
+
+    <string-array name="sucre_valdez">
+        <item>Cristóbal Colón</item>
+        <item>Bideau</item>
+        <item>Punta de Piedras</item>
+        <item>Güiria</item>
+    </string-array>
+
+
+
+    <string-array name="tachira_andres_bello">
+        <item>Andrés Bello</item>
+    </string-array>
+
+
+    <string-array name="tachira_antonio_romulo_costa">
+        <item>Antonio Rómulo Costa</item>
+    </string-array>
+
+    <string-array name="tachira_ayacucho">
+        <item>Ayacucho</item>
+        <item>Rivas Berti</item>
+        <item>San Pedro del Río</item>
+    </string-array>
+
+
+    <string-array name="tachira_bolivar">
+        <item>Bolívar</item>
+        <item>Palotal</item>
+        <item>General Juan Vicente Gómez</item>
+        <item>Isaías Medina Angarita</item>
+    </string-array>
+
+
+    <string-array name="tachira_cardenas">
+        <item>Cárdenas</item>
+        <item>Amenodoro Ángel Lamus</item>
+        <item>La Florida</item>
+    </string-array>
+
+    <string-array name="tachira_cordoba">
+        <item>Córdoba</item>
+    </string-array>
+
+    <string-array name="tachira_fernandez_feo">
+        <item>Fernández Feo</item>
+        <item>Alberto Adriani</item>
+        <item>Santo Domingo</item>
+    </string-array>
+
+    <!--esta repetido-->
+    <string-array name="tachira_francisco_de_miranda">
+        <item>Francisco de Miranda</item>
+    </string-array>
+
+    <string-array name="tachira_garcia_de_hevia">
+        <item>García de Hevia</item>
+        <item>Boca de Grita</item>
+        <item>José Antonio Páez</item>
+    </string-array>
+
+    <string-array name="tachira_guasimos">
+        <item>Guásimos</item>
+    </string-array>
+
+
+
+    <string-array name="tachira_independencia">
+        <item>Independencia</item>
+        <item>Juan Germán Roscio</item>
+        <item>Román Cárdenas</item>
+    </string-array>
+
+    <string-array name="tachira_jauregui">
+        <item>Jáuregui</item>
+        <item>Emilio Constantino Guerrero</item>
+        <item>Monseñor Miguel Antonio Salas</item>
+    </string-array>
+
+    <string-array name="tachira_jose_maria_vargas">
+        <item>José María Vargas</item>
+    </string-array>
+
+    <string-array name="tachira_junin">
+        <item>Junín</item>
+        <item>La Petrólea</item>
+        <item>Quinimarí</item>
+        <item>Bramón</item>
+    </string-array>
+
+
+    <string-array name="tachira_libertad">
+
+        <item>Libertad</item>
+        <item>Cipriano Castro</item>
+        <item>Manuel Felipe Rugeles</item>
+    </string-array>
+
+
+    <string-array name="tachira_libertador">
+
+        <item>Libertador</item>
+        <item>Doradas</item>
+        <item>Emeterio Ochoa</item>
+        <item>San Joaquín de Navay</item>
+    </string-array>
+
+    <string-array name="tachira_lobatera">
+        <item>Lobatera</item>
+        <item>Constitución</item>
+    </string-array>
+
+    <string-array name="tachira_michelena">
+        <item>Michelena</item>
+    </string-array>
+
+
+    <string-array name="tachira_panamericano">
+        <item>Panamericano</item>
+        <item>La Palmita</item>
+    </string-array>
+
+    <string-array name="tachira_pedro_maria_urena">
+        <item>Pedro María Ureña</item>
+        <item>Nueva Arcadia</item>
+    </string-array>
+
+    <string-array name="tachira_rafael_urdaneta">
+        <item>Delicias</item>
+        <item>Pecaya</item>
+    </string-array>
+
+    <string-array name="tachira_samuel_dario_maldonado">
+        <item>Samuel Darío Maldonado</item>
+        <item>Boconó</item>
+        <item>Hernández</item>
+    </string-array>
+
+    <string-array name="tachira_san_cristobal">
+        <item>La Concordia</item>
+        <item>San Juan Bautista</item>
+        <item>Pedro María Morantes</item>
+        <item>San Sebastián</item>
+        <item>Dr. Francisco Romero Lobo</item>
+    </string-array>
+
+    <string-array name="tachira_seboruco">
+        <item>Seboruco</item>
+    </string-array>
+
+
+    <string-array name="tachira_simon_rodriguez">
+        <item>Simón Rodríguez</item>
+    </string-array>
+
+
+    <string-array name="tachira_sucre">
+
+        <item>Sucre</item>
+        <item>Eleazar López Contreras</item>
+        <item>San Pablo</item>
+    </string-array>
+
+    <string-array name="tachira_torbes">
+        <item>Torbes</item>
+    </string-array>
+
+    <string-array name="tachira_uribante">
+        <item>Uribante</item>
+        <item>Cárdenas</item>
+        <item>Juan Pablo Peñalosa</item>
+        <item>Potosí</item>
+    </string-array>
+
+    <string-array name="tachira_san_judas_tadeo">
+        <item>San Judas Tadeo</item>
+    </string-array>
+
+
+    <string-array name="trujillo_andres_bello">
+        <item>Araguaney</item>
+        <item>El Jaguito</item>
+        <item>La Esperanza</item>
+        <item>Santa Isabel</item>
+    </string-array>
+
+    <string-array name="trujillo_bocono">
+
+        <item>Boconó</item>
+        <item>El Carmen</item>
+        <item>Mosquey</item>
+        <item>Ayacucho</item>
+        <item>Burbusay</item>
+        <item>General Ribas</item>
+        <item>Guaramacal</item>
+        <item>Vega de Guaramacal</item>
+        <item>Monseñor Jáuregui</item>
+        <item>Rafael Rangel</item>
+        <item>San Miguel</item>
+        <item>San José</item>
+    </string-array>
+
+
+    <string-array name="trujillo_bolivar">
+        <item>Sabana Grande</item>
+        <item>Cheregüé</item>
+        <item>Granados</item>
+    </string-array>
+
+    <string-array name="trujillo_candelaria">
+        <item>Arnoldo Gabaldón</item>
+        <item>Bolivia</item>
+        <item>Carrillo</item>
+        <item>Cegarra</item>
+        <item>Chejendé</item>
+        <item>Manuel Salvador Ulloa</item>
+        <item>San José</item>
+    </string-array>
+
+    <string-array name="trujillo_carache">
+        <item>Carache</item>
+        <item>La Concepción</item>
+        <item>Cuicas</item>
+        <item>Panamericana</item>
+        <item>Santa Cruz</item>
+    </string-array>
+
+    <string-array name="trujillo_escuque">
+        <item>Escuque</item>
+        <item>La Unión</item>
+        <item>Santa Rita</item>
+        <item>Sabana Libre</item>
+    </string-array>
+
+    <string-array name="trujillo_jose_felipe_marquez_canizalez">
+
+        <item>El Socorro</item>
+        <item>Los Caprichos</item>
+        <item>Antonio José de Sucre</item>
+    </string-array>
+
+    <string-array name="trujillo_juan_vicente_campos_elias">
+        <item>Campo Elías</item>
+        <item>Arnoldo Gabaldón</item>
+    </string-array>
+
+    <string-array name="trujillo_la_ceiba">
+        <item>Santa Apolonia</item>
+        <item>El Progreso</item>
+        <item>La Ceiba</item>
+        <item>Tres de Febrero</item>
+    </string-array>
+
+
+    <string-array name="trujillo_miranda">
+        <item>El Dividive</item>
+        <item>Agua Santa</item>
+        <item>Agua Caliente</item>
+        <item>El Cenizo</item>
+        <item>Valerita</item>
+    </string-array>
+
+    <string-array name="trujillo_monte_carmelo">
+        <item>Monte Carmelo</item>
+        <item>Buena Vista</item>
+        <item>Santa María del Horcón</item>
+    </string-array>
+
+    <string-array name="trujillo_motatan">
+        <item>Motatán</item>
+        <item>El Baño</item>
+        <item>Jalisco</item>
+    </string-array>
+
+    <string-array name="trujillo_pampan">
+
+        <item>Pampán</item>
+        <item>Flor de Patria</item>
+        <item>La Paz</item>
+        <item>Santa Ana</item>
+    </string-array>
+
+    <string-array name="trujillo_pampanito">
+
+        <item>Pampanito</item>
+        <item>La Concepción</item>
+        <item>Pampanito II</item>
+    </string-array>
+
+    <string-array name="trujillo_rafael_rangel">
+        <item>Betijoque</item>
+        <item>José Gregorio Hernández</item>
+        <item>La Pueblita</item>
+        <item>Los Cedros</item>
+    </string-array>
+
+    <string-array name="trujillo_san_rafael_de_carvajal">
+
+        <item>Carvajal</item>
+        <item>Campo Alegre</item>
+        <item>Antonio Nicolás Briceño</item>
+        <item>José Leonardo Suárez</item>
+    </string-array>
+
+
+    <string-array name="trujillo_sucre">
+        <item>Sabana de Mendoza</item>
+        <item>Junín</item>
+        <item>Valmore Rodríguez</item>
+        <item>El Paraíso</item>
+    </string-array>
+
+    <string-array name="trujillo_trujillo">
+        <item>Andrés Linares</item>
+        <item>Chiquinquirá</item>
+        <item>Cristóbal Mendoza</item>
+        <item>Cruz Carrillo</item>
+        <item>Matriz</item>
+        <item>Monseñor Carrillo</item>
+        <item>Tres Esquinas</item>
+    </string-array>
+
+
+    <string-array name="trujillo_urdaneta">
+        <item>Cabimbú</item>
+        <item>Jajó</item>
+        <item>La Mesa de Esnujaque</item>
+        <item>Santiago</item>
+        <item>Tuñame</item>
+
+        <item>La Quebrada</item>
+    </string-array>
+
+    <string-array name="trujillo_valera">
+        <item>Juan Ignacio Montilla</item>
+        <item>La Beatriz</item>
+        <item>La Puerta</item>
+        <item>Mendoza del Valle de Momboy</item>
+        <item>Mercedes Díaz</item>
+        <item>San Luis</item>
+        <item>Caraballeda</item>
+    </string-array>
+
+    <string-array name="vargas_vargas">
+        <item>Caraballeda</item>
+        <item>Carayaca</item>
+        <item>Carlos Soublette</item>
+        <item>Caruao Chuspa</item>
+        <item>Catia La Mar</item>
+        <item>El Junko</item>
+        <item>La Guaira</item>
+        <item>Macuto</item>
+        <item>Maiquetía</item>
+        <item>Naiguatá</item>
+        <item>Urimare</item>
+    </string-array>
+
+    <string-array name="yaracuy_aristides_bastidas">
+        <item>Arístides Bastidas</item>
+    </string-array>
+
+
+    <string-array name="yaracuy_bolivar">
+        <item>Bolívar</item>
+    </string-array>
+
+    <string-array name="yaracuy_bruzual">
+        <item>Chivacoa</item>
+        <item>Campo Elías</item>
+    </string-array>
+
+    <string-array name="yaracuy_cocorote">
+        <item>Cocorote</item>
+    </string-array>
+
+
+    <string-array name="yaracuy_independencia">
+        <item>Independencia</item>
+    </string-array>
+
+    <string-array name="yaracuy_jose_antonio_paez">
+        <item>José Antonio Páez</item>
+    </string-array>
+
+    <string-array name="yaracuy_la_trinidad">
+        <item>La Trinidad</item>
+    </string-array>
+
+
+    <string-array name="yaracuy_manuel_monge">
+        <item>Manuel Monge</item>
+    </string-array>
+
+    <string-array name="yaracuy_nirgua">
+        <item>Salóm</item>
+        <item>Temerla</item>
+        <item>Nirgua</item>
+    </string-array>
+
+
+    <string-array name="yaracuy_pena">
+        <item>San Andrés</item>
+        <item>Yaritagua</item>
+    </string-array>
+
+
+    <string-array name="yaracuy_san_felipe">
+        <item>San Javier</item>
+        <item>Albarico</item>
+        <item>San Felipe</item>
+    </string-array>
+
+
+    <string-array name="yaracuy_sucre">
+        <item>Sucre</item>
+    </string-array>
+
+    <string-array name="yaracuy_urachiche">
+        <item>Urachiche</item>
+    </string-array>
+
+    <string-array name="yaracuy_jose_joaquin_veroes">
+        <item>El Guayabo</item>
+        <item>Farriar</item>
+    </string-array>
+
+    <string-array name="zulia_almirante_padilla">
+        <item>Isla de Toas</item>
+        <item>Monagas</item>
+    </string-array>
+
+    <string-array name="zulia_baralt">
+        <item>San Timoteo</item>
+        <item>General Urdaneta</item>
+        <item>Libertador</item>
+        <item>Marcelino Briceño</item>
+        <item>Pueblo Nuevo</item>
+        <item>Manuel Guanipa Matos</item>
+    </string-array>
+
+    <string-array name="zulia_cabimas">
+
+        <item>Ambrosio</item>
+        <item>Carmen Herrera</item>
+        <item>La Rosa</item>
+        <item>Germán Ríos Linares</item>
+        <item>San Benito</item>
+        <item>Rómulo Betancourt</item>
+        <item>Jorge Hernández</item>
+        <item>Punta Gorda</item>
+        <item>Arístides Calvani</item>
+    </string-array>
+
+    <string-array name="zulia_catatumbo">
+        <item>Encontrados</item>
+        <item>Udón Pérez</item>
+    </string-array>
+
+    <string-array name="zulia_colon">
+        <item>Moralito</item>
+        <item>San Carlos del Zulia</item>
+        <item>Santa Cruz del Zulia</item>
+        <item>Santa Bárbara</item>
+        <item>Urribarrí</item>
+    </string-array>
+
+    <string-array name="zulia_francisco_javier_pulgar">
+        <item>Carlos Quevedo</item>
+        <item>Francisco Javier Pulgar</item>
+        <item>Simón Rodríguez</item>
+        <item>Guamo-Gavilanes</item>
+    </string-array>
+
+
+    <string-array name="zulia_paez">
+        <item>Sinamaica</item>
+        <item>Alta Guajira</item>
+        <item>Elías Sánchez Rubio</item>
+        <item>Guajira</item>
+    </string-array>
+
+    <string-array name="zulia_jesus_enrique_losada">
+        <item>La Concepción</item>
+        <item>San José</item>
+        <item>Mariano Parra León</item>
+        <item>José Ramón Yépez</item>
+    </string-array>
+
+    <string-array name="zulia_jesus_maria_semprun">
+        <item>Jesús María Semprún</item>
+        <item>Barí</item>
+    </string-array>
+
+    <string-array name="zulia_la_canada_de_urdaneta">
+        <item>Concepción</item>
+        <item>Andrés Bello</item>
+        <item>Chiquinquirá</item>
+        <item>El Carmelo</item>
+        <item>Potreritos</item>
+    </string-array>
+
+    <string-array name="zulia_lagunillas">
+        <item>Libertad</item>
+        <item>Alonso de Ojeda</item>
+        <item>Venezuela</item>
+        <item>Eleazar López Contreras</item>
+        <item>Campo Lara</item>
+    </string-array>
+
+    <string-array name="zulia_machiques_de_perija">
+        <item>Bartolomé de las Casas</item>
+        <item>Libertad</item>
+        <item>Río Negro</item>
+        <item>San José de Perijá</item>
+    </string-array>
+
+    <string-array name="zulia_mara">
+
+        <item>San Rafael</item>
+        <item>La Sierrita</item>
+        <item>Las Parcelas</item>
+        <item>Luis de Vicente</item>
+        <item>Monseñor Marcos Sergio Godoy</item>
+        <item>Ricaurte</item>
+        <item>Tamare</item>
+    </string-array>
+
+    <string-array name="zulia_maracaibo">
+        <item>Antonio Borjas Romero</item>
+        <item>Bolívar</item>
+        <item>Cacique Mara</item>
+        <item>Carracciolo Parra Pérez</item>
+        <item>Cecilio Acosta</item>
+        <item>Cristo de Aranza</item>
+        <item>Coquivacoa</item>
+        <item>Chiquinquirá</item>
+        <item>Francisco Eugenio Bustamante</item>
+        <item>Idelfonzo Vásquez</item>
+        <item>Juana de Ávila</item>
+        <item>Luis Hurtado Higuera</item>
+        <item>Manuel Dagnino</item>
+        <item>Olegario Villalobos</item>
+        <item>Raúl Leoni</item>
+        <item>Santa Lucía</item>
+        <item>Venancio Pulgar</item>
+        <item>San Isidro</item>
+    </string-array>
+
+
+    <string-array name="zulia_miranda">
+        <item>Altagracia</item>
+        <item>Faría</item>
+        <item>Ana María Campos</item>
+        <item>San Antonio</item>
+        <item>San José</item>
+    </string-array>
+
+
+    <string-array name="zulia_rosario_de_perija">
+        <item>Donaldo García</item>
+        <item>El Rosario</item>
+        <item>Sixto Zambrano</item>
+    </string-array>
+
+
+    <string-array name="zulia_san_francisco">
+        <item>San Francisco</item>
+        <item>El Bajo</item>
+        <item>Domitila Flores</item>
+        <item>Francisco Ochoa</item>
+        <item>Los Cortijos</item>
+        <item>Marcial Hernández</item>
+    </string-array>
+
+    <string-array name="zulia_santa_rita">
+        <item>Santa Rita</item>
+        <item>El Mene</item>
+        <item>Pedro Lucas Urribarrí</item>
+        <item>José Cenobio Urribarrí</item>
+    </string-array>
+
+
+    <string-array name="zulia_simon_bolivar">
+        <item>Rafael Maria Baralt</item>
+        <item>Manuel Manrique</item>
+        <item>Rafael Urdaneta</item>
+    </string-array>
+
+
+
+    <string-array name="zulia_sucre">
+
+        <item>Bobures</item>
+        <item>Gibraltar</item>
+        <item>Heras</item>
+        <item>Monseñor Arturo Álvarez</item>
+        <item>Rómulo Gallegos</item>
+        <item>El Batey</item>
+    </string-array>
+
+    <string-array name="zulia_valmore_rodriguez">
+        <item>Rafael Urdaneta</item>
+        <item>La Victoria</item>
+        <item>Raúl Cuenca</item>
+    </string-array>
+
+
+    <string-array name="distrito_capital_libertador">
+
+        <item>Altagracia</item>
+        <item>Antímano</item>
+        <item>Caricuao</item>
+        <item>Catedral</item>
+        <item>Coche</item>
+        <item>El Junquito</item>
+        <item>El Paraíso</item>
+        <item>El Recreo</item>
+        <item>El Valle</item>
+        <item>La Candelaria</item>
+        <item>La Pastora</item>
+        <item>La Vega</item>
+        <item>Macarao</item>
+        <item>San Agustín</item>
+        <item>San Bernardino</item>
+        <item>San José</item>
+        <item>San Juan</item>
+        <item>San Pedro</item>
+        <item>Santa Rosalía</item>
+        <item>Santa Teresa</item>
+        <item>Sucre (Catia)</item>
+        <item>23 de enero</item>
+    </string-array>
 </resources>
