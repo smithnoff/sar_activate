@@ -129,7 +129,7 @@ public class FragmentCompletarRegistro extends Fragment {
                     // Changing action button text color
                     View sbView = snackbar.getView();
                     TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-                    snackbar.setActionTextColor(Color.RED);
+                    snackbar.setActionTextColor(Color.WHITE);
                     textView.setTextColor(Color.WHITE);
                     textView.setTypeface(null, Typeface.BOLD);
                     snackbar.show();
