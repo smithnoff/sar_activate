@@ -52,7 +52,7 @@ public class FragmentCrearActividad extends Fragment {
 
 
     private String TAG = "CREAR-ACTIVIDAD";
-    private TextView labelPuntaje, labelDescripcion, labelEstado, labelMunicipio, labelParroquia, labelFotos;
+    private TextView labelPuntaje, labelDescripcion, labelEstado, labelMunicipio, labelParroquia, labelFotos,fechaInicial;
     private TextView textCharCountObjetive;
     private EditText puntaje, descripcion, objetivo, encargado, creador,  inicio, fin, parroquia; // Edit Field holders
     private Spinner nombre, ubicacion, estado, municipio; // Spinner holders
@@ -74,7 +74,7 @@ public class FragmentCrearActividad extends Fragment {
     private String APP_DIRECTORY = "fotosSoyActivista/";
     private String MEDIA_DIRECTORY = APP_DIRECTORY + "media";
     private String TEMPORAL_PICTURE_NAME = "temporal"+ random +".jpg";
-
+   public int presionado;
     private final int PHOTO_CODE = 100;
     private final int SELECT_PICTURE = 200;
 
@@ -95,6 +95,7 @@ public class FragmentCrearActividad extends Fragment {
         labelEstado = (TextView)v.findViewById(R.id.labelEstado);
         labelMunicipio = (TextView)v.findViewById(R.id.labelMunicipio);
         labelParroquia = (TextView)v.findViewById(R.id.labelParroquia);
+        fechaInicial = (TextView)v.findViewById(R.id.textViewFechaInicio);
         labelFotos = (TextView)v.findViewById(R.id.valueFoto);
         textCharCountObjetive = (TextView)v.findViewById(R.id.textCharCountObjetive);
 
@@ -105,8 +106,8 @@ public class FragmentCrearActividad extends Fragment {
         objetivo = (EditText)v.findViewById(R.id.editObjetivo);
         encargado = (EditText)v.findViewById(R.id.editEncargado);
         creador = (EditText)v.findViewById(R.id.editCreador);
-        inicio = (EditText)v.findViewById(R.id.editInicio);
-        fin = (EditText)v.findViewById(R.id.editFin);
+        inicio = (EditText)v.findViewById(R.id.textViewFechaInicio);
+       fin = (EditText)v.findViewById(R.id.textViewFechaFin);
         parroquia = (EditText)v.findViewById(R.id.editParroquia);
         calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
         calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
@@ -131,10 +132,9 @@ public class FragmentCrearActividad extends Fragment {
             @Override
             public void onClick(View v) {
 
-                inicio.requestFocus();
-                inicio.setText("");
+                calendarInicio.setSelected(true);
                 DialogDatePicker picker2 = new DialogDatePicker();
-
+                calendarFin.setSelected(false);
                 picker2.show(getFragmentManager(), "Fecha de inicio");
 
 
@@ -145,8 +145,8 @@ public class FragmentCrearActividad extends Fragment {
         calendarFin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fin.requestFocus();
-                fin.setText("");
+                calendarFin.setSelected(true);
+                calendarInicio.setSelected(false);
                 DialogDatePicker picker2 = new DialogDatePicker();
                 picker2.show(getFragmentManager(), "Fecha de Fin");
 
@@ -291,8 +291,8 @@ public class FragmentCrearActividad extends Fragment {
                                 (
                                 objetivo.getText().toString().trim().length() == 0 ||
                                         encargado.getText().toString().trim().length() == 0 ||
-                                        inicio.getText().toString().trim().length() == 0 ||
-                                        fin.getText().toString().trim().length() == 0
+                                     inicio.getText().toString().trim().length() == 0 ||
+                                      fin.getText().toString().trim().length() == 0
                                 ) {
                             Toast.makeText(getContext(), "Completa los campos vacíos", Toast.LENGTH_SHORT).show();
                             return;
@@ -593,5 +593,7 @@ public class FragmentCrearActividad extends Fragment {
         }
 
     }
+
+
 
 }

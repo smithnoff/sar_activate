@@ -177,22 +177,22 @@
                     android:layout_height="match_parent"
                     android:weightSum="4"
                     android:orientation="horizontal">
-                    <EditText
+
+
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:inputType="date"
-                        android:layout_weight="3"
-                        android:ems="10"
-                        android:id="@+id/editInicio"
-                        android:hint="@string/hintInicio"
-                        android:layout_gravity="center_horizontal" />
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="dd/MM/yyyy"
+                        android:id="@+id/textViewFechaInicio" />
+
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:id="@+id/imgCalendarInicio"
                         android:src="@android:drawable/ic_menu_my_calendar"
                         android:layout_height="match_parent" />
-                    </LinearLayout>
+
+                </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -205,16 +205,14 @@
                    android:weightSum="4"
                    android:orientation="horizontal">
 
-                   <EditText
+
+                   <TextView
                        android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_weight="3"
-                       android:layout_marginTop="6dp"
-                       android:inputType="date"
-                       android:ems="10"
-                       android:hint="@string/hintFin"
-                       android:id="@+id/editFin"
-                       android:layout_gravity="center_horizontal" />
+                       android:layout_height="match_parent"
+                       android:textAppearance="?android:attr/textAppearanceMedium"
+                       android:text="dd/MM/yyyy"
+                       android:id="@+id/textViewFechaFin" />
+
                    <ImageButton
                        android:layout_width="wrap_content"
                        android:id="@+id/imgCalendarFin"

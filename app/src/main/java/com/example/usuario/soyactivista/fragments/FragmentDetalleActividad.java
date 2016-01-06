@@ -16,10 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -58,7 +56,7 @@ public class FragmentDetalleActividad extends Fragment {
 
     private Button botonGuardar, botonEditar, botonEliminar, botonCancelar; // Button holders
 
-    private ImageButton botonMeGusta, botonNoMeGusta, botonAgregarImagenes, botonRemoverImagenes;
+    private ImageButton botonMeGusta, botonNoMeGusta, botonAgregarImagenes, botonRemoverImagenes,calendarInicio,calendarFin;
 
     private ImageView imagen1,imagen2,imagen3,imagen4;
 
@@ -104,8 +102,8 @@ public class FragmentDetalleActividad extends Fragment {
         municipioActual = (TextView)v.findViewById(R.id.municipioActual);
         textMeGusta = (TextView)v.findViewById(R.id.valueMeGusta);
         labelImagenes = (TextView)v.findViewById(R.id.labelImagenes);
-        fechaInicio = (TextView)v.findViewById(R.id.valueFechaInicio);
-        fechaFin = (TextView)v.findViewById(R.id.valueFechaFin);
+        fechaInicio = (TextView)v.findViewById(R.id.textViewFechaInicio);
+        fechaFin = (TextView)v.findViewById(R.id.textViewFechaFin);
 
         //Asign Text Edit to holders
         puntaje = (TextView)v.findViewById(R.id.valuePuntaje);
@@ -176,17 +174,38 @@ public class FragmentDetalleActividad extends Fragment {
         encargado.setText(getArguments().getString("encargado"));
         creador.setText(getArguments().getString("creador"));
 
-        Log.d(TAG,"Estado de Bundle: "+getArguments().getString("estatus"));
+        Log.d(TAG, "Estado de Bundle: " + getArguments().getString("estatus"));
         this.llenarSpinnerdesdeId(estatus, R.array.Estatuses);
         if(getArguments().getString("estatus").equals("En Ejecución"))
             estatus.setSelection(0);
         else
             estatus.setSelection(1);
+        calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
+        calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
+        calendarInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        fechaInicio.setText(getArguments().getString("inicio"));
-        fechaFin.setText(getArguments().getString("fin"));
+                calendarInicio.setSelected(true);
+                DialogDatePicker picker2 = new DialogDatePicker();
+                calendarFin.setSelected(false);
+                picker2.show(getFragmentManager(), "Fecha de inicio");
 
 
+            }
+        });
+
+        calendarFin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendarFin.setSelected(true);
+                calendarInicio.setSelected(false);
+                DialogDatePicker picker2 = new DialogDatePicker();
+                picker2.show(getFragmentManager(), "Fecha de Fin");
+
+
+            }
+        });
         // Load Images
         // Reasure Visibility gone for all images
         imagen1.setVisibility(View.GONE);
