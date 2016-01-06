@@ -1,6 +1,7 @@
 package com.example.usuario.soyactivista.fragments;
 
 import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -46,7 +47,7 @@ public class FragmentListarMensaje extends Fragment  {
     private TextView listaVacia,textProgress;
     private ParseUser currentUser;
     private ProgressDialog progressDialog;
-    private ProgressBar progressBar;
+    private ProgressDialog progressBar;
     private int progressStatus = 0;
     private Handler handler = new Handler();
 
@@ -60,32 +61,6 @@ public class FragmentListarMensaje extends Fragment  {
         view = inflater.inflate(R.layout.fragment_listar_mensaje, container, false);
 
         textProgress = (TextView)view.findViewById(R.id.textProgress);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-
-        new Thread(new Runnable() {
-            public void run() {
-                while (progressStatus < 100) {
-                    progressStatus += 1;
-                    // Update the progress bar and display the
-                    //current value in the text view
-                    handler.post(new Runnable() {
-                        public void run() {
-                            progressBar.setVisibility(View.VISIBLE);
-                            textProgress.setVisibility(View.VISIBLE);
-                            progressBar.setProgress(progressStatus);
-                            textProgress.setText(progressStatus+"/"+progressBar.getMax());
-                        }
-                    });
-                    try {
-                        // Sleep for 200 milliseconds.
-                        //Just to display the progress slowly
-                        Thread.sleep(50);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
 
         // Initialize main ParseQueryAdapter
         listarMensajeMainAdapter = new ListarMensajeParseAdapter(this.getContext());
@@ -96,12 +71,20 @@ public class FragmentListarMensaje extends Fragment  {
         // Set empty list message
         listaVacia = (TextView) view.findViewById(R.id.listaVacia);
 
-        progressBar.setVisibility(View.GONE);
-        textProgress.setVisibility(View.GONE);
         listView.setEmptyView(listaVacia);
 
         if (listarMensajeMainAdapter != null) {
             listarMensajeMainAdapter.clear();
+            progressBar = new ProgressDialog(getActivity());
+            progressBar.setCancelable(false);
+            progressBar.setTitle("Cargando");
+            progressBar.setMessage("iniciando");
+            progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progressBar.setMax(100);
+            progressBar.setProgress(0);
+            progressBar.show();
+            ProcessData p = new ProcessData();
+            p.execute(10);
             listView.setAdapter(listarMensajeMainAdapter);
             listarMensajeMainAdapter.loadObjects();
         } else {
@@ -298,5 +281,56 @@ public class FragmentListarMensaje extends Fragment  {
         }
         return true;
     }
+
+    public class ProcessData extends AsyncTask<Integer, String, String> {
+
+        @Override
+        protected String doInBackground(Integer... integers) {
+
+            int progress = 0;
+            int total = integers[0];
+
+            while (progress <= total) {
+
+                try {
+
+                    Thread.sleep(250); // 0.25 segundos
+
+                } catch(InterruptedException e) {
+
+                }
+
+                String m = progress % 2 == 0 ? "Cargando Mensajes" : "Boletin de Mensajes";
+
+                // exibimos o progresso
+                this.publishProgress(String.valueOf(progress), String.valueOf(total), m);
+
+                progress++;
+            }
+
+            return "DONE";
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
+
+            Float progress = Float.valueOf(values[0]);
+            Float total = Float.valueOf(values[1]);
+
+            String message = values[2];
+
+            progressBar.setProgress((int) ((progress / total) * 100));
+            progressBar.setMessage(message);
+
+            // se os valores são iguais, termianos nosso processamento
+            if (values[0].equals(values[1])) {
+                // removemos a dialog
+                progressBar.cancel();
+            }
+        }
+    }
+
+
 
 }
