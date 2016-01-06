@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:clickable="true"
-    tools:context=".ActividadPAntallaMenu"
-    tools:showIn="@layout/activity_main">
+    tools:context=".ActividadPantallaMenu"
+    tools:showIn="@layout/activity_pantalla_con_menu">
 
     <!-- Toolbar, la barrita de arriba -->
     <android.support.v7.widget.Toolbar

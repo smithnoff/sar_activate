@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.parse.ParseObject;
 
@@ -28,6 +29,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class FragmentListarPregunta extends Fragment {
     private ListView listView;
     private listarPreguntaParseAdapter mainAdapter;
+    private TextView listaVacia;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +43,10 @@ public class FragmentListarPregunta extends Fragment {
 
         // Initialize list view
         listView = (ListView)view.findViewById(R.id.listaPreguntas);
+
+        // Set empty list message
+        listaVacia = (TextView) view.findViewById(R.id.listaVacia);
+        listView.setEmptyView(listaVacia);
 
         mainAdapter.clear();
         listView.setAdapter(mainAdapter);

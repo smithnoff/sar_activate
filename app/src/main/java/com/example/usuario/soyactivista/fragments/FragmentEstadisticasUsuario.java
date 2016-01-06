@@ -79,6 +79,8 @@ public class FragmentEstadisticasUsuario extends Fragment {
         // User has no stadistic data yet. Skip queries
         if( puntos != 0){
 
+            dialog = ProgressDialog.show(getContext(), "Consultando Estadísticas", "Cargando", true);
+
             // Get Position.
             ParseQuery<ParseUser> userParseQuery = ParseUser.getQuery();
             userParseQuery.whereEqualTo("estado", currentUser.getString("estado"));
@@ -96,9 +98,7 @@ public class FragmentEstadisticasUsuario extends Fragment {
                 }
             });
 
-            valuePuntos.setText(String.valueOf(puntos)+" puntos.");
-
-            dialog = ProgressDialog.show(getContext(), "Consultando Estadísticas", "Cargando", true);
+            valuePuntos.setText(String.valueOf(puntos)+" puntos");
 
             // Query stadistics
             ParseQuery<ParseObject> query = ParseQuery.getQuery("EstadisticasUsuario");
@@ -108,7 +108,7 @@ public class FragmentEstadisticasUsuario extends Fragment {
                 public void done(ParseObject estadisticas, ParseException e) {
                     if (e == null) {
 
-                        valuePartidas.setText(String.valueOf(estadisticas.getInt("partidas"))+" partidas.");
+                        valuePartidas.setText(String.valueOf(estadisticas.getInt("partidas"))+" partidas");
 
                         // Get best answer type.
                         if( estadisticas.getInt("faciles") == 0 &&
@@ -133,7 +133,6 @@ public class FragmentEstadisticasUsuario extends Fragment {
                                 else{
                                     valuePreguntas.setText("Difícil");
                                 }
-
                             }
                         }
 
