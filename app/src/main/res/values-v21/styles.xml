@@ -130,9 +130,10 @@
         <item name="android:navigationBarColor">@color/deeppurple600</item>
     </style>
 
-    <style name="RatingBar" parent="Theme.AppCompat">
-        <item name="colorControlNormal">#ffff</item>
-        <item name="android:minHeight">25dp</item>
-        <item name="android:maxHeight">25dp</item>
+    <style name="RatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="colorControlNormal">#fff</item>
+        <item name="android:colorControlActivated">#fff</item>
+        <item name="android:minHeight">25dip</item>
+        <item name="android:maxHeight">25dip</item>
     </style>
 </resources>
