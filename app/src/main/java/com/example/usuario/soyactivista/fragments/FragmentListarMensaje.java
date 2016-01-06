@@ -2,6 +2,7 @@ package com.example.usuario.soyactivista.fragments;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,9 +43,12 @@ public class FragmentListarMensaje extends Fragment  {
     private MenuItem filtroReportados;
     View view;
     private ListView listView;
-    private TextView listaVacia;
+    private TextView listaVacia,textProgress;
     private ParseUser currentUser;
     private ProgressDialog progressDialog;
+    private ProgressBar progressBar;
+    private int progressStatus = 0;
+    private Handler handler = new Handler();
 
 
     @Override
@@ -54,15 +59,45 @@ public class FragmentListarMensaje extends Fragment  {
         // Inflate View
         view = inflater.inflate(R.layout.fragment_listar_mensaje, container, false);
 
+        textProgress = (TextView)view.findViewById(R.id.textProgress);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+
+        new Thread(new Runnable() {
+            public void run() {
+                while (progressStatus < 100) {
+                    progressStatus += 1;
+                    // Update the progress bar and display the
+                    //current value in the text view
+                    handler.post(new Runnable() {
+                        public void run() {
+                            progressBar.setVisibility(View.VISIBLE);
+                            textProgress.setVisibility(View.VISIBLE);
+                            progressBar.setProgress(progressStatus);
+                            textProgress.setText(progressStatus+"/"+progressBar.getMax());
+                        }
+                    });
+                    try {
+                        // Sleep for 200 milliseconds.
+                        //Just to display the progress slowly
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
         // Initialize main ParseQueryAdapter
         listarMensajeMainAdapter = new ListarMensajeParseAdapter(this.getContext());
 
         // Initialize list view
         listView = (ListView) view.findViewById(R.id.mensajesListView);
 
-
         // Set empty list message
         listaVacia = (TextView) view.findViewById(R.id.listaVacia);
+
+        progressBar.setVisibility(View.GONE);
+        textProgress.setVisibility(View.GONE);
         listView.setEmptyView(listaVacia);
 
         if (listarMensajeMainAdapter != null) {
