@@ -136,6 +136,12 @@
                         android:id="@+id/labelParroquia"
                         android:visibility="gone"/>
 
+                    <Spinner
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinParroquia"
+                        android:visibility="gone"/>
+
                     <EditText
                         android:layout_width="fill_parent"
                         android:hint="@string/hintParroquia"
