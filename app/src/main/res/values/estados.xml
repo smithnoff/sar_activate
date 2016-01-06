@@ -42,7 +42,7 @@
         <item>Anaco</item>
         <item>Aragua</item>
         <item>Bolivar</item>
-        <item>Bruzal</item>
+        <item>Manuel Ezequiel Bruzual</item>
         <item>Cajigal</item>
         <item>Carvajal</item>
         <item>Diego Bautista Urbaneja</item>
@@ -75,7 +75,7 @@
         <item>Bolivar</item>
         <item>Camatagua</item>
         <item>Francisco Linares Alcántara</item>
-        <item>Girardot</item>
+        <item>Atanasio Girardot</item>
         <item>Jose Ángel Lamas</item>
         <item>Jose Félix Ribas</item>
         <item>Jose Rafael Revenga</item>
@@ -300,7 +300,7 @@
     </string-array>
 
     <string-array name="Sucre">
-        <item>Andrés Eloy Blanco.</item>
+        <item>Andrés Eloy Blanco</item>
         <item>Andrés Mata</item>
         <item>Arismendi</item>
         <item>Benítez</item>
