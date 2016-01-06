@@ -110,8 +110,10 @@ public class FragmentEstadisticasUsuario extends Fragment {
                 }
             });
 
-            valuePuntos.setText(String.valueOf(puntos) + " puntos.");
-            AnimarTexto(puntos,valuePuntos);
+            if (puntos == 0)
+                valuePuntos.setText(String.valueOf(puntos) + " puntos.");
+            else
+                AnimarTexto(puntos,valuePuntos);
 
 
 

@@ -1,6 +1,8 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -33,7 +35,7 @@ public class FragmentCrearUsuario extends Fragment {
     private EditText editUsername, editNombre, editApellido, editEmail, editCargo, editParroquia;
     private Spinner spinEstado, spinMunicipio, spinComite, spinRol;
     private Button buttonRegistrar;
-    private ProgressDialog dialog;
+    private ProgressDialog progressDialog;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
@@ -89,83 +91,106 @@ public class FragmentCrearUsuario extends Fragment {
 
                     // Validate email address matches pattern
                     if (editEmail.getText().toString().matches(emailPattern)) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setTitle("Confirmar");
+                        builder.setMessage("¿Está seguro de que desea registrar a "+editNombre.getText()+" "+editApellido.getText()+"?");
 
-                        // Start Loading Dialog
-                        dialog = ProgressDialog.show(getActivity(), "Crear Usuario", "Enviando Datos...", true);
+                        builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Start Loading Dialog
 
-                        // Load values in hash map to send to parse
-                        final HashMap<String, Object> params = new HashMap<>();
-                        params.put("username", editUsername.getText().toString());
-                        params.put("nombre", editNombre.getText().toString());
-                        params.put("apellido", editApellido.getText().toString());
-                        params.put("correo", editEmail.getText().toString());
-                        params.put("cargo", editCargo.getText().toString());
-                        params.put("estado", spinEstado.getSelectedItem().toString());
-                        params.put("municipio", spinMunicipio.getSelectedItem().toString());
-                        params.put("parroquia", editParroquia.getText().toString());
-                        params.put("comite", spinComite.getSelectedItem().toString());
-                        params.put("rol", String.valueOf(spinRol.getSelectedItemPosition()));
-                        ParseCloud.callFunctionInBackground("createUser", params, new FunctionCallback<Map<String, Object>>() {
-                            @Override
-                            public void done(Map<String, Object> response, ParseException e) {
-                                if (response != null && response.get("status").toString().equals("OK")) {
-                                    dialog.dismiss();
-                                    Log.d(TAG, "Usuario Registrado");
-                                    if (response.get("userId") != null) {
+                                progressDialog = ProgressDialog.show(getActivity(), "Crear Usuario", "Enviando Datos...", true);
 
-                                        Log.d(TAG, "Response ID is " + response.get("userId").toString());
-                                        // Send Registration Mail in Background
-                                        HashMap<String, Object> params2 = new HashMap<>();
-                                        params2.put("email", editEmail.getText().toString());
-                                        params2.put("username", editUsername.getText().toString());
-                                        params2.put("nombre", editNombre.getText().toString());
-                                        params2.put("apellido", editApellido.getText().toString());
-                                        params2.put("cargo", editCargo.getText().toString());
-                                        params2.put("token", response.get("userId").toString());
-                                        ParseCloud.callFunctionInBackground("SendRegistrationMail", params2, new FunctionCallback<Map<String, Object>>() {
-                                            @Override
-                                            public void done(Map<String, Object> response, ParseException e) {
-                                                if (e == null && Integer.valueOf(response.get("code").toString()) == 0) {
-                                                    Toast.makeText(getActivity(), "Email enviado correctamente", Toast.LENGTH_SHORT).show();
-                                                    Log.d(TAG, "Email Enviado");
-                                                } else {
-                                                    Toast.makeText(getActivity(),ErrorCodeHelper.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_SHORT).show();
-                                                    Log.d(TAG, "Error enviando mail. " + e.getMessage() + " " + response.get("message").toString());
-                                                }
+                                // Load values in hash map to send to parse
+                                final HashMap<String, Object> params = new HashMap<>();
+                                params.put("username", editUsername.getText().toString());
+                                params.put("nombre", editNombre.getText().toString());
+                                params.put("apellido", editApellido.getText().toString());
+                                params.put("correo", editEmail.getText().toString());
+                                params.put("cargo", editCargo.getText().toString());
+                                params.put("estado", spinEstado.getSelectedItem().toString());
+                                params.put("municipio", spinMunicipio.getSelectedItem().toString());
+                                params.put("parroquia", editParroquia.getText().toString());
+                                params.put("comite", spinComite.getSelectedItem().toString());
+                                params.put("rol", String.valueOf(spinRol.getSelectedItemPosition()));
+                                ParseCloud.callFunctionInBackground("createUser", params, new FunctionCallback<Map<String, Object>>() {
+                                    @Override
+                                    public void done(Map<String, Object> response, ParseException e) {
+                                        if (response != null && response.get("status").toString().equals("OK")) {
+                                            progressDialog.dismiss();
+                                            Log.d(TAG, "Usuario Registrado");
+                                            if (response.get("userId") != null) {
 
+                                                Log.d(TAG, "Response ID is " + response.get("userId").toString());
+                                                // Send Registration Mail in Background
+                                                HashMap<String, Object> params2 = new HashMap<>();
+                                                params2.put("email", editEmail.getText().toString());
+                                                params2.put("username", editUsername.getText().toString());
+                                                params2.put("nombre", editNombre.getText().toString());
+                                                params2.put("apellido", editApellido.getText().toString());
+                                                params2.put("cargo", editCargo.getText().toString());
+                                                params2.put("token", response.get("userId").toString());
+                                                ParseCloud.callFunctionInBackground("SendRegistrationMail", params2, new FunctionCallback<Map<String, Object>>() {
+                                                    @Override
+                                                    public void done(Map<String, Object> response, ParseException e) {
+                                                        if (e == null && Integer.valueOf(response.get("code").toString()) == 0) {
+                                                            Toast.makeText(getActivity(), "Email enviado correctamente", Toast.LENGTH_SHORT).show();
+                                                            Log.d(TAG, "Email Enviado");
+                                                        } else {
+                                                            Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_SHORT).show();
+                                                            Log.d(TAG, "Error enviando mail. " + e.getMessage() + " " + response.get("message").toString());
+                                                        }
+
+                                                    }
+                                                });
                                             }
-                                        });
+
+                                            Toast.makeText(getActivity(), "Usuario creado correctamente.", Toast.LENGTH_SHORT).show();
+                                            Fragment fragment = new FragmentListarUsuario();
+                                            getFragmentManager()
+                                                    .beginTransaction()
+                                                    .replace(R.id.content_frame, fragment)
+                                                    .commit();
+
+                                        } else {
+                                            // TODO: Discern error types by examining error code.
+                                            progressDialog.dismiss();
+                                            if (e != null) {
+                                                Log.d(TAG, "Error: " + e.getMessage());
+                                                Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                            }
+
+                                            if (response != null) {
+                                                Log.d(TAG, "Error: " + response.get("code").toString() + " " + response.get("message").toString());
+                                                Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_LONG).show();
+                                            }
+
+                                            if (e == null && response == null) {
+                                                Log.d(TAG, "Error: unknown error");
+                                                Toast.makeText(getActivity(), "Error, por favor intenta de nuevo mas tarde.", Toast.LENGTH_LONG).show();
+                                            }
+
+
+                                        }
                                     }
-
-                                    Toast.makeText(getActivity(), "Usuario creado correctamente.", Toast.LENGTH_SHORT).show();
-                                    Fragment fragment = new FragmentListarUsuario();
-                                    getFragmentManager()
-                                            .beginTransaction()
-                                            .replace(R.id.content_frame, fragment)
-                                            .commit();
-
-                                } else {
-                                    // TODO: Discern error types by examining error code.
-                                    dialog.dismiss();
-                                    if(e != null){
-                                        Log.d(TAG, "Error: " + e.getMessage());
-                                        Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
-                                    }
-
-                                    if(response != null){
-                                        Log.d(TAG, "Error: " +response.get("code").toString()+" "+ response.get("message").toString());
-                                        Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_LONG).show();
-                                    }
-
-                                    if(e == null && response == null){
-                                        Log.d(TAG, "Error: unknown error");
-                                        Toast.makeText(getActivity(), "Error, por favor intenta de nuevo mas tarde.", Toast.LENGTH_LONG).show();
-                                    }
-
-
-                                }
+                                });
+                                dialog.dismiss();
                             }
                         });
+
+                        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Do nothing
+                                dialog.dismiss();
+                            }
+                        });
+
+                        // After Dialog is Completely defined - Show Dialog.
+                        AlertDialog alert = builder.create();
+                        alert.show();
+
                     } else {
                         Toast.makeText(getContext(), "Correo inválido.", Toast.LENGTH_LONG).show();
                         return;

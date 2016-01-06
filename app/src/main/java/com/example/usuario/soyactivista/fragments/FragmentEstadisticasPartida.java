@@ -76,13 +76,16 @@ public class FragmentEstadisticasPartida extends Fragment {
         valueRespuestasCorrectas.startAnimation(AnimationUtils.loadAnimation(getActivity(),R.anim.slide_in_left));
         Integer incorrectas = getArguments().getInt("totalPreguntas")- getArguments().getInt("respuestasCorrectas");
         valueRespuestasIncorrectas.setText(incorrectas.toString());
-        valueRespuestasIncorrectas.startAnimation(AnimationUtils.loadAnimation(getActivity(),R.anim.slide_in_left));
+        valueRespuestasIncorrectas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
 
         // Load Rating
         asignarEstrellas();
 
         //Animated Points
-        AnimarTexto(puntos,valuePuntosConseguidos);
+        if(puntos == 0)
+            valuePuntosConseguidos.setText(puntos.toString());
+        else
+            AnimarTexto(puntos,valuePuntosConseguidos);
 
 
         // Update user points
