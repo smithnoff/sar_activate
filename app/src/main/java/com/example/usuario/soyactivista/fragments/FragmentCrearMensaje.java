@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,7 @@ public class FragmentCrearMensaje extends Fragment {
     private String TAG = "FragmentCrearMensaje"; // For Log.d
 
     private ProgressDialog dialog;
+    private ProgressBar progressBar;
 
     private TextView textCharCount;
     private EditText editText;
@@ -101,6 +103,8 @@ public class FragmentCrearMensaje extends Fragment {
         imageAttachmentPreview = (ImageView) v.findViewById(R.id.imageAttachmentPreview);
 
         buttonCreateMessage= (Button)v.findViewById(R.id.buttonCreateMessage);
+
+        progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
 
 
 
