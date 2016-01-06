@@ -21,9 +21,14 @@
         android:layout_gravity="center_horizontal"
         android:numStars="3"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:stepSize="0.1"
-        android:theme="@style/RatingBar"
-        style="?android:attr/ratingBarStyle"
+
+        style="@style/RatingBar"
+        android:minHeight="50dp"
+        android:maxWidth="100dp"
+        android:maxHeight="100dp"
+        android:minWidth="50dp"
         />
 
     <View
@@ -33,7 +38,8 @@
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:background="@color/white"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        />
 
     <TextView
         android:layout_width="wrap_content"

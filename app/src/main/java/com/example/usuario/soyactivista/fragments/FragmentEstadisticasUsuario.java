@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import logica.AnimateCounter;
 import logica.ErrorCodeHelper;
 import logica.Selector_de_Tema;
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -60,20 +62,31 @@ public class FragmentEstadisticasUsuario extends Fragment {
         valuePreguntas = (TextView) v.findViewById(R.id.valuePreguntas);
         buttonMenuPrincipal = (Button) v.findViewById(R.id.buttonMenuPrincipal);
 
+        dialog = ProgressDialog.show(getContext(), "Consultando Estadísticas", "Cargando", true);
+
         // Assign Values
         valueNombre.setText(currentUser.getString("nombre"));
 
         // Set Rank
         int puntos = currentUser.getInt("puntos");
 
-        if( puntos < 10000 ){
+        if( puntos < 10000 )
+        {
             valueRango.setText("PRINCIPIANTE");
+            valueRango.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
         }
         else{
             if( puntos < 100000 )
+            {
                 valueRango.setText("VETERANO");
+                valueRango.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
+            }
             else
+            {
                 valueRango.setText("PROFESIONAL");
+                valueRango.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
+            }
+
         }
 
         // User has no stadistic data yet. Skip queries
@@ -90,15 +103,20 @@ public class FragmentEstadisticasUsuario extends Fragment {
                     if (e == null) {
                         Integer finalCount = count + 1;
                         valuePosicion.setText(finalCount.toString());
+                        valuePosicion.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
                     } else {
                         Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                     }
                 }
             });
 
-            valuePuntos.setText(String.valueOf(puntos)+" puntos.");
+            if (puntos == 0)
+                valuePuntos.setText(String.valueOf(puntos) + " puntos.");
+            else
+                AnimarTexto(puntos,valuePuntos);
 
-            dialog = ProgressDialog.show(getContext(), "Consultando Estadísticas", "Cargando", true);
+
+
 
             // Query stadistics
             ParseQuery<ParseObject> query = ParseQuery.getQuery("EstadisticasUsuario");
@@ -109,19 +127,24 @@ public class FragmentEstadisticasUsuario extends Fragment {
                     if (e == null) {
 
                         valuePartidas.setText(String.valueOf(estadisticas.getInt("partidas"))+" partidas.");
+                        valuePartidas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
 
                         // Get best answer type.
                         if( estadisticas.getInt("faciles") == 0 &&
                                 estadisticas.getInt("intermedias") == 0 &&
                                 estadisticas.getInt("dificiles") == 0)
+                        {
                             // If all cero tell none
                             valuePreguntas.setText("Ninguna.");
+                            valuePreguntas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
+                        }
                         else{
                             // Find biggest.
                             if(estadisticas.getInt("faciles") >= estadisticas.getInt("intermedias") &&
                                     estadisticas.getInt("faciles") >= estadisticas.getInt("dificiles") ){
 
                                 valuePreguntas.setText("Fácil");
+                                valuePreguntas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
                             }
                             else{
 
@@ -129,9 +152,11 @@ public class FragmentEstadisticasUsuario extends Fragment {
                                         estadisticas.getInt("intermedias") >= estadisticas.getInt("dificiles") ){
 
                                     valuePreguntas.setText("Intermedio");
+                                    valuePreguntas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
                                 }
                                 else{
                                     valuePreguntas.setText("Difícil");
+                                    valuePreguntas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
                                 }
 
                             }
@@ -140,9 +165,11 @@ public class FragmentEstadisticasUsuario extends Fragment {
                         dialog.dismiss();
                     } else {
                         dialog.dismiss();
-                        Log.d(TAG, "Error: " + e.getMessage()+" "+e.getCode());
+                        Log.d(TAG, "Error: " + e.getMessage() + " " + e.getCode());
                         valuePartidas.setText("0 partidas");
+                        valuePartidas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
                         valuePreguntas.setText("Ninguna");
+                        valuePreguntas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
                         Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                     }
                 }
@@ -152,9 +179,12 @@ public class FragmentEstadisticasUsuario extends Fragment {
         else{
             Toast.makeText(getActivity(), "Todavía no has jugado tu primera partida.", Toast.LENGTH_LONG).show();
             valuePosicion.setText("Ninguno");
+            valuePosicion.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
             valuePuntos.setText("0 puntos.");
             valuePartidas.setText("0 partidas");
+            valuePartidas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
             valuePreguntas.setText("Ninguna");
+            valuePreguntas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
         }
 
         buttonMenuPrincipal.setOnClickListener(new View.OnClickListener() {
@@ -171,5 +201,13 @@ public class FragmentEstadisticasUsuario extends Fragment {
 
 
         return v;
+    }
+
+    private void AnimarTexto(int numero, TextView text){
+        AnimateCounter animateCounterWrong = new AnimateCounter.Builder(text)
+                .setCount(0, numero)
+                .setDuration(2000)
+                .build();
+        animateCounterWrong.execute();
     }
 }
