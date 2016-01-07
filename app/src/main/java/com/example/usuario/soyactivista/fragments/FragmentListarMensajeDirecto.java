@@ -22,6 +22,7 @@ import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 import java.text.SimpleDateFormat;
@@ -40,6 +41,7 @@ public class FragmentListarMensajeDirecto extends Fragment {
 
     View view;
     private ListarMensajeDirectoParseAdapter listarMensajeDirectoParseAdapter;
+    private ProgressDialog progressDialog;
     private ListView listView;
     ProgressDialog dialog;
     public SqliteManager manager;
@@ -49,7 +51,6 @@ public class FragmentListarMensajeDirecto extends Fragment {
         // Inflate View
         view = inflater.inflate(R.layout.fragment_listar_mensaje_directo, container, false);
 
-        dialog = ProgressDialog.show(getContext(), "Buscando Mensajes", "Cargando", true);
         // Initialize main ParseQueryAdapter
         listarMensajeDirectoParseAdapter = new ListarMensajeDirectoParseAdapter(this.getContext(),getArguments().getString("conversacionId"));
         Log.d(TAG,"Mensaje Adapter contains: "+listarMensajeDirectoParseAdapter.getCount()+" items");
@@ -57,16 +58,25 @@ public class FragmentListarMensajeDirecto extends Fragment {
         // Initialize list view
         listView = (ListView) view.findViewById(R.id.mensajesDirectosListView);
 
-        if (listarMensajeDirectoParseAdapter != null) {
-            listarMensajeDirectoParseAdapter.clear();
-            listView.setAdapter(listarMensajeDirectoParseAdapter);
-            listarMensajeDirectoParseAdapter.loadObjects();
-            dialog.dismiss();
-            Log.d(TAG, "Mensaje Adapter loaded objects. Now contains: " + listarMensajeDirectoParseAdapter.getCount() + " items");
-        } else {
-            Log.d("ADAPTER", "Adapter returned null!");
-            dialog.dismiss();
-        }
+        // Show loading messages dialog.
+        progressDialog = ProgressDialog.show(getContext(),"Buscando Mensajes","Cargando",true);
+        listarMensajeDirectoParseAdapter.addOnQueryLoadListener(new ParseQueryAdapter.OnQueryLoadListener<ParseObject>() {
+            @Override
+            public void onLoading() {
+                if(progressDialog == null)
+                    progressDialog = ProgressDialog.show(getContext(),"Buscando Mensajes","Cargando",true);
+            }
+
+            @Override
+            public void onLoaded(List<ParseObject> objects, Exception e) {
+                progressDialog.dismiss();
+            }
+        });
+
+        listarMensajeDirectoParseAdapter.clear();
+        listView.setAdapter(listarMensajeDirectoParseAdapter);
+        listarMensajeDirectoParseAdapter.loadObjects();
+        Log.d(TAG, "Mensaje Adapter loaded objects. Now contains: " + listarMensajeDirectoParseAdapter.getCount() + " items");
 
         // Handle Item OnClick Events
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

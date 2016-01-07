@@ -110,6 +110,9 @@ public class FragmentContestarPregunta extends Fragment {
                     puntosDeducidos = puntosDeducidos / 2;
                     Log.d(TAG,"Puntaje deducido: "+puntosDeducidos.toString());
                     puntuacionPartida = puntuacionPartida - puntosDeducidos.intValue();
+                    // Stop Timer
+                    contadorPregunta.cancel();
+
                     // Call next question/end
                     if(preguntaActual + 1  < totalPreguntas)
                         siguientePregunta();
@@ -209,6 +212,9 @@ public class FragmentContestarPregunta extends Fragment {
         valueTiempo.setTextColor(getResources().getColor(R.color.red_error));
         valueTiempo.setText("- " + puntajes.get(preguntaActual) + " puntos");
 
+        // Stop timer
+        contadorPregunta.cancel();
+
 
         // remove points
         puntuacionPartida = puntuacionPartida - Integer.valueOf(puntajes.get(preguntaActual));
@@ -237,6 +243,9 @@ public class FragmentContestarPregunta extends Fragment {
         valueTiempo.setTextColor(getResources().getColor(R.color.green_complete));
         valueTiempo.setText("+ " + puntajes.get(preguntaActual) + " puntos");
         valueTiempo.setText("Correcto");
+
+        // Stop timer
+        contadorPregunta.cancel();
 
         // add points
         puntuacionPartida = puntuacionPartida + Integer.valueOf(puntajes.get(preguntaActual));

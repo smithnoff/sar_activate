@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import com.parse.ParseUser;
+
 import logica.Selector_de_Tema;
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -27,15 +29,22 @@ public class FragmentTriviaPrincipal extends Fragment{
         //Choose fragment to inflate
         View v = inflater.inflate(R.layout.fragment_trivia_principal, container, false);
 
-
         // Assing to Holders
+        valueNombrePartido = (TextView) v.findViewById(R.id.valueNombrePartido);
         adminPreguntas = (Button)v.findViewById(R.id.administrarPreguntas);
         nuevaPartida = (Button)v.findViewById(R.id.nuevaPartida);
         misEstadisticas = (Button)v.findViewById(R.id.misEstadisticas);
 
-        valueNombrePartido = (TextView) v.findViewById(R.id.valueNombrePartido);
-
         valueNombrePartido.setText(Selector_de_Tema.getNombrePartido());
+
+        // Check if user is Admin
+        ParseUser currentUser = ParseUser.getCurrentUser();
+
+        if(currentUser.getInt("rol") != 1){
+            adminPreguntas.setEnabled(false);
+            adminPreguntas.setVisibility(View.GONE);
+        }
+
 
         nuevaPartida.setOnClickListener(new View.OnClickListener() {
             @Override

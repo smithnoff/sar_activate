@@ -16,6 +16,20 @@
             android:id="@+id/listaPreguntas"
             android:layout_marginTop="8dp"
             />
+
+        <TextView
+            android:id="@+id/listaVacia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/noExistenElementos"
+            android:layout_marginTop="50dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:foregroundGravity="center"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            />
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/botonAgregarPregunta"
             android:layout_width="56dp"

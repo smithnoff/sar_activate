@@ -6,10 +6,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -25,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.design.widget.CoordinatorLayout;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -75,6 +79,7 @@ public class FragmentCrearMensaje extends Fragment {
     private final int SELECT_PICTURE = 200;
     private static final int PICKFILE_RESULT_CODE = 300;
     private static final int PLACE_PICKER_REQUEST = 400;
+    private CoordinatorLayout coordinatorLayout;
 
     //Location
     private ParseGeoPoint location;
@@ -106,6 +111,8 @@ public class FragmentCrearMensaje extends Fragment {
 
         progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
 
+        coordinatorLayout = (CoordinatorLayout)v.findViewById(R.id
+                .coordinatorLayout);
 
 
         buttonAddFile = (ImageButton)v.findViewById(R.id.buttonAddFile);
@@ -200,7 +207,12 @@ public class FragmentCrearMensaje extends Fragment {
                 try {
                     startActivityForResult(chooserIntent, PICKFILE_RESULT_CODE);
                 } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(getContext(), "No se encontró un manejador de archivos. Por favor descargue como \"Astro File Manager\" de la Tienda de Google.", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(), "No se encontró un manejador de archivos. Por favor descargue como \"Astro File Manager\" de la Tienda de Google.", Toast.LENGTH_LONG).show();
+                    final Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "No se encontró un manejador de archivos. Por favor descargue como \"Astro File Manager\" de la Tienda de Google.",
+                                    Snackbar.LENGTH_LONG);
+
+                    snackbar.show();
                 }
 
             }
@@ -214,9 +226,18 @@ public class FragmentCrearMensaje extends Fragment {
                 try {
                     startActivityForResult(builder.build(getActivity()), PLACE_PICKER_REQUEST);
                 } catch (GooglePlayServicesRepairableException e) {
-                    Toast.makeText(getContext(), "Erro de Google Play Services. Por favor asegurese de que Google Play Services está instalado y actualizado.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "Erro de Google Play Services. Por favor asegurese de que Google Play Services está instalado y actualizado.", Toast.LENGTH_SHORT).show();
+                    final Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "Erro de Google Play Services. Por favor asegurese de que Google Play Services está instalado y actualizado.",
+                                    Snackbar.LENGTH_LONG);
+
+                    snackbar.show();
                 } catch (GooglePlayServicesNotAvailableException e) {
-                    Toast.makeText(getContext(), "Error de Google Play Services. El servicio no está disponible", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "Error de Google Play Services. El servicio no está disponible", Toast.LENGTH_SHORT).show();
+                    final Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "Error de Google Play Services. El servicio no está disponible",
+                                    Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
 
             }
@@ -266,7 +287,13 @@ public class FragmentCrearMensaje extends Fragment {
                                                         Toast.LENGTH_LONG).show();
                                                 Log.d(TAG, e.toString());
                                             } else {
-                                                Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                                //Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                                final Snackbar snackbar = Snackbar
+                                                        .make(coordinatorLayout, "Foto Cargada",
+                                                                Snackbar.LENGTH_LONG);
+
+                                                snackbar.show();
+
                                             }
                                         }
                                     });
@@ -286,7 +313,12 @@ public class FragmentCrearMensaje extends Fragment {
                                                         Toast.LENGTH_LONG).show();
                                                 Log.d(TAG, e.toString());
                                             } else {
-                                                Toast.makeText(getActivity(), "PDF Cargado.", Toast.LENGTH_SHORT).show();
+                                                //Toast.makeText(getActivity(), "PDF Cargado.", Toast.LENGTH_SHORT).show();
+                                                final Snackbar snackbar = Snackbar
+                                                        .make(coordinatorLayout, "PDF Cargado.",
+                                                                Snackbar.LENGTH_LONG);
+
+                                                snackbar.show();
                                             }
                                         }
                                     });
@@ -304,7 +336,12 @@ public class FragmentCrearMensaje extends Fragment {
                                     public void done(ParseException e) {
                                         if (e == null) {
                                             dialog.dismiss();
-                                            Toast.makeText(getActivity(), "Mensaje Publicado", Toast.LENGTH_SHORT).show();
+                                            //Toast.makeText(getActivity(), "Mensaje Publicado", Toast.LENGTH_SHORT).show();
+                                            final Snackbar snackbar = Snackbar
+                                                    .make(coordinatorLayout, "Mensaje Publicado.",
+                                                            Snackbar.LENGTH_LONG);
+
+                                            snackbar.show();
                                             // Redirect View to ListarMensajes
                                             Fragment fragment = new FragmentListarMensaje();
                                             getFragmentManager()
@@ -338,7 +375,13 @@ public class FragmentCrearMensaje extends Fragment {
                     alert.show();
 
                 } else {
-                    Toast.makeText(getContext(), "No puede publicar un mensaje vacío.", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(), "No puede publicar un mensaje vacío.", Toast.LENGTH_LONG).show();
+                    final Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "No puede publicar un mensaje vacío.",
+                                    Snackbar.LENGTH_LONG);
+
+                    snackbar.show();
+
                     return;
                 }
 
@@ -369,7 +412,12 @@ public class FragmentCrearMensaje extends Fragment {
                     location = null;
                 }
                 else{
-                    Toast.makeText(getActivity(), "Error adjuntando la imagen."+resultCode, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), "Error adjuntando la imagen."+resultCode, Toast.LENGTH_SHORT).show();
+                    final Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "Error adjuntando la imagen." + resultCode,
+                                    Snackbar.LENGTH_LONG);
+
+                    snackbar.show();
                 }
                 break;
 
@@ -394,7 +442,11 @@ public class FragmentCrearMensaje extends Fragment {
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(getActivity(), "Error adjuntando la imagen."+resultCode, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), "Error adjuntando la imagen."+resultCode, Toast.LENGTH_SHORT).show();
+                    final Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "Error adjuntando la imagen."+resultCode,
+                                    Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
                 break;
 
@@ -415,15 +467,31 @@ public class FragmentCrearMensaje extends Fragment {
                         selectedImage = null;
 
                     } catch (FileNotFoundException e) {
-                        Toast.makeText(getActivity(), "Error adjuntando la posición."+resultCode, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), "Error adjuntando la posición."+resultCode, Toast.LENGTH_SHORT).show();
+                        final Snackbar snackbar = Snackbar
+                                .make(coordinatorLayout, "Error adjuntando la posición."+resultCode,
+                                        Snackbar.LENGTH_LONG);
+
+                        snackbar.show();
+
                     } catch (IOException e) {
-                        Toast.makeText(getActivity(), "Error adjuntando el archivo."+resultCode, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), "Error adjuntando el archivo."+resultCode, Toast.LENGTH_SHORT).show();
+                        final Snackbar snackbar = Snackbar
+                                .make(coordinatorLayout, "Error adjuntando el archivo."+resultCode,
+                                        Snackbar.LENGTH_LONG);
+                        snackbar.show();
+
                     }
 
 
                 }
                 else{
-                    Toast.makeText(getActivity(), "Error adjuntando el archivo."+resultCode, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), "Error adjuntando el archivo."+resultCode, Toast.LENGTH_SHORT).show();
+                    final Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "Error adjuntando el archivo."+resultCode,
+                                    Snackbar.LENGTH_LONG);
+
+                    snackbar.show();
                 }
                 break;
 
