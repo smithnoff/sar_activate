@@ -255,7 +255,10 @@ public class FragmentEditarTipoActividad extends Fragment {
         cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // Turn fields not editable
+                nombre.setText(getArguments().getString("nombre"));
+                descripcion.setText(getArguments().getString("descripcion"));
                 nombre.setEnabled(false);
                 descripcion.setEnabled(false);
                 puntaje.setEnabled(false);
