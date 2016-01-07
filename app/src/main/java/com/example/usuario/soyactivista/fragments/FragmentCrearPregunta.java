@@ -98,7 +98,23 @@ public class FragmentCrearPregunta extends Fragment {
                             pregunta.put("opcion2", editRespuesta2.getText().toString());
                             pregunta.put("opcion3", editRespuesta3.getText().toString());
                             pregunta.put("opcion4", editRespuesta4.getText().toString());
-                            pregunta.put("tiempo", Integer.parseInt(spinTiempo.getSelectedItem().toString()));
+                            // Parse response time option
+                            Integer tiempo;
+                            switch (spinTiempo.getSelectedItemPosition()){
+                                case 0:
+                                    tiempo = 30;
+                                    break;
+                                case 1:
+                                    tiempo = 60;
+                                    break;
+                                case 2:
+                                    tiempo = 90;
+                                    break;
+                                default:
+                                    tiempo = 30;
+                                    break;
+                            }
+                            pregunta.put("tiempo", tiempo);
                             pregunta.put("puntaje", Integer.parseInt(spinPuntaje.getSelectedItem().toString()));
                             pregunta.put("dificultad", spinNivel.getSelectedItem().toString());
                             pregunta.put("correcta", Integer.parseInt(spinCorrecta.getSelectedItem().toString()));

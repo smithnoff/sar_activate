@@ -1,5 +1,6 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,7 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 import java.text.SimpleDateFormat;
@@ -29,8 +31,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import logica.ListarActividadAdapter;
-import logica.ListarMensajeParseAdapter;
+import logica.ErrorCodeHelper;
+import logica.ListarActividadParseAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -39,11 +41,12 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class FragmentListarActividad extends Fragment {
 
     private static final String TAG = "FragmentListarActividad";
-    private ListarActividadAdapter listarActividadAdapter;
+    private ListarActividadParseAdapter listarActividadParseAdapter;
     private TextView listaVacia;
     private ListView listView;
     private ParseUser currentUser;
     private ArrayList<String> likes;
+    private ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,11 +69,11 @@ public class FragmentListarActividad extends Fragment {
 
         likes = new ArrayList<>();
 
+        progressDialog = ProgressDialog.show(getContext(),"Buscando Likes","Cargando",true);
         // Get current user likes
         // TODO: Limit returning likes number
         ParseQuery<ParseObject> query = ParseQuery.getQuery("MeGusta");
         query.whereEqualTo("usuario", currentUser);
-
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> parseLikes, ParseException e) {
                 if (e == null) {
@@ -82,20 +85,40 @@ public class FragmentListarActividad extends Fragment {
                     Log.d("Likes", "Likes list contains " + likes.size() + " likes");
 
                     // Initialize main ParseQueryAdapter
-                    listarActividadAdapter = new ListarActividadAdapter(getContext(),likes);
+                    listarActividadParseAdapter = new ListarActividadParseAdapter(getContext(),likes);
 
-                    if(listarActividadAdapter !=null){
+
+                    progressDialog.setTitle("Buscando Actividades");
+                    // Query Loading Message
+                    listarActividadParseAdapter.addOnQueryLoadListener(new ParseQueryAdapter.OnQueryLoadListener<ParseObject>() {
+                        @Override
+                        public void onLoading() {
+                            if(progressDialog == null)
+                                progressDialog = ProgressDialog.show(getContext(),"Buscando Actividades","Cargando",true);
+                        }
+
+                        @Override
+                        public void onLoaded(List<ParseObject> objects, Exception e) {
+                            progressDialog.dismiss();
+                        }
+                    });
+
+                    if(listarActividadParseAdapter !=null){
                         Log.d("ADAPTER", "Adapter is not null!");
-                        listarActividadAdapter.clear();
-                        listView.setAdapter(listarActividadAdapter);
-                        listarActividadAdapter.loadObjects();
+                        listarActividadParseAdapter.clear();
+                        listView.setAdapter(listarActividadParseAdapter);
+                        listarActividadParseAdapter.loadObjects();
                     }
                     else{
+                        progressDialog.dismiss();
                         Log.d("ADAPTER", "Adapter returned null!");
+                        Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(0), Toast.LENGTH_LONG).show();
                     }
 
                 } else {
-                    Log.d("Likes", "Error: " + e.getMessage());
+                    progressDialog.dismiss();
+                    Log.d("Likes", "Error "+e.getCode()+": " + e.getMessage());
+                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -226,17 +249,17 @@ public class FragmentListarActividad extends Fragment {
 
                         Log.d(TAG, "Filtering by Status");
 
-                        listarActividadAdapter.clear();
+                        listarActividadParseAdapter.clear();
 
-                        listarActividadAdapter = new ListarActividadAdapter(getContext(),likes, "estatus=" + listViewDialogEstatus.getItemAtPosition(position).toString());
+                        listarActividadParseAdapter = new ListarActividadParseAdapter(getContext(),likes, "estatus=" + listViewDialogEstatus.getItemAtPosition(position).toString());
 
-                        listView.setAdapter(listarActividadAdapter);
+                        listView.setAdapter(listarActividadParseAdapter);
 
-                        listarActividadAdapter.loadObjects();
+                        listarActividadParseAdapter.loadObjects();
 
-                        listarActividadAdapter.notifyDataSetChanged();
+                        listarActividadParseAdapter.notifyDataSetChanged();
 
-                        Log.d(TAG, "Adapter has " + listarActividadAdapter.getCount() + " items");
+                        Log.d(TAG, "Adapter has " + listarActividadParseAdapter.getCount() + " items");
 
 
                     }
@@ -249,17 +272,17 @@ public class FragmentListarActividad extends Fragment {
                 // Request List to filter
                 // TODO: Create Progress Dialog
 
-                listarActividadAdapter.clear();
+                listarActividadParseAdapter.clear();
 
-                listarActividadAdapter = new ListarActividadAdapter(getContext(),likes,"ubicacion=Nacional");
+                listarActividadParseAdapter = new ListarActividadParseAdapter(getContext(),likes,"ubicacion=Nacional");
 
-                listView.setAdapter(listarActividadAdapter);
+                listView.setAdapter(listarActividadParseAdapter);
 
-                listarActividadAdapter.loadObjects();
+                listarActividadParseAdapter.loadObjects();
 
-                listarActividadAdapter.notifyDataSetChanged();
+                listarActividadParseAdapter.notifyDataSetChanged();
 
-                Log.d(TAG, "Adapter has " + listarActividadAdapter.getCount() + " items");
+                Log.d(TAG, "Adapter has " + listarActividadParseAdapter.getCount() + " items");
 
                 break;
 
@@ -293,17 +316,17 @@ public class FragmentListarActividad extends Fragment {
 
                         Log.d(TAG, "Filtering by State");
 
-                        listarActividadAdapter.clear();
+                        listarActividadParseAdapter.clear();
 
-                        listarActividadAdapter = new ListarActividadAdapter(getContext(),likes, "estado=" + listViewDialogEstadales.getItemAtPosition(position).toString());
+                        listarActividadParseAdapter = new ListarActividadParseAdapter(getContext(),likes, "estado=" + listViewDialogEstadales.getItemAtPosition(position).toString());
 
-                        listView.setAdapter(listarActividadAdapter);
+                        listView.setAdapter(listarActividadParseAdapter);
 
-                        listarActividadAdapter.loadObjects();
+                        listarActividadParseAdapter.loadObjects();
 
-                        listarActividadAdapter.notifyDataSetChanged();
+                        listarActividadParseAdapter.notifyDataSetChanged();
 
-                        Log.d(TAG, "Adapter has " + listarActividadAdapter.getCount() + " items");
+                        Log.d(TAG, "Adapter has " + listarActividadParseAdapter.getCount() + " items");
 
 
                     }
@@ -316,17 +339,17 @@ public class FragmentListarActividad extends Fragment {
                 // Request List to filter
                 // TODO: Create Progress Dialog
 
-                listarActividadAdapter.clear();
+                listarActividadParseAdapter.clear();
 
-                listarActividadAdapter = new ListarActividadAdapter(getContext(),likes,"meGusta=true");
+                listarActividadParseAdapter = new ListarActividadParseAdapter(getContext(),likes,"meGusta=true");
 
-                listView.setAdapter(listarActividadAdapter);
+                listView.setAdapter(listarActividadParseAdapter);
 
-                listarActividadAdapter.loadObjects();
+                listarActividadParseAdapter.loadObjects();
 
-                listarActividadAdapter.notifyDataSetChanged();
+                listarActividadParseAdapter.notifyDataSetChanged();
 
-                Log.d(TAG, "Adapter has " + listarActividadAdapter.getCount() + " items");
+                Log.d(TAG, "Adapter has " + listarActividadParseAdapter.getCount() + " items");
 
                 break;
 
@@ -336,32 +359,32 @@ public class FragmentListarActividad extends Fragment {
                 // TODO: Create Progress Dialog
                 if(currentUser != null){
 
-                    listarActividadAdapter.clear();
+                    listarActividadParseAdapter.clear();
 
-                    listarActividadAdapter = new ListarActividadAdapter(getContext(),likes,"propios="+currentUser.getUsername());
+                    listarActividadParseAdapter = new ListarActividadParseAdapter(getContext(),likes,"propios="+currentUser.getUsername());
 
-                    listView.setAdapter(listarActividadAdapter);
+                    listView.setAdapter(listarActividadParseAdapter);
 
-                    listarActividadAdapter.loadObjects();
+                    listarActividadParseAdapter.loadObjects();
 
-                    listarActividadAdapter.notifyDataSetChanged();
+                    listarActividadParseAdapter.notifyDataSetChanged();
 
-                    Log.d(TAG, "Adapter has " + listarActividadAdapter.getCount() + " items");
+                    Log.d(TAG, "Adapter has " + listarActividadParseAdapter.getCount() + " items");
 
                 }
                 break;
 
             case R.id.filtroTodas:
 
-                    listarActividadAdapter.clear();
+                    listarActividadParseAdapter.clear();
 
-                    listarActividadAdapter = new ListarActividadAdapter(getContext(),likes);
+                    listarActividadParseAdapter = new ListarActividadParseAdapter(getContext(),likes);
 
-                    listView.setAdapter(listarActividadAdapter);
+                    listView.setAdapter(listarActividadParseAdapter);
 
-                    listarActividadAdapter.loadObjects();
+                    listarActividadParseAdapter.loadObjects();
 
-                    listarActividadAdapter.notifyDataSetChanged();
+                    listarActividadParseAdapter.notifyDataSetChanged();
                 return true;
 
             default:
