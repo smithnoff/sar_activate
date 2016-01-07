@@ -1,5 +1,6 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -16,9 +17,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.parse.ParseObject;
+import com.parse.ParseQueryAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import logica.listarPreguntaParseAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -30,6 +33,7 @@ public class FragmentListarPregunta extends Fragment {
     private ListView listView;
     private listarPreguntaParseAdapter mainAdapter;
     private TextView listaVacia;
+    private ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +51,21 @@ public class FragmentListarPregunta extends Fragment {
         // Set empty list message
         listaVacia = (TextView) view.findViewById(R.id.listaVacia);
         listView.setEmptyView(listaVacia);
+
+        // Show loading questions progress dialog
+        progressDialog = ProgressDialog.show(getContext(),"Buscando Preguntas","Cargando",true);
+        mainAdapter.addOnQueryLoadListener(new ParseQueryAdapter.OnQueryLoadListener<ParseObject>() {
+            @Override
+            public void onLoading() {
+                if (progressDialog == null)
+                    progressDialog = ProgressDialog.show(getContext(),"Buscando Preguntas","Cargando",true);
+            }
+
+            @Override
+            public void onLoaded(List<ParseObject> objects, Exception e) {
+                progressDialog.dismiss();
+            }
+        });
 
         mainAdapter.clear();
         listView.setAdapter(mainAdapter);

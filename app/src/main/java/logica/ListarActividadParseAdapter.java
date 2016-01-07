@@ -37,14 +37,14 @@ import soy_activista.quartzapp.com.soy_activista.R;
 /**
  * Created by Brahyam on 28/11/2015.
  */
-public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
+public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> {
 
-    private String TAG = "ListarActividadAdapter";
+    private String TAG = "ListarActividadParseAdapter";
     private ArrayList<String> likes;
     private ParseUser currentUser;
 
     // Modify Default query to look for objects Actividad
-    public ListarActividadAdapter(Context context, ArrayList<String> likes) {
+    public ListarActividadParseAdapter(Context context, ArrayList<String> likes) {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 ParseQuery query = new ParseQuery("Actividad");
@@ -60,7 +60,7 @@ public class ListarActividadAdapter extends ParseQueryAdapter<ParseObject> {
     }
 
     // Modify Default query to look for objects Actividad
-    public ListarActividadAdapter(Context context, ArrayList<String> likes, final String constraint) {
+    public ListarActividadParseAdapter(Context context, ArrayList<String> likes, final String constraint) {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 // Start Query

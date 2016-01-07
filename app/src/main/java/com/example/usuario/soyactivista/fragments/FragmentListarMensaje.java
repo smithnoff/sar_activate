@@ -24,11 +24,13 @@ import android.widget.Toast;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
+import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import logica.ListarMensajeParseAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -73,23 +75,26 @@ public class FragmentListarMensaje extends Fragment  {
 
         listView.setEmptyView(listaVacia);
 
-        if (listarMensajeMainAdapter != null) {
-            listarMensajeMainAdapter.clear();
-            progressBar = new ProgressDialog(getActivity());
-            progressBar.setCancelable(false);
-            progressBar.setTitle("Cargando");
-            progressBar.setMessage("iniciando");
-            progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            progressBar.setMax(100);
-            progressBar.setProgress(0);
-            progressBar.show();
-            ProcessData p = new ProcessData();
-            p.execute(10);
-            listView.setAdapter(listarMensajeMainAdapter);
-            listarMensajeMainAdapter.loadObjects();
-        } else {
-            Log.d("ADAPTER", "Adapter returned null!");
-        }
+        progressDialog = ProgressDialog.show(getContext(),"Buscando Mensajes","Cargando",true);
+
+        listarMensajeMainAdapter.addOnQueryLoadListener(new ParseQueryAdapter.OnQueryLoadListener<ParseObject>() {
+            @Override
+            public void onLoading() {
+                if(progressDialog == null)
+                    progressDialog = ProgressDialog.show(getContext(),"Buscando Mensajes","Cargando",true);
+            }
+
+            @Override
+            public void onLoaded(List<ParseObject> objects, Exception e) {
+                if (progressDialog != null)
+                    progressDialog.dismiss();
+            }
+        });
+
+        listarMensajeMainAdapter.clear();
+        listView.setAdapter(listarMensajeMainAdapter);
+        listarMensajeMainAdapter.loadObjects();
+
 
         currentUser = ParseUser.getCurrentUser();
 
