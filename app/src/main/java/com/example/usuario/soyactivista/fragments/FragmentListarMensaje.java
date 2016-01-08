@@ -1,7 +1,9 @@
 package com.example.usuario.soyactivista.fragments;
 
 import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -15,17 +17,20 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
+import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import logica.ListarMensajeParseAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -41,9 +46,12 @@ public class FragmentListarMensaje extends Fragment  {
     private MenuItem filtroReportados;
     View view;
     private ListView listView;
-    private TextView listaVacia;
+    private TextView listaVacia,textProgress;
     private ParseUser currentUser;
     private ProgressDialog progressDialog;
+    private ProgressDialog progressBar;
+    private int progressStatus = 0;
+    private Handler handler = new Handler();
 
 
     @Override
@@ -54,24 +62,39 @@ public class FragmentListarMensaje extends Fragment  {
         // Inflate View
         view = inflater.inflate(R.layout.fragment_listar_mensaje, container, false);
 
+        textProgress = (TextView)view.findViewById(R.id.textProgress);
+
         // Initialize main ParseQueryAdapter
         listarMensajeMainAdapter = new ListarMensajeParseAdapter(this.getContext());
 
         // Initialize list view
         listView = (ListView) view.findViewById(R.id.mensajesListView);
 
-
         // Set empty list message
         listaVacia = (TextView) view.findViewById(R.id.listaVacia);
+
         listView.setEmptyView(listaVacia);
 
-        if (listarMensajeMainAdapter != null) {
-            listarMensajeMainAdapter.clear();
-            listView.setAdapter(listarMensajeMainAdapter);
-            listarMensajeMainAdapter.loadObjects();
-        } else {
-            Log.d("ADAPTER", "Adapter returned null!");
-        }
+        progressDialog = ProgressDialog.show(getContext(),"Buscando Mensajes","Cargando",true);
+
+        listarMensajeMainAdapter.addOnQueryLoadListener(new ParseQueryAdapter.OnQueryLoadListener<ParseObject>() {
+            @Override
+            public void onLoading() {
+                if(progressDialog == null)
+                    progressDialog = ProgressDialog.show(getContext(),"Buscando Mensajes","Cargando",true);
+            }
+
+            @Override
+            public void onLoaded(List<ParseObject> objects, Exception e) {
+                if (progressDialog != null)
+                    progressDialog.dismiss();
+            }
+        });
+
+        listarMensajeMainAdapter.clear();
+        listView.setAdapter(listarMensajeMainAdapter);
+        listarMensajeMainAdapter.loadObjects();
+
 
         currentUser = ParseUser.getCurrentUser();
 
@@ -263,5 +286,56 @@ public class FragmentListarMensaje extends Fragment  {
         }
         return true;
     }
+
+    public class ProcessData extends AsyncTask<Integer, String, String> {
+
+        @Override
+        protected String doInBackground(Integer... integers) {
+
+            int progress = 0;
+            int total = integers[0];
+
+            while (progress <= total) {
+
+                try {
+
+                    Thread.sleep(250); // 0.25 segundos
+
+                } catch(InterruptedException e) {
+
+                }
+
+                String m = progress % 2 == 0 ? "Cargando Mensajes" : "Boletin de Mensajes";
+
+                // exibimos o progresso
+                this.publishProgress(String.valueOf(progress), String.valueOf(total), m);
+
+                progress++;
+            }
+
+            return "DONE";
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
+
+            Float progress = Float.valueOf(values[0]);
+            Float total = Float.valueOf(values[1]);
+
+            String message = values[2];
+
+            progressBar.setProgress((int) ((progress / total) * 100));
+            progressBar.setMessage(message);
+
+            // se os valores são iguais, termianos nosso processamento
+            if (values[0].equals(values[1])) {
+                // removemos a dialog
+                progressBar.cancel();
+            }
+        }
+    }
+
+
 
 }

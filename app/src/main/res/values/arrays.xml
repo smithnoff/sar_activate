@@ -40,17 +40,16 @@
 
     <!-- DIFICULTAD -->
     <string-array name="Dificultad">
-        <item>facil</item>
-        <item>intermedio</item>
-        <item>dificil</item>
+        <item>Fácil</item>
+        <item>Intermedio</item>
+        <item>Difícil</item>
     </string-array>
 
     <!-- TIEMPO -->
     <string-array name="Tiempo">
-        <item>30</item>
-        <item>60</item>
-        <item>90</item>
-        <item>120</item>
+        <item>30 segundos</item>
+        <item>60 segundos</item>
+        <item>90 segundos</item>
     </string-array>
 
 </resources>

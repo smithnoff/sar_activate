@@ -92,6 +92,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/opcionCorrecta"/>
+
+            <TextView
+                android:id="@+id/valueCorrecta"
+                android:text="@string/opcion1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:enabled="false"
+                />
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerOpcionCorrecta"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/puntaje"/>
 
@@ -155,31 +181,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/spinnerTiempoRespuesta"
                 android:visibility="gone"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_marginTop="5dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/opcionCorrecta"/>
-
-            <TextView
-                android:id="@+id/valueCorrecta"
-                android:text="@string/opcion1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                android:enabled="false"
-                />
-
-            <Spinner
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinnerOpcionCorrecta"
-                android:visibility="gone"
-                />
 
             <LinearLayout
                 android:layout_weight="2"

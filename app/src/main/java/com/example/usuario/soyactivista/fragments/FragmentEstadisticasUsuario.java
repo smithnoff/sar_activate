@@ -115,9 +115,6 @@ public class FragmentEstadisticasUsuario extends Fragment {
             else
                 AnimarTexto(puntos,valuePuntos);
 
-
-
-
             // Query stadistics
             ParseQuery<ParseObject> query = ParseQuery.getQuery("EstadisticasUsuario");
             query.whereEqualTo("usuario", currentUser);
@@ -158,7 +155,6 @@ public class FragmentEstadisticasUsuario extends Fragment {
                                     valuePreguntas.setText("Difícil");
                                     valuePreguntas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
                                 }
-
                             }
                         }
 

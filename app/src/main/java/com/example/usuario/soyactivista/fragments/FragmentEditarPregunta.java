@@ -159,7 +159,23 @@ public class FragmentEditarPregunta extends Fragment {
                                         pregunta.put("opcion2", editRespuesta2.getText().toString());
                                         pregunta.put("opcion3", editRespuesta3.getText().toString());
                                         pregunta.put("opcion4", editRespuesta4.getText().toString());
-                                        pregunta.put("tiempo", Integer.parseInt(spinTiempo.getSelectedItem().toString()));
+                                        // Parse response time option
+                                        Integer tiempo;
+                                        switch (spinTiempo.getSelectedItemPosition()){
+                                            case 0:
+                                                tiempo = 30;
+                                                break;
+                                            case 1:
+                                                tiempo = 60;
+                                                break;
+                                            case 2:
+                                                tiempo = 90;
+                                                break;
+                                            default:
+                                                tiempo = 30;
+                                                break;
+                                        }
+                                        pregunta.put("tiempo", tiempo);
                                         pregunta.put("puntaje", Integer.parseInt(spinPuntaje.getSelectedItem().toString()));
                                         pregunta.put("correcta", Integer.parseInt(spinCorrecta.getSelectedItem().toString()));
                                         pregunta.saveInBackground(new SaveCallback() {
@@ -325,12 +341,11 @@ public class FragmentEditarPregunta extends Fragment {
         spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(spinner_adapter);
     }
+
     public void ObtenerSpinnerdesdePosition(Spinner spin,String opcion){
-
-
         for (int i=0;i<spin.getCount();i++)
         {
-           if( spin.getItemAtPosition(i).toString().trim().equals(opcion.trim()))
+           if( spin.getItemAtPosition(i).toString().trim().startsWith(opcion.trim()))
             {
                 spin.setSelection(i);
             }

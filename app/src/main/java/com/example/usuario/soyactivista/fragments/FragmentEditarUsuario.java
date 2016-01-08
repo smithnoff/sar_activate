@@ -159,7 +159,7 @@ public class FragmentEditarUsuario extends Fragment {
                 buttonGuardar.setVisibility(View.VISIBLE);
 
                 // Enable all edit Text
-                editUsername.setEnabled(true);
+                //editUsername.setEnabled(true);
                 editNombre.setEnabled(true);
                 editApellido.setEnabled(true);
                 editEmail.setEnabled(true);
@@ -210,7 +210,7 @@ public class FragmentEditarUsuario extends Fragment {
 
                                     Log.d(getClass().getName(), "Modifying from Arguments");
                                     final HashMap<String, Object> params = new HashMap<>();
-                                    params.put("username", editUsername.getText().toString());
+                                    //params.put("username", editUsername.getText().toString());
                                     params.put("nombre", editNombre.getText().toString());
                                     params.put("apellido", editApellido.getText().toString());
                                     params.put("correo", editEmail.getText().toString());
@@ -256,7 +256,7 @@ public class FragmentEditarUsuario extends Fragment {
 
                                     if (currentUser != null) {
                                         Log.d(getClass().getName(), "Filling from Current User");
-                                        currentUser.setUsername(editUsername.getText().toString());
+                                        //currentUser.setUsername(editUsername.getText().toString());
                                         currentUser.put("nombre", editNombre.getText().toString());
                                         currentUser.put("apellido", editApellido.getText().toString());
                                         currentUser.setEmail(editEmail.getText().toString());
