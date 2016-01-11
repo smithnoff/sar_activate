@@ -86,6 +86,17 @@
         android:visibility="gone"
         />
 
+
+    <ProgressBar
+        android:id="@+id/ProgressBar"
+        style="@android:style/Widget.ProgressBar.Small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/valueTexto"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        />
+
     <Button
         android:id="@+id/botonReportar"
         android:layout_width="match_parent"

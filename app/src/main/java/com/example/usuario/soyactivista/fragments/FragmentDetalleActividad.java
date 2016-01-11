@@ -182,11 +182,13 @@ public class FragmentDetalleActividad extends Fragment {
             estatus.setSelection(1);
         calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
         calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
+        calendarFin.setEnabled(false);
         calendarInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 calendarFin.setSelected(false);
                 calendarInicio.setSelected(true);
+                calendarFin.setEnabled(true);
                 DialogDatePicker picker2 = new DialogDatePicker();
 
                 picker2.show(getFragmentManager(), "Fecha de inicio");
