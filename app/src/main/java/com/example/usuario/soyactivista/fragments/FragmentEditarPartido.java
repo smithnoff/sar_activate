@@ -102,6 +102,7 @@ public class FragmentEditarPartido extends Fragment {
 
                 if(clickedColor.getId()==R.id.themeBrown) {
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circulomarron));
+
                 }else {
                     if(colorAnterior.getId()==R.id.themeBrown)
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulobr));

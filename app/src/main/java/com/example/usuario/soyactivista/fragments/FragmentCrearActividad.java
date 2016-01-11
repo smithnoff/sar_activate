@@ -53,8 +53,8 @@ public class FragmentCrearActividad extends Fragment {
 
     private String TAG = "CREAR-ACTIVIDAD";
     private TextView labelPuntaje, labelDescripcion, labelEstado, labelMunicipio, labelParroquia, labelFotos;
-    private TextView textCharCountObjetive;
-    private EditText puntaje, descripcion, objetivo, encargado, creador,  inicio, fin, parroquia; // Edit Field holders
+    private TextView textCharCountObjetive,inicio, fin;
+    private EditText puntaje, descripcion, objetivo, encargado, creador,   parroquia; // Edit Field holders
     private Spinner nombre, ubicacion, estado, municipio; // Spinner holders
     private Button crear,cancelar; // Button holders
     private ImageButton adjuntarFoto,calendarInicio,calendarFin; // Add Image Button.
@@ -105,8 +105,8 @@ public class FragmentCrearActividad extends Fragment {
         objetivo = (EditText)v.findViewById(R.id.editObjetivo);
         encargado = (EditText)v.findViewById(R.id.editEncargado);
         creador = (EditText)v.findViewById(R.id.editCreador);
-        inicio = (EditText)v.findViewById(R.id.editInicio);
-        fin = (EditText)v.findViewById(R.id.editFin);
+        inicio = (TextView)v.findViewById(R.id.textViewFechaInicio);
+        fin = (TextView)v.findViewById(R.id.textViewFechaFin);
         parroquia = (EditText)v.findViewById(R.id.editParroquia);
         calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
         calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
@@ -131,8 +131,8 @@ public class FragmentCrearActividad extends Fragment {
             @Override
             public void onClick(View v) {
 
-                inicio.requestFocus();
-                inicio.setText("");
+                calendarFin.setSelected(false);
+                calendarInicio.setSelected(true);
                 DialogDatePicker picker2 = new DialogDatePicker();
 
                 picker2.show(getFragmentManager(), "Fecha de inicio");
@@ -145,8 +145,8 @@ public class FragmentCrearActividad extends Fragment {
         calendarFin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fin.requestFocus();
-                fin.setText("");
+              calendarFin.setSelected(true);
+              calendarInicio.setSelected(false);
                 DialogDatePicker picker2 = new DialogDatePicker();
                 picker2.show(getFragmentManager(), "Fecha de Fin");
 

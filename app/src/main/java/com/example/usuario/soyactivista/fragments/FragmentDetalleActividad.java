@@ -185,10 +185,10 @@ public class FragmentDetalleActividad extends Fragment {
         calendarInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                calendarFin.setSelected(false);
                 calendarInicio.setSelected(true);
                 DialogDatePicker picker2 = new DialogDatePicker();
-                calendarFin.setSelected(false);
+
                 picker2.show(getFragmentManager(), "Fecha de inicio");
 
 
