@@ -1,6 +1,7 @@
 package com.example.usuario.soyactivista.fragments;
 
 import android.app.ProgressDialog;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,10 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.SaveCallback;
@@ -27,11 +32,15 @@ public class FragmentVerImagen extends Fragment {
     private ImageView imageView;
     private Button botonSalir;
     private ProgressDialog dialog;
+    private ProgressBar ProgressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_ver_imagen, container, false);
+
+
+        ProgressBar = (ProgressBar)v.findViewById(R.id.ProgressBar);
 
         // Assign holders
         imageView = (ImageView)v.findViewById(R.id.valueImage);
@@ -43,8 +52,21 @@ public class FragmentVerImagen extends Fragment {
         Log.d("DETALLE", "url "+url );
 
         if(url != null && !url.equals("")){
+
             Glide.with(getContext())
                     .load(url)
+                    .listener(new RequestListener<String, GlideDrawable>() {
+                        @Override
+                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                            ProgressBar.setVisibility(View.GONE);
+                            return false;
+                        }
+                    })
                     .fitCenter()
                     .into(imageView);
         }
@@ -55,7 +77,6 @@ public class FragmentVerImagen extends Fragment {
                     .into(imageView);
 
         }
-
 
         // On Click listener to report Message
         botonSalir.setOnClickListener(new View.OnClickListener() {
