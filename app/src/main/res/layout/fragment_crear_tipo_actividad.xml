@@ -37,7 +37,8 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/editActividad"
-
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ áéíóúÁÉÍÓÚ0123456789"
+                        android:singleLine="true"
                         android:hint="@string/hintActividad"/>
 
                     <TextView

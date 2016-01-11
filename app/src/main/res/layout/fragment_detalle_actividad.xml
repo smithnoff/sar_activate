@@ -182,16 +182,27 @@
                 android:layout_marginTop="6dp"
                 android:text="@string/inicio"/>
 
-            <TextView
-                android:id="@+id/valueFechaInicio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:inputType="date"
-                android:ems="10"
-                android:hint="@string/hintInicio"
-                android:enabled="false"
-                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="4"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="dd/MM/yyyy"
+                    android:id="@+id/textViewFechaInicio" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:id="@+id/imgCalendarInicio"
+                    android:src="@android:drawable/ic_menu_my_calendar"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -200,17 +211,26 @@
                 android:text="@string/fin"/>
 
 
-            <TextView
-                android:id="@+id/valueFechaFin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:inputType="date"
-                android:ems="10"
-                android:hint="@string/hintFin"
-                android:enabled="false"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="4"
+                android:orientation="horizontal">
 
-                />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="dd/MM/yyyy"
+                    android:id="@+id/textViewFechaFin" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:id="@+id/imgCalendarFin"
+                    android:src="@android:drawable/ic_menu_my_calendar"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
