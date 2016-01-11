@@ -341,7 +341,7 @@ public class FragmentListarActividad extends Fragment {
 
                 listarActividadParseAdapter.clear();
 
-                listarActividadParseAdapter = new ListarActividadParseAdapter(getContext(),likes,"meGusta=true");
+                listarActividadParseAdapter = new ListarActividadParseAdapter(getContext(),likes,"meGusta="+currentUser.getUsername());
 
                 listView.setAdapter(listarActividadParseAdapter);
 
