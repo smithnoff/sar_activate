@@ -210,8 +210,6 @@ public class FragmentListarPregunta extends Fragment {
                         // Request List to filter
                         // TODO: Create Progress Dialog
 
-                        //          Log.d(TAG, "Filtering by Status");
-
                         mainAdapter.clear();
 
                         mainAdapter = new listarPreguntaParseAdapter(getContext(), "nivel=" + listViewDialogNivel.getItemAtPosition(position).toString());

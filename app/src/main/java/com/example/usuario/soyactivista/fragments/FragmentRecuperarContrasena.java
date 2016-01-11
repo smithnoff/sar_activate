@@ -18,6 +18,7 @@ import com.parse.RequestPasswordResetCallback;
 
 import logica.ActivityPantallaInicio;
 import logica.ActivityPantallaMenu;
+import logica.ErrorCodeHelper;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -70,11 +71,8 @@ public class FragmentRecuperarContrasena extends Fragment {
                                 } else {
                                     dialog.dismiss();
                                     // Email not found
-                                    Log.d(TAG,"Exception returned with code "+e.getCode()+" "+e.getMessage());
-                                    if(e.getCode() == 125)
-                                        Toast.makeText(getActivity(), "Su email no se encuentra registrado.", Toast.LENGTH_LONG).show();
-                                    else
-                                        Toast.makeText(getActivity(), "Ocurrió un error al enviar correo."+e.getMessage(), Toast.LENGTH_LONG).show();
+                                    Log.d(TAG,"Error "+e.getCode()+" :"+e.getMessage());
+                                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });

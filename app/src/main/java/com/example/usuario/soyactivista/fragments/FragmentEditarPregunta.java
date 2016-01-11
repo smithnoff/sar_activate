@@ -85,7 +85,7 @@ public class FragmentEditarPregunta extends Fragment {
         editRespuesta4.setText(getArguments().getString("opcion4"));
 
         valueDificultad.setText(getArguments().getString("dificultad"));
-        valueTiempo.setText(getArguments().getString("tiempo"));
+        valueTiempo.setText(getArguments().getString("tiempo")+" segundos");
         valuePuntaje.setText(getArguments().getString("puntaje"));
         valueCorrecta.setText(getArguments().getString("correcta"));
 
@@ -259,7 +259,7 @@ public class FragmentEditarPregunta extends Fragment {
                 editRespuesta4.setText(getArguments().getString("opcion4"));
 
                 valueDificultad.setText(getArguments().getString("dificultad"));
-                valueTiempo.setText(getArguments().getString("tiempo"));
+                valueTiempo.setText(getArguments().getString("tiempo")+" segundos");
                 valuePuntaje.setText(getArguments().getString("puntaje"));
                 valueCorrecta.setText(getArguments().getString("correcta"));
             }

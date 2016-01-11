@@ -1,16 +1,25 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import logica.ErrorCodeHelper;
 import logica.Selector_de_Tema;
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -20,6 +29,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class FragmentTriviaPrincipal extends Fragment{
 
     public static final String EXTRAS_ENDLESS_MODE = "EXTRAS_ENDLESS_MODE";
+    private static final String TAG = "FragTriviaPrincipal";
     private Button adminPreguntas, nuevaPartida, misEstadisticas;
     private TextView valueNombrePartido;
 
@@ -49,12 +59,31 @@ public class FragmentTriviaPrincipal extends Fragment{
         nuevaPartida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new FragmentTriviaDificultad();
-                getFragmentManager()
-                        .beginTransaction()
-                        .addToBackStack(null)
-                        .replace(R.id.content_frame, fragment)
-                        .commit();
+                if(checkIfQuestionsAvailable()){
+                    Fragment fragment = new FragmentTriviaDificultad();
+                    getFragmentManager()
+                            .beginTransaction()
+                            .addToBackStack(null)
+                            .replace(R.id.content_frame, fragment)
+                            .commit();
+                }
+                else{
+                    // Show "NO questions" Dialog.
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("Trivia de Formación");
+                    builder.setMessage("No se encontraron preguntas disponibles.");
+
+                    builder.setPositiveButton("Regresar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    // After Dialog is Completely defined - Show Dialog.
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+
             }
         });
 
@@ -82,5 +111,29 @@ public class FragmentTriviaPrincipal extends Fragment{
             }
         });
         return v;
+    }
+
+    // Returns False if there are 0 questions available in DB
+    private boolean checkIfQuestionsAvailable() {
+        ParseObject pregunta;
+        // Call first object of questions table to detect if there are any questions available
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Pregunta");
+        try {
+            pregunta = query.getFirst();
+            if(pregunta != null)
+                return true;
+            else
+                return false;
+
+        } catch (ParseException e) {
+            Log.d(TAG, "Error " + e.getCode() + " : " + e.getMessage());
+            if(e.getCode() == 101) // Object not found code
+                return false;
+            else{
+                Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                return false;
+            }
+        }
+
     }
 }
