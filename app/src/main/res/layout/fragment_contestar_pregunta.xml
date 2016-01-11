@@ -89,11 +89,12 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                app:cpb_iconComplete="@drawable/ic_action_accept"
-                app:cpb_iconError="@drawable/ic_action_cancel"
+
                 app:cpb_selectorIdle="@drawable/idle_state_selector"
                 />
-            <!--app:cpb_cornerRadius="48dp" -->
+            <!--app:cpb_cornerRadius="48dp"
+             app:cpb_iconComplete="@drawable/ic_action_accept"
+            app:cpb_iconError="@drawable/ic_action_cancel"-->
 
 
         <com.dd.CircularProgressButton
@@ -104,8 +105,7 @@
             android:textColor="@color/black"
             android:textSize="14sp"
             app:cpb_textIdle="@string/Upload"
-            app:cpb_iconComplete="@drawable/ic_action_accept"
-            app:cpb_iconError="@drawable/ic_action_cancel"
+
             app:cpb_selectorIdle="@drawable/idle_state_selector"/>
 
         <com.dd.CircularProgressButton
@@ -115,8 +115,7 @@
             android:layout_marginTop="15dp"
             android:textColor="@color/black"
             android:textSize="14sp"
-            app:cpb_iconComplete="@drawable/ic_action_accept"
-            app:cpb_iconError="@drawable/ic_action_cancel"
+
             app:cpb_textIdle="@string/Upload"
             app:cpb_selectorIdle="@drawable/idle_state_selector"
             />
@@ -128,8 +127,7 @@
             android:layout_marginTop="15dp"
             android:textColor="@color/black"
             android:textSize="14sp"
-            app:cpb_iconComplete="@drawable/ic_action_accept"
-            app:cpb_iconError="@drawable/ic_action_cancel"
+
             app:cpb_textIdle="@string/Upload"
             app:cpb_selectorIdle="@drawable/idle_state_selector"
             />
