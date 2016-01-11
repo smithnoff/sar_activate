@@ -3,12 +3,14 @@ package logica;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.PorterDuff;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -26,6 +28,7 @@ import android.content.DialogInterface;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,6 +45,9 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
     private String TAG = "ListarActividadParseAdapter";
     private ArrayList<String> likes;
     private ParseUser currentUser;
+    private String cantidad_likes;
+
+
 
     // Modify Default query to look for objects Actividad
     public ListarActividadParseAdapter(Context context, ArrayList<String> likes) {
@@ -118,10 +124,67 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
 
     }
 
-    public View getItemView(final ParseObject object, View v, ViewGroup parent){
-        if(v == null){
+    public View getItemView(final ParseObject object, View vista, ViewGroup parent){
+    // patron ViewHolder
+
+        View v;
+        final   ViewHolder holder;
+
+
+        if (vista == null) {
+            v = new View(parent.getContext());
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_actividad,parent,false);
+
+            holder = new ViewHolder();
+            holder.textNombre = (TextView)v.findViewById(R.id.nombreActividad);
+            holder.textEstatus = (TextView)v.findViewById(R.id.valueEjecucion);
+            holder.textCreador = (TextView)v.findViewById(R.id.valueCreador);
+            holder.textInicio = (TextView)v.findViewById(R.id.valueInicio);
+            holder.textFin = (TextView)v.findViewById(R.id.valueFin);
+            holder.textLikes = (TextView)v.findViewById(R.id.valueLikes);
+
+            holder.separator = v.findViewById(R.id.separator);
+
+            holder.botonMeGusta = (ImageButton) v.findViewById(R.id.botonMeGusta);
+            holder.botonNoMeGusta = (ImageButton) v.findViewById(R.id.botonNoMeGusta);
+
+            holder.imageView1 = (ImageView)v.findViewById(R.id.imagen1);
+            holder.imageView2 = (ImageView)v.findViewById(R.id.imagen2);
+            holder.imageView3 = (ImageView)v.findViewById(R.id.imagen3);
+            holder.imageView4= (ImageView)v.findViewById(R.id.imagen4);
+
+            // Find out if User already liked activity
+            if(likes.contains(object.getObjectId())){
+                holder.botonMeGusta.setEnabled(false);
+                holder.botonMeGusta.setVisibility(View.GONE);
+                holder.botonNoMeGusta.setVisibility(View.VISIBLE);
+                holder.textLikes.setTextColor(getContext().getResources().getColor(R.color.verde));
+            }
+
+            v.setTag(holder);
+
+        } else {
+            v = vista;
+
+            holder = (ViewHolder)v.getTag();
+
+            if(likes.contains(object.getObjectId())){
+                holder.botonMeGusta.setEnabled(false);
+                holder.botonMeGusta.setVisibility(View.GONE);
+                holder.botonNoMeGusta.setVisibility(View.VISIBLE);
+                holder.botonNoMeGusta.setEnabled(true);
+                holder.textLikes.setTextColor(getContext().getResources().getColor(R.color.verde));
+            }
+            else
+            {
+                holder.botonMeGusta.setEnabled(true);
+                holder.botonMeGusta.setVisibility(View.VISIBLE);
+                holder.botonNoMeGusta.setVisibility(View.GONE);
+                holder.botonNoMeGusta.setEnabled(false);
+                holder.textLikes.setTextColor(getContext().getResources().getColor(R.color.grisOscuro));
+            }
         }
+
 
         super.getItemView(object, v, parent);
 
@@ -140,50 +203,29 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
 
         ParseUser creador = object.getParseUser("creador");
 
-        //Declare all fields
-        final TextView textNombre,textEstatus,textCreador,textInicio,textFin,textLikes;
-        final ImageButton botonMeGusta, botonNoMeGusta;
-        final ImageView imageView1,imageView2,imageView3,imageView4;
-        final View separator;
 
         // TODO: Use ViewHolder to improve performance.
         // Assign to holders
-        textNombre = (TextView)v.findViewById(R.id.nombreActividad);
-        textEstatus = (TextView)v.findViewById(R.id.valueEjecucion);
-        textCreador = (TextView)v.findViewById(R.id.valueCreador);
-        textInicio = (TextView)v.findViewById(R.id.valueInicio);
-        textFin = (TextView)v.findViewById(R.id.valueFin);
-        textLikes = (TextView)v.findViewById(R.id.valueLikes);
-
-        separator = v.findViewById(R.id.separator);
-
-        botonMeGusta = (ImageButton) v.findViewById(R.id.botonMeGusta);
-        botonNoMeGusta = (ImageButton) v.findViewById(R.id.botonNoMeGusta);
-
-
-        imageView1 = (ImageView)v.findViewById(R.id.imagen1);
-        imageView2 = (ImageView)v.findViewById(R.id.imagen2);
-        imageView3 = (ImageView)v.findViewById(R.id.imagen3);
-        imageView4= (ImageView)v.findViewById(R.id.imagen4);
 
         // Load Values
-        textNombre.setText(tipoActividad.getString("nombre"));
-        textEstatus.setText(object.getString("estatus"));
-        textCreador.setText(creador.getString("nombre")+" "+creador.getString("apellido"));
+        holder.textNombre.setText(tipoActividad.getString("nombre"));
+        holder.textEstatus.setText(object.getString("estatus"));
+        holder.textCreador.setText(creador.getString("nombre")+" "+creador.getString("apellido"));
 
+        cantidad_likes = String.valueOf(object.getInt("meGusta"));
 
-        textLikes.setText(String.valueOf(object.getInt("meGusta")));
+        holder.textLikes.setText(String.valueOf(object.getInt("meGusta")));
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-        textInicio.setText(dateFormat.format(object.getDate("inicio")));
-        textFin.setText(dateFormat.format(object.getDate("fin")));
+        holder.textInicio.setText(dateFormat.format(object.getDate("inicio")));
+        holder.textFin.setText(dateFormat.format(object.getDate("fin")));
 
         // Paint Status Accordingly
-        if(object.getString("estatus") == "En Ejecución")
-            textEstatus.setTextColor(getContext().getResources().getColor(R.color.verde));
+        if(object.getString("estatus").equals("En Ejecución"))
+            holder.textEstatus.setTextColor(getContext().getResources().getColor(R.color.verde));
         else
-            textEstatus.setTextColor(getContext().getResources().getColor(R.color.rojo));
+            holder.textEstatus.setTextColor(getContext().getResources().getColor(R.color.rojo));
 
         // Load Images
 
@@ -195,97 +237,97 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
         String url;
 
         if(imagen1 != null){
-            separator.setVisibility(View.VISIBLE);
-            imageView1.setVisibility(View.VISIBLE);
+            holder.separator.setVisibility(View.VISIBLE);
+            holder.imageView1.setVisibility(View.VISIBLE);
             url = imagen1.getUrl();
             Glide.with(getContext())
                     .load(url)
                     .centerCrop()
-                    .into(imageView1);
+                    .into(holder.imageView1);
         }
         else{
-            Glide.clear(imageView1);
-            imageView1.setImageDrawable(null);
-            imageView1.setVisibility(View.GONE);
+            Glide.clear(holder.imageView1);
+            holder.imageView1.setImageDrawable(null);
+            holder.imageView1.setVisibility(View.GONE);
         }
 
         if(imagen2 != null){
-            separator.setVisibility(View.VISIBLE);
-            imageView2.setVisibility(View.VISIBLE);
+            holder.separator.setVisibility(View.VISIBLE);
+            holder.imageView2.setVisibility(View.VISIBLE);
             url = imagen2.getUrl();
             Glide.with(getContext())
                     .load(url)
                     .centerCrop()
-                    .into(imageView2);
+                    .into(holder.imageView2);
         }
         else{
-            Glide.clear(imageView2);
-            imageView2.setImageDrawable(null);
-            imageView2.setVisibility(View.GONE);
+            Glide.clear(holder.imageView2);
+            holder.imageView2.setImageDrawable(null);
+            holder.imageView2.setVisibility(View.GONE);
         }
 
         if(imagen3 != null){
-            separator.setVisibility(View.VISIBLE);
-            imageView3.setVisibility(View.VISIBLE);
+            holder.separator.setVisibility(View.VISIBLE);
+            holder.imageView3.setVisibility(View.VISIBLE);
             url = imagen3.getUrl();
             Glide.with(getContext())
                     .load(url)
                     .centerCrop()
-                    .into(imageView3);
+                    .into(holder.imageView3);
         }
         else{
-            Glide.clear(imageView3);
-            imageView3.setImageDrawable(null);
-            imageView3.setVisibility(View.GONE);
+            Glide.clear(holder.imageView3);
+            holder.imageView3.setImageDrawable(null);
+            holder.imageView3.setVisibility(View.GONE);
         }
 
         if(imagen4 != null){
-            separator.setVisibility(View.VISIBLE);
-            imageView4.setVisibility(View.VISIBLE);
+            holder.separator.setVisibility(View.VISIBLE);
+            holder.imageView4.setVisibility(View.VISIBLE);
             url = imagen4.getUrl();
             Glide.with(getContext())
                     .load(url)
                     .centerCrop()
-                    .into(imageView4);
+                    .into(holder.imageView4);
         }
         else{
-            Glide.clear(imageView4);
-            imageView4.setImageDrawable(null);
-            imageView4.setVisibility(View.GONE);
+            Glide.clear(holder.imageView4);
+            holder.imageView4.setImageDrawable(null);
+            holder.imageView4.setVisibility(View.GONE);
+
         }
 
 
-        // Find out if User already liked activity
-        if(likes.contains(object.getObjectId())){
-            botonMeGusta.setEnabled(false);
-            botonMeGusta.setVisibility(View.GONE);
-            botonNoMeGusta.setVisibility(View.VISIBLE);
-            textLikes.setTextColor(getContext().getResources().getColor(R.color.verde));
-        }
 
-        botonMeGusta.setOnClickListener(new View.OnClickListener() {
+        holder.botonMeGusta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 ParseObject like = new ParseObject("MeGusta");
-                like.put("usuario",currentUser);
-                like.put("actividad",object);
+                like.put("usuario", currentUser);
+                like.put("actividad", object);
                 like.saveInBackground();
 
                 object.increment("meGusta");
                 object.saveInBackground();
+                holder.textLikes.setText(String.valueOf(object.getInt("meGusta")));
 
-                textLikes.setText(String.valueOf(object.getInt("meGusta")));
                 // Paint Like text green
-                textLikes.setTextColor(getContext().getResources().getColor(R.color.verde));
+                holder.botonMeGusta.setVisibility(View.GONE);
+                holder.botonMeGusta.setEnabled(false);
+                holder.textLikes.setTextColor(getContext().getResources().getColor(R.color.verde));
+               // botonMeGusta.setEnabled(false);
+                holder.botonNoMeGusta.setVisibility(View.VISIBLE);
+                holder.botonNoMeGusta.setEnabled(true);
 
-                botonMeGusta.setEnabled(false);
+                likes.add(object.getObjectId());
 
             }
         });
 
+
         // Likes Behavior
-        botonNoMeGusta.setOnClickListener(new View.OnClickListener() {
+        holder.botonNoMeGusta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -298,26 +340,24 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
                     public void done(ParseObject object, ParseException e) {
                         if (e == null) {
                             object.deleteInBackground();
+
+                            // Paint Like button green
+                            holder.botonNoMeGusta.setVisibility(View.GONE);
+                            holder.botonNoMeGusta.setEnabled(false);
+
+                            holder.botonMeGusta.setVisibility(View.VISIBLE);
+                            holder.botonMeGusta.setEnabled(true);
+                            holder.textLikes.setTextColor(getContext().getResources().getColor(R.color.grisOscuro));
+
                         } else {
                             Log.d(TAG, e.getMessage());
                         }
                     }
                 });
-
                 object.increment("meGusta", -1);
                 object.saveInBackground();
-
-
-                textLikes.setText(String.valueOf(object.getInt("meGusta")));
-
-                // Paint Like button green
-                botonNoMeGusta.setVisibility(View.GONE);
-                botonNoMeGusta.setEnabled(false);
-                textLikes.setTextColor(getContext().getResources().getColor(R.color.grisOscuro));
-
-
-                botonMeGusta.setVisibility(View.VISIBLE);
-                botonMeGusta.setEnabled(true);
+                holder.textLikes.setText(String.valueOf(object.getInt("meGusta")));
+                likes.remove(object.getObjectId());
             }
         });
 
@@ -326,3 +366,13 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
 
 
 }
+
+
+ class ViewHolder {
+
+      TextView textNombre,textEstatus,textCreador,textInicio,textFin,textLikes;
+      ImageButton botonMeGusta, botonNoMeGusta;
+      ImageView imageView1,imageView2,imageView3,imageView4;
+      View separator;
+
+ }

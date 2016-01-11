@@ -65,8 +65,7 @@ public class FragmentListarUsuario extends Fragment{
 
         noItems = (TextView) view.findViewById(R.id.listaVacia);
 
-        // Define message to show when empty
-        listView.setEmptyView(noItems);
+
 
         // Initialize Buttons
         botonCrearUsuario = (FloatingActionButton) view.findViewById(R.id.botonCrearUsuario);
@@ -77,6 +76,8 @@ public class FragmentListarUsuario extends Fragment{
         // If adapter is null Initialize list and set adapter to view
         if(listarUsuarioAdapter == null){
             Log.d(TAG,"Array Adapter is null");
+            // Define message to show when empty
+            listView.setEmptyView(noItems);
             initializeList(usuarioArrayList);
         }
         // List Already contains elements/ Just set adapter to view

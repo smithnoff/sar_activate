@@ -1,0 +1,110 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/dialogImagen"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:scaleType="center"
+        android:background="@color/indigo"
+        android:contentDescription="@string/app_name"
+        android:elevation="5dp"/>
+    <EditText
+        android:id="@+id/dialogUsername"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        android:textColorHint="@color/indigo"
+        android:hint="@string/username"
+        android:editable="false"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/dialogButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prueba"
+                android:textColor="@color/white"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="center"/>
+            <Button
+                android:id="@+id/dialogButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prueba"
+                android:textColor="@color/white"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/dialogFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:elevation="3dp"
+        app:fabSize="normal"
+        app:borderWidth="0dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_gravity="center_horizontal" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/dialogTriangule"
+            android:src="@drawable/ic_triangle35"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:scaleType="center"
+            android:background="@color/indigo"
+            android:contentDescription="@string/app_name"
+            />
+        <ImageView
+            android:id="@+id/dialogCircle"
+            android:src="@drawable/ic_circle102"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:scaleType="center"
+            android:background="@color/indigo"
+            android:contentDescription="@string/app_name" />
+        <ImageView
+            android:id="@+id/dialogSquare"
+            android:src="@drawable/ic_squares97"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:scaleType="center"
+            android:background="@color/indigo"
+            android:contentDescription="@string/app_name" />
+
+    </LinearLayout>
+
+</LinearLayout>
