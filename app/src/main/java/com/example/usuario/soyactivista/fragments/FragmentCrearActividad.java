@@ -110,7 +110,7 @@ public class FragmentCrearActividad extends Fragment {
         parroquia = (EditText)v.findViewById(R.id.editParroquia);
         calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
         calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
-
+            calendarFin.setEnabled(false);
         // Update CharCount on writting
         objetivo.addTextChangedListener(new TextWatcher() {
             @Override
@@ -132,6 +132,7 @@ public class FragmentCrearActividad extends Fragment {
             public void onClick(View v) {
 
                 calendarFin.setSelected(false);
+                calendarFin.setEnabled(true);
                 calendarInicio.setSelected(true);
                 DialogDatePicker picker2 = new DialogDatePicker();
 
