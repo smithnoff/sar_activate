@@ -133,7 +133,39 @@ public class FragmentContestarPregunta extends Fragment {
                 if(Integer.valueOf(correctas.get(preguntaActual)) == 1)
                     respuestaCorrecta();
                 else
+                {
                     respuestaIncorrecta();
+                    if(Integer.valueOf(correctas.get(preguntaActual)) == 2)
+                    {
+                        simulateSuccessProgress(circularButtonRespuesta2);
+                        simulateErrorProgress(circularButtonRespuesta3);
+                        simulateErrorProgress(circularButtonRespuesta4);
+                        circularButtonRespuesta2.setCompleteText(respuesta2.get(preguntaActual));
+                        circularButtonRespuesta3.setErrorText(respuesta3.get(preguntaActual));
+                        circularButtonRespuesta4.setErrorText(respuesta4.get(preguntaActual));
+                    }
+                    else
+                    {
+                        if(Integer.valueOf(correctas.get(preguntaActual)) == 3)
+                        {
+                            simulateSuccessProgress(circularButtonRespuesta3);
+                            simulateErrorProgress(circularButtonRespuesta2);
+                            simulateErrorProgress(circularButtonRespuesta4);
+                            circularButtonRespuesta3.setCompleteText(respuesta3.get(preguntaActual));
+                            circularButtonRespuesta2.setErrorText(respuesta2.get(preguntaActual));
+                            circularButtonRespuesta4.setErrorText(respuesta4.get(preguntaActual));
+                        }
+                        else
+                        {
+                            simulateSuccessProgress(circularButtonRespuesta4);
+                            simulateErrorProgress(circularButtonRespuesta2);
+                            simulateErrorProgress(circularButtonRespuesta3);
+                            circularButtonRespuesta4.setCompleteText(respuesta4.get(preguntaActual));
+                            circularButtonRespuesta2.setErrorText(respuesta2.get(preguntaActual));
+                            circularButtonRespuesta3.setErrorText(respuesta3.get(preguntaActual));
+                        }
+                    }
+                }
 
             }
         });
@@ -146,7 +178,39 @@ public class FragmentContestarPregunta extends Fragment {
                 if(Integer.valueOf(correctas.get(preguntaActual)) == 2)
                     respuestaCorrecta();
                 else
+                {
                     respuestaIncorrecta();
+                    if(Integer.valueOf(correctas.get(preguntaActual)) == 1)
+                    {
+                        simulateSuccessProgress(circularButtonRespuesta1);
+                        simulateErrorProgress(circularButtonRespuesta3);
+                        simulateErrorProgress(circularButtonRespuesta4);
+                        circularButtonRespuesta1.setCompleteText(respuesta1.get(preguntaActual));
+                        circularButtonRespuesta3.setErrorText(respuesta3.get(preguntaActual));
+                        circularButtonRespuesta4.setErrorText(respuesta4.get(preguntaActual));
+                    }
+                    else
+                    {
+                        if(Integer.valueOf(correctas.get(preguntaActual)) == 3)
+                        {
+                            simulateSuccessProgress(circularButtonRespuesta3);
+                            simulateErrorProgress(circularButtonRespuesta1);
+                            simulateErrorProgress(circularButtonRespuesta4);
+                            circularButtonRespuesta3.setCompleteText(respuesta3.get(preguntaActual));
+                            circularButtonRespuesta1.setErrorText(respuesta1.get(preguntaActual));
+                            circularButtonRespuesta4.setErrorText(respuesta4.get(preguntaActual));
+                        }
+                        else
+                        {
+                            simulateSuccessProgress(circularButtonRespuesta4);
+                            simulateErrorProgress(circularButtonRespuesta1);
+                            simulateErrorProgress(circularButtonRespuesta3);
+                            circularButtonRespuesta4.setCompleteText(respuesta4.get(preguntaActual));
+                            circularButtonRespuesta1.setErrorText(respuesta1.get(preguntaActual));
+                            circularButtonRespuesta3.setErrorText(respuesta3.get(preguntaActual));
+                        }
+                    }
+                }
             }
         });
 
@@ -158,7 +222,39 @@ public class FragmentContestarPregunta extends Fragment {
                 if (Integer.valueOf(correctas.get(preguntaActual)) == 3)
                     respuestaCorrecta();
                 else
+                {
                     respuestaIncorrecta();
+                    if(Integer.valueOf(correctas.get(preguntaActual)) == 1)
+                    {
+                        simulateSuccessProgress(circularButtonRespuesta1);
+                        simulateErrorProgress(circularButtonRespuesta2);
+                        simulateErrorProgress(circularButtonRespuesta4);
+                        circularButtonRespuesta1.setCompleteText(respuesta1.get(preguntaActual));
+                        circularButtonRespuesta2.setErrorText(respuesta2.get(preguntaActual));
+                        circularButtonRespuesta4.setErrorText(respuesta4.get(preguntaActual));
+                    }
+                    else
+                    {
+                        if(Integer.valueOf(correctas.get(preguntaActual)) == 2)
+                        {
+                            simulateSuccessProgress(circularButtonRespuesta2);
+                            simulateErrorProgress(circularButtonRespuesta1);
+                            simulateErrorProgress(circularButtonRespuesta4);
+                            circularButtonRespuesta2.setCompleteText(respuesta2.get(preguntaActual));
+                            circularButtonRespuesta1.setErrorText(respuesta1.get(preguntaActual));
+                            circularButtonRespuesta4.setErrorText(respuesta4.get(preguntaActual));
+                        }
+                        else
+                        {
+                            simulateSuccessProgress(circularButtonRespuesta4);
+                            simulateErrorProgress(circularButtonRespuesta1);
+                            simulateErrorProgress(circularButtonRespuesta2);
+                            circularButtonRespuesta4.setCompleteText(respuesta4.get(preguntaActual));
+                            circularButtonRespuesta1.setErrorText(respuesta1.get(preguntaActual));
+                            circularButtonRespuesta2.setErrorText(respuesta2.get(preguntaActual));
+                        }
+                    }
+                }
             }
         });
 
@@ -170,7 +266,39 @@ public class FragmentContestarPregunta extends Fragment {
                 if(Integer.valueOf(correctas.get(preguntaActual)) == 4)
                     respuestaCorrecta();
                 else
+                {
                     respuestaIncorrecta();
+                    if(Integer.valueOf(correctas.get(preguntaActual)) == 1)
+                    {
+                        simulateSuccessProgress(circularButtonRespuesta1);
+                        simulateErrorProgress(circularButtonRespuesta3);
+                        simulateErrorProgress(circularButtonRespuesta2);
+                        circularButtonRespuesta1.setCompleteText(respuesta1.get(preguntaActual));
+                        circularButtonRespuesta3.setErrorText(respuesta3.get(preguntaActual));
+                        circularButtonRespuesta2.setErrorText(respuesta2.get(preguntaActual));
+                    }
+                    else
+                    {
+                        if(Integer.valueOf(correctas.get(preguntaActual)) == 2)
+                        {
+                            simulateSuccessProgress(circularButtonRespuesta2);
+                            simulateErrorProgress(circularButtonRespuesta1);
+                            simulateErrorProgress(circularButtonRespuesta3);
+                            circularButtonRespuesta2.setCompleteText(respuesta2.get(preguntaActual));
+                            circularButtonRespuesta1.setErrorText(respuesta1.get(preguntaActual));
+                            circularButtonRespuesta3.setErrorText(respuesta3.get(preguntaActual));
+                        }
+                        else
+                        {
+                            simulateSuccessProgress(circularButtonRespuesta3);
+                            simulateErrorProgress(circularButtonRespuesta1);
+                            simulateErrorProgress(circularButtonRespuesta2);
+                            circularButtonRespuesta4.setCompleteText(respuesta3.get(preguntaActual));
+                            circularButtonRespuesta1.setErrorText(respuesta1.get(preguntaActual));
+                            circularButtonRespuesta2.setErrorText(respuesta2.get(preguntaActual));
+                        }
+                    }
+                }
             }
         });
 
