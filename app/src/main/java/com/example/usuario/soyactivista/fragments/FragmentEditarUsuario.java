@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,12 +18,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.CountCallback;
-import com.parse.DeleteCallback;
 import com.parse.FunctionCallback;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -49,7 +45,6 @@ public class FragmentEditarUsuario extends Fragment {
     private Spinner spinEstado, spinMunicipio, spinComite, spinRol;
     private Button buttonEditar, buttonGuardar, buttonEliminar;
     private ProgressDialog progressDialog;
-    private Integer cantidadRegistros = 0;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
@@ -329,21 +324,6 @@ public class FragmentEditarUsuario extends Fragment {
         buttonEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                ParseQuery<ParseUser> userParseQuery = ParseUser.getQuery();
-                userParseQuery.whereEqualTo("rol", 1);
-                userParseQuery.countInBackground(new CountCallback() {
-                    @Override
-                    public void done(int count, ParseException e) {
-                        if (e == null) {
-                            cantidadRegistros = count;
-                            Toast.makeText(getActivity(), "hay: "+cantidadRegistros, Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-
                 Log.d(TAG, "Eliminar Button Clicked");
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Confirmar");
@@ -353,31 +333,12 @@ public class FragmentEditarUsuario extends Fragment {
 
                     public void onClick(DialogInterface dialog, int which) {
 
-                        String deleteUsername="";
+                        String deleteUsername;
 
                         if(getArguments()!=null)
-                        {
                             deleteUsername = editUsername.getText().toString();
-                        }
                         else
-                        {
-                            if (currentUser.getInt("rol")==0)
-                            {
-                                deleteUsername = currentUser.getUsername();
-                            }
-                            else
-                            {
-                                if(cantidadRegistros != 1)
-                                {
-                                    deleteUsername = currentUser.getUsername();
-                                }
-                                else
-                                {
-                                    Toast.makeText(getActivity(), "No puede eliminar el único miembro registro que existe", Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                            }
-                        }
+                            deleteUsername = currentUser.getUsername();
 
                         final HashMap<String, Object> params = new HashMap<>();
                         params.put("username", deleteUsername);
