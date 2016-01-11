@@ -6,8 +6,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
-import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -19,7 +18,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
  */
 public class DialogDatePicker extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
-    public String formattedDate;
+    private String formattedDate;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -47,23 +46,13 @@ public class DialogDatePicker extends DialogFragment
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         formattedDate = sdf.format(c.getTime());
 
+        if (((EditText) getActivity().findViewById(R.id.editInicio)).isFocused())
+            ((EditText) getActivity().findViewById(R.id.editInicio)).setText(formattedDate);
 
-
-        if(((ImageButton)getActivity().findViewById(R.id.imgCalendarInicio)).isSelected())
-        ((TextView)getActivity().findViewById(R.id.textViewFechaInicio)).setText(formattedDate);
-
-        if(((ImageButton)getActivity().findViewById(R.id.imgCalendarFin)).isSelected())
-        {
-
-            ((TextView)getActivity().findViewById(R.id.textViewFechaFin)).setText(formattedDate);
-        }
-
-
+        if (((EditText) getActivity().findViewById(R.id.editFin)).isFocused())
+            ((EditText) getActivity().findViewById(R.id.editFin)).setText(formattedDate);
 
 
     }
-
-
-
 
     }

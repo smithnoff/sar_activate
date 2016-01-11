@@ -84,9 +84,9 @@ public class FragmentCrearPregunta extends Fragment {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("Confirmar");
-                    builder.setMessage("¿Está seguro que desea guardar la Pregunta?");
+                    builder.setMessage("¿Está seguro que desea crear la Pregunta?");
 
-                    builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton("Crear", new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface dialogo, int which) {
 

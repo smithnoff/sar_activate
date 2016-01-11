@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 import logica.Selector_de_Tema;
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -90,6 +91,7 @@ public class FragmentEditarPartido extends Fragment {
 
         nombrePartidonull = editNombrePartido.getText().toString();
 
+
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(final View clickedColor) {
@@ -141,6 +143,8 @@ public class FragmentEditarPartido extends Fragment {
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulop));
                 }
                 if(clickedColor.getId()==R.id.themeDefault) {
+                    DialogColor fragment1 = new DialogColor();
+                    fragment1.show(getFragmentManager(),"");
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circuloindigo));
                 }else {
                     if(colorAnterior.getId()==R.id.themeDefault)
@@ -193,7 +197,8 @@ public class FragmentEditarPartido extends Fragment {
                         Selector_de_Tema.changeToTheme(getActivity(), Selector_de_Tema.GREEN,editNombrePartido.getText().toString());
                         break;
                     case R.id.themePurple:
-                        Selector_de_Tema.changeToTheme(getActivity(), Selector_de_Tema.PURPLE,editNombrePartido.getText().toString());
+
+                        Selector_de_Tema.changeToTheme(getActivity(), Selector_de_Tema.PURPLE, editNombrePartido.getText().toString());
                         break;
                     case R.id.themeYellow:
                         Selector_de_Tema.changeToTheme(getActivity(), Selector_de_Tema.YELLOW,editNombrePartido.getText().toString());
@@ -208,7 +213,6 @@ public class FragmentEditarPartido extends Fragment {
 
         return v;
     }
-
 
 
 }

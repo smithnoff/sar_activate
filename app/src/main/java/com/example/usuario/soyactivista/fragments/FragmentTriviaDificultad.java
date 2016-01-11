@@ -1,6 +1,8 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -57,7 +59,7 @@ public class FragmentTriviaDificultad extends Fragment {
         dificultadFacil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dificultad = "facil";
+                dificultad = "Fácil";
                 iniciarPartida();
             }
         });
@@ -65,7 +67,7 @@ public class FragmentTriviaDificultad extends Fragment {
         dificultadIntermedio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dificultad = "intermedio";
+                dificultad = "Intermedio";
                 iniciarPartida();
             }
         });
@@ -73,7 +75,7 @@ public class FragmentTriviaDificultad extends Fragment {
         dificultadDificil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dificultad = "dificil";
+                dificultad = "Difícil";
                 iniciarPartida();
             }
         });
@@ -193,16 +195,23 @@ public class FragmentTriviaDificultad extends Fragment {
                         }
                     });
                 } else {
+                    dialog.dismiss();
                     // No questions found
                     if( e.getCode() == 101){
-                        // No questions found for this difficulty
-                        Toast.makeText(getActivity(), "No se encontraron preguntas de esta dificultad.", Toast.LENGTH_LONG).show();
-                        // Redirect to main menu
-                        Fragment fragment = new FragmentTriviaPrincipal();
-                        getFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.content_frame, fragment)
-                                .commit();
+                        // Show "NO questions" Dialog.
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setTitle("Trivia de Formación");
+                        builder.setMessage("No se encontraron preguntas disponibles en esta dificultad.");
+
+                        builder.setPositiveButton("Regresar", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+
+                        // After Dialog is Completely defined - Show Dialog.
+                        AlertDialog alert = builder.create();
+                        alert.show();
                     }
                     else{ // Another Error)
                         dialog.dismiss();
