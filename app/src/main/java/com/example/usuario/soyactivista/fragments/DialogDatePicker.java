@@ -21,17 +21,19 @@ public class DialogDatePicker extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
     private String formattedDate;
    public DatePickerDialog dpd;
-    Calendar c2;
-    int endday,endmonth,endyear;
+
+    DatePicker dp;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current date as the default date in the picker
         final Calendar c = Calendar.getInstance();
+
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
+
         dpd = new DatePickerDialog(getActivity(), AlertDialog.THEME_HOLO_LIGHT,this,year, month, day);
-        DatePicker dp = dpd.getDatePicker();
+         dp = dpd.getDatePicker();
         //Set the DatePicker minimum date selection to current date
         dp.setMinDate(c.getTimeInMillis());//get the current day
 
@@ -54,21 +56,17 @@ public class DialogDatePicker extends DialogFragment
 
             ((TextView)getActivity().findViewById(R.id.textViewFechaInicio)).setText(formattedDate);
 
+
         }
 
 
         if(((ImageButton)getActivity().findViewById(R.id.imgCalendarFin)).isSelected()==true) {
-            SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
 
 
             ((TextView) getActivity().findViewById(R.id.textViewFechaFin)).setText(formattedDate);
+
         }
 
-        /*if (((EditText) getActivity().findViewById(R.id.editInicio)).isFocused())
-            ((EditText) getActivity().findViewById(R.id.editInicio)).setText(formattedDate);
-
-        if (((EditText) getActivity().findViewById(R.id.editFin)).isFocused())
-            ((EditText) getActivity().findViewById(R.id.editFin)).setText(formattedDate);*/
 
 
     }
