@@ -326,107 +326,112 @@ public class FragmentCrearActividad extends Fragment {
 
                             actividad.put("meGusta", 0);
 
-                            // Handle Image uploading
-                            if (imagenSeleccionada != null) {
-                                // Save the scaled image to Parse
 
-                                int value = (int)(Math.random() * 1000 + 2);
-                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + value + ".jpg", imagenSeleccionada);
 
-                                //ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + "1.jpg", imagenSeleccionada);
-
-                                actividad.put("imagen1", fotoFinal);
-
-                                fotoFinal.saveInBackground(new SaveCallback() {
-                                    public void done(ParseException e) {
-                                        if (e != null) {
-                                            Toast.makeText(getActivity(),
-                                                    "Error saving: " + e.getMessage(),
-                                                    Toast.LENGTH_LONG).show();
-                                            Log.d(TAG, e.toString());
-                                        } else {
-                                            Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                            }
-
-                            if (imagenSeleccionada2 != null) {
-                                // Save the scaled image to Parse
-
-                                int value2 = (int)(Math.random() * 1000 + 3);
-                                ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + value2 + ".jpg", imagenSeleccionada2);
-
-                                //ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + random + "2.jpg", imagenSeleccionada2);
-
-                                actividad.put("imagen2", fotoFinal2);
-
-                                fotoFinal2.saveInBackground(new SaveCallback() {
-                                    public void done(ParseException e) {
-                                        if (e != null) {
-                                            Toast.makeText(getActivity(),
-                                                    "Error saving: " + e.getMessage(),
-                                                    Toast.LENGTH_LONG).show();
-                                            Log.d(TAG, e.toString());
-                                        } else {
-                                            Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                            }
-
-                            if (imagenSeleccionada3 != null) {
-                                // Save the scaled image to Parse
-                                int value3 = (int)(Math.random() * 1000 + 5);
-                                ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + value3 + ".jpg", imagenSeleccionada3);
-
-                                //ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + random + "3.jpg", imagenSeleccionada3);
-
-                                actividad.put("imagen3", fotoFinal3);
-
-                                fotoFinal3.saveInBackground(new SaveCallback() {
-                                    public void done(ParseException e) {
-                                        if (e != null) {
-                                            Toast.makeText(getActivity(),
-                                                    "Error saving: " + e.getMessage(),
-                                                    Toast.LENGTH_LONG).show();
-                                            Log.d(TAG, e.toString());
-                                        } else {
-                                            Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                            }
-
-                            if (imagenSeleccionada4 != null) {
-                                // Save the scaled image to Parse
-
-                                int value4 = (int)(Math.random() * 1000 + 7);
-                                ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + value4 + ".jpg", imagenSeleccionada4);
-
-                                //ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + random + "4.jpg", imagenSeleccionada4);
-
-                                actividad.put("imagen4", fotoFinal4);
-
-                                fotoFinal4.saveInBackground(new SaveCallback() {
-                                    public void done(ParseException e) {
-                                        if (e != null) {
-                                            Toast.makeText(getActivity(),
-                                                    "Error saving: " + e.getMessage(),
-                                                    Toast.LENGTH_LONG).show();
-                                            Log.d(TAG, e.toString());
-                                        } else {
-                                            Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                            }
                             // Save Activity
                             actividad.saveInBackground(new SaveCallback() {
                                 public void done(ParseException e) {
                                     if (e == null) {
                                         dialog.dismiss();
                                         Toast.makeText(getActivity(), "Actividad Creada", Toast.LENGTH_SHORT).show();
+
+
+                                        // Handle Image uploading
+                                        if (imagenSeleccionada != null) {
+                                            // Save the scaled image to Parse
+
+                                            int value = (int)(Math.random() * 1000 + 2);
+                                            ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + value + ".jpg", imagenSeleccionada);
+
+                                            //ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + "1.jpg", imagenSeleccionada);
+
+                                            actividad.put("imagen1", fotoFinal);
+
+                                            fotoFinal.saveInBackground(new SaveCallback() {
+                                                public void done(ParseException e) {
+                                                    if (e != null) {
+                                                        Toast.makeText(getActivity(),
+                                                                "Error saving: " + e.getMessage(),
+                                                                Toast.LENGTH_LONG).show();
+                                                        Log.d(TAG, e.toString());
+                                                    } else {
+                                                        Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                        }
+
+                                        if (imagenSeleccionada2 != null) {
+                                            // Save the scaled image to Parse
+
+                                            int value2 = (int)(Math.random() * 1000 + 3);
+                                            ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + value2 + ".jpg", imagenSeleccionada2);
+
+                                            //ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + random + "2.jpg", imagenSeleccionada2);
+
+                                            actividad.put("imagen2", fotoFinal2);
+
+                                            fotoFinal2.saveInBackground(new SaveCallback() {
+                                                public void done(ParseException e) {
+                                                    if (e != null) {
+                                                        Toast.makeText(getActivity(),
+                                                                "Error saving: " + e.getMessage(),
+                                                                Toast.LENGTH_LONG).show();
+                                                        Log.d(TAG, e.toString());
+                                                    } else {
+                                                        Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                        }
+
+                                        if (imagenSeleccionada3 != null) {
+                                            // Save the scaled image to Parse
+                                            int value3 = (int)(Math.random() * 1000 + 5);
+                                            ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + value3 + ".jpg", imagenSeleccionada3);
+
+                                            //ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + random + "3.jpg", imagenSeleccionada3);
+
+                                            actividad.put("imagen3", fotoFinal3);
+
+                                            fotoFinal3.saveInBackground(new SaveCallback() {
+                                                public void done(ParseException e) {
+                                                    if (e != null) {
+                                                        Toast.makeText(getActivity(),
+                                                                "Error saving: " + e.getMessage(),
+                                                                Toast.LENGTH_LONG).show();
+                                                        Log.d(TAG, e.toString());
+                                                    } else {
+                                                        Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                        }
+
+
+                                        if (imagenSeleccionada4 != null) {
+                                            // Save the scaled image to Parse
+
+                                            int value4 = (int)(Math.random() * 1000 + 7);
+                                            ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + value4 + ".jpg", imagenSeleccionada4);
+
+                                            //ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + random + "4.jpg", imagenSeleccionada4);
+
+                                            actividad.put("imagen4", fotoFinal4);
+
+                                            fotoFinal4.saveInBackground(new SaveCallback() {
+                                                public void done(ParseException e) {
+                                                    if (e != null) {
+                                                        Toast.makeText(getActivity(),
+                                                                "Error saving: " + e.getMessage(),
+                                                                Toast.LENGTH_LONG).show();
+                                                        Log.d(TAG, e.toString());
+                                                    } else {
+                                                        Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                        }
 
                                         // Publish Notification of Activity Created.
                                         ParseObject mensaje = new ParseObject("Mensaje");
