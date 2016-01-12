@@ -100,7 +100,7 @@ public class FragmentEditarPartido extends Fragment {
                     colorAnterior = clickedColor;
 
                 if(clickedColor.getId()==R.id.themeBrown) {
-                    fragment1.setColorTema(R.color.brown,R.drawable.circulomarron);
+                    fragment1.setColorTema(R.color.brown,R.drawable.circulobr);
                     fragment1.show(getFragmentManager(),"");
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circulomarron));
 
@@ -111,7 +111,7 @@ public class FragmentEditarPartido extends Fragment {
                 }
                 if(clickedColor.getId()==R.id.themeOrange) {
 
-                    fragment1.setColorTema(R.color.orange800,R.drawable.circulonaranja);
+                    fragment1.setColorTema(R.color.orange800,R.drawable.circulon);
                     fragment1.show(getFragmentManager(),"");
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circulonaranja));
                 }else {
@@ -119,7 +119,7 @@ public class FragmentEditarPartido extends Fragment {
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulon));
                 }
                 if(clickedColor.getId()==R.id.themeBlue) {
-                    fragment1.setColorTema(R.color.blue500,R.drawable.circuloazul);
+                    fragment1.setColorTema(R.color.blue500,R.drawable.circuloaz);
                     fragment1.show(getFragmentManager(),"");
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circuloazul));
                 }else {
@@ -127,7 +127,7 @@ public class FragmentEditarPartido extends Fragment {
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circuloaz));
                 }
                 if(clickedColor.getId()==R.id.themeRed) {
-                    fragment1.setColorTema(R.color.red900,R.drawable.circulorojo);
+                    fragment1.setColorTema(R.color.red900,R.drawable.circulor);
                     fragment1.show(getFragmentManager(),"");
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circulorojo));
                 }else {
@@ -135,7 +135,7 @@ public class FragmentEditarPartido extends Fragment {
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulor));
                 }
                 if(clickedColor.getId()==R.id.themeGreen) {
-                    fragment1.setColorTema(R.color.green600,R.drawable.circuloverde);
+                    fragment1.setColorTema(R.color.green600,R.drawable.circulov);
                     fragment1.show(getFragmentManager(),"");
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circuloverde));
                 }else {
@@ -143,7 +143,7 @@ public class FragmentEditarPartido extends Fragment {
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulov));
                 }
                 if(clickedColor.getId()==R.id.themeYellow) {
-                    fragment1.setColorTema(R.color.yellow600,R.drawable.circuloamarillo);
+                    fragment1.setColorTema(R.color.yellow600,R.drawable.circuloam);
                     fragment1.show(getFragmentManager(),"");
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circuloamarillo));
                 }else {
@@ -152,7 +152,7 @@ public class FragmentEditarPartido extends Fragment {
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circuloam));
                 }
                 if(clickedColor.getId()==R.id.themePurple) {
-                    fragment1.setColorTema(R.color.deeppurple600,R.drawable.circulopurpura);
+                    fragment1.setColorTema(R.color.deeppurple600,R.drawable.circulop);
                     fragment1.show(getFragmentManager(), "");
 
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circulopurpura));
@@ -161,7 +161,7 @@ public class FragmentEditarPartido extends Fragment {
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulop));
                 }
                 if(clickedColor.getId() == R.id.themeDefault) {
-                    fragment1.setColorTema(R.color.indigo,R.drawable.circuloindigo);
+                    fragment1.setColorTema(R.color.indigo,R.drawable.circulo);
                     fragment1.show(getFragmentManager(), "");
 
 
