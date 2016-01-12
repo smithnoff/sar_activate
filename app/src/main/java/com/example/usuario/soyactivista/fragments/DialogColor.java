@@ -1,13 +1,10 @@
 package com.example.usuario.soyactivista.fragments;
 
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,6 +16,12 @@ import soy_activista.quartzapp.com.soy_activista.R;
  * Created by Luis Adrian on 07/01/2016.
  */
 public class DialogColor extends DialogFragment {
+    Button btnDialog,btnDialog2;
+    TextView imageDialog;
+    ImageView imageDialog2,imageDialog3,imageDialog4;
+    FloatingActionButton botonCrearMensaje;
+   private int colorTema=R.color.indigo;
+    private int botonfloat;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -27,19 +30,43 @@ public class DialogColor extends DialogFragment {
         //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.show();
 
-        TextView imageDialog = (TextView)dialog.findViewById(R.id.dialogImagen);
+        imageDialog = (TextView)dialog.findViewById(R.id.dialogImagen);
         EditText dialogText = (EditText) dialog.findViewById(R.id.dialogUsername);
-        Button btnDialog = (Button) dialog.findViewById(R.id.dialogButton);
-        Button btnDialog2 = (Button) dialog.findViewById(R.id.dialogButton2);
-        FloatingActionButton botonCrearMensaje = (FloatingActionButton) dialog.findViewById(R.id.dialogFab);
-        ImageView imageDialog2 = (ImageView)dialog.findViewById(R.id.dialogTriangule);
-        ImageView imageDialog3 = (ImageView)dialog.findViewById(R.id.dialogCircle);
-        ImageView imageDialog4 = (ImageView)dialog.findViewById(R.id.dialogSquare);
+         btnDialog = (Button) dialog.findViewById(R.id.dialogButton);
+        btnDialog2 = (Button) dialog.findViewById(R.id.dialogButton2);
+        botonCrearMensaje = (FloatingActionButton) dialog.findViewById(R.id.dialogFab);
+         imageDialog2 = (ImageView)dialog.findViewById(R.id.dialogTriangule);
+         imageDialog3 = (ImageView)dialog.findViewById(R.id.dialogCircle);
+         imageDialog4 = (ImageView)dialog.findViewById(R.id.dialogSquare);
+        previewTheme();
 
-        imageDialog.setBackground(getResources().getDrawable(R.color.indigo));
-        btnDialog.setBackground(getResources().getDrawable(R.color.indigo));
-        btnDialog2.setBackground(getResources().getDrawable(R.color.indigo));
         
         return dialog;
+    }
+
+    public void previewTheme()
+    {     getColorTema();
+        getBotonTema();
+    imageDialog.setBackground(getResources().getDrawable(colorTema));
+
+        btnDialog.setBackground(getResources().getDrawable(colorTema));
+        btnDialog2.setBackground(getResources().getDrawable(colorTema));
+        imageDialog2.setBackgroundColor(getResources().getColor(colorTema));
+        imageDialog3.setBackgroundColor(getResources().getColor(colorTema));
+        imageDialog4.setBackgroundColor(getResources().getColor(colorTema));
+
+
+            botonCrearMensaje.setBackgroundDrawable(getResources().getDrawable(botonfloat));
+
+    }
+    public void setColorTema(int tema,int boton)
+    {   botonfloat=boton;
+        colorTema=tema;
+    }
+    public int getColorTema(){
+        return colorTema;
+    }
+    public int getBotonTema(){
+        return botonfloat;
     }
 }
