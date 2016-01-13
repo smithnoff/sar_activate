@@ -188,17 +188,13 @@ public class FragmentEstadisticasPartida extends Fragment {
     // Set star rating depending on correct answers
     private void asignarEstrellas() {
 
-        if(getArguments().getInt("respuestasCorrectas") < 1)
-        animarEstrellas(0);
+        if (getArguments().getInt("respuestasCorrectas") <= 2)
+            animarEstrellas(1);
         else {
-            if (getArguments().getInt("respuestasCorrectas") <= 2)
-                animarEstrellas(1);
-            else {
-                if (getArguments().getInt("respuestasCorrectas") <= 5)
-                    animarEstrellas(2);
-                else
-                    animarEstrellas(3);
-            }
+            if (getArguments().getInt("respuestasCorrectas") <= 5)
+                animarEstrellas(2);
+            else
+                animarEstrellas(3);
         }
     }
 

@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,12 +18,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.CountCallback;
-import com.parse.DeleteCallback;
 import com.parse.FunctionCallback;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -49,7 +45,6 @@ public class FragmentEditarUsuario extends Fragment {
     private Spinner spinEstado, spinMunicipio, spinComite, spinRol;
     private Button buttonEditar, buttonGuardar, buttonEliminar;
     private ProgressDialog progressDialog;
-    private Integer cantidadRegistros = 0;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
@@ -108,16 +103,6 @@ public class FragmentEditarUsuario extends Fragment {
 
         // Fill from Arguments if not empty
         if(getArguments() != null){
-            userID = getArguments().getString("id");
-            int rolparse = getArguments().getInt("rol");
-
-            if(rolparse == 0){
-                valueRol.setText("Activista");
-            }
-            else{
-                valueRol.setText("Registrante");
-            }
-            //valueRol.setText(getArguments().getInt("rol"));
             editUsername.setText(getArguments().getString("username"));
             editNombre.setText(getArguments().getString("nombre"));
             editApellido.setText(getArguments().getString("apellido"));
@@ -126,21 +111,17 @@ public class FragmentEditarUsuario extends Fragment {
             valueEstado.setText(getArguments().getString("estado"));
             valueMunicipio.setText(getArguments().getString("municipio"));
             valueComite.setText(getArguments().getString("comite"));
-
-
+            valueRol.setText(getArguments().getString("rol"));
         }
         // Fill From current user
         else{
 
             userID = currentUser.getObjectId();
             //valueRol.setText(currentUser.getInt("rol"));
-            int rolparse = currentUser.getInt("rol");
-            if(rolparse==0)
-            {
+            if( currentUser.getInt("rol") == 0){
                 valueRol.setText("Activista");
             }
-            else
-            {
+            else{
                 valueRol.setText("Registrante");
             }
             editUsername.setText(currentUser.getUsername());
@@ -214,7 +195,7 @@ public class FragmentEditarUsuario extends Fragment {
 
                                     Log.d(getClass().getName(), "Modifying from Arguments");
                                     final HashMap<String, Object> params = new HashMap<>();
-                                    //params.put("username", editUsername.getText().toString());
+                                    params.put("username", editUsername.getText().toString());
                                     params.put("nombre", editNombre.getText().toString());
                                     params.put("apellido", editApellido.getText().toString());
                                     params.put("correo", editEmail.getText().toString());
@@ -223,11 +204,11 @@ public class FragmentEditarUsuario extends Fragment {
                                     params.put("municipio", spinMunicipio.getSelectedItem().toString());
                                     params.put("parroquia", editParroquia.getText().toString());
                                     params.put("comite", spinComite.getSelectedItem().toString());
-                                    params.put("rol", String.valueOf(spinRol.getSelectedItemPosition()));
+                                    params.put("rol", spinRol.getSelectedItemPosition());
                                     ParseCloud.callFunctionInBackground("modifyUser", params, new FunctionCallback<Map<String, Object>>() {
                                         @Override
                                         public void done(Map<String, Object> response, ParseException e) {
-                                            if (response != null && response.get("status").toString() == "OK") {
+                                            if (response != null && response.get("status").toString().equals("OK") ) {
                                                 progressDialog.dismiss();
                                                 Toast.makeText(getActivity(), "Usuario editado correctamente.", Toast.LENGTH_SHORT).show();
 
@@ -240,7 +221,7 @@ public class FragmentEditarUsuario extends Fragment {
                                             } else {
                                                 progressDialog.dismiss();
                                                 if(e != null){
-                                                    Log.d(TAG, "Error: " + e.getMessage());
+                                                    Log.d(TAG, "Error "+e.getCode()+":  " + e.getMessage());
                                                     Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                                                 }
 
@@ -251,7 +232,7 @@ public class FragmentEditarUsuario extends Fragment {
 
                                                 if(e == null && response == null){
                                                     Log.d(TAG, "Error: unknown error");
-                                                    Toast.makeText(getActivity(), "Error, por favor intenta de nuevo mas tarde.", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getActivity(), "Error, por favor intente de nuevo mas tarde.", Toast.LENGTH_LONG).show();
                                                 }
                                             }
                                         }
@@ -329,21 +310,6 @@ public class FragmentEditarUsuario extends Fragment {
         buttonEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                ParseQuery<ParseUser> userParseQuery = ParseUser.getQuery();
-                userParseQuery.whereEqualTo("rol", 1);
-                userParseQuery.countInBackground(new CountCallback() {
-                    @Override
-                    public void done(int count, ParseException e) {
-                        if (e == null) {
-                            cantidadRegistros = count;
-                            Toast.makeText(getActivity(), "hay: "+cantidadRegistros, Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-
                 Log.d(TAG, "Eliminar Button Clicked");
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Confirmar");
@@ -353,31 +319,12 @@ public class FragmentEditarUsuario extends Fragment {
 
                     public void onClick(DialogInterface dialog, int which) {
 
-                        String deleteUsername="";
+                        String deleteUsername;
 
                         if(getArguments()!=null)
-                        {
                             deleteUsername = editUsername.getText().toString();
-                        }
                         else
-                        {
-                            if (currentUser.getInt("rol")==0)
-                            {
-                                deleteUsername = currentUser.getUsername();
-                            }
-                            else
-                            {
-                                if(cantidadRegistros != 1)
-                                {
-                                    deleteUsername = currentUser.getUsername();
-                                }
-                                else
-                                {
-                                    Toast.makeText(getActivity(), "No puede eliminar el único miembro registro que existe", Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                            }
-                        }
+                            deleteUsername = currentUser.getUsername();
 
                         final HashMap<String, Object> params = new HashMap<>();
                         params.put("username", deleteUsername);

@@ -53,15 +53,13 @@ public class FragmentCrearActividad extends Fragment {
 
     private String TAG = "CREAR-ACTIVIDAD";
     private TextView labelPuntaje, labelDescripcion, labelEstado, labelMunicipio, labelParroquia, labelFotos;
-    private TextView textCharCountObjetive;
-    private EditText puntaje, descripcion, objetivo, encargado, creador,  inicio, fin; // Edit Field holders
-    private Spinner nombre, ubicacion, estado, municipio, parroquia; // Spinner holders
+    private TextView textCharCountObjetive,inicio, fin;
+    private EditText puntaje, descripcion, objetivo, encargado, creador,   parroquia; // Edit Field holders
+    private Spinner nombre, ubicacion, estado, municipio; // Spinner holders
     private Button crear,cancelar; // Button holders
     private ImageButton adjuntarFoto,calendarInicio,calendarFin; // Add Image Button.
     private ProgressDialog dialog;
     private ParseObject tipoActividad; // TipoActividad to be associated with Actividad
-
-    private String texto_estado,texto_municipio;
 
     // Image Storing Variables/Constants
     private Bitmap bitmap;
@@ -107,12 +105,12 @@ public class FragmentCrearActividad extends Fragment {
         objetivo = (EditText)v.findViewById(R.id.editObjetivo);
         encargado = (EditText)v.findViewById(R.id.editEncargado);
         creador = (EditText)v.findViewById(R.id.editCreador);
-        inicio = (EditText)v.findViewById(R.id.editInicio);
-        fin = (EditText)v.findViewById(R.id.editFin);
-       // parroquia = (EditText)v.findViewById(R.id.editParroquia);
+        inicio = (TextView)v.findViewById(R.id.textViewFechaInicio);
+        fin = (TextView)v.findViewById(R.id.textViewFechaFin);
+        parroquia = (EditText)v.findViewById(R.id.editParroquia);
         calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
         calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
-
+            calendarFin.setEnabled(false);
         // Update CharCount on writting
         objetivo.addTextChangedListener(new TextWatcher() {
             @Override
@@ -133,8 +131,9 @@ public class FragmentCrearActividad extends Fragment {
             @Override
             public void onClick(View v) {
 
-                inicio.requestFocus();
-                inicio.setText("");
+                calendarFin.setSelected(false);
+                calendarFin.setEnabled(true);
+                calendarInicio.setSelected(true);
                 DialogDatePicker picker2 = new DialogDatePicker();
 
                 picker2.show(getFragmentManager(), "Fecha de inicio");
@@ -147,8 +146,8 @@ public class FragmentCrearActividad extends Fragment {
         calendarFin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fin.requestFocus();
-                fin.setText("");
+              calendarFin.setSelected(true);
+              calendarInicio.setSelected(false);
                 DialogDatePicker picker2 = new DialogDatePicker();
                 picker2.show(getFragmentManager(), "Fecha de Fin");
 
@@ -160,7 +159,7 @@ public class FragmentCrearActividad extends Fragment {
         ubicacion = (Spinner)v.findViewById(R.id.spinUbicacion);
         estado = (Spinner)v.findViewById(R.id.spinEstado);
         municipio = (Spinner)v.findViewById(R.id.spinMunicipio);
-        parroquia = (Spinner)v.findViewById(R.id.spinParroquia); //Commented as will be used as Edit Text while data is parsed.
+        //parroquia = (Spinner)v.findViewById(R.id.spinParroquia); Commented as will be used as Edit Text while data is parsed.
 
         // Asign Buttons to holders
         crear = (Button)v.findViewById(R.id.botonCrear);
@@ -195,7 +194,7 @@ public class FragmentCrearActividad extends Fragment {
         nombre.setAdapter(adapter);
 
         // On Activity selected populate puntaje and descripcion
-        nombre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        nombre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 tipoActividad = adapter.getItem(position);
@@ -224,7 +223,6 @@ public class FragmentCrearActividad extends Fragment {
                     labelMunicipio.setVisibility(View.VISIBLE);
                     municipio.setVisibility(View.VISIBLE);
                     labelParroquia.setVisibility(View.VISIBLE);
-                   // parroquia.setVisibility(View.VISIBLE);
                     parroquia.setVisibility(View.VISIBLE);
                 }
             }
@@ -242,30 +240,11 @@ public class FragmentCrearActividad extends Fragment {
                 llenarSpinnerdesdeId(municipio, getResources().getIdentifier(estado.getSelectedItem().toString().replace(' ', '_'), "array", getActivity().getPackageName()));
             }
 
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
-
-        municipio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                parroquia.setAdapter(null);
-                texto_estado=estado.getSelectedItem().toString().replace(' ', '_')+"_";
-                texto_municipio=remove_special_char(municipio.getSelectedItem().toString().replace(' ', '_'));
-                llenarSpinnerdesdeId(parroquia, getResources().getIdentifier(estado.getSelectedItem().toString().toLowerCase().replace(' ', '_') + "_" + remove_special_char(municipio.getSelectedItem().toString().replace(' ', '_')), "array", getActivity().getPackageName()));
-            }
-
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
 
         // Buttons Behavior
         adjuntarFoto.setOnClickListener(new View.OnClickListener() {
@@ -326,10 +305,10 @@ public class FragmentCrearActividad extends Fragment {
                             actividad.put("tipoActividad", tipoActividad);
                             actividad.put("objetivo", objetivo.getText().toString());
                             actividad.put("ubicacion", ubicacion.getSelectedItem().toString());
-                            if (ubicacion.getSelectedItem().toString().equals("Estadal") && estado.getSelectedItem() != null) {
+                            if (ubicacion.getSelectedItem().toString() == "Estadal" && estado.getSelectedItem() != null) {
                                 actividad.put("estado", estado.getSelectedItem().toString());
                                 actividad.put("municipio", municipio.getSelectedItem().toString());
-                                actividad.put("parroquia", parroquia.getSelectedItem().toString());
+                                actividad.put("parroquia", parroquia.getText().toString());
                             }
                             actividad.put("encargado", encargado.getText().toString());
                             actividad.put("creador", usuarioActual);
@@ -347,101 +326,8 @@ public class FragmentCrearActividad extends Fragment {
 
                             actividad.put("meGusta", 0);
 
-                            // Handle Image uploading
-                            if (imagenSeleccionada != null) {
-                                // Save the scaled image to Parse
 
-                                int value = (int) (Math.random() * 1000 + 2);
-                                ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + value + ".jpg", imagenSeleccionada);
 
-                                //ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + "1.jpg", imagenSeleccionada);
-
-                                actividad.put("imagen1", fotoFinal);
-
-                                fotoFinal.saveInBackground(new SaveCallback() {
-                                    public void done(ParseException e) {
-                                        if (e != null) {
-                                            Toast.makeText(getActivity(),
-                                                    "Error saving: " + e.getMessage(),
-                                                    Toast.LENGTH_LONG).show();
-                                            Log.d(TAG, e.toString());
-                                        } else {
-                                            Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                            }
-
-                            if (imagenSeleccionada2 != null) {
-                                // Save the scaled image to Parse
-
-                                int value2 = (int) (Math.random() * 1000 + 3);
-                                ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + value2 + ".jpg", imagenSeleccionada2);
-
-                                //ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + random + "2.jpg", imagenSeleccionada2);
-
-                                actividad.put("imagen2", fotoFinal2);
-
-                                fotoFinal2.saveInBackground(new SaveCallback() {
-                                    public void done(ParseException e) {
-                                        if (e != null) {
-                                            Toast.makeText(getActivity(),
-                                                    "Error saving: " + e.getMessage(),
-                                                    Toast.LENGTH_LONG).show();
-                                            Log.d(TAG, e.toString());
-                                        } else {
-                                            Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                            }
-
-                            if (imagenSeleccionada3 != null) {
-                                // Save the scaled image to Parse
-                                int value3 = (int) (Math.random() * 1000 + 5);
-                                ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + value3 + ".jpg", imagenSeleccionada3);
-
-                                //ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + random + "3.jpg", imagenSeleccionada3);
-
-                                actividad.put("imagen3", fotoFinal3);
-
-                                fotoFinal3.saveInBackground(new SaveCallback() {
-                                    public void done(ParseException e) {
-                                        if (e != null) {
-                                            Toast.makeText(getActivity(),
-                                                    "Error saving: " + e.getMessage(),
-                                                    Toast.LENGTH_LONG).show();
-                                            Log.d(TAG, e.toString());
-                                        } else {
-                                            Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                            }
-
-                            if (imagenSeleccionada4 != null) {
-                                // Save the scaled image to Parse
-
-                                int value4 = (int) (Math.random() * 1000 + 7);
-                                ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + value4 + ".jpg", imagenSeleccionada4);
-
-                                //ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + random + "4.jpg", imagenSeleccionada4);
-
-                                actividad.put("imagen4", fotoFinal4);
-
-                                fotoFinal4.saveInBackground(new SaveCallback() {
-                                    public void done(ParseException e) {
-                                        if (e != null) {
-                                            Toast.makeText(getActivity(),
-                                                    "Error saving: " + e.getMessage(),
-                                                    Toast.LENGTH_LONG).show();
-                                            Log.d(TAG, e.toString());
-                                        } else {
-                                            Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                            }
                             // Save Activity
                             actividad.saveInBackground(new SaveCallback() {
                                 public void done(ParseException e) {
@@ -449,11 +335,109 @@ public class FragmentCrearActividad extends Fragment {
                                         dialog.dismiss();
                                         Toast.makeText(getActivity(), "Actividad Creada", Toast.LENGTH_SHORT).show();
 
+
+                                        // Handle Image uploading
+                                        if (imagenSeleccionada != null) {
+                                            // Save the scaled image to Parse
+
+                                            int value = (int)(Math.random() * 1000 + 2);
+                                            ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + value + ".jpg", imagenSeleccionada);
+
+                                            //ParseFile fotoFinal = new ParseFile(usuarioActual.getUsername() + random + "1.jpg", imagenSeleccionada);
+
+                                            actividad.put("imagen1", fotoFinal);
+
+                                            fotoFinal.saveInBackground(new SaveCallback() {
+                                                public void done(ParseException e) {
+                                                    if (e != null) {
+                                                        Toast.makeText(getActivity(),
+                                                                "Error saving: " + e.getMessage(),
+                                                                Toast.LENGTH_LONG).show();
+                                                        Log.d(TAG, e.toString());
+                                                    } else {
+                                                        Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                        }
+
+                                        if (imagenSeleccionada2 != null) {
+                                            // Save the scaled image to Parse
+
+                                            int value2 = (int)(Math.random() * 1000 + 3);
+                                            ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + value2 + ".jpg", imagenSeleccionada2);
+
+                                            //ParseFile fotoFinal2 = new ParseFile(usuarioActual.getUsername() + random + "2.jpg", imagenSeleccionada2);
+
+                                            actividad.put("imagen2", fotoFinal2);
+
+                                            fotoFinal2.saveInBackground(new SaveCallback() {
+                                                public void done(ParseException e) {
+                                                    if (e != null) {
+                                                        Toast.makeText(getActivity(),
+                                                                "Error saving: " + e.getMessage(),
+                                                                Toast.LENGTH_LONG).show();
+                                                        Log.d(TAG, e.toString());
+                                                    } else {
+                                                        Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                        }
+
+                                        if (imagenSeleccionada3 != null) {
+                                            // Save the scaled image to Parse
+                                            int value3 = (int)(Math.random() * 1000 + 5);
+                                            ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + value3 + ".jpg", imagenSeleccionada3);
+
+                                            //ParseFile fotoFinal3 = new ParseFile(usuarioActual.getUsername() + random + "3.jpg", imagenSeleccionada3);
+
+                                            actividad.put("imagen3", fotoFinal3);
+
+                                            fotoFinal3.saveInBackground(new SaveCallback() {
+                                                public void done(ParseException e) {
+                                                    if (e != null) {
+                                                        Toast.makeText(getActivity(),
+                                                                "Error saving: " + e.getMessage(),
+                                                                Toast.LENGTH_LONG).show();
+                                                        Log.d(TAG, e.toString());
+                                                    } else {
+                                                        Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                        }
+
+
+                                        if (imagenSeleccionada4 != null) {
+                                            // Save the scaled image to Parse
+
+                                            int value4 = (int)(Math.random() * 1000 + 7);
+                                            ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + value4 + ".jpg", imagenSeleccionada4);
+
+                                            //ParseFile fotoFinal4 = new ParseFile(usuarioActual.getUsername() + random + "4.jpg", imagenSeleccionada4);
+
+                                            actividad.put("imagen4", fotoFinal4);
+
+                                            fotoFinal4.saveInBackground(new SaveCallback() {
+                                                public void done(ParseException e) {
+                                                    if (e != null) {
+                                                        Toast.makeText(getActivity(),
+                                                                "Error saving: " + e.getMessage(),
+                                                                Toast.LENGTH_LONG).show();
+                                                        Log.d(TAG, e.toString());
+                                                    } else {
+                                                        Toast.makeText(getActivity(), "Foto Cargada.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                        }
+
                                         // Publish Notification of Activity Created.
                                         ParseObject mensaje = new ParseObject("Mensaje");
-                                        mensaje.put("texto", usuarioActual.getString("nombre") + " ha iniciado una nueva actividad: " + tipoActividad.getString("nombre"));
-                                        mensaje.put("autor", usuarioActual);
-                                        mensaje.put("reportado", false);
+                                        mensaje.put("texto",usuarioActual.getString("nombre")+" ha iniciado una nueva actividad: "+tipoActividad.getString("nombre"));
+                                        mensaje.put("autor",usuarioActual);
+                                        mensaje.put("reportado",false);
                                         mensaje.saveEventually();
 
                                         // Redirect View to Boletin de Actividades
@@ -616,17 +600,4 @@ public class FragmentCrearActividad extends Fragment {
 
     }
 
-
-    public static String remove_special_char(String input) {
-        // Cadena de caracteres original a sustituir.
-        String original = "áéíóúñÁÉÍÓÚÑ";
-        // Cadena de caracteres ASCII que reemplazarán los originales.
-        String ascii = "aeiounAEIOUN";
-        String output = input;
-        for (int i=0; i<original.length(); i++) {
-            // Reemplazamos los caracteres especiales.
-            output = output.replace(original.charAt(i), ascii.charAt(i));
-        }//for i
-        return output.toLowerCase();
-    }
 }

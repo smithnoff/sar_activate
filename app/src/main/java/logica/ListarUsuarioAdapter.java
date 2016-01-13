@@ -10,7 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class ListarUsuarioAdapter extends ArrayAdapter<Usuario> implements Filte
 
     // For Fitlering
     ArrayList<Usuario> usuarioArrayList;
-
+    ParseUser currentUser = ParseUser.getCurrentUser();
     public ListarUsuarioAdapter(Activity context,ArrayList<Usuario> userArrayList) {
         super(context, 0,userArrayList);
         this.usuarioArrayList = new ArrayList<>(userArrayList);
@@ -51,11 +52,12 @@ public class ListarUsuarioAdapter extends ArrayAdapter<Usuario> implements Filte
 
 
         // Load Values
-        valueNombre.setText(usuario.getNombre() + " " + usuario.getApellido());
-        valueEstado.setText(usuario.getEstado());
-        valueMunicipio.setText(usuario.getMunicipio());
-        valueCargo.setText(usuario.getCargo());
-
+        if (currentUser.getUsername() != usuario.getUsername()) {
+            valueNombre.setText(usuario.getNombre() + " " + usuario.getApellido());
+            valueEstado.setText(usuario.getEstado());
+            valueMunicipio.setText(usuario.getMunicipio());
+            valueCargo.setText(usuario.getCargo());
+        }
         return view;
 
     }

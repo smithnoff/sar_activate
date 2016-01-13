@@ -20,6 +20,7 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
+import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
 import android.app.AlertDialog;
@@ -69,39 +70,51 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
     public ListarActividadParseAdapter(Context context, ArrayList<String> likes, final String constraint) {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
-                // Start Query
-                ParseQuery query = new ParseQuery("Actividad");
 
                 // Determine type of constraint
                 String[] queryArray = constraint.toString().split("=");
                 String value = queryArray[1];
 
+
+                // Start Query
+                ParseQuery query = new ParseQuery("Actividad");
+
                 switch (queryArray[0]){
                     case "estatus":
                         query.whereEqualTo("estatus",value);
+                        query.orderByDescending("createdAt");
 
                         break;
                     case "ubicacion":
                         query.whereEqualTo("ubicacion",value);
+                        query.orderByDescending("createdAt");
 
                         break;
                     case "estado":
                         // Query is asking for whole list, skip search.
-                        if(value.equals("Todos"))
+                        if(value.equals("Todos")) {
+                            query.orderByDescending("createdAt");
                             break;
+                        }
+                        else
+                        {
+                            query.whereEqualTo("ubicacion","Estadal");
+                            query.whereEqualTo("estado",value);
+                            query.orderByDescending("createdAt");
+                            break;
+                        }
 
-                        query.whereEqualTo("ubicacion","Estadal");
-                        query.whereEqualTo("estado",value);
-                        break;
 
                     case "propios":
 
                         ParseQuery<ParseObject> innerQuery2 = ParseQuery.getQuery("_User");
                         innerQuery2.whereEqualTo("username", value);
                         query.whereMatchesQuery("creador", innerQuery2);
+                        query.orderByDescending("createdAt");
                         break;
 
                     case "meGusta":
+
 
                         query.orderByDescending("meGusta");
                         break;
@@ -111,10 +124,9 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
                         break;
                 }
 
-
                 query.include("tipoActividad");
                 query.include("creador");
-                query.orderByDescending("createdAt");
+
                 return query;
             }
         });
