@@ -28,6 +28,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import logica.ListarUsuarioAdapter;
+import logica.ListarUsuarioJerarquiaAdapter;
 import logica.Usuario;
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -40,7 +41,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
     private String TAG = "FragmentListarUsuarioConversacion";
 
     // Data Holders
-    private ListarUsuarioAdapter listarUsuarioAdapter;
+    private ListarUsuarioJerarquiaAdapter listarUsuarioJerarquiaAdapter;
     private ListView listView;
     private ArrayList<Usuario> usuarioArrayList = new ArrayList<>();
     private ParseUser currentUser;
@@ -74,15 +75,15 @@ public class FragmentListarUsuariosConversacion extends Fragment{
         Log.d(TAG,"List contains "+usuarioArrayList.size()+" elements");
 
         // If adapter is null Initialize list and set adapter to view
-        if(listarUsuarioAdapter == null){
+        if(listarUsuarioJerarquiaAdapter == null){
             Log.d(TAG,"Array Adapter is null");
             initializeList(usuarioArrayList);
         }
         // List Already contains elements/ Just set adapter to view
         else{
-            Log.d(TAG, "Array Adapter is OK with " + listarUsuarioAdapter.getCount()+" elements");
+            Log.d(TAG, "Array Adapter is OK with " + listarUsuarioJerarquiaAdapter.getCount()+" elements");
             // Add Elements to List and reset adapter
-            listView.setAdapter(listarUsuarioAdapter);
+            listView.setAdapter(listarUsuarioJerarquiaAdapter);
         }
 
         // Handle Item OnClick Events
@@ -130,7 +131,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
             public boolean onQueryTextSubmit(String query) {
                 // If query has something filter adapter
                 if (query.length() > 0) {
-                    listarUsuarioAdapter.getFilter().filter("texto=" + query);
+                    listarUsuarioJerarquiaAdapter.getFilter().filter("texto=" + query);
                 }
                 return false;
             }
@@ -172,7 +173,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                         // Request List to filter
-                        listarUsuarioAdapter.getFilter().filter("estado="+listView.getItemAtPosition(position));
+                        listarUsuarioJerarquiaAdapter.getFilter().filter("estado="+listView.getItemAtPosition(position));
                         filterDialog.dismiss();
 
                     }
@@ -296,12 +297,12 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                         list.add(usuario);
                     }
                     Log.d(TAG, "List have " + list.size() + " items.");
-                    listarUsuarioAdapter = new ListarUsuarioAdapter(getActivity(),list);
-                    listView.setAdapter(listarUsuarioAdapter);
+                    listarUsuarioJerarquiaAdapter = new ListarUsuarioJerarquiaAdapter(getActivity(),list);
+                    listView.setAdapter(listarUsuarioJerarquiaAdapter);
 
                     // If no Search/Filter Argument initialize list, else filter.
                     if(getArguments() != null && getArguments().getString("busqueda") != null){
-                        listarUsuarioAdapter.getFilter().filter(getArguments().getString("busqueda"));
+                        listarUsuarioJerarquiaAdapter.getFilter().filter(getArguments().getString("busqueda"));
                     }
 
                     dialog.dismiss();
