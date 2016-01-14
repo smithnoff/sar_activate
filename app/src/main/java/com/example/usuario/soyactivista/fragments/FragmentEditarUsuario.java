@@ -345,14 +345,13 @@ public class FragmentEditarUsuario extends Fragment {
                                     }
                                     else{
                                         currentUser.logOut();
-                                        Toast.makeText(getActivity(), "Tu cuenta ha sido eliminada correctamente..", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), "Tu cuenta ha sido eliminada correctamente.", Toast.LENGTH_SHORT).show();
                                         // Redirect to init Screen
                                         Intent i = new Intent(getContext(), ActivityPantallaInicio.class);
                                         startActivity(i);
                                     }
                                 }
                                 else {
-                                    // TODO: Discern error types by examining error code.
                                     if(e != null){
                                         Log.d(TAG, "Error: " + e.getMessage());
                                         Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
