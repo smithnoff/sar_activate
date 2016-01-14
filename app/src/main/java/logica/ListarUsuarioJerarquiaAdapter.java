@@ -55,6 +55,7 @@ public class ListarUsuarioJerarquiaAdapter extends ArrayAdapter<Usuario> impleme
 
         // Load Values
         if (currentUser.getUsername() != usuario.getUsername()) {
+
             valueNombre.setText(usuario.getNombre() + " " + usuario.getApellido());
             valueEstado.setText(usuario.getEstado());
             valueMunicipio.setText(usuario.getMunicipio());

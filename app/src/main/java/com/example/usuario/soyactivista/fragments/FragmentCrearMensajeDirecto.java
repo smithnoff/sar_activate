@@ -514,11 +514,22 @@ public class FragmentCrearMensajeDirecto extends Fragment {
                         InputStream pdfStream = getContext().getContentResolver().openInputStream(path);
                         selectedFile = getBytes(pdfStream);
 
-                        imageAttachmentPreview.setVisibility(View.VISIBLE);
-                        Glide.with(getContext())
-                                .load(R.drawable.ic_attach_file)
-                                .centerCrop()
-                                .into(imageAttachmentPreview);
+                        // 8388608 bytes son 8mb
+                        if(selectedFile.length>=8388608){
+                            selectedFile=null;
+                            final Snackbar snackbar = Snackbar
+                                    .make(coordinatorLayout, "El Archivo no puede ser mayor a 8MB",
+                                            Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                        }
+                        else
+                        {
+                            imageAttachmentPreview.setVisibility(View.VISIBLE);
+                            Glide.with(getContext())
+                                    .load(R.drawable.ic_attach_file)
+                                    .centerCrop()
+                                    .into(imageAttachmentPreview);
+                        }
 
                         location = null;
                         selectedImage = null;
