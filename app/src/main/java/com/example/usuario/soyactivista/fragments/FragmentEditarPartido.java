@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 import logica.Selector_de_Tema;
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -96,56 +95,76 @@ public class FragmentEditarPartido extends Fragment {
             @Override
             public void onClick(final View clickedColor) {
                 colorChecked = clickedColor.getId();
-
+                DialogColor fragment1 = new DialogColor();
                 if(colorAnterior == null)
                     colorAnterior = clickedColor;
 
                 if(clickedColor.getId()==R.id.themeBrown) {
+                    fragment1.setColorTema(R.color.brown,R.drawable.circulobr);
+                    fragment1.show(getFragmentManager(),"");
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circulomarron));
 
                 }else {
                     if(colorAnterior.getId()==R.id.themeBrown)
+
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulobr));
                 }
                 if(clickedColor.getId()==R.id.themeOrange) {
+
+                    fragment1.setColorTema(R.color.orange800,R.drawable.circulon);
+                    fragment1.show(getFragmentManager(),"");
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circulonaranja));
                 }else {
                     if(colorAnterior.getId()==R.id.themeOrange)
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulon));
                 }
                 if(clickedColor.getId()==R.id.themeBlue) {
+                    fragment1.setColorTema(R.color.blue500,R.drawable.circuloaz);
+                    fragment1.show(getFragmentManager(),"");
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circuloazul));
                 }else {
                     if(colorAnterior.getId()==R.id.themeBlue)
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circuloaz));
                 }
                 if(clickedColor.getId()==R.id.themeRed) {
+                    fragment1.setColorTema(R.color.red900,R.drawable.circulor);
+                    fragment1.show(getFragmentManager(),"");
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circulorojo));
                 }else {
                     if(colorAnterior.getId()==R.id.themeRed)
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulor));
                 }
                 if(clickedColor.getId()==R.id.themeGreen) {
+                    fragment1.setColorTema(R.color.green600,R.drawable.circulov);
+                    fragment1.show(getFragmentManager(),"");
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circuloverde));
                 }else {
                     if(colorAnterior.getId()==R.id.themeGreen)
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulov));
                 }
                 if(clickedColor.getId()==R.id.themeYellow) {
+                    fragment1.setColorTema(R.color.yellow600,R.drawable.circuloam);
+                    fragment1.show(getFragmentManager(),"");
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circuloamarillo));
                 }else {
                     if(colorAnterior.getId()==R.id.themeYellow)
+
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circuloam));
                 }
                 if(clickedColor.getId()==R.id.themePurple) {
+                    fragment1.setColorTema(R.color.deeppurple600,R.drawable.circulop);
+                    fragment1.show(getFragmentManager(), "");
+
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circulopurpura));
                 }else {
                     if(colorAnterior.getId()==R.id.themePurple)
                         colorAnterior.setBackground(getResources().getDrawable(R.drawable.circulop));
                 }
-                if(clickedColor.getId()==R.id.themeDefault) {
-                    DialogColor fragment1 = new DialogColor();
-                    fragment1.show(getFragmentManager(),"");
+                if(clickedColor.getId() == R.id.themeDefault) {
+                    fragment1.setColorTema(R.color.indigo,R.drawable.circulo);
+                    fragment1.show(getFragmentManager(), "");
+
+
                     clickedColor.setBackground(getResources().getDrawable(R.drawable.circuloindigo));
                 }else {
                     if(colorAnterior.getId()==R.id.themeDefault)
