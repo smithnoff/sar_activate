@@ -32,6 +32,7 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.parse.FindCallback;
 import com.parse.FunctionCallback;
 import com.parse.GetCallback;
 import com.parse.ParseCloud;
@@ -50,6 +51,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -63,7 +65,8 @@ public class FragmentCrearMensajeDirecto extends Fragment {
 
     private ProgressDialog dialog;
     private ParseUser currentUser;
-    private String receptorId;
+    private ParseUser prueba;
+    private String receptorId,receptorUsername;
     private boolean existeConversacion;
     private TextView textCharCount;
     private EditText editText;
@@ -266,6 +269,7 @@ public class FragmentCrearMensajeDirecto extends Fragment {
 
 
                             receptorId = getArguments().getString("receptorId");
+                            receptorUsername =getArguments().getString("receptorUsername");
 
                             currentUser = ParseUser.getCurrentUser();
 
@@ -275,137 +279,363 @@ public class FragmentCrearMensajeDirecto extends Fragment {
 
                             if(!existeConversacion)
                             {
+
                                 dialog = ProgressDialog.show(getActivity(), "", "Creando Conversación", true);
-                                //darwin
-                                // Creates New Conversation and Adds Users to conversation
-                                final ParseObject nuevaConversacion = new ParseObject("Conversacion");
-                                nuevaConversacion.put("ultimaActividad", new Date());
 
-                                nuevaConversacion.saveInBackground(new SaveCallback() {
-                                    @Override
-                                    public void done(ParseException e) {
-
+                                ParseQuery<ParseObject> innerQuery2 = ParseQuery.getQuery("_User");
+                                innerQuery2.whereEqualTo("username", receptorUsername);
+                                ParseQuery<ParseObject> query = ParseQuery.getQuery("ParticipanteConversacion");
+                                query.whereEqualTo("receptor", currentUser);
+                                query.whereMatchesQuery("usuario", innerQuery2);
+                                query.findInBackground(new FindCallback<ParseObject>() {
+                                    public void done(List<ParseObject> parseLikes, ParseException e) {
                                         if (e == null) {
 
-                                            final ParseObject nuevoParticipante = new ParseObject("ParticipanteConversacion");
-                                            Log.d(TAG, "Participante: " + nuevaConversacion.getObjectId() + " " + currentUser.getUsername());
-                                            nuevoParticipante.put("conversacion", nuevaConversacion);
-                                            nuevoParticipante.put("usuario", currentUser);
+                                            //se restaura la conversacion si un participante elimino su copia y vuelve a escribir a el mismo
+                                            //participante a quien le borro de sus conversacion
+                                            if (parseLikes.size()>=1)
+                                            {
+                                                Log.d("score", "Retrieved " + parseLikes.size() + " scores");
+                                                for (ParseObject question : parseLikes) {
 
+                                                    ParseObject conversacion    =   question.getParseObject("conversacion");
+                                                    String conversacionId       =   conversacion.getObjectId().toString();
+                                                    ParseObject receptor        =  question.getParseObject("usuario");
 
-                                            final ParseObject nuevoParticipante2 = new ParseObject("ParticipanteConversacion");
-                                            nuevoParticipante2.put("conversacion", nuevaConversacion);
+                                                    final ParseObject nuevoParticipante = new ParseObject("ParticipanteConversacion");
 
-                                            Log.d(TAG, "Participante: " + nuevaConversacion.getObjectId() + " " + receptorId);
-
-                                            // Query for 2nd user because Parse does not allow creation of Users without data.
-
-                                            ParseQuery query = ParseUser.getQuery();
-                                            query.whereEqualTo("objectId", receptorId);
-                                            query.getFirstInBackground(new GetCallback() {
-                                                @Override
-                                                public void done(final ParseObject object, ParseException e) {
-                                                    if (e == null && object != null) {
-                                                        // User Retrieved
-                                                        nuevoParticipante.put("receptor",object);
-                                                        nuevoParticipante.saveInBackground(new SaveCallback() {
-                                                            @Override
-                                                            public void done(ParseException e) {
-                                                                if (e == null)
-                                                                    Log.d(TAG, "Participante 1 agregado correctamente");
-                                                                else
-                                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 1 " + e.getMessage());
+                                                    nuevoParticipante.put("conversacion", conversacion);
+                                                    nuevoParticipante.put("usuario", currentUser);
+                                                    nuevoParticipante.put("receptor", receptor);
+                                                    nuevoParticipante.saveInBackground(new SaveCallback() {
+                                                        @Override
+                                                        public void done(ParseException e) {
+                                                            if (e == null)
+                                                            {
+                                                                Log.d(TAG, "Participante  agregado nuevamente, correctamente");
                                                             }
-                                                        });
 
-                                                        nuevoParticipante2.put("usuario", object);
-                                                        nuevoParticipante2.put("receptor",currentUser);
-                                                        nuevoParticipante2.saveInBackground(new SaveCallback() {
-                                                            @Override
-                                                            public void done(ParseException e) {
-                                                                if (e == null)
-                                                                {
-                                                                    Log.d(TAG, "Participante 2 agregado correctamente");
-
-                                                                    dialog.setMessage("Guardando Mensaje");
-                                                                    saveMensajeDirecto(nuevaConversacion.getObjectId(), object.getObjectId());
-
-                                                                }
-
-                                                                else {
-                                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 2 " + e.getMessage());
-
-                                                                }
-
-
+                                                            else {
+                                                                Log.d(TAG, " Ocurrió un error agregando al Participante nuevamente " + e.getMessage());
                                                             }
-                                                        });
 
-                                                    } else {
-                                                        Log.d(TAG, " Ocurrió un error buscando al usuario " + e.getMessage());
-                                                    }
-
+                                                        }
+                                                    });
+                                                    saveMensajeDirecto(conversacionId, receptorId);
                                                 }
+                                            }
+                                            else
+                                            {
 
-                                                @Override
-                                                public void done(final Object o, Throwable throwable) {
-                                                    if (o != null) {
+                                                // Creates New Conversation and Adds Users to conversation
+                                                final ParseObject nuevaConversacion = new ParseObject("Conversacion");
+                                                nuevaConversacion.put("ultimaActividad", new Date());
 
-                                                        final ParseUser user = (ParseUser) o;
-                                                        Log.d(TAG, "Caso Desconocido " + o.toString());
-                                                        // User Retrieved
-                                                        nuevoParticipante.put("receptor",user);
-                                                        nuevoParticipante.saveInBackground(new SaveCallback() {
-                                                            @Override
-                                                            public void done(ParseException e) {
-                                                                if (e == null)
-                                                                    Log.d(TAG, "Participante 1 agregado correctamente");
-                                                                else
-                                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 1 " + e.getMessage());
-                                                            }
-                                                        });
+                                                nuevaConversacion.saveInBackground(new SaveCallback() {
+                                                    @Override
+                                                    public void done(ParseException e) {
+
+                                                        if (e == null) {
+
+                                                            final ParseObject nuevoParticipante = new ParseObject("ParticipanteConversacion");
+                                                            Log.d(TAG, "Participante: " + nuevaConversacion.getObjectId() + " " + currentUser.getUsername());
+                                                            nuevoParticipante.put("conversacion", nuevaConversacion);
+                                                            nuevoParticipante.put("usuario", currentUser);
 
 
-                                                        nuevoParticipante2.put("usuario", o);
-                                                        nuevoParticipante2.put("receptor",currentUser);
-                                                        nuevoParticipante2.saveInBackground(new SaveCallback() {
-                                                            @Override
-                                                            public void done(ParseException e) {
-                                                                if (e == null) {
-                                                                    Log.d(TAG, "Participante 2 agregado correctamente");
+                                                            final ParseObject nuevoParticipante2 = new ParseObject("ParticipanteConversacion");
+                                                            nuevoParticipante2.put("conversacion", nuevaConversacion);
 
-                                                                    saveMensajeDirecto(nuevaConversacion.getObjectId(), user.getObjectId());
+                                                            Log.d(TAG, "Participante: " + nuevaConversacion.getObjectId() + " " + receptorId);
+
+                                                            // Query for 2nd user because Parse does not allow creation of Users without data.
+
+                                                            ParseQuery query = ParseUser.getQuery();
+                                                            query.whereEqualTo("objectId", receptorId);
+                                                            query.getFirstInBackground(new GetCallback() {
+                                                                @Override
+                                                                public void done(final ParseObject object, ParseException e) {
+                                                                    if (e == null && object != null) {
+                                                                        // User Retrieved
+                                                                        nuevoParticipante.put("receptor",object);
+                                                                        nuevoParticipante.saveInBackground(new SaveCallback() {
+                                                                            @Override
+                                                                            public void done(ParseException e) {
+                                                                                if (e == null)
+                                                                                    Log.d(TAG, "Participante 1 agregado correctamente");
+                                                                                else
+                                                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 1 " + e.getMessage());
+                                                                            }
+                                                                        });
+
+                                                                        nuevoParticipante2.put("usuario", object);
+                                                                        nuevoParticipante2.put("receptor",currentUser);
+                                                                        nuevoParticipante2.saveInBackground(new SaveCallback() {
+                                                                            @Override
+                                                                            public void done(ParseException e) {
+                                                                                if (e == null)
+                                                                                {
+                                                                                    Log.d(TAG, "Participante 2 agregado correctamente");
+
+                                                                                    dialog.setMessage("Guardando Mensaje");
+                                                                                    saveMensajeDirecto(nuevaConversacion.getObjectId(), object.getObjectId());
+
+                                                                                }
+
+                                                                                else {
+                                                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 2 " + e.getMessage());
+
+                                                                                }
+
+
+                                                                            }
+                                                                        });
+
+                                                                    } else {
+                                                                        Log.d(TAG, " Ocurrió un error buscando al usuario " + e.getMessage());
+                                                                    }
 
                                                                 }
-                                                                else {
-                                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 2 " + e.getMessage());
+
+                                                                @Override
+                                                                public void done(final Object o, Throwable throwable) {
+                                                                    if (o != null) {
+
+                                                                        final ParseUser user = (ParseUser) o;
+                                                                        Log.d(TAG, "Caso Desconocido " + o.toString());
+                                                                        // User Retrieved
+                                                                        nuevoParticipante.put("receptor",user);
+                                                                        nuevoParticipante.saveInBackground(new SaveCallback() {
+                                                                            @Override
+                                                                            public void done(ParseException e) {
+                                                                                if (e == null)
+                                                                                    Log.d(TAG, "Participante 1 agregado correctamente");
+                                                                                else
+                                                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 1 " + e.getMessage());
+                                                                            }
+                                                                        });
+
+
+                                                                        nuevoParticipante2.put("usuario", o);
+                                                                        nuevoParticipante2.put("receptor",currentUser);
+                                                                        nuevoParticipante2.saveInBackground(new SaveCallback() {
+                                                                            @Override
+                                                                            public void done(ParseException e) {
+                                                                                if (e == null) {
+                                                                                    Log.d(TAG, "Participante 2 agregado correctamente");
+
+                                                                                    saveMensajeDirecto(nuevaConversacion.getObjectId(), user.getObjectId());
+
+                                                                                }
+                                                                                else {
+                                                                                    Log.d(TAG, " Ocurrió un error agregando al Participante 2 " + e.getMessage());
+                                                                                }
+                                                                            }
+                                                                        });
+                                                                    } else{
+
+                                                                        Log.d(TAG, "Caso Desconocido " + throwable.getMessage());
+                                                                        //Toast.makeText(getActivity(), "No se encontró al usuario con el que desea iniciar una conversación", Toast.LENGTH_LONG).show();
+                                                                        final Snackbar snackbar = Snackbar
+                                                                                .make(coordinatorLayout, "No se encontró al usuario con el que desea iniciar una conversación",
+                                                                                        Snackbar.LENGTH_LONG);
+
+                                                                        snackbar.show();
+
+                                                                        dialog.dismiss();
+
+                                                                    }
+
+
+
                                                                 }
-                                                            }
-                                                        });
-                                                    } else{
-
-                                                        Log.d(TAG, "Caso Desconocido " + throwable.getMessage());
-                                                        //Toast.makeText(getActivity(), "No se encontró al usuario con el que desea iniciar una conversación", Toast.LENGTH_LONG).show();
-                                                        final Snackbar snackbar = Snackbar
-                                                                .make(coordinatorLayout, "No se encontró al usuario con el que desea iniciar una conversación",
-                                                                        Snackbar.LENGTH_LONG);
-
-                                                        snackbar.show();
-
-                                                        dialog.dismiss();
-
+                                                            });
+                                                        }
+                                                        else{
+                                                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+                                                        }
                                                     }
+                                                });
+                                                ///darw
 
 
 
-                                                }
-                                            });
-                                        }
-                                        else{
-                                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+
+
+                                            }
+
+
+
+
+                                        } else {
+                                            Log.d("score", "Error: " + e.getMessage());
                                         }
                                     }
                                 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                ///////////////
+/*
+                                ParseQuery query2 = ParseUser.getQuery();
+                                query2.whereEqualTo("objectId", receptorId);
+
+                                query2.getFirstInBackground(new GetCallback() {
+                                @Override
+                                public void done(final ParseObject object, ParseException e) {
+                                    if (e == null) {
+
+
+                                        ParseQuery<ParseObject> innerQuery2 = ParseQuery.getQuery("_User");
+                                        innerQuery2.whereEqualTo("username", receptorUsername);
+
+
+                                        ParseQuery<ParseObject> query = ParseQuery.getQuery("ParticipanteConversacion");
+                                        query.whereEqualTo("receptor", currentUser);
+                                        query.whereMatchesQuery("usuario", innerQuery2);
+
+
+                                        query.findInBackground(new FindCallback<ParseObject>() {
+                                            public void done(List<ParseObject> parseLikes, ParseException e) {
+                                                if (e == null) {
+                                                    Log.d("score", "Retrieved " + parseLikes.size() + " scores");
+
+                                                } else {
+                                                    Log.d("score", "Error: " + e.getMessage());
+                                                }
+                                            }
+                                        });
+
+
+
+
+
+
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        //List contain object with specific user id.
+                                    /*    ParseQuery<ParseObject> query = ParseQuery.getQuery("ParticipanteConversacion");
+                                        query.whereEqualTo("receptor", currentUser);
+                                        query.whereEqualTo("usuario", object);
+
+
+                                        query.findInBackground(new FindCallback<ParseObject>() {
+                                            @Override
+                                            public void done(List<ParseObject> parseLikes, ParseException e) {
+                                                if (e == null) {
+                                                    Log.d("dos_user", "Retrieved " + parseLikes.size() + " scores");
+
+
+                                                } else {
+                                                    Log.d("dos_user", "Error: " + e.getMessage());
+                                                }
+                                            }
+                                        });
+
+
+                                    } else {
+                                        Log.d("score", "Error: " + e.getMessage());
+                                    }
+                                }
+                            });
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+                             /*   ParseQuery query2 = ParseUser.getQuery();
+                                query2.whereEqualTo("objectId",receptorId);
+                                query2.getFirstInBackground(new GetCallback() {
+                                    public void done(final ParseObject object, ParseException e) {
+                                          if (e == null) {
+                                              //List contain object with specific user id.
+                                              ParseQuery<ParseObject> query = ParseQuery.getQuery("ParticipanteConversacion");
+                                              query.whereEqualTo("receptor", currentUser);
+                                              query.whereEqualTo("usuario", object);
+
+
+                                              query.findInBackground(new FindCallback<ParseObject>() {
+                                                  public void done(List<ParseObject> parseLikes, ParseException e) {
+                                                      if (e == null) {
+                                                          Log.d("dos_user", "Retrieved " + parseLikes.size() + " scores");
+
+
+                                                      } else {
+                                                          Log.d("dos_user", "Error: " + e.getMessage());
+                                                      }
+                                                  }
+                                              });
+
+
+                                          } else {
+                                              // error
+                                          }
+                                      }
+                                  });*/
+
+
+                                //darwin
+
+
+
+
+
+                                //fin darwin
+
+
+
+
+
+
+
                             }
                             //ya existe la conversacion
                             else

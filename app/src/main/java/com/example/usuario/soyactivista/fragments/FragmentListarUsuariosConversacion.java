@@ -96,6 +96,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                 Bundle datos = new Bundle();
                 Log.d(TAG,"Cargando en Bundle: Usuario "+usuarioSeleccionado.getId());
                 datos.putString("receptorId", usuarioSeleccionado.getId());
+                datos.putString("receptorUsername", usuarioSeleccionado.getUsername());
                 datos.putBoolean("existeConversacion",false);
 
 
