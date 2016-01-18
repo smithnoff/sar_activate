@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.usuario.soyactivista.fragments.FragmentAAA;
 import com.example.usuario.soyactivista.fragments.FragmentCrearUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
 import com.example.usuario.soyactivista.fragments.FragmentEditarUsuario;
@@ -167,6 +168,10 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                                     break;
 
                                 // PLACEHOLDER PUNTUACIONES
+                                case R.id.menuTablaPuntos:
+                                    fragment = new FragmentAAA();
+                                    fragmentTransaction = true;
+                                    break;
 
                                 case R.id.menuListarUsuario:
                                     fragment = new FragmentListarUsuario();
