@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import soy_activista.quartzapp.com.soy_activista.R;
-import logica.ColorFilterGenerator;
+
 /**
  * Created by Luis Adrian on 19/01/2016.
  */
@@ -34,7 +34,7 @@ private ImageView bolivar;
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_tab_ranking_nacional, container, false);
         bolivar = (ImageView)v.findViewById(R.id.bolivar);
-       
+
         bolivar.setColorFilter(R.color.red900,PorterDuff.Mode.SRC_ATOP);
 
 
