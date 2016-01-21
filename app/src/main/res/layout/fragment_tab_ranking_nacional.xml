@@ -6,14 +6,28 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="327dp">
+
         <ImageView
-            android:id="@+id/venezuela"
+            android:id="@+id/deltaAmacuro"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginTop="50dp"
-            android:src="@drawable/venezuela"
+            android:src="@drawable/delta_amacuro"
             android:layout_gravity="center_horizontal"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+
+            />
+        <ImageView
+            android:id="@+id/bolivar"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/bolivar"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+
+
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,7 +37,8 @@
             android:textStyle="bold"
             android:gravity="center"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            />
     </RelativeLayout>
 
 
