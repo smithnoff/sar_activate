@@ -218,10 +218,7 @@ public class FragmentListarMensajeDirecto extends Fragment {
 
                   android.app.AlertDialog alert2 = builder.create();
                   alert2.show();
-
-
-
-
+                  
 
                   return true;
 
@@ -237,42 +234,121 @@ public class FragmentListarMensajeDirecto extends Fragment {
                             dialogo.dismiss();
 
                             // Get current User
-                            ParseUser currentUser = ParseUser.getCurrentUser();
+                        final    ParseUser currentUser = ParseUser.getCurrentUser();
 
                             // Make COnversation without Data for query/eliminate
-                            ParseObject conversacion = ParseObject.createWithoutData("Conversacion",getArguments().getString("conversacionId"));
+                         final   ParseObject conversacion = ParseObject.createWithoutData("Conversacion", getArguments().getString("conversacionId"));
 
-                            // Query my conversations
-                            ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ParticipanteConversacion");
-                            query.whereEqualTo("conversacion",conversacion);
-                            query.whereEqualTo("usuario",currentUser);
-                            query.findInBackground(new FindCallback<ParseObject>() {
-                                @Override
-                                public void done(List<ParseObject> objects, ParseException e) {
+
+                            ParseQuery<ParseObject> querydarwin = ParseQuery.getQuery("ParticipanteConversacion");
+                            querydarwin.whereEqualTo("conversacion",conversacion);
+                            querydarwin.findInBackground(new FindCallback<ParseObject>() {
+                                public void done(List<ParseObject> parseLikes, ParseException e) {
                                     if (e == null) {
-                                        if (objects.size() > 0) {
-                                            ParseObject participante;
-                                            for (int i = 0; i < objects.size(); i++) {
-                                                participante = objects.get(i);
-                                                participante.deleteInBackground();
-                                            }
+
+                                        if(parseLikes.size()==2)
+                                        {
+                                            // Query my conversations
+                                            ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ParticipanteConversacion");
+                                            query.whereEqualTo("conversacion",conversacion);
+
+                                            query.whereEqualTo("usuario",currentUser);
+                                            query.findInBackground(new FindCallback<ParseObject>() {
+                                                @Override
+                                                public void done(List<ParseObject> objects, ParseException e) {
+                                                    if (e == null) {
+                                                        if (objects.size() > 0) {
+                                                            ParseObject participante;
+                                                            for (int i = 0; i < objects.size(); i++) {
+                                                                participante = objects.get(i);
+                                                                participante.deleteInBackground();
+                                                            }
+                                                        }
+
+                                                        Toast.makeText(getContext(), "Conversación eliminada.", Toast.LENGTH_SHORT).show();
+
+                                                        Fragment fragment = new FragmentListarConversacion();
+                                                        getFragmentManager()
+                                                                .beginTransaction()
+                                                                .replace(((ViewGroup)getView().getParent()).getId(), fragment)
+                                                                .commit();
+                                                    } else {
+                                                        Toast.makeText(getContext(), "Error. " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+
+                                        }
+                                        else
+                                        {
+                                            //borrar participante conversacion
+
+                                            ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ParticipanteConversacion");
+                                            query.whereEqualTo("conversacion",conversacion);
+
+                                            query.whereEqualTo("usuario", currentUser);
+                                            query.findInBackground(new FindCallback<ParseObject>() {
+                                                @Override
+                                                public void done(List<ParseObject> objects, ParseException e) {
+                                                    if (e == null) {
+                                                        if (objects.size() > 0) {
+                                                            ParseObject participante;
+                                                            for (int i = 0; i < objects.size(); i++) {
+                                                                participante = objects.get(i);
+                                                                participante.deleteInBackground();
+                                                            }
+
+                                                            //borrar Mensaje Directo
+                                                            ParseQuery<ParseObject> queryDirecto = ParseQuery.getQuery("MensajeDirecto");
+                                                            queryDirecto.whereEqualTo("conversacion", conversacion);
+                                                            queryDirecto.findInBackground(new FindCallback<ParseObject>() {
+                                                                public void done(List<ParseObject> parseLikes, ParseException e) {
+                                                                    if (e == null) {
+
+                                                                        if (parseLikes.size() > 0) {
+                                                                            ParseObject MensajeDirecto;
+                                                                            for (int i = 0; i < parseLikes.size(); i++) {
+                                                                                MensajeDirecto = parseLikes.get(i);
+                                                                                MensajeDirecto.deleteInBackground();
+                                                                            }
+
+                                                                            //borrar conversacion
+
+                                                                            conversacion.deleteInBackground();
+
+                                                                            Toast.makeText(getContext(), "Conversación eliminada.", Toast.LENGTH_SHORT).show();
+
+                                                                            Fragment fragment = new FragmentListarConversacion();
+                                                                            getFragmentManager()
+                                                                                    .beginTransaction()
+                                                                                    .replace(((ViewGroup) getView().getParent()).getId(), fragment)
+                                                                                    .commit();
+                                                                        }
+
+                                                                        Log.d("MensajeDirecto", "borrado mensaje directo " + parseLikes.size() + " scores");
+                                                                    } else {
+                                                                        Log.d("MensajeDirecto", "Error: " + e.getMessage());
+                                                                    }
+                                                                }
+                                                            });
+                                                        }
+
+                                                    } else {
+                                                        Toast.makeText(getContext(), "Error. " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+
+                                            Log.d("conversacion", "un solo participante ");
                                         }
 
-                                        Toast.makeText(getContext(), "Conversación eliminada.", Toast.LENGTH_SHORT).show();
-
-                                        // Redirect user to conversation list
-                                        Fragment fragment = new FragmentListarConversacion();
-                                        getFragmentManager()
-                                                .beginTransaction()
-                                                .replace(((ViewGroup)getView().getParent()).getId(), fragment)
-                                                .commit();
+                                        Log.d("convesacion", "Retrieveddarwin " + parseLikes.size() + " scores");
 
                                     } else {
-                                        Toast.makeText(getContext(), "Error. " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Log.d("score", "Error: " + e.getMessage());
                                     }
                                 }
                             });
-
 
                         }
 

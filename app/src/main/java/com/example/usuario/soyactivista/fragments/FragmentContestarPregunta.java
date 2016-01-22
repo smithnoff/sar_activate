@@ -130,38 +130,57 @@ public class FragmentContestarPregunta extends Fragment {
             public void onClick(View v) {
                 valor = 1;
                 animar = (CircularProgressButton)v;
-                if(Integer.valueOf(correctas.get(preguntaActual)) == 1)
+                if(Integer.valueOf(correctas.get(preguntaActual)) == 1){
                     respuestaCorrecta();
+
+                    simulateErrorProgress(circularButtonRespuesta2);
+                    circularButtonRespuesta2.setErrorText(respuesta2.get(preguntaActual));
+
+                    simulateErrorProgress(circularButtonRespuesta3);
+                    circularButtonRespuesta3.setErrorText(respuesta3.get(preguntaActual));
+
+                    simulateErrorProgress(circularButtonRespuesta4);
+                    circularButtonRespuesta4.setErrorText(respuesta4.get(preguntaActual));
+
+                }
                 else
                 {
                     respuestaIncorrecta();
                     if(Integer.valueOf(correctas.get(preguntaActual)) == 2)
                     {
                         simulateSuccessProgress(circularButtonRespuesta2);
-                        simulateErrorProgress(circularButtonRespuesta3);
-                        simulateErrorProgress(circularButtonRespuesta4);
                         circularButtonRespuesta2.setCompleteText(respuesta2.get(preguntaActual));
+
+                        simulateErrorProgress(circularButtonRespuesta3);
                         circularButtonRespuesta3.setErrorText(respuesta3.get(preguntaActual));
+
+                        simulateErrorProgress(circularButtonRespuesta4);
                         circularButtonRespuesta4.setErrorText(respuesta4.get(preguntaActual));
                     }
                     else
                     {
                         if(Integer.valueOf(correctas.get(preguntaActual)) == 3)
                         {
-                            simulateSuccessProgress(circularButtonRespuesta3);
+
                             simulateErrorProgress(circularButtonRespuesta2);
-                            simulateErrorProgress(circularButtonRespuesta4);
-                            circularButtonRespuesta3.setCompleteText(respuesta3.get(preguntaActual));
                             circularButtonRespuesta2.setErrorText(respuesta2.get(preguntaActual));
+
+                            simulateSuccessProgress(circularButtonRespuesta3);
+                            circularButtonRespuesta3.setCompleteText(respuesta3.get(preguntaActual));
+
+                            simulateErrorProgress(circularButtonRespuesta4);
                             circularButtonRespuesta4.setErrorText(respuesta4.get(preguntaActual));
+
                         }
                         else
                         {
                             simulateSuccessProgress(circularButtonRespuesta4);
-                            simulateErrorProgress(circularButtonRespuesta2);
-                            simulateErrorProgress(circularButtonRespuesta3);
                             circularButtonRespuesta4.setCompleteText(respuesta4.get(preguntaActual));
+
+                            simulateErrorProgress(circularButtonRespuesta2);
                             circularButtonRespuesta2.setErrorText(respuesta2.get(preguntaActual));
+
+                            simulateErrorProgress(circularButtonRespuesta3);
                             circularButtonRespuesta3.setErrorText(respuesta3.get(preguntaActual));
                         }
                     }
@@ -175,10 +194,22 @@ public class FragmentContestarPregunta extends Fragment {
             public void onClick(View v) {
                 valor = 2;
                 animar = (CircularProgressButton)v;
-                if(Integer.valueOf(correctas.get(preguntaActual)) == 2)
+                if(Integer.valueOf(correctas.get(preguntaActual)) == 2){
+
                     respuestaCorrecta();
-                else
-                {
+
+                    simulateErrorProgress(circularButtonRespuesta1);
+                    circularButtonRespuesta1.setErrorText(respuesta1.get(preguntaActual));
+
+                    simulateErrorProgress(circularButtonRespuesta3);
+                    circularButtonRespuesta3.setErrorText(respuesta3.get(preguntaActual));
+
+                    simulateErrorProgress(circularButtonRespuesta4);
+                    circularButtonRespuesta4.setErrorText(respuesta4.get(preguntaActual));
+
+                }
+                else {
+
                     respuestaIncorrecta();
                     if(Integer.valueOf(correctas.get(preguntaActual)) == 1)
                     {
@@ -219,10 +250,20 @@ public class FragmentContestarPregunta extends Fragment {
             public void onClick(View v) {
                 valor = 3;
                 animar=(CircularProgressButton)v;
-                if (Integer.valueOf(correctas.get(preguntaActual)) == 3)
+                if (Integer.valueOf(correctas.get(preguntaActual)) == 3){
+
                     respuestaCorrecta();
-                else
-                {
+
+                    simulateErrorProgress(circularButtonRespuesta1);
+                    circularButtonRespuesta1.setErrorText(respuesta1.get(preguntaActual));
+
+                    simulateErrorProgress(circularButtonRespuesta2);
+                    circularButtonRespuesta2.setErrorText(respuesta2.get(preguntaActual));
+
+                    simulateErrorProgress(circularButtonRespuesta4);
+                    circularButtonRespuesta4.setErrorText(respuesta4.get(preguntaActual));
+                }
+                else {
                     respuestaIncorrecta();
                     if(Integer.valueOf(correctas.get(preguntaActual)) == 1)
                     {
@@ -263,10 +304,22 @@ public class FragmentContestarPregunta extends Fragment {
             public void onClick(View v) {
                 valor = 4;
                 animar=(CircularProgressButton)v;
-                if(Integer.valueOf(correctas.get(preguntaActual)) == 4)
+                if(Integer.valueOf(correctas.get(preguntaActual)) == 4){
+
                     respuestaCorrecta();
-                else
-                {
+
+                    simulateErrorProgress(circularButtonRespuesta1);
+                    circularButtonRespuesta1.setErrorText(respuesta1.get(preguntaActual));
+
+                    simulateErrorProgress(circularButtonRespuesta2);
+                    circularButtonRespuesta2.setErrorText(respuesta2.get(preguntaActual));
+
+                    simulateErrorProgress(circularButtonRespuesta3);
+                    circularButtonRespuesta3.setErrorText(respuesta3.get(preguntaActual));
+
+                }
+
+                else {
                     respuestaIncorrecta();
                     if(Integer.valueOf(correctas.get(preguntaActual)) == 1)
                     {
@@ -467,8 +520,8 @@ public class FragmentContestarPregunta extends Fragment {
         data.putInt("totalPreguntas", totalPreguntas);
         data.putString("dificultad", dificultad);
         // Wildcars
-        data.putBoolean("tiempoExtra", tiempoExtra);
-        data.putBoolean("saltarPregunta", saltarPregunta);
+        data.putBoolean("tiempoExtra", true);
+        data.putBoolean("saltarPregunta", true);
 
         // Store data in bundle to send to next fragment
         Fragment fragment = new FragmentContestarPregunta();

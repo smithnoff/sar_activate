@@ -28,6 +28,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import logica.ListarUsuarioAdapter;
+import logica.ListarUsuarioJerarquiaAdapter;
 import logica.Usuario;
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -40,7 +41,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
     private String TAG = "FragmentListarUsuarioConversacion";
 
     // Data Holders
-    private ListarUsuarioAdapter listarUsuarioAdapter;
+    private ListarUsuarioJerarquiaAdapter listarUsuarioJerarquiaAdapter;
     private ListView listView;
     private ArrayList<Usuario> usuarioArrayList = new ArrayList<>();
     private ParseUser currentUser;
@@ -74,15 +75,15 @@ public class FragmentListarUsuariosConversacion extends Fragment{
         Log.d(TAG,"List contains "+usuarioArrayList.size()+" elements");
 
         // If adapter is null Initialize list and set adapter to view
-        if(listarUsuarioAdapter == null){
+        if(listarUsuarioJerarquiaAdapter == null){
             Log.d(TAG,"Array Adapter is null");
             initializeList(usuarioArrayList);
         }
         // List Already contains elements/ Just set adapter to view
         else{
-            Log.d(TAG, "Array Adapter is OK with " + listarUsuarioAdapter.getCount()+" elements");
+            Log.d(TAG, "Array Adapter is OK with " + listarUsuarioJerarquiaAdapter.getCount()+" elements");
             // Add Elements to List and reset adapter
-            listView.setAdapter(listarUsuarioAdapter);
+            listView.setAdapter(listarUsuarioJerarquiaAdapter);
         }
 
         // Handle Item OnClick Events
@@ -130,7 +131,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
             public boolean onQueryTextSubmit(String query) {
                 // If query has something filter adapter
                 if (query.length() > 0) {
-                    listarUsuarioAdapter.getFilter().filter("texto=" + query);
+                    listarUsuarioJerarquiaAdapter.getFilter().filter("texto=" + query);
                 }
                 return false;
             }
@@ -172,7 +173,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                         // Request List to filter
-                        listarUsuarioAdapter.getFilter().filter("estado="+listView.getItemAtPosition(position));
+                        listarUsuarioJerarquiaAdapter.getFilter().filter("estado="+listView.getItemAtPosition(position));
                         filterDialog.dismiss();
 
                     }
@@ -198,7 +199,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
 
                 // Users from Comité Nacinal.
                 ParseQuery<ParseUser> query0 = ParseUser.getQuery();
-                query0.whereEqualTo("comite","Nacional");
+                query0.whereEqualTo("comite", "Nacional");
                 queries.add(query0);
 
                 // Users from Comité Estadal.
@@ -212,15 +213,15 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                 query2.whereEqualTo("estado",currentUser.getString("estado"));
                 queries.add(query2);
 
-                // Users from Comité Municipal from my State.
+                // Users from Comité Parroquial from my State.
                 ParseQuery<ParseUser> query3 = ParseUser.getQuery();
-                query3.whereEqualTo("comite","Municipal");
+                query3.whereEqualTo("comite","Parroquial");
                 query3.whereEqualTo("estado",currentUser.getString("estado"));
                 queries.add(query3);
 
-                // Users from Comité Parroquial from my State.
+                // Users from Activista from my State.
                 ParseQuery<ParseUser> query4 = ParseUser.getQuery();
-                query4.whereEqualTo("comite","Parroquial");
+                query4.whereEqualTo("comite","Activista");
                 query4.whereEqualTo("estado",currentUser.getString("estado"));
                 queries.add(query4);
 
@@ -243,7 +244,15 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                 ParseQuery<ParseUser> query22 = ParseUser.getQuery();
                 query22.whereEqualTo("comite","Parroquial");
                 query22.whereEqualTo("estado",currentUser.getString("estado"));
+                query22.whereEqualTo("municipio",currentUser.getString("municipio"));
                 queries.add(query22);
+
+                // Users from Activista from my Municipio.
+                ParseQuery<ParseUser> query33 = ParseUser.getQuery();
+                query33.whereEqualTo("comite","Activista");
+                query33.whereEqualTo("estado",currentUser.getString("estado"));
+                query33.whereEqualTo("municipio",currentUser.getString("municipio"));
+                queries.add(query33);
 
                 break;
 
@@ -253,13 +262,55 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                 ParseQuery<ParseUser> query000= ParseUser.getQuery();
                 query000.whereEqualTo("comite","Municipal");
                 query000.whereEqualTo("estado",currentUser.getString("estado"));
+                query000.whereEqualTo("municipio",currentUser.getString("municipio"));
                 queries.add(query000);
 
                 // Users from Comité Parroquial from my State.
                 ParseQuery<ParseUser> query111 = ParseUser.getQuery();
                 query111.whereEqualTo("comite","Parroquial");
                 query111.whereEqualTo("estado",currentUser.getString("estado"));
+                query111.whereEqualTo("municipio",currentUser.getString("municipio"));
                 queries.add(query111);
+
+                //User from Activista from my Municipio
+                ParseQuery<ParseUser> query222 = ParseUser.getQuery();
+                query222.whereEqualTo("comite","Activista");
+                query222.whereEqualTo("estado",currentUser.getString("estado"));
+                query222.whereEqualTo("municipio",currentUser.getString("municipio"));
+                queries.add(query222);
+
+                //User from Activista from my Parroquia
+                ParseQuery<ParseUser> query333 = ParseUser.getQuery();
+                query333.whereEqualTo("comite","Activista");
+                query333.whereEqualTo("estado",currentUser.getString("estado"));
+                query333.whereEqualTo("municipio",currentUser.getString("municipio"));
+                query333.whereEqualTo("parroquia",currentUser.getString("parroquia"));
+                queries.add(query333);
+
+                break;
+            case "Activista":
+
+                //Users from Comite Parroquial from my State
+                ParseQuery<ParseUser> query0000 = ParseUser.getQuery();
+                query0000.whereEqualTo("comite","Parroquial");
+                query0000.whereEqualTo("estado",currentUser.getString("estado"));
+                query0000.whereEqualTo("municipio",currentUser.getString("municipio"));
+                queries.add(query0000);
+
+                //User from Activista from my Municipio
+                ParseQuery<ParseUser> query1111 = ParseUser.getQuery();
+                query1111.whereEqualTo("comite","Activista");
+                query1111.whereEqualTo("estado",currentUser.getString("estado"));
+                query1111.whereEqualTo("municipio",currentUser.getString("municipio"));
+                queries.add(query1111);
+
+                //User from Activista from my Parroquia
+                ParseQuery<ParseUser> query2222 = ParseUser.getQuery();
+                query2222.whereEqualTo("comite","Activista");
+                query2222.whereEqualTo("estado",currentUser.getString("estado"));
+                query2222.whereEqualTo("municipio",currentUser.getString("municipio"));
+                query2222.whereEqualTo("parroquia",currentUser.getString("parroquia"));
+                queries.add(query2222);
 
                 break;
             default:
@@ -296,12 +347,12 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                         list.add(usuario);
                     }
                     Log.d(TAG, "List have " + list.size() + " items.");
-                    listarUsuarioAdapter = new ListarUsuarioAdapter(getActivity(),list);
-                    listView.setAdapter(listarUsuarioAdapter);
+                    listarUsuarioJerarquiaAdapter = new ListarUsuarioJerarquiaAdapter(getActivity(),list);
+                    listView.setAdapter(listarUsuarioJerarquiaAdapter);
 
                     // If no Search/Filter Argument initialize list, else filter.
                     if(getArguments() != null && getArguments().getString("busqueda") != null){
-                        listarUsuarioAdapter.getFilter().filter(getArguments().getString("busqueda"));
+                        listarUsuarioJerarquiaAdapter.getFilter().filter(getArguments().getString("busqueda"));
                     }
 
                     dialog.dismiss();

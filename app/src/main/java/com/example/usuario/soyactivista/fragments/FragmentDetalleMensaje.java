@@ -10,12 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -30,6 +34,7 @@ public class FragmentDetalleMensaje extends Fragment {
     private ImageView previewAdjunto;
     private Button botonReportar;
     private Button botonEliminar;
+    private ProgressBar ProgressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -47,6 +52,7 @@ public class FragmentDetalleMensaje extends Fragment {
 
         botonReportar = (Button)v.findViewById(R.id.botonReportar);
         botonEliminar = (Button)v.findViewById(R.id.botonEliminar);
+        ProgressBar = (ProgressBar)v.findViewById(R.id.ProgressBar);
 
         //Gets Current User
         final ParseUser usuarioActual = ParseUser.getCurrentUser();
@@ -66,16 +72,51 @@ public class FragmentDetalleMensaje extends Fragment {
 
             //Attached File is an Image
             if(extension.equalsIgnoreCase("jpg")) {
+                ProgressBar.setVisibility(View.VISIBLE);
                 String url = getArguments().getString("adjunto");
+
                 Glide.with(getContext())
+                        .load(url)
+                        .listener(new RequestListener<String, GlideDrawable>() {
+                            @Override
+                            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                                ProgressBar.setVisibility(View.GONE);
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                                ProgressBar.setVisibility(View.GONE);
+                                return false;
+                            }
+                        })
+                        .centerCrop()
+                        .into(previewAdjunto);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*    Glide.with(getContext())
                         .load(url)
                         .placeholder(R.drawable.ic_image)
                         .centerCrop()
-                        .into(previewAdjunto);
+                        .into(previewAdjunto);*/
+
 
                 previewAdjunto.setOnClickListener(seeImageDetail(getArguments().getString("adjunto")));
             }
             else{
+                previewAdjunto.setVisibility(View.VISIBLE);
                 // Attached is a PDF File
                 Glide.with(getContext())
                         .load(R.drawable.ic_archivo)
