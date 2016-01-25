@@ -6,7 +6,6 @@
     android:width="250dp"
     android:height="200dp"
     android:viewportWidth="1800"
-
     android:viewportHeight="1500"
     >
 
