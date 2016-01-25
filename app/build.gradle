@@ -54,4 +54,6 @@ dependencies {
     // MenuFloatingButton
     compile 'com.github.clans:fab:1.6.2'
     compile files('libs/svg-android.jar')
+    //A support library for VectorDrawable and AnimatedVectorDrawable introduced in Lollipop with fully backwards compatible tint support (api 14+ so far)
+    compile 'com.wnafee:vector-compat:1.0.5'
 }
