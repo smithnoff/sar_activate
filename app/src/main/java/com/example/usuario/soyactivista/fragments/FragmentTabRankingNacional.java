@@ -1,4 +1,5 @@
 package com.example.usuario.soyactivista.fragments;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
@@ -13,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import java.util.ArrayList;
 
@@ -24,13 +27,26 @@ import soy_activista.quartzapp.com.soy_activista.R;
  * Created by Luis Adrian on 19/01/2016.
  */
 public class FragmentTabRankingNacional extends Fragment{
-private ImageView bolivar;
+    private ImageView bolivar;
+    private LinearLayout parentLayout;
+    private ImageView deltaAmacuro;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_tab_ranking_nacional, container, false);
+
+        parentLayout = (LinearLayout)v.findViewById(R.id.parentLayout);
+
+        LayoutInflater infl = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View childLayout = infl.inflate(R.layout.map_venezuela, (ViewGroup) v.findViewById(R.id.venezuelaMap));
+        parentLayout.addView(childLayout);
+
+        deltaAmacuro = (ImageView)childLayout.findViewById(R.id.deltaAmacuro);
+        deltaAmacuro.setColorFilter(Color.argb(255, 51, 51, 255));
+
+
 
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerListTopEstados);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());

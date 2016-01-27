@@ -8,19 +8,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="372dp">
+    android:layout_height="match_parent"
+    >
 
-    <android.support.design.widget.CollapsingToolbarLayout
-        android:id="@+id/collapsingToolbar"
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/parentLayout"
         android:layout_width="match_parent"
-        android:layout_height="372dp"
-        android:fitsSystemWindows="true"
-        >
+        android:layout_height="237dp">
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="327dp"
         app:layout_collapseMode="parallax"
@@ -265,14 +262,14 @@
             />
 
 
-    </RelativeLayout>
-    </android.support.design.widget.CollapsingToolbarLayout>
-    </ScrollView>
+    </RelativeLayout>-->
 
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerListTopEstados"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
     </LinearLayout>
     </android.support.design.widget.CoordinatorLayout>

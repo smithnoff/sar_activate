@@ -20,14 +20,9 @@
     android:textStyle="bold"
     android:layout_gravity="center"/>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_question"
-        android:layout_marginLeft="25dp"/>
-        </LinearLayout>
+    </LinearLayout>
 
-    <android.support.v7.widget.CardView
+    <!--<android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -102,6 +97,11 @@
             </LinearLayout>
             </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </android.support.v7.widget.CardView>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerListTopUsuariosNacional"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
