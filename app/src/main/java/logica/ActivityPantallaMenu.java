@@ -26,12 +26,12 @@ import com.example.usuario.soyactivista.fragments.FragmentListarConversacion;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
+import com.example.usuario.soyactivista.fragments.FragmentTabNacional;
 import com.example.usuario.soyactivista.fragments.FragmentTriviaPrincipal;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
 import soy_activista.quartzapp.com.soy_activista.R;
-
 
 /**
  * Created by Usuario on 07/10/2015.
@@ -167,6 +167,10 @@ public class ActivityPantallaMenu extends AppCompatActivity {
                                     break;
 
                                 // PLACEHOLDER PUNTUACIONES
+                                case R.id.menuTablaPuntos:
+                                    fragment = new FragmentTabNacional();
+                                    fragmentTransaction = true;
+                                    break;
 
                                 case R.id.menuListarUsuario:
                                     fragment = new FragmentListarUsuario();
