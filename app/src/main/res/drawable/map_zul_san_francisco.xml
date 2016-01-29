@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="21"
+    android:width="744.09448819dp"
+    android:height="1052.3622047dp"
+    android:viewportWidth="744.09448819"
+    app:vc_viewportWidth="744.09448819"
+    android:viewportHeight="1052.3622047"
+    app:vc_viewportHeight="1052.3622047">
+
+    <group>
+        <path
+            android:fillColor="?colorPrimary"
+            app:vc_fillColor="?colorPrimary"
+            android:strokeColor="#646464"
+            app:vc_strokeColor="#646464"
+            android:strokeWidth="1"
+            app:vc_strokeWidth="1"
+            android:pathData="M 439.86838,411.21495 c 0.84389,-7.18248 0.65587,-14.4603 1.33473,-21.62666 l
+9.07909,1.92066 c 3.52534,0 11.47312,1.39363 18.478,2.31454 l 8.39762,0.39407
+2.18661,9.96936 -1.15051,7.08827 -38.32554,-0.0595 z"
+            app:vc_pathData="M 439.86838,411.21495 c 0.84389,-7.18248 0.65587,-14.4603 1.33473,-21.62666 l
+9.07909,1.92066 c 3.52534,0 11.47312,1.39363 18.478,2.31454 l 8.39762,0.39407
+2.18661,9.96936 -1.15051,7.08827 -38.32554,-0.0595 z" />
+    </group>
+</vector>
