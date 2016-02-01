@@ -11,8 +11,6 @@
     app:vc_viewportHeight="1052.3622047">
 
     <path
-        android:name="path4721"
-        app:vc_name="path4721"
         android:fillColor="?colorPrimary"
         app:vc_fillColor="?colorPrimary"
         android:strokeColor="#646464"
