@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/map_coj_anzoategui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_coj_anzoategui"
+        />
+
+    <ImageView
+        android:id="@+id/map_coj_falcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_coj_falcon"
+        />
+
+    <ImageView
+        android:id="@+id/map_coj_girardot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_coj_girardot"
+        />
+
+    <ImageView
+        android:id="@+id/map_coj_juan_bautista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_coj_juan_bautista"
+        />
+
+    <ImageView
+        android:id="@+id/map_coj_lima_blanco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_coj_lima_blanco"
+        />
+
+    <ImageView
+        android:id="@+id/map_coj_ricaurte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_coj_ricaurte"
+        />
+
+    <ImageView
+        android:id="@+id/map_coj_romulo_gallegos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_coj_romulo_gallegos"
+        />
+
+    <ImageView
+        android:id="@+id/map_coj_san_carlos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_coj_san_carlos"
+        />
+
+    <ImageView
+        android:id="@+id/map_coj_tinaco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_coj_tinaco"
+        />
+
+
+</RelativeLayout>

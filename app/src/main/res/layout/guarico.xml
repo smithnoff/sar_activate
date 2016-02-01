@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/map_gua_chaguaramas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_chaguaramas"
+        />
+
+    <ImageView
+        android:id="@+id/map_gua_el_socorro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_el_socorro"
+        />
+
+    <ImageView
+        android:id="@+id/map_gua_infante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_infante"
+        />
+
+    <ImageView
+        android:id="@+id/map_gua_juan_german_roscio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_juan_german_roscio"
+        />
+
+    <ImageView
+        android:id="@+id/map_gua_julian_nellado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_julian_nellado"
+        />
+
+    <ImageView
+        android:id="@+id/map_gua_las_mercedes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_las_mercedes"
+        />
+
+    <ImageView
+        android:id="@+id/map_gua_miranda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_miranda"
+        />
+
+    <ImageView
+        android:id="@+id/map_gua_monagas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_monagas"
+        />
+
+    <ImageView
+        android:id="@+id/map_gua_ortiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_ortiz"
+        />
+
+    <ImageView
+        android:id="@+id/map_gua_pedro_zaraza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_pedro_zaraza"
+        />
+
+    <ImageView
+        android:id="@+id/map_gua_ribas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_ribas"
+        />
+
+    <ImageView
+        android:id="@+id/map_gua_san_camaguan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_san_camaguan"
+        />
+
+    <ImageView
+        android:id="@+id/map_gua_san_geronimo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_san_geronimo"
+        />
+
+    <ImageView
+        android:id="@+id/map_gua_san_jose_de_guaribe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_san_jose_de_guaribe"
+        />
+
+    <ImageView
+        android:id="@+id/map_gua_santa_maria_de_ipire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_gua_santa_maria_de_ipire"
+        />
+
+</RelativeLayout>

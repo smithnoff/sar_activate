@@ -9,10 +9,8 @@ public class Conversacion {
 
     public Usuario usuario;
     private String id;
-
-
-
     private Date ultimaActividad;
+
 
     public Conversacion(){
         this.usuario = new Usuario();

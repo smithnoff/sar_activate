@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/map_fal_acosta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_acosta"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_bolivar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_bolivar"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_buchiyacoa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_buchiyacoa"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_cacique_manaure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_cacique_manaure"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_carirubana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_carirubana"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_colina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_colina"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_dabajuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_dabajuro"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_democracia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_democracia"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_falcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_falcon"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_federacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_federacion"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_jacura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_jacura"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_los_taques"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_los_taques"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_mauroa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_mauroa"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_miranda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_miranda"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_monsenor_iturriza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_mosenor_iturriza"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_palma_sola"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_palma_sola"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_petit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_petit"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_piritu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_piritu"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_san_francisco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_san_francisco"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_silva"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_silva"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_sucre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_sucre"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_tocopero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_tocopero"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_union"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_union"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_urumaco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_urumaco"
+        />
+
+    <ImageView
+        android:id="@+id/map_fal_zamora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map_fal_zamora"
+        />
+
+</RelativeLayout>
