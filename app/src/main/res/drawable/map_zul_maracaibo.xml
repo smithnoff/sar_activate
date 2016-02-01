@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="21"
+    android:width="744.09448819dp"
+    android:height="1052.3622047dp"
+    android:viewportWidth="744.09448819"
+    app:vc_viewportWidth="744.09448819"
+    android:viewportHeight="1052.3622047"
+    app:vc_viewportHeight="1052.3622047">
+
+    <group>
+        <path
+            android:fillColor="?colorPrimary"
+            app:vc_fillColor="?colorPrimary"
+            android:strokeColor="#646464"
+            app:vc_strokeColor="#646464"
+            android:strokeWidth="1"
+            app:vc_strokeWidth="1"
+            android:pathData="M 470.54157,392.37594 c -3.0749,-0.20317 -10.47802,-1.08225 -16.452,-1.95328 l
+-13.53112,-2.54418 -0.25482,-18.26422 -0.25483,-20.82528 16.373,-0.32002
+14.3708,0 6.2184,6.34906 6.21861,6.34925 2.88788,24.5749 -4.99269,3.50174
+-4.99268,3.50154 -5.59055,-0.36951 z"
+            app:vc_pathData="M 470.54157,392.37594 c -3.0749,-0.20317 -10.47802,-1.08225 -16.452,-1.95328 l
+-13.53112,-2.54418 -0.25482,-18.26422 -0.25483,-20.82528 16.373,-0.32002
+14.3708,0 6.2184,6.34906 6.21861,6.34925 2.88788,24.5749 -4.99269,3.50174
+-4.99268,3.50154 -5.59055,-0.36951 z" />
+    </group>
+</vector>
