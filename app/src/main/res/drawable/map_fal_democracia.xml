@@ -13,12 +13,12 @@
     <path
         android:name="path4755"
         app:vc_name="path4755"
-        android:fillColor="#c8c8c8"
-        app:vc_fillColor="#c8c8c8"
+        android:fillColor="?colorPrimary"
+        app:vc_fillColor="?colorPrimary"
         android:strokeColor="#646464"
         app:vc_strokeColor="#646464"
-        android:strokeWidth="2.18450046"
-        app:vc_strokeWidth="2.18450046"
+        android:strokeWidth="1"
+        app:vc_strokeWidth="1"
         android:pathData="M 222.46544,605.43913 l -2.43317,0 -2.72698,-4.47276 c -1.49984,-2.46012
 -2.72953,-4.93734 -2.73226,-5.50495 0,-0.5676 -0.79243,-1.03217
 -1.75434,-1.03217 -0.96227,0 -3.11746,-1.39353 -4.7897,-3.09653 -1.67242,-1.703

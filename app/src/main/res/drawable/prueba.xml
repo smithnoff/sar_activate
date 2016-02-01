@@ -7,9 +7,9 @@ android:viewportWidth="744.09448819"
 android:viewportHeight="1052.3622047">
 
 <path
-    android:fillColor="#c8c8c8"
+    android:fillColor="?colorPrimary"
     android:strokeColor="#646464"
-    android:strokeWidth="1.20000005"
+    android:strokeWidth="1"
     android:pathData="M 391.5237,545.40044 l 5.5946,-0.3995 c 2.0949,-0.8223 4.9416,-3.416
 7.2938,-1.8782 2.5039,1.6371 8.6178,-0.6628 12.5462,-1.4006 5.2436,-0.9846
 10.2089,-1.1489 12.7506,3.2843 2.179,3.8005 3.9456,4.8931 7.7369,4.7853

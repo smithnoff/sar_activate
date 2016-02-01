@@ -20,8 +20,8 @@
         <path
             android:name="path4401"
             app:vc_name="path4401"
-            android:fillColor="#c8c8c8"
-            app:vc_fillColor="#c8c8c8"
+            android:fillColor="?colorPrimary"
+            app:vc_fillColor="?colorPrimary"
             android:strokeColor="#646464"
             app:vc_strokeColor="#646464"
             android:strokeWidth="2.07728767"
