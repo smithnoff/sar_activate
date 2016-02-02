@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="327dp">
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/nvaesp_peninsulamacanao"
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -105,7 +105,7 @@
             android:src="@drawable/map_nvaesp_villalba"
             android:layout_gravity="center_horizontal"
             android:layout_centerHorizontal="true"
-            />
+            />-->
 
 
 

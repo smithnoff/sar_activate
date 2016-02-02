@@ -56,14 +56,12 @@ public class FragmentTabRankingNacional extends Fragment{
 
         parentLayout = (LinearLayout)v.findViewById(R.id.parentLayout);
 
-        LayoutInflater infl = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        /*LayoutInflater infl = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View childLayout = infl.inflate(R.layout.map_venezuela, (ViewGroup) v.findViewById(R.id.venezuelaMap));
         parentLayout.addView(childLayout);
 
         deltaAmacuro = (ImageView)childLayout.findViewById(R.id.deltaAmacuro);
-        deltaAmacuro.setColorFilter(Color.argb(255, 51, 51, 255));
-
-
+        deltaAmacuro.setColorFilter(Color.argb(255, 51, 51, 255));*/
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerListTopEstados);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());

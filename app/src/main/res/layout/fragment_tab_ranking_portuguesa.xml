@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="327dp">
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/portGuanarito"
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -132,7 +132,7 @@
             android:src="@drawable/map_port_san_rafael_onoto"
             android:layout_gravity="center_horizontal"
             android:layout_centerHorizontal="true"
-            />
+            />-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
