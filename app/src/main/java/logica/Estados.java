@@ -6,11 +6,10 @@ package logica;
 public class Estados {
     private String nombreEstado;
     private int Posicion;
+    private int puntos;
+    private int cantidadUsuarios;
 
-    public Estados(String nombreEstado, int posicion) {
-        this.nombreEstado = nombreEstado;
-        Posicion = posicion;
-    }
+    public Estados(){}
 
     public String getNombreEstado() {
         return nombreEstado;
@@ -26,5 +25,21 @@ public class Estados {
 
     public void setPosicion(int posicion) {
         Posicion = posicion;
+    }
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
+
+    public int getCantidadUsuarios() {
+        return cantidadUsuarios;
+    }
+
+    public void setCantidadUsuarios(int cantidadUsuarios) {
+        this.cantidadUsuarios = cantidadUsuarios;
     }
 }

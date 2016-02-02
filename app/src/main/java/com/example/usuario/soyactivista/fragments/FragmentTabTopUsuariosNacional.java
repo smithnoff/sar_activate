@@ -32,7 +32,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class FragmentTabTopUsuariosNacional extends Fragment{
     private ListarTopUsuariosNacionalAdapter listarUsuarioAdapter;
     private RecyclerView recyclerView;
-    private ArrayList<Usuario> usuarioArrayList = new ArrayList<>();
+    private List<Usuario> usuarioArrayList = new ArrayList<>();
     public FragmentTabTopUsuariosNacional() {
         // Required empty public constructor
     }
@@ -54,7 +54,7 @@ public class FragmentTabTopUsuariosNacional extends Fragment{
     }
 
     // Initializes list and sets listView adapter to the newly created adapter.
-    public void initializeList(final ArrayList<Usuario> list){
+    public void initializeList(final List<Usuario> list){
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("eliminado",false);
         query.findInBackground(new FindCallback<ParseUser>() {

@@ -16,11 +16,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import logica.ErrorCodeHelper;
 import logica.Estados;
 import logica.ListarRankingEstadosAdapter;
+import logica.ListarTopUsuariosNacionalAdapter;
+import logica.Usuario;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -30,6 +41,12 @@ public class FragmentTabRankingNacional extends Fragment{
     private ImageView bolivar;
     private LinearLayout parentLayout;
     private ImageView deltaAmacuro;
+    private RecyclerView recyclerView;
+    private ListarRankingEstadosAdapter listarUsuarioAdapter;
+    private List<Estados> estadosArrayList = new ArrayList<>();
+    private Estados estado;
+    private int sumUser;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,46 +65,63 @@ public class FragmentTabRankingNacional extends Fragment{
 
 
 
-        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerListTopEstados);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerListTopEstados);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
-
-        recyclerView.setAdapter(new ListarRankingEstadosAdapter(generateEstados()));
-
-
+        initializeList(estadosArrayList);
 
         return v;
     }
 
-    private ArrayList<Estados> generateEstados() {
-        ArrayList<Estados> estados = new ArrayList<>();
-        int posicion = 0;
-        estados.add(new Estados("Amazonas",posicion));
-        estados.add(new Estados("Anzoategui",posicion));
-        estados.add(new Estados("Apure",posicion));
-        estados.add(new Estados("Aragua",posicion));
-        estados.add(new Estados("Area Metropolitana de Caracas",posicion));
-        estados.add(new Estados("Barinas",posicion));
-        estados.add(new Estados("Bolivar",posicion));
-        estados.add(new Estados("Carabobo",posicion));
-        estados.add(new Estados("Cojedes",posicion));
-        estados.add(new Estados("Falcon",posicion));
-        estados.add(new Estados("Guarico",posicion));
-        estados.add(new Estados("Lara",posicion));
-        estados.add(new Estados("Merida",posicion));
-        estados.add(new Estados("Miranda",posicion));
-        estados.add(new Estados("Monagas",posicion));
-        estados.add(new Estados("Nueva Esparta",posicion));
-        estados.add(new Estados("Portuguesa",posicion));
-        estados.add(new Estados("Sucre",posicion));
-        estados.add(new Estados("Tachira",posicion));
-        estados.add(new Estados("Trujillo",posicion));
-        estados.add(new Estados("Vargas",posicion));
-        estados.add(new Estados("Yaracuy",posicion));
-        estados.add(new Estados("Zulia",posicion));
-        return estados;
+    public int contarUsuarios(String nombreEstado){
+        sumUser = 0;
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo(nombreEstado,"estado");
+        query.findInBackground(new FindCallback<ParseUser>() {
+            public void done(List<ParseUser> object, ParseException e)
+            {
+                if (e == null)
+                { //no hay error
+                    object.size();
+                    if (object.size()>0)
+                        sumUser = object.size();
+                    else
+                        sumUser = 0;
+                } else {
+                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        return sumUser;
     }
+
+    public void initializeList(final List<Estados> list){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("RankingEstados");
+        query.orderByDescending("puntos");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> object, ParseException e) {
+                if (e == null) { //no hay error
+
+                    for (int i = 0; i < object.size(); i++) {
+                        String nombreEstado = object.get(i).getString("nombre");
+                        estado = new Estados();
+                        estado.setNombreEstado(object.get(i).getString("nombre"));
+                        estado.setPuntos(object.get(i).getInt("puntos"));
+                        estado.setCantidadUsuarios(contarUsuarios(nombreEstado));
+                        list.add(estado);
+                    }
+                    recyclerView.setAdapter(new ListarRankingEstadosAdapter(list));
+
+                } else {
+                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+    }
+
+
 
 
 

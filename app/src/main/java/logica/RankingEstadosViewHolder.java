@@ -12,12 +12,15 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class RankingEstadosViewHolder extends RecyclerView.ViewHolder {
     protected TextView nombreEstado;
     protected TextView posicion;
+    protected TextView puntos;
+    protected TextView cantidadUser;
     protected CardView card;
 
     public RankingEstadosViewHolder(View itemView) {
         super(itemView);
         nombreEstado = (TextView) itemView.findViewById(R.id.nombreEstado);
-        posicion = (TextView) itemView.findViewById(R.id.posicion);
+        puntos = (TextView) itemView.findViewById(R.id.puntosEstado);
+        cantidadUser = (TextView) itemView.findViewById(R.id.cantidadUsuarios);
         card = (CardView) itemView;
     }
 }
