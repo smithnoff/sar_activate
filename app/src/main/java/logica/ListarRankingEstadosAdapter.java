@@ -37,6 +37,7 @@ public class ListarRankingEstadosAdapter extends RecyclerView.Adapter<RankingEst
             Estados estado = estados.get(i);
             rankingEstadosViewHolder.nombreEstado.setText(estado.getNombreEstado());
             rankingEstadosViewHolder.puntos.setText(String.valueOf(estado.getPuntos()));
+            rankingEstadosViewHolder.posicion.setText(""+(1+i));
             rankingEstadosViewHolder.cantidadUser.setText(String.valueOf(estado.getCantidadUsuarios()));
     }
 

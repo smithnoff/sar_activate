@@ -20,6 +20,7 @@ public class RankingEstadosViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         nombreEstado = (TextView) itemView.findViewById(R.id.nombreEstado);
         puntos = (TextView) itemView.findViewById(R.id.puntosEstado);
+        posicion= (TextView) itemView.findViewById(R.id.posicionestado);
         cantidadUser = (TextView) itemView.findViewById(R.id.cantidadUsuarios);
         card = (CardView) itemView;
     }

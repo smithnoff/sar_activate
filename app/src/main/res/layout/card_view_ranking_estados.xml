@@ -18,7 +18,7 @@
             android:background="?colorPrimary"
             android:padding="16dp">
             <TextView
-                android:id="@+id/posicion"
+                android:id="@+id/posicionestado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
