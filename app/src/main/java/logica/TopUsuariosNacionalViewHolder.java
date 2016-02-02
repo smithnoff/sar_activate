@@ -15,6 +15,7 @@ public class TopUsuariosNacionalViewHolder extends RecyclerView.ViewHolder {
     protected TextView nombreUsuario;
     protected TextView cargo;
     protected TextView municipio;
+    protected TextView posicion;
     protected CardView card;
 
     public TopUsuariosNacionalViewHolder(View itemView) {
@@ -22,6 +23,7 @@ public class TopUsuariosNacionalViewHolder extends RecyclerView.ViewHolder {
         nombreUsuario = (TextView) itemView.findViewById(R.id.nombreUsuario);
         cargo = (TextView) itemView.findViewById(R.id.cargo);
         municipio = (TextView) itemView.findViewById(R.id.nombreMunicipio);
+        posicion = (TextView)itemView.findViewById(R.id.posicionUser);
         card = (CardView) itemView;
     }
 }

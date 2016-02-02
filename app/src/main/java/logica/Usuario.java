@@ -18,6 +18,7 @@ public class Usuario {
     private String parroquia;
     private String comite;
     private String email;
+    private int posicion;
 
 
 
@@ -117,5 +118,13 @@ public class Usuario {
             return "Activista";
         else
             return "Registrante";
+    }
+
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
     }
 }

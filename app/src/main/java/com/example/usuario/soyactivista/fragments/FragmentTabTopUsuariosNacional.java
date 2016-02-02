@@ -33,9 +33,7 @@ public class FragmentTabTopUsuariosNacional extends Fragment{
     private ListarTopUsuariosNacionalAdapter listarUsuarioAdapter;
     private RecyclerView recyclerView;
     private List<Usuario> usuarioArrayList = new ArrayList<>();
-    public FragmentTabTopUsuariosNacional() {
-        // Required empty public constructor
-    }
+    private Usuario usuario;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,23 +55,18 @@ public class FragmentTabTopUsuariosNacional extends Fragment{
     public void initializeList(final List<Usuario> list){
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("eliminado",false);
+        query.orderByDescending("puntos");
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> object, ParseException e) {
                 if (e == null) { //no hay error
-                    Usuario usuario;
+
                     for (int i = 0; i < object.size(); i++) {
                         usuario = new Usuario();
-                        usuario.setId(object.get(i).getObjectId());
-                        usuario.setUsername(object.get(i).getUsername());
                         usuario.setNombre(object.get(i).getString("nombre"));
                         usuario.setApellido(object.get(i).getString("apellido"));
-                        usuario.setEmail(object.get(i).getEmail());
                         usuario.setCargo( object.get(i).getString("cargo"));
-                        usuario.setEstado( object.get(i).getString("estado"));
                         usuario.setMunicipio( object.get(i).getString("municipio"));
-                        usuario.setParroquia( object.get(i).getString("parroquia"));
-                        usuario.setComite(object.get(i).getString("comite"));
-                        usuario.setRol(object.get(i).getInt("rol"));
+                        usuario.setPosicion(1+i);
                         list.add(usuario);
                     }
                     recyclerView.setAdapter(new ListarTopUsuariosNacionalAdapter(list));

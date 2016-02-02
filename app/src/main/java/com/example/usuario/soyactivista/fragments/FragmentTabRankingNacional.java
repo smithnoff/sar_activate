@@ -73,9 +73,8 @@ public class FragmentTabRankingNacional extends Fragment{
     }
 
     public int contarUsuarios(String nombreEstado){
-        sumUser = 0;
         ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereEqualTo(nombreEstado,"estado");
+        query.whereEqualTo("estado",nombreEstado);
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> object, ParseException e)
             {
@@ -102,8 +101,8 @@ public class FragmentTabRankingNacional extends Fragment{
                 if (e == null) { //no hay error
 
                     for (int i = 0; i < object.size(); i++) {
-                        String nombreEstado = object.get(i).getString("nombre");
                         estado = new Estados();
+                        String nombreEstado = object.get(i).getString("nombre");
                         estado.setNombreEstado(object.get(i).getString("nombre"));
                         estado.setPuntos(object.get(i).getInt("puntos"));
                         estado.setCantidadUsuarios(contarUsuarios(nombreEstado));

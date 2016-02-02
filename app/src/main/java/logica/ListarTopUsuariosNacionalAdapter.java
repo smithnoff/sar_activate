@@ -21,8 +21,8 @@ public class ListarTopUsuariosNacionalAdapter extends RecyclerView.Adapter<TopUs
     public ListarTopUsuariosNacionalAdapter(List<Usuario> userArrayList) {
         //this.estados = new ArrayList<>();
         //this.estados.addAll(estados);
-        this.usuarioArrayList = new ArrayList<>(userArrayList);
-        this.usuarioArrayList.addAll(usuarioArrayList);
+        this.usuarioArrayList = new ArrayList<>();
+        this.usuarioArrayList.addAll(userArrayList);
     }
 
     @Override
@@ -37,9 +37,10 @@ public class ListarTopUsuariosNacionalAdapter extends RecyclerView.Adapter<TopUs
     @Override
     public void onBindViewHolder(TopUsuariosNacionalViewHolder topUsuarios, int i) {
         Usuario usuario = usuarioArrayList.get(i);
-        topUsuarios.nombreUsuario.setText(usuario.getNombre()+" "+usuario.getApellido());
+        topUsuarios.nombreUsuario.setText(usuario.getNombre());
         topUsuarios.cargo.setText(usuario.getCargo());
         topUsuarios.municipio.setText(usuario.getMunicipio());
+        topUsuarios.posicion.setText(""+(1+i));
     }
 
     @Override
