@@ -26,7 +26,7 @@ public class ListarRankingEstadosAdapter extends RecyclerView.Adapter<RankingEst
     public RankingEstadosViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(R.layout.card_view_ranking_estados, viewGroup, false);
+                inflate(R.layout.card_view_ranking, viewGroup, false);
 
         return new RankingEstadosViewHolder(itemView);
     }

@@ -25,7 +25,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 /**
  * Created by Luis Adrian on 19/01/2016.
  */
-public class FragmentTabTopEstados extends Fragment {
+public class FragmentTabTop5 extends Fragment {
     private ImageView bolivar;
     private LinearLayout parentLayout;
     private ImageView venezuela;
@@ -35,7 +35,7 @@ public class FragmentTabTopEstados extends Fragment {
     private Estados estado;
     private int sumUser;
 
-    public FragmentTabTopEstados() {
+    public FragmentTabTop5() {
         // Required empty public constructor
     }
     @Override
@@ -48,7 +48,7 @@ public class FragmentTabTopEstados extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View v=inflater.inflate(R.layout.fragment_tab_top_estados, container, false);
+        View v=inflater.inflate(R.layout.fragment_tab_top_5, container, false);
 
         /*parentLayout = (LinearLayout)v.findViewById(R.id.parentLayout);
 

@@ -26,7 +26,7 @@ import com.example.usuario.soyactivista.fragments.FragmentListarConversacion;
 import com.example.usuario.soyactivista.fragments.FragmentListarMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentListarTipoActividad;
 import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
-import com.example.usuario.soyactivista.fragments.FragmentTabNacional;
+import com.example.usuario.soyactivista.fragments.FragmentPuntuaciones;
 import com.example.usuario.soyactivista.fragments.FragmentTriviaPrincipal;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -168,7 +168,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
 
                                 // PLACEHOLDER PUNTUACIONES
                                 case R.id.menuTablaPuntos:
-                                    fragment = new FragmentTabNacional();
+                                    fragment = new FragmentPuntuaciones();
                                     fragmentTransaction = true;
                                     break;
 

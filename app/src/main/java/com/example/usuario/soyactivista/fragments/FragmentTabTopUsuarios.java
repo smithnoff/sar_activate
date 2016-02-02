@@ -1,11 +1,9 @@
 package com.example.usuario.soyactivista.fragments;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,20 +18,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import logica.ErrorCodeHelper;
-import logica.ListarRankingEstadosAdapter;
-import logica.ListarTopUsuariosNacionalAdapter;
-import logica.ListarUsuarioAdapter;
+import logica.ListarTopUsuariosAdapter;
 import logica.Usuario;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
  * Created by Luis Adrian on 19/01/2016.
  */
-public class FragmentTabTopUsuariosNacional extends Fragment{
-    private ListarTopUsuariosNacionalAdapter listarUsuarioAdapter;
+public class FragmentTabTopUsuarios extends Fragment{
+    private ListarTopUsuariosAdapter listarUsuarioAdapter;
     private RecyclerView recyclerView;
     private List<Usuario> usuarioArrayList = new ArrayList<>();
-    public FragmentTabTopUsuariosNacional() {
+    public FragmentTabTopUsuarios() {
         // Required empty public constructor
     }
 
@@ -41,11 +37,14 @@ public class FragmentTabTopUsuariosNacional extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_tab_top_usuarios_nacional, container, false);
+        View v = inflater.inflate(R.layout.fragment_tab_top_usuarios, container, false);
 
-        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerListTopUsuariosNacional);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerListTopUsuarios);
+
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+
         llm.setOrientation(LinearLayoutManager.VERTICAL);
+
         recyclerView.setLayoutManager(llm);
 
         initializeList(usuarioArrayList);
@@ -57,6 +56,15 @@ public class FragmentTabTopUsuariosNacional extends Fragment{
     public void initializeList(final List<Usuario> list){
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("eliminado",false);
+        query.setLimit(20);
+        query.orderByDescending("puntos");
+
+        // Check if State or Municipal Level
+        if(getArguments() != null){
+            if(getArguments().getString("estado") != null)
+                query.whereEqualTo("estado",getArguments().getString("estado"));
+        }
+
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> object, ParseException e) {
                 if (e == null) { //no hay error
@@ -76,7 +84,7 @@ public class FragmentTabTopUsuariosNacional extends Fragment{
                         usuario.setRol(object.get(i).getInt("rol"));
                         list.add(usuario);
                     }
-                    recyclerView.setAdapter(new ListarTopUsuariosNacionalAdapter(list));
+                    recyclerView.setAdapter(new ListarTopUsuariosAdapter(list));
 
                 } else {
                     Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();

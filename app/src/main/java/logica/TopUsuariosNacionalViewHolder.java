@@ -12,13 +12,13 @@ import soy_activista.quartzapp.com.soy_activista.R;
  */
 public class TopUsuariosNacionalViewHolder extends RecyclerView.ViewHolder {
 
-    protected TextView nombreUsuario;
-    protected TextView cargo;
-    protected TextView municipio;
+    protected TextView nombreUsuario, cargo, municipio, posicion;
+
     protected CardView card;
 
     public TopUsuariosNacionalViewHolder(View itemView) {
         super(itemView);
+        posicion = (TextView) itemView.findViewById(R.id.position);
         nombreUsuario = (TextView) itemView.findViewById(R.id.nombreUsuario);
         cargo = (TextView) itemView.findViewById(R.id.cargo);
         municipio = (TextView) itemView.findViewById(R.id.nombreMunicipio);

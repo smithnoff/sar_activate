@@ -1,12 +1,5 @@
 package com.example.usuario.soyactivista.fragments;
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -30,14 +22,12 @@ import java.util.List;
 import logica.ErrorCodeHelper;
 import logica.Estados;
 import logica.ListarRankingEstadosAdapter;
-import logica.ListarTopUsuariosNacionalAdapter;
-import logica.Usuario;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
  * Created by Luis Adrian on 19/01/2016.
  */
-public class FragmentTabRankingNacional extends Fragment{
+public class FragmentTabRanking extends Fragment{
     private ImageView bolivar;
     private LinearLayout parentLayout;
     private ImageView deltaAmacuro;
@@ -52,7 +42,7 @@ public class FragmentTabRankingNacional extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_tab_ranking_nacional, container, false);
+        View v = inflater.inflate(R.layout.fragment_tab_ranking, container, false);
 
         parentLayout = (LinearLayout)v.findViewById(R.id.parentLayout);
 
