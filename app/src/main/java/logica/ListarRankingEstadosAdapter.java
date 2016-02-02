@@ -13,7 +13,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 /**
  * Created by Luis Adrian on 26/01/2016.
  */
-public class ListarRankingEstadosAdapter extends RecyclerView.Adapter<RankingEstadosViewHolder> {
+public class ListarRankingEstadosAdapter extends RecyclerView.Adapter<RankingViewHolder> {
     private int pos = 0;
     private List<Estados> estados;
 
@@ -23,22 +23,22 @@ public class ListarRankingEstadosAdapter extends RecyclerView.Adapter<RankingEst
     }
 
     @Override
-    public RankingEstadosViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public RankingViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
                 inflate(R.layout.card_view_ranking, viewGroup, false);
 
-        return new RankingEstadosViewHolder(itemView);
+        return new RankingViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(RankingEstadosViewHolder rankingEstadosViewHolder, int i) {
+    public void onBindViewHolder(RankingViewHolder rankingViewHolder, int i) {
 
             Estados estado = estados.get(i);
-            rankingEstadosViewHolder.nombreEstado.setText(estado.getNombreEstado());
-            rankingEstadosViewHolder.puntos.setText(String.valueOf(estado.getPuntos()));
-            rankingEstadosViewHolder.posicion.setText(""+(1+i));
-            rankingEstadosViewHolder.cantidadUser.setText(String.valueOf(estado.getCantidadUsuarios()));
+            rankingViewHolder.nombreEstado.setText(estado.getNombreEstado());
+            rankingViewHolder.puntos.setText(String.valueOf(estado.getPuntos()));
+            rankingViewHolder.posicion.setText(""+(1+i));
+            rankingViewHolder.cantidadUser.setText(String.valueOf(estado.getCantidadUsuarios()));
     }
 
     @Override

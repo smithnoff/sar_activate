@@ -50,12 +50,12 @@ public class FragmentPuntuaciones extends Fragment {
         if( arguments!= null){
             // Set titles to municipality
             top5Title = "Top 5 Municipios";
-            rankingTitle = "Ranking Municipal";
+            rankingTitle = "Ranking Estadal";
         }
         else{
             // Set titles to state
             top5Title = "Top 5 Estados";
-            rankingTitle = "Ranking Estadal";
+            rankingTitle = "Ranking Nacional";
         }
     }
 
