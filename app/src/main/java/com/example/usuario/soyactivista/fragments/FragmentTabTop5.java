@@ -1,14 +1,17 @@
 package com.example.usuario.soyactivista.fragments;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -34,6 +37,8 @@ public class FragmentTabTop5 extends Fragment {
     private Estado estado;
     private RelativeLayout mapContainer;
     private View map, view;
+    private int alpha, red, green, blue, color;
+    private ImageView deltaAmacuro;
 
     public FragmentTabTop5() {
         // Required empty public constructor
@@ -68,7 +73,27 @@ public class FragmentTabTop5 extends Fragment {
     }
 
 
-    private void fillTop5() {
+    private void colorMap() {
+        TypedValue typedValue = new TypedValue();
+
+        getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+
+        color = typedValue.data;
+
+        alpha = Color.alpha(color);
+        red = Color.red(color)-20;
+        green = Color.green(color)-20;
+        blue = Color.blue(color)-20;
+
+        Toast.makeText(getActivity(),"El color es: "+red,Toast.LENGTH_LONG);
+
+        /* Como obtener el recurso sin colocarlo a mano?
+        estado = listaEstado.get(i);
+        imageViewId = getResources().getIdentifier(estado.getName(), "id", getActivity().getPackageName());
+        */
+
+        deltaAmacuro = (ImageView)view.findViewById(R.id.deltaAmacuro);
+        deltaAmacuro.setColorFilter(Color.argb(alpha,red,green,blue));
 
 
     }
@@ -138,7 +163,7 @@ public class FragmentTabTop5 extends Fragment {
                     recyclerView.setAdapter(new ListarRankingEstadosAdapter(list));
 
                     // Paint map using list of queried objects.
-                    fillTop5();
+                    colorMap();
 
                 } else {
 

@@ -1,8 +1,6 @@
 package com.example.usuario.soyactivista.fragments;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,13 +36,11 @@ public class FragmentTabRanking extends Fragment{
     private LinearLayout parentLayout;
     private ImageView deltaAmacuro;
     private RecyclerView recyclerView;
-    private ListarRankingEstadosAdapter listarUsuarioAdapter;
     private List<Estado> estadoArrayList = new ArrayList<>();
     private View view, map;
     private RelativeLayout mapContainer;
     private List<Estado> estadosArrayList = new ArrayList<>();
     private Estado estado;
-    private int sumUser;
     private int alpha, red, green, blue, color;
     //private int color = R.attr.colorPrimary;
 
@@ -60,22 +56,6 @@ public class FragmentTabRanking extends Fragment{
         loadMap();
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_ranking);
-
-        TypedValue typedValue = new TypedValue();
-
-        getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
-
-        color = typedValue.data;
-
-        alpha = Color.alpha(color);
-        red = Color.red(color)-20;
-        green = Color.green(color)-20;
-        blue = Color.blue(color)-20;
-
-        Toast.makeText(getActivity(),"El color es: "+red,Toast.LENGTH_LONG);
-
-        deltaAmacuro = (ImageView)view.findViewById(R.id.deltaAmacuro);
-        deltaAmacuro.setColorFilter(Color.argb(alpha,red,green,blue));
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
 
@@ -104,6 +84,7 @@ public class FragmentTabRanking extends Fragment{
                         list.add(estado);
                     }
                     recyclerView.setAdapter(new ListarRankingEstadosAdapter(list));
+                    colorMap();
 
                 } else {
                     Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
@@ -111,6 +92,37 @@ public class FragmentTabRanking extends Fragment{
             }
         });
 
+    }
+
+    /* Función que recorre la lista de entidades que recuperamos de la BD, si el fragmento tiene
+     argumentos es la lista de Estados si no es la lista de Municipios.
+
+     Por cada uno busca el Id del ImageView ( Usando la funcion getResource usada en loadMap)
+
+     y dependiendo de la cantidad de puntos lo llena con un color especifico.
+
+     */
+
+    private void colorMap() {
+        TypedValue typedValue = new TypedValue();
+
+        getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+
+        color = typedValue.data;
+
+        alpha = Color.alpha(color);
+        red = Color.red(color)-20;
+        green = Color.green(color)-20;
+        blue = Color.blue(color)-20;
+
+        Toast.makeText(getActivity(),"El color es: "+red,Toast.LENGTH_LONG);
+
+        /* Como obtener el recurso sin colocarlo a mano?
+        estado = listaEstado.get(i);
+        imageViewId = getResources().getIdentifier(estado.getName(), "id", getActivity().getPackageName());
+        */
+        deltaAmacuro = (ImageView)view.findViewById(R.id.deltaAmacuro);
+        deltaAmacuro.setColorFilter(Color.argb(alpha,red,green,blue));
     }
 
     // Map is loaded according to arguments whether it is at national or state level.
