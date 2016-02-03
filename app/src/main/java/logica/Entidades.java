@@ -3,20 +3,20 @@ package logica;
 /**
  * Created by Luis Adrian on 26/01/2016.
  */
-public class Estado {
-    private String nombreEstado;
+public class Entidades {
+    private String nombreEntidad;
     private int Posicion;
     private int puntos;
     private int cantidadUsuarios;
 
-    public Estado(){}
+    public Entidades(){}
 
-    public String getNombreEstado() {
-        return nombreEstado;
+    public String getnombreEntidad() {
+        return nombreEntidad;
     }
 
-    public void setNombreEstado(String nombreEstado) {
-        this.nombreEstado = nombreEstado;
+    public void setnombreEntidad(String nombreEntidad) {
+        this.nombreEntidad = nombreEntidad;
     }
 
     public int getPosicion() {

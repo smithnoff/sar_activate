@@ -43,10 +43,10 @@
 
                 >
                 <TextView
-                    android:id="@+id/nombreEstado"
+                    android:id="@+id/nombreEntidad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nombre estado"
+                    android:text="Nombre Entidad"
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:layout_gravity="center_vertical"

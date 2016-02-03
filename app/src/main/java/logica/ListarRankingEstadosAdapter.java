@@ -15,11 +15,11 @@ import soy_activista.quartzapp.com.soy_activista.R;
  */
 public class ListarRankingEstadosAdapter extends RecyclerView.Adapter<RankingViewHolder> {
     private int pos = 0;
-    private List<Estado> estados;
+    private List<Entidades> entidades;
 
-    public ListarRankingEstadosAdapter(List<Estado> estados) {
-        this.estados = new ArrayList<>();
-        this.estados.addAll(estados);
+    public ListarRankingEstadosAdapter(List<Entidades> entidad) {
+        this.entidades = new ArrayList<>();
+        this.entidades.addAll(entidad);
     }
 
     @Override
@@ -34,15 +34,15 @@ public class ListarRankingEstadosAdapter extends RecyclerView.Adapter<RankingVie
     @Override
     public void onBindViewHolder(RankingViewHolder rankingViewHolder, int i) {
 
-            Estado estado = estados.get(i);
-            rankingViewHolder.nombreEstado.setText(estado.getNombreEstado());
-            rankingViewHolder.puntos.setText(String.valueOf(estado.getPuntos()));
+            Entidades entidades = this.entidades.get(i);
+            rankingViewHolder.nombreEntidad.setText(entidades.getnombreEntidad());
+            rankingViewHolder.puntos.setText(String.valueOf(entidades.getPuntos()));
             rankingViewHolder.posicion.setText(""+(1+i));
-            rankingViewHolder.cantidadUser.setText(String.valueOf(estado.getCantidadUsuarios()));
+            rankingViewHolder.cantidadUser.setText(String.valueOf(entidades.getCantidadUsuarios()));
     }
 
     @Override
     public int getItemCount() {
-        return estados.size();
+        return entidades.size();
     }
 }

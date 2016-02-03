@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import logica.ErrorCodeHelper;
-import logica.Estado;
+import logica.Entidades;
 import logica.ListarRankingEstadosAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -36,11 +36,10 @@ public class FragmentTabRanking extends Fragment{
     private LinearLayout parentLayout;
     private ImageView deltaAmacuro;
     private RecyclerView recyclerView;
-    private List<Estado> estadoArrayList = new ArrayList<>();
+    private List<Entidades> entidadesArrayList = new ArrayList<>();
     private View view, map;
     private RelativeLayout mapContainer;
-    private List<Estado> estadosArrayList = new ArrayList<>();
-    private Estado estado;
+    private Entidades entidades;
     private int alpha, red, green, blue, color;
     //private int color = R.attr.colorPrimary;
 
@@ -63,12 +62,12 @@ public class FragmentTabRanking extends Fragment{
 
         recyclerView.setLayoutManager(llm);
 
-        initializeList(estadoArrayList);
+        initializeList(entidadesArrayList);
 
         return view;
     }
 
-    public void initializeList(final List<Estado> list){
+    public void initializeList(final List<Entidades> list){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("RankingEstados");
         query.orderByDescending("puntos");
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -76,12 +75,12 @@ public class FragmentTabRanking extends Fragment{
                 if (e == null) { //no hay error
 
                     for (int i = 0; i < object.size(); i++) {
-                        estado = new Estado();
-                        String nombreEstado = object.get(i).getString("nombre");
-                        estado.setNombreEstado(object.get(i).getString("nombre"));
-                        estado.setPuntos(object.get(i).getInt("puntos"));
-                        estado.setCantidadUsuarios(object.get(i).getInt("usuarios"));
-                        list.add(estado);
+                        entidades = new Entidades();
+                        String nombreEntidad = object.get(i).getString("nombre");
+                        entidades.setnombreEntidad(object.get(i).getString("nombre"));
+                        entidades.setPuntos(object.get(i).getInt("puntos"));
+                        entidades.setCantidadUsuarios(object.get(i).getInt("usuarios"));
+                        list.add(entidades);
                     }
                     recyclerView.setAdapter(new ListarRankingEstadosAdapter(list));
                     colorMap();

@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import logica.ErrorCodeHelper;
-import logica.Estado;
+import logica.Entidades;
 import logica.ListarRankingEstadosAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
 /**
@@ -33,8 +33,8 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class FragmentTabTop5 extends Fragment {
     private static final String TAG = "FragmentTabTop5";
     private RecyclerView recyclerView;
-    private List<Estado> estadoArrayList = new ArrayList<>();
-    private Estado estado;
+    private List<Entidades> entidadesArrayList = new ArrayList<>();
+    private Entidades entidades;
     private RelativeLayout mapContainer;
     private View map, view;
     private int alpha, red, green, blue, color;
@@ -67,7 +67,7 @@ public class FragmentTabTop5 extends Fragment {
 
         recyclerView.setLayoutManager(llm);
 
-        initializeList(estadoArrayList);
+        initializeList(entidadesArrayList);
 
         return view;
     }
@@ -133,7 +133,7 @@ public class FragmentTabTop5 extends Fragment {
         mapContainer.addView(map);
     }
 
-    public void initializeList(final List<Estado> list){
+    public void initializeList(final List<Entidades> list){
         ParseQuery<ParseObject> query;
 
         if(getArguments() != null){
@@ -153,11 +153,12 @@ public class FragmentTabTop5 extends Fragment {
                 if (e == null) { //no hay error
 
                     for (int i = 0; i < object.size(); i++) {
-                        estado = new Estado();
-                        estado.setNombreEstado(object.get(i).getString("nombre"));
-                        estado.setPuntos(object.get(i).getInt("puntos"));
-                        estado.setPosicion(i+1);
-                        list.add(estado);
+                        entidades = new Entidades();
+                        entidades.setnombreEntidad(object.get(i).getString("nombre"));
+                        entidades.setPuntos(object.get(i).getInt("puntos"));
+                        entidades.setCantidadUsuarios(object.get(i).getInt("usuarios"));
+                        entidades.setPosicion(i+1);
+                        list.add(entidades);
                     }
 
                     recyclerView.setAdapter(new ListarRankingEstadosAdapter(list));
