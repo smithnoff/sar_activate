@@ -63,4 +63,8 @@ public class ErrorCodeHelper {
 
         return message;
     }
+
+    public static String resolveLogErrorString(int errorCode, String errorMessage){
+        return "Error "+errorCode+": "+errorMessage;
+    }
 }

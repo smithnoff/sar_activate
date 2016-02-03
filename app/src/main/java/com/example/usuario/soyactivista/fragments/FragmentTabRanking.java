@@ -1,26 +1,28 @@
 package com.example.usuario.soyactivista.fragments;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import logica.ErrorCodeHelper;
-import logica.Estados;
+import logica.Estado;
 import logica.ListarRankingEstadosAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -33,57 +35,36 @@ public class FragmentTabRanking extends Fragment{
     private ImageView deltaAmacuro;
     private RecyclerView recyclerView;
     private ListarRankingEstadosAdapter listarUsuarioAdapter;
-    private List<Estados> estadosArrayList = new ArrayList<>();
-    private Estados estado;
-    private int sumUser;
+    private List<Estado> estadoArrayList = new ArrayList<>();
+    private Estado estado;
+    private View view, map;
+    private RelativeLayout mapContainer;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_tab_ranking, container, false);
+        view = inflater.inflate(R.layout.fragment_tab_ranking, container, false);
 
-        parentLayout = (LinearLayout)v.findViewById(R.id.parentLayout);
+        mapContainer = (RelativeLayout) view.findViewById(R.id.map_container);
 
-        /*LayoutInflater infl = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View childLayout = infl.inflate(R.layout.map_venezuela, (ViewGroup) v.findViewById(R.id.venezuelaMap));
-        parentLayout.addView(childLayout);
+        loadMap();
 
-        deltaAmacuro = (ImageView)childLayout.findViewById(R.id.deltaAmacuro);
-        deltaAmacuro.setColorFilter(Color.argb(255, 51, 51, 255));*/
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_ranking);
 
-        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerListTopEstados);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+
         llm.setOrientation(LinearLayoutManager.VERTICAL);
+
         recyclerView.setLayoutManager(llm);
-        initializeList(estadosArrayList);
 
-        return v;
+        initializeList(estadoArrayList);
+
+        return view;
     }
 
-    public int contarUsuarios(String nombreEstado){
-        ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereEqualTo("estado",nombreEstado);
-        query.findInBackground(new FindCallback<ParseUser>() {
-            public void done(List<ParseUser> object, ParseException e)
-            {
-                if (e == null)
-                { //no hay error
-                    object.size();
-                    if (object.size()>0)
-                        sumUser = object.size();
-                    else
-                        sumUser = 0;
-                } else {
-                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        return sumUser;
-    }
-
-    public void initializeList(final List<Estados> list){
+    public void initializeList(final List<Estado> list){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("RankingEstados");
         query.orderByDescending("puntos");
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -91,11 +72,11 @@ public class FragmentTabRanking extends Fragment{
                 if (e == null) { //no hay error
 
                     for (int i = 0; i < object.size(); i++) {
-                        estado = new Estados();
+                        estado = new Estado();
                         String nombreEstado = object.get(i).getString("nombre");
                         estado.setNombreEstado(object.get(i).getString("nombre"));
                         estado.setPuntos(object.get(i).getInt("puntos"));
-                        estado.setCantidadUsuarios(contarUsuarios(nombreEstado));
+                        estado.setCantidadUsuarios(object.get(i).getInt("usuarios"));
                         list.add(estado);
                     }
                     recyclerView.setAdapter(new ListarRankingEstadosAdapter(list));
@@ -108,8 +89,39 @@ public class FragmentTabRanking extends Fragment{
 
     }
 
+    // Map is loaded according to arguments whether it is at national or state level.
+    private void loadMap() {
 
+        int layoutId = 0;
+        int containerId = 0;
 
+        if( getArguments() != null ){
+            String estado = getArguments().getString("estado");
+            if( estado != null && !TextUtils.isEmpty(estado)){
+                // Load State map
+                layoutId = getResources().getIdentifier("map_"+estado, "layout", getActivity().getPackageName());
 
+                containerId = getResources().getIdentifier("map_"+estado, "id",getActivity().getPackageName());
+            }
+            else
+            {
+                // State not found
+                // Load Venezuela Map.
+                layoutId = getResources().getIdentifier("map_venezuela", "layout", getActivity().getPackageName());
+                containerId = getResources().getIdentifier("map_venezuela", "id",getActivity().getPackageName());
+            }
+        }
+        else{
+            // Load Venezuela Map.
+            layoutId = getResources().getIdentifier("map_venezuela", "layout", getActivity().getPackageName());
+            containerId = getResources().getIdentifier("map_venezuela", "id",getActivity().getPackageName());
+        }
+
+        LayoutInflater infl = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        map = infl.inflate(layoutId, (ViewGroup) view.findViewById(containerId));
+
+        mapContainer.addView(map);
+    }
 
 }

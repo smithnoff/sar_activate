@@ -3,13 +3,13 @@ package logica;
 /**
  * Created by Luis Adrian on 26/01/2016.
  */
-public class Estados {
+public class Estado {
     private String nombreEstado;
     private int Posicion;
     private int puntos;
     private int cantidadUsuarios;
 
-    public Estados(){}
+    public Estado(){}
 
     public String getNombreEstado() {
         return nombreEstado;

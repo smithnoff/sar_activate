@@ -2,41 +2,28 @@
 
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <RelativeLayout
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="327dp">
-        <ImageView
-            android:id="@+id/Venezuela"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/map_container"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/venezuela"
-            android:layout_gravity="center_horizontal"
-            android:layout_centerHorizontal="true"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Top 5 Estados"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
-    </RelativeLayout>
-<android.support.v7.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:id="@+id/recyclertop5"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="5dp">
+            android:layout_height="327dp">
 
 
-</android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
 
-</LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/recycler_top_5"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"/>
+
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

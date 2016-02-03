@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import logica.ActivityPantallaMenu;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -26,10 +27,12 @@ public class FragmentPuntuaciones extends Fragment {
     private ViewPager viewPager;
     private String top5Title;
     private String rankingTitle;
+    private ActivityPantallaMenu activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         View v = inflater.inflate(R.layout.fragment_puntuaciones, container, false);
 
         viewPager = (ViewPager) v.findViewById(R.id.viewpager);
@@ -54,7 +57,7 @@ public class FragmentPuntuaciones extends Fragment {
         }
         else{
             // Set titles to state
-            top5Title = "Top 5 Estados";
+            top5Title = "Top 5 Estado";
             rankingTitle = "Ranking Nacional";
         }
     }
@@ -71,7 +74,7 @@ public class FragmentPuntuaciones extends Fragment {
         FragmentTabTopUsuarios topUsuarios = new FragmentTabTopUsuarios();
         topUsuarios.setArguments(getArguments());
 
-        adapter.addFragment(top5 ,top5Title);
+        adapter.addFragment(top5, top5Title);
         adapter.addFragment(ranking , rankingTitle);
         adapter.addFragment(topUsuarios , "Top 20 Usuarios");
         viewPager.setAdapter(adapter);
