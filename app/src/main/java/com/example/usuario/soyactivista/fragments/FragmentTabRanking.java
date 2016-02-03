@@ -1,10 +1,14 @@
 package com.example.usuario.soyactivista.fragments;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,9 +40,13 @@ public class FragmentTabRanking extends Fragment{
     private RecyclerView recyclerView;
     private ListarRankingEstadosAdapter listarUsuarioAdapter;
     private List<Estado> estadoArrayList = new ArrayList<>();
-    private Estado estado;
     private View view, map;
     private RelativeLayout mapContainer;
+    private List<Estado> estadosArrayList = new ArrayList<>();
+    private Estado estado;
+    private int sumUser;
+    private int alpha, red, green, blue, color;
+    //private int color = R.attr.colorPrimary;
 
 
     @Override
@@ -52,6 +60,22 @@ public class FragmentTabRanking extends Fragment{
         loadMap();
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_ranking);
+
+        TypedValue typedValue = new TypedValue();
+
+        getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+
+        color = typedValue.data;
+
+        alpha = Color.alpha(color);
+        red = Color.red(color)-20;
+        green = Color.green(color)-20;
+        blue = Color.blue(color)-20;
+
+        Toast.makeText(getActivity(),"El color es: "+red,Toast.LENGTH_LONG);
+
+        deltaAmacuro = (ImageView)view.findViewById(R.id.deltaAmacuro);
+        deltaAmacuro.setColorFilter(Color.argb(alpha,red,green,blue));
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
 
@@ -122,6 +146,27 @@ public class FragmentTabRanking extends Fragment{
         map = infl.inflate(layoutId, (ViewGroup) view.findViewById(containerId));
 
         mapContainer.addView(map);
+    }
+
+    public int changeAlpha(int alpha)
+    {
+        alpha = Color.alpha(color)-10;
+        return alpha;
+    }
+    public int changeRed(int red)
+    {
+        red = Color.red(color)-10;
+        return red;
+    }
+    public int changeGreen(int green)
+    {
+        green = Color.green(color)-10;
+        return green;
+    }
+    public int changeBlue(int blue)
+    {
+        blue = Color.blue(color)-10;
+        return blue;
     }
 
 }
