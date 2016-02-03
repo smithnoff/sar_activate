@@ -1,8 +1,12 @@
 package com.example.usuario.soyactivista.fragments;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +40,8 @@ public class FragmentTabRanking extends Fragment{
     private List<Estados> estadosArrayList = new ArrayList<>();
     private Estados estado;
     private int sumUser;
+    private int alpha, red, green, blue, color;
+    //private int color = R.attr.colorPrimary;
 
 
     @Override
@@ -44,14 +50,26 @@ public class FragmentTabRanking extends Fragment{
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_tab_ranking, container, false);
 
+
+        TypedValue typedValue = new TypedValue();
+        getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        color = typedValue.data;
+
+        alpha = Color.alpha(color);
+        red = Color.red(color)-20;
+        Toast.makeText(getActivity(),"El color es: "+red,Toast.LENGTH_LONG);
+        green = Color.green(color)-20;
+        blue = Color.blue(color)-20;
+
         parentLayout = (LinearLayout)v.findViewById(R.id.parentLayout);
 
         /*LayoutInflater infl = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View childLayout = infl.inflate(R.layout.map_venezuela, (ViewGroup) v.findViewById(R.id.venezuelaMap));
-        parentLayout.addView(childLayout);
+        parentLayout.addView(childLayout);*/
 
-        deltaAmacuro = (ImageView)childLayout.findViewById(R.id.deltaAmacuro);
-        deltaAmacuro.setColorFilter(Color.argb(255, 51, 51, 255));*/
+        //deltaAmacuro = (ImageView)childLayout.findViewById(R.id.deltaAmacuro);
+        deltaAmacuro = (ImageView)v.findViewById(R.id.deltaAmacuro);
+        deltaAmacuro.setColorFilter(Color.argb(alpha,red,green,blue));
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerListTopEstados);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
@@ -64,14 +82,12 @@ public class FragmentTabRanking extends Fragment{
 
     public int contarUsuarios(String nombreEstado){
         ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereEqualTo("estado",nombreEstado);
+        query.whereEqualTo("estado", nombreEstado);
         query.findInBackground(new FindCallback<ParseUser>() {
-            public void done(List<ParseUser> object, ParseException e)
-            {
-                if (e == null)
-                { //no hay error
+            public void done(List<ParseUser> object, ParseException e) {
+                if (e == null) { //no hay error
                     object.size();
-                    if (object.size()>0)
+                    if (object.size() > 0)
                         sumUser = object.size();
                     else
                         sumUser = 0;
@@ -109,7 +125,26 @@ public class FragmentTabRanking extends Fragment{
     }
 
 
-
+    public int changeAlpha(int alpha)
+    {
+        alpha = Color.alpha(color)-10;
+        return alpha;
+    }
+    public int changeRed(int red)
+    {
+        red = Color.red(color)-10;
+        return red;
+    }
+    public int changeGreen(int green)
+    {
+        green = Color.green(color)-10;
+        return green;
+    }
+    public int changeBlue(int blue)
+    {
+        blue = Color.blue(color)-10;
+        return blue;
+    }
 
 
 }
