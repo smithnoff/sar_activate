@@ -82,9 +82,10 @@ public class FragmentTabRanking extends Fragment{
                         entidades.setCantidadUsuarios(object.get(i).getInt("usuarios"));
                         entidades.setIdEntidad(object.get(i).getString("objectId"));
                         list.add(entidades);
+                        colorMap(i);
                     }
                     recyclerView.setAdapter(new ListarRankingEstadosAdapter(list));
-                    colorMap();
+
 
                 } else {
                     Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
@@ -101,28 +102,74 @@ public class FragmentTabRanking extends Fragment{
 
      y dependiendo de la cantidad de puntos lo llena con un color especifico.
 
-     */
-
-    private void colorMap() {
-        TypedValue typedValue = new TypedValue();
-
-        getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
-
-        color = typedValue.data;
-
-        alpha = Color.alpha(color);
-        red = Color.red(color)-20;
-        green = Color.green(color)-20;
-        blue = Color.blue(color)-20;
-
-        Toast.makeText(getActivity(),"El color es: "+red,Toast.LENGTH_LONG);
 
         /* Como obtener el recurso sin colocarlo a mano?
         estado = listaEstado.get(i);
         imageViewId = getResources().getIdentifier(estado.getName(), "id", getActivity().getPackageName());
         */
-        deltaAmacuro = (ImageView)view.findViewById(R.id.DeltaAmacuro);
-        deltaAmacuro.setColorFilter(Color.argb(alpha,red,green,blue));
+
+    private void colorMap(int i ) {
+        TypedValue typedValue = new TypedValue();
+        getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        color = typedValue.data;
+        alpha = Color.alpha(color);
+        red = Color.red(color);
+        green = Color.green(color);
+        blue = Color.blue(color);
+        Entidades entidades = entidadesArrayList.get(i);
+
+        int imageViewId = 0;
+        if (getArguments() != null) {
+            String estado = getArguments().getString("estado");
+            if (estado != null && !TextUtils.isEmpty(estado)) {
+
+            } else {
+
+            }
+        } else
+        {
+            String nombreentidad = entidades.getnombreEntidad();
+            imageViewId = getResources().getIdentifier(nombreentidad.replaceAll("\\s+", ""), "id", getActivity().getPackageName());
+        }
+
+        ImageView entidad = (ImageView) view.findViewById(imageViewId);
+
+        if (red > blue && red > green)
+        {
+            red = asignarTono(entidades.getPuntos(),red-80);
+        }
+        else
+        {
+            if(blue > green && blue > red)
+            {
+                blue = asignarTono(entidades.getPuntos(),blue-80);
+            }
+            else
+                green=asignarTono(entidades.getPuntos(),green-80);
+
+        }
+
+
+        entidad.setColorFilter(Color.argb(alpha, red, green, blue));
+    }
+
+    public int asignarTono(int x,int color)
+    {
+            int tono=color;
+
+            if(x>=1000 && x<4000 )
+            tono=color+20;
+
+            if(x>=4000 && x<6000 )
+            tono=color+40;
+
+            if(x>=6000 && x<8000 )
+            tono=color+60;
+
+            if(x>=8000 )
+            tono=color+80;
+
+            return tono;
     }
 
     // Map is loaded according to arguments whether it is at national or state level.
@@ -160,25 +207,6 @@ public class FragmentTabRanking extends Fragment{
         mapContainer.addView(map);
     }
 
-    public int changeAlpha(int alpha)
-    {
-        alpha = Color.alpha(color)-10;
-        return alpha;
-    }
-    public int changeRed(int red)
-    {
-        red = Color.red(color)-10;
-        return red;
-    }
-    public int changeGreen(int green)
-    {
-        green = Color.green(color)-10;
-        return green;
-    }
-    public int changeBlue(int blue)
-    {
-        blue = Color.blue(color)-10;
-        return blue;
-    }
+
 
 }
