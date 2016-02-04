@@ -1,5 +1,6 @@
 package logica;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class ListarRankingEstadosAdapter extends RecyclerView.Adapter<RankingViewHolder> {
     private int pos = 0;
     private List<Entidades> entidades;
+    private View itemView;
 
     public ListarRankingEstadosAdapter(List<Entidades> entidad) {
         this.entidades = new ArrayList<>();
@@ -24,7 +26,7 @@ public class ListarRankingEstadosAdapter extends RecyclerView.Adapter<RankingVie
 
     @Override
     public RankingViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.
+        itemView = LayoutInflater.
                 from(viewGroup.getContext()).
                 inflate(R.layout.card_view_ranking, viewGroup, false);
 
@@ -39,10 +41,20 @@ public class ListarRankingEstadosAdapter extends RecyclerView.Adapter<RankingVie
             rankingViewHolder.puntos.setText(String.valueOf(entidades.getPuntos()));
             rankingViewHolder.posicion.setText(""+(1+i));
             rankingViewHolder.cantidadUser.setText(String.valueOf(entidades.getCantidadUsuarios()));
+            if(entidades.getPuntos()>3000)
+            {
+                rankingViewHolder.linearRanking.setBackgroundColor(Color.argb(255, 193, 66, 66));
+            }
+            if(entidades.getPuntos()<2999)
+            {
+                rankingViewHolder.linearRanking.setBackgroundColor(Color.argb(255, 114, 38, 38));
+            }
+
     }
 
     @Override
     public int getItemCount() {
         return entidades.size();
     }
+
 }

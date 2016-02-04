@@ -8,6 +8,7 @@ public class Entidades {
     private int Posicion;
     private int puntos;
     private int cantidadUsuarios;
+    private String idEntidad;
 
     public Entidades(){}
 
@@ -41,5 +42,21 @@ public class Entidades {
 
     public void setCantidadUsuarios(int cantidadUsuarios) {
         this.cantidadUsuarios = cantidadUsuarios;
+    }
+
+    public String getNombreEntidad() {
+        return nombreEntidad;
+    }
+
+    public void setNombreEntidad(String nombreEntidad) {
+        this.nombreEntidad = nombreEntidad;
+    }
+
+    public String getIdEntidad() {
+        return idEntidad;
+    }
+
+    public void setIdEntidad(String idEntidad) {
+        this.idEntidad = idEntidad;
     }
 }

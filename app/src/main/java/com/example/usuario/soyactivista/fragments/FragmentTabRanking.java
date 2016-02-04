@@ -80,6 +80,7 @@ public class FragmentTabRanking extends Fragment{
                         entidades.setnombreEntidad(object.get(i).getString("nombre"));
                         entidades.setPuntos(object.get(i).getInt("puntos"));
                         entidades.setCantidadUsuarios(object.get(i).getInt("usuarios"));
+                        entidades.setIdEntidad(object.get(i).getString("objectId"));
                         list.add(entidades);
                     }
                     recyclerView.setAdapter(new ListarRankingEstadosAdapter(list));
@@ -120,7 +121,7 @@ public class FragmentTabRanking extends Fragment{
         estado = listaEstado.get(i);
         imageViewId = getResources().getIdentifier(estado.getName(), "id", getActivity().getPackageName());
         */
-        deltaAmacuro = (ImageView)view.findViewById(R.id.deltaAmacuro);
+        deltaAmacuro = (ImageView)view.findViewById(R.id.DeltaAmacuro);
         deltaAmacuro.setColorFilter(Color.argb(alpha,red,green,blue));
     }
 
