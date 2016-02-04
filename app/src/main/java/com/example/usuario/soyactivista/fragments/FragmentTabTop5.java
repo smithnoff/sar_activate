@@ -95,7 +95,6 @@ public class FragmentTabTop5 extends Fragment {
         deltaAmacuro = (ImageView)view.findViewById(R.id.deltaAmacuro);
         deltaAmacuro.setColorFilter(Color.argb(alpha,red,green,blue));
 
-
     }
 
     // Map is loaded according to arguments whether it is at national or state level.

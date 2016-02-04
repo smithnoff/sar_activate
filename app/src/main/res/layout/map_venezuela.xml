@@ -11,7 +11,7 @@
     >
 
     <ImageView
-        android:id="@+id/deltaAmacuro"
+        android:id="@+id/DeltaAmacuro"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -20,7 +20,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/bolivar"
+        android:id="@+id/Bolivar"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -29,7 +29,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/amazonas"
+        android:id="@+id/Amazonas"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -38,7 +38,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/monagas"
+        android:id="@+id/Monagas"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -47,7 +47,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucre"
+        android:id="@+id/Sucre"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -56,7 +56,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/nuevaEsparta"
+        android:id="@+id/NuevaEsparta"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -65,7 +65,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/anzoategui"
+        android:id="@+id/Anzoategui"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -74,7 +74,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/guarico"
+        android:id="@+id/Guarico"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -83,7 +83,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/miranda"
+        android:id="@+id/Miranda"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -92,7 +92,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/areaMetropolitana"
+        android:id="@+id/DistritoCapital"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -101,7 +101,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/vargas"
+        android:id="@+id/Vargas"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -110,7 +110,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/aragua"
+        android:id="@+id/Aragua"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -119,7 +119,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/carabobo"
+        android:id="@+id/Carabobo"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -128,7 +128,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yaracuy"
+        android:id="@+id/Yaracuy"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -137,7 +137,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/cojedes"
+        android:id="@+id/Cojedes"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -146,7 +146,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portuguesa"
+        android:id="@+id/Portuguesa"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -155,7 +155,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/barinas"
+        android:id="@+id/Barinas"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -164,7 +164,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/apure"
+        android:id="@+id/Apure"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -173,7 +173,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/lara"
+        android:id="@+id/Lara"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -182,7 +182,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/falcon"
+        android:id="@+id/Falcon"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -191,7 +191,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/trujillo"
+        android:id="@+id/Trujillo"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -200,7 +200,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/zulia"
+        android:id="@+id/Zulia"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -210,7 +210,7 @@
         />
 
     <ImageView
-        android:id="@+id/merida"
+        android:id="@+id/Merida"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -219,7 +219,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/tachira"
+        android:id="@+id/Tachira"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
@@ -227,16 +227,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
-    <ImageView
-        android:id="@+id/islas"
-        android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:src="@drawable/map_state_islas"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/deltaAmacuro" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -245,7 +235,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_below="@+id/deltaAmacuro"
+        android:layout_below="@+id/Tachira"
         android:layout_centerHorizontal="true" />
 
 
