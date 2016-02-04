@@ -92,8 +92,6 @@ public class FragmentTabTop5 extends Fragment {
         imageViewId = getResources().getIdentifier(estado.getName(), "id", getActivity().getPackageName());
         */
 
-        deltaAmacuro = (ImageView)view.findViewById(R.id.deltaAmacuro);
-        deltaAmacuro.setColorFilter(Color.argb(alpha,red,green,blue));
 
     }
 

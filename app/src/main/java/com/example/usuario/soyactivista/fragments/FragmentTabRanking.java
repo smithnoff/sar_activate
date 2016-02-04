@@ -81,9 +81,10 @@ public class FragmentTabRanking extends Fragment{
                         entidades.setPuntos(object.get(i).getInt("puntos"));
                         entidades.setCantidadUsuarios(object.get(i).getInt("usuarios"));
                         list.add(entidades);
+                        colorMap(i);
                     }
                     recyclerView.setAdapter(new ListarRankingEstadosAdapter(list));
-                    colorMap();
+
 
                 } else {
                     Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
@@ -102,17 +103,17 @@ public class FragmentTabRanking extends Fragment{
 
      */
 
-    private void colorMap() {
+  /*  private void colorMap() {
         TypedValue typedValue = new TypedValue();
 
         getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
 
         color = typedValue.data;
 
-        alpha = Color.alpha(color);
-        red = Color.red(color)-20;
-        green = Color.green(color)-20;
-        blue = Color.blue(color)-20;
+        alpha = Color.alpha(color)-20;
+        red = Color.red(color);
+        green = Color.green(color);
+        blue = Color.blue(color);
 
         Toast.makeText(getActivity(),"El color es: "+red,Toast.LENGTH_LONG);
 
@@ -120,9 +121,72 @@ public class FragmentTabRanking extends Fragment{
         estado = listaEstado.get(i);
         imageViewId = getResources().getIdentifier(estado.getName(), "id", getActivity().getPackageName());
         */
-        deltaAmacuro = (ImageView)view.findViewById(R.id.deltaAmacuro);
-        deltaAmacuro.setColorFilter(Color.argb(alpha,red,green,blue));
-    }
+     //   for (int i = 0; i < entidadesArrayList.size(); i++) {
+
+
+       // }
+
+        //deltaAmacuro = (ImageView)view.findViewById(R.id.deltaAmacuro);
+        //deltaAmacuro.setColorFilter(Color.argb(alpha,red,green,blue));
+    //}
+
+    private void colorMap(int i ) {
+        TypedValue typedValue = new TypedValue();
+        getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        color = typedValue.data;
+        alpha = Color.alpha(color);
+        red = Color.red(color) - 20;
+        green = Color.green(color) - 20;
+        blue = Color.blue(color) - 20;
+        Entidades entidades = entidadesArrayList.get(i);
+
+
+
+
+            int imageViewId = 0;
+
+            if (getArguments() != null) {
+                String estado = getArguments().getString("estado");
+                if (estado != null && !TextUtils.isEmpty(estado)) {
+
+                } else {
+
+                }
+            } else {
+
+                String nombreentidad = entidades.getnombreEntidad();
+
+
+
+                imageViewId = getResources().getIdentifier(nombreentidad.replaceAll("\\s+",""), "id", getActivity().getPackageName());
+            }
+
+       /* Como obtener el recurso sin colocarlo a mano?
+       estado = listaEstado.get(i);
+       imageViewId = getResources().getIdentifier(estado.getName(), "id", getActivity().getPackageName());
+       */
+            ImageView entidad = (ImageView) view.findViewById(imageViewId);
+
+            if (entidades.getPuntos() >= 1000 && entidades.getPuntos() < 4000)
+                alpha = alpha - 180;
+            if (entidades.getPuntos() >= 4000 && entidades.getPuntos() < 6000)
+                alpha = alpha - 120;
+            if (entidades.getPuntos() >= 6000 && entidades.getPuntos() < 8000)
+                alpha = alpha - 80;
+            if (entidades.getPuntos() >= 8000)
+                alpha = alpha - 40;
+
+            entidad.setColorFilter(Color.argb(alpha, red, green, blue));
+        }
+
+
+
+
+
+
+
+
+
 
     // Map is loaded according to arguments whether it is at national or state level.
     private void loadMap() {
@@ -159,25 +223,6 @@ public class FragmentTabRanking extends Fragment{
         mapContainer.addView(map);
     }
 
-    public int changeAlpha(int alpha)
-    {
-        alpha = Color.alpha(color)-10;
-        return alpha;
-    }
-    public int changeRed(int red)
-    {
-        red = Color.red(color)-10;
-        return red;
-    }
-    public int changeGreen(int green)
-    {
-        green = Color.green(color)-10;
-        return green;
-    }
-    public int changeBlue(int blue)
-    {
-        blue = Color.blue(color)-10;
-        return blue;
-    }
+
 
 }
