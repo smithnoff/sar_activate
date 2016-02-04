@@ -141,45 +141,63 @@ public class FragmentTabRanking extends Fragment{
         Entidades entidades = entidadesArrayList.get(i);
 
 
+        int imageViewId = 0;
 
+        if (getArguments() != null) {
+            String estado = getArguments().getString("estado");
+            if (estado != null && !TextUtils.isEmpty(estado)) {
 
-            int imageViewId = 0;
-
-            if (getArguments() != null) {
-                String estado = getArguments().getString("estado");
-                if (estado != null && !TextUtils.isEmpty(estado)) {
-
-                } else {
-
-                }
             } else {
 
-                String nombreentidad = entidades.getnombreEntidad();
-
-
-
-                imageViewId = getResources().getIdentifier(nombreentidad.replaceAll("\\s+",""), "id", getActivity().getPackageName());
             }
+        } else {
+
+            String nombreentidad = entidades.getnombreEntidad();
+
+
+            imageViewId = getResources().getIdentifier(nombreentidad.replaceAll("\\s+", ""), "id", getActivity().getPackageName());
+        }
 
        /* Como obtener el recurso sin colocarlo a mano?
        estado = listaEstado.get(i);
        imageViewId = getResources().getIdentifier(estado.getName(), "id", getActivity().getPackageName());
        */
-            ImageView entidad = (ImageView) view.findViewById(imageViewId);
+        ImageView entidad = (ImageView) view.findViewById(imageViewId);
 
-            if (entidades.getPuntos() >= 1000 && entidades.getPuntos() < 4000)
-                alpha = alpha - 180;
-            if (entidades.getPuntos() >= 4000 && entidades.getPuntos() < 6000)
-                alpha = alpha - 120;
-            if (entidades.getPuntos() >= 6000 && entidades.getPuntos() < 8000)
-                alpha = alpha - 80;
-            if (entidades.getPuntos() >= 8000)
-                alpha = alpha - 40;
+        if (red > blue && red > green) {
+            red = asignarTono(entidades.getPuntos(),red-80);
+        }
 
-            entidad.setColorFilter(Color.argb(alpha, red, green, blue));
+            if (blue > red && blue > green) {
+                blue = asignarTono(entidades.getPuntos(),blue-80);
+            }
+                if (green > blue && green >red )
+                {
+
+                    green=asignarTono(entidades.getPuntos(),green-80);
+                }
+
+
+        entidad.setColorFilter(Color.argb(alpha, red, green, blue));
         }
 
 
+
+public int asignarTono(int x,int color)
+{ int tono=color;
+
+
+    if(x>=1000 && x<4000 )
+    tono=color+20;
+    if(x>=4000 && x<6000 )
+        tono=color+40;
+    if(x>=6000 && x<8000 )
+        tono=color+60;
+    if(x>=8000 )
+        tono=color+80;
+
+    return tono;
+}
 
 
 
