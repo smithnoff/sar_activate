@@ -64,7 +64,7 @@ public class FragmentTabTopUsuarios extends Fragment{
             if(getArguments().getString("estado") != null)
                 query.whereEqualTo("estado",getArguments().getString("estado"));
         }
-
+        list.clear();
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> object, ParseException e) {
                 if (e == null) { //no hay error

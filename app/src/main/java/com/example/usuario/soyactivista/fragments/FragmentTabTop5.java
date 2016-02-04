@@ -148,6 +148,7 @@ public class FragmentTabTop5 extends Fragment {
 
         query.setLimit(5);
         query.orderByDescending("puntos");
+        list.clear();
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> object, ParseException e) {
                 if (e == null) { //no hay error
