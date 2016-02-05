@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="327dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/map_maroa"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/map_ama_maroa"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        />
+    <ImageView
+        android:id="@+id/map_manapiare"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/map_ama_manapiare"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        />
+    <ImageView
+        android:id="@+id/map_autana"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/map_ama_autana"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        />
+    <ImageView
+        android:id="@+id/map_atures"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/map_ama_atures"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        />
+    <ImageView
+        android:id="@+id/map_atabapo"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/map_ama_atabapo"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        />
+    <ImageView
+        android:id="@+id/map_alto_orinoco"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/map_ama_alto_orinoco"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        />
+    <ImageView
+        android:id="@+id/map_rio_negro"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/map_ama_rio_negro"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ranking Amazonas"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>
