@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
-        android:id="@+id/larAndresEloyBlanco"
+       android:id="@+id/map_andres_eloy_blanco"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/larCrespo"
+       android:id="@+id/map_crespo"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -23,7 +23,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/larIribarren"
+       android:id="@+id/map_iribarren"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -32,7 +32,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/larJimenez"
+       android:id="@+id/map_jimenez"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -41,7 +41,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/larMoran"
+       android:id="@+id/map_Moran"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -50,7 +50,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/larPalavecino"
+       android:id="@+id/map_palavecino"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -59,7 +59,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/larSimonPlanas"
+       android:id="@+id/map_simon_planas"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -68,7 +68,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/larTorres"
+       android:id="@+id/map_torres"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -78,7 +78,7 @@
 
         />
     <ImageView
-        android:id="@+id/larUrdaneta"
+       android:id="@+id/map_urdaneta"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"

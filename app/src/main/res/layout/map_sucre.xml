@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
-        android:id="@+id/sucSucre"
+        android:id="@+id/map_sucre"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucMontes"
+        android:id="@+id/map_montes"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -23,7 +23,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucBolivar"
+        android:id="@+id/map_bolivar"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -32,7 +32,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucMejia"
+        android:id="@+id/map_mejia"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -41,7 +41,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucRibero"
+        android:id="@+id/map_ribero"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -50,7 +50,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucCruzSalmeronAcosta"
+        android:id="@+id/map_cruz_salmeron_acosta"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -59,7 +59,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucAndresEloyBlanco"
+        android:id="@+id/map_andres_eloy_blanco"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -68,7 +68,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucAndresMata"
+        android:id="@+id/map_andres_mata"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -77,7 +77,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucBermudez"
+        android:id="@+id/map_bermudez"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -86,7 +86,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucBenitez"
+        android:id="@+id/map_benitez"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -95,7 +95,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucLibertador"
+        android:id="@+id/map_libertador"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -104,7 +104,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucCajigal"
+        android:id="@+id/map_cajigal"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -113,7 +113,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucMarino"
+        android:id="@+id/map_marino"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -122,7 +122,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucValdez"
+        android:id="@+id/map_valdez"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -131,7 +131,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucArismendi"
+        android:id="@+id/map_arismendi"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"

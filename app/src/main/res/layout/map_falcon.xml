@@ -4,175 +4,175 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/map_fal_acosta"
+        android:id="@+id/map_acosta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_acosta"
         />
 
     <ImageView
-        android:id="@+id/map_fal_bolivar"
+        android:id="@+id/map_bolivar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_bolivar"
         />
 
     <ImageView
-        android:id="@+id/map_fal_buchiyacoa"
+        android:id="@+id/map_buchiyacoa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_buchiyacoa"
         />
 
     <ImageView
-        android:id="@+id/map_fal_cacique_manaure"
+        android:id="@+id/map_cacique_manaure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_cacique_manaure"
         />
 
     <ImageView
-        android:id="@+id/map_fal_carirubana"
+        android:id="@+id/map_carirubana"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_carirubana"
         />
 
     <ImageView
-        android:id="@+id/map_fal_colina"
+        android:id="@+id/map_colina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_colina"
         />
 
     <ImageView
-        android:id="@+id/map_fal_dabajuro"
+        android:id="@+id/map_dabajuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_dabajuro"
         />
 
     <ImageView
-        android:id="@+id/map_fal_democracia"
+        android:id="@+id/map_democracia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_democracia"
         />
 
     <ImageView
-        android:id="@+id/map_fal_falcon"
+        android:id="@+id/map_falcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_falcon"
         />
 
     <ImageView
-        android:id="@+id/map_fal_federacion"
+        android:id="@+id/map_federacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_federacion"
         />
 
     <ImageView
-        android:id="@+id/map_fal_jacura"
+        android:id="@+id/map_jacura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_jacura"
         />
 
     <ImageView
-        android:id="@+id/map_fal_los_taques"
+        android:id="@+id/map_los_taques"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_los_taques"
         />
 
     <ImageView
-        android:id="@+id/map_fal_mauroa"
+        android:id="@+id/map_mauroa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_mauroa"
         />
 
     <ImageView
-        android:id="@+id/map_fal_miranda"
+        android:id="@+id/map_miranda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_miranda"
         />
 
     <ImageView
-        android:id="@+id/map_fal_monsenor_iturriza"
+        android:id="@+id/map_monsenor_iturriza"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_mosenor_iturriza"
         />
 
     <ImageView
-        android:id="@+id/map_fal_palma_sola"
+        android:id="@+id/map_palma_sola"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_palma_sola"
         />
 
     <ImageView
-        android:id="@+id/map_fal_petit"
+        android:id="@+id/map_petit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_petit"
         />
 
     <ImageView
-        android:id="@+id/map_fal_piritu"
+        android:id="@+id/map_piritu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_piritu"
         />
 
     <ImageView
-        android:id="@+id/map_fal_san_francisco"
+        android:id="@+id/map_san_francisco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_san_francisco"
         />
 
     <ImageView
-        android:id="@+id/map_fal_silva"
+        android:id="@+id/map_silva"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_silva"
         />
 
     <ImageView
-        android:id="@+id/map_fal_sucre"
+        android:id="@+id/map_sucre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_sucre"
         />
 
     <ImageView
-        android:id="@+id/map_fal_tocopero"
+        android:id="@+id/map_tocopero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_tocopero"
         />
 
     <ImageView
-        android:id="@+id/map_fal_union"
+        android:id="@+id/map_union"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_union"
         />
 
     <ImageView
-        android:id="@+id/map_fal_urumaco"
+        android:id="@+id/map_urumaco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_urumaco"
         />
 
     <ImageView
-        android:id="@+id/map_fal_zamora"
+        android:id="@+id/map_zamora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_fal_zamora"

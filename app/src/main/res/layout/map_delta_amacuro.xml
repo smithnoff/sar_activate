@@ -4,28 +4,28 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/map_del_antonia_diaz"
+        android:id="@+id/map_antonia_diaz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_del_antonio_diaz"
         />
 
     <ImageView
-        android:id="@+id/map_del_casacoima"
+        android:id="@+id/map_casacoima"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_del_casacoima"
         />
 
     <ImageView
-        android:id="@+id/map_del_pedernales"
+        android:id="@+id/map_pedernales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_del_pedernales"
         />
 
     <ImageView
-        android:id="@+id/map_del_tucupita"
+        android:id="@+id/map_tucupita"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/map_del_tucupita"

@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/map_coj_anzoategui"
+        android:id="@+id/map_anzoategui"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -14,7 +14,7 @@
         />
 
     <ImageView
-        android:id="@+id/map_coj_falcon"
+        android:id="@+id/map_falcon"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -24,7 +24,7 @@
         />
 
     <ImageView
-        android:id="@+id/map_coj_girardot"
+        android:id="@+id/map_girardot"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -34,7 +34,7 @@
         />
 
     <ImageView
-        android:id="@+id/map_coj_juan_bautista"
+        android:id="@+id/map_juan_bautista"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -44,7 +44,7 @@
         />
 
     <ImageView
-        android:id="@+id/map_coj_lima_blanco"
+        android:id="@+id/map_lima_blanco"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -54,7 +54,7 @@
         />
 
     <ImageView
-        android:id="@+id/map_coj_ricaurte"
+        android:id="@+id/map_ricaurte"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -64,7 +64,7 @@
         />
 
     <ImageView
-        android:id="@+id/map_coj_romulo_gallegos"
+        android:id="@+id/map_romulo_gallegos"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -74,7 +74,7 @@
         />
 
     <ImageView
-        android:id="@+id/map_coj_san_carlos"
+        android:id="@+id/map_san_carlos"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -84,7 +84,7 @@
         />
 
     <ImageView
-        android:id="@+id/map_coj_tinaco"
+        android:id="@+id/map_tinaco"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"

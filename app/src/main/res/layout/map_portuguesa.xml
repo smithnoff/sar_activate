@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
-        android:id="@+id/portGuanarito"
+        android:id="@+id/map_guanarito"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portPapelon"
+        android:id="@+id/map_papelon"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -23,7 +23,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portSanGenaro"
+        android:id="@+id/map_san_genaro"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -32,7 +32,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portGuanare"
+        android:id="@+id/map_guanare"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -41,7 +41,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portSucre"
+        android:id="@+id/map_sucre"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -50,7 +50,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portMonsenorJoseVicente"
+        android:id="@+id/map_monsenor_jose_vicente"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -59,7 +59,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portOspino"
+        android:id="@+id/map_ospino"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -68,7 +68,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portEsteller"
+        android:id="@+id/map_esteller"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -77,7 +77,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portSantaRosalia"
+        android:id="@+id/map_santa_rosalia"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -86,7 +86,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portTuren"
+        android:id="@+id/map_turen"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -95,7 +95,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portPaez"
+        android:id="@+id/map_paez"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -104,7 +104,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portAraure"
+        android:id="@+id/map_araure"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -113,7 +113,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portAguaBlanca"
+        android:id="@+id/map_agua_blanca"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -122,7 +122,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portSanRafaelOnoto"
+        android:id="@+id/map_san_rafael_onoto"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"

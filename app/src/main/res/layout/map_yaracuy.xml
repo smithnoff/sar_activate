@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
-        android:id="@+id/yarPena"
+        android:id="@+id/map_pena"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yarJoseAntonioPaez"
+        android:id="@+id/map_jose_antonio_paez"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -23,7 +23,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yarUrachiche"
+        android:id="@+id/map_urachiche"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -32,7 +32,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yarBruzual"
+        android:id="@+id/map_bruzual"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -41,7 +41,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yarAristidesBastidas"
+        android:id="@+id/map_aristides_bastidas"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -50,7 +50,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yarSucre"
+        android:id="@+id/map_sucre"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -59,7 +59,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yarLaTrinidad"
+        android:id="@+id/map_la_trinidad"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -68,7 +68,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yarCocorote"
+        android:id="@+id/map_cocorote"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -77,7 +77,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yarIndependencia"
+        android:id="@+id/map_independencia"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -86,7 +86,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yarSanFelipe"
+        android:id="@+id/map_san_felipe"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -95,7 +95,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yarVeroes"
+        android:id="@+id/map_veroes"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -104,7 +104,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yarManuelMonge"
+        android:id="@+id/map_manuel_monge"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -113,7 +113,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yarBolivar"
+        android:id="@+id/map_bolivar"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -122,7 +122,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yarNirgua"
+        android:id="@+id/map_nirgua"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
