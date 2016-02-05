@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import logica.ErrorCodeHelper;
+import logica.ErrorCodeHelpers;
 import logica.Selector_de_Tema;
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -190,7 +190,7 @@ public class FragmentTriviaDificultad extends Fragment {
                             } else {
                                 dialog.dismiss();
                                 Log.d(TAG, "Error: " + e.getMessage() + " " + e.getCode());
-                                Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -216,7 +216,7 @@ public class FragmentTriviaDificultad extends Fragment {
                     else{ // Another Error)
                         dialog.dismiss();
                         Log.d(TAG, "Error: " + e.getMessage() + " " + e.getCode());
-                        Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                     }
 
                 }

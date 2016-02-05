@@ -1,17 +1,17 @@
 package com.example.usuario.soyactivista.fragments;
 import android.content.Context;
-import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -23,7 +23,8 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-import logica.ErrorCodeHelper;
+import logica.ColorHelpers;
+import logica.ErrorCodeHelpers;
 import logica.Entidad;
 import logica.ListarRankingEntidadesAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -32,14 +33,17 @@ import soy_activista.quartzapp.com.soy_activista.R;
  * Created by Luis Adrian on 19/01/2016.
  */
 public class FragmentTabRanking extends Fragment{
-    private ImageView bolivar;
-    private LinearLayout parentLayout;
-    private ImageView deltaAmacuro;
-    private RecyclerView recyclerView;
-    private ArrayList<Entidad> entidadArrayList = new ArrayList<>();
-    private View view, map;
-    private RelativeLayout mapContainer;
-    private Entidad entidad;
+
+    private static final String TAG = "FragTabRanking";
+    private RecyclerView recyclerView; // List Holder
+    private RelativeLayout mapContainer; // Map Container
+    private View map; // Map Holder
+    private View view; // Main Layout
+
+    // List Vars
+    private ListarRankingEntidadesAdapter adapter;
+    private ArrayList<Entidad> entidadArrayList;
+
     private int alpha, red, green, blue, color;
     //private int color = R.attr.colorPrimary;
 
@@ -48,115 +52,93 @@ public class FragmentTabRanking extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_tab_ranking, container, false);
+
+        view = inflater.inflate(R.layout.fragment_tab_top_5, container, false);
 
         mapContainer = (RelativeLayout) view.findViewById(R.id.map_container);
 
         loadMap();
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_ranking);
+        // Inititalize Entity Rank List
 
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
 
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        recyclerView.setLayoutManager(llm);
+        entidadArrayList = new ArrayList<>();
 
-        initializeList(entidadArrayList);
+        adapter = new ListarRankingEntidadesAdapter(entidadArrayList);
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_top_5);
+
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        recyclerView.setAdapter(adapter);
+
+        // Download entities from DB
+
+        initializeList();
 
         return view;
     }
 
-    public void initializeList(final ArrayList<Entidad> list){
+    public void initializeList(){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("RankingEstados");
         query.orderByDescending("puntos");
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> object, ParseException e) {
                 if (e == null) { //no hay error
-
+                    Log.d(TAG, object.size() + " entities retrieved");
                     for (int i = 0; i < object.size(); i++) {
-                        entidad = new Entidad();
-                        String nombreEntidad = object.get(i).getString("nombre");
+                        Entidad entidad = new Entidad();
                         entidad.setNombre(object.get(i).getString("nombre"));
                         entidad.setPuntos(object.get(i).getInt("puntos"));
                         entidad.setUsuarios(object.get(i).getInt("usuarios"));
-                        entidad.setId(object.get(i).getString("objectId"));
-                        list.add(entidad);
-                        colorMap(i);
+                        entidad.setId(object.get(i).getObjectId());
+                        entidadArrayList.add(entidad);
+                        colorEntity(entidad.getNombre(), entidad.getPuntos());
                     }
-                    recyclerView.setAdapter(new ListarRankingEntidadesAdapter(list));
-
+                    // Reload List
+                    adapter.notifyDataSetChanged();
 
                 } else {
-                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                    // Log & display error
+                    Log.d(TAG, ErrorCodeHelpers.resolveLogErrorString(e.getCode(), e.getMessage()));
+                    Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                 }
             }
         });
 
     }
 
-    private void colorMap(int i ) {
+    private void colorEntity(String nombre, int puntos) {
+
+        // Get Resource ID
+        int imageViewId = getResources().getIdentifier(nombre.toLowerCase().replace(" ","_"), "id",getActivity().getPackageName());
+        ImageView vector = (ImageView) map.findViewById(imageViewId);
+
+        // Get Primary Color
         TypedValue typedValue = new TypedValue();
-        getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
-        color = typedValue.data;
-        alpha = Color.alpha(color);
-        red = Color.red(color);
-        green = Color.green(color);
-        blue = Color.blue(color);
-        Entidad entidades = entidadArrayList.get(i);
+        getContext().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        int color = typedValue.data;
 
-        int imageViewId = 0;
-        if (getArguments() != null) {
-            String estado = getArguments().getString("estado");
-            if (estado != null && !TextUtils.isEmpty(estado)) {
+        int finalColor = color;
 
-            } else {
+        // Get color tone
+        if ( puntos > 6000 && puntos <= 7999)
+            finalColor = ColorHelpers.lighten(color, 0.2);
 
-            }
-        }
-        else {
-            String nombreEntidad = entidades.getNombre();
-            imageViewId = getResources().getIdentifier(nombreEntidad.toLowerCase().replaceAll("\\s+", "_"), "id", getActivity().getPackageName());
-        }
+        if ( puntos > 4000 && puntos <= 5999)
+            finalColor = ColorHelpers.lighten(color, 0.4);
 
-        ImageView entidad = (ImageView) view.findViewById(imageViewId);
+        if ( puntos > 1000 && puntos <= 3999)
+            finalColor = ColorHelpers.lighten(color, 0.6);
 
-        if (red > blue && red > green)
-        {
-            red = asignarTono(entidades.getPuntos(),red-80);
-        }
-        else
-        {
-            if(blue > green && blue > red)
-            {
-                blue = asignarTono(entidades.getPuntos(),blue-80);
-            }
-            else
-                green=asignarTono(entidades.getPuntos(),green-80);
+        if ( puntos > 0 && puntos <= 999)
+            finalColor = ColorHelpers.lighten(color, 0.8);
 
-        }
-
-
-        entidad.setColorFilter(Color.argb(alpha, red, green, blue));
-    }
-
-    public int asignarTono(int x,int color)
-    {
-            int tono=color;
-
-            if(x>=1000 && x<4000 )
-            tono=color+20;
-
-            if(x>=4000 && x<6000 )
-            tono=color+40;
-
-            if(x>=6000 && x<8000 )
-            tono=color+60;
-
-            if(x>=8000 )
-            tono=color+80;
-
-            return tono;
+        // Paint with Primary Color.
+        vector.setColorFilter(finalColor, PorterDuff.Mode.SRC_IN);
     }
 
     // Map is loaded according to arguments whether it is at national or state level.
@@ -193,7 +175,6 @@ public class FragmentTabRanking extends Fragment{
 
         mapContainer.addView(map);
     }
-
 
 
 }

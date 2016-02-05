@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import logica.ActivityPantallaInicio;
-import logica.ErrorCodeHelper;
+import logica.ErrorCodeHelpers;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -222,12 +222,12 @@ public class FragmentEditarUsuario extends Fragment {
                                                 progressDialog.dismiss();
                                                 if(e != null){
                                                     Log.d(TAG, "Error "+e.getCode()+":  " + e.getMessage());
-                                                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                                                 }
 
                                                 if(response != null){
                                                     Log.d(TAG, "Error: " +response.get("code").toString()+" "+ response.get("message").toString());
-                                                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_LONG).show();
                                                 }
 
                                                 if(e == null && response == null){
@@ -267,7 +267,7 @@ public class FragmentEditarUsuario extends Fragment {
                                                 }
                                                 else{
                                                     progressDialog.dismiss();
-                                                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                                                 }
 
                                             }
@@ -354,12 +354,12 @@ public class FragmentEditarUsuario extends Fragment {
                                 else {
                                     if(e != null){
                                         Log.d(TAG, "Error: " + e.getMessage());
-                                        Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                                     }
 
                                     if(response != null){
                                         Log.d(TAG, "Error: " +response.get("code").toString()+" "+ response.get("message").toString());
-                                        Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_LONG).show();
                                     }
 
                                     if(e == null && response == null){

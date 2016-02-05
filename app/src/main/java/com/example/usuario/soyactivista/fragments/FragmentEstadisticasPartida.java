@@ -2,7 +2,6 @@ package com.example.usuario.soyactivista.fragments;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,10 +20,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-import logica.ErrorCodeHelper;
+import logica.ErrorCodeHelpers;
 import soy_activista.quartzapp.com.soy_activista.R;
 import logica.AnimateCounter;
 
@@ -165,7 +161,7 @@ public class FragmentEstadisticasPartida extends Fragment {
                     } else {
                         // Another error
                         Log.d(TAG, "Error: " + e.getMessage() + " " + e.getCode());
-                        Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                     }
                 }
             }

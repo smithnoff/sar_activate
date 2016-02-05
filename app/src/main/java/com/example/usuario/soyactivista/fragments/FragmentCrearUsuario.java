@@ -22,7 +22,7 @@ import com.parse.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
-import logica.ErrorCodeHelper;
+import logica.ErrorCodeHelpers;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -137,7 +137,7 @@ public class FragmentCrearUsuario extends Fragment {
                                                             Toast.makeText(getActivity(), "Email enviado correctamente", Toast.LENGTH_SHORT).show();
                                                             Log.d(TAG, "Email Enviado");
                                                         } else {
-                                                            Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_SHORT).show();
                                                             Log.d(TAG, "Error enviando mail. " + e.getMessage() + " " + response.get("message").toString());
                                                         }
 
@@ -157,12 +157,12 @@ public class FragmentCrearUsuario extends Fragment {
                                             progressDialog.dismiss();
                                             if (e != null) {
                                                 Log.d(TAG, "Error: " + e.getMessage());
-                                                Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                                Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                                             }
 
                                             if (response != null) {
                                                 Log.d(TAG, "Error: " + response.get("code").toString() + " " + response.get("message").toString());
-                                                Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_LONG).show();
+                                                Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_LONG).show();
                                             }
 
                                             if (e == null && response == null) {

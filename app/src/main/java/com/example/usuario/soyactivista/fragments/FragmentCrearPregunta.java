@@ -20,7 +20,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.SaveCallback;
 
-import logica.ErrorCodeHelper;
+import logica.ErrorCodeHelpers;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -133,7 +133,7 @@ public class FragmentCrearPregunta extends Fragment {
                                     } else {
                                         dialog.dismiss();
                                         Log.d(TAG, "Error: " + e.getMessage() + " " + e.getCode());
-                                        Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });

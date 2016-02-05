@@ -21,10 +21,9 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import logica.ErrorCodeHelper;
+import logica.ErrorCodeHelpers;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 import static java.lang.Integer.parseInt;
@@ -192,7 +191,7 @@ public class FragmentEditarPregunta extends Fragment {
                                                 } else {
                                                     dialog.dismiss();
                                                     Log.d(TAG,"Error: "+e.getMessage()+" "+e.getCode());
-                                                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                                                 }
                                             }
                                         });
@@ -200,7 +199,7 @@ public class FragmentEditarPregunta extends Fragment {
                                     } else {
                                         // Object not found in Parse or else
                                         Log.d(TAG, "Error: " + e.getMessage() + " " + e.getCode());
-                                        Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -302,7 +301,7 @@ public class FragmentEditarPregunta extends Fragment {
                                     dialog.dismiss();
                                     // Object not found in Parse or else
                                     Log.d(TAG, "Error: " + e.getMessage() + " " + e.getCode());
-                                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
