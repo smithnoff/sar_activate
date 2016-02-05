@@ -17,8 +17,7 @@ import com.parse.ParseUser;
 import com.parse.RequestPasswordResetCallback;
 
 import logica.ActivityPantallaInicio;
-import logica.ActivityPantallaMenu;
-import logica.ErrorCodeHelper;
+import logica.ErrorCodeHelpers;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -72,7 +71,7 @@ public class FragmentRecuperarContrasena extends Fragment {
                                     dialog.dismiss();
                                     // Email not found
                                     Log.d(TAG,"Error "+e.getCode()+" :"+e.getMessage());
-                                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });

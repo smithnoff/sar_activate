@@ -3,9 +3,9 @@ package logica;
 /**
  * Created by Brahyam on 29/12/2015.
  */
-public class ErrorCodeHelper {
+public class ErrorCodeHelpers {
 
-    public ErrorCodeHelper(){
+    public ErrorCodeHelpers(){
 
     }
 

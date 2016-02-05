@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import logica.ErrorCodeHelper;
+import logica.ErrorCodeHelpers;
 import logica.ListarActividadParseAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -112,13 +112,13 @@ public class FragmentListarActividad extends Fragment {
                     else{
                         progressDialog.dismiss();
                         Log.d("ADAPTER", "Adapter returned null!");
-                        Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(0), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(0), Toast.LENGTH_LONG).show();
                     }
 
                 } else {
                     progressDialog.dismiss();
                     Log.d("Likes", "Error "+e.getCode()+": " + e.getMessage());
-                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                 }
             }
         });

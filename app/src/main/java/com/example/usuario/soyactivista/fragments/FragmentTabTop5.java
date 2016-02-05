@@ -1,10 +1,8 @@
 package com.example.usuario.soyactivista.fragments;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -25,7 +23,7 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-import logica.ErrorCodeHelper;
+import logica.ErrorCodeHelpers;
 import logica.Entidad;
 import logica.ListarRankingEntidadesAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -41,11 +39,10 @@ public class FragmentTabTop5 extends Fragment {
     private View map; // Map Holder
     private View view; // Main Layout
 
+    // List Vars
     private ListarRankingEntidadesAdapter adapter;
-
     private ArrayList<Entidad> entidadArrayList;
 
-    private int alpha, red, green, blue, color;
 
     public FragmentTabTop5() {
         // Required empty public constructor
@@ -89,21 +86,6 @@ public class FragmentTabTop5 extends Fragment {
         return view;
     }
 
-
-    private void colorMap() {
-        TypedValue typedValue = new TypedValue();
-
-        getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
-
-        color = typedValue.data;
-
-        alpha = Color.alpha(color);
-        red = Color.red(color)-20;
-        green = Color.green(color)-20;
-        blue = Color.blue(color)-20;
-
-        Toast.makeText(getActivity(), "El color es: " + red, Toast.LENGTH_LONG);
-    }
 
     // Map is loaded according to arguments whether it is at national or state level.
     private void loadMap() {
@@ -162,6 +144,7 @@ public class FragmentTabTop5 extends Fragment {
                     Entidad entidad;
                     for (int i = 0; i < object.size(); i++) {
                         entidad = new Entidad();
+                        entidad.setId(object.get(i).getObjectId());
                         entidad.setNombre(object.get(i).getString("nombre"));
                         entidad.setPuntos(object.get(i).getInt("puntos"));
                         entidad.setUsuarios(object.get(i).getInt("usuarios"));
@@ -173,8 +156,9 @@ public class FragmentTabTop5 extends Fragment {
                     adapter.notifyDataSetChanged();
 
                 } else {
-                    Log.d(TAG, ErrorCodeHelper.resolveLogErrorString(e.getCode(), e.getMessage()));
-                    Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                    // Log & display error
+                    Log.d(TAG, ErrorCodeHelpers.resolveLogErrorString(e.getCode(), e.getMessage()));
+                    Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                 }
             }
         });

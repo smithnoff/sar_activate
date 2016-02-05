@@ -13,13 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import logica.ErrorCodeHelper;
+import logica.ErrorCodeHelpers;
 import logica.Selector_de_Tema;
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -130,7 +129,7 @@ public class FragmentTriviaPrincipal extends Fragment{
             if(e.getCode() == 101) // Object not found code
                 return false;
             else{
-                Toast.makeText(getActivity(), ErrorCodeHelper.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                 return false;
             }
         }

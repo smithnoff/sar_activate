@@ -1,7 +1,10 @@
 package logica;
 
+import android.app.Application;
+import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,19 +37,37 @@ public class ListarRankingEntidadesAdapter extends RecyclerView.Adapter<RankingV
     @Override
     public void onBindViewHolder(RankingViewHolder rankingViewHolder, int i) {
 
-            Entidad entidad = this.entidades.get(i);
-            rankingViewHolder.nombreEntidad.setText(entidad.getNombre());
-            rankingViewHolder.puntos.setText(String.valueOf(entidad.getPuntos()));
-            rankingViewHolder.posicion.setText(""+(1+i));
-            rankingViewHolder.cantidadUsuarios.setText(String.valueOf(entidad.getUsuarios()));
-            if(entidad.getPuntos()>3000)
-            {
-                rankingViewHolder.linearRanking.setBackgroundColor(Color.argb(255, 193, 66, 66));
-            }
-            if(entidad.getPuntos()<2999)
-            {
-                rankingViewHolder.linearRanking.setBackgroundColor(Color.argb(255, 114, 38, 38));
-            }
+        // Get Model
+        Entidad entidad = this.entidades.get(i);
+
+        // Set View Values
+        rankingViewHolder.nombreEntidad.setText(entidad.getNombre());
+        rankingViewHolder.puntos.setText(String.valueOf(entidad.getPuntos()));
+        rankingViewHolder.posicion.setText(""+(1+i));
+        rankingViewHolder.cantidadUsuarios.setText(String.valueOf(entidad.getUsuarios()));
+
+        // Get Primary Color
+        TypedValue typedValue = new TypedValue();
+        rankingViewHolder.nombreEntidad.getContext().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        int color = typedValue.data;
+
+        int finalColor = color;
+        int puntos = entidad.getPuntos();
+
+        // Get color tone
+        if ( puntos > 6000 && puntos <= 7999)
+            finalColor = ColorHelpers.lighten(color, 0.2);
+
+        if ( puntos > 4000 && puntos <= 5999)
+            finalColor = ColorHelpers.lighten(color, 0.4);
+
+        if ( puntos > 1000 && puntos <= 3999)
+            finalColor = ColorHelpers.lighten(color, 0.6);
+
+        if ( puntos > 0 && puntos <= 999)
+            finalColor = ColorHelpers.lighten(color, 0.8);
+
+        rankingViewHolder.linearRanking.setBackgroundColor(finalColor);
 
     }
 
