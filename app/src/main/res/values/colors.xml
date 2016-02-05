@@ -20,8 +20,9 @@
     <color name="deeppurple600">#5e35b1</color>
     <color name="brown">#5D4037</color>
 
-<!--color miselaneo-->
+    <!-- Colores Miscelaneos -->
     <color name="grisOscuro">#999999</color>
+    <color name="grisClaro">#BDBDBD</color>
 
 
     <!-- Texto Actividades -->

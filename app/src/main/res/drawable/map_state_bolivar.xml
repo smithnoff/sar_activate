@@ -11,10 +11,10 @@
     app:vc_viewportHeight="1500">
 
     <path
-        android:fillColor="?colorPrimary"
-        app:vc_fillColor="?colorPrimary"
-        android:strokeColor="#ffffff"
-        app:vc_strokeColor="#ffffff"
+        android:fillColor="@color/grisClaro"
+        app:vc_fillColor="@color/grisClaro"
+        android:strokeColor="@color/grisOscuro"
+        app:vc_strokeColor="@color/grisOscuro"
         android:strokeWidth="1.41732283"
         app:vc_strokeWidth="1.41732283"
         android:strokeLineCap="round"
@@ -511,15 +511,4 @@ L 1544.693,1024.2601 L 1530.4233,1025.2528 C 1517.9709,1026.119
 1383.2207,1107.8629 C 1380.6719,1109.1266 1377.5898,1111.1574
 1376.3714,1112.3758 C 1373.3696,1115.3776 1370.6945,1115.163 1365.4656,1111.5005
 z" />
-    <path
-        android:fillColor="#cccccc"
-        app:vc_fillColor="#cccccc"
-        android:strokeColor="#ffffff"
-        app:vc_strokeColor="#ffffff"
-        android:strokeWidth="1.41732283"
-        app:vc_strokeWidth="1.41732283"
-        android:strokeLineCap="round"
-        app:vc_strokeLineCap="round"
-        android:pathData=""
-        app:vc_pathData="" />
 </vector>

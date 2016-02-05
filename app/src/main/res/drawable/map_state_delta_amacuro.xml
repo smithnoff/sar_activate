@@ -10,27 +10,17 @@
     android:viewportHeight="1500"
     app:vc_viewportHeight="1500">
 
-    <path
-        android:fillColor="#cccccc"
-        app:vc_fillColor="#cccccc"
-        android:strokeColor="#ffffff"
-        app:vc_strokeColor="#ffffff"
-        android:strokeWidth="1.41732283"
-        app:vc_strokeWidth="1.41732283"
-        android:strokeLineCap="round"
-        app:vc_strokeLineCap="round"
-        android:pathData=""
-        app:vc_pathData="" />
+
     <group
         android:translateX="-15.58823"
         app:vc_translateX="-15.58823"
         android:translateY="-110.44118"
         app:vc_translateY="-110.44118">
         <path
-            android:fillColor="?colorPrimary"
-            app:vc_fillColor="?colorPrimary"
-            android:strokeColor="#ffffff"
-            app:vc_strokeColor="#ffffff"
+            android:fillColor="@color/grisClaro"
+            app:vc_fillColor="@color/grisClaro"
+            android:strokeColor="@color/grisOscuro"
+            app:vc_strokeColor="@color/grisOscuro"
             android:strokeWidth="1.41732283"
             app:vc_strokeWidth="1.41732283"
             android:strokeLineCap="round"

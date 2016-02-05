@@ -10,27 +10,16 @@
     android:viewportHeight="1500"
     app:vc_viewportHeight="1500">
 
-    <path
-        android:fillColor="#cccccc"
-        app:vc_fillColor="#cccccc"
-        android:strokeColor="#ffffff"
-        app:vc_strokeColor="#ffffff"
-        android:strokeWidth="1.41732283"
-        app:vc_strokeWidth="1.41732283"
-        android:strokeLineCap="round"
-        app:vc_strokeLineCap="round"
-        android:pathData=""
-        app:vc_pathData="" />
     <group
         android:translateX="-15.58823"
         app:vc_translateX="-15.58823"
         android:translateY="-110.44118"
         app:vc_translateY="-110.44118">
         <path
-            android:fillColor="?colorPrimary"
-            app:vc_fillColor="?colorPrimary"
-            android:strokeColor="#ffffff"
-            app:vc_strokeColor="#ffffff"
+            android:fillColor="@color/grisClaro"
+            app:vc_fillColor="@color/grisClaro"
+            android:strokeColor="@color/grisOscuro"
+            app:vc_strokeColor="@color/grisOscuro"
             android:strokeWidth="1.41732283"
             app:vc_strokeWidth="1.41732283"
             android:strokeLineCap="round"
@@ -202,10 +191,10 @@ C 1237.7252,288.8469 1237.1045,289.07024 1237.1045,289.34322 C
 1236.1118,278.08908 1236.3352,278.4241 1236.6081,278.4241 C 1236.8811,278.4241
 1237.1045,278.08908 1237.1045,277.67962 z" />
         <path
-            android:fillColor="?colorPrimary"
-            app:vc_fillColor="?colorPrimary"
-            android:strokeColor="#ffffff"
-            app:vc_strokeColor="#ffffff"
+            android:fillColor="@color/grisClaro"
+            app:vc_fillColor="@color/grisClaro"
+            android:strokeColor="@color/grisOscuro"
+            app:vc_strokeColor="@color/grisOscuro"
             android:strokeWidth="1.41732283"
             app:vc_strokeWidth="1.41732283"
             android:strokeLineCap="round"
@@ -233,10 +222,10 @@ C 1251.9942,308.12079 1251.8839,308.20351 1250.0089,308.20351 C
 C 1251.9942,308.12079 1251.8839,308.20351 1250.0089,308.20351 C
 1248.917,308.20351 1248.0236,307.98017 1248.0236,307.70719 z" />
         <path
-            android:fillColor="?colorPrimary"
-            app:vc_fillColor="?colorPrimary"
-            android:strokeColor="#ffffff"
-            app:vc_strokeColor="#ffffff"
+            android:fillColor="@color/grisClaro"
+            app:vc_fillColor="@color/grisClaro"
+            android:strokeColor="@color/grisOscuro"
+            app:vc_strokeColor="@color/grisOscuro"
             android:strokeWidth="1.41732283"
             app:vc_strokeWidth="1.41732283"
             android:strokeLineCap="round"
@@ -250,10 +239,10 @@ L 1213.405,301.88281 z"
 1215.7626,302.06871 C 1213.1693,302.06871 1212.1084,301.98506 1213.405,301.88281
 L 1213.405,301.88281 z" />
         <path
-            android:fillColor="?colorPrimary"
-            app:vc_fillColor="?colorPrimary"
-            android:strokeColor="#ffffff"
-            app:vc_strokeColor="#ffffff"
+            android:fillColor="@color/grisClaro"
+            app:vc_fillColor="@color/grisClaro"
+            android:strokeColor="@color/grisOscuro"
+            app:vc_strokeColor="@color/grisOscuro"
             android:strokeWidth="1.41732283"
             app:vc_strokeWidth="1.41732283"
             android:strokeLineCap="round"

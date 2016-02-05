@@ -1,15 +1,10 @@
 package logica;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.util.TypedValue;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,14 +14,12 @@ import soy_activista.quartzapp.com.soy_activista.R;
 /**
  * Created by Luis Adrian on 26/01/2016.
  */
-public class ListarRankingEstadosAdapter extends RecyclerView.Adapter<RankingViewHolder> {
-    private int pos = 0;
-    private List<Entidades> entidades;
+public class ListarRankingEntidadesAdapter extends RecyclerView.Adapter<RankingViewHolder> {
+    private ArrayList<Entidad> entidades;
     private View itemView;
 
-    public ListarRankingEstadosAdapter(List<Entidades> entidad) {
-        this.entidades = new ArrayList<>();
-        this.entidades.addAll(entidad);
+    public ListarRankingEntidadesAdapter(ArrayList<Entidad> entidadList) {
+        this.entidades = entidadList;
     }
 
     @Override
@@ -41,16 +34,16 @@ public class ListarRankingEstadosAdapter extends RecyclerView.Adapter<RankingVie
     @Override
     public void onBindViewHolder(RankingViewHolder rankingViewHolder, int i) {
 
-            Entidades entidades = this.entidades.get(i);
-            rankingViewHolder.nombreEntidad.setText(entidades.getnombreEntidad());
-            rankingViewHolder.puntos.setText(String.valueOf(entidades.getPuntos()));
+            Entidad entidad = this.entidades.get(i);
+            rankingViewHolder.nombreEntidad.setText(entidad.getNombre());
+            rankingViewHolder.puntos.setText(String.valueOf(entidad.getPuntos()));
             rankingViewHolder.posicion.setText(""+(1+i));
-            rankingViewHolder.cantidadUser.setText(String.valueOf(entidades.getCantidadUsuarios()));
-            if(entidades.getPuntos()>3000)
+            rankingViewHolder.cantidadUsuarios.setText(String.valueOf(entidad.getUsuarios()));
+            if(entidad.getPuntos()>3000)
             {
                 rankingViewHolder.linearRanking.setBackgroundColor(Color.argb(255, 193, 66, 66));
             }
-            if(entidades.getPuntos()<2999)
+            if(entidad.getPuntos()<2999)
             {
                 rankingViewHolder.linearRanking.setBackgroundColor(Color.argb(255, 114, 38, 38));
             }

@@ -24,8 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import logica.ErrorCodeHelper;
-import logica.Entidades;
-import logica.ListarRankingEstadosAdapter;
+import logica.Entidad;
+import logica.ListarRankingEntidadesAdapter;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -36,10 +36,10 @@ public class FragmentTabRanking extends Fragment{
     private LinearLayout parentLayout;
     private ImageView deltaAmacuro;
     private RecyclerView recyclerView;
-    private List<Entidades> entidadesArrayList = new ArrayList<>();
+    private ArrayList<Entidad> entidadArrayList = new ArrayList<>();
     private View view, map;
     private RelativeLayout mapContainer;
-    private Entidades entidades;
+    private Entidad entidad;
     private int alpha, red, green, blue, color;
     //private int color = R.attr.colorPrimary;
 
@@ -62,12 +62,12 @@ public class FragmentTabRanking extends Fragment{
 
         recyclerView.setLayoutManager(llm);
 
-        initializeList(entidadesArrayList);
+        initializeList(entidadArrayList);
 
         return view;
     }
 
-    public void initializeList(final List<Entidades> list){
+    public void initializeList(final ArrayList<Entidad> list){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("RankingEstados");
         query.orderByDescending("puntos");
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -75,16 +75,16 @@ public class FragmentTabRanking extends Fragment{
                 if (e == null) { //no hay error
 
                     for (int i = 0; i < object.size(); i++) {
-                        entidades = new Entidades();
+                        entidad = new Entidad();
                         String nombreEntidad = object.get(i).getString("nombre");
-                        entidades.setnombreEntidad(object.get(i).getString("nombre"));
-                        entidades.setPuntos(object.get(i).getInt("puntos"));
-                        entidades.setCantidadUsuarios(object.get(i).getInt("usuarios"));
-                        entidades.setIdEntidad(object.get(i).getString("objectId"));
-                        list.add(entidades);
+                        entidad.setNombre(object.get(i).getString("nombre"));
+                        entidad.setPuntos(object.get(i).getInt("puntos"));
+                        entidad.setUsuarios(object.get(i).getInt("usuarios"));
+                        entidad.setId(object.get(i).getString("objectId"));
+                        list.add(entidad);
                         colorMap(i);
                     }
-                    recyclerView.setAdapter(new ListarRankingEstadosAdapter(list));
+                    recyclerView.setAdapter(new ListarRankingEntidadesAdapter(list));
 
 
                 } else {
@@ -95,19 +95,6 @@ public class FragmentTabRanking extends Fragment{
 
     }
 
-    /* Función que recorre la lista de entidades que recuperamos de la BD, si el fragmento tiene
-     argumentos es la lista de Estados si no es la lista de Municipios.
-
-     Por cada uno busca el Id del ImageView ( Usando la funcion getResource usada en loadMap)
-
-     y dependiendo de la cantidad de puntos lo llena con un color especifico.
-
-
-        /* Como obtener el recurso sin colocarlo a mano?
-        estado = listaEstado.get(i);
-        imageViewId = getResources().getIdentifier(estado.getName(), "id", getActivity().getPackageName());
-        */
-
     private void colorMap(int i ) {
         TypedValue typedValue = new TypedValue();
         getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
@@ -116,7 +103,7 @@ public class FragmentTabRanking extends Fragment{
         red = Color.red(color);
         green = Color.green(color);
         blue = Color.blue(color);
-        Entidades entidades = entidadesArrayList.get(i);
+        Entidad entidades = entidadArrayList.get(i);
 
         int imageViewId = 0;
         if (getArguments() != null) {
@@ -126,10 +113,10 @@ public class FragmentTabRanking extends Fragment{
             } else {
 
             }
-        } else
-        {
-            String nombreentidad = entidades.getnombreEntidad();
-            imageViewId = getResources().getIdentifier(nombreentidad.replaceAll("\\s+", ""), "id", getActivity().getPackageName());
+        }
+        else {
+            String nombreEntidad = entidades.getNombre();
+            imageViewId = getResources().getIdentifier(nombreEntidad.toLowerCase().replaceAll("\\s+", "_"), "id", getActivity().getPackageName());
         }
 
         ImageView entidad = (ImageView) view.findViewById(imageViewId);

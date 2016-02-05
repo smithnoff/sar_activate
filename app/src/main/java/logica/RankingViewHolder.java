@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.usuario.soyactivista.fragments.FragmentEditarUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentPuntuaciones;
 
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -19,7 +18,7 @@ public class RankingViewHolder extends RecyclerView.ViewHolder {
     protected TextView nombreEntidad;
     protected TextView posicion;
     protected TextView puntos;
-    protected TextView cantidadUser;
+    protected TextView cantidadUsuarios;
     protected CardView card;
     protected LinearLayout linearRanking;
 
@@ -29,16 +28,16 @@ public class RankingViewHolder extends RecyclerView.ViewHolder {
         nombreEntidad = (TextView) itemView.findViewById(R.id.nombreEntidad);
         puntos = (TextView) itemView.findViewById(R.id.puntosEstado);
         posicion= (TextView) itemView.findViewById(R.id.posicionestado);
-        cantidadUser = (TextView) itemView.findViewById(R.id.cantidadUsuarios);
+        cantidadUsuarios = (TextView) itemView.findViewById(R.id.cantidadUsuarios);
         card = (CardView) itemView;
         linearRanking = (LinearLayout)itemView.findViewById(R.id.linearTopRanking);
 
         itemView.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Entidades entidades = new Entidades();
+                Entidad entidad = new Entidad();
                 Bundle datos = new Bundle();
-                datos.putString("entidad",entidades.getnombreEntidad());
-                datos.putString("id",entidades.getIdEntidad());
+                datos.putString("entidad", entidad.getNombre());
+                datos.putString("id", entidad.getId());
 
                 // Redirect View to next Fragment
                 Fragment fragment = new FragmentPuntuaciones();
@@ -50,8 +49,5 @@ public class RankingViewHolder extends RecyclerView.ViewHolder {
                         .commit();
             }
         });
-
     }
-
-
 }

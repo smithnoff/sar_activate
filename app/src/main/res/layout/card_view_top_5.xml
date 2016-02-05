@@ -52,7 +52,7 @@
                 android:layout_gravity="center_vertical"
                 android:textSize="18dp" />
             <TextView
-                android:id="@+id/cantidadUsuarios"
+                android:id="@+id/usuarios"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Usuarios en el estado: #"

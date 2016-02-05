@@ -10,27 +10,16 @@
     android:viewportHeight="1500"
     app:vc_viewportHeight="1500">
 
-    <path
-        android:fillColor="#cccccc"
-        app:vc_fillColor="#cccccc"
-        android:strokeColor="#ffffff"
-        app:vc_strokeColor="#ffffff"
-        android:strokeWidth="1.41732283"
-        app:vc_strokeWidth="1.41732283"
-        android:strokeLineCap="round"
-        app:vc_strokeLineCap="round"
-        android:pathData=""
-        app:vc_pathData="" />
     <group
         android:translateX="-26.11684"
         app:vc_translateX="-26.11684"
         android:translateY="-113.24881"
         app:vc_translateY="-113.24881">
         <path
-            android:fillColor="?colorPrimary"
-            app:vc_fillColor="?colorPrimary"
-            android:strokeColor="#ffffff"
-            app:vc_strokeColor="#ffffff"
+            android:fillColor="@color/grisClaro"
+            app:vc_fillColor="@color/grisClaro"
+            android:strokeColor="@color/grisOscuro"
+            app:vc_strokeColor="@color/grisOscuro"
             android:strokeWidth="1.41732283"
             app:vc_strokeWidth="1.41732283"
             android:strokeLineCap="round"
@@ -114,10 +103,10 @@ C 370.9771,511.80227 370.80987,514.75669 370.00641,515.56014 C
 355.32942,520.77835 355.32942,522.22506 C 355.32942,523.48241 355.1364,523.71403
 354.08861,523.71403 C 353.23,523.71403 352.8478,523.44202 352.8478,522.83095 z" />
         <path
-            android:fillColor="?colorPrimary"
-            app:vc_fillColor="?colorPrimary"
-            android:strokeColor="#ffffff"
-            app:vc_strokeColor="#ffffff"
+            android:fillColor="@color/grisClaro"
+            app:vc_fillColor="@color/grisClaro"
+            android:strokeColor="@color/grisOscuro"
+            app:vc_strokeColor="@color/grisOscuro"
             android:strokeWidth="1.41732283"
             app:vc_strokeWidth="1.41732283"
             android:strokeLineCap="round"
@@ -485,10 +474,10 @@ C 397.14559,436.3621 396.04866,436.13598 394.62853,436.13598 C
 379.77426,454.72555 L 379.77426,455.98892 L 374.81103,455.98892 C
 371.83309,455.98892 369.84779,455.79039 369.84779,455.49259 z" />
         <path
-            android:fillColor="?colorPrimary"
-            app:vc_fillColor="?colorPrimary"
-            android:strokeColor="#ffffff"
-            app:vc_strokeColor="#ffffff"
+            android:fillColor="@color/grisClaro"
+            app:vc_fillColor="@color/grisClaro"
+            android:strokeColor="@color/grisOscuro"
+            app:vc_strokeColor="@color/grisOscuro"
             android:strokeWidth="1.41732283"
             app:vc_strokeWidth="1.41732283"
             android:strokeLineCap="round"

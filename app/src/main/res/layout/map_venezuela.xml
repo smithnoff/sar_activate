@@ -1,243 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="256dp"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
     android:id="@+id/venezuelaMap">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="256dp"
-    >
-
     <ImageView
-        android:id="@+id/DeltaAmacuro"
+        android:id="@+id/delta_amacuro"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_delta_amacuro"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Bolivar"
+        android:id="@+id/bolivar"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_bolivar"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Amazonas"
+        android:id="@+id/amazonas"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_amazonas"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Monagas"
+        android:id="@+id/monagas"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_monagas"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Sucre"
+        android:id="@+id/sucre"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_sucre"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/NuevaEsparta"
+        android:id="@+id/nueva_esparta"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_nueva_esparta"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Anzoategui"
+        android:id="@+id/anzoategui"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_anzoategui"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Guarico"
+        android:id="@+id/guarico"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_guarico"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Miranda"
+        android:id="@+id/miranda"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_miranda"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/DistritoCapital"
+        android:id="@+id/distrito_capital"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_area_metropolitana"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Vargas"
+        android:id="@+id/vargas"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_vargas"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Aragua"
+        android:id="@+id/aragua"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_aragua"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Carabobo"
+        android:id="@+id/carabobo"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_carabobo"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Yaracuy"
+        android:id="@+id/yaracuy"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_yaracuy"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Cojedes"
+        android:id="@+id/cojedes"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_cojedes"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Portuguesa"
+        android:id="@+id/portuguesa"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_portuguesa"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Barinas"
+        android:id="@+id/barinas"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_barinas"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Apure"
+        android:id="@+id/apure"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_apure"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Lara"
+        android:id="@+id/lara"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_lara"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Falcon"
+        android:id="@+id/falcon"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_falcon"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Trujillo"
+        android:id="@+id/trujillo"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_trujillo"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Zulia"
+        android:id="@+id/zulia"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_zulia"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
 
     <ImageView
-        android:id="@+id/Merida"
+        android:id="@+id/merida"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_merida"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/Tachira"
+        android:id="@+id/tachira"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/map_state_tachira"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ranking Nacional"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_below="@+id/Tachira"
-        android:layout_centerHorizontal="true" />
-
-
 </RelativeLayout>
-</LinearLayout>
