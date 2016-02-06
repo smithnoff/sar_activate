@@ -12,7 +12,7 @@
 
     <path
         android:name="path4207"
-        app:vc_name="path4207"
+
         android:fillColor="#c8c8c8"
         app:vc_fillColor="#c8c8c8"
         android:strokeColor="#646464"
