@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ import soy_activista.quartzapp.com.soy_activista.R;
  */
 public class FragmentPuntuaciones extends Fragment {
 
+    private String TAG = "FragPuntuaciones";
+
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -35,7 +38,12 @@ public class FragmentPuntuaciones extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_puntuaciones, container, false);
 
+        Log.d(TAG, "Loading Fragment Puntuaciones");
+
         viewPager = (ViewPager) v.findViewById(R.id.viewpager);
+
+        // TODO: Optimize to not regenerate list on swiping.
+        viewPager.setOffscreenPageLimit(2);
 
         // Check if fragment was initialized with bundle. / State / Mun Level
         setTabTitles(getArguments());
@@ -63,21 +71,32 @@ public class FragmentPuntuaciones extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
 
-        FragmentTabTop5 top5 = new FragmentTabTop5();
-        top5.setArguments(getArguments());
+        // Initialize Tabs
+        FragmentTabTop5 fragmentTabTop5 = new FragmentTabTop5();
+        FragmentTabRanking fragmentTabRanking = new FragmentTabRanking();
+        FragmentTabTopUsuarios fragmentTabTopUsuarios = new FragmentTabTopUsuarios();
 
-        FragmentTabRanking ranking = new FragmentTabRanking();
-        ranking.setArguments(getArguments());
+        // Propagate Arguments
+        if(getArguments() != null){
+            Log.d(TAG,"Fragment has arguments");
+            Bundle datos = getArguments();
+            Log.d(TAG,"Bundle Contains "+datos.getString("estado")+" "+datos.getString("estadoId"));
+            fragmentTabTop5.setArguments(datos);
+            fragmentTabRanking.setArguments(datos);
+            fragmentTabTopUsuarios.setArguments(datos);
+        }
+        else{
+            Log.d(TAG,"Fragment does not have arguments");
+        }
 
-        FragmentTabTopUsuarios topUsuarios = new FragmentTabTopUsuarios();
-        topUsuarios.setArguments(getArguments());
-
-        adapter.addFragment(top5, top5Title);
-        adapter.addFragment(ranking , rankingTitle);
-        adapter.addFragment(topUsuarios , "Top 20 Usuarios");
+        adapter.addFragment(fragmentTabTop5, top5Title);
+        adapter.addFragment(fragmentTabRanking , rankingTitle);
+        adapter.addFragment(fragmentTabTopUsuarios , "Top 20 Usuarios");
         viewPager.setAdapter(adapter);
+
+        Log.d(TAG, "Adapter has "+ adapter.getCount());
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -108,4 +127,6 @@ public class FragmentPuntuaciones extends Fragment {
             return mFragmentTitleList.get(position);
         }
     }
+
+
 }

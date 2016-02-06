@@ -20,12 +20,14 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
 import logica.ErrorCodeHelpers;
 import logica.Entidad;
 import logica.ListarRankingEntidadesAdapter;
+import logica.TextHelpers;
 import soy_activista.quartzapp.com.soy_activista.R;
 /**
  * Created by Luis Adrian on 19/01/2016.
@@ -43,10 +45,15 @@ public class FragmentTabTop5 extends Fragment {
     private ListarRankingEntidadesAdapter adapter;
     private ArrayList<Entidad> entidadArrayList;
 
+    // Arguments
+    private String entityName;
+    private String entityId;
+
 
     public FragmentTabTop5() {
         // Required empty public constructor
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,10 +63,18 @@ public class FragmentTabTop5 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Log.d(TAG,"Loading Fragment Top 5");
 
         view = inflater.inflate(R.layout.fragment_tab_top_5, container, false);
 
         mapContainer = (RelativeLayout) view.findViewById(R.id.map_container);
+
+        // Recover data from arguments
+        if( getArguments() != null){
+            Log.d(TAG,"Fragment has arguments");
+            entityName = getArguments().getString("estado");
+            entityId = getArguments().getString("estadoId");
+        }
 
         loadMap();
 
@@ -71,7 +86,7 @@ public class FragmentTabTop5 extends Fragment {
 
         entidadArrayList = new ArrayList<>();
 
-        adapter = new ListarRankingEntidadesAdapter(entidadArrayList);
+        adapter = new ListarRankingEntidadesAdapter(getActivity(),entidadArrayList);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_top_5);
 
@@ -92,26 +107,21 @@ public class FragmentTabTop5 extends Fragment {
 
         int layoutId = 0;
         int containerId = 0;
+        String resource = "map_venezuela";
 
-        if( getArguments() != null ){
-            String estado = getArguments().getString("estado");
-            if( estado != null && !TextUtils.isEmpty(estado)){
-                // Load State map
-                layoutId = getResources().getIdentifier("map_"+estado, "layout", getActivity().getPackageName());
+        if( entityName != null ){
+            resource = TextHelpers.NormalizeResource(getArguments().getString("estado"));
 
-                containerId = getResources().getIdentifier("map_"+estado, "id",getActivity().getPackageName());
-            }
-            else
-            {
-                // State not found
-                // Load Venezuela Map.
-                layoutId = getResources().getIdentifier("map_venezuela", "layout", getActivity().getPackageName());
-                containerId = getResources().getIdentifier("map_venezuela", "id",getActivity().getPackageName());
-            }
+            // Look for resource id
+            Log.d(TAG,"Looking for map file: map_"+resource);
+            layoutId = getResources().getIdentifier("map_"+resource, "layout", getActivity().getPackageName());
+            containerId = getResources().getIdentifier("map_"+resource, "id",getActivity().getPackageName());
+
         }
         else{
-            // Load Venezuela Map.
-            layoutId = getResources().getIdentifier("map_venezuela", "layout", getActivity().getPackageName());
+            // Look for resource id
+            Log.d(TAG,"Looking for map file: map_venezuela");
+            layoutId = getResources().getIdentifier(resource, "layout", getActivity().getPackageName());
             containerId = getResources().getIdentifier("map_venezuela", "id",getActivity().getPackageName());
         }
 
@@ -119,17 +129,29 @@ public class FragmentTabTop5 extends Fragment {
 
         map = infl.inflate(layoutId, (ViewGroup) view.findViewById(containerId));
 
-        mapContainer.addView(map);
+
+        // Check if resource was found.
+        if( map == null){
+            // Map not found
+            Toast.makeText(getContext(),"Map not found : "+resource,Toast.LENGTH_LONG).show();
+            Log.e(TAG,"Map resource not found : map_"+resource);
+        }
+        else{
+            // Map Found
+            mapContainer.addView(map);
+        }
     }
 
     public void initializeList(){
+        // TODO: Save queried list in activity and ask for it on creation.
+
         ParseQuery<ParseObject> query;
 
         if(getArguments() != null){
             // Generate state object without data
-            ParseObject estado = ParseObject.createWithoutData("RankingEstado", getArguments().getString("estadoId"));
             query = ParseQuery.getQuery("RankingMunicipios");
-            query.whereEqualTo("estado",estado);
+            query.whereEqualTo("estado",getArguments().getString("estado"));
+            Log.d(TAG, "Querying for estado " + getArguments().getString("estado"));
         }
         else{
             query = ParseQuery.getQuery("RankingEstados");
@@ -149,7 +171,7 @@ public class FragmentTabTop5 extends Fragment {
                         entidad.setPuntos(object.get(i).getInt("puntos"));
                         entidad.setUsuarios(object.get(i).getInt("usuarios"));
                         entidad.setPosicion(i + 1);
-                        colorEntity(entidad.getNombre(), entidad.getPuntos());
+                        colorEntity(entidad.getNombre());
                         entidadArrayList.add(entidad);
                     }
                     // Reload List
@@ -164,11 +186,18 @@ public class FragmentTabTop5 extends Fragment {
         });
     }
 
-    private void colorEntity(String nombre, int puntos) {
+    private void colorEntity(String nombre) {
 
         // Get Resource ID
-        int imageViewId = getResources().getIdentifier(nombre.toLowerCase().replace(" ","_"), "id",getActivity().getPackageName());
+        String finalName = TextHelpers.NormalizeResource(nombre);
+        int imageViewId = getResources().getIdentifier("map_"+ finalName, "id",getActivity().getPackageName());
         ImageView vector = (ImageView) map.findViewById(imageViewId);
+
+        // Check if image not found log & abort.
+        if ( vector == null){
+            Log.e(TAG,"Resource not found: map_"+finalName);
+            return;
+        }
 
         // Get Primary Color
         TypedValue typedValue = new TypedValue();
