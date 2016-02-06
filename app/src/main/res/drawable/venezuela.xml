@@ -14,7 +14,7 @@
 
         android:fillColor="@color/grisOscuro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -139,7 +139,7 @@ C 1099.9831,1426.4951 1095.8577,1428.2675 1092.7308,1428.2675 C
 
         android:fillColor="@color/grisOscuro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -252,9 +252,9 @@ C 645.37728,784.77186 638.53153,785.67215 632.71558,789.27881 C
     <path
         android:name="bolivar"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -512,9 +512,9 @@ z"
 
         android:fillColor="#a9a9a9"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
-        android:strokeWidth="1.41732283"
+        android:strokeWidth="1"
 
         android:strokeLineCap="round"
 
@@ -532,7 +532,7 @@ z"
 
             android:fillColor="@color/grisOscuro"
 
-            android:strokeColor="#ffffff"
+            android:strokeColor="@color/grisOscuro"
 
             android:strokeWidth="1.41732283000000000"
 
@@ -1010,9 +1010,9 @@ C 1625.952,486.38965 1626.2679,485.91586 1626.2679,485.33679 z"
     <path
         android:name="monagas"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -1248,9 +1248,9 @@ C 1420.5974,479.49831 1419.7419,479.83078 1418.8318,479.83078 C
     <path
         android:name="anzoategui"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -1690,9 +1690,9 @@ C 1121.8527,592.80821 1115.4858,593.50403 1113.3436,593.06437 L
     <path
         android:name="guarico"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -2098,9 +2098,9 @@ C 791.52788,395.31952 790.58824,396.74175 790.58824,403.02205 C
     <path
         android:name="cojedes"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -2335,9 +2335,9 @@ z"
     <path
         android:name="barinas"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -2904,7 +2904,7 @@ C 467.72892,578.47641 467.3939,578.81143 467.3939,579.2209 C 467.3939,579.63036
 
         android:fillColor="@color/grisOscuro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -3308,9 +3308,9 @@ C 537.71054,348.49698 537.37552,348.832 537.37552,349.24146 C
     <path
         android:name="lara"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -3646,9 +3646,9 @@ C 522.70916,339.5816 522.48581,339.80495 522.48581,340.07793 C
     <path
         android:name="yaracuy"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -3841,9 +3841,9 @@ C 585.09345,296.40146 584.42341,296.84815 584.02993,297.3941 C
     <path
         android:name="carabobo"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -3993,9 +3993,9 @@ C 737.3939,306.96961 737.17055,307.32057 736.89758,307.32057 C
     <path
         android:name="trujillo"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -4209,9 +4209,9 @@ C 394.23096,426.21488 393.89594,426.43822 393.48647,426.43822 C
     <path
         android:name="merida"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -4475,9 +4475,9 @@ C 273.38353,577.55074 270.6464,577.94176 270.6464,577.02434 z M
     <path
         android:name="tachira"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -4727,7 +4727,7 @@ C 201.16111,631.45973 200.82609,631.68307 200.41662,631.68307 C
 
             android:fillColor="@color/grisOscuro"
 
-            android:strokeColor="#ffffff"
+            android:strokeColor="@color/grisOscuro"
 
             android:strokeWidth="1.41732283000000000"
 
@@ -4778,7 +4778,7 @@ C 370.9771,511.80227 370.80987,514.75669 370.00641,515.56014 C
 
             android:fillColor="@color/grisOscuro"
 
-            android:strokeColor="#ffffff"
+            android:strokeColor="@color/grisOscuro"
 
             android:strokeWidth="1.41732283000000000"
 
@@ -4971,7 +4971,7 @@ C 397.14559,436.3621 396.04866,436.13598 394.62853,436.13598 C
 
             android:fillColor="@color/grisOscuro"
 
-            android:strokeColor="#ffffff"
+            android:strokeColor="@color/grisOscuro"
 
             android:strokeWidth="1.41732283000000000"
 
@@ -5367,9 +5367,9 @@ C 264.7958,527.02734 265.11166,527.3432 265.49771,527.3432 C 265.88376,527.3432
     <path
         android:name="falcon"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -5696,9 +5696,9 @@ C 558.17856,104.01053 558.49441,103.69468 558.49441,103.30863 z"
     <path
         android:name="aragua"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -5935,7 +5935,7 @@ C 828.41938,271.57969 828.19604,272.69642 827.92306,272.69642 C
 
         android:fillColor="@color/grisOscuro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -6016,9 +6016,9 @@ L 816.0113,240.58728 L 815.08451,239.51869 C 814.27628,238.58679
     <path
         android:name="areaMetropolitana"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -6053,9 +6053,9 @@ C 828.43859,239.01076 828.4269,238.94642 829.38947,238.94642 C
     <path
         android:name="miranda"
 
-        android:fillColor="?colorPrimary"
+        android:fillColor="@color/grisClaro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -6263,7 +6263,7 @@ C 1016.4367,295.5273 1015.4508,296.02983 1014.9044,296.64403 C
 
         android:fillColor="@color/grisOscuro"
 
-        android:strokeColor="#ffffff"
+        android:strokeColor="@color/grisOscuro"
 
         android:strokeWidth="1.41732283000000000"
 
@@ -6646,9 +6646,9 @@ C 1394.9553,269.89622 1395.3062,270.29361 1395.3062,270.7793 C
         <path
             android:name="nuevaEsparta1"
 
-            android:fillColor="?colorPrimary"
+            android:fillColor="@color/grisClaro"
 
-            android:strokeColor="#ffffff"
+            android:strokeColor="@color/grisOscuro"
 
             android:strokeWidth="1.41732283000000000"
 
@@ -6741,9 +6741,9 @@ C 1237.7252,288.8469 1237.1045,289.07024 1237.1045,289.34322 C
         <path
             android:name="nuevaEsparta2"
 
-            android:fillColor="?colorPrimary"
+            android:fillColor="@color/grisClaro"
 
-            android:strokeColor="#ffffff"
+            android:strokeColor="@color/grisOscuro"
 
             android:strokeWidth="1.41732283000000000"
 
@@ -6764,9 +6764,9 @@ C 1251.9942,308.12079 1251.8839,308.20351 1250.0089,308.20351 C
         <path
             android:name="nuevaEsparta3"
 
-            android:fillColor="?colorPrimary"
+            android:fillColor="@color/grisClaro"
 
-            android:strokeColor="#ffffff"
+            android:strokeColor="@color/grisOscuro"
 
             android:strokeWidth="1.41732283000000000"
 
@@ -6794,9 +6794,9 @@ C 1218.5545,298.38811 1218.9458,298.22846 1219.0968,298.64928 C
 
             android:fillColor="#a9a9a9"
 
-            android:strokeColor="#ffffff"
+            android:strokeColor="@color/grisOscuro"
 
-            android:strokeWidth="1.41732283"
+            android:strokeWidth="1"
 
             android:strokeLineCap="round"
 
@@ -6812,8 +6812,8 @@ L 1350.8618,229.1888 z"
 
             android:fillColor="#a9a9a9"
 
-            android:strokeColor="#ffffff"
-            android:strokeWidth="1.41732283"
+            android:strokeColor="@color/grisOscuro"
+            android:strokeWidth="1"
 
             android:strokeLineCap="round"
 
@@ -6833,9 +6833,9 @@ C 1189.1844,181.14469 1188.9611,181.81473 1188.9611,182.63366 C
 
             android:fillColor="#a9a9a9"
 
-            android:strokeColor="#ffffff"
+            android:strokeColor="@color/grisOscuro"
 
-            android:strokeWidth="1.41732283"
+            android:strokeWidth="1"
 
             android:strokeLineCap="round"
 
@@ -6868,9 +6868,9 @@ C 1163.5907,162.40848 1163.7065,162.40848 1163.9381,161.91215 C
 
             android:fillColor="#a9a9a9"
 
-            android:strokeColor="#ffffff"
+            android:strokeColor="@color/grisOscuro"
 
-            android:strokeWidth="1.41732283"
+            android:strokeWidth="1"
 
             android:strokeLineCap="round"
 
@@ -6913,9 +6913,9 @@ C 1074.9724,292.59414 1074.3023,292.81748 1073.4834,292.81748 C
 
             android:fillColor="#a9a9a9"
 
-            android:strokeColor="#ffffff"
+            android:strokeColor="@color/grisOscuro"
 
-            android:strokeWidth="1.41732283"
+            android:strokeWidth="1"
 
             android:strokeLineCap="round"
 
@@ -6941,9 +6941,9 @@ C 966.27752,168.58544 966.50087,168.24028 966.77385,168.24028 C
 
             android:fillColor="#a9a9a9"
 
-            android:strokeColor="#ffffff"
+            android:strokeColor="@color/grisOscuro"
 
-            android:strokeWidth="1.41732283"
+            android:strokeWidth="1"
 
             android:strokeLineCap="round"
 
@@ -6999,9 +6999,9 @@ C 896.79223,165.17639 896.628,165.75866 896.01229,165.75866 C
 
             android:fillColor="#a9a9a9"
 
-            android:strokeColor="#ffffff"
+            android:strokeColor="@color/grisOscuro"
 
-            android:strokeWidth="1.41732283"
+            android:strokeWidth="1"
 
             android:strokeLineCap="round"
 
@@ -7046,8 +7046,8 @@ C 766.21797,138.96921 765.03845,137.72781 765.03845,136.77121 C
 
             android:fillColor="#a9a9a9"
 
-            android:strokeColor="#ffffff"
-            android:strokeWidth="1.41732283"
+            android:strokeColor="@color/grisOscuro"
+            android:strokeWidth="1"
 
             android:strokeLineCap="round"
 

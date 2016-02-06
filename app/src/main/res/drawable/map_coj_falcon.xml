@@ -11,10 +11,10 @@
     app:vc_viewportHeight="1052.3622047">
 
     <path
-        android:fillColor="?colorPrimary"
-        app:vc_fillColor="?colorPrimary"
-        android:strokeColor="#646464"
-        app:vc_strokeColor="#646464"
+        android:fillColor="@color/grisClaro"
+        app:vc_fillColor="@color/grisClaro"
+        android:strokeColor="@color/grisOscuro"
+        app:vc_strokeColor="@color/grisOscuro"
         android:strokeWidth="1"
         app:vc_strokeWidth="1"
         android:pathData="M 396.05259,199.44476 l -26.25415,1.36564 1.83422,-15.25477 1.83376,-15.25478

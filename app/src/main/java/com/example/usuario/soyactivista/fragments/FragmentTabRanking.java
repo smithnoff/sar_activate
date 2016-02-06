@@ -1,14 +1,17 @@
 package com.example.usuario.soyactivista.fragments;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -20,7 +23,6 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +67,12 @@ public class FragmentTabRanking extends Fragment{
 
         entidadArrayList = new ArrayList<>();
 
-        adapter = new ListarRankingEntidadesAdapter(getActivity(),entidadArrayList);
+        Boolean clickable = true;
+
+        if ( getArguments() != null)
+            clickable = false;
+
+        adapter = new ListarRankingEntidadesAdapter(getActivity(),entidadArrayList, clickable, true);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_top_5);
 
@@ -76,6 +83,8 @@ public class FragmentTabRanking extends Fragment{
         // Download entities from DB
 
         initializeList();
+
+        setHasOptionsMenu(true);
 
         return view;
     }
@@ -123,6 +132,11 @@ public class FragmentTabRanking extends Fragment{
 
     private void colorEntity(String nombre, int puntos) {
 
+        // Check if map not null from previous validations, log & abort
+        if( map == null ){
+            return;
+        }
+
         // Get Resource ID
         String finalName = TextHelpers.NormalizeResource(nombre);
         int imageViewId = getResources().getIdentifier("map_"+finalName, "id",getActivity().getPackageName());
@@ -130,7 +144,7 @@ public class FragmentTabRanking extends Fragment{
 
         // Check if image not found log & abort.
         if ( vector == null){
-            Log.e(TAG,"Resource not found: map_"+finalName);
+            Log.e(TAG,"Image Resource not found: map_"+finalName);
             return;
         }
 
@@ -141,21 +155,8 @@ public class FragmentTabRanking extends Fragment{
 
         int finalColor = color;
 
-        // Get color tone
-        if ( puntos > 6000 && puntos <= 7999)
-            finalColor = ColorHelpers.lighten(color, 0.2);
-
-        if ( puntos > 4000 && puntos <= 5999)
-            finalColor = ColorHelpers.lighten(color, 0.4);
-
-        if ( puntos > 1000 && puntos <= 3999)
-            finalColor = ColorHelpers.lighten(color, 0.6);
-
-        if ( puntos > 0 && puntos <= 999)
-            finalColor = ColorHelpers.lighten(color, 0.8);
-
-        // Paint with Primary Color.
-        vector.setColorFilter(finalColor, PorterDuff.Mode.SRC_IN);
+        // Paint with Color.
+        vector.setColorFilter(ColorHelpers.getGradient(color, puntos), PorterDuff.Mode.SRC_IN);
     }
 
     // Map is loaded according to arguments whether it is at national or state level.
@@ -181,17 +182,44 @@ public class FragmentTabRanking extends Fragment{
 
         LayoutInflater infl = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        map = infl.inflate(layoutId, (ViewGroup) view.findViewById(containerId));
-
-        // Check if resource was found.
-        if( map == null){
+        try {
+            map = infl.inflate(layoutId, (ViewGroup) view.findViewById(containerId));
+        }
+        catch (Resources.NotFoundException e){
             // Map not found
             Toast.makeText(getContext(),"Map not found : "+resource,Toast.LENGTH_LONG).show();
-            Log.e(TAG,"Map resource not found : "+resource);
+            Log.e(TAG,"Map resource not found : map_"+resource);
         }
-        else{
+
+        // Check if resource was found.
+        if( map != null) {
             // Map Found
             mapContainer.addView(map);
         }
+    }
+
+    // Inflates custom menu for fragment.
+    @Override
+    public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){
+        super.onCreateOptionsMenu(menu, inflater);
+        // Inflate Custom Menu
+        inflater.inflate(R.menu.menu_puntuaciones, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.ayuda:
+                Fragment fragment = new FragmentAyudaRanking();
+                fragment.setArguments(getArguments());
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+        }
+
+        return true;
     }
 }

@@ -11,12 +11,12 @@
     app:vc_viewportHeight="1052.3622047">
 
     <path
-        android:fillColor="#c8c8c8"
-        app:vc_fillColor="#c8c8c8"
-        android:strokeColor="#646464"
-        app:vc_strokeColor="#646464"
-        android:strokeWidth="1.48541868"
-        app:vc_strokeWidth="1.48541868"
+        android:fillColor="@color/grisClaro"
+        app:vc_fillColor="@color/grisClaro"
+        android:strokeColor="@color/grisOscuro"
+        app:vc_strokeColor="@color/grisOscuro"
+        android:strokeWidth="1"
+        app:vc_strokeWidth="1"
         android:pathData="M98.2555,495.577 L99.6742,496.843 L101.944,496.702 L103.174,495.394
 C105.79,498.117,122.435,496.948,123.033,496.641
 C123.631,496.334,126.933,487.531,129.989,488.404
@@ -74,12 +74,12 @@ L86.4781,488.957 L87.1874,490.505 L87.0456,492.194 L88.3224,492.194
 L89.8833,492.335 L91.1602,493.602 L92.0115,494.165 L92.1534,495.572
 L93.856,495.009 L96.5516,495.15 L98.2543,495.572 Z" />
     <path
-        android:fillColor="#c8c8c8"
-        app:vc_fillColor="#c8c8c8"
-        android:strokeColor="#646464"
-        app:vc_strokeColor="#646464"
-        android:strokeWidth="1.48541868"
-        app:vc_strokeWidth="1.48541868"
+        android:fillColor="@color/grisClaro"
+        app:vc_fillColor="@color/grisClaro"
+        android:strokeColor="@color/grisOscuro"
+        app:vc_strokeColor="@color/grisOscuro"
+        android:strokeWidth="1"
+        app:vc_strokeWidth="1"
         android:pathData="M4.89502,495.365 L7.35351,494.478 L9.36493,493.813 L12.494,491.818
 L16.2934,491.596 L16.964,491.153 L17.6343,490.266
 C17.6343,490.266,16.5169,492.704,18.0815,492.704

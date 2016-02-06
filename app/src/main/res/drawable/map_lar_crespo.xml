@@ -12,10 +12,10 @@
 
     <group>
         <path
-            android:fillColor="?colorPrimary"
-            app:vc_fillColor="?colorPrimary"
-            android:strokeColor="#646464"
-            app:vc_strokeColor="#646464"
+            android:fillColor="@color/grisClaro"
+            app:vc_fillColor="@color/grisClaro"
+            android:strokeColor="@color/grisOscuro"
+            app:vc_strokeColor="@color/grisOscuro"
             android:strokeWidth="1"
             app:vc_strokeWidth="1"
             android:pathData="M 646.32771,498.57461 l -1.92723,1.6617 -5.80751,-7.39803 c 8.55266,10.47455

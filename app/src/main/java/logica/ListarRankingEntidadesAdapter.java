@@ -1,44 +1,45 @@
 package logica;
 
-import android.app.Application;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
  * Created by Luis Adrian on 26/01/2016.
  */
-public class ListarRankingEntidadesAdapter extends RecyclerView.Adapter<RankingViewHolder> {
+public class ListarRankingEntidadesAdapter extends RecyclerView.Adapter<RankingEntityViewHolder> {
+
     private ArrayList<Entidad> entidades;
     private View itemView;
     private Context context;
+    private Boolean clickable;
+    private Boolean gradient;
 
-    public ListarRankingEntidadesAdapter(Context context,ArrayList<Entidad> entidadList) {
+    public ListarRankingEntidadesAdapter(Context context,ArrayList<Entidad> entidadList, Boolean onClick, Boolean gradient) {
         this.entidades = entidadList;
         this.context = context;
+        this.clickable = onClick;
+        this.gradient = gradient;
     }
 
     @Override
-    public RankingViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public RankingEntityViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         itemView = LayoutInflater.
                 from(viewGroup.getContext()).
                 inflate(R.layout.card_view_ranking, viewGroup, false);
 
-        return new RankingViewHolder(itemView);
+        return new RankingEntityViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(RankingViewHolder rankingViewHolder, int i) {
-        rankingViewHolder.setEntidad(entidades.get(i), (ActivityPantallaMenu)context);
+    public void onBindViewHolder(RankingEntityViewHolder rankingEntityViewHolder, int i) {
+        rankingEntityViewHolder.setEntidad(entidades.get(i), (ActivityPantallaMenu)context, clickable, gradient );
     }
 
     @Override

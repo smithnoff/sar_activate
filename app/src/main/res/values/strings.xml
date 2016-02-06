@@ -202,8 +202,6 @@
     <string name="opcionCorrecta">Opción correcta</string>
     <string name="preguntaEjemplo">¿ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pellentesque.?</string>
 
-    //CircularButtonGame
-
     <string name="Upload">Upload</string>
     <string name="Error">Error</string>
     <string name="Complete">Complete</string>
@@ -220,5 +218,18 @@
         <item>@string/ProgressPaddingSample</item>
         <item>@string/CustomSelectorSample</item>
     </array>
+
+    <string name="top_5_national_help">En pantalla podrás ver los 5 estados del país con las mejores puntuaciones por activismo. El cálculo de las puntuaciones se realiza al sumar todos los puntajes de los usuarios adscritos a cada estado.</string>
+    <string name="top_5_state_help">En pantalla podrás ver los 5 municipios del estado con las mejores puntuaciones por activismo. El cálculo de las puntuaciones se realiza al sumar todos los puntajes de los usuarios adscritos a cada municipio del estado.</string>
+    <string name="ranking_national_help">En pantalla podrás observar los estados del país ordenados de mayor a menor de acuerdo a su puntuación por activismo. El cálculo de las puntuaciones se realiza al sumar todos los puntajes de los usuarios adscritos a cada estado.</string>
+    <string name="ranking_state_help">En pantalla podrás observar los municipios del estado seleccionado ordenados de mayor a menor de acuerdo a su puntuación por activismo. El cálculo de las puntuaciones se realiza al sumar todos los puntajes de los usuarios adscritos a cada municipio del estado.</string>
+    <string name="color_help_text">Cada color representa un nivel de puntaje diferente:</string>
+    <string name="text_8000">8000 puntos o más</string>
+    <string name="text_6000">Entre 6000 y 7999</string>
+    <string name="text_4000">Entre 4000 y 5999</string>
+    <string name="text_1000">Entre 1000 y 3999</string>
+    <string name="text_0">Entre 0 y 999</string>
+    <string name="top_users_national_help">En pantalla podrás observar los 20 mejores usuarios a nivel nacional de acuerdo a su puntuación por activismo. El cálculo de puntuación por usuario se realiza sumando el puntaje de todas las actividades creadas por el mismo.</string>
+    <string name="top_users_state_help">En pantalla podrás observar los 20 mejores usuarios a nivel estatal de acuerdo a su puntuación por activismo. El cálculo de puntuación por usuario se realiza sumando el puntaje de todas las actividades creadas por el mismo.</string>
 
 </resources>

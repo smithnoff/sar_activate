@@ -20,8 +20,8 @@
             app:vc_fillColor="@color/grisClaro"
             android:strokeColor="@color/grisOscuro"
             app:vc_strokeColor="@color/grisOscuro"
-            android:strokeWidth="1.41732283"
-            app:vc_strokeWidth="1.41732283"
+            android:strokeWidth="1"
+            app:vc_strokeWidth="1"
             android:strokeLineCap="round"
             app:vc_strokeLineCap="round"
             android:pathData="M 352.8478,522.83095 C 352.8478,522.34526 352.40111,521.62592
@@ -107,8 +107,8 @@ C 370.9771,511.80227 370.80987,514.75669 370.00641,515.56014 C
             app:vc_fillColor="@color/grisClaro"
             android:strokeColor="@color/grisOscuro"
             app:vc_strokeColor="@color/grisOscuro"
-            android:strokeWidth="1.41732283"
-            app:vc_strokeWidth="1.41732283"
+            android:strokeWidth="1"
+            app:vc_strokeWidth="1"
             android:strokeLineCap="round"
             app:vc_strokeLineCap="round"
             android:pathData="M 369.84779,455.49259 C 369.84779,455.21686 368.52425,454.99627
@@ -478,8 +478,8 @@ C 397.14559,436.3621 396.04866,436.13598 394.62853,436.13598 C
             app:vc_fillColor="@color/grisClaro"
             android:strokeColor="@color/grisOscuro"
             app:vc_strokeColor="@color/grisOscuro"
-            android:strokeWidth="1.41732283"
-            app:vc_strokeWidth="1.41732283"
+            android:strokeWidth="1"
+            app:vc_strokeWidth="1"
             android:strokeLineCap="round"
             app:vc_strokeLineCap="round"
             android:pathData="M 176.53039,607.68431 C 175.27603,606.458 174.24974,605.08394

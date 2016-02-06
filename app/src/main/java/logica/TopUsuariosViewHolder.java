@@ -20,6 +20,8 @@ public class TopUsuariosViewHolder extends RecyclerView.ViewHolder {
 
     public TopUsuariosViewHolder(View itemView) {
         super(itemView);
+
+        // Set Holders
         posicion = (TextView) itemView.findViewById(R.id.position);
         nombreUsuario = (TextView) itemView.findViewById(R.id.nombreUsuario);
         cargo = (TextView) itemView.findViewById(R.id.cargo);
@@ -27,4 +29,16 @@ public class TopUsuariosViewHolder extends RecyclerView.ViewHolder {
         card = (CardView) itemView;
         linear = (LinearLayout)itemView.findViewById(R.id.linearUsuarios);
     }
+
+    public void setUsuario(Usuario usuario, int nPosicion){
+
+        posicion.setText(String.valueOf(nPosicion));
+        nombreUsuario.setText(usuario.getNombre()+" "+usuario.getApellido());
+        cargo.setText(usuario.getCargo());
+        municipio.setText(usuario.getMunicipio());
+
+
+    }
+
+
 }

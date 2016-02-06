@@ -4,14 +4,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -27,9 +30,10 @@ import soy_activista.quartzapp.com.soy_activista.R;
  * Created by Luis Adrian on 19/01/2016.
  */
 public class FragmentTabTopUsuarios extends Fragment{
-    private ListarTopUsuariosAdapter listarUsuarioAdapter;
+    private static final String TAG = "FragTopUsuarios";
+    private ListarTopUsuariosAdapter adapter;
     private RecyclerView recyclerView;
-    private List<Usuario> usuarioArrayList = new ArrayList<>();
+    private List<Usuario> usuarioArrayList;
     public FragmentTabTopUsuarios() {
         // Required empty public constructor
     }
@@ -40,21 +44,29 @@ public class FragmentTabTopUsuarios extends Fragment{
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_tab_top_usuarios, container, false);
 
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        usuarioArrayList = new ArrayList<>();
+
+        adapter = new ListarTopUsuariosAdapter(usuarioArrayList);
+
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerListTopUsuarios);
 
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(linearLayoutManager);
 
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setAdapter(adapter);
 
-        recyclerView.setLayoutManager(llm);
+        initializeList();
 
-        initializeList(usuarioArrayList);
+        setHasOptionsMenu(true);
 
         return v;
     }
 
     // Initializes list and sets listView adapter to the newly created adapter.
-    public void initializeList(final List<Usuario> list){
+    public void initializeList(){
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("eliminado",false);
         query.setLimit(20);
@@ -65,26 +77,55 @@ public class FragmentTabTopUsuarios extends Fragment{
             if(getArguments().getString("estado") != null)
                 query.whereEqualTo("estado",getArguments().getString("estado"));
         }
-        list.clear();
+
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> object, ParseException e) {
                 if (e == null) { //no hay error
                     Usuario usuario;
+                    Log.d(TAG,object.size()+" users retrieved.");
                     for (int i = 0; i < object.size(); i++) {
                         usuario = new Usuario();
                         usuario.setNombre(object.get(i).getString("nombre"));
                         usuario.setApellido(object.get(i).getString("apellido"));
                         usuario.setCargo( object.get(i).getString("cargo"));
                         usuario.setMunicipio( object.get(i).getString("municipio"));
-                        list.add(usuario);
+                        usuarioArrayList.add(usuario);
                     }
-                    recyclerView.setAdapter(new ListarTopUsuariosAdapter(list));
+
+                    adapter.notifyDataSetChanged();
 
                 } else {
                     Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                    Log.d(TAG, ErrorCodeHelpers.resolveLogErrorString(e.getCode(), e.getMessage()));
                 }
             }
         });
 
+    }
+
+
+    // Inflates custom menu for fragment.
+    @Override
+    public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){
+        super.onCreateOptionsMenu(menu, inflater);
+        // Inflate Custom Menu
+        inflater.inflate(R.menu.menu_puntuaciones, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.ayuda:
+                Fragment fragment = new FragmentAyudaTopUsuarios();
+                fragment.setArguments(getArguments());
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+        }
+
+        return true;
     }
 }

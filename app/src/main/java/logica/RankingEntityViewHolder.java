@@ -1,6 +1,4 @@
 package logica;
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -11,19 +9,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.usuario.soyactivista.fragments.FragmentCrearMensaje;
 import com.example.usuario.soyactivista.fragments.FragmentPuntuaciones;
-
-import java.io.Console;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
  * Created by Luis Adrian on 26/01/2016.
  */
-public class RankingViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class RankingEntityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    private static final String TAG = "RankingViewHolder";
+    private static final String TAG = "RankingEntityViewHolder";
     private Entidad entidad;
 
     private ActivityPantallaMenu activity;
@@ -36,7 +31,7 @@ public class RankingViewHolder extends RecyclerView.ViewHolder implements View.O
     protected LinearLayout linearRanking;
 
 
-    public RankingViewHolder(View itemView) {
+    public RankingEntityViewHolder(View itemView) {
         super(itemView);
 
         // Set Listener
@@ -52,13 +47,17 @@ public class RankingViewHolder extends RecyclerView.ViewHolder implements View.O
 
     }
 
-    public void setEntidad(Entidad entidad, ActivityPantallaMenu activity){
+    public void setEntidad(Entidad entidad, ActivityPantallaMenu activity, Boolean onClick, Boolean gradient){
 
         // Store Entidad
         this.entidad = entidad;
 
         // Store Context
         this.activity = activity;
+
+        // Deactivate OnClickListener
+        if( !onClick )
+            card.setOnClickListener(null);
 
         // Set View Values
         nombreEntidad.setText(entidad.getNombre());
@@ -71,23 +70,12 @@ public class RankingViewHolder extends RecyclerView.ViewHolder implements View.O
         nombreEntidad.getContext().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
         int color = typedValue.data;
 
-        int finalColor = color;
         int puntos = entidad.getPuntos();
 
-        // Get color tone
-        if ( puntos > 6000 && puntos <= 7999)
-            finalColor = ColorHelpers.lighten(color, 0.2);
-
-        if ( puntos > 4000 && puntos <= 5999)
-            finalColor = ColorHelpers.lighten(color, 0.4);
-
-        if ( puntos > 1000 && puntos <= 3999)
-            finalColor = ColorHelpers.lighten(color, 0.6);
-
-        if ( puntos > 0 && puntos <= 999)
-            finalColor = ColorHelpers.lighten(color, 0.8);
-
-        linearRanking.setBackgroundColor(finalColor);
+        if( gradient )
+            linearRanking.setBackgroundColor(ColorHelpers.getGradient(color, puntos));
+        else
+            linearRanking.setBackgroundColor(color);
     }
 
 
@@ -97,7 +85,7 @@ public class RankingViewHolder extends RecyclerView.ViewHolder implements View.O
         Bundle datos = new Bundle();
         datos.putString("estado", entidad.getNombre());
 
-        Log.d(TAG, "Bundle Created with " + entidad.getNombre() + " " + entidad.getId());
+        Log.d(TAG, "Bundle Created with " + entidad.getNombre());
 
         // Redirect View to next Fragment
         Fragment fragment = new FragmentPuntuaciones();

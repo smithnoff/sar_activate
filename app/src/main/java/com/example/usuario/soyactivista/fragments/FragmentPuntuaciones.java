@@ -38,8 +38,6 @@ public class FragmentPuntuaciones extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_puntuaciones, container, false);
 
-        Log.d(TAG, "Loading Fragment Puntuaciones");
-
         viewPager = (ViewPager) v.findViewById(R.id.viewpager);
 
         // TODO: Optimize to not regenerate list on swiping.
@@ -80,15 +78,11 @@ public class FragmentPuntuaciones extends Fragment {
 
         // Propagate Arguments
         if(getArguments() != null){
-            Log.d(TAG,"Fragment has arguments");
             Bundle datos = getArguments();
-            Log.d(TAG,"Bundle Contains "+datos.getString("estado")+" "+datos.getString("estadoId"));
+            Log.d(TAG,"Bundle Contains "+datos.getString("estado"));
             fragmentTabTop5.setArguments(datos);
             fragmentTabRanking.setArguments(datos);
             fragmentTabTopUsuarios.setArguments(datos);
-        }
-        else{
-            Log.d(TAG,"Fragment does not have arguments");
         }
 
         adapter.addFragment(fragmentTabTop5, top5Title);
@@ -96,7 +90,6 @@ public class FragmentPuntuaciones extends Fragment {
         adapter.addFragment(fragmentTabTopUsuarios , "Top 20 Usuarios");
         viewPager.setAdapter(adapter);
 
-        Log.d(TAG, "Adapter has "+ adapter.getCount());
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

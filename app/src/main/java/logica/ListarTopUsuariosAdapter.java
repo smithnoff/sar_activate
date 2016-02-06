@@ -13,11 +13,10 @@ import soy_activista.quartzapp.com.soy_activista.R;
  */
 public class ListarTopUsuariosAdapter extends RecyclerView.Adapter<TopUsuariosViewHolder> {
 
-    private List<Usuario> usuarioArrayList;
+    private List<Usuario> usuarios;
 
     public ListarTopUsuariosAdapter(List<Usuario> userArrayList) {
-        this.usuarioArrayList = new ArrayList<>();
-        this.usuarioArrayList.addAll(userArrayList);
+        this.usuarios = userArrayList;
     }
 
     @Override
@@ -30,17 +29,13 @@ public class ListarTopUsuariosAdapter extends RecyclerView.Adapter<TopUsuariosVi
     }
 
     @Override
-    public void onBindViewHolder(TopUsuariosViewHolder topUsuarios, int i) {
-        Usuario usuario = usuarioArrayList.get(i);
-        topUsuarios.posicion.setText(String.valueOf(i+1));
-        topUsuarios.nombreUsuario.setText(usuario.getNombre()+" "+usuario.getApellido());
-        topUsuarios.cargo.setText(usuario.getCargo());
-        topUsuarios.municipio.setText(usuario.getMunicipio());
+    public void onBindViewHolder(TopUsuariosViewHolder topUsuariosViewHolder, int i) {
+        topUsuariosViewHolder.setUsuario(usuarios.get(i),i+1);
     }
 
     @Override
     public int getItemCount() {
-        return usuarioArrayList.size();
+        return usuarios.size();
     }
 
 }

@@ -10,8 +10,8 @@
 
     <group>
         <path
-            android:fillColor="?colorPrimary"
-            android:strokeColor="#646464"
+            android:fillColor="@color/grisClaro"
+            android:strokeColor="@color/grisOscuro"
             android:strokeWidth="1"
             android:pathData="M 190.51431,521.47977 c -4.16495,-4.77824 -9.5121,-13.50345 -11.88265,-19.38898
 -4.50963,-11.19875 -5.5898,-13.81078 -28.34034,-68.52652 -15.58132,-37.47178

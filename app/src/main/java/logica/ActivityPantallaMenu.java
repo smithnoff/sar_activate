@@ -13,8 +13,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -46,8 +48,6 @@ public class ActivityPantallaMenu extends AppCompatActivity {
     private TextView nombrePartido, nombreUsuario, cargoUsuario, ubicacionUsuario;
     private Menu menu;
     private LinearLayout barDraw;
-    //private boolean doubleBackToExitPressedOnce; Handles app closure prevention.
-    //private Handler mHandler = new Handler();
 
 
     @Override
@@ -74,15 +74,24 @@ public class ActivityPantallaMenu extends AppCompatActivity {
 
             setContentView(R.layout.activity_pantalla_con_menu);
 
+            /* TODO: as of 23.1.1 of the support library implement
+                View header = navigationView.getHeaderView(0);
+                TextView text = (TextView) header.findViewById(R.id.textView);
+             */
+
+            NavigationView navigationView = (NavigationView) findViewById(R.id.navview);
+
+            View header = LayoutInflater.from(this).inflate(R.layout.header_navview, null);
+
+            navigationView.addHeaderView(header);
+
             // Menu Header Text
-            nombrePartido = (TextView)findViewById(R.id.usuarioPartido);
-            nombreUsuario = (TextView)findViewById(R.id.usuarioID);
-            cargoUsuario = (TextView)findViewById(R.id.usuarioCargo);
-            ubicacionUsuario = (TextView)findViewById(R.id.usuarioEstado);
+            nombrePartido = (TextView)header.findViewById(R.id.usuarioPartido);
+            nombreUsuario = (TextView)header.findViewById(R.id.usuarioID);
+            cargoUsuario = (TextView)header.findViewById(R.id.usuarioCargo);
+            ubicacionUsuario = (TextView)header.findViewById(R.id.usuarioEstado);
 
             nombrePartido.setText(Selector_de_Tema.getNombrePartido());
-
-
             nombreUsuario.setText(currentUser.getString("nombre") + " " + currentUser.getString("apellido"));
             cargoUsuario.setText(currentUser.getString("cargo"));
             ubicacionUsuario.setText(currentUser.getString("estado") + ", " + currentUser.getString("municipio"));
@@ -98,15 +107,21 @@ public class ActivityPantallaMenu extends AppCompatActivity {
             appbar.setTitle("Soy Activista");
 
             drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-            barDraw= (LinearLayout) findViewById(R.id.barraDrawer);
+            barDraw= (LinearLayout) header.findViewById(R.id.barraDrawer);
+
             int color = Color.TRANSPARENT;
+
             Drawable background = appbar.getBackground();
+
             if (background instanceof ColorDrawable)
                 color = ((ColorDrawable) background).getColor();
+
             barDraw.setBackgroundColor(color);
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 getWindow().setNavigationBarColor(color);
             }
+
             // Load Message Dashboard As Main Screen
             getSupportFragmentManager()
                     .beginTransaction()
@@ -245,42 +260,4 @@ public class ActivityPantallaMenu extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    // TODO: Implement below functions to prevent unwanted closure of app.
-    /*
-    private final Runnable mRunnable = new Runnable() {
-        @Override
-        public void run() {
-            doubleBackToExitPressedOnce = false;
-        }
-    };
-
-    @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
-
-        if (mHandler != null) { mHandler.removeCallbacks(mRunnable); }
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        Log.d(TAG,"BackStack size is: "+getFragmentManager().getBackStackEntryCount());
-        if (getFragmentManager().getBackStackEntryCount() != 0){
-            super.onBackPressed();
-            return;
-        }
-
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Por favor presione Regresar de nuevo para salir.", Toast.LENGTH_SHORT).show();
-
-        mHandler.postDelayed(mRunnable, 2000);
-    }
-    */
 }

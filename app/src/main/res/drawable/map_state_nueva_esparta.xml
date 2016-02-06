@@ -20,8 +20,8 @@
             app:vc_fillColor="@color/grisClaro"
             android:strokeColor="@color/grisOscuro"
             app:vc_strokeColor="@color/grisOscuro"
-            android:strokeWidth="1.41732283"
-            app:vc_strokeWidth="1.41732283"
+            android:strokeWidth="1"
+            app:vc_strokeWidth="1"
             android:strokeLineCap="round"
             app:vc_strokeLineCap="round"
             android:pathData="M 1232.1412,288.35057 C 1231.4588,287.54797 1230.5282,286.88461
@@ -195,8 +195,8 @@ C 1237.7252,288.8469 1237.1045,289.07024 1237.1045,289.34322 C
             app:vc_fillColor="@color/grisClaro"
             android:strokeColor="@color/grisOscuro"
             app:vc_strokeColor="@color/grisOscuro"
-            android:strokeWidth="1.41732283"
-            app:vc_strokeWidth="1.41732283"
+            android:strokeWidth="1"
+            app:vc_strokeWidth="1"
             android:strokeLineCap="round"
             app:vc_strokeLineCap="round"
             android:pathData="M 1248.0236,307.70719 C 1248.0236,307.43421 1247.5769,307.21087
@@ -226,8 +226,8 @@ C 1251.9942,308.12079 1251.8839,308.20351 1250.0089,308.20351 C
             app:vc_fillColor="@color/grisClaro"
             android:strokeColor="@color/grisOscuro"
             app:vc_strokeColor="@color/grisOscuro"
-            android:strokeWidth="1.41732283"
-            app:vc_strokeWidth="1.41732283"
+            android:strokeWidth="1"
+            app:vc_strokeWidth="1"
             android:strokeLineCap="round"
             app:vc_strokeLineCap="round"
             android:pathData="M 1213.405,301.88281 C 1214.7017,301.78057 1216.8234,301.78057
@@ -243,8 +243,8 @@ L 1213.405,301.88281 z" />
             app:vc_fillColor="@color/grisClaro"
             android:strokeColor="@color/grisOscuro"
             app:vc_strokeColor="@color/grisOscuro"
-            android:strokeWidth="1.41732283"
-            app:vc_strokeWidth="1.41732283"
+            android:strokeWidth="1"
+            app:vc_strokeWidth="1"
             android:strokeLineCap="round"
             app:vc_strokeLineCap="round"
             android:pathData="M 1211.3348,300.38642 C 1211.3564,299.63573 1211.4867,299.30071
