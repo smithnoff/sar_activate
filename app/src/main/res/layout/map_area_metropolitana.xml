@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="327dp"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
         android:id="@+id/map_libertador"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_ccs_libertador"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -17,7 +16,6 @@
         android:id="@+id/map_chacao"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_ccs_chacao"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -26,16 +24,15 @@
         android:id="@+id/map_baruta"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_ccs_baruta"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
         android:id="@+id/map_el_hatillo"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_ccs_elhatillo"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -44,13 +41,10 @@
         android:id="@+id/map_sucre"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_ccs_sucre"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
-
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,8 +52,9 @@
         android:text="Ranking Area Metropolitana"
         android:textSize="20dp"
         android:textStyle="bold"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@+id/map_baruta"
         android:layout_centerHorizontal="true"
         />
 

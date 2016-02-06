@@ -11,12 +11,12 @@
     app:vc_viewportHeight="1052.3622047">
 
     <path
-        android:fillColor="#c8c8c8"
-        app:vc_fillColor="#c8c8c8"
-        android:strokeColor="#646464"
-        app:vc_strokeColor="#646464"
-        android:strokeWidth="3.86495566"
-        app:vc_strokeWidth="3.86495566"
+        android:fillColor="@color/grisClaro"
+        app:vc_fillColor="@color/grisClaro"
+        android:strokeColor="@color/grisOscuro"
+        app:vc_strokeColor="@color/grisOscuro"
+        android:strokeWidth="1"
+        app:vc_strokeWidth="1"
         android:pathData="M287.575,519.144 L285.484,519.144 L282.853,516.207
 C281.406,514.592,278.077,511.932,275.456,510.297 L270.69,507.324 L268.91,509.251
 L267.131,511.178 L260.864,511.178 L254.597,511.178 L254.907,503.076

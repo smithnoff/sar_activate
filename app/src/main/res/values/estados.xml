@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="Estados">
-        <item>Distrito Capital</item>
+        <item>Área Metropolitana</item>
         <item>Amazonas</item>
         <item>Anzoategui</item>
         <item>Apure</item>
         <item>Aragua</item>
         <item>Barinas</item>
-        <item>Bolivar</item>
+        <item>Bolívar</item>
         <item>Carabobo</item>
         <item>Cojedes</item>
         <item>Delta Amacuro</item>
-        <item>Falcon</item>
-        <item>Guarico</item>
+        <item>Falcón</item>
+        <item>Guárico</item>
         <item>Lara</item>
-        <item>Merida</item>
+        <item>Mérida</item>
         <item>Miranda</item>
         <item>Monagas</item>
         <item>Nueva Esparta</item>
         <item>Portuguesa</item>
         <item>Sucre</item>
-        <item>Tachira</item>
+        <item>Táchira</item>
         <item>Trujillo</item>
         <item>Vargas</item>
         <item>Yaracuy</item>

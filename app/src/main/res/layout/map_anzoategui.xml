@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="327dp"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
         android:id="@+id/map_guanta"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_guanta"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -17,16 +16,14 @@
         android:id="@+id/map_simon_rodriguez"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_simonrodriguez"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_simon_bolivar"
+        android:id="@+id/map_bolivar"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_simonbolivar"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -35,7 +32,6 @@
         android:id="@+id/map_santa_ana"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_santaana"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -44,7 +40,6 @@
         android:id="@+id/map_san_juan_de_capistrano"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_sanjuandecapistrano"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -53,147 +48,145 @@
         android:id="@+id/map_anaco"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_anaco"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
         android:id="@+id/map_aragua"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_aragua"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
         android:id="@+id/map_diego_bautista_urbaneja"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_diego_bautista_urbaneja"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
-        android:id="@+id/map_francisco_del_carmen_carvajal"
+        android:id="@+id/map_carvajal"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_franciscodelcarmencarvajal"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
-        android:id="@+id/map_francisco_de_miranda"
+        android:id="@+id/map_miranda"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_franciscodemiranda"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
         android:id="@+id/map_independencia"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_independencia"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
-        android:id="@+id/map_jose_gregorio_monagas"
+        android:id="@+id/map_monagas"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_josegregoriomonagas"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
-        android:id="@+id/map_juan_antonio_sotillo"
+        android:id="@+id/map_sotillo"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_juanantoniosotillo"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
-        android:id="@+id/map_juan_manuel_cajigal"
+        android:id="@+id/map_cajigal"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_juanmanuelcajigal"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
-        android:id="@+id/map_manuel_ezequiel_bruzual"
+        android:id="@+id/map_bruzual"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_manuelezequielbruzual"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
-        android:id="@+id/map_mc_gregor"
+        android:id="@+id/map_mcgregor"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_mcgregor"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
-        android:id="@+id/map_pedro_maria_freites"
+        android:id="@+id/map_freites"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_pedromariafreites"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
         android:id="@+id/map_penalver"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_penalver"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
         android:id="@+id/map_piritu"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_piritu"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
-        android:id="@+id/map_san_jose_de_guanipa"
+        android:id="@+id/map_guanipa"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_sanjosedeguanipa"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
-        android:id="@+id/map_valmore_rodriguez"
+        android:id="@+id/map_libertad"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_anz_libertad"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -202,7 +195,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@+id/map_libertad"
         android:layout_centerHorizontal="true"
         />
 

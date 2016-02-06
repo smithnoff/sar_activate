@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+
+    >
 
     <ImageView
-        android:id="@+id/map_antonia_diaz"
+        android:id="@+id/map_antonio_diaz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/map_del_antonio_diaz"
         />
 
@@ -14,6 +19,7 @@
         android:id="@+id/map_casacoima"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/map_del_casacoima"
         />
 
@@ -21,6 +27,7 @@
         android:id="@+id/map_pedernales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/map_del_pedernales"
         />
 
@@ -28,7 +35,19 @@
         android:id="@+id/map_tucupita"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/map_del_tucupita"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ranking Delta Amacuro"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/map_tucupita"
+        android:layout_centerHorizontal="true"
         />
 
 </RelativeLayout>

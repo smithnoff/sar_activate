@@ -305,11 +305,13 @@ public class FragmentCrearActividad extends Fragment {
                             actividad.put("tipoActividad", tipoActividad);
                             actividad.put("objetivo", objetivo.getText().toString());
                             actividad.put("ubicacion", ubicacion.getSelectedItem().toString());
+
                             if (ubicacion.getSelectedItem().toString() == "Estadal" && estado.getSelectedItem() != null) {
                                 actividad.put("estado", estado.getSelectedItem().toString());
                                 actividad.put("municipio", municipio.getSelectedItem().toString());
                                 actividad.put("parroquia", parroquia.getText().toString());
                             }
+
                             actividad.put("encargado", encargado.getText().toString());
                             actividad.put("creador", usuarioActual);
                             actividad.put("estatus", "En Ejecución");
@@ -439,6 +441,9 @@ public class FragmentCrearActividad extends Fragment {
                                         mensaje.put("autor",usuarioActual);
                                         mensaje.put("reportado",false);
                                         mensaje.saveEventually();
+
+                                        // Add activism points to activity creator
+                                        usuarioActual.increment("puntosActivismo",tipoActividad.getInt("puntaje"));
 
                                         // Redirect View to Boletin de Actividades
                                         Fragment fragment = new FragmentListarActividad();

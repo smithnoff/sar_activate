@@ -41,7 +41,7 @@ public class FragmentPuntuaciones extends Fragment {
         viewPager = (ViewPager) v.findViewById(R.id.viewpager);
 
         // TODO: Optimize to not regenerate list on swiping.
-        viewPager.setOffscreenPageLimit(2);
+        //viewPager.setOffscreenPageLimit(2);
 
         // Check if fragment was initialized with bundle. / State / Mun Level
         setTabTitles(getArguments());

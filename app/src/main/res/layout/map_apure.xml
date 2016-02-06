@@ -1,73 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="327dp"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
         android:id="@+id/map_paez"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_apu_paez"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+    
     <ImageView
         android:id="@+id/map_achaguas"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_apu_achaguas"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+    
     <ImageView
         android:id="@+id/map_biruaca"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_apu_biruaca"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
         android:id="@+id/map_munoz"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_apu_munoz"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
         android:id="@+id/map_pedro_camejo"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_apu_pedrocamejo"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
         android:id="@+id/map_romulo_gallegos"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_apu_romulogallegos"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
+
     <ImageView
         android:id="@+id/map_san_fernando"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_apu_sanfernando"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -76,7 +74,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@+id/map_san_fernando"
         android:layout_centerHorizontal="true"
         />
 

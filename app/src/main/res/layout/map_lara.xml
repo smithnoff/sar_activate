@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="327dp"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
        android:id="@+id/map_andres_eloy_blanco"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_lar_andres_eloy_blanco"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -17,7 +16,6 @@
        android:id="@+id/map_crespo"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_lar_crespo"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -26,7 +24,6 @@
        android:id="@+id/map_iribarren"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_lar_iribarren"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -35,16 +32,14 @@
        android:id="@+id/map_jimenez"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_lar_jimenez"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-       android:id="@+id/map_Moran"
+       android:id="@+id/map_moran"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_lar_moran"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -53,7 +48,6 @@
        android:id="@+id/map_palavecino"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_lar_palavecino"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -62,7 +56,6 @@
        android:id="@+id/map_simon_planas"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_lar_simon_planas"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -71,7 +64,6 @@
        android:id="@+id/map_torres"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/map_lar_torres"
@@ -81,7 +73,6 @@
        android:id="@+id/map_urdaneta"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_lar_urdaneta"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -94,7 +85,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@+id/map_urdaneta"
         android:layout_centerHorizontal="true"
         />
 

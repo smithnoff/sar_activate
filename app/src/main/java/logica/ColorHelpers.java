@@ -43,17 +43,20 @@ public class ColorHelpers {
         int finalColor = color;
 
         // Get color tone
+        if ( points > 8000 )
+            finalColor = ColorHelpers.darken(color, 0.4);
+
         if ( points > 6000 && points <= 7999 )
-            finalColor = ColorHelpers.lighten(color, 0.2);
+            finalColor = ColorHelpers.darken(color, 0.2);
 
         if ( points > 4000 && points <= 5999 )
-            finalColor = ColorHelpers.lighten(color, 0.4);
+            finalColor = color;
 
         if ( points > 1000 && points <= 3999 )
-            finalColor = ColorHelpers.lighten(color, 0.6);
+            finalColor = ColorHelpers.lighten(color, 0.2);
 
         if ( points >= 0 && points <= 999 )
-            finalColor = ColorHelpers.lighten(color, 0.8);
+            finalColor = ColorHelpers.lighten(color, 0.4);
 
         return finalColor;
     }

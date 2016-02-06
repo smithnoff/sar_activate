@@ -1,5 +1,8 @@
 package com.example.usuario.soyactivista.fragments;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -14,17 +17,26 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.FunctionCallback;
+import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import logica.ColorHelpers;
 import logica.ErrorCodeHelpers;
@@ -204,6 +216,14 @@ public class FragmentTabRanking extends Fragment{
         super.onCreateOptionsMenu(menu, inflater);
         // Inflate Custom Menu
         inflater.inflate(R.menu.menu_puntuaciones, menu);
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+
+        MenuItem reiniciarPuntuacion = menu.findItem(R.id.reiniciar_puntuacion);
+
+        if(currentUser != null && currentUser.getInt("rol") == 1){
+            reiniciarPuntuacion.setVisible(true);
+        }
     }
 
     @Override
@@ -217,6 +237,114 @@ public class FragmentTabRanking extends Fragment{
                         .replace(R.id.content_frame, fragment)
                         .addToBackStack(null)
                         .commit();
+                break;
+
+            case R.id.buscar_entidad:
+                // Generate List Holder
+                final android.support.v7.app.AlertDialog filterDialogEstadales;
+                android.support.v7.app.AlertDialog.Builder builderEstadales = new android.support.v7.app.AlertDialog.Builder(getActivity());
+                builderEstadales.setTitle("Seleccionar Estado");
+
+                // Fill Holder with State List from String Array
+                final ListView listViewDialogEstadales = new ListView(getActivity());
+                final ArrayList<String> arrayListEstadales = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.Estados)));
+
+                ArrayAdapter<String> stringArrayAdapterEstadales = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,arrayListEstadales);
+                listViewDialogEstadales.setAdapter(stringArrayAdapterEstadales);
+                builderEstadales.setView(listViewDialogEstadales);
+
+                // Show Dialog
+                filterDialogEstadales = builderEstadales.create();
+                filterDialogEstadales.show();
+
+                // Define on touch action.
+                listViewDialogEstadales.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Bundle datos = new Bundle();
+                        datos.putString("estado", listViewDialogEstadales.getItemAtPosition(position).toString());
+
+                        Log.d(TAG, "Bundle Created with " + listViewDialogEstadales.getItemAtPosition(position).toString());
+
+                        // Dismiss dialog
+                        filterDialogEstadales.dismiss();
+
+                        // Redirect View to next Fragment
+                        Fragment fragment = new FragmentPuntuaciones();
+
+                        fragment.setArguments(datos);
+
+                        // Store fragment in back stack if main fragment
+                        if( getArguments() == null){
+                            getActivity().getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.content_frame, fragment)
+                                    .addToBackStack(null)
+                                    .commit();
+                        }
+                        else{
+                            getActivity().getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.content_frame, fragment)
+                                    .commit();
+                        }
+                    }
+                });
+                break;
+
+            case R.id.reiniciar_puntuacion:
+
+                // Show Confirmation Dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Confirmar");
+                builder.setMessage("¿Está seguro de que desea reiniciar la puntuación de todos los usuarios?");
+
+                builder.setPositiveButton("Reiniciar", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, int which) {
+
+                        final ProgressDialog dialog1 = ProgressDialog.show(getActivity(), "", "Actualizando Usuarios.", true);
+                        // Call cloud function
+                        final HashMap<String, Object> params = new HashMap<>();
+                        ParseCloud.callFunctionInBackground("resetScores", params, new FunctionCallback<Map<String, Object>>() {
+                            @Override
+                            public void done(Map<String, Object> response, ParseException e) {
+                                if (response != null && response.get("status").toString().equals("OK")) {
+                                    dialog1.dismiss();
+                                    Toast.makeText(getActivity(), "Usuarios actualizados correctamente. Los cambios se reflejarán en la próxima actualización", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    dialog1.dismiss();
+                                    if (e != null) {
+                                        Log.d(TAG, "Error " + e.getCode() + ":  " + e.getMessage());
+                                        Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
+                                    }
+
+                                    if (response != null) {
+                                        Log.d(TAG, "Error: " + response.get("code").toString() + " " + response.get("message").toString());
+                                        Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(Integer.valueOf(response.get("code").toString())), Toast.LENGTH_LONG).show();
+                                    }
+
+                                    if (e == null && response == null) {
+                                        Log.d(TAG, "Error: unknown error");
+                                        Toast.makeText(getActivity(), "Error, por favor intente de nuevo mas tarde.", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing
+                        dialog.dismiss();
+                    }
+                });
+
+                // After Dialog is Completely defined - Show Dialog.
+                AlertDialog alert = builder.create();
+                alert.show();
                 break;
         }
 

@@ -15,8 +15,8 @@
         app:vc_fillColor="@color/grisClaro"
         android:strokeColor="@color/grisOscuro"
         app:vc_strokeColor="@color/grisOscuro"
-        android:strokeWidth="3.07569766"
-        app:vc_strokeWidth="3.07569766"
+        android:strokeWidth="1"
+        app:vc_strokeWidth="1"
         android:pathData="M267.713,607.224 C265.221,603.451,262.07,600.217,260.711,600.038
 C250.894,598.745,248.731,598.036,247.3,595.642
 C246.411,594.154,244.784,593.511,243.686,594.213

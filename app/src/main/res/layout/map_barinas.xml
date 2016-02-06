@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="327dp"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
         android:id="@+id/map_rojas"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
+        
         android:src="@drawable/map_bar_rojas"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -17,7 +17,7 @@
         android:id="@+id/map_sosa"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
+        
         android:src="@drawable/map_bar_sosa"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -26,7 +26,7 @@
         android:id="@+id/map_bolivar"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
+        
         android:src="@drawable/map_bar_bolivar"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -35,7 +35,7 @@
         android:id="@+id/map_pedraza"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
+        
         android:src="@drawable/map_bar_pedraza"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -44,7 +44,7 @@
         android:id="@+id/map_barinas"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
+        
         android:src="@drawable/map_bar_barinas"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -53,7 +53,6 @@
         android:id="@+id/map_alberto_arvelo_torrealba"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:src="@drawable/map_bar_albertoarvelotorrealba"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -62,7 +61,7 @@
         android:id="@+id/map_antonio_jose_de_sucre"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
+        
         android:src="@drawable/map_bar_antoniojosedesucre"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -71,7 +70,7 @@
         android:id="@+id/map_obispos"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
+        
         android:src="@drawable/map_bar_obispos"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -80,7 +79,7 @@
         android:id="@+id/map_arismendi"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
+        
         android:src="@drawable/map_bar_arismendi"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -89,7 +88,7 @@
         android:id="@+id/map_cruz_paredes"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
+        
         android:src="@drawable/map_bar_cruzparedes"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -98,7 +97,7 @@
         android:id="@+id/map_ezequiel_zamora"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
+        
         android:src="@drawable/map_bar_ezequielzamora"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -110,7 +109,8 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_alignBottom="@+id/map_ezequiel_zamora"
         android:layout_centerHorizontal="true"
         />
 

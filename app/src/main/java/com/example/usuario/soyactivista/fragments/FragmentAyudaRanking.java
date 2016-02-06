@@ -61,10 +61,10 @@ public class FragmentAyudaRanking extends Fragment {
         getContext().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
         int color = typedValue.data;
 
-        circulo8000.setColorFilter(ColorHelpers.getGradient(color,8000));
-        circulo6000.setColorFilter(ColorHelpers.getGradient(color,6000));
-        circulo4000.setColorFilter(ColorHelpers.getGradient(color,4000));
-        circulo1000.setColorFilter(ColorHelpers.getGradient(color,1000));
+        circulo8000.setColorFilter(ColorHelpers.getGradient(color,8001));
+        circulo6000.setColorFilter(ColorHelpers.getGradient(color,6001));
+        circulo4000.setColorFilter(ColorHelpers.getGradient(color,4001));
+        circulo1000.setColorFilter(ColorHelpers.getGradient(color,1001));
         circulo0.setColorFilter(ColorHelpers.getGradient(color,0));
 
         backButton.setOnClickListener(new View.OnClickListener() {
