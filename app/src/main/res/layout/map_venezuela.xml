@@ -5,10 +5,10 @@
     android:layout_height="wrap_content"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
-    android:id="@+id/venezuelaMap">
+    android:id="@+id/map_venezuela">
 
     <ImageView
-        android:id="@+id/delta_amacuro"
+        android:id="@+id/map_delta_amacuro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_delta_amacuro"
@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/bolivar"
+        android:id="@+id/map_bolivar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_bolivar"
@@ -24,7 +24,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/amazonas"
+        android:id="@+id/map_amazonas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_amazonas"
@@ -32,7 +32,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/monagas"
+        android:id="@+id/map_monagas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_monagas"
@@ -40,7 +40,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/sucre"
+        android:id="@+id/map_sucre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_sucre"
@@ -48,7 +48,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/nueva_esparta"
+        android:id="@+id/map_nueva_esparta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_nueva_esparta"
@@ -56,7 +56,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/anzoategui"
+        android:id="@+id/map_anzoategui"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_anzoategui"
@@ -64,7 +64,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/guarico"
+        android:id="@+id/map_guarico"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_guarico"
@@ -72,7 +72,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/miranda"
+        android:id="@+id/map_miranda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_miranda"
@@ -80,7 +80,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/distrito_capital"
+        android:id="@+id/map_distrito_capital"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_area_metropolitana"
@@ -88,7 +88,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/vargas"
+        android:id="@+id/map_vargas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_vargas"
@@ -96,7 +96,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/aragua"
+        android:id="@+id/map_aragua"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_aragua"
@@ -104,7 +104,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/carabobo"
+        android:id="@+id/map_carabobo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_carabobo"
@@ -112,7 +112,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/yaracuy"
+        android:id="@+id/map_yaracuy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_yaracuy"
@@ -120,7 +120,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/cojedes"
+        android:id="@+id/map_cojedes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_cojedes"
@@ -128,7 +128,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/portuguesa"
+        android:id="@+id/map_portuguesa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_portuguesa"
@@ -136,7 +136,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/barinas"
+        android:id="@+id/map_barinas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_barinas"
@@ -144,7 +144,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/apure"
+        android:id="@+id/map_apure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_apure"
@@ -152,7 +152,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/lara"
+        android:id="@+id/map_lara"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_lara"
@@ -160,7 +160,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/falcon"
+        android:id="@+id/map_falcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_falcon"
@@ -168,7 +168,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/trujillo"
+        android:id="@+id/map_trujillo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_trujillo"
@@ -176,7 +176,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/zulia"
+        android:id="@+id/map_zulia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_zulia"
@@ -185,7 +185,7 @@
         />
 
     <ImageView
-        android:id="@+id/merida"
+        android:id="@+id/map_merida"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_merida"
@@ -193,7 +193,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/tachira"
+        android:id="@+id/map_tachira"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_tachira"

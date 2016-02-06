@@ -20,9 +20,11 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class ListarRankingEntidadesAdapter extends RecyclerView.Adapter<RankingViewHolder> {
     private ArrayList<Entidad> entidades;
     private View itemView;
+    private Context context;
 
-    public ListarRankingEntidadesAdapter(ArrayList<Entidad> entidadList) {
+    public ListarRankingEntidadesAdapter(Context context,ArrayList<Entidad> entidadList) {
         this.entidades = entidadList;
+        this.context = context;
     }
 
     @Override
@@ -36,39 +38,7 @@ public class ListarRankingEntidadesAdapter extends RecyclerView.Adapter<RankingV
 
     @Override
     public void onBindViewHolder(RankingViewHolder rankingViewHolder, int i) {
-
-        // Get Model
-        Entidad entidad = this.entidades.get(i);
-
-        // Set View Values
-        rankingViewHolder.nombreEntidad.setText(entidad.getNombre());
-        rankingViewHolder.puntos.setText(String.valueOf(entidad.getPuntos()));
-        rankingViewHolder.posicion.setText(""+(1+i));
-        rankingViewHolder.cantidadUsuarios.setText(String.valueOf(entidad.getUsuarios()));
-
-        // Get Primary Color
-        TypedValue typedValue = new TypedValue();
-        rankingViewHolder.nombreEntidad.getContext().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
-        int color = typedValue.data;
-
-        int finalColor = color;
-        int puntos = entidad.getPuntos();
-
-        // Get color tone
-        if ( puntos > 6000 && puntos <= 7999)
-            finalColor = ColorHelpers.lighten(color, 0.2);
-
-        if ( puntos > 4000 && puntos <= 5999)
-            finalColor = ColorHelpers.lighten(color, 0.4);
-
-        if ( puntos > 1000 && puntos <= 3999)
-            finalColor = ColorHelpers.lighten(color, 0.6);
-
-        if ( puntos > 0 && puntos <= 999)
-            finalColor = ColorHelpers.lighten(color, 0.8);
-
-        rankingViewHolder.linearRanking.setBackgroundColor(finalColor);
-
+        rankingViewHolder.setEntidad(entidades.get(i), (ActivityPantallaMenu)context);
     }
 
     @Override
