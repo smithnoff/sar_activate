@@ -4,4 +4,15 @@
         android:id="@+id/ayuda"
         android:title="Ayuda"
         />
+
+    <item
+        android:id="@+id/buscar_entidad"
+        android:title="Buscar"
+        />
+
+    <item
+        android:id="@+id/reiniciar_puntuacion"
+        android:title="Reiniciar Puntuación"
+        android:visible="false"
+        />
 </menu>

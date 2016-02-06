@@ -5,200 +5,179 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
-        android:id="@+id/map_guanta"
+        android:id="@+id/map_zamora"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_guanta"
+        android:src="@drawable/map_ara_zamora"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_simon_rodriguez"
+        android:id="@+id/map_urdaneta"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_simonrodriguez"
+        android:src="@drawable/map_ara_urdaneta"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_simon_bolivar"
+        android:id="@+id/map_tovar"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_simonbolivar"
+        android:src="@drawable/map_ara_tovar"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_santa_ana"
+        android:id="@+id/map_sucre"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_santaana"
+        android:src="@drawable/map_ara_sucre"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_san_juan_de_capistrano"
+        android:id="@+id/map_bolivar"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_sanjuandecapistrano"
+        android:src="@drawable/map_ara_bolivar"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_anaco"
+        android:id="@+id/map_camatagua"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_anaco"
+        android:src="@drawable/map_ara_camatagua"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_aragua"
+        android:id="@+id/map_francisco_linares_alcantaras"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_aragua"
+        android:src="@drawable/map_ara_franciscolinaresalcantaras"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_diego_bautista_urbaneja"
+        android:id="@+id/map_girardot"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_diego_bautista_urbaneja"
+        android:src="@drawable/map_ara_girardot"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_francisco_del_carmen_carvajal"
+        android:id="@+id/map_jose_angel_lamas"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_franciscodelcarmencarvajal"
+        android:src="@drawable/map_ara_joseangellamas"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_francisco_de_miranda"
+        android:id="@+id/map_jose_felix_ribas"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_franciscodemiranda"
+        android:src="@drawable/map_ara_josefelixribas"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_independencia"
+        android:id="@+id/map_jose_rafael_revenga"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_independencia"
+        android:src="@drawable/map_ara_joserafaelrevenga"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_jose_gregorio_monagas"
+        android:id="@+id/map_libertador"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_josegregoriomonagas"
+        android:src="@drawable/map_ara_libertador"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_juan_antonio_sotillo"
+        android:id="@+id/map_mario_briceno_iragorry"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_juanantoniosotillo"
+        android:src="@drawable/map_ara_mariobricenoiragorry"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_juan_manuel_cajigal"
+        android:id="@+id/map_ocumare_de_la_costa"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_juanmanuelcajigal"
+        android:src="@drawable/map_ara_ocumaredelacosta"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_manuel_ezequiel_bruzual"
+        android:id="@+id/map_san_casimiro"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_manuelezequielbruzual"
+        android:src="@drawable/map_ara_sancasimiro"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        />
+
+    <ImageView
+        android:id="@+id/map_san_sebastian"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/map_ara_sansebastian"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_mc_gregor"
+        android:id="@+id/map_santiago_marino"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_mcgregor"
+        android:src="@drawable/map_ara_santiagomarino"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_pedro_maria_freites"
+        android:id="@+id/map_santos_michelena"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_pedromariafreites"
+        android:src="@drawable/map_ara_santosmichelena"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
-    <ImageView
-        android:id="@+id/map_penalver"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_penalver"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        />
-    <ImageView
-        android:id="@+id/map_piritu"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_piritu"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        />
-    <ImageView
-        android:id="@+id/map_san_jose_de_guanipa"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_sanjosedeguanipa"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        />
-    <ImageView
-        android:id="@+id/map_valmore_rodriguez"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/map_anz_libertad"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        />
+
+
+
+
+
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ranking Anzoategui"
+        android:text="Ranking  Aragua"
         android:textSize="20dp"
         android:textStyle="bold"
         android:gravity="center"
