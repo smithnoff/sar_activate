@@ -16,6 +16,8 @@ import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
+import org.xml.sax.ErrorHandler;
+
 import java.util.ArrayList;
 
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -92,14 +94,24 @@ public class ListarMensajeParseAdapter extends ParseQueryAdapter<ParseObject> {
         });
     }
 
-    public View getItemView(final ParseObject object, View v, ViewGroup parent) {
+    public View getItemView(final ParseObject mensaje, View v, ViewGroup parent) {
         if (v == null) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_mensaje, parent, false);
         }
 
-        super.getItemView(object, v, parent);
+        super.getItemView(mensaje, v, parent);
 
-        ParseUser creador = object.getParseUser("autor");
+        // TODO: Validate User not null
+        ParseUser creador = mensaje.getParseUser("autor");
+
+        if (creador == null){
+            ErrorCodeHelpers.resolveLogErrorString(00,"User not found");
+            creador = new ParseUser();
+            creador.put("nombre","Usuario Desconocido");
+            creador.put("apellido","");
+            creador.put("estado","");
+            creador.put("municipio","");
+        }
 
         //Declare all fields
         final TextView valueNombre, valueEstado, valueMunicipio, valueTexto;
@@ -117,11 +129,11 @@ public class ListarMensajeParseAdapter extends ParseQueryAdapter<ParseObject> {
         valueNombre.setText(creador.getString("nombre") + " " + creador.getString("apellido"));
         valueEstado.setText(creador.getString("estado"));
         valueMunicipio.setText(creador.getString("municipio"));
-        valueTexto.setText(object.getString("texto"));
+        valueTexto.setText(mensaje.getString("texto"));
 
         // Load Image
-        ParseFile adjunto = object.getParseFile("adjunto");
-        ParseGeoPoint ubicacion = object.getParseGeoPoint("ubicacion");
+        ParseFile adjunto = mensaje.getParseFile("adjunto");
+        ParseGeoPoint ubicacion = mensaje.getParseGeoPoint("ubicacion");
         if (adjunto != null) {
             imageView.setVisibility(View.VISIBLE);
             String fileName = adjunto.getName();
