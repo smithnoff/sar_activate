@@ -55,6 +55,7 @@ public class FragmentTabRanking extends Fragment{
     private RelativeLayout mapContainer; // Map Container
     private View map; // Map Holder
     private View view; // Main Layout
+    private Boolean entidad;
 
     // List Vars
     private ListarRankingEntidadesAdapter adapter;
@@ -84,21 +85,26 @@ public class FragmentTabRanking extends Fragment{
         if ( getArguments() != null)
             clickable = false;
 
-        adapter = new ListarRankingEntidadesAdapter(getActivity(),entidadArrayList, clickable, true);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_top_5);
+            if (getArguments() != null) {
+                adapter = new ListarRankingEntidadesAdapter(getActivity(), entidadArrayList, clickable, true, true);
+            } else {
+                adapter = new ListarRankingEntidadesAdapter(getActivity(), entidadArrayList, clickable, true, false);
+            }
 
-        recyclerView.setLayoutManager(linearLayoutManager);
+            recyclerView = (RecyclerView) view.findViewById(R.id.recycler_top_5);
 
-        recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(linearLayoutManager);
 
-        // Download entities from DB
+            recyclerView.setAdapter(adapter);
 
-        initializeList();
+            // Download entities from DB
 
-        setHasOptionsMenu(true);
+            initializeList();
 
-        return view;
+            setHasOptionsMenu(true);
+
+            return view;
     }
 
     public void initializeList(){

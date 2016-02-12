@@ -20,7 +20,7 @@ public class RankingEntityViewHolder extends RecyclerView.ViewHolder implements 
 
     private static final String TAG = "RankingEntityViewHolder";
     private Entidad entidad;
-
+    private Boolean entity;
     private ActivityPantallaMenu activity;
 
     protected TextView nombreEntidad;
@@ -47,7 +47,7 @@ public class RankingEntityViewHolder extends RecyclerView.ViewHolder implements 
 
     }
 
-    public void setEntidad(Entidad entidad, ActivityPantallaMenu activity, Boolean onClick, Boolean gradient){
+    public void setEntidad(Entidad entidad, ActivityPantallaMenu activity, Boolean onClick, Boolean gradient, Boolean entity){
 
         // Store Entidad
         this.entidad = entidad;
@@ -55,15 +55,25 @@ public class RankingEntityViewHolder extends RecyclerView.ViewHolder implements 
         // Store Context
         this.activity = activity;
 
+        this.entity = entity;
+
         // Deactivate OnClickListener
         if( !onClick )
             card.setOnClickListener(null);
 
         // Set View Values
+        if(entity == true)
+        {
+            cantidadUsuarios.setText("Usuarios en el municipio: "+String.valueOf(entidad.getUsuarios()));
+        }
+        else
+        {
+            cantidadUsuarios.setText("Usuarios en el estado: "+String.valueOf(entidad.getUsuarios()));
+        }
         nombreEntidad.setText(entidad.getNombre());
         puntos.setText("Puntos acumulados: "+String.valueOf(entidad.getPuntos()));
         posicion.setText(String.valueOf(entidad.getPosicion()));
-        cantidadUsuarios.setText("Usuarios en el estado: "+String.valueOf(entidad.getUsuarios()));
+
 
         // Get Primary Color
         TypedValue typedValue = new TypedValue();

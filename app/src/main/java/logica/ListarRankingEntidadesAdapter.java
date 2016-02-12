@@ -20,12 +20,14 @@ public class ListarRankingEntidadesAdapter extends RecyclerView.Adapter<RankingE
     private Context context;
     private Boolean clickable;
     private Boolean gradient;
+    private Boolean entidad;
 
-    public ListarRankingEntidadesAdapter(Context context,ArrayList<Entidad> entidadList, Boolean onClick, Boolean gradient) {
+    public ListarRankingEntidadesAdapter(Context context,ArrayList<Entidad> entidadList, Boolean onClick, Boolean gradient, Boolean entidad) {
         this.entidades = entidadList;
         this.context = context;
         this.clickable = onClick;
         this.gradient = gradient;
+        this.entidad = entidad;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class ListarRankingEntidadesAdapter extends RecyclerView.Adapter<RankingE
 
     @Override
     public void onBindViewHolder(RankingEntityViewHolder rankingEntityViewHolder, int i) {
-        rankingEntityViewHolder.setEntidad(entidades.get(i), (ActivityPantallaMenu)context, clickable, gradient );
+        rankingEntityViewHolder.setEntidad(entidades.get(i), (ActivityPantallaMenu)context, clickable, gradient, entidad);
     }
 
     @Override

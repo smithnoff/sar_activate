@@ -107,7 +107,11 @@ public class FragmentTabTop5 extends Fragment {
         if ( getArguments() != null)
             clickable = false;
 
-        adapter = new ListarRankingEntidadesAdapter(getActivity(),entidadArrayList, clickable, false);
+        if (getArguments() != null) {
+            adapter = new ListarRankingEntidadesAdapter(getActivity(), entidadArrayList, clickable, true, true);
+        } else {
+            adapter = new ListarRankingEntidadesAdapter(getActivity(), entidadArrayList, clickable, true, false);
+        }
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_top_5);
 
