@@ -6,183 +6,183 @@
     <ImageView
         android:id="@+id/map_acosta"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_acosta"
         android:layout_centerHorizontal="true"
         />
 
     <ImageView
         android:id="@+id/map_bolivar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_bolivar"
         android:layout_centerHorizontal="true"
         />
 
     <ImageView
         android:id="@+id/map_buchivacoa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_buchiyacoa"
         android:layout_centerHorizontal="true"
         />
 
     <ImageView
         android:id="@+id/map_cacique_manaure"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_cacique_manaure"
         android:layout_centerHorizontal="true"
         />
 
     <ImageView
         android:id="@+id/map_carirubana"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_carirubana"
         android:layout_centerHorizontal="true"
         />
 
     <ImageView
         android:id="@+id/map_colina"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_colina"
         android:layout_centerHorizontal="true"
         />
 
     <ImageView
         android:id="@+id/map_dabajuro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_dabajuro"
         android:layout_centerHorizontal="true"
         />
 
     <ImageView
         android:id="@+id/map_democracia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_democracia"
         android:layout_centerHorizontal="true"
         />
 
     <ImageView
         android:id="@+id/map_falcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_falcon"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_federacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_federacion"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_jacura"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_jacura"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_los_taques"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_los_taques"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_mauroa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_mauroa"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_miranda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_miranda"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_monsenor_iturriza"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_mosenor_iturriza"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_palma_sola"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_palma_sola"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_petit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_petit"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_piritu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_piritu"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_san_francisco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_san_francisco"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_silva"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_silva"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_sucre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_sucre"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_tocopero"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_tocopero"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_union"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_union"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_urumaco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_urumaco"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
         android:id="@+id/map_zamora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:src="@drawable/map_fal_zamora"
         android:layout_centerHorizontal="true"/>
 

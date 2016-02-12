@@ -29,6 +29,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
+        android:id="@+id/map_jose_felipe_marquez_canizalez"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:src="@drawable/map_tru_jose_felipe_marquez_canizales"
@@ -127,7 +128,6 @@
     android:id="@+id/map_bolivar"
     android:layout_width="match_parent"
     android:layout_height="250dp"
-    android:layout_marginTop="50dp"
     android:src="@drawable/map_tru_bolivar"
     android:layout_gravity="center_horizontal"
     android:layout_centerHorizontal="true"
