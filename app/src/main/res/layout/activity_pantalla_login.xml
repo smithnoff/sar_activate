@@ -22,91 +22,92 @@
         android:id="@+id/slogan"
         android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"/>
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_below="@+id/slogan"
+    android:layout_height="wrap_content">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_below="@+id/slogan"
+    android:background="@drawable/border">
+
+    <TextView
+        android:id="@+id/headerText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="#eee"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/labelUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/username"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <EditText
+        android:id="@+id/editUsername"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelUsername"
+        android:singleLine="true"
+        />
+
+    <TextView
+        android:id="@+id/labelEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_below="@+id/slogan"
-        android:background="@drawable/border">
+        android:layout_below="@+id/editUsername"/>
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelEmail"
+        android:inputType="textPassword"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ingresar"
+        android:id="@+id/buttonIngresar"
+        android:textColor="@color/white"
+        android:layout_below="@+id/editEmail"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
 
-        <TextView
-            android:id="@+id/headerText"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:background="#eee"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+        />
 
-        <TextView
-            android:id="@+id/labelUsername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/username"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/regresar"
+        android:id="@+id/buttonRegresar"
+        android:textColor="@color/white"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
 
-        <EditText
-            android:id="@+id/editUsername"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/labelUsername"
-            android:singleLine="true"
-            />
+        android:layout_alignTop="@+id/buttonIngresar"
+        android:layout_alignRight="@+id/editEmail"
+        android:layout_alignEnd="@+id/editEmail" />
 
-        <TextView
-            android:id="@+id/labelEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_below="@+id/editUsername"/>
-        <EditText
-            android:id="@+id/editEmail"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/labelEmail"
-            android:inputType="textPassword"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ingresar"
-            android:id="@+id/buttonIngresar"
-            android:textColor="@color/white"
-            android:layout_below="@+id/editEmail"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
+</RelativeLayout></ScrollView>
 
-            />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/regresar"
-            android:id="@+id/buttonRegresar"
-            android:textColor="@color/white"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="15dp"
-            android:layout_below="@+id/editEmail"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-
-            />
-
-    </RelativeLayout>
 
 </RelativeLayout>

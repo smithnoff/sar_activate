@@ -61,14 +61,16 @@ public class FragmentCrearUsuario extends Fragment {
         // Load Spinners
         fillSpinnerfromResource(spinEstado,R.array.Estados);
         fillSpinnerfromResource(spinComite,R.array.Comite);
-        fillSpinnerfromResource(spinRol, R.array.Roles);
+       fillSpinnerfromResource(spinRol, R.array.Roles);
 
         // Fill Municipios on Estado Selected
         spinEstado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 spinMunicipio.setAdapter(null);
-                fillSpinnerfromResource(spinMunicipio,getResources().getIdentifier(spinEstado.getSelectedItem().toString().replace(' ','_'),"array",getActivity().getPackageName()));
+                // TODO: 11/02/2016 error no trae los municipios
+
+               fillSpinnerfromResource(spinMunicipio,getResources().getIdentifier(spinEstado.getSelectedItem().toString().replace(' ','_'),"array",getActivity().getPackageName()));
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}

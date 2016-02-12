@@ -61,9 +61,9 @@ public class RankingEntityViewHolder extends RecyclerView.ViewHolder implements 
 
         // Set View Values
         nombreEntidad.setText(entidad.getNombre());
-        puntos.setText(String.valueOf(entidad.getPuntos()));
+        puntos.setText("Puntos acumulados: "+String.valueOf(entidad.getPuntos()));
         posicion.setText(String.valueOf(entidad.getPosicion()));
-        cantidadUsuarios.setText(String.valueOf(entidad.getUsuarios()));
+        cantidadUsuarios.setText("Usuarios en el estado: "+String.valueOf(entidad.getUsuarios()));
 
         // Get Primary Color
         TypedValue typedValue = new TypedValue();
