@@ -18,6 +18,7 @@ public class Usuario {
     private String parroquia;
     private String comite;
     private String email;
+    private int puntosActivismo;
 
 
 
@@ -117,5 +118,13 @@ public class Usuario {
             return "Activista";
         else
             return "Registrante";
+    }
+
+    public int getPuntosActivismo() {
+        return puntosActivismo;
+    }
+
+    public void setPuntosActivismo(int puntosActivismo) {
+        this.puntosActivismo = puntosActivismo;
     }
 }

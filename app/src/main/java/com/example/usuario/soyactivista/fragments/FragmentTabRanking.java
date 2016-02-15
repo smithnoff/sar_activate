@@ -56,6 +56,7 @@ public class FragmentTabRanking extends Fragment{
     private View map; // Map Holder
     private View view; // Main Layout
     private Boolean entidad;
+    private ParseUser currentUser = ParseUser.getCurrentUser();
 
     // List Vars
     private ListarRankingEntidadesAdapter adapter;
@@ -223,7 +224,7 @@ public class FragmentTabRanking extends Fragment{
         // Inflate Custom Menu
         inflater.inflate(R.menu.menu_puntuaciones, menu);
 
-        ParseUser currentUser = ParseUser.getCurrentUser();
+        currentUser = ParseUser.getCurrentUser();
 
         MenuItem reiniciarPuntuacion = menu.findItem(R.id.reiniciar_puntuacion);
 
@@ -316,7 +317,14 @@ public class FragmentTabRanking extends Fragment{
                             public void done(Map<String, Object> response, ParseException e) {
                                 if (response != null && response.get("status").toString().equals("OK")) {
                                     dialog1.dismiss();
-                                    Toast.makeText(getActivity(), "Usuarios actualizados correctamente. Los cambios se reflejarán en la próxima actualización", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity()," Usuarios actualizados correctamente. Los cambios se reflejarán en la próxima actualización", Toast.LENGTH_SHORT).show();
+
+                                    // Publish Notification of Activity Created.
+                                    ParseObject mensaje = new ParseObject("Mensaje");
+                                    mensaje.put("texto",currentUser.getString("nombre")+" ha reiniciado las puntuaciones de Activismo en la tabla de puntuaciones");
+                                    mensaje.put("autor",currentUser);
+                                    mensaje.put("reportado", false);
+                                    mensaje.saveEventually();
                                 } else {
                                     dialog1.dismiss();
                                     if (e != null) {

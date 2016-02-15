@@ -13,4 +13,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <RelativeLayout
+        android:id="@+id/emptyLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_edicion_partido"
+            android:backgroundTint="?colorPrimary"
+            android:id="@+id/emptyIcon"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emptyIcon"
+            android:text="No existen usuarios inscritos en la entidad"
+            android:layout_centerHorizontal="true"
+            android:textColor="?colorPrimary"
+            android:typeface="normal"
+            android:textAlignment="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            />
+
+    </RelativeLayout>
+
 </LinearLayout>

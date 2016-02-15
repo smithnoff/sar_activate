@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_edicion_partido"
+        android:id="@+id/emptyIcon"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emptyIcon"
+        android:text="No hay usuarios con puntos de Activismo en esta entidad"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:typeface="monospace"
+        android:textAlignment="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        />
+
+</RelativeLayout>

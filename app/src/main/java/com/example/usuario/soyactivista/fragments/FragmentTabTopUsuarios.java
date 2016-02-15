@@ -17,12 +17,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.FunctionCallback;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -45,6 +47,10 @@ public class FragmentTabTopUsuarios extends Fragment{
     private ListarTopUsuariosAdapter adapter;
     private RecyclerView recyclerView;
     private List<Usuario> usuarioArrayList;
+    private ParseUser currentUser = ParseUser.getCurrentUser();
+    private RelativeLayout emptyLayout;
+    private String entidad;
+
     public FragmentTabTopUsuarios() {
         // Required empty public constructor
     }
@@ -53,7 +59,11 @@ public class FragmentTabTopUsuarios extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+
         View v = inflater.inflate(R.layout.fragment_tab_top_usuarios, container, false);
+
+        emptyLayout = (RelativeLayout)v.findViewById(R.id.emptyLayout);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
 
@@ -61,7 +71,14 @@ public class FragmentTabTopUsuarios extends Fragment{
 
         usuarioArrayList = new ArrayList<>();
 
-        adapter = new ListarTopUsuariosAdapter(usuarioArrayList);
+        if(getArguments()!= null)
+        {
+            adapter = new ListarTopUsuariosAdapter(usuarioArrayList, "Municipio");
+        }
+        else
+        {
+            adapter = new ListarTopUsuariosAdapter(usuarioArrayList, "Estado");
+        }
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerListTopUsuarios);
 
@@ -70,6 +87,19 @@ public class FragmentTabTopUsuarios extends Fragment{
         recyclerView.setAdapter(adapter);
 
         initializeList();
+
+        /*if(adapter.getItemCount() == 0)
+        {
+            Toast.makeText(getActivity(),"Aqui entre",Toast.LENGTH_LONG);
+            recyclerView.setVisibility(View.GONE);
+            emptyLayout.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            recyclerView.setVisibility(View.VISIBLE);
+            emptyLayout.setVisibility(View.GONE);
+        }*/
+
 
         setHasOptionsMenu(true);
 
@@ -80,6 +110,7 @@ public class FragmentTabTopUsuarios extends Fragment{
     public void initializeList(){
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("eliminado",false);
+        query.whereGreaterThan("puntosActivismo",0);
         query.setLimit(20);
         query.orderByDescending("puntosActivismo");
 
@@ -98,8 +129,17 @@ public class FragmentTabTopUsuarios extends Fragment{
                         usuario = new Usuario();
                         usuario.setNombre(object.get(i).getString("nombre"));
                         usuario.setApellido(object.get(i).getString("apellido"));
-                        usuario.setCargo( object.get(i).getString("cargo"));
-                        usuario.setMunicipio( object.get(i).getString("municipio"));
+                        usuario.setCargo(object.get(i).getString("cargo"));
+                        if(getArguments()!= null)
+                        {
+                            usuario.setMunicipio(object.get(i).getString("municipio"));
+                        }
+                        else
+                        {
+                            usuario.setMunicipio(object.get(i).getString("estado"));
+                        }
+
+                        usuario.setPuntosActivismo(object.get(i).getInt("puntosActivismo"));
                         usuarioArrayList.add(usuario);
                     }
 
@@ -212,6 +252,13 @@ public class FragmentTabTopUsuarios extends Fragment{
                                 if (response != null && response.get("status").toString().equals("OK")) {
                                     dialog1.dismiss();
                                     Toast.makeText(getActivity(), "Usuarios actualizados correctamente. Los cambios se reflejarán en la próxima actualización", Toast.LENGTH_SHORT).show();
+
+                                    // Publish Notification of Activity Created.
+                                    ParseObject mensaje = new ParseObject("Mensaje");
+                                    mensaje.put("texto",currentUser.getString("nombre")+" ha reiniciado las puntuaciones de Activismo en la tabla de puntuaciones");
+                                    mensaje.put("autor",currentUser);
+                                    mensaje.put("reportado", false);
+                                    mensaje.saveEventually();
                                 } else {
                                     dialog1.dismiss();
                                     if (e != null) {

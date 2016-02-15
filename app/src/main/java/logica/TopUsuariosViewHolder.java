@@ -14,9 +14,10 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class TopUsuariosViewHolder extends RecyclerView.ViewHolder {
 
 
-    protected TextView nombreUsuario, cargo, municipio, posicion;
+    protected TextView nombreUsuario, cargo, entidad, posicion, puntosActivismo;
     protected CardView card;
     protected LinearLayout linear;
+    protected int ptos = 0;
 
     public TopUsuariosViewHolder(View itemView) {
         super(itemView);
@@ -25,18 +26,19 @@ public class TopUsuariosViewHolder extends RecyclerView.ViewHolder {
         posicion = (TextView) itemView.findViewById(R.id.position);
         nombreUsuario = (TextView) itemView.findViewById(R.id.nombreUsuario);
         cargo = (TextView) itemView.findViewById(R.id.cargo);
-        municipio = (TextView) itemView.findViewById(R.id.nombreMunicipio);
+        entidad = (TextView) itemView.findViewById(R.id.nombreEntidad);
+        puntosActivismo = (TextView)itemView.findViewById(R.id.puntosUsuario);
         card = (CardView) itemView;
         linear = (LinearLayout)itemView.findViewById(R.id.linearUsuarios);
     }
 
-    public void setUsuario(Usuario usuario, int nPosicion){
+    public void setUsuario(Usuario usuario, int nPosicion, String entity){
 
-        posicion.setText(String.valueOf(nPosicion));
-        nombreUsuario.setText(usuario.getNombre()+" "+usuario.getApellido());
-        cargo.setText(usuario.getCargo());
-        municipio.setText(usuario.getMunicipio());
-
+            posicion.setText(String.valueOf(nPosicion));
+            nombreUsuario.setText("Nombre: " + usuario.getNombre()+" "+usuario.getApellido());
+            cargo.setText("Cargo: "+ usuario.getCargo());
+            entidad.setText(entity + ": " + usuario.getMunicipio());
+            puntosActivismo.setText("Puntos: "+String.valueOf(usuario.getPuntosActivismo()));
 
     }
 

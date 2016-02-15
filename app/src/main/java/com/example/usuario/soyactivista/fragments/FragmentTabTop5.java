@@ -65,6 +65,8 @@ public class FragmentTabTop5 extends Fragment {
     private String entityName;
     private String entityId;
 
+    private ParseUser currentUser = ParseUser.getCurrentUser();
+
 
     public FragmentTabTop5() {
         // Required empty public constructor
@@ -347,6 +349,13 @@ public class FragmentTabTop5 extends Fragment {
                                 if (response != null && response.get("status").toString().equals("OK")) {
                                     dialog1.dismiss();
                                     Toast.makeText(getActivity(), "Usuarios actualizados correctamente. Los cambios se reflejarán en la próxima actualización", Toast.LENGTH_SHORT).show();
+
+                                    // Publish Notification of Activity Created.
+                                    ParseObject mensaje = new ParseObject("Mensaje");
+                                    mensaje.put("texto",currentUser.getString("nombre")+" ha reiniciado las puntuaciones de Activismo en la tabla de puntuaciones");
+                                    mensaje.put("autor",currentUser);
+                                    mensaje.put("reportado", false);
+                                    mensaje.saveEventually();
                                 } else {
                                     dialog1.dismiss();
                                     if (e != null) {

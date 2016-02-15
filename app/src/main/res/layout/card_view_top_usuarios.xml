@@ -11,12 +11,10 @@
     <LinearLayout
         android:id="@+id/linearUsuarios"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.04"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:weightSum="1"
         android:background="?colorPrimary"
-        android:padding="16dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/position"
@@ -45,21 +43,21 @@
             android:layout_gravity="center"
             />
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             >
             <TextView
                 android:id="@+id/nombreUsuario"
-                android:layout_width="69dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="John Doe"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_gravity="center_vertical"
                 android:textSize="16dp"
-                android:singleLine="true"/>
+                />
             <TextView
                 android:id="@+id/cargo"
                 android:layout_width="wrap_content"
@@ -69,13 +67,23 @@
                 android:layout_gravity="center_vertical"
                 android:textSize="12dp" />
             <TextView
-                android:id="@+id/nombreMunicipio"
+                android:id="@+id/nombreEntidad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Municipio"
                 android:textColor="@color/white"
                 android:layout_gravity="center_vertical"
                 android:textSize="12dp" />
+            <TextView
+                android:id="@+id/puntosUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Puntos"
+                android:textColor="@color/white"
+                android:layout_gravity="center_vertical"
+                android:textSize="12dp"
+                />
+
 
         </LinearLayout>
     </LinearLayout>
