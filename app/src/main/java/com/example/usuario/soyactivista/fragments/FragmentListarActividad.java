@@ -150,6 +150,8 @@ public class FragmentListarActividad extends Fragment {
                 datos.putString("tipoId",tipoActividad.getObjectId());
                 datos.putString("nombre", tipoActividad.getString("nombre"));
                 datos.putString("descripcion",tipoActividad.getString("descripcion"));
+                datos.putString("ubicacion", actividad.getString("ubicacion"));
+
                 datos.putString("puntaje", Integer.toString(tipoActividad.getInt("puntaje")));
                 datos.putString("objetivo",actividad.getString("objetivo"));
                 datos.putString("encargado",actividad.getString("encargado"));

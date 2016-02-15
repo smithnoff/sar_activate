@@ -1,40 +1,25 @@
 package logica;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
-import com.parse.ParseRelation;
 import com.parse.ParseUser;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
-import com.parse.ParseException;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -47,6 +32,7 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
     private ArrayList<String> likes;
     private ParseUser currentUser;
     private String cantidad_likes;
+
 
 
 
@@ -151,6 +137,7 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
             holder.textNombre = (TextView)v.findViewById(R.id.nombreActividad);
             holder.textEstatus = (TextView)v.findViewById(R.id.valueEjecucion);
             holder.textCreador = (TextView)v.findViewById(R.id.valueCreador);
+
             holder.textInicio = (TextView)v.findViewById(R.id.valueInicio);
             holder.textFin = (TextView)v.findViewById(R.id.valueFin);
             holder.textLikes = (TextView)v.findViewById(R.id.valueLikes);
@@ -382,7 +369,7 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
 
  class ViewHolder {
 
-      TextView textNombre,textEstatus,textCreador,textInicio,textFin,textLikes;
+      TextView textNombre,textEstatus,textCreador,textInicio,textFin,textLikes,textUbicacion;
       ImageButton botonMeGusta, botonNoMeGusta;
       ImageView imageView1,imageView2,imageView3,imageView4;
       View separator;

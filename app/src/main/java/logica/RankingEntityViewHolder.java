@@ -64,10 +64,17 @@ public class RankingEntityViewHolder extends RecyclerView.ViewHolder implements 
         // Set View Values
         if(entity == true)
         {
+
+            if (entidad.getUsuarios()==0)
+                cantidadUsuarios.setText("No Existen Usuarios");
+            else
             cantidadUsuarios.setText("Usuarios en el municipio: "+String.valueOf(entidad.getUsuarios()));
         }
         else
         {
+            if (entidad.getUsuarios()==0)
+                cantidadUsuarios.setText("No Existen Usuarios");
+            else
             cantidadUsuarios.setText("Usuarios en el estado: "+String.valueOf(entidad.getUsuarios()));
         }
         nombreEntidad.setText(entidad.getNombre());
