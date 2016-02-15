@@ -30,7 +30,11 @@ public class ColorHelpers {
 
         return Color.argb(alpha, red, green, blue);
     }
+    public static int grayten() {
 
+
+        return Color.argb(255, 128, 128, 128);
+    }
     private static int darkenColor(int color, double fraction) {
         return (int)Math.max(color - (color * fraction), 0);
     }
@@ -55,8 +59,10 @@ public class ColorHelpers {
         if ( points > 1000 && points <= 3999 )
             finalColor = ColorHelpers.lighten(color, 0.2);
 
-        if ( points >= 0 && points <= 999 )
+        if ( points > 0 && points <= 999 )
             finalColor = ColorHelpers.lighten(color, 0.4);
+        if ( points == 0  )
+            finalColor = ColorHelpers.grayten();
 
         return finalColor;
     }
