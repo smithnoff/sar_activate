@@ -157,7 +157,8 @@ public class FragmentDetalleActividad extends Fragment {
         descripcion.setText(getArguments().getString("descripcion"));
         objetivo.setText(getArguments().getString("objetivo"));
         ubicacionActual.setText(getArguments().getString("ubicacion"));
-
+        fechaInicio.setText(getArguments().getString("inicio"));
+        fechaFin.setText(getArguments().getString("fin"));
         // Show other location fields if its on state level
         if(getArguments().getString("ubicacion") == "Estadal"){
             labelEstado.setVisibility(View.VISIBLE);
@@ -165,6 +166,8 @@ public class FragmentDetalleActividad extends Fragment {
             estadoActual.setText(getArguments().getString("estado"));
             labelMunicipio.setVisibility(View.VISIBLE);
             municipioActual.setVisibility(View.VISIBLE);
+
+
             municipioActual.setText(getArguments().getString("municipio"));
             labelParroquia.setVisibility(View.VISIBLE);
             parroquia.setVisibility(View.VISIBLE);
