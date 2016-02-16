@@ -5,6 +5,7 @@
     android:background="?colorPrimary">
 
 <TextView
+    android:textStyle="bold"
     android:id="@+id/finPartida"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -14,22 +15,37 @@
     android:layout_marginTop="50dp"
     android:textSize="@dimen/txt_20sp"/>
 
-    <RatingBar
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:layout_gravity="center_horizontal"
-        android:numStars="3"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:stepSize="0.1"
+        android:layout_gravity="center">
 
-        style="@style/RatingBar"
-        android:minHeight="50dp"
-        android:maxWidth="100dp"
-        android:maxHeight="100dp"
-        android:minWidth="50dp"
-        />
+        <ImageView
+            android:id="@+id/starOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_star"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/starTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_star"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/starThree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_star"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"/>
+
+    </LinearLayout>
 
     <View
         android:id="@+id/viewRating"
@@ -42,6 +58,7 @@
         />
 
     <TextView
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/textPuntosConseguidos"
@@ -50,6 +67,11 @@
         android:layout_marginTop="10dp"
         android:textSize="@dimen/estadisticasTriviaPequeño"/>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <TextView
         android:id="@+id/valuePuntosConseguidos"
         android:layout_width="wrap_content"
@@ -59,7 +81,19 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:textSize="@dimen/estadisticasTriviaGrande"/>
-    <View
+
+        <TextView
+            android:id="@+id/textPuntosConseguidos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" puntos."
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="@dimen/estadisticasTriviaGrande"/>
+
+    </LinearLayout>
+        <View
         android:id="@+id/viewPuntos"
         android:layout_width="200dp"
         android:layout_height="1dp"
@@ -70,6 +104,7 @@
         android:layout_marginTop="10dp"
         />
     <TextView
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/textCorrectas"
@@ -97,6 +132,7 @@
         android:layout_marginTop="10dp"
         />
     <TextView
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/textIncorrectas"
@@ -113,15 +149,19 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:textSize="@dimen/estadisticasTriviaGrande"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
     <Button
         android:id="@+id/buttonVolverMenuPrincipal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:layout_gravity="center"
         android:text="@string/volverMenuPrincipal"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="15dp"
-        />
+        android:layout_marginRight="25dp"/>
+    </RelativeLayout>
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,8 @@ public class FragmentEstadisticasPartida extends Fragment {
     private int puntosPartida, correctas, incorrectas;
     private String ptos,aciertos,fallados;
 
+    private ImageView starOne, starTwo, starThree;
+
     private int number = 0;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -54,10 +57,14 @@ public class FragmentEstadisticasPartida extends Fragment {
         valueRespuestasCorrectas = (TextView)v.findViewById(R.id.valueRespuestasCorrectas);
         valueRespuestasIncorrectas = (TextView)v.findViewById(R.id.valueRespuestasIncorrectas);
 
+        starOne = (ImageView)v.findViewById(R.id.starOne);
+        starTwo = (ImageView)v.findViewById(R.id.starTwo);
+        starThree = (ImageView)v.findViewById(R.id.starThree);
+
         buttonMenuPrincipal = (Button)v.findViewById(R.id.buttonVolverMenuPrincipal);
 
-        ratingBar = (RatingBar)v.findViewById(R.id.ratingBar);
-        ratingBar.setEnabled(false);
+        /*ratingBar = (RatingBar)v.findViewById(R.id.ratingBar);
+        ratingBar.setEnabled(false);*/
 
         Integer puntos = getArguments().getInt("puntuacionPartida");
         Integer correctas = getArguments().getInt("respuestasCorrectas");
@@ -69,13 +76,26 @@ public class FragmentEstadisticasPartida extends Fragment {
         // Set Values
         //valuePuntosConseguidos.setText(puntos.toString());
         valueRespuestasCorrectas.setText(correctas.toString());
-        valueRespuestasCorrectas.startAnimation(AnimationUtils.loadAnimation(getActivity(),R.anim.slide_in_left));
         Integer incorrectas = getArguments().getInt("totalPreguntas")- getArguments().getInt("respuestasCorrectas");
         valueRespuestasIncorrectas.setText(incorrectas.toString());
-        valueRespuestasIncorrectas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
 
         // Load Rating
-        asignarEstrellas();
+        if (correctas <= 2)
+            starOne.setVisibility(View.VISIBLE);
+        else
+        {
+            if (correctas <= 5)
+            {
+                starOne.setVisibility(View.VISIBLE);
+                starTwo.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                starOne.setVisibility(View.VISIBLE);
+                starTwo.setVisibility(View.VISIBLE);
+                starThree.setVisibility(View.VISIBLE);
+            }
+        }
 
         //Animated Points
         if(puntos == 0)
@@ -179,26 +199,6 @@ public class FragmentEstadisticasPartida extends Fragment {
             }
         });
         return v;
-    }
-
-    // Set star rating depending on correct answers
-    private void asignarEstrellas() {
-
-        if (getArguments().getInt("respuestasCorrectas") <= 2)
-            animarEstrellas(1);
-        else {
-            if (getArguments().getInt("respuestasCorrectas") <= 5)
-                animarEstrellas(2);
-            else
-                animarEstrellas(3);
-        }
-    }
-
-    private void animarEstrellas(int current){
-        ratingBar.setRating(current);
-        ObjectAnimator anim = ObjectAnimator.ofFloat(ratingBar, "rating", current, 3f);
-        anim.setDuration(1000);
-        anim.start();
     }
 
     private void AnimarTexto(int numero, TextView text){

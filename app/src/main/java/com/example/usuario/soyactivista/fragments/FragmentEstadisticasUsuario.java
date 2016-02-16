@@ -62,18 +62,15 @@ public class FragmentEstadisticasUsuario extends Fragment {
         if( puntos < 10000 )
         {
             valueRango.setText("PRINCIPIANTE");
-            valueRango.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
         }
         else{
             if( puntos < 100000 )
             {
                 valueRango.setText("VETERANO");
-                valueRango.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
             }
             else
             {
                 valueRango.setText("PROFESIONAL");
-                valueRango.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
             }
 
         }
@@ -92,7 +89,6 @@ public class FragmentEstadisticasUsuario extends Fragment {
                     if (e == null) {
                         Integer finalCount = count + 1;
                         valuePosicion.setText(finalCount.toString());
-                        valuePosicion.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
                     } else {
                         Toast.makeText(getActivity(), ErrorCodeHelpers.resolveErrorCode(e.getCode()), Toast.LENGTH_LONG).show();
                     }
@@ -113,7 +109,6 @@ public class FragmentEstadisticasUsuario extends Fragment {
                     if (e == null) {
 
                         valuePartidas.setText(String.valueOf(estadisticas.getInt("partidas"))+" partidas.");
-                        valuePartidas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
 
                         // Get best answer type.
                         if( estadisticas.getInt("faciles") == 0 &&
@@ -122,7 +117,6 @@ public class FragmentEstadisticasUsuario extends Fragment {
                         {
                             // If all cero tell none
                             valuePreguntas.setText("Ninguna.");
-                            valuePreguntas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
                         }
                         else{
                             // Find biggest.
@@ -130,7 +124,6 @@ public class FragmentEstadisticasUsuario extends Fragment {
                                     estadisticas.getInt("faciles") >= estadisticas.getInt("dificiles") ){
 
                                 valuePreguntas.setText("Fácil");
-                                valuePreguntas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
                             }
                             else{
 
@@ -138,11 +131,9 @@ public class FragmentEstadisticasUsuario extends Fragment {
                                         estadisticas.getInt("intermedias") >= estadisticas.getInt("dificiles") ){
 
                                     valuePreguntas.setText("Intermedio");
-                                    valuePreguntas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
                                 }
                                 else{
                                     valuePreguntas.setText("Difícil");
-                                    valuePreguntas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
                                 }
                             }
                         }

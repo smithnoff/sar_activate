@@ -84,7 +84,7 @@
     <string name="prueba">Prueba</string>
     <string name="finPartida">¡Fin de la partida!</string>
     <string name="textPuntosConseguidos">Has conseguido:</string>
-    <string name="puntosConseguidos"># puntos</string>
+    <string name="puntosConseguidos">#</string>
     <string name="textCorrectas">Respuestas Correctas:</string>
     <string name="respuestasCorrectas">#</string>
     <string name="textIncorrectas">Respuestas Incorrectas:</string>
@@ -186,7 +186,7 @@
     <string name="filtroPuntaje">Filtrar por Puntaje</string>
     <string name="filtroNivel">Filtrar por Nivel</string>
     <string name="puntosSuspensivos">...</string>
-    <string name="puntosEjemplo">15698 puntos.</string>
+    <string name="puntosEjemplo">15698</string>
     <string name="partidasEjemplo">123 partidas.</string>
     <string name="partidasJugadas">Has jugado hasta el momento:</string>
     <string name="tiempoExtra">Más Tiempo</string>

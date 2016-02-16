@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?colorPrimary"
-    android:id="@+id/linearColor">
     <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/ListEstadisticaUsuario"
-        android:layout_marginTop="5dp">
-
+        android:background="?colorPrimary">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -22,7 +17,7 @@
                 android:text="@string/finPartida"
                 android:textColor="@color/white"
                 android:layout_gravity="center"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:textSize="@dimen/txt_20sp"
                 android:background="@drawable/ic_trivia_formacion"/>
             <View
@@ -53,6 +48,7 @@
 
 
             <TextView
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/logroTrivia"
@@ -81,6 +77,7 @@
                 android:layout_marginTop="10dp"
                 />
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/textEstado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,6 +106,7 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/puntosAcumulados"
@@ -116,7 +114,11 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:textSize="@dimen/estadisticasTriviaPequeño"/>
-
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
             <TextView
                 android:id="@+id/valuePuntos"
                 android:layout_width="wrap_content"
@@ -125,7 +127,15 @@
                 android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:textSize="@dimen/estadisticasTriviaGrande"/>
-
+                <TextView
+                    android:id="@+id/textPuntos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" puntos."
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/estadisticasTriviaGrande"/>
+            </LinearLayout>
             <View
                 android:layout_width="250dp"
                 android:layout_height="1dp"
@@ -136,6 +146,7 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/partidasJugadas"
@@ -163,6 +174,7 @@
                 android:layout_marginTop="10dp" />
 
             <TextView
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/desempeñoPreguntas"
@@ -195,4 +207,3 @@
 
         </LinearLayout>
     </ScrollView>
-</LinearLayout>

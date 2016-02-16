@@ -131,10 +131,10 @@
     </style>
 
     <style name="RatingBar" parent="@android:style/Widget.RatingBar">
-        <item name="colorControlNormal">#fff</item>
-        <item name="android:colorControlActivated">#fff</item>
-        <item name="android:minHeight">25dip</item>
-        <item name="android:maxHeight">25dip</item>
+        <item name="colorControlNormal">#ffffff</item>
+        <item name="android:colorControlActivated">#ffffff</item>
+        <item name="android:minHeight">35dip</item>
+        <item name="android:maxHeight">35dip</item>
     </style>
 
     <style name="FullHeightDialog" parent="android:style/Theme.Holo.Light.Dialog">

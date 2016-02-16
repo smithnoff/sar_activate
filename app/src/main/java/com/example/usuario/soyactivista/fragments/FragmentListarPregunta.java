@@ -58,7 +58,7 @@ public class FragmentListarPregunta extends Fragment {
             @Override
             public void onLoading() {
                 if (progressDialog == null)
-                    progressDialog = ProgressDialog.show(getContext(),"Buscando Preguntas","Cargando",true);
+                    progressDialog = ProgressDialog.show(getContext(), "Buscando Preguntas", "Cargando", true);
             }
 
             @Override
@@ -67,9 +67,18 @@ public class FragmentListarPregunta extends Fragment {
             }
         });
 
-        mainAdapter.clear();
-        listView.setAdapter(mainAdapter);
-        mainAdapter.loadObjects();
+
+        if(mainAdapter == null)
+        {
+            listView.setEmptyView(listaVacia);
+        }
+        else
+        {
+            mainAdapter.clear();
+            listView.setAdapter(mainAdapter);
+            mainAdapter.loadObjects();
+        }
+
 
         // Handle Item OnClick Events
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
