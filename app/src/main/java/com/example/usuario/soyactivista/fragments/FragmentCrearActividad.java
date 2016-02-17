@@ -42,6 +42,7 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import logica.TextHelpers;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 
@@ -237,7 +238,9 @@ public class FragmentCrearActividad extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 municipio.setAdapter(null);
-                llenarSpinnerdesdeId(municipio, getResources().getIdentifier(estado.getSelectedItem().toString().replace(' ', '_'), "array", getActivity().getPackageName()));
+                String nombreEstado = TextHelpers.NormalizeResource(estado.getSelectedItem().toString());
+                int arrayId = getResources().getIdentifier(nombreEstado, "array", getActivity().getPackageName());
+                llenarSpinnerdesdeId(municipio, arrayId);
             }
 
             @Override

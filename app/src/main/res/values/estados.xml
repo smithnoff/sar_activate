@@ -26,10 +26,16 @@
         <item>Yaracuy</item>
         <item>Zulia</item>
     </string-array>
-    <string-array name="Distrito_Capital">
+
+    <string-array name="area_metropolitana">
+        <item>Baruta</item>
+        <item>Chacao</item>
+        <item>El Hatillo</item>
         <item>Libertador</item>
+        <item>Sucre</item>
     </string-array>
-    <string-array name="Amazonas">
+
+    <string-array name="amazonas">
         <item>Alto Orinoco</item>
         <item> Atabapo</item>
         <item>Atures</item>
@@ -38,7 +44,7 @@
         <item>Maroa</item>
         <item>Río Negro</item>
     </string-array>
-    <string-array name="Anzoategui">
+    <string-array name="anzoategui">
         <item>Anaco</item>
         <item>Aragua</item>
         <item>Bolivar</item>
@@ -61,7 +67,7 @@
         <item>Simon Rodriguez</item>
         <item>Sotillo</item>
     </string-array>
-    <string-array name="Apure">
+    <string-array name="apure">
         <item>Achaguas</item>
         <item>Biruaca</item>
         <item>Muñoz</item>
@@ -71,7 +77,7 @@
         <item>San Fernando</item>
 
     </string-array>
-    <string-array name="Aragua">
+    <string-array name="aragua">
         <item>Bolivar</item>
         <item>Camatagua</item>
         <item>Francisco Linares Alcántara</item>
@@ -91,7 +97,7 @@
         <item>Urdaneta</item>
         <item>Zamora</item>
     </string-array>
-    <string-array name="Barinas">
+    <string-array name="barinas">
         <item>Alberto Arvelo Torrealba</item>
         <item>Andres Eloy Blanco</item>
         <item>Antonio Jose de Sucre</item>
@@ -105,7 +111,7 @@
         <item>Rojas</item>
         <item>Sosa</item>
     </string-array>
-    <string-array name="Bolivar">
+    <string-array name="bolivar">
         <item>Caroni</item>
         <item>Cedeño</item>
         <item>El Callao</item>
@@ -119,7 +125,7 @@
         <item>Padre Pedro Chen</item>
 
     </string-array>
-    <string-array name="Carabobo">
+    <string-array name="carabobo">
         <item>Bejuma</item>
         <item>Carlos Arvelo</item>
         <item>Diego Ibarra</item>
@@ -135,7 +141,7 @@
         <item>San Joaquin</item>
         <item>Valencia</item>
     </string-array>
-    <string-array name="Cojedes">
+    <string-array name="cojedes">
         <item>Anzoategui</item>
         <item>Falcon</item>
         <item>Girardot</item>
@@ -144,13 +150,13 @@
         <item>Ricaurte</item>
         <item>Romulo</item>
     </string-array>
-    <string-array name="Delta_Amacuro">
+    <string-array name="delta_Amacuro">
         <item>Antonio Díaz</item>
         <item>Casacoima</item>
         <item>Pedernales</item>
         <item>Tucupita</item>
     </string-array>
-    <string-array name="Falcon">
+    <string-array name="falcon">
         <item>Acosta</item>
         <item>Bolivar</item>
         <item>Buchivacoa</item>
@@ -177,7 +183,7 @@
         <item>Urumaco</item>
         <item>Zamora</item>
     </string-array>
-    <string-array name="Guarico">
+    <string-array name="guarico">
         <item>Chaguaramas</item>
         <item>El Socorro</item>
         <item>Francisco de Miranda</item>
@@ -193,7 +199,7 @@
         <item>San José de Guaribe</item>
         <item>Santa María de Ipire</item>
     </string-array>
-    <string-array name="Lara">
+    <string-array name="lara">
         <item>Andrés Eloy Blanco</item>
         <item>Crespo</item>
         <item>Iribarren</item>
@@ -204,7 +210,7 @@
         <item>Torres</item>
         <item>Urdaneta</item>
     </string-array>
-    <string-array name="Merida">
+    <string-array name="merida">
         <item>Alberto Adriani</item>
         <item>Andrés Bello</item>
         <item>Antonio Pinto Salinas</item>
@@ -229,7 +235,7 @@
         <item>Tulio Febres Cordero</item>
         <item>Zea</item>
     </string-array>
-    <string-array name="Miranda">
+    <string-array name="miranda">
         <item>Acevedo</item>
         <item>Andrés Bello</item>
         <item>Baruta</item>
@@ -252,7 +258,7 @@
         <item>Urdaneta</item>
         <item>Zamora</item>
     </string-array>
-    <string-array name="Monagas">
+    <string-array name="monagas">
         <item>Acosta</item>
         <item>Aguasay</item>
         <item>Bolívar</item>
@@ -268,7 +274,7 @@
         <item>Uracoa</item>
     </string-array>
 
-    <string-array name="Nueva_Esparta">
+    <string-array name="nueva_esparta">
         <item>Antolín del Campo</item>
         <item>Arismendi</item>
         <item>Díaz</item>
@@ -282,7 +288,7 @@
         <item>Villalba</item>
 
     </string-array>
-    <string-array name="Portuguesa">
+    <string-array name="portuguesa">
         <item>Agua Blanca</item>
         <item>Araure</item>
         <item>Esteller</item>
@@ -299,7 +305,7 @@
         <item>Turén</item>
     </string-array>
 
-    <string-array name="Sucre">
+    <string-array name="sucre">
         <item>Andrés Eloy Blanco</item>
         <item>Andrés Mata</item>
         <item>Arismendi</item>
@@ -316,7 +322,7 @@
         <item>Sucre</item>
         <item>Valdez</item>
     </string-array>
-    <string-array name="Tachira">
+    <string-array name="tachira">
         <item>Andres Bello</item>
         <item>Antonio Romulo Costa</item>
         <item>Ayacucho</item>
@@ -348,7 +354,7 @@
         <item>San Judas Tadeo</item>
 
     </string-array>
-    <string-array name="Trujillo">
+    <string-array name="trujillo">
         <item>Andrés Bello</item>
         <item>Boconó</item>
         <item>Candelaria</item>
@@ -369,10 +375,10 @@
         <item>Urdaneta</item>
         <item>Valera</item>
     </string-array>
-    <string-array name="Vargas">
+    <string-array name="vargas">
         <item>Vargas</item>
     </string-array>
-    <string-array name="Yaracuy">
+    <string-array name="yaracuy">
         <item>Arístides Bastidas</item>
         <item>Bolívar</item>
         <item>Bolívar</item>
@@ -389,7 +395,7 @@
         <item>Urachiche</item>
         <item>Veroes</item>
     </string-array>
-    <string-array name="Zulia">
+    <string-array name="zulia">
         <item>Almirante Padilla</item>
         <item>Baralt</item>
         <item>Cabimas</item>

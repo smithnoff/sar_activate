@@ -29,6 +29,7 @@ import java.util.Map;
 
 import logica.ActivityPantallaInicio;
 import logica.ErrorCodeHelpers;
+import logica.TextHelpers;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -93,7 +94,9 @@ public class FragmentEditarUsuario extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 spinMunicipio.setAdapter(null);
-                fillSpinnerfromResource(spinMunicipio, getResources().getIdentifier(spinEstado.getSelectedItem().toString().replace(' ', '_'), "array", getActivity().getPackageName()));
+                String nombreEstado = TextHelpers.NormalizeResource(spinEstado.getSelectedItem().toString());
+                int arrayId = getResources().getIdentifier(nombreEstado, "array", getActivity().getPackageName());
+                fillSpinnerfromResource(spinMunicipio, arrayId);
             }
 
             @Override
