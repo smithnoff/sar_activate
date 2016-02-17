@@ -33,7 +33,7 @@ public class ColorHelpers {
     public static int grayten() {
 
 
-        return Color.argb(255, 128, 128, 128);
+        return Color.argb(105, 97, 97, 97);
     }
     private static int darkenColor(int color, double fraction) {
         return (int)Math.max(color - (color * fraction), 0);
