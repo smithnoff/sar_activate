@@ -44,6 +44,27 @@
             android:background="@drawable/ic_star"
             android:layout_gravity="center_horizontal"
             android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/starOneNull"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_star_no_points"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/starTwoNull"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_star_no_points"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/starThreeNull"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_star_no_points"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

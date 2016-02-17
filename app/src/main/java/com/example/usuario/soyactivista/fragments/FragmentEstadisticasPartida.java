@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -40,7 +41,9 @@ public class FragmentEstadisticasPartida extends Fragment {
     private int puntosPartida, correctas, incorrectas;
     private String ptos,aciertos,fallados;
 
-    private ImageView starOne, starTwo, starThree;
+    private ImageView starOne, starTwo, starThree, noStarOne, noStarTwo, noStarThree;
+    private int one, two, three, twoNull, threeNull;
+    private View v;
 
     private int number = 0;
 
@@ -48,7 +51,7 @@ public class FragmentEstadisticasPartida extends Fragment {
 
 
         //Choose fragment to inflate
-        View v = inflater.inflate(R.layout.fragment_estadistica_partida, container, false);
+        v = inflater.inflate(R.layout.fragment_estadistica_partida, container, false);
 
         final ParseUser currentUser = ParseUser.getCurrentUser();
 
@@ -60,6 +63,9 @@ public class FragmentEstadisticasPartida extends Fragment {
         starOne = (ImageView)v.findViewById(R.id.starOne);
         starTwo = (ImageView)v.findViewById(R.id.starTwo);
         starThree = (ImageView)v.findViewById(R.id.starThree);
+        noStarOne = (ImageView)v.findViewById(R.id.starOneNull);
+        noStarTwo = (ImageView)v.findViewById(R.id.starTwoNull);
+        noStarThree = (ImageView)v.findViewById(R.id.starThreeNull);
 
         buttonMenuPrincipal = (Button)v.findViewById(R.id.buttonVolverMenuPrincipal);
 
@@ -81,19 +87,45 @@ public class FragmentEstadisticasPartida extends Fragment {
 
         // Load Rating
         if (correctas <= 2)
+        {
+
             starOne.setVisibility(View.VISIBLE);
+            noStarTwo.setVisibility(View.VISIBLE);
+            noStarThree.setVisibility(View.VISIBLE);
+            //Parameters for AnimationStar
+            one = R.id.starOne;
+            twoNull = R.id.starTwoNull;
+            threeNull = R.id.starThreeNull;
+            //Call function to animate
+            AnimationStar(one, twoNull, threeNull);
+
+        }
         else
         {
             if (correctas <= 5)
             {
                 starOne.setVisibility(View.VISIBLE);
                 starTwo.setVisibility(View.VISIBLE);
+                noStarThree.setVisibility(View.VISIBLE);
+                //Parameters for AnimationStar
+                one = R.id.starOne;
+                two = R.id.starTwo;
+                threeNull = R.id.starThreeNull;
+                //Call function to animate
+                AnimationStar(one, two, threeNull);
+
             }
             else
             {
                 starOne.setVisibility(View.VISIBLE);
                 starTwo.setVisibility(View.VISIBLE);
                 starThree.setVisibility(View.VISIBLE);
+                //Parameters for AnimationStar
+                one = R.id.starOne;
+                two = R.id.starTwo;
+                three = R.id.starThree;
+                //Call function to animate
+                AnimationStar(one, two, three);
             }
         }
 
@@ -207,6 +239,18 @@ public class FragmentEstadisticasPartida extends Fragment {
                 .setDuration(2000)
                 .build();
         animateCounterWrong.execute();
+    }
+
+    private void AnimationStar(int a,int b, int c)
+    {
+        int[] star = new int[]{a,b,c};
+
+        for (int i=0; i<star.length; i++)
+        {
+            Animation anim = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up_stars);
+            ((ImageView)v.findViewById(star[i])).startAnimation(anim);
+        }
+        
     }
 
 }
