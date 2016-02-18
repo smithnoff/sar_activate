@@ -7,7 +7,7 @@
 
     <item
         android:id="@+id/buscar_entidad"
-        android:title="Buscar"
+        android:title="Buscar Estado"
         />
 
     <item

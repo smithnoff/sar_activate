@@ -232,4 +232,7 @@
     <string name="top_users_national_help">En pantalla podrás observar los 20 mejores usuarios a nivel nacional de acuerdo a su puntuación por activismo. El cálculo de puntuación por usuario se realiza sumando el puntaje de todas las actividades creadas por el mismo.</string>
     <string name="top_users_state_help">En pantalla podrás observar los 20 mejores usuarios a nivel estatal de acuerdo a su puntuación por activismo. El cálculo de puntuación por usuario se realiza sumando el puntaje de todas las actividades creadas por el mismo.</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
