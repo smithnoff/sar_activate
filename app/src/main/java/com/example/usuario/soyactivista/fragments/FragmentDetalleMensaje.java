@@ -1,9 +1,12 @@
 package com.example.usuario.soyactivista.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +22,13 @@ import android.content.DialogInterface;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.Target;
+import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -31,7 +38,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 public class FragmentDetalleMensaje extends Fragment {
 
     private TextView valueNombre,valueEstado,valueMunicipio,valueFecha,valueTexto;
-    private ImageView previewAdjunto;
+    private ImageView previewAdjunto, photoUser;
     private Button botonReportar;
     private Button botonEliminar;
     private ProgressBar ProgressBar;
@@ -49,6 +56,7 @@ public class FragmentDetalleMensaje extends Fragment {
         valueTexto = (TextView)v.findViewById(R.id.valueTexto);
 
         previewAdjunto = (ImageView)v.findViewById(R.id.valueAdjunto);
+        photoUser = (ImageView)v.findViewById(R.id.messageUser);
 
         botonReportar = (Button)v.findViewById(R.id.botonReportar);
         botonEliminar = (Button)v.findViewById(R.id.botonEliminar);
@@ -63,6 +71,42 @@ public class FragmentDetalleMensaje extends Fragment {
         valueMunicipio.setText(getArguments().getString("municipio"));
         valueFecha.setText(getArguments().getString("fechaCreacion"));
         valueTexto.setText(getArguments().getString("texto"));
+
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("objectId",getArguments().getString("autor"));
+        query.getFirstInBackground(new GetCallback<ParseUser>() {
+            public void done(ParseUser object, ParseException e) {
+                if (object == null) {
+
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                } else
+                {
+
+                    ParseFile foto = object.getParseFile("fotoPerfil");
+                    if (foto != null)
+                    {
+                        String fileName = foto.getName();
+                        String extension = fileName.substring((fileName.lastIndexOf(".") + 1), fileName.length());
+                        //Attached File is an Image
+                        if (extension.equalsIgnoreCase("jpg"))
+                        {
+                            String url = foto.getUrl();
+                            Glide.with(getContext()).load(url).asBitmap().centerCrop().into(new BitmapImageViewTarget(photoUser)
+                            {
+                                @Override
+                                protected void setResource(Bitmap resource)
+                                {
+                                    RoundedBitmapDrawable circularBitmapDrawable =
+                                            RoundedBitmapDrawableFactory.create(getContext().getResources(), resource);
+                                    circularBitmapDrawable.setCircular(true);
+                                    photoUser.setImageDrawable(circularBitmapDrawable);
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+        });
 
         if(getArguments().getString("adjunto") != null){
 
@@ -93,26 +137,6 @@ public class FragmentDetalleMensaje extends Fragment {
                         .centerCrop()
                         .into(previewAdjunto);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /*    Glide.with(getContext())
-                        .load(url)
-                        .placeholder(R.drawable.ic_image)
-                        .centerCrop()
-                        .into(previewAdjunto);*/
-
-
                 previewAdjunto.setOnClickListener(seeImageDetail(getArguments().getString("adjunto")));
             }
             else{
@@ -129,10 +153,18 @@ public class FragmentDetalleMensaje extends Fragment {
         }
 
         // Have Attached location
-        if(getArguments().getString("ubicacion") != null){
+        if(getArguments().getString("ubicacion") != null)
+        {
+            int color = R.color.colorPrimary;
+            String latMsg = getArguments().getString("latitud");
+            String lngMsg = getArguments().getString("longitud");
+            //String url = "http://maps.google.com/maps/api/staticmap?center=" + latMsg + "," + lngMsg + "&zoom=15&size=600x300&sensor=false";
+            String url = "http://maps.google.com/maps/api/staticmap?center=" + latMsg+ "," +lngMsg +
+                    "&zoom=15&size=500x400&maptype=roadmap&markers=color:"+ color +"%7Clabel:U%7C" + latMsg + "," + lngMsg + "%7Csize:small&";
+
             previewAdjunto.setVisibility(View.VISIBLE);
             Glide.with(getContext())
-                    .load(R.drawable.ic_place)
+                    .load(url).asBitmap().centerCrop()
                     .into(previewAdjunto);
 
             previewAdjunto.setAdjustViewBounds(true);
