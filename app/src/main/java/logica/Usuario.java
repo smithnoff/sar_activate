@@ -1,6 +1,7 @@
 package logica;
 
 import com.parse.ParseClassName;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -19,6 +20,7 @@ public class Usuario {
     private String comite;
     private String email;
     private int puntosActivismo;
+    private ParseFile foto;
 
 
 
@@ -126,5 +128,13 @@ public class Usuario {
 
     public void setPuntosActivismo(int puntosActivismo) {
         this.puntosActivismo = puntosActivismo;
+    }
+
+    public ParseFile getFoto() {
+        return foto;
+    }
+
+    public void setFoto(ParseFile foto) {
+        this.foto = foto;
     }
 }

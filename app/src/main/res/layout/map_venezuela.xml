@@ -80,7 +80,7 @@
         android:layout_centerHorizontal="true"
         />
     <ImageView
-        android:id="@+id/map_distrito_capital"
+        android:id="@+id/map_area_metropolitana"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/map_state_area_metropolitana"

@@ -3,10 +3,14 @@ package logica;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -14,8 +18,12 @@ import soy_activista.quartzapp.com.soy_activista.R;
  * Created by RSMAPP on 09/12/2015.
  */
 public class Selector_de_Tema {
+
+    //TODO Refactor Selector_de_Tema
+
     private static final String TAG = "SelectorDeTema";
     private static int tema;
+    private static ParseFile image;
     private static String nombrePartido ="Nombre del partido";
     public final static int DEFAULT = 0;
     public final static int BLUE = 1;
@@ -25,6 +33,15 @@ public class Selector_de_Tema {
     public final static int YELLOW = 5;
     public final static int PURPLE = 6;
     public final static int GREEN = 7;
+    public final static int random = (int)(Math.random() * 1000) +1; // For file name.
+
+    public static ParseFile getImage() {
+        return image;
+    }
+
+    public static void setImage(ParseFile image) {
+        Selector_de_Tema.image = image;
+    }
 
     public static String getNombrePartido(){
         return nombrePartido;
@@ -42,7 +59,7 @@ public class Selector_de_Tema {
         tema = newTema;
     }
 
-    public static void changeToTheme(Activity activity, int theme, String partido)
+    public static void changeToTheme(Activity activity, int theme, String partido, ParseFile fileImage, byte[] imagenSeleccionada)
     {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Config");
         query.fromLocalDatastore();
@@ -50,8 +67,29 @@ public class Selector_de_Tema {
             ParseObject config = query.getFirst();
 
             if(config != null){
+
                 config.put("nombrePartido",partido);
                 config.put("tema",theme);
+
+                if(imagenSeleccionada!=null) {
+                    ParseFile fotoFinal = new ParseFile(random + ".jpg", imagenSeleccionada);
+                    config.put("foto", fotoFinal);
+                    fotoFinal.saveInBackground(new SaveCallback() {
+                        public void done(ParseException e) {
+                            if (e != null) {
+
+                                Log.d(TAG, e.toString());
+                            } else {
+                                                        /*final Snackbar snackbar = Snackbar
+                                                                .make(coordinatorLayout, "Foto Cargada",
+                                                                        Snackbar.LENGTH_LONG);
+
+                                                        snackbar.show();*/
+                            }
+                        }
+                    });
+                }
+
                 config.saveInBackground();
             }
         } catch (ParseException e) {
@@ -61,9 +99,10 @@ public class Selector_de_Tema {
         tema = theme;
 
         nombrePartido =partido;
+        image = fileImage;
+
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));
-
 
     }
 
@@ -74,6 +113,8 @@ public class Selector_de_Tema {
         Log.d(TAG, "Theme Queried " + config.getString("nombrePartido") + " " + config.getInt("tema"));
         Selector_de_Tema.setNombrePartido(config.getString("nombrePartido"));
         Selector_de_Tema.setTema(config.getInt("tema"));
+        ParseFile photo = config.getParseFile("foto");
+        Selector_de_Tema.setImage(photo);
         config.pinInBackground();
 
         switch (tema)

@@ -6,15 +6,23 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="230dp"
         android:background="@color/indigo"
         android:weightSum="100"
         android:id="@+id/barraDrawer"
         android:orientation="vertical">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="33"/>
+
+            <ImageView
+                android:layout_marginTop="25dp"
+                android:id="@+id/photo_partido"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:scaleType="centerCrop"
+                android:background="@drawable/ic_edicion_partido"
+                android:layout_gravity="left"
+                android:layout_marginLeft="5dp"
+                />
+
         <TextView
             android:id="@+id/usuarioPartido"
             android:layout_width="wrap_content"

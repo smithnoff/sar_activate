@@ -140,6 +140,7 @@ public class FragmentTabTopUsuarios extends Fragment{
                         }
 
                         usuario.setPuntosActivismo(object.get(i).getInt("puntosActivismo"));
+                        usuario.setFoto(object.get(i).getParseFile("fotoPerfil"));
                         usuarioArrayList.add(usuario);
                     }
 

@@ -298,9 +298,7 @@ public class FragmentCrearMensaje extends Fragment {
                                         }
                                     });
                                 }
-
                                 if (selectedFile != null) {
-
                                     ParseFile finalFile = new ParseFile(usuarioActual.getUsername() + random + ".pdf", selectedFile);
                                     selectedImage = null;
                                     location = null;
@@ -322,15 +320,11 @@ public class FragmentCrearMensaje extends Fragment {
                                             }
                                         }
                                     });
-
-
                                 }
-
                                 // Handle Location
                                 if (location != null) {
                                     mensaje.put("ubicacion", location);
                                 }
-
                                 // Save Message
                                 mensaje.saveInBackground(new SaveCallback() {
                                     public void done(ParseException e) {

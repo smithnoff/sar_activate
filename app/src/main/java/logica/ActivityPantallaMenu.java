@@ -1,6 +1,8 @@
 package logica;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -8,6 +10,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -17,9 +21,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.usuario.soyactivista.fragments.FragmentCrearUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentEditarPartido;
 import com.example.usuario.soyactivista.fragments.FragmentEditarUsuario;
@@ -31,6 +38,7 @@ import com.example.usuario.soyactivista.fragments.FragmentListarUsuario;
 import com.example.usuario.soyactivista.fragments.FragmentPuntuaciones;
 import com.example.usuario.soyactivista.fragments.FragmentTriviaPrincipal;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseUser;
 
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -48,6 +56,7 @@ public class ActivityPantallaMenu extends AppCompatActivity {
     private TextView nombrePartido, nombreUsuario, cargoUsuario, ubicacionUsuario;
     private Menu menu;
     private LinearLayout barDraw;
+    private ImageView photoPartido;
 
 
     @Override
@@ -90,13 +99,33 @@ public class ActivityPantallaMenu extends AppCompatActivity {
             nombreUsuario = (TextView)header.findViewById(R.id.usuarioID);
             cargoUsuario = (TextView)header.findViewById(R.id.usuarioCargo);
             ubicacionUsuario = (TextView)header.findViewById(R.id.usuarioEstado);
+            photoPartido = (ImageView)header.findViewById(R.id.photo_partido);
 
             nombrePartido.setText(Selector_de_Tema.getNombrePartido());
             nombreUsuario.setText(currentUser.getString("nombre") + " " + currentUser.getString("apellido"));
             cargoUsuario.setText(currentUser.getString("cargo"));
             ubicacionUsuario.setText(currentUser.getString("estado") + ", " + currentUser.getString("municipio"));
 
-
+            ParseFile foto = Selector_de_Tema.getImage();
+            if (foto != null)
+            {
+                String fileName = foto.getName();
+                String extension = fileName.substring((fileName.lastIndexOf(".") + 1), fileName.length());
+                //Attached File is an Image
+                if (extension.equalsIgnoreCase("jpg"))
+                {
+                    String url = foto.getUrl();
+                    Glide.with(getApplicationContext()).load(url).asBitmap().centerCrop().into(new BitmapImageViewTarget(photoPartido) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circularBitmapDrawable =
+                                    RoundedBitmapDrawableFactory.create(getApplicationContext().getResources(), resource);
+                            circularBitmapDrawable.setCircular(true);
+                            photoPartido.setImageDrawable(circularBitmapDrawable);
+                        }
+                    });
+                }
+            }
 
             appbar = (Toolbar)findViewById(R.id.appbar);
             setSupportActionBar(appbar);
