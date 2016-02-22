@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp"
-    android:layout_marginLeft="15dp">
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="5dp"
+    android:padding="10dp"
+    android:orientation="vertical">
 
     <!-- Nombre del Creador -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <TextView
         android:id="@+id/valueNombre"
         android:layout_width="wrap_content"
@@ -19,41 +25,42 @@
     <!-- Separator -->
     <View
         android:layout_width="2dp"
-        android:layout_height="15dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="match_parent"
         android:layout_marginLeft="5dp"
         android:background="@color/grisOscuro"
         android:layout_toRightOf="@id/valueNombre"/>
 
     <!-- Estado -->
-
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
     <TextView
         android:id="@+id/valueEstado"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="5dp"
         android:textSize="10dp"
         android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/valueNombre"
         android:text="@string/estado"
         />
-
+    </LinearLayout>
     <!-- Municipio -->
 
-    <TextView
-        android:id="@+id/valueMunicipio"
-        android:textSize="10dp"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/valueEstado"
-        android:text="@string/municipio"
-        />
+        <!-- <TextView
+            android:id="@+id/valueMunicipio"
+            android:textSize="10dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-    <!-- Texto -->
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/valueEstado"
+            android:text="@string/municipio"
+            />-->
+        </LinearLayout>
+        <!-- Texto -->
 
     <TextView
         android:id="@+id/valueCargo"
@@ -67,4 +74,4 @@
         />
 
 
-</RelativeLayout>
+</LinearLayout>

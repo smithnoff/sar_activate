@@ -127,8 +127,8 @@ public class ListarMensajeParseAdapter extends ParseQueryAdapter<ParseObject> {
 
         // Load Values
         valueNombre.setText(creador.getString("nombre") + " " + creador.getString("apellido"));
-        valueEstado.setText(creador.getString("estado"));
-        valueMunicipio.setText(creador.getString("municipio"));
+        valueEstado.setText(creador.getString("estado")+" - "+creador.getString("municipio"));
+        //valueMunicipio.setText(creador.getString("municipio"));
         valueTexto.setText(mensaje.getString("texto"));
 
         // Load Image

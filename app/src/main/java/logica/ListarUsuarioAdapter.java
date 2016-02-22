@@ -54,8 +54,8 @@ public class ListarUsuarioAdapter extends ArrayAdapter<Usuario> implements Filte
         // Load Values
         if (currentUser.getUsername() != usuario.getUsername()) {
             valueNombre.setText(usuario.getNombre() + " " + usuario.getApellido());
-            valueEstado.setText(usuario.getEstado());
-            valueMunicipio.setText(usuario.getMunicipio());
+            valueEstado.setText(usuario.getEstado()+" - "+usuario.getMunicipio());
+            //valueMunicipio.setText(usuario.getMunicipio());
             valueCargo.setText(usuario.getCargo());
         }
         return view;

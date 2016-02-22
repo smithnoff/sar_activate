@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:orientation="horizontal">
 
     <!-- PlaceHolder Adjunto -->
     <ImageView
@@ -11,7 +12,15 @@
         android:layout_height="100dp"
         android:visibility="gone"
         />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
     <!-- Nombre del Creador -->
     <TextView
         android:id="@+id/valueCreador"
@@ -23,45 +32,56 @@
         android:textSize="15dp"
         android:text="@string/nombreEjemplo"
         />
-
     <!-- Separator -->
     <View
         android:layout_width="2dp"
-        android:layout_height="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="match_parent"
         android:layout_marginLeft="5dp"
         android:background="@color/grisOscuro"
         android:layout_toRightOf="@id/valueCreador"/>
 
     <!-- Estado -->
-
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <TextView
         android:id="@+id/valueEstado"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="5dp"
         android:textSize="10dp"
         android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/valueCreador"
         android:text="@string/estado"
         />
 
+        <!--<TextView
+            android:id="@+id/valueSpace"
+            android:layout_marginLeft="5dp"
+            android:textSize="10dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            />-->
+
     <!-- Municipio -->
 
-    <TextView
-        android:id="@+id/valueMunicipio"
-        android:textSize="10dp"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/valueEstado"
-        android:text="@string/municipio"
-        />
+        <!--<TextView
+            android:id="@+id/valueMunicipio"
+            android:textSize="10dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/valueEstado"
+            android:text="@string/municipio"
+            />-->
+        </LinearLayout>
 
-    <!-- Texto -->
+            </LinearLayout>
+
+        <!-- Texto -->
 
     <TextView
         android:id="@+id/valueTexto"
@@ -74,6 +94,7 @@
         android:layout_toRightOf="@id/valueAdjunto"
         android:text="@string/mensajePrueba"
         />
+    </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

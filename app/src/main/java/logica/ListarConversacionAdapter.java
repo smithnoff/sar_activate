@@ -46,10 +46,11 @@ public class ListarConversacionAdapter extends ArrayAdapter<Conversacion> {
         Usuario creador = conversacion.usuario;
 
         //Declare all fields
-        final TextView valueNombre, valueEstado, valueMunicipio, valueCargo,valueComite,valueRol, valueUltimaActividad;
+        final TextView valueNombre,valueApellido, valueEstado, valueMunicipio, valueCargo,valueComite,valueRol, valueUltimaActividad;
 
         // Assign to holders
         valueNombre = (TextView) view.findViewById(R.id.valueNombre);
+        valueApellido = (TextView)view.findViewById(R.id.valueApellido);
         valueEstado = (TextView) view.findViewById(R.id.valueEstado);
         valueMunicipio = (TextView) view.findViewById(R.id.valueMunicipio);
         valueCargo = (TextView) view.findViewById(R.id.valueCargo);
@@ -60,14 +61,15 @@ public class ListarConversacionAdapter extends ArrayAdapter<Conversacion> {
 
         // Load Values
         valueNombre.setText(creador.getNombre()+" "+creador.getApellido());
-        valueEstado.setText(creador.getEstado());
-        valueMunicipio.setText(creador.getMunicipio());
-        valueCargo.setText(creador.getCargo());
-        valueComite.setText(creador.getComite());
-        valueRol.setText(creador.getRolName());
+        //valueApellido.setText(creador.getApellido());
+        valueEstado.setText(creador.getEstado()+" - "+creador.getMunicipio());
+        //valueMunicipio.setText(creador.getMunicipio());
+        valueCargo.setText("Cargo: "+creador.getCargo());
+        valueComite.setText("Comité: "+creador.getComite());
+        valueRol.setText("Tipo de usuario: "+creador.getRolName());
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
-        valueUltimaActividad.setText(dateFormat.format(conversacion.getUltimaActividad()));
+        valueUltimaActividad.setText("Última vez activa: "+dateFormat.format(conversacion.getUltimaActividad()));
 
         return view;
     }

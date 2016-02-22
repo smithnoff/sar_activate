@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:orientation="vertical"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="5dp">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <!-- Nombre del otro Usuario -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
     <TextView
         android:id="@+id/valueNombre"
         android:layout_width="wrap_content"
@@ -14,56 +24,46 @@
         android:textSize="18dp"
         android:text="@string/nombreEjemplo"
         />
-
+        </LinearLayout>
     <!-- Separator -->
     <View
         android:layout_width="2dp"
-        android:layout_height="18dp"
+        android:layout_height="match_parent"
         android:layout_marginLeft="5dp"
         android:background="@color/grisOscuro"
         android:layout_toRightOf="@id/valueNombre"/>
 
     <!-- Estado -->
-
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
     <TextView
         android:id="@+id/valueEstado"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="5dp"
         android:textSize="12dp"
         android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/valueNombre"
         android:text="@string/estado"
         />
-
+        </LinearLayout>
     <!-- Municipio -->
 
-    <TextView
-        android:id="@+id/valueMunicipio"
-        android:textSize="10dp"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/valueEstado"
-        android:text="@string/municipio"
-        />
+        <!--<TextView
+            android:id="@+id/valueMunicipio"
+            android:textSize="10dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/valueEstado"
+            android:text="@string/municipio"
+            />-->
+        </LinearLayout>
 
-    <!-- Cargo -->
-
-    <TextView
-        android:id="@+id/labelCargo"
-        android:layout_marginLeft="5dp"
-        android:textSize="13dp"
-        android:textColor="@color/grisOscuro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/valueNombre"
-        android:layout_toRightOf="@id/valueAdjunto"
-        android:text="@string/cargo"
-        />
+        <!-- Cargo -->
 
     <TextView
         android:id="@+id/valueCargo"
@@ -73,22 +73,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/valueNombre"
-        android:layout_toRightOf="@id/labelCargo"
         android:text="@string/cargoEjemplo"
         />
 
     <!-- Comite -->
-
-    <TextView
-        android:id="@+id/labelComite"
-        android:layout_marginLeft="5dp"
-        android:textSize="13dp"
-        android:textColor="@color/grisOscuro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/labelCargo"
-        android:text="@string/comite"
-        />
 
     <TextView
         android:id="@+id/valueComite"
@@ -98,19 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/valueCargo"
-        android:layout_toRightOf="@id/labelComite"
         android:text="@string/comiteEjemplo"
-        />
-
-    <TextView
-        android:id="@+id/labelRol"
-        android:layout_marginLeft="5dp"
-        android:textSize="13dp"
-        android:textColor="@color/grisOscuro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/labelComite"
-        android:text="@string/tipoUsuario"
         />
 
     <TextView
@@ -121,19 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/valueComite"
-        android:layout_toRightOf="@id/labelRol"
         android:text="@string/tipoUsuarioEjemplo"
-        />
-
-    <TextView
-        android:id="@+id/labelUltimaActividad"
-        android:layout_marginLeft="5dp"
-        android:textSize="13dp"
-        android:textColor="@color/grisOscuro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/labelRol"
-        android:text="@string/ultimaVezActiva"
         />
 
     <TextView
@@ -144,11 +108,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/valueRol"
-        android:layout_toRightOf="@id/labelUltimaActividad"
         android:text="@string/fechaEjemplo"
         />
 
 
 
 
-</RelativeLayout>
+</LinearLayout>

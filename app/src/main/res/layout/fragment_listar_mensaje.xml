@@ -10,23 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="25dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="25dp"
-            android:indeterminate="false"
-            android:max="100"
-            android:minHeight="50dp"
-            android:minWidth="200dp"
-            android:progress="1"
-            android:visibility="gone"/>
-
         <TextView
             android:id="@+id/textProgress"
             android:layout_width="wrap_content"
@@ -41,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/mensajesListView"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             />
 
         <TextView
