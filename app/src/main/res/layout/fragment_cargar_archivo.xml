@@ -1,4 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="5dp">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +14,6 @@
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -20,8 +25,9 @@
 
     <EditText
         android:layout_width="match_parent"
+        android:singleLine="true"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2" />
+        android:id="@+id/tituloDoc" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,7 +41,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText3" />
+        android:id="@+id/descripcionDoc" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="seleccionar archivo"
-        android:id="@+id/editText4" />
+        android:id="@+id/documento" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -65,7 +71,7 @@
             android:layout_weight="1"
             android:textColor="@color/white"
             android:text="SUBIR"
-            android:id="@+id/button" />
+            android:id="@+id/subirDoc" />
 
         <Button
             android:layout_width="wrap_content"
@@ -73,7 +79,8 @@
             android:layout_weight="1"
             android:textColor="@color/white"
             android:text="REGRESAR"
-            android:id="@+id/button3" />
+            android:id="@+id/salir" />
     </LinearLayout>
 
 </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
