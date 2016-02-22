@@ -29,7 +29,7 @@ public class FragmentTriviaPrincipal extends Fragment{
 
     public static final String EXTRAS_ENDLESS_MODE = "EXTRAS_ENDLESS_MODE";
     private static final String TAG = "FragTriviaPrincipal";
-    private Button adminPreguntas, nuevaPartida, misEstadisticas,cargarArchivos;
+    private Button adminPreguntas, nuevaPartida, misEstadisticas,cargarArchivos,verDoocumnetos;
     private TextView valueNombrePartido;
 
     @Override
@@ -44,6 +44,7 @@ public class FragmentTriviaPrincipal extends Fragment{
         nuevaPartida = (Button)v.findViewById(R.id.nuevaPartida);
         misEstadisticas = (Button)v.findViewById(R.id.misEstadisticas);
         cargarArchivos = (Button)v.findViewById(R.id.cargarDocumentos);
+        verDoocumnetos = (Button)v.findViewById(R.id.verDocumentos);
 
         valueNombrePartido.setText(Selector_de_Tema.getNombrePartido());
 
@@ -114,6 +115,17 @@ public class FragmentTriviaPrincipal extends Fragment{
             @Override
             public void onClick(View v) {
                 Fragment fragment = new FragmentCargarArchivo();
+                getFragmentManager()
+                        .beginTransaction()
+                        .addToBackStack(null)
+                        .replace(R.id.content_frame, fragment)
+                        .commit();
+            }
+        });
+        verDoocumnetos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new FragmentListarDocumentos();
                 getFragmentManager()
                         .beginTransaction()
                         .addToBackStack(null)
