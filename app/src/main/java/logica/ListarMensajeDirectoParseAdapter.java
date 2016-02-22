@@ -108,10 +108,15 @@ public class ListarMensajeDirectoParseAdapter extends ParseQueryAdapter<ParseObj
         else
         {
             if(object.getParseGeoPoint("ubicacion") != null){
+                String latMsg = String.valueOf(object.getParseGeoPoint("ubicacion").getLatitude());
+                String lngMsg = String.valueOf(object.getParseGeoPoint("ubicacion").getLongitude());
+                String url = "http://maps.google.com/maps/api/staticmap?center=" + latMsg+ "," +lngMsg +
+                        "&zoom=15&size=500x400&maptype=roadmap&markers=color:red%7Clabel:U%7C" + latMsg + "," + lngMsg + "%7Csize:small&";
+                object.getParseGeoPoint("ubicacion").getLongitude();
                 previewAdjunto.setVisibility(View.VISIBLE);
 
                 Glide.with(getContext())
-                        .load(R.drawable.ic_place)
+                        .load(url).asBitmap().centerCrop()
                         .into(previewAdjunto);
                 previewAdjunto.setAdjustViewBounds(true);
             }

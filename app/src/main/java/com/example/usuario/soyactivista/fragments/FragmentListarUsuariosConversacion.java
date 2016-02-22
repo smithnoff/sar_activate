@@ -345,6 +345,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                         usuario.setMunicipio(object.get(i).getString("municipio"));
                         usuario.setComite(object.get(i).getString("comite"));
                         usuario.setRol(object.get(i).getInt("rol"));
+                        usuario.setFoto(object.get(i).getParseFile("fotoPerfil"));
                         list.add(usuario);
                     }
                     Log.d(TAG, "List have " + list.size() + " items.");

@@ -798,11 +798,15 @@ public class FragmentCrearMensajeDirecto extends Fragment {
                     location= new ParseGeoPoint(place.getLatLng().latitude,place.getLatLng().longitude);
                     String toastMsg = String.format("Place: %s", place.getName());
                     Toast.makeText(getContext(), toastMsg, Toast.LENGTH_LONG).show();
+                    String latMsg = String.valueOf(place.getLatLng().latitude);
+                    String lngMsg = String.valueOf(place.getLatLng().longitude);
+                    String url = "http://maps.google.com/maps/api/staticmap?center=" + latMsg+ "," +lngMsg +
+                            "&zoom=15&size=500x400&maptype=roadmap&markers=color:red%7Clabel:U%7C" + latMsg + "," + lngMsg + "%7Csize:small&";
                     selectedImage = null;
                     selectedFile = null;
                     imageAttachmentPreview.setVisibility(View.VISIBLE);
                     Glide.with(getContext())
-                            .load(R.drawable.ic_place)
+                            .load(url).asBitmap()
                             .centerCrop()
                             .into(imageAttachmentPreview);
 

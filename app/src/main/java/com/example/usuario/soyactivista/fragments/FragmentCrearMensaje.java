@@ -18,6 +18,7 @@ import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -491,18 +492,25 @@ public class FragmentCrearMensaje extends Fragment {
 
             case PLACE_PICKER_REQUEST:
                 if (resultCode == Activity.RESULT_OK) {
+                    // Get Primary Color
+
                     Place place = PlacePicker.getPlace(data, getContext());
                     location= new ParseGeoPoint(place.getLatLng().latitude,place.getLatLng().longitude);
                     String toastMsg = String.format("Place: %s", place.getName());
                     Toast.makeText(getContext(), toastMsg, Toast.LENGTH_LONG).show();
+                    String latMsg = String.valueOf(place.getLatLng().latitude);
+                    String lngMsg = String.valueOf(place.getLatLng().longitude);
+                    String url = "http://maps.google.com/maps/api/staticmap?center=" + latMsg+ "," +lngMsg +
+                            "&zoom=15&size=500x400&maptype=roadmap&markers=color:red%7Clabel:U%7C" + latMsg + "," + lngMsg + "%7Csize:small&";
+
                     selectedImage = null;
                     selectedFile = null;
+
                     imageAttachmentPreview.setVisibility(View.VISIBLE);
                     Glide.with(getContext())
-                            .load(R.drawable.ic_place)
+                            .load(url).asBitmap()
                             .centerCrop()
                             .into(imageAttachmentPreview);
-
                 }
                 break;
 
