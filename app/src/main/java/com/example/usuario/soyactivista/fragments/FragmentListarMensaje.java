@@ -95,7 +95,6 @@ public class FragmentListarMensaje extends Fragment  {
         listView.setAdapter(listarMensajeMainAdapter);
         listarMensajeMainAdapter.loadObjects();
 
-
         currentUser = ParseUser.getCurrentUser();
 
         // Handle Item OnClick Events
@@ -135,7 +134,9 @@ public class FragmentListarMensaje extends Fragment  {
                 // Check if location available
                 if (ubicacion != null){
                     Log.d("ENVIO", ubicacion.toString());
-                    datos.putString("ubicacion", String.valueOf(ubicacion.getLatitude())+","+String.valueOf(ubicacion.getLongitude()));
+                    datos.putString("ubicacion", String.valueOf(ubicacion.getLatitude()) + "," + String.valueOf(ubicacion.getLongitude()));
+                    datos.putString("latitud",String.valueOf(ubicacion.getLatitude()));
+                    datos.putString("longitud",String.valueOf(ubicacion.getLongitude()));
                 }
 
 
