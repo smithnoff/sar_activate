@@ -4,22 +4,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_marginRight="15dp"
             >
 
-
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
                 android:text="@string/actividad"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -30,6 +33,7 @@
 
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -38,12 +42,14 @@
                 />
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/valuePuntaje"
                 />
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -52,6 +58,7 @@
                 />
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="fill_parent"
                 android:hint="@string/hintDescripcion"
                 android:layout_height="wrap_content"
@@ -60,6 +67,7 @@
                 />
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -67,6 +75,7 @@
                 />
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="fill_parent"
                 android:hint="@string/hintObjetivo"
                 android:layout_height="wrap_content"
@@ -74,12 +83,14 @@
                 />
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/ubicacion"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -88,6 +99,7 @@
                 />
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -96,6 +108,7 @@
                 android:visibility="gone"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -105,6 +118,7 @@
 
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -113,6 +127,7 @@
                 android:visibility="gone"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -121,6 +136,7 @@
                 android:visibility="gone"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -129,6 +145,7 @@
                 android:visibility="gone"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="fill_parent"
                 android:hint="@string/hintParroquia"
                 android:layout_height="wrap_content"
@@ -137,12 +154,14 @@
                 />
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/encargado"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="fill_parent"
                 android:hint="@string/hintEncargado"
                 android:layout_height="wrap_content"
@@ -150,18 +169,21 @@
                 />
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/creador"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/valueCreador"
                 />
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -174,6 +196,7 @@
                 />
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -185,8 +208,8 @@
                 android:weightSum="4"
                 android:orientation="horizontal">
 
-
                 <TextView
+                    android:textSize="16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -194,6 +217,7 @@
                     android:id="@+id/textViewFechaInicio" />
 
                 <ImageButton
+                    android:layout_marginLeft="30dp"
                     android:layout_width="wrap_content"
                     android:id="@+id/imgCalendarInicio"
                     android:src="@android:drawable/ic_menu_my_calendar"
@@ -202,11 +226,11 @@
             </LinearLayout>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/fin"/>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -216,6 +240,7 @@
 
 
                 <TextView
+                    android:textSize="16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -223,6 +248,7 @@
                     android:id="@+id/textViewFechaFin" />
 
                 <ImageButton
+                    android:layout_marginLeft="30dp"
                     android:layout_width="wrap_content"
                     android:id="@+id/imgCalendarFin"
                     android:src="@android:drawable/ic_menu_my_calendar"
@@ -254,6 +280,7 @@
                     />
 
                 <TextView
+                    android:textSize="16dp"
                     android:id="@+id/labelImagenes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -275,7 +302,6 @@
 
 
             </LinearLayout>
-
 
             <ImageView
                 android:id="@+id/imagen1"
@@ -328,6 +354,7 @@
                 />
 
             <TextView
+                android:textSize="16dp"
                 android:id="@+id/valueMeGusta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

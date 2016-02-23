@@ -64,18 +64,23 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/labelToken" />
 
-        />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/CorreoRecuperar"
+            android:layout_centerHorizontal="true">
         <Button
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:text="Enviar"
             android:id="@+id/buttonIngresar"
             android:textColor="@color/white"
-            android:layout_below="@+id/CorreoRecuperar"
-            android:layout_marginLeft="15dp"
             android:layout_marginBottom="15dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="5dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"/>
         <Button
             android:layout_width="140dp"
             android:layout_height="50dp"
@@ -83,12 +88,11 @@
             android:id="@+id/buttonRegresar"
             android:textColor="@color/white"
             android:onClick="iniciarSesion"
-            android:layout_below="@+id/CorreoRecuperar"
-            android:layout_marginLeft="10dp"
             android:layout_marginBottom="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="5dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"/>
+        </LinearLayout>
 
     </RelativeLayout>
 

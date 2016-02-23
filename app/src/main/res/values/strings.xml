@@ -70,7 +70,7 @@
     <string name="nombreEjemplo">Juan</string>
     <string name="apellido">Apellido</string>
     <string name="apellidoEjemplo">Morales</string>
-    <string name="correo">Correo Electronico</string>
+    <string name="correo">Correo electrónico</string>
     <string name="correoEjemplo">abc@dominio.com</string>
     <string name="cargo">Cargo</string>
     <string name="cargoejemplo">Un Cargo</string>
@@ -106,7 +106,7 @@
     <string name="hintActividad">Nombre de la actividad</string>
     <string name="puntaje">Puntaje</string>
     <string name="hintPuntaje">100,200,300...900</string>
-    <string name="descripcion">Descripción</string>
+    <string name="descripcion">Descripción de la actividad</string>
     <string name="hintDescripcion">Describa las acciones</string>
     <string name="objetivo">Objetivo</string>
     <string name="hintObjetivo">Describa el objetivo a lograr</string>

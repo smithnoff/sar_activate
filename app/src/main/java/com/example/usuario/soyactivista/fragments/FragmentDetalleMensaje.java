@@ -2,12 +2,15 @@ package com.example.usuario.soyactivista.fragments;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +40,7 @@ import soy_activista.quartzapp.com.soy_activista.R;
 
 public class FragmentDetalleMensaje extends Fragment {
 
-    private TextView valueNombre,valueEstado,valueMunicipio,valueFecha,valueTexto;
+    private TextView valueNombre,valueEstado,valueMunicipio,valueFecha,valueTexto, nameFile;
     private ImageView previewAdjunto, photoUser;
     private Button botonReportar;
     private Button botonEliminar;
@@ -54,6 +57,7 @@ public class FragmentDetalleMensaje extends Fragment {
         valueMunicipio = (TextView)v.findViewById(R.id.valueMunicipio);
         valueFecha = (TextView)v.findViewById(R.id.valueFecha);
         valueTexto = (TextView)v.findViewById(R.id.valueTexto);
+        nameFile =  (TextView)v.findViewById(R.id.nameFile);
 
         previewAdjunto = (ImageView)v.findViewById(R.id.valueAdjunto);
         photoUser = (ImageView)v.findViewById(R.id.messageUser);
@@ -108,6 +112,12 @@ public class FragmentDetalleMensaje extends Fragment {
             }
         });
 
+        if(getArguments().getBoolean("reportado") == true)
+        {
+            valueTexto.setTextColor(Color.RED);
+        }
+
+
         if(getArguments().getString("adjunto") != null){
 
             previewAdjunto.setVisibility(View.VISIBLE);
@@ -140,11 +150,22 @@ public class FragmentDetalleMensaje extends Fragment {
                 previewAdjunto.setOnClickListener(seeImageDetail(getArguments().getString("adjunto")));
             }
             else{
+                String file = getArguments().getString("nombreAdjunto");
+                nameFile.setText("Descargar: "+file);
+                nameFile.setVisibility(View.VISIBLE);
+
+                // Get Primary Color
+                TypedValue typedValue = new TypedValue();
+                getContext().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+                int color = typedValue.data;
+
                 previewAdjunto.setVisibility(View.VISIBLE);
+
                 // Attached is a PDF File
                 Glide.with(getContext())
-                        .load(R.drawable.ic_archivo)
+                        .load(R.drawable.ic_download)
                         .into(previewAdjunto);
+                previewAdjunto.setColorFilter(color);
                 previewAdjunto.setAdjustViewBounds(true);
                 previewAdjunto.setOnClickListener(seePDFDetail(getArguments().getString("adjunto")));
 

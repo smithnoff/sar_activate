@@ -91,17 +91,30 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/separator"
         android:layout_marginTop="10dp"
+        android:textSize="16dp"
         android:text="@string/mensajePrueba"
         />
+
+    <TextView
+        android:id="@+id/nameFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/separator"
+        android:layout_marginTop="10dp"
+        android:textSize="16dp"
+        android:text="Name File"
+        android:visibility="gone"
+        android:gravity="center" />
 
     <ImageView
         android:id="@+id/valueAdjunto"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_vertical"
         android:visibility="gone"
         />
+
 
 
     <ProgressBar

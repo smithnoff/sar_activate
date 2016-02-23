@@ -79,34 +79,40 @@
         android:layout_below="@+id/labelEmail"
         android:inputType="textPassword"
         />
-    <Button
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/editEmail"
+        android:layout_centerHorizontal="true">
+    <Button
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:text="@string/ingresar"
         android:id="@+id/buttonIngresar"
         android:textColor="@color/white"
-        android:layout_below="@+id/editEmail"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="15dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
 
         />
 
     <Button
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="@string/regresar"
         android:id="@+id/buttonRegresar"
         android:textColor="@color/white"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="5dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-
-        android:layout_alignTop="@+id/buttonIngresar"
-        android:layout_alignRight="@+id/editEmail"
-        android:layout_alignEnd="@+id/editEmail" />
-
+         />
+    </LinearLayout>
 </RelativeLayout></ScrollView>
 
 

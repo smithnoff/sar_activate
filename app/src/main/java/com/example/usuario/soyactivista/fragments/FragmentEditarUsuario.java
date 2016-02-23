@@ -197,6 +197,7 @@ public class FragmentEditarUsuario extends Fragment {
                 public void onClick(View v) {
                     buttonEditar.setVisibility(View.GONE);
                     buttonGuardar.setVisibility(View.VISIBLE);
+                    buttonEliminar.setVisibility(View.GONE);
 
                     // Enable all edit Text
                     //editUsername.setEnabled(true);
