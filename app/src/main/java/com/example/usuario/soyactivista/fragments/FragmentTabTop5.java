@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import logica.ColorHelpers;
 import logica.ErrorCodeHelpers;
 import logica.Entidad;
 import logica.ListarRankingEntidadesAdapter;
@@ -189,6 +190,7 @@ public class FragmentTabTop5 extends Fragment {
             query = ParseQuery.getQuery("RankingEstados");
         }
 
+        query.whereGreaterThan("puntos", 0);
         query.setLimit(5);
         query.orderByDescending("puntos");
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -203,7 +205,7 @@ public class FragmentTabTop5 extends Fragment {
                         entidad.setPuntos(object.get(i).getInt("puntos"));
                         entidad.setUsuarios(object.get(i).getInt("usuarios"));
                         entidad.setPosicion(i + 1);
-                        colorEntity(entidad.getNombre());
+                        colorEntity(entidad.getNombre(),entidad.getPuntos());
                         entidadArrayList.add(entidad);
                     }
                     // Reload List
@@ -218,7 +220,7 @@ public class FragmentTabTop5 extends Fragment {
         });
     }
 
-    private void colorEntity(String nombre) {
+    private void colorEntity(String nombre, int puntos) {
 
         // Check if map not null from previous validations, log & abort
         if( map == null ){
@@ -228,7 +230,6 @@ public class FragmentTabTop5 extends Fragment {
         // Get Resource ID
         String finalName = TextHelpers.NormalizeResource(nombre);
         int imageViewId = getResources().getIdentifier("map_"+ finalName, "id",getActivity().getPackageName());
-
         ImageView vector = (ImageView) map.findViewById(imageViewId);
 
         // Check if image not found log & abort.
@@ -243,7 +244,7 @@ public class FragmentTabTop5 extends Fragment {
         int color = typedValue.data;
 
         // Paint with Primary Color.
-        vector.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        vector.setColorFilter(ColorHelpers.getGradient(color, puntos), PorterDuff.Mode.SRC_IN);
     }
 
     // Inflates custom menu for fragment.

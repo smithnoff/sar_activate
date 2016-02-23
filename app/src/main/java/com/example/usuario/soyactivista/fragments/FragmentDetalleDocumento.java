@@ -12,10 +12,10 @@ import soy_activista.quartzapp.com.soy_activista.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentTabDescargados extends Fragment {
+public class FragmentDetalleDocumento extends Fragment {
 
 
-    public FragmentTabDescargados() {
+    public FragmentDetalleDocumento() {
         // Required empty public constructor
     }
 
@@ -24,12 +24,7 @@ public class FragmentTabDescargados extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.fragment_tab_descargados, container, false);
-
-    
-
-
-    return v;
+        return inflater.inflate(R.layout.fragment_detalle_documento, container, false);
     }
 
 }
