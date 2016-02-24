@@ -79,9 +79,9 @@ public class FragmentListarConversacion extends Fragment {
 
                 Bundle datos = new Bundle();
                 datos.putStringArrayList("conversacionesAbiertas",conversacionesAbiertas);
-                Log.d(TAG,"Ids Usuarios: "+conversacionesAbiertas.toString());
+                Log.d(TAG, "Ids Usuarios: " + conversacionesAbiertas.toString());
 
-                Fragment fragment = new FragmentListarUsuariosConversacion();
+                Fragment fragment = new FragmentDirectorioComite(); //FragmentListarUsuariosConversacion();
                 fragment.setArguments(datos);
                 getFragmentManager()
                         .beginTransaction()

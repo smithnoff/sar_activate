@@ -2,95 +2,67 @@ package com.example.usuario.soyactivista.fragments;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import logica.ListarUsuarioAdapter;
-import logica.ListarUsuarioJerarquiaAdapter;
-import logica.Usuario;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
- * Created by Brahyam on 2/12/2015.
+ * Created by Luis Adrian on 24/02/2016.
  */
-public class FragmentListarUsuariosConversacion extends Fragment{
+public class FragmentDirectorioComite extends Fragment {
 
     // Log TAG
     private String TAG = "FragmentListarUsuarioConversacion";
 
     // Data Holders
-    private ListarUsuarioJerarquiaAdapter listarUsuarioJerarquiaAdapter;
+    private String [] directorioComite = null;
+    private ArrayAdapter<String> adapter;
     private ListView listView;
-    private ArrayList<Usuario> usuarioArrayList = new ArrayList<>();
-    private ParseUser currentUser;
-    private ArrayList<String> conversacionesAbiertas;
+    private TextView comite;
 
-    // Buttons
-    FloatingActionButton botonCrearUsuario;
+    private ParseUser currentUser;
 
     // Progress Dialog For Filtering/Retrieving Users
     ProgressDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+        setHasOptionsMenu(true);
         // Inflate View
-        View view = inflater.inflate(R.layout.fragment_listar_usuario, container, false);
+        View view = inflater.inflate(R.layout.fragment_directorio_comite, container, false);
 
         // Initialize list view
-        listView = (ListView) view.findViewById(R.id.mensajesListView);
+        listView = (ListView) view.findViewById(R.id.estadalListView);
 
-        // Initialize Buttons / Hide
-        botonCrearUsuario = (FloatingActionButton) view.findViewById(R.id.botonCrearUsuario);
-        botonCrearUsuario.setVisibility(View.GONE);
+        directorioComite= getActivity().getResources().getStringArray(R.array.Comite);
+
+        adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, directorioComite);
+        listView.setAdapter(adapter);
+        comite = (TextView)view.findViewById(R.id.valueDirectorio);
 
         currentUser = ParseUser.getCurrentUser();
 
-        // load already opened conversations
-        conversacionesAbiertas = new ArrayList<>(getArguments().getStringArrayList("conversacionesAbiertas"));
-
-        Log.d(TAG,"List contains "+usuarioArrayList.size()+" elements");
-
-        // If adapter is null Initialize list and set adapter to view
-        if(listarUsuarioJerarquiaAdapter == null){
-            Log.d(TAG,"Array Adapter is null");
-            initializeList(usuarioArrayList);
-        }
-        // List Already contains elements/ Just set adapter to view
-        else{
-            Log.d(TAG, "Array Adapter is OK with " + listarUsuarioJerarquiaAdapter.getCount()+" elements");
-            // Add Elements to List and reset adapter
-            listView.setAdapter(listarUsuarioJerarquiaAdapter);
-        }
+        //Log.d(TAG, "List contains " + usuarioArrayList.size() + " elements");
 
         // Handle Item OnClick Events
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
+                String directorio = comite.getText().toString();
+                switch (directorio){
+                    case "Estadal":
+
+                            break;
+                }
                 // Store data in bundle to send to next fragment
                 Usuario usuarioSeleccionado = (Usuario) listView.getItemAtPosition(position);
                 Bundle datos = new Bundle();
@@ -98,7 +70,6 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                 datos.putString("receptorId", usuarioSeleccionado.getId());
                 datos.putString("receptorUsername", usuarioSeleccionado.getUsername());
                 datos.putBoolean("existeConversacion",false);
-
 
                 // Redirect View to next Fragment
                 Fragment fragment = new FragmentCrearMensajeDirecto();
@@ -109,86 +80,14 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                         .commit();
 
             }
-        });
+        });*/
 
         // Let the fragment know we will be loading some options for this fragment
-        setHasOptionsMenu(true);
 
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_listar_usuario, menu);
-
-        // Search View Initialization - Call to getActionView to be able to cast SearchView on Item
-        SearchView searchView = (SearchView) menu.findItem(R.id.buscador).getActionView();
-        searchView.setQueryHint("Identificador");
-
-        // Listener
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                // If query has something filter adapter
-                if (query.length() > 0) {
-                    listarUsuarioJerarquiaAdapter.getFilter().filter("texto=" + query);
-                }
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()) {
-            case R.id.filtroEstados:
-                // Generate List Holder
-                final AlertDialog filterDialog;
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Filtrar por estado");
-
-                // Fill Holder with State List from String Array
-                final ListView listView = new ListView(getActivity());
-                final ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.Estados)));
-
-                // Add element All.
-                arrayList.add(0, "Todos");
-
-                ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,arrayList);
-                listView.setAdapter(stringArrayAdapter);
-                builder.setView(listView);
-
-                // Show Dialog
-                filterDialog = builder.create();
-                filterDialog.show();
-
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                        // Request List to filter
-                        listarUsuarioJerarquiaAdapter.getFilter().filter("estado="+listView.getItemAtPosition(position));
-                        filterDialog.dismiss();
-
-                    }
-                });
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    // TODO: Find a way to provide search query from within the fragment, so list doesnt have to be initialized again.
-    // Initializes list and sets listView adapter to the newly createde adapter.
-    public void initializeList(final ArrayList<Usuario> list){
+    /*public void initializeList(final ArrayList<String> list){
 
         List<ParseQuery<ParseUser>> queries = new ArrayList<ParseQuery<ParseUser>>();
 
@@ -322,12 +221,12 @@ public class FragmentListarUsuariosConversacion extends Fragment{
         else
             mainQuery = ParseUser.getQuery();
 
-        Log.d(TAG,"Current user is: "+currentUser.getUsername());
-        mainQuery.whereNotContainedIn("objectId",conversacionesAbiertas);
-        mainQuery.whereEqualTo("eliminado",false);
-        mainQuery.whereNotEqualTo("objectId",currentUser.getObjectId());
-        mainQuery.findInBackground(new FindCallback<ParseUser>() {
-            public void done(List<ParseUser> object, ParseException e) {
+        //Log.d(TAG, "Current user is: " + currentUser.getUsername());
+        //mainQuery.whereNotContainedIn("objectId",conversacionesAbiertas);
+       // mainQuery.whereEqualTo("eliminado", false);
+       // mainQuery.whereNotEqualTo("objectId", currentUser.getObjectId());
+        //mainQuery.findInBackground(new FindCallback<ParseUser>() {
+            /*public void done(List<ParseUser> object, ParseException e) {
                 if (e == null) { //no hay error
                     Usuario usuario;
                     for (int i = 0; i < object.size(); i++) {
@@ -346,11 +245,11 @@ public class FragmentListarUsuariosConversacion extends Fragment{
                         list.add(usuario);
                     }
                     Log.d(TAG, "List have " + list.size() + " items.");
-                    listarUsuarioJerarquiaAdapter = new ListarUsuarioJerarquiaAdapter(getActivity(),list);
+                    listarUsuarioJerarquiaAdapter = new ListarUsuarioJerarquiaAdapter(getActivity(), list);
                     listView.setAdapter(listarUsuarioJerarquiaAdapter);
 
                     // If no Search/Filter Argument initialize list, else filter.
-                    if(getArguments() != null && getArguments().getString("busqueda") != null){
+                    if (getArguments() != null && getArguments().getString("busqueda") != null) {
                         listarUsuarioJerarquiaAdapter.getFilter().filter(getArguments().getString("busqueda"));
                     }
 
@@ -363,6 +262,6 @@ public class FragmentListarUsuariosConversacion extends Fragment{
             }
         });
 
-    }
+    }*/
 
 }
