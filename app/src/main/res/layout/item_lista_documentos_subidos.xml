@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="horizontal">
+
+    <!-- PlaceHolder Adjunto -->
+    <ImageView
+        android:id="@+id/valueAdjunto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pdf_image"
+        android:backgroundTint="?colorPrimary"
+        />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <!-- Nombre del Creador -->
+            <TextView
+                android:id="@+id/valueTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/valueAdjunto"
+                android:textSize="15dp"
+                android:text="@string/nombreEjemplo"
+                />
+            <!-- Separator -->
+
+        </LinearLayout>
+
+        <!-- Texto -->
+
+        <TextView
+            android:id="@+id/valueDescripcion"
+            android:layout_marginLeft="5dp"
+            android:textSize="15dp"
+            android:textColor="@color/grisOscuro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/valueCreador"
+            android:layout_toRightOf="@id/valueAdjunto"
+            android:text="@string/mensajePrueba"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>
