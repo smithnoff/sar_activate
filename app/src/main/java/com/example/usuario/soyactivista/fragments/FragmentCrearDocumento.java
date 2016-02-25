@@ -34,25 +34,29 @@ import soy_activista.quartzapp.com.soy_activista.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentCargarArchivo extends Fragment {
+public class FragmentCrearDocumento extends Fragment {
+
+
     CoordinatorLayout coordinatorLayout;
-private Button subirDocumento,salir;
+    private static final int PICKFILE_RESULT_CODE = 300;
+    private Button subirDocumento,salir;
     private EditText tituloDoc,descripcionDoc,documento;
     private byte[] selectedFile;
     private int random = (int)(Math.random() * 1000) +1;
     private ProgressDialog dialog;
     final ParseUser usuarioActual = ParseUser.getCurrentUser();
-    public FragmentCargarArchivo() {
+
+    public FragmentCrearDocumento() {
         // Required empty public constructor
     }
 
-    private static final int PICKFILE_RESULT_CODE = 300;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View v = inflater.inflate(R.layout.fragment_cargar_archivo, container, false);
+        View v = inflater.inflate(R.layout.fragment_crear_documento, container, false);
         subirDocumento = (Button) v.findViewById(R.id.subirDoc);
         salir = (Button) v.findViewById(R.id.salir);
         coordinatorLayout = (CoordinatorLayout) v.findViewById(R.id.coordinatorLayout);

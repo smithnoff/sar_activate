@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    >
+
+    <TextView
+        android:id="@+id/document_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/usernameEjemplo"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cargado_el_dia"
+        android:layout_below="@+id/document_name"
+        />
+
+    <TextView
+        android:id="@+id/date_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fechaEjemplo"
+        android:layout_below="@+id/document_name"
+        android:layout_toRightOf="@+id/date_label"
+        />
+
+</RelativeLayout>

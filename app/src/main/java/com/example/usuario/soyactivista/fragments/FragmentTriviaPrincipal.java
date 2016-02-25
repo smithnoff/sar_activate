@@ -114,7 +114,7 @@ public class FragmentTriviaPrincipal extends Fragment{
         cargarArchivos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new FragmentCargarArchivo();
+                Fragment fragment = new FragmentCrearDocumento();
                 getFragmentManager()
                         .beginTransaction()
                         .addToBackStack(null)

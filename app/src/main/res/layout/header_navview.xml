@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="230dp"
+    android:background="@color/indigo"
+    android:weightSum="100"
+    android:id="@+id/barraDrawer"
+    android:orientation="vertical"
+    >
 
-    <LinearLayout
+    <ImageView
+        android:layout_marginTop="25dp"
+        android:id="@+id/photo_partido"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/ic_edicion_partido"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
+        />
+
+    <TextView
+        android:id="@+id/usuarioPartido"
+        android:layout_width="wrap_content"
+        android:layout_weight="10"
+        android:layout_height="wrap_content"
+        android:text="Nombre del partido político"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        />
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:background="@color/indigo"
-        android:weightSum="100"
-        android:id="@+id/barraDrawer"
-        android:orientation="vertical">
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        />
+    <TextView
+        android:id="@+id/usuarioID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jhon Doe"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+        android:textStyle="bold"
+        android:layout_gravity="left|center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"/>
+    <TextView
+        android:id="@+id/usuarioCargo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cargo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+        android:textStyle="bold"
+        android:layout_gravity="left|center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"/>
+    <TextView
+        android:id="@+id/usuarioEstado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estado , Municipio"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+        android:textStyle="bold"
+        android:layout_gravity="left|center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"/>
 
-            <ImageView
-                android:layout_marginTop="25dp"
-                android:id="@+id/photo_partido"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:scaleType="centerCrop"
-                android:background="@drawable/ic_edicion_partido"
-                android:layout_gravity="left"
-                android:layout_marginLeft="5dp"
-                />
-
-        <TextView
-            android:id="@+id/usuarioPartido"
-            android:layout_width="wrap_content"
-            android:layout_weight="10"
-            android:layout_height="wrap_content"
-            android:text="Nombre del partido político"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-            android:textStyle="bold"
-            android:layout_gravity="left|center"
-            android:layout_marginLeft="10dp" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="10"/>
-        <TextView
-            android:id="@+id/usuarioID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Jhon Doe"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
-            android:textStyle="bold"
-            android:layout_gravity="left|center"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"/>
-        <TextView
-            android:id="@+id/usuarioCargo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cargo"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
-            android:textStyle="bold"
-            android:layout_gravity="left|center"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"/>
-        <TextView
-            android:id="@+id/usuarioEstado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Estado , Municipio"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
-            android:textStyle="bold"
-            android:layout_gravity="left|center"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"/>
-
-    </LinearLayout>
-</FrameLayout>
+</LinearLayout>

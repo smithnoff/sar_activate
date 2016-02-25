@@ -1,0 +1,78 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titulo_documento"
+        android:layout_marginTop="10dp"
+        />
+
+    <EditText
+        android:id="@+id/tituloDoc"
+        android:layout_width="match_parent"
+        android:singleLine="true"
+        android:layout_height="wrap_content"
+         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/descripcion_documento"
+        android:layout_marginTop="10dp"
+        />
+
+    <EditText
+        android:id="@+id/descripcionDoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/archivo_a_cargar"
+        android:layout_marginTop="10dp"
+        />
+
+    <EditText
+        android:id="@+id/documento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/seleccionar_archivo"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:weightSum="2"
+        android:layout_marginTop="35sp"
+        android:layout_height="60dp">
+
+        <Button
+            android:id="@+id/subirDoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:text="@string/cargar"
+            />
+
+        <Button
+            android:id="@+id/salir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:text="@string/regresar"
+            />
+    </LinearLayout>
+
+</LinearLayout>

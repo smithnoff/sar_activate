@@ -234,5 +234,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cargado_el_dia">Cargado el día:</string>
+    <string name="titulo_documento">Título del Documento:</string>
+    <string name="descripcion_documento">Descripción del Documento:</string>
+    <string name="archivo_a_cargar">Archivo a cargar:</string>
+    <string name="seleccionar_archivo">Seleccionar archivo</string>
+    <string name="cargar">Cargar</string>
 
 </resources>

@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:paddingLeft="15sp"
         android:paddingRight="15sp"
-        tools:context="com.example.usuario.soyactivista.fragments.FragmentCargarArchivo"
+        tools:context="com.example.usuario.soyactivista.fragments.FragmentCrearDocumento"
         android:orientation="vertical"
         android:weightSum="1">
 
