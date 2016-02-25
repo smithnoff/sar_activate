@@ -427,5 +427,40 @@
         <item>Activista</item>
     </string-array>
 
+    <string-array name="Comite5">
+        <item>Nacional</item>
+        <item>Estadal</item>
+        <item>Municipal</item>
+        <item>Parroquial</item>
+        <item>Activista</item>
+    </string-array>
+
+    <string-array name="Comite4">
+        <item>Nacional</item>
+        <item>Estadal</item>
+        <item>Municipal</item>
+        <item>Parroquial</item>
+        <item>Activista</item>
+    </string-array>
+
+    <string-array name="Comite3">
+        <item>Estadal</item>
+        <item>Municipal</item>
+        <item>Parroquial</item>
+        <item>Activista</item>
+    </string-array>
+
+    <string-array name="Comite2">
+        <item>Municipal</item>
+        <item>Parroquial</item>
+        <item>Activista</item>
+    </string-array>
+
+    <string-array name="Comite1">
+        <item>Parroquial</item>
+        <item>Activista</item>
+    </string-array>
+
+
 
 </resources>

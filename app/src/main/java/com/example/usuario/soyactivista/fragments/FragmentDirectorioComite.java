@@ -3,12 +3,16 @@ package com.example.usuario.soyactivista.fragments;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.ParseUser;
 
@@ -26,9 +30,8 @@ public class FragmentDirectorioComite extends Fragment {
     private String [] directorioComite = null;
     private ArrayAdapter<String> adapter;
     private ListView listView;
-    private TextView comite;
 
-    private ParseUser currentUser;
+    private ParseUser currentUser = ParseUser.getCurrentUser();
 
     // Progress Dialog For Filtering/Retrieving Users
     ProgressDialog dialog;
@@ -36,35 +39,94 @@ public class FragmentDirectorioComite extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
+
         // Inflate View
         View view = inflater.inflate(R.layout.fragment_directorio_comite, container, false);
 
         // Initialize list view
         listView = (ListView) view.findViewById(R.id.estadalListView);
 
-        directorioComite= getActivity().getResources().getStringArray(R.array.Comite);
-
-        adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, directorioComite);
-        listView.setAdapter(adapter);
-        comite = (TextView)view.findViewById(R.id.valueDirectorio);
+        //if(getArguments()==null)
+        //{
+            String comite = currentUser.getString("comite");
+            int nivel = getNivel(comite);
+            String districtResourceName = "Comite"+nivel;//+nivel;
+            int districtId = getResources().getIdentifier(districtResourceName, "array", getActivity().getPackageName());
+            directorioComite= getActivity().getResources().getStringArray(districtId);
+            adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, directorioComite);
+            listView.setAdapter(adapter);
+        //}
+        /*else
+        {
+            if(getArguments().getString("entidad")=="Estadal");
+        }*/
 
         currentUser = ParseUser.getCurrentUser();
 
         //Log.d(TAG, "List contains " + usuarioArrayList.size() + " elements");
 
         // Handle Item OnClick Events
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                String directorio = comite.getText().toString();
-                switch (directorio){
-                    case "Estadal":
+                int itemPosition     = position;
+                String itemValue = null, argumentValue=null;
+                int nivel = 0;
 
-                            break;
+                if(getArguments()==null)
+                {
+                    itemValue    = (String) listView.getItemAtPosition(position);
                 }
+                else
+                {
+                    argumentValue = (String) listView.getItemAtPosition(position);
+                }
+
+                Toast.makeText(getContext(),
+                        "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
+                        .show();
+
+                if((currentUser.getString("comite")=="Nacional" && itemValue == "Nacional") || (currentUser.getInt("rol")==1))
+                {
+                    nivel = 5;
+                    Bundle datos = new Bundle();
+                    datos.putString("comite",currentUser.getString("comite"));
+                    datos.putString("entidad",itemValue);
+                    datos.putInt("nivel",5);
+                    Fragment fragment = new FragmentListarUsuariosConversacion();
+                    fragment.setArguments(datos);
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(((ViewGroup) getView().getParent()).getId(), fragment)
+                            .commit();
+                }
+
+                /*if(itemValue!="Estadal")
+                {
+                    if (nivel == )
+                    Bundle datos = new Bundle();
+                    datos.putString("comite",currentUser.getString("comite"));
+                    datos.putString("entidad",itemValue);
+                    Fragment fragment = new FragmentTabSubidos();
+                    fragment.setArguments(datos);
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(((ViewGroup) getView().getParent()).getId(), fragment)
+                            .commit();
+                }*/
+
+                /*switch (argumentValue){
+                    case ""
+                }*/
+                //String value = listView.getItemAtPosition(position).toString();
+                 //listView.getSelectedItem().toString();
+
+                //String directorio = comite.getText().toString();
+
                 // Store data in bundle to send to next fragment
-                Usuario usuarioSeleccionado = (Usuario) listView.getItemAtPosition(position);
+                /*Usuario usuarioSeleccionado = (Usuario) listView.getItemAtPosition(position);
                 Bundle datos = new Bundle();
                 Log.d(TAG,"Cargando en Bundle: Usuario "+usuarioSeleccionado.getId());
                 datos.putString("receptorId", usuarioSeleccionado.getId());
@@ -77,10 +139,10 @@ public class FragmentDirectorioComite extends Fragment {
                 getFragmentManager()
                         .beginTransaction()
                         .replace(((ViewGroup) getView().getParent()).getId(), fragment)
-                        .commit();
+                        .commit();*/
 
             }
-        });*/
+        });
 
         // Let the fragment know we will be loading some options for this fragment
 
@@ -262,6 +324,46 @@ public class FragmentDirectorioComite extends Fragment {
             }
         });
 
+    }*/
+
+    public int getNivel(String comite)
+    {
+        int nivel=0;
+        if(comite=="Nacional" || currentUser.getInt("rol")==1)
+        {
+            nivel = 5;
+            return nivel;
+        }
+        else
+        {
+            switch (comite)
+            {
+                case "Estadal":
+                    nivel = 4;
+                    return nivel;
+                case "Municipal":
+                    nivel = 3;
+                    return nivel;
+                case "Parroquial":
+                    nivel = 2;
+                    return nivel;
+                case "Activista":
+                    nivel = 1;
+                    return nivel;
+            }
+
+        }
+        return nivel;
+    }
+
+    /*public void fillListfromResource(ListView listView,int id, int nivel){
+        ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource(getActivity(), id, android.R.layout.simple_spinner_item);
+        spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin.setAdapter(spinner_adapter);
+
+        ArrayAdapter list_adapter = ArrayAdapter.createFromResource(getActivity(),id, android.R.layout.simple_list_item_1);
+        listView.setAdapter(adapter);
+    }
     }*/
 
 }

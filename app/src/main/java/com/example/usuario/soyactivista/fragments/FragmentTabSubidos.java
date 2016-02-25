@@ -82,6 +82,7 @@ public class FragmentTabSubidos extends Fragment {
                 Documento doc = (Documento) listView.getItemAtPosition(position);
                 ParseFile file = doc.getDocumento();
                 String url = file.getUrl();
+                Toast.makeText(getContext(),"url: " + url,Toast.LENGTH_LONG);
                 seePDFDetail(url);
                 // Store data in bundle to send to next fragment
                 /*Usuario usuario = (Usuario) listView.getItemAtPosition(position);

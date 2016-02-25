@@ -192,7 +192,7 @@ public class FragmentListarUsuariosConversacion extends Fragment{
 
         List<ParseQuery<ParseUser>> queries = new ArrayList<ParseQuery<ParseUser>>();
 
-        switch (currentUser.getString(("comite"))){
+        switch (getArguments().getString("comite")){
             case "Estadal":
 
                 // Users from Comité Nacinal.
