@@ -96,7 +96,7 @@ public class FragmentEstadisticasUsuario extends Fragment {
             });
 
             if (puntos == 0)
-                valuePuntos.setText(String.valueOf(puntos) + " puntos.");
+                valuePuntos.setText(String.valueOf(puntos)+ " puntos");
             else
                 AnimarTexto(puntos,valuePuntos);
 
@@ -108,7 +108,7 @@ public class FragmentEstadisticasUsuario extends Fragment {
                 public void done(ParseObject estadisticas, ParseException e) {
                     if (e == null) {
 
-                        valuePartidas.setText(String.valueOf(estadisticas.getInt("partidas"))+" partidas.");
+                        valuePartidas.setText(String.valueOf(estadisticas.getInt("partidas")));
 
                         // Get best answer type.
                         if( estadisticas.getInt("faciles") == 0 &&
@@ -116,7 +116,7 @@ public class FragmentEstadisticasUsuario extends Fragment {
                                 estadisticas.getInt("dificiles") == 0)
                         {
                             // If all cero tell none
-                            valuePreguntas.setText("Ninguna.");
+                            valuePreguntas.setText("Ninguna");
                         }
                         else{
                             // Find biggest.
@@ -156,7 +156,7 @@ public class FragmentEstadisticasUsuario extends Fragment {
             Toast.makeText(getActivity(), "Todavía no has jugado tu primera partida.", Toast.LENGTH_LONG).show();
             valuePosicion.setText("Ninguno");
             valuePosicion.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
-            valuePuntos.setText("0 puntos.");
+            valuePuntos.setText("0 puntos");
             valuePartidas.setText("0 partidas");
             valuePartidas.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));
             valuePreguntas.setText("Ninguna");

@@ -273,7 +273,7 @@ public class FragmentEditarPregunta extends Fragment {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Confirmar");
-                builder.setMessage("¿Está seguro que desea eliminar la pregunta?.");
+                builder.setMessage("¿Está seguro que desea eliminar la pregunta?");
 
                 builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
 
