@@ -26,9 +26,6 @@ public class FragmentTabDescargados extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_tab_descargados, container, false);
 
-    
-
-
     return v;
     }
 
