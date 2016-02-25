@@ -1,4 +1,4 @@
-<resources>
+﻿<resources>
     <string name="app_name">SoyActivista</string>
 
     <string name="hello_world">Hello world!</string>
@@ -187,7 +187,7 @@
     <string name="filtroNivel">Filtrar por Nivel</string>
     <string name="puntosSuspensivos">...</string>
     <string name="puntosEjemplo">15698</string>
-    <string name="partidasEjemplo">123 partidas.</string>
+    <string name="partidasEjemplo">123</string>
     <string name="partidasJugadas">Has jugado hasta el momento:</string>
     <string name="tiempoExtra">Más Tiempo</string>
     <string name="saltarPregunta">Saltar Pregunta</string>

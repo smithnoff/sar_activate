@@ -131,7 +131,7 @@
                     android:id="@+id/textPuntos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" puntos."
+                    android:text=" puntos"
                     android:textColor="@color/white"
                     android:layout_gravity="center"
                     android:textSize="@dimen/estadisticasTriviaGrande"/>
@@ -154,7 +154,11 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:textSize="@dimen/estadisticasTriviaPequeño"/>
-
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
             <TextView
                 android:id="@+id/valuePartidas"
                 android:layout_width="wrap_content"
@@ -163,7 +167,15 @@
                 android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:textSize="@dimen/estadisticasTriviaGrande"/>
-
+                <TextView
+                    android:id="@+id/textPartidas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" partidas"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="@dimen/estadisticasTriviaGrande"/>
+            </LinearLayout>
             <View
                 android:layout_width="250dp"
                 android:layout_height="1dp"
