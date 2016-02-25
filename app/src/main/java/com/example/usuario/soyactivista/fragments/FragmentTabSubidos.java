@@ -83,30 +83,24 @@ public class FragmentTabSubidos extends Fragment {
                 ParseFile file = doc.getDocumento();
                 String url = file.getUrl();
                 Toast.makeText(getContext(),"url: " + url,Toast.LENGTH_LONG);
-                seePDFDetail(url);
+                //seePDFDetail(url);
                 // Store data in bundle to send to next fragment
-                /*Usuario usuario = (Usuario) listView.getItemAtPosition(position);
+
 
                 Bundle datos = new Bundle();
-                datos.putString("id", usuario.getId());
-                datos.putString("username", usuario.getUsername());
-                datos.putString("nombre", usuario.getNombre());
-                datos.putString("apellido", usuario.getApellido());
-                datos.putString("email", usuario.getEmail());
-                datos.putString("estado", usuario.getEstado());
-                datos.putString("municipio", usuario.getMunicipio());
-                datos.putString("cargo", usuario.getCargo());
-                datos.putString("comite", usuario.getComite());
-                datos.putString("rol", usuario.getRolName());
+                datos.putString("titulo", doc.getTitulo());
+                datos.putString("descripcion", doc.getDescripcion());
+                datos.putString("url", url);
+
 
                 // Redirect View to next Fragment
-                Fragment fragment = new FragmentEditarUsuario();
+                Fragment fragment = new FragmentDetalleDocumento();
                 fragment.setArguments(datos);
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, fragment)
                         .addToBackStack(null)
-                        .commit();*/
+                        .commit();
             }
         });
 

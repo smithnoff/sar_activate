@@ -12,9 +12,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.parse.ParseFile;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +49,35 @@ public class FragmentListarDocumentos extends Fragment {
         view = inflater.inflate(R.layout.fragment_listar_documentos, container, false);
 
         initList();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                // Store data in bundle to send to next fragment
+                ParseObject documento = (ParseObject) listView.getItemAtPosition(position);
+                ParseFile adjunto;
+
+                adjunto = documento.getParseFile("adjunto");
+
+                SimpleDateFormat format = new SimpleDateFormat("HH:mm dd/MM/yyyy");
+
+                Bundle datos = new Bundle();
+                datos.putString("titulo", documento.getString("titulo"));
+                datos.putString("descripcion", documento.getString("descripcion"));
+                datos.putString("adjunto", adjunto.getUrl());
+                datos.putString("nombreAdjunto", adjunto.getName());
+
+                // Redirect View to next Fragment
+                Fragment fragment = new FragmentDetalleDocumento();
+                fragment.setArguments(datos);
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
         return view;
     }
