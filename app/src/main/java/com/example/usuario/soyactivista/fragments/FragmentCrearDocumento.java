@@ -138,14 +138,14 @@ subirDocumento.setOnClickListener(new View.OnClickListener() {
                     dialog = ProgressDialog.show(getActivity(), "", "Cargando Archivo", true);
 
                     // Fill ParseObject to send
-                    final ParseObject archivo = new ParseObject("DocumentoTrivia");
+                    final ParseObject archivo = new ParseObject("Documento");
 
                     archivo.put("titulo", tituloDoc.getText().toString());
                     archivo.put("descripcion", descripcionDoc.getText().toString());
 
 
 
-                    // Handle Image uploading
+                    // Handle File uploading
 
                     if (selectedFile != null) {
                         ParseFile finalFile = new ParseFile(usuarioActual.getUsername() + random + ".pdf", selectedFile);
@@ -176,9 +176,9 @@ subirDocumento.setOnClickListener(new View.OnClickListener() {
                         public void done(ParseException e) {
                             if (e == null) {
                                 dialog.dismiss();
-                                //Toast.makeText(getActivity(), "Mensaje Publicado", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getActivity(), "Archivo Publicado", Toast.LENGTH_SHORT).show();
                                 final Snackbar snackbar = Snackbar
-                                        .make(coordinatorLayout, "Mensaje Publicado.",
+                                        .make(coordinatorLayout, "Archivo Publicado.",
                                                 Snackbar.LENGTH_LONG);
 
                                 snackbar.show();

@@ -418,6 +418,16 @@
         <item>Sucre</item>
         <item>Valmore Rodríguez</item>
     </string-array>
+
+    <string-array name="comites">
+        <item>Comité Nacional</item>
+        <item>Comité Estadal</item>
+        <item>Comité Municipal</item>
+        <item>Comité Parroquial</item>
+        <item>Miembros Registro</item>
+        <item>Activistas</item>
+    </string-array>
+
     <!-- comite de pertenencia-->
     <string-array name="Comite">
         <item>Nacional</item>

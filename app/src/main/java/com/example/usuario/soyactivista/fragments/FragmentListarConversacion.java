@@ -81,7 +81,7 @@ public class FragmentListarConversacion extends Fragment {
                 datos.putStringArrayList("conversacionesAbiertas",conversacionesAbiertas);
                 Log.d(TAG, "Ids Usuarios: " + conversacionesAbiertas.toString());
 
-                Fragment fragment = new FragmentDirectorioComite(); //FragmentListarUsuariosConversacion();
+                Fragment fragment = new FragmentDirectorio(); //FragmentListarUsuariosConversacion();
                 fragment.setArguments(datos);
                 getFragmentManager()
                         .beginTransaction()
