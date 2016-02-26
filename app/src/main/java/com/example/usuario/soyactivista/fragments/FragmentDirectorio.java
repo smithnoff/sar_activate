@@ -96,7 +96,10 @@ public class FragmentDirectorio extends Fragment {
     private void siguientePasoDirectorio() {
 
         // Check if needs to show users now
-        //if ( desiredLevel > )
+        if ( desiredLevel < userLevel ){
+            adapter= new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Estados));
+           listView.setAdapter(adapter);
+        }
 
     }
 
@@ -135,7 +138,7 @@ public class FragmentDirectorio extends Fragment {
         String result;
         switch (comite){
             case 0:
-                result = "Nacinal";
+                result = "Nacional";
                 break;
             case 1:
                 result = "Estadal";
