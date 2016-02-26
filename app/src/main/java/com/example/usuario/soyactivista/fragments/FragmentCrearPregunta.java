@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import logica.ErrorCodeHelpers;
@@ -34,6 +35,7 @@ public class FragmentCrearPregunta extends Fragment {
     private Spinner spinPuntaje, spinNivel, spinTiempo, spinCorrecta;
     private Button buttonCrearPregunta, buttonRegresar;
     private ProgressDialog dialog;
+    private ParseUser currentUser = ParseUser.getCurrentUser();
 
     @Nullable
     @Override
@@ -124,6 +126,13 @@ public class FragmentCrearPregunta extends Fragment {
                                     if (e == null) {
                                         dialog.dismiss();
                                         Toast.makeText(getActivity(), "Pregunta creada correctamente.", Toast.LENGTH_SHORT).show();
+
+                                        // Publish Notification of Activity Created.
+                                        ParseObject mensaje = new ParseObject("Mensaje");
+                                        mensaje.put("texto","Se han agregado nuevas preguntas a la trivia, ¿eres capaz de responderlas todas? Ven y echa un vistazo.");
+                                        mensaje.put("autor",currentUser);
+                                        mensaje.put("reportado", false);
+                                        mensaje.saveEventually();
                                         //Redirect to list
                                         Fragment fragment = new FragmentListarPregunta();
                                         getFragmentManager()
