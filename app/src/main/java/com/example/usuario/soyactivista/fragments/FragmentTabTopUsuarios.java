@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -50,7 +51,7 @@ public class FragmentTabTopUsuarios extends Fragment{
     private ParseUser currentUser = ParseUser.getCurrentUser();
     private RelativeLayout emptyLayout;
     private String entidad;
-
+private TextView vacio;
     public FragmentTabTopUsuarios() {
         // Required empty public constructor
     }
@@ -64,7 +65,7 @@ public class FragmentTabTopUsuarios extends Fragment{
         View v = inflater.inflate(R.layout.fragment_tab_top_usuarios, container, false);
 
         emptyLayout = (RelativeLayout)v.findViewById(R.id.emptyLayout);
-
+        vacio= (TextView) v.findViewById(R.id.textViewempty);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
 
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -87,6 +88,7 @@ public class FragmentTabTopUsuarios extends Fragment{
         recyclerView.setAdapter(adapter);
 
         initializeList();
+
 
         /*if(adapter.getItemCount() == 0)
         {
@@ -125,6 +127,10 @@ public class FragmentTabTopUsuarios extends Fragment{
                 if (e == null) { //no hay error
                     Usuario usuario;
                     Log.d(TAG,object.size()+" users retrieved.");
+                    if(object.size()<=0)
+                        vacio.setVisibility(View.VISIBLE);
+                    else
+                        vacio.setVisibility(View.GONE);
                     for (int i = 0; i < object.size(); i++) {
                         usuario = new Usuario();
                         usuario.setNombre(object.get(i).getString("nombre"));
@@ -152,6 +158,7 @@ public class FragmentTabTopUsuarios extends Fragment{
                 }
             }
         });
+
 
     }
 

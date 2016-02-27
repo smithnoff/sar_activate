@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -33,7 +32,6 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -41,8 +39,8 @@ import java.util.List;
 import java.util.Map;
 
 import logica.ColorHelpers;
-import logica.ErrorCodeHelpers;
 import logica.Entidad;
+import logica.ErrorCodeHelpers;
 import logica.ListarRankingEntidadesAdapter;
 import logica.TextHelpers;
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -190,7 +188,7 @@ public class FragmentTabTop5 extends Fragment {
             query = ParseQuery.getQuery("RankingEstados");
         }
 
-        query.whereGreaterThan("puntos", 0);
+        //query.whereGreaterThan("puntos", 0);
         query.setLimit(5);
         query.orderByDescending("puntos");
         query.findInBackground(new FindCallback<ParseObject>() {

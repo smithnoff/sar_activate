@@ -8,6 +8,16 @@
     android:orientation="vertical"
     android:background="#ffffff">
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="No Existen Usuarios Registrados en este Estado"
+        android:id="@+id/textViewempty"
+        android:layout_gravity="center_horizontal" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerListTopUsuarios"
         android:layout_width="match_parent"
