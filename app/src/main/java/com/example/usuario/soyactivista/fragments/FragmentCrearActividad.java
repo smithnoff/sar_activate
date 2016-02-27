@@ -55,10 +55,10 @@ public class FragmentCrearActividad extends Fragment {
     private String TAG = "CREAR-ACTIVIDAD";
     private TextView labelPuntaje, labelDescripcion, labelEstado, labelMunicipio, labelParroquia, labelFotos;
     private TextView textCharCountObjetive,inicio, fin;
-    private EditText puntaje, descripcion, objetivo, encargado, creador,   parroquia; // Edit Field holders
-    private Spinner nombre, ubicacion, estado, municipio; // Spinner holders
+    private EditText puntaje, descripcion, objetivo, encargado, creador; // Edit Field holders
+    private Spinner nombre, ubicacion, estado, municipio, parroquia; // Spinner holders
     private Button crear,cancelar; // Button holders
-    private ImageButton adjuntarFoto,calendarInicio,calendarFin; // Add Image Button.
+    private ImageButton adjuntarFoto; // Add Image Button.
     private ProgressDialog dialog;
     private ParseObject tipoActividad; // TipoActividad to be associated with Actividad
 
@@ -108,10 +108,7 @@ public class FragmentCrearActividad extends Fragment {
         creador = (EditText)v.findViewById(R.id.editCreador);
         inicio = (TextView)v.findViewById(R.id.textViewFechaInicio);
         fin = (TextView)v.findViewById(R.id.textViewFechaFin);
-        parroquia = (EditText)v.findViewById(R.id.editParroquia);
-        calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
-        calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
-            calendarFin.setEnabled(false);
+
         // Update CharCount on writting
         objetivo.addTextChangedListener(new TextWatcher() {
             @Override
@@ -128,39 +125,35 @@ public class FragmentCrearActividad extends Fragment {
             }
         });
 
-        calendarInicio.setOnClickListener(new View.OnClickListener() {
+        inicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                calendarFin.setSelected(false);
-                calendarFin.setEnabled(true);
-                calendarInicio.setSelected(true);
+                fin.setSelected(false);
+                fin.setEnabled(true);
+                inicio.setSelected(true);
                 DialogDatePicker picker2 = new DialogDatePicker();
 
                 picker2.show(getFragmentManager(), "Fecha de inicio");
-
-
-
             }
         });
 
-        calendarFin.setOnClickListener(new View.OnClickListener() {
+        fin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              calendarFin.setSelected(true);
-              calendarInicio.setSelected(false);
+              fin.setSelected(true);
+              inicio.setSelected(false);
                 DialogDatePicker picker2 = new DialogDatePicker();
                 picker2.show(getFragmentManager(), "Fecha de Fin");
-
-
             }
         });
+
         // Asigns Spinners to holders
         nombre = (Spinner)v.findViewById(R.id.spinNombreActividad);
         ubicacion = (Spinner)v.findViewById(R.id.spinUbicacion);
         estado = (Spinner)v.findViewById(R.id.spinEstado);
         municipio = (Spinner)v.findViewById(R.id.spinMunicipio);
-        //parroquia = (Spinner)v.findViewById(R.id.spinParroquia); Commented as will be used as Edit Text while data is parsed.
+        parroquia = (Spinner)v.findViewById(R.id.spinParroquia);
 
         // Asign Buttons to holders
         crear = (Button)v.findViewById(R.id.botonCrear);
@@ -249,6 +242,21 @@ public class FragmentCrearActividad extends Fragment {
             }
         });
 
+        municipio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                parroquia.setAdapter(null);
+                String nombreEstado = TextHelpers.NormalizeResource(estado.getSelectedItem().toString());
+                String nombreMunicipio = TextHelpers.NormalizeResource(municipio.getSelectedItem().toString());
+                Log.d(TAG,"Looking for resource:"+nombreEstado+"_"+nombreMunicipio);
+                int arrayId = getResources().getIdentifier(nombreEstado+"_"+nombreMunicipio, "array", getActivity().getPackageName());
+                llenarSpinnerdesdeId(parroquia, arrayId);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
         // Buttons Behavior
         adjuntarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -312,7 +320,7 @@ public class FragmentCrearActividad extends Fragment {
                             if (ubicacion.getSelectedItem().toString() == "Estadal" && estado.getSelectedItem() != null) {
                                 actividad.put("estado", estado.getSelectedItem().toString());
                                 actividad.put("municipio", municipio.getSelectedItem().toString());
-                                actividad.put("parroquia", parroquia.getText().toString());
+                                actividad.put("parroquia", parroquia.getSelectedItem().toString());
                             }
 
                             actividad.put("encargado", encargado.getText().toString());

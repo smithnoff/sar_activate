@@ -202,28 +202,14 @@
                 android:layout_marginTop="6dp"
                 android:text="@string/inicio"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:weightSum="4"
-                android:orientation="horizontal">
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="dd/MM/yyyy"
+                android:id="@+id/textViewFechaInicio" />
 
-                <TextView
-                    android:textSize="16dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="dd/MM/yyyy"
-                    android:id="@+id/textViewFechaInicio" />
-
-                <ImageButton
-                    android:layout_marginLeft="30dp"
-                    android:layout_width="wrap_content"
-                    android:id="@+id/imgCalendarInicio"
-                    android:src="@android:drawable/ic_menu_my_calendar"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
 
             <TextView
                 android:textSize="16dp"
@@ -232,28 +218,14 @@
                 android:layout_marginTop="6dp"
                 android:text="@string/fin"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:weightSum="4"
-                android:orientation="horizontal">
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="dd/MM/yyyy"
+                android:id="@+id/textViewFechaFin" />
 
-
-                <TextView
-                    android:textSize="16dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="dd/MM/yyyy"
-                    android:id="@+id/textViewFechaFin" />
-
-                <ImageButton
-                    android:layout_marginLeft="30dp"
-                    android:layout_width="wrap_content"
-                    android:id="@+id/imgCalendarFin"
-                    android:src="@android:drawable/ic_menu_my_calendar"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"

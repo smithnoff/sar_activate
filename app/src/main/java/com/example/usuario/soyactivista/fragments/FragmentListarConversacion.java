@@ -27,6 +27,7 @@ import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import logica.Conversacion;
@@ -81,7 +82,7 @@ public class FragmentListarConversacion extends Fragment {
                 datos.putStringArrayList("conversacionesAbiertas",conversacionesAbiertas);
                 Log.d(TAG, "Ids Usuarios: " + conversacionesAbiertas.toString());
 
-                Fragment fragment = new FragmentDirectorio(); //FragmentListarUsuariosConversacion();
+                Fragment fragment = new FragmentDirectorio();
                 fragment.setArguments(datos);
                 getFragmentManager()
                         .beginTransaction()
@@ -239,6 +240,7 @@ public class FragmentListarConversacion extends Fragment {
                             list.add(conversacion);
                         }
 
+                        Collections.sort(list);
                         Log.d(TAG, "Conversaciones Abiertas " + conversacionesAbiertas.size());
 
                         if(listarConversacionAdapter == null ){

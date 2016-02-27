@@ -78,8 +78,8 @@
     <string name="municipioSuscripcion">Municipio de Suscripción</string>
     <string name="comitePertenencia">Comité de Pertenencia</string>
     <string name="guardar">Guardar</string>
-    <string name="buscador">aqui buscas</string>
-    <string name="hintBuscador">Identificador de autor...</string>
+    <string name="buscador">Buscar</string>
+    <string name="hintBuscador">Identificador o nombre</string>
     <string name="rol_spinner_label">Rol</string>
     <string name="prueba">Prueba</string>
     <string name="finPartida">¡Fin de la partida!</string>
@@ -169,7 +169,7 @@
     <string name="filtroEstatus">Filtrar por estatus</string>
     <string name="filtroNacionales">Filtrar nacionales</string>
     <string name="filtroEstadales">Filtrar estadales</string>
-    <string name="filtroMeGusta">Filtrar por #meGusta</string>
+    <string name="filtroMeGusta">Filtrar cantidad de meGusta</string>
     <string name="filtroTodas">Mostrar todas</string>
     <string name="filtroActividadesPropias">Mis Actividades</string>
     <string name="eliminarConversacion">Eliminar conversación</string>
@@ -240,5 +240,10 @@
     <string name="archivo_a_cargar">Archivo a cargar:</string>
     <string name="seleccionar_archivo">Seleccionar archivo</string>
     <string name="cargar">Cargar</string>
+    <string name="ver_documentos_dispositivo">Ver Documentos en el Dispositivo</string>
+    <string name="descripcion_foto_perfil">Muestra la foto de perfil actual del usuario</string>
+    <string name="hint_fecha">dd/mm/yyyy</string>
+    <string name="puntos_trivia">Puntos trivia de formación</string>
+    <string name="puntos_actividades">Puntos por actividades realizadas</string>
 
 </resources>

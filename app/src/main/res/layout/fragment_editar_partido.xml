@@ -12,6 +12,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp">
+
         <ImageView
             android:id="@+id/photo_partido"
             android:layout_width="100dp"
@@ -19,7 +20,6 @@
             android:scaleType="centerCrop"
             android:background="@drawable/ic_edicion_partido"
             android:layout_gravity="center"
-
             android:backgroundTint="?colorPrimary"/>
 
         <Button

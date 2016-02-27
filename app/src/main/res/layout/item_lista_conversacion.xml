@@ -3,64 +3,53 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginTop="5dp"
-    android:layout_marginLeft="5dp">
+    android:padding="8dp">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-    <!-- Nombre del otro Usuario -->
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/valueNombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:layout_marginLeft="5dp"
-        android:textSize="18dp"
-        android:text="@string/nombreEjemplo"
-        />
-        </LinearLayout>
-    <!-- Separator -->
-    <View
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:background="@color/grisOscuro"
-        android:layout_toRightOf="@id/valueNombre"/>
 
-    <!-- Estado -->
-        <LinearLayout
-            android:orientation="horizontal"
+        <TextView
+            android:id="@+id/valueNombre"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/valueEstado"
-        android:layout_marginLeft="5dp"
-        android:textSize="12dp"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/valueNombre"
-        android:text="@string/estado"
-        />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp"
+            android:textSize="@dimen/txt_18sp"
+            android:text="@string/nombreEjemplo"
+            />
+        <!-- Separator -->
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:background="@color/grisOscuro"
+            android:layout_toRightOf="@id/valueNombre"/>
+
+        <!-- Estado -->
+        <TextView
+            android:id="@+id/valueEstado"
+            android:layout_marginLeft="5dp"
+            android:textSize="@dimen/txt_12sp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/valueNombre"
+            android:text="@string/estado"
+            />
     <!-- Municipio -->
 
-        <!--<TextView
+        <TextView
             android:id="@+id/valueMunicipio"
-            android:textSize="10dp"
+            android:textSize="@dimen/txt_10sp"
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/valueEstado"
             android:text="@string/municipio"
-            />-->
+            />
         </LinearLayout>
 
         <!-- Cargo -->
@@ -68,7 +57,7 @@
     <TextView
         android:id="@+id/valueCargo"
         android:layout_marginLeft="5dp"
-        android:textSize="13dp"
+        android:textSize="@dimen/txt_13sp"
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,7 +70,7 @@
     <TextView
         android:id="@+id/valueComite"
         android:layout_marginLeft="5dp"
-        android:textSize="13dp"
+        android:textSize="@dimen/txt_13sp"
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,7 +81,7 @@
     <TextView
         android:id="@+id/valueRol"
         android:layout_marginLeft="5dp"
-        android:textSize="13dp"
+        android:textSize="@dimen/txt_13sp"
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -103,15 +92,12 @@
     <TextView
         android:id="@+id/valueUltimaActividad"
         android:layout_marginLeft="5dp"
-        android:textSize="13dp"
+        android:textSize="@dimen/txt_13sp"
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/valueRol"
         android:text="@string/fechaEjemplo"
         />
-
-
-
 
 </LinearLayout>

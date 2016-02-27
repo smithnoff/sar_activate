@@ -51,24 +51,13 @@ public class DialogDatePicker extends DialogFragment
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         formattedDate = sdf.format(c.getTime());
 
-        if(((ImageButton)getActivity().findViewById(R.id.imgCalendarInicio)).isSelected()==true){
-
-
+        if(((TextView)getActivity().findViewById(R.id.textViewFechaInicio)).isSelected()==true){
             ((TextView)getActivity().findViewById(R.id.textViewFechaInicio)).setText(formattedDate);
-
-
         }
 
 
-        if(((ImageButton)getActivity().findViewById(R.id.imgCalendarFin)).isSelected()==true) {
-
-
+        if(((TextView)getActivity().findViewById(R.id.textViewFechaFin)).isSelected()==true) {
             ((TextView) getActivity().findViewById(R.id.textViewFechaFin)).setText(formattedDate);
-
         }
-
-
-
     }
-
-    }
+}

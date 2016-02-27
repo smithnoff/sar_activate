@@ -15,6 +15,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center">
+
                 <ImageView
                     android:id="@+id/photo_user"
                     android:layout_width="100dp"
@@ -22,6 +23,7 @@
                     android:scaleType="centerCrop"
                     android:background="@drawable/ic_edicion_partido"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/descripcion_foto_perfil"
                     android:backgroundTint="?colorPrimary"/>
 
                 <Button
@@ -127,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="@dimen/txt_18sp"
                 />
 
             <Spinner
@@ -149,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="@dimen/txt_18sp"
                 />
 
             <Spinner
@@ -163,18 +165,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/parroquiaSuscripcion"/>
-
-            <EditText
-                android:id="@+id/editParroquia"
-                android:text= "@string/parroquiaEjemplo"
+            
+            <TextView
+                android:id="@+id/valueParroquia"
+                android:text="@string/parroquiaEjemplo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="18dp"
-                android:enabled="false"
-
+                android:textSize="@dimen/txt_18sp"
                 />
+            
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinParroquia"
+                android:visibility="gone"/>
+
 
             <TextView
                 android:layout_width="fill_parent"
@@ -189,7 +196,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="@dimen/txt_18sp"
                 />
 
             <Spinner
@@ -211,7 +218,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="@dimen/txt_18sp"
                 />
 
             <Spinner
@@ -219,6 +226,32 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/spinRol"
                 android:visibility="gone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/puntos_trivia"
+                />
+
+            <TextView
+                android:id="@+id/puntos_trivia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/puntosEjemplo"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/puntos_actividades"
+                />
+
+            <TextView
+                android:id="@+id/puntos_activismo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/puntosEjemplo"
+                />
 
 
             <LinearLayout

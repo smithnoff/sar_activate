@@ -56,7 +56,7 @@ public class FragmentDetalleActividad extends Fragment {
 
     private Button botonGuardar, botonEditar, botonEliminar, botonCancelar; // Button holders
 
-    private ImageButton botonMeGusta, botonNoMeGusta, botonAgregarImagenes, botonRemoverImagenes,calendarInicio,calendarFin;
+    private ImageButton botonMeGusta, botonNoMeGusta, botonAgregarImagenes, botonRemoverImagenes;
 
     private ImageView imagen1,imagen2,imagen3,imagen4;
 
@@ -183,28 +183,25 @@ public class FragmentDetalleActividad extends Fragment {
             estatus.setSelection(0);
         else
             estatus.setSelection(1);
-        calendarInicio= (ImageButton) v.findViewById(R.id.imgCalendarInicio);
-        calendarFin= (ImageButton) v.findViewById(R.id.imgCalendarFin);
-        calendarFin.setEnabled(false);
-        calendarInicio.setOnClickListener(new View.OnClickListener() {
+
+        fechaFin.setEnabled(false);
+        fechaInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calendarFin.setSelected(false);
-                calendarInicio.setSelected(true);
-                calendarFin.setEnabled(true);
+                fechaFin.setSelected(false);
+                fechaInicio.setSelected(true);
+                fechaFin.setEnabled(true);
                 DialogDatePicker picker2 = new DialogDatePicker();
 
                 picker2.show(getFragmentManager(), "Fecha de inicio");
-
-
             }
         });
 
-        calendarFin.setOnClickListener(new View.OnClickListener() {
+        fechaFin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calendarFin.setSelected(true);
-                calendarInicio.setSelected(false);
+                fechaFin.setSelected(true);
+                fechaInicio.setSelected(false);
                 DialogDatePicker picker2 = new DialogDatePicker();
                 picker2.show(getFragmentManager(), "Fecha de Fin");
 
@@ -594,7 +591,7 @@ public class FragmentDetalleActividad extends Fragment {
                         if (options[seleccion] == "Tomar foto") {
                             tomarFoto();
                         } else if (options[seleccion] == "Elegir de galeria") {
-                            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                             intent.setType("image/*");
                             startActivityForResult(intent.createChooser(intent, "Selecciona app de imagen"), SELECT_PICTURE);
                         } else if (options[seleccion] == "Cancelar") {

@@ -33,8 +33,8 @@ public class FragmentCrearUsuario extends Fragment {
 
     // Variable Declaration
     private String TAG = "FragmentCrearUsuario"; // For Log.d
-    private EditText editUsername, editNombre, editApellido, editEmail, editCargo, editParroquia;
-    private Spinner spinEstado, spinMunicipio, spinComite, spinRol;
+    private EditText editUsername, editNombre, editApellido, editEmail, editCargo;
+    private Spinner spinEstado, spinMunicipio, spinParroquia, spinComite, spinRol;
     private Button buttonRegistrar;
     private ProgressDialog progressDialog;
 
@@ -49,20 +49,20 @@ public class FragmentCrearUsuario extends Fragment {
         editApellido = (EditText)v.findViewById(R.id.editApellido);
         editEmail = (EditText)v.findViewById(R.id.editEmail);
         editCargo = (EditText)v.findViewById(R.id.editCargo);
-        editParroquia = (EditText)v.findViewById(R.id.editParroquia);
 
 
         spinEstado = (Spinner)v.findViewById(R.id.spinEstado);
         spinMunicipio = (Spinner)v.findViewById(R.id.spinMunicipio);
         spinComite = (Spinner)v.findViewById(R.id.spinComite);
         spinRol = (Spinner)v.findViewById(R.id.spinRol);
+        spinParroquia = (Spinner)v.findViewById(R.id.spinParroquia);
 
         buttonRegistrar = (Button)v.findViewById(R.id.buttonRegistrar);
 
         // Load Spinners
         fillSpinnerfromResource(spinEstado,R.array.Estados);
-        fillSpinnerfromResource(spinComite,R.array.Comite);
-       fillSpinnerfromResource(spinRol, R.array.Roles);
+        fillSpinnerfromResource(spinComite, R.array.comites);
+        fillSpinnerfromResource(spinRol, R.array.Roles);
 
         // Fill Municipios on Estado Selected
         spinEstado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -70,10 +70,24 @@ public class FragmentCrearUsuario extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 spinMunicipio.setAdapter(null);
-                // TODO: 11/02/2016 error no trae los municipios
                 String nombreEstado = TextHelpers.NormalizeResource(spinEstado.getSelectedItem().toString());
                 int arrayId = getResources().getIdentifier(nombreEstado, "array", getActivity().getPackageName());
                 fillSpinnerfromResource(spinMunicipio,arrayId);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        spinMunicipio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                spinParroquia.setAdapter(null);
+                String nombreEstado = TextHelpers.NormalizeResource(spinEstado.getSelectedItem().toString());
+                String nombreMunicipio = TextHelpers.NormalizeResource(spinMunicipio.getSelectedItem().toString());
+                Log.d(TAG,"Looking for resource:"+nombreEstado+"_"+nombreMunicipio);
+                int arrayId = getResources().getIdentifier(nombreEstado+"_"+nombreMunicipio, "array", getActivity().getPackageName());
+                fillSpinnerfromResource(spinParroquia,arrayId);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
@@ -91,7 +105,6 @@ public class FragmentCrearUsuario extends Fragment {
                         && editApellido.getText().toString().trim().length() > 0
                         && editCargo.getText().toString().trim().length() > 0
                         && editEmail.getText().toString().trim().length() > 0
-                        && editParroquia.getText().toString().trim().length() > 0
                         ) {
 
                     // Validate email address matches pattern
@@ -115,7 +128,7 @@ public class FragmentCrearUsuario extends Fragment {
                                 params.put("cargo", editCargo.getText().toString());
                                 params.put("estado", spinEstado.getSelectedItem().toString());
                                 params.put("municipio", spinMunicipio.getSelectedItem().toString());
-                                params.put("parroquia", editParroquia.getText().toString());
+                                params.put("parroquia", spinParroquia.getSelectedItem().toString());
                                 params.put("comite", spinComite.getSelectedItem().toString());
                                 params.put("rol", String.valueOf(spinRol.getSelectedItemPosition()));
                                 ParseCloud.callFunctionInBackground("createUser", params, new FunctionCallback<Map<String, Object>>() {

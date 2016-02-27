@@ -41,6 +41,7 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 ParseQuery query = new ParseQuery("Actividad");
+                query.orderByDescending("createdAt");
                 query.include("tipoActividad");
                 query.include("creador");
                 return query;
@@ -362,10 +363,7 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
 
         return v;
     }
-
-
 }
-
 
  class ViewHolder {
 
@@ -373,5 +371,4 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
       ImageButton botonMeGusta, botonNoMeGusta;
       ImageView imageView1,imageView2,imageView3,imageView4;
       View separator;
-
  }

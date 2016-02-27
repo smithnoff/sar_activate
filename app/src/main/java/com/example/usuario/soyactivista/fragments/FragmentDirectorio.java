@@ -14,8 +14,10 @@ import android.widget.ListView;
 import com.parse.ParseUser;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
+import logica.TextHelpers;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -33,9 +35,14 @@ public class FragmentDirectorio extends Fragment {
     private ParseUser currentUser = ParseUser.getCurrentUser();
 
     // Vars to populate list
-    private int userLevel;
-    private int currentLevel;
-    private int desiredLevel;
+    private int userLevel = 0;
+    private int currentLevel = 0;
+    private int desiredLevel = 0;
+    private String estado;
+    private String municipio;
+    private String parroquia;
+    private String lastSelectedType;
+    private String lastSelectedValue;
 
     private Boolean seleccionComite = true;
 
@@ -54,9 +61,10 @@ public class FragmentDirectorio extends Fragment {
         listView = (ListView) view.findViewById(R.id.estadalListView);
 
         // Calculate which options to show
-        final String [] comites = getActivity().getResources().getStringArray(R.array.comites);
+        String [] comites = getActivity().getResources().getStringArray(R.array.comites);
 
-        userLevel = comiteToInt(currentUser.getString("comite"));
+        userLevel = TextHelpers.comiteToInt(currentUser.getString("comite"));
+        Log.d(TAG,"Setting user level: Comite "+currentUser.getString("comite")+" Level:"+userLevel);
 
         int showLevel = userLevel;
 
@@ -65,9 +73,11 @@ public class FragmentDirectorio extends Fragment {
 
         String [] comitesFiltrados = Arrays.copyOfRange(comites,showLevel,comites.length);
 
+        ArrayList<String> lista = new ArrayList<String>(Arrays.asList(comitesFiltrados)); // Trying to circunvent crit error on adapter init wth array
+
         Log.d(TAG,"Comites Filtrados contains: "+Arrays.toString(comitesFiltrados) );
 
-        adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, comitesFiltrados);
+        adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,lista);
 
         listView.setAdapter(adapter);
 
@@ -75,16 +85,18 @@ public class FragmentDirectorio extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                if (seleccionComite){ // Check if it is first selection ( Comite )
-                    seleccionComite = false;
-                    String comiteSeleccionado = adapter.getItem(position);
-                    desiredLevel = position;
-                    siguientePasoDirectorio();
+                Log.d(TAG,"Element Selected "+adapter.getItem(position));
+
+                if (seleccionComite){ // Check if it is first selection
+                    primerPasoDirectorio(position);
                 }
                 else{
+                    // Save Selection
+                    guardarSeleccion(position);
+
+                    // Load Next Step
                     siguientePasoDirectorio();
                 }
-
             }
         });
 
@@ -93,106 +105,131 @@ public class FragmentDirectorio extends Fragment {
         return view;
     }
 
-    private void siguientePasoDirectorio() {
+    private void guardarSeleccion(int posicion) {
+        int passLevel = currentLevel-1;
+        Log.d(TAG,"SAving Selection for level "+passLevel);
+        lastSelectedType = TextHelpers.comiteToString(passLevel);
+        lastSelectedValue = adapter.getItem(posicion);
 
-        // Check if needs to show users now
-        if ( desiredLevel < userLevel ){
-            adapter= new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Estados));
-           listView.setAdapter(adapter);
-        }
-
-    }
-
-    // translates a comite string into int
-    public int comiteToInt(String comite ){
-
-        int result;
-        switch (comite){
-            case "Nacional":
-                result = 0;
-                break;
+        switch (lastSelectedType){
             case "Estadal":
-                result = 1;
+                estado = adapter.getItem(posicion);
                 break;
             case "Municipal":
-                result = 2;
+                municipio = adapter.getItem(posicion);
                 break;
             case "Parroquial":
-                result = 3;
+                parroquia = adapter.getItem(posicion);
                 break;
-            case "Registro":
-                result = 4;
-                break;
-            case "Activista": // Same as Default
             default:
-                result = 5;
+                Log.d(TAG,"Defaulting when saving selection.");
                 break;
         }
 
-        return result;
     }
 
+    private void primerPasoDirectorio(int position) {
+        seleccionComite = false;
+        desiredLevel = position;
 
-    public String comiteToString(int comite){
-
-        String result;
-        switch (comite){
-            case 0:
-                result = "Nacional";
-                break;
-            case 1:
-                result = "Estadal";
-                break;
-            case 2:
-                result = "Municipal";
-                break;
-            case 3:
-                result = "Parroquial";
-                break;
-            case 4:
-                result = "Registro";
-                break;
-            case 5: // Same as default
-            default:
-                result = "Activista";
-                break;
-
+        Log.d(TAG,"Initializing Levels. UserLevel:"+userLevel+" Desired Level:"+desiredLevel);
+        // Check if needs to show users now
+        if ( desiredLevel < userLevel ){
+            // Show Users
+            // Set Arguments
+            Bundle data = setFilterBundle();
+            // Redirect View to next Fragment
+            Fragment fragment = new FragmentListarUsuariosConversacion();
+            fragment.setArguments(data);
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.content_frame, fragment)
+                    .commit();
         }
-        return result;
-    }
-
-
-
-    public int getNivel(String comite)
-    {
-        int nivel=0;
-        if(comite=="Nacional" || currentUser.getInt("rol")==1)
-        {
-            nivel = 5;
-            return nivel;
-        }
-        else
-        {
-            switch (comite)
-            {
-                case "Estadal":
-                    nivel = 4;
-                    return nivel;
-                case "Municipal":
-                    nivel = 3;
-                    return nivel;
-                case "Parroquial":
-                    nivel = 2;
-                    return nivel;
-                case "Activista":
-                    nivel = 1;
-                    return nivel;
+        else{
+            // Initialize Current Level
+            if( desiredLevel == userLevel){
+                currentLevel = desiredLevel;
+            }
+            else{
+                currentLevel = userLevel+1;
             }
 
+            lastSelectedType = "comite";
+            lastSelectedValue = TextHelpers.comiteToString(desiredLevel);
+            Log.d(TAG,"Initial Current Level:"+currentLevel);
+            siguientePasoDirectorio();
         }
-        return nivel;
+
     }
 
+    // Prepares Complete Bundle to Filter Users
+    private Bundle setFilterBundle() {
+        Bundle data = new Bundle();
+        data.putString("comite",TextHelpers.comiteToString(desiredLevel));
+        data.putString("estado", estado);
+        data.putString("municipio", municipio);
+        data.putString("parroquia",parroquia);
+        data.putStringArrayList("conversacionesAbiertas",getArguments().getStringArrayList("conversacionesAbiertas"));
+        return data;
 
+    }
 
+    private void siguientePasoDirectorio() {
+
+        Log.d(TAG,"Routing Next Step. Current Level "+currentLevel+" Desired Level "+desiredLevel);
+
+        if(currentLevel > desiredLevel || desiredLevel == 0 || desiredLevel == 4 || desiredLevel == 5 ){ // Show User List.
+            // Set Arguments
+            Bundle data = setFilterBundle();
+            // Redirect View to next Fragment
+            Fragment fragment = new FragmentListarUsuariosConversacion();
+            fragment.setArguments(data);
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.content_frame, fragment)
+                    .commit();
+        }
+        else{ // List options
+
+            Log.d(TAG,"Refreshing List");
+            switch(currentLevel){
+                case 1: // Comite Estadal
+                    String [] estados = getActivity().getResources().getStringArray(R.array.Estados);
+                    adapter.clear();
+                    adapter.addAll(estados);
+                    adapter.notifyDataSetChanged();
+                    break;
+                case 2: // Comite Municipal
+                    if(estado == null)
+                        estado = currentUser.getString("estado");
+                    Log.d(TAG,"Looking for Estado:"+estado);
+                    int idEstado = getResources().getIdentifier(TextHelpers.NormalizeResource(estado), "array", getActivity().getPackageName());
+                    String [] municipios = getActivity().getResources().getStringArray(idEstado);
+                    adapter.clear();
+                    adapter.addAll(municipios);
+                    adapter.notifyDataSetChanged();
+                    break;
+                case 3: // Comite Parroquial
+                    if(estado == null)
+                        estado = currentUser.getString("estado");
+                    if(municipio == null)
+                        municipio = currentUser.getString("municipio");
+                    Log.d(TAG,"Looking for Municipio:"+municipio+" of Estado:"+estado);
+                    String recurso = TextHelpers.NormalizeResource(estado)+"_"+TextHelpers.NormalizeResource(municipio);
+                    Log.d(TAG,"Looking for resource:"+recurso);
+                    int idMunicipio = getResources().getIdentifier(recurso, "array", getActivity().getPackageName());
+                    String [] parroquias = getActivity().getResources().getStringArray(idMunicipio);
+                    adapter.clear();
+                    adapter.addAll(parroquias);
+                    adapter.notifyDataSetChanged();
+                    break;
+                default:
+                    Log.e(TAG,"Error List Refresh Defaulted");
+                    break;
+            }
+            currentLevel = currentLevel+1;
+
+        }
+    }
 }

@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import logica.ListarUsuarioAdapter;
 import logica.ListarUsuarioJerarquiaAdapter;
 import logica.Usuario;
 import soy_activista.quartzapp.com.soy_activista.R;
@@ -46,6 +45,12 @@ public class FragmentListarUsuariosConversacion extends Fragment{
     private ArrayList<Usuario> usuarioArrayList = new ArrayList<>();
     private ParseUser currentUser;
     private ArrayList<String> conversacionesAbiertas;
+
+    // Filter Vars
+    private String comite;
+    private String estado;
+    private String municipio;
+    private String parroquia;
 
     // Buttons
     FloatingActionButton botonCrearUsuario;
@@ -68,6 +73,8 @@ public class FragmentListarUsuariosConversacion extends Fragment{
         botonCrearUsuario.setVisibility(View.GONE);
 
         currentUser = ParseUser.getCurrentUser();
+
+        getFilterBundle(); // Get filter variables-
 
         // load already opened conversations
         conversacionesAbiertas = new ArrayList<>(getArguments().getStringArrayList("conversacionesAbiertas"));
@@ -115,6 +122,31 @@ public class FragmentListarUsuariosConversacion extends Fragment{
         setHasOptionsMenu(true);
 
         return view;
+    }
+
+    //Retrieve Arguments and set up Filters
+    private void getFilterBundle() {
+        Bundle data = getArguments();
+
+        if(data.getString("comite") != null){
+            comite = data.getString("comite");
+            Log.d(TAG,"Retrived Comite:"+comite);
+        }
+
+        if(data.getString("estado") != null){
+            estado = data.getString("estado");
+            Log.d(TAG,"Retrived Estado:"+estado);
+        }
+
+        if(data.getString("municipio") != null){
+            municipio = data.getString("municipio");
+            Log.d(TAG,"Retrived Municipio:"+municipio);
+        }
+
+        if(data.getString("parroquia") != null){
+            parroquia = data.getString("parroquia");
+            Log.d(TAG,"Retrived Parroquia:"+parroquia);
+        }
     }
 
     @Override
@@ -190,137 +222,18 @@ public class FragmentListarUsuariosConversacion extends Fragment{
     // Initializes list and sets listView adapter to the newly createde adapter.
     public void initializeList(final ArrayList<Usuario> list){
 
-        List<ParseQuery<ParseUser>> queries = new ArrayList<ParseQuery<ParseUser>>();
+        dialog = ProgressDialog.show(getContext(),"Buscando Usuarios","Cargando",true);
 
-        switch (getArguments().getString("comite")){
-            case "Estadal":
+        ParseQuery mainQuery = new ParseQuery("_User");
 
-                // Users from Comité Nacinal.
-                ParseQuery<ParseUser> query0 = ParseUser.getQuery();
-                query0.whereEqualTo("comite", "Nacional");
-                queries.add(query0);
-
-                // Users from Comité Estadal.
-                ParseQuery<ParseUser> query1 = ParseUser.getQuery();
-                query1.whereEqualTo("comite","Estadal");
-                queries.add(query1);
-
-                // Users from Comité Municipal from my State.
-                ParseQuery<ParseUser> query2 = ParseUser.getQuery();
-                query2.whereEqualTo("comite","Municipal");
-                query2.whereEqualTo("estado",currentUser.getString("estado"));
-                queries.add(query2);
-
-                // Users from Comité Parroquial from my State.
-                ParseQuery<ParseUser> query3 = ParseUser.getQuery();
-                query3.whereEqualTo("comite","Parroquial");
-                query3.whereEqualTo("estado",currentUser.getString("estado"));
-                queries.add(query3);
-
-                // Users from Activista from my State.
-                ParseQuery<ParseUser> query4 = ParseUser.getQuery();
-                query4.whereEqualTo("comite","Activista");
-                query4.whereEqualTo("estado",currentUser.getString("estado"));
-                queries.add(query4);
-
-                break;
-
-            case "Municipal":
-                // Users from Comité Estadal from my state.
-                ParseQuery<ParseUser> query00 = ParseUser.getQuery();
-                query00.whereEqualTo("comite", "Estadal");
-                query00.whereEqualTo("estado",currentUser.getString("estado"));
-                queries.add(query00);
-
-                // Users from Comité Municipal from my State.
-                ParseQuery<ParseUser> query11 = ParseUser.getQuery();
-                query11.whereEqualTo("comite","Municipal");
-                query11.whereEqualTo("estado",currentUser.getString("estado"));
-                queries.add(query11);
-
-                // Users from Comité Parroquial from my State.
-                ParseQuery<ParseUser> query22 = ParseUser.getQuery();
-                query22.whereEqualTo("comite","Parroquial");
-                query22.whereEqualTo("estado",currentUser.getString("estado"));
-                query22.whereEqualTo("municipio",currentUser.getString("municipio"));
-                queries.add(query22);
-
-                // Users from Activista from my Municipio.
-                ParseQuery<ParseUser> query33 = ParseUser.getQuery();
-                query33.whereEqualTo("comite","Activista");
-                query33.whereEqualTo("estado",currentUser.getString("estado"));
-                query33.whereEqualTo("municipio",currentUser.getString("municipio"));
-                queries.add(query33);
-
-                break;
-
-            case "Parroquial":
-
-                // Users from Comité Municipal from my State.
-                ParseQuery<ParseUser> query000= ParseUser.getQuery();
-                query000.whereEqualTo("comite","Municipal");
-                query000.whereEqualTo("estado",currentUser.getString("estado"));
-                query000.whereEqualTo("municipio",currentUser.getString("municipio"));
-                queries.add(query000);
-
-                // Users from Comité Parroquial from my State.
-                ParseQuery<ParseUser> query111 = ParseUser.getQuery();
-                query111.whereEqualTo("comite","Parroquial");
-                query111.whereEqualTo("estado",currentUser.getString("estado"));
-                query111.whereEqualTo("municipio",currentUser.getString("municipio"));
-                queries.add(query111);
-
-                //User from Activista from my Municipio
-                ParseQuery<ParseUser> query222 = ParseUser.getQuery();
-                query222.whereEqualTo("comite","Activista");
-                query222.whereEqualTo("estado",currentUser.getString("estado"));
-                query222.whereEqualTo("municipio",currentUser.getString("municipio"));
-                queries.add(query222);
-
-                //User from Activista from my Parroquia
-                ParseQuery<ParseUser> query333 = ParseUser.getQuery();
-                query333.whereEqualTo("comite","Activista");
-                query333.whereEqualTo("estado",currentUser.getString("estado"));
-                query333.whereEqualTo("municipio",currentUser.getString("municipio"));
-                query333.whereEqualTo("parroquia",currentUser.getString("parroquia"));
-                queries.add(query333);
-
-                break;
-            case "Activista":
-
-                //Users from Comite Parroquial from my State
-                ParseQuery<ParseUser> query0000 = ParseUser.getQuery();
-                query0000.whereEqualTo("comite","Parroquial");
-                query0000.whereEqualTo("estado",currentUser.getString("estado"));
-                query0000.whereEqualTo("municipio",currentUser.getString("municipio"));
-                queries.add(query0000);
-
-                //User from Activista from my Municipio
-                ParseQuery<ParseUser> query1111 = ParseUser.getQuery();
-                query1111.whereEqualTo("comite","Activista");
-                query1111.whereEqualTo("estado",currentUser.getString("estado"));
-                query1111.whereEqualTo("municipio",currentUser.getString("municipio"));
-                queries.add(query1111);
-
-                //User from Activista from my Parroquia
-                ParseQuery<ParseUser> query2222 = ParseUser.getQuery();
-                query2222.whereEqualTo("comite","Activista");
-                query2222.whereEqualTo("estado",currentUser.getString("estado"));
-                query2222.whereEqualTo("municipio",currentUser.getString("municipio"));
-                query2222.whereEqualTo("parroquia",currentUser.getString("parroquia"));
-                queries.add(query2222);
-
-                break;
-            default:
-                break;
-        }
-
-        ParseQuery<ParseUser> mainQuery;
-
-        if(!queries.isEmpty())
-            mainQuery = ParseQuery.or(queries);
-        else
-            mainQuery = ParseUser.getQuery();
+        if(comite != null)
+            mainQuery.whereEqualTo("comite", comite);
+        if(estado != null)
+            mainQuery.whereEqualTo("estado",estado);
+        if(municipio != null)
+            mainQuery.whereEqualTo("municipio",municipio);
+        if(parroquia != null)
+            mainQuery.whereEqualTo("parroquia",parroquia);
 
         Log.d(TAG,"Current user is: "+currentUser.getUsername());
         mainQuery.whereNotContainedIn("objectId",conversacionesAbiertas);

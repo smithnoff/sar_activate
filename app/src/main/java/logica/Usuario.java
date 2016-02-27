@@ -20,6 +20,8 @@ public class Usuario {
     private String comite;
     private String email;
     private int puntosActivismo;
+
+    private int puntos;
     private ParseFile foto;
 
 
@@ -137,4 +139,14 @@ public class Usuario {
     public void setFoto(ParseFile foto) {
         this.foto = foto;
     }
+
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
+
 }

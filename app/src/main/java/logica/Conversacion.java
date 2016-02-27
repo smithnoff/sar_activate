@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by Luis Adrian on 16/12/2015.
  */
-public class Conversacion {
+public class Conversacion implements Comparable<Conversacion> {
 
     public Usuario usuario;
     private String id;
@@ -33,4 +33,13 @@ public class Conversacion {
     }
 
 
+    @Override
+    public int compareTo(Conversacion another) {
+        if(this.ultimaActividad.before(another.getUltimaActividad()))
+            return 1;
+        else if(this.ultimaActividad.after(another.getUltimaActividad()))
+            return -1;
+        else
+            return 0;
+    }
 }

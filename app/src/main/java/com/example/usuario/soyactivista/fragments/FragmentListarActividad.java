@@ -52,7 +52,6 @@ public class FragmentListarActividad extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         // Inflate View
         final View view = inflater.inflate(R.layout.fragment_listar_actividad, container, false);
 
@@ -225,6 +224,7 @@ public class FragmentListarActividad extends Fragment {
         switch (item.getItemId()) {
 
             case R.id.filtroEstatus:
+
                 // Generate List Holder
                 final AlertDialog alertDialogEstatus;
                 AlertDialog.Builder builderEstatus = new AlertDialog.Builder(getActivity());

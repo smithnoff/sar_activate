@@ -103,9 +103,12 @@ public class FragmentListarUsuario extends Fragment{
                     datos.putString("email", usuario.getEmail());
                     datos.putString("estado", usuario.getEstado());
                     datos.putString("municipio", usuario.getMunicipio());
+                    datos.putString("parroquia", usuario.getParroquia());
                     datos.putString("cargo", usuario.getCargo());
                     datos.putString("comite", usuario.getComite());
                     datos.putString("rol", usuario.getRolName());
+                    datos.putInt("puntos", usuario.getPuntos());
+                    datos.putInt("puntosActivismo", usuario.getPuntosActivismo());
 
                     // Redirect View to next Fragment
                     Fragment fragment = new FragmentEditarUsuario();
@@ -231,6 +234,8 @@ public class FragmentListarUsuario extends Fragment{
                         usuario.setParroquia( object.get(i).getString("parroquia"));
                         usuario.setComite(object.get(i).getString("comite"));
                         usuario.setRol(object.get(i).getInt("rol"));
+                        usuario.setPuntosActivismo(object.get(i).getInt("puntosActivismo"));
+                        usuario.setPuntos(object.get(i).getInt("puntos"));
                         list.add(usuario);
                     }
                     Log.d(TAG, "List have " + list.size() + " items.");
@@ -245,7 +250,5 @@ public class FragmentListarUsuario extends Fragment{
                 }
             }
         });
-
     }
-
 }

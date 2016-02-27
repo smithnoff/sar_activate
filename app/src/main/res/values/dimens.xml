@@ -40,4 +40,6 @@
     <dimen name="txt_18sp">18sp</dimen>
     <dimen name="txt_20sp">20sp</dimen>
     <dimen name="estadisticasTriviaGrande">35sp</dimen>
+    <dimen name="txt_12sp">12sp</dimen>
+    <dimen name="txt_10sp">10sp</dimen>
 </resources>

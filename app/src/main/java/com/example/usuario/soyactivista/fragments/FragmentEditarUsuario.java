@@ -57,9 +57,9 @@ public class FragmentEditarUsuario extends Fragment {
     String TAG = "FragmentEditarUsuario"; // For Log.d
 
     private String userID;
-    private EditText editUsername, editNombre, editApellido, editEmail, editCargo, editParroquia;
-    private TextView valueEstado, valueMunicipio, valueComite, valueRol;
-    private Spinner spinEstado, spinMunicipio, spinComite, spinRol;
+    private EditText editUsername, editNombre, editApellido, editEmail, editCargo;
+    private TextView valueEstado, valueMunicipio,valueParroquia, valueComite, valueRol,puntosActivismo,puntosTrivia;
+    private Spinner spinEstado, spinMunicipio, spinParroquia, spinComite, spinRol;
     private Button buttonEditar, buttonGuardar, buttonEliminar, editPhoto;
     private ProgressDialog progressDialog;
     private ImageView photoUser;
@@ -87,17 +87,20 @@ public class FragmentEditarUsuario extends Fragment {
         editApellido = (EditText) v.findViewById(R.id.editApellido);
         editEmail = (EditText) v.findViewById(R.id.editEmail);
         editCargo = (EditText) v.findViewById(R.id.editCargo);
-        editParroquia = (EditText) v.findViewById(R.id.editParroquia);
 
         valueEstado = (TextView) v.findViewById(R.id.valueEstado);
         valueMunicipio = (TextView) v.findViewById(R.id.valueMunicipio);
+        valueParroquia = (TextView) v.findViewById(R.id.valueParroquia);
         valueComite = (TextView) v.findViewById(R.id.valueComite);
         valueRol = (TextView) v.findViewById(R.id.valueRol);
+        puntosActivismo = (TextView) v.findViewById(R.id.puntos_activismo);
+        puntosTrivia = (TextView) v.findViewById(R.id.puntos_trivia);
 
         spinEstado = (Spinner) v.findViewById(R.id.spinEstado);
         spinMunicipio = (Spinner) v.findViewById(R.id.spinMunicipio);
         spinComite = (Spinner) v.findViewById(R.id.spinComite);
         spinRol = (Spinner) v.findViewById(R.id.spinRol);
+        spinParroquia = (Spinner) v.findViewById(R.id.spinParroquia);
 
         buttonEditar = (Button) v.findViewById(R.id.buttonEditar);
         buttonGuardar = (Button) v.findViewById(R.id.buttonGuardar);
@@ -118,7 +121,7 @@ public class FragmentEditarUsuario extends Fragment {
 
         // Load Spinners
         fillSpinnerfromResource(spinEstado, R.array.Estados);
-        fillSpinnerfromResource(spinComite, R.array.Comite);
+        fillSpinnerfromResource(spinComite, R.array.comites);
         fillSpinnerfromResource(spinRol, R.array.Roles);
 
         // Fill Municipios on Estado Selected
@@ -136,6 +139,21 @@ public class FragmentEditarUsuario extends Fragment {
             }
         });
 
+        spinMunicipio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                spinParroquia.setAdapter(null);
+                String nombreEstado = TextHelpers.NormalizeResource(spinEstado.getSelectedItem().toString());
+                String nombreMunicipio = TextHelpers.NormalizeResource(spinMunicipio.getSelectedItem().toString());
+                Log.d(TAG,"Looking for resource:"+nombreEstado+"_"+nombreMunicipio);
+                int arrayId = getResources().getIdentifier(nombreEstado+"_"+nombreMunicipio, "array", getActivity().getPackageName());
+                fillSpinnerfromResource(spinParroquia,arrayId);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
         // Fill from Arguments if not empty
         if (getArguments() != null) {
             editUsername.setText(getArguments().getString("username"));
@@ -145,8 +163,11 @@ public class FragmentEditarUsuario extends Fragment {
             editCargo.setText(getArguments().getString("cargo"));
             valueEstado.setText(getArguments().getString("estado"));
             valueMunicipio.setText(getArguments().getString("municipio"));
+            valueParroquia.setText(getArguments().getString("parroquia"));
             valueComite.setText(getArguments().getString("comite"));
             valueRol.setText(getArguments().getString("rol"));
+            puntosActivismo.setText(String.valueOf(getArguments().getInt("puntosActivismo")));
+            puntosTrivia.setText(String.valueOf(getArguments().getInt("puntos")));
         }
         // Fill From current user
         else {
@@ -165,7 +186,10 @@ public class FragmentEditarUsuario extends Fragment {
             editCargo.setText(currentUser.getString("cargo"));
             valueEstado.setText(currentUser.getString("estado"));
             valueMunicipio.setText(currentUser.getString("municipio"));
+            valueParroquia.setText(currentUser.getString("parroquia"));
             valueComite.setText(currentUser.getString("comite"));
+            puntosActivismo.setText(String.valueOf(currentUser.getInt("puntosActivismo")));
+            puntosTrivia.setText(String.valueOf(currentUser.getInt("puntos")));
 
             ParseFile foto = currentUser.getParseFile("fotoPerfil");
             if (foto != null)
@@ -205,17 +229,18 @@ public class FragmentEditarUsuario extends Fragment {
                     editApellido.setEnabled(true);
                     editEmail.setEnabled(true);
                     editCargo.setEnabled(true);
-                    editParroquia.setEnabled(true);
 
                     // Hide All Values
                     valueEstado.setVisibility(View.GONE);
                     valueMunicipio.setVisibility(View.GONE);
+                    valueParroquia.setVisibility(View.GONE);
                     valueComite.setVisibility(View.GONE);
                     valueRol.setVisibility(View.GONE);
 
                     // Show all Spinners
                     spinEstado.setVisibility(View.VISIBLE);
                     spinMunicipio.setVisibility(View.VISIBLE);
+                    spinParroquia.setVisibility(View.VISIBLE);
                     spinComite.setVisibility(View.VISIBLE);
                     spinRol.setVisibility(View.VISIBLE);
 
@@ -236,8 +261,7 @@ public class FragmentEditarUsuario extends Fragment {
                             && editApellido.getText().toString().trim().length() > 0
                             && editUsername.getText().toString().trim().length() > 0
                             && editEmail.getText().toString().trim().length() > 0
-                            && editCargo.getText().toString().trim().length() > 0
-                            && editParroquia.getText().toString().trim().length() > 0) {
+                            && editCargo.getText().toString().trim().length() > 0) {
 
                         // Validate Email matches pattern
                         if (editEmail.getText().toString().matches(emailPattern)) {
@@ -261,7 +285,7 @@ public class FragmentEditarUsuario extends Fragment {
                                         params.put("cargo", editCargo.getText().toString());
                                         params.put("estado", spinEstado.getSelectedItem().toString());
                                         params.put("municipio", spinMunicipio.getSelectedItem().toString());
-                                        params.put("parroquia", editParroquia.getText().toString());
+                                        params.put("parroquia", spinParroquia.getSelectedItem().toString());
                                         params.put("comite", spinComite.getSelectedItem().toString());
                                         params.put("rol", spinRol.getSelectedItemPosition());
 
@@ -333,7 +357,7 @@ public class FragmentEditarUsuario extends Fragment {
                                             currentUser.put("cargo", editCargo.getText().toString());
                                             currentUser.put("estado", spinEstado.getSelectedItem().toString());
                                             currentUser.put("municipio", spinMunicipio.getSelectedItem().toString());
-                                            currentUser.put("parroquia", editParroquia.getText().toString());
+                                            currentUser.put("parroquia", spinParroquia.getSelectedItem().toString());
                                             currentUser.put("comite", spinComite.getSelectedItem().toString());
                                             currentUser.put("rol", spinRol.getSelectedItemPosition());
 
@@ -404,11 +428,9 @@ public class FragmentEditarUsuario extends Fragment {
 
                         } else {
                             Toast.makeText(getContext(), "Correo Inválido.", Toast.LENGTH_LONG).show();
-                            return;
                         }
                     } else {
                         Toast.makeText(getContext(), "No puede haber campos vacíos.", Toast.LENGTH_LONG).show();
-                        return;
                     }
                 }
             });
@@ -449,7 +471,7 @@ public class FragmentEditarUsuario extends Fragment {
                                                     .addToBackStack(null)
                                                     .commit();
                                         } else {
-                                            currentUser.logOut();
+                                            ParseUser.logOut();
                                             Toast.makeText(getActivity(), "Tu cuenta ha sido eliminada correctamente.", Toast.LENGTH_SHORT).show();
                                             // Redirect to init Screen
                                             Intent i = new Intent(getContext(), ActivityPantallaInicio.class);

@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="area_metropolitana_el_hatillo">
+        <item>El Hatillo</item>
+    </string-array>
+
+    <string-array name="area_metropolitana_chacao">
+        <item>Chacao</item>
+    </string-array>
+
+    <string-array name="area_metropolitana_baruta">
+        <item>El Cafetal</item>
+        <item>Las Minas</item>
+        <item>Nuestra Señora del Rosario</item>
+    </string-array>
+
+    <string-array name="area_metropolitana_libertador">
+        <item>Altagracia</item>
+        <item>Antímano</item>
+        <item>Caricuao</item>
+        <item>Catedral</item>
+        <item>Coche</item>
+        <item>El Junquito</item>
+        <item>El Paraíso</item>
+        <item>El Recreo</item>
+        <item>El Valle</item>
+        <item>La Candelaria</item>
+        <item>La Pastora</item>
+        <item>La Vega</item>
+        <item>Macarao</item>
+        <item>San Agustín</item>
+        <item>San Bernardino</item>
+        <item>San José</item>
+        <item>San Juan</item>
+        <item>San Pedro</item>
+        <item>Santa Rosalía</item>
+        <item>Santa Teresa</item>
+        <item>Sucre (Catia)</item>
+        <item>23 de Enero</item>
+    </string-array>
+
+    <string-array name="area_metropolitana_sucre">
+        <item>Leoncio Martínez</item>
+        <item>Petare</item>
+        <item>Caucagüita</item>
+        <item>Filas de Mariche</item>
+        <item>La Dolorita</item>
+    </string-array>
 
     <string-array name="amazonas_alto_orinoco">
         <item>Alto Orinoco</item>
@@ -2268,6 +2314,6 @@
         <item>Santa Rosalía</item>
         <item>Santa Teresa</item>
         <item>Sucre (Catia)</item>
-        <item>23 de enero</item>
+        <item>23 de Enero</item>
     </string-array>
 </resources>

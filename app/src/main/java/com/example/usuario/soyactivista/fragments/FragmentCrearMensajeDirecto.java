@@ -1,5 +1,6 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -53,6 +54,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import logica.ActivityPantallaMenu;
 import soy_activista.quartzapp.com.soy_activista.R;
 
 /**
@@ -103,8 +105,10 @@ public class FragmentCrearMensajeDirecto extends Fragment {
         //Choose fragment to inflate
         View v = inflater.inflate(R.layout.fragment_crear_mensaje, container, false);
 
-        //Gets Current User
-
+        // Set action bar title
+        ActionBar actionBar = getActivity().getActionBar();
+        if(actionBar != null)
+            actionBar.setTitle("Enviar Mensaje Directo");
 
         //Asign Visuals to Holders
 
