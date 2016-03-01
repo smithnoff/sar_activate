@@ -69,9 +69,9 @@ public class FragmentListarConversacion extends Fragment {
         botonCrearConversacion = (FloatingActionButton) view.findViewById(R.id.botonCrearConversacion);
 
 
-        Log.d(TAG,"List contains "+conversacionArrayList.size()+" elements");
+        Log.d(TAG, "List contains " + conversacionArrayList.size() + " elements");
 
-        initializeList(conversacionArrayList);
+      //  initializeList(conversacionArrayList);
 
 
         botonCrearConversacion.setOnClickListener(new View.OnClickListener() {
@@ -110,9 +110,12 @@ public class FragmentListarConversacion extends Fragment {
                 fragment.setArguments(datos);
                 getFragmentManager()
                         .beginTransaction()
-                        .replace(((ViewGroup)getView().getParent()).getId(), fragment)
                         .addToBackStack(null)
+                        .replace(((ViewGroup)getView().getParent()).getId(), fragment)
+
                         .commit();
+                listarConversacionAdapter.clear();
+                listarConversacionAdapter=null;
             }
 
         });
@@ -270,4 +273,9 @@ public class FragmentListarConversacion extends Fragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+      initializeList(conversacionArrayList);
+    }
 }
