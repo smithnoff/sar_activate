@@ -522,9 +522,9 @@ public class FragmentDetalleActividad extends Fragment {
                 actividadLiked.increment("meGusta");
                 actividadLiked.saveInBackground();
 
-
                 Log.d("DETALLE", "Value Likes; " + getArguments().getInt("meGusta"));
-                String procureLikes = String.valueOf(getArguments().getInt("meGusta")+1);
+                int meGusta = actividadLiked.getInt("meGusta");
+                String procureLikes = String.valueOf(meGusta/*+1*/);
                 textMeGusta.setText(procureLikes);
                 // Paint Like button green
                 botonMeGusta.setVisibility(View.GONE);
@@ -551,11 +551,10 @@ public class FragmentDetalleActividad extends Fragment {
                 query.getFirstInBackground(new GetCallback<ParseObject>() {
                     @Override
                     public void done(ParseObject object, ParseException e) {
-                        if(e == null){
+                        if (e == null) {
                             object.deleteInBackground();
-                        }
-                        else{
-                            Log.d(TAG,e.getMessage());
+                        } else {
+                            Log.d(TAG, e.getMessage());
                         }
                     }
                 });
@@ -564,7 +563,8 @@ public class FragmentDetalleActividad extends Fragment {
                 actividadLiked.saveInBackground();
 
                 Log.d("DETALLE", "Value Likes; " + getArguments().getInt("meGusta"));
-                String procureLikes = String.valueOf(getArguments().getInt("meGusta")-1);
+                int meGusta = actividadLiked.getInt("meGusta");
+                String procureLikes = String.valueOf(meGusta/*-1*/);
                 textMeGusta.setText(procureLikes);
 
                 // Paint Like button green
