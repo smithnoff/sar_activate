@@ -5,12 +5,16 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import soy_activista.quartzapp.com.soy_activista.R;
 
@@ -21,6 +25,7 @@ public class DialogDatePicker extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
     private String formattedDate;
    public DatePickerDialog dpd;
+    public Date ini, ending;
 
     DatePicker dp;
     @Override
@@ -45,6 +50,7 @@ public class DialogDatePicker extends DialogFragment
     public void onDateSet(DatePicker view, int year, int month, int day) {
         //set date
         Calendar c = Calendar.getInstance();
+        int dia = c.get(Calendar.DAY_OF_YEAR);
         c.set(year, month, day);
 
 
@@ -52,12 +58,13 @@ public class DialogDatePicker extends DialogFragment
         formattedDate = sdf.format(c.getTime());
 
         if(((TextView)getActivity().findViewById(R.id.textViewFechaInicio)).isSelected()==true){
-            ((TextView)getActivity().findViewById(R.id.textViewFechaInicio)).setText(formattedDate);
+            ((TextView) getActivity().findViewById(R.id.textViewFechaInicio)).setText(formattedDate);
         }
-
-
         if(((TextView)getActivity().findViewById(R.id.textViewFechaFin)).isSelected()==true) {
             ((TextView) getActivity().findViewById(R.id.textViewFechaFin)).setText(formattedDate);
         }
+
+
     }
+
 }
