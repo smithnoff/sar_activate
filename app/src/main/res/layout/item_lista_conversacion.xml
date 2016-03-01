@@ -3,16 +3,20 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:weightSum="1">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:weightSum="4"
+        android:layout_height="60dp"
+        android:layout_weight="2">
 
         <TextView
             android:id="@+id/valueNombre"
             android:layout_width="wrap_content"
+android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:layout_marginLeft="5dp"
@@ -28,29 +32,41 @@
             android:layout_toRightOf="@id/valueNombre"/>
 
         <!-- Estado -->
-        <TextView
-            android:id="@+id/valueEstado"
-            android:layout_marginLeft="5dp"
-            android:textSize="@dimen/txt_12sp"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/valueNombre"
-            android:text="@string/estado"
-            />
-    <!-- Municipio -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_weight="2"
+            android:weightSum="1"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/valueMunicipio"
-            android:textSize="@dimen/txt_10sp"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/valueEstado"
-            android:text="@string/municipio"
-            />
+            <TextView
+                android:id="@+id/valueEstado"
+                android:layout_marginLeft="5dp"
+                android:textSize="@dimen/txt_12sp"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/valueNombre"
+                android:text="@string/estado"
+                />
+
+            <!--<TextView
+                android:id="@+id/valueMunicipio"
+                android:textSize="@dimen/txt_10sp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/valueEstado"
+                android:text="@string/municipio"
+                />-->
         </LinearLayout>
+
+        <!-- Municipio -->
+
+    </LinearLayout>
 
         <!-- Cargo -->
 

@@ -60,7 +60,7 @@ public class ListarConversacionAdapter extends ArrayAdapter<Conversacion> {
 
 
         // Load Values
-        valueNombre.setText(creador.getNombre()+" "+creador.getApellido());
+        valueNombre.setText(abreviatteName(creador.getNombre()+" "+creador.getApellido()));
         //valueApellido.setText(creador.getApellido());
         valueEstado.setText(creador.getEstado()+" - "+creador.getMunicipio());
         //valueMunicipio.setText(creador.getMunicipio());
@@ -156,5 +156,14 @@ public class ListarConversacionAdapter extends ArrayAdapter<Conversacion> {
             }
         };
     }
+    private String abreviatteName(String subStr )
+    {
+        if(subStr.length()>20)
+        {
+            subStr=subStr.substring(0,20);
+        }
 
+
+        return subStr;
+    }
 }
