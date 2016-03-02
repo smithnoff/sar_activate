@@ -1,5 +1,7 @@
 package com.example.usuario.soyactivista.fragments;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -31,6 +33,7 @@ public class FragmentPuntuaciones extends Fragment {
     private String top5Title;
     private String rankingTitle;
     private ActivityPantallaMenu activity;
+    private ProgressDialog pd;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,17 +42,49 @@ public class FragmentPuntuaciones extends Fragment {
         View v = inflater.inflate(R.layout.fragment_puntuaciones, container, false);
 
         viewPager = (ViewPager) v.findViewById(R.id.viewpager);
+        tabLayout = (TabLayout) v.findViewById(R.id.tabs);
+
+        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected void onPreExecute() {
+                pd = new ProgressDialog(getContext());
+                pd.setTitle("Cargando Raking...");
+                pd.setMessage("Por favor espere.");
+                pd.setCancelable(false);
+                pd.setIndeterminate(true);
+                pd.show();
+            }
+
+            @Override
+            protected Void doInBackground(Void... arg0) {
+                try {
+                    //Do something...setTabTitles(getArguments());
+                    Thread.sleep(2500);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                if (pd!=null) {
+                    pd.dismiss();
+                    setTabTitles(getArguments());
+                    setupViewPager(viewPager);
+                    tabLayout.setupWithViewPager(viewPager);
+                }
+            }
+
+        };
+        task.execute((Void[]) null);
 
         // TODO: Optimize to not regenerate list on swiping.
         //viewPager.setOffscreenPageLimit(2);
 
         // Check if fragment was initialized with bundle. / State / Mun Level
-        setTabTitles(getArguments());
-
-        setupViewPager(viewPager);
-
-        tabLayout = (TabLayout) v.findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
 
         return v;
     }
