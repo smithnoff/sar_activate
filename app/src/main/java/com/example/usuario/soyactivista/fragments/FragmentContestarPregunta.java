@@ -594,7 +594,7 @@ public class FragmentContestarPregunta extends Fragment {
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content_frame, fragment)
-                .commit();
+                .commitAllowingStateLoss();
     }
 
     // Stores Game Data from Arguments into local variables.
