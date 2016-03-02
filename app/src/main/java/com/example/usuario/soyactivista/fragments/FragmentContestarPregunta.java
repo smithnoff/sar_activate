@@ -15,7 +15,6 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dd.CircularProgressButton;
 
@@ -37,7 +36,7 @@ public class FragmentContestarPregunta extends Fragment {
     private Boolean tiempoExtra,saltarPregunta;
     private String dificultad;
     private int valor;
-
+    private Handler mHandler = new Handler();
     CircularProgressButton circularButtonRespuesta1,animar;
     CircularProgressButton circularButtonRespuesta2;
     CircularProgressButton circularButtonRespuesta3;
@@ -395,8 +394,8 @@ public class FragmentContestarPregunta extends Fragment {
     // Show incorrect Message and remove points
     private void respuestaIncorrecta() {
         // Show incorrect messages
-        valueTiempo.setTextColor(getResources().getColor(R.color.red_error));
-        valueTiempo.setText("- " + puntajes.get(preguntaActual) + " puntos");
+      // valueTiempo.setTextColor(getResources().getColor(R.color.red_error));
+     //  valueTiempo.setText("Incorrecto");
 
         // Stop timer
         contadorPregunta.cancel();
@@ -434,10 +433,25 @@ public class FragmentContestarPregunta extends Fragment {
         handler.postDelayed(new Runnable() {
             public void run() {
                 // acciones que se ejecutan tras los milisegundos
-                if(preguntaActual +1  < totalPreguntas)
-                    siguientePregunta();
-                else
-                    finalizarPartida();
+                if (preguntaActual + 1 < totalPreguntas) {
+                    valueTiempo.setTextColor(getResources().getColor(R.color.red_error));
+                    valueTiempo.setText("Incorrecto - " + puntajes.get(preguntaActual) + " puntos");
+                    mHandler.postDelayed(new Runnable() {
+                        public void run() {
+                            doStuff(1);
+                        }
+                    }, 1800);
+
+                } else {
+
+                    valueTiempo.setTextColor(getResources().getColor(R.color.red_error));
+                    valueTiempo.setText("Incorrecto - " + puntajes.get(preguntaActual) + " puntos");
+                    mHandler.postDelayed(new Runnable() {
+                        public void run() {
+                            doStuff(2);
+                        }
+                    }, 1800);
+                }
             }
         }, 2500);
 
@@ -447,9 +461,9 @@ public class FragmentContestarPregunta extends Fragment {
     // Show correct Message and add points
     private void respuestaCorrecta() {
         // Show correct messages
-        valueTiempo.setTextColor(getResources().getColor(R.color.green_complete));
-        valueTiempo.setText("+ " + puntajes.get(preguntaActual) + " puntos");
-        valueTiempo.setText("Correcto");
+      // valueTiempo.setTextColor(getResources().getColor(R.color.green_complete));
+     //  valueTiempo.setText("+ " + puntajes.get(preguntaActual) + " puntos");
+     // valueTiempo.setText("Correcto");
 
         // Stop timer
         contadorPregunta.cancel();
@@ -489,14 +503,42 @@ public class FragmentContestarPregunta extends Fragment {
         handler.postDelayed(new Runnable() {
             public void run() {
                 // acciones que se ejecutan tras los milisegundos
-                if(preguntaActual +1  < totalPreguntas)
-                    siguientePregunta();
-                else
-                    finalizarPartida();
+                if(preguntaActual +1  < totalPreguntas) {
+
+
+                    mHandler.postDelayed(new Runnable() {
+                        public void run() {
+
+
+                            doStuff(1);
+                        }
+                    }, 1800);
+                    valueTiempo.setTextColor(getResources().getColor(R.color.green_complete));
+                    valueTiempo.setText("Correcto + " + puntajes.get(preguntaActual) + " puntos");
+                } else {
+                    mHandler.postDelayed(new Runnable() {
+                        public void run() {
+
+                            doStuff(2);
+                        }
+                    }, 1800);
+                    valueTiempo.setTextColor(getResources().getColor(R.color.green_complete));
+                    valueTiempo.setText("Correcto  + " + puntajes.get(preguntaActual) + " puntos");
+
+                }
             }
         }, 2500);
     }
+    private void doStuff(int x) {
 
+
+        if(x==1)
+            siguientePregunta();
+        else
+            finalizarPartida();
+
+
+    }
 
     // Get all relevant data in a bundle and call fragment contestar pregunta.
     private void siguientePregunta() {
@@ -594,11 +636,13 @@ public class FragmentContestarPregunta extends Fragment {
                         TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+
             }
 
             // TODO: Set failed to answer procedure.
             public void onFinish() {
                 respuestaIncorrecta();
+
             }
 
         }.start();
@@ -622,7 +666,7 @@ public class FragmentContestarPregunta extends Fragment {
     }
 
     private void simulateSuccessProgress(final CircularProgressButton button) {
-        ValueAnimator widthAnimation = ValueAnimator.ofInt(1, 100);
+        final ValueAnimator widthAnimation = ValueAnimator.ofInt(1, 100);
         widthAnimation.setDuration(1500);
         widthAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
         widthAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -653,6 +697,7 @@ public class FragmentContestarPregunta extends Fragment {
             }
         });
         widthAnimation.start();
+
     }
 }
 
