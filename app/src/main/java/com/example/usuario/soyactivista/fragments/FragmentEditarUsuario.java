@@ -243,7 +243,8 @@ public class FragmentEditarUsuario extends Fragment {
                     spinParroquia.setVisibility(View.VISIBLE);
                     spinComite.setVisibility(View.VISIBLE);
                     spinRol.setVisibility(View.VISIBLE);
-
+                       if(currentUser.getInt("rol")==1)
+                           spinRol.setSelection(1);
                     //Show edit photo
                     editPhoto.setVisibility(View.VISIBLE);
                 }
