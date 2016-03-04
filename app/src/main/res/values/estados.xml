@@ -118,11 +118,11 @@
         <item>Gran Sabana</item>
         <item>Heres</item>
         <item>Piar</item>
-        <item>Raul Leoni</item>
+        <item>Angostura</item>
         <item>Roscio</item>
         <item>Sifontes</item>
         <item>Sucre</item>
-        <item>Padre Pedro Chen</item>
+        <item>Padre Pedro Chien</item>
 
     </string-array>
     <string-array name="carabobo">
@@ -149,6 +149,8 @@
         <item>Pao de San Juan Bautista</item>
         <item>Ricaurte</item>
         <item>Romulo</item>
+        <item>Tinaco</item>
+        <item>San Carlos</item>
     </string-array>
     <string-array name="delta_Amacuro">
         <item>Antonio Díaz</item>
@@ -185,6 +187,7 @@
     </string-array>
     <string-array name="guarico">
         <item>Chaguaramas</item>
+        <item>Camaguán</item>
         <item>El Socorro</item>
         <item>Francisco de Miranda</item>
         <item>Jose Félix Ribas</item>
