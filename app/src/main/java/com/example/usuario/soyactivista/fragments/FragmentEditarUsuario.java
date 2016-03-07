@@ -60,7 +60,7 @@ public class FragmentEditarUsuario extends Fragment {
     private EditText editUsername, editNombre, editApellido, editEmail, editCargo;
     private TextView valueEstado, valueMunicipio,valueParroquia, valueComite, valueRol,puntosActivismo,puntosTrivia;
     private Spinner spinEstado, spinMunicipio, spinParroquia, spinComite, spinRol;
-    private Button buttonEditar, buttonGuardar, buttonEliminar, editPhoto;
+    private Button buttonEditar, buttonGuardar, buttonEliminar, editPhoto, buttonCancelar;
     private ProgressDialog progressDialog;
     private ImageView photoUser;
     // Image Saving Variables
@@ -105,6 +105,7 @@ public class FragmentEditarUsuario extends Fragment {
         buttonEditar = (Button) v.findViewById(R.id.buttonEditar);
         buttonGuardar = (Button) v.findViewById(R.id.buttonGuardar);
         buttonEliminar = (Button) v.findViewById(R.id.buttonEliminar);
+        buttonCancelar = (Button) v.findViewById(R.id.buttonCancelar);
         editPhoto = (Button) v.findViewById(R.id.edit_photo);
 
         photoUser = (ImageView) v.findViewById(R.id.photo_user);
@@ -222,6 +223,7 @@ public class FragmentEditarUsuario extends Fragment {
                     buttonEditar.setVisibility(View.GONE);
                     buttonGuardar.setVisibility(View.VISIBLE);
                     buttonEliminar.setVisibility(View.GONE);
+                    buttonCancelar.setVisibility(View.VISIBLE);
 
                     // Enable all edit Text
                     //editUsername.setEnabled(true);
@@ -249,6 +251,84 @@ public class FragmentEditarUsuario extends Fragment {
                     editPhoto.setVisibility(View.VISIBLE);
                 }
             });
+
+        // Handle Edit Button
+        buttonCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Hide Delete/Edit Button.
+                buttonEditar.setVisibility(View.VISIBLE);
+                buttonEliminar.setVisibility(View.VISIBLE);
+                buttonGuardar.setVisibility(View.GONE);
+                buttonCancelar.setVisibility(View.GONE);
+                editPhoto.setVisibility(View.GONE);
+
+                // Enable all edit Text
+                //editUsername.setEnabled(true);
+                editNombre.setEnabled(false);
+                editApellido.setEnabled(false);
+                editEmail.setEnabled(false);
+                editCargo.setEnabled(false);
+
+                // Hide All Values
+                valueEstado.setVisibility(View.VISIBLE);
+                valueMunicipio.setVisibility(View.VISIBLE);
+                valueParroquia.setVisibility(View.VISIBLE);
+                valueComite.setVisibility(View.VISIBLE);
+                valueRol.setVisibility(View.VISIBLE);
+
+                // Show all Spinners
+                spinEstado.setVisibility(View.GONE);
+                spinMunicipio.setVisibility(View.GONE);
+                spinParroquia.setVisibility(View.GONE);
+                spinComite.setVisibility(View.GONE);
+                spinRol.setVisibility(View.GONE);
+                //Show edit photo
+
+
+
+                if (getArguments() != null) {
+                    editUsername.setText(getArguments().getString("username"));
+                    editNombre.setText(getArguments().getString("nombre"));
+                    editApellido.setText(getArguments().getString("apellido"));
+                    editEmail.setText(getArguments().getString("email"));
+                    editCargo.setText(getArguments().getString("cargo"));
+                    valueEstado.setText(getArguments().getString("estado"));
+                    valueMunicipio.setText(getArguments().getString("municipio"));
+                    valueParroquia.setText(getArguments().getString("parroquia"));
+                    valueComite.setText(getArguments().getString("comite"));
+                    valueRol.setText(getArguments().getString("rol"));
+                    puntosActivismo.setText(String.valueOf(getArguments().getInt("puntosActivismo")));
+                    puntosTrivia.setText(String.valueOf(getArguments().getInt("puntos")));
+                }
+                else
+                {
+
+                    userID = currentUser.getObjectId();
+                    //valueRol.setText(currentUser.getInt("rol"));
+                    if (currentUser.getInt("rol") == 0)
+                    {
+                        valueRol.setText("Activista");
+                    } else
+                    {
+                        valueRol.setText("Registrante");
+                    }
+                    editUsername.setText(currentUser.getUsername());
+                    editNombre.setText(currentUser.getString("nombre"));
+                    editApellido.setText(currentUser.getString("apellido"));
+                    editEmail.setText(currentUser.getString("email"));
+                    editCargo.setText(currentUser.getString("cargo"));
+                    valueEstado.setText(currentUser.getString("estado"));
+                    valueMunicipio.setText(currentUser.getString("municipio"));
+                    valueParroquia.setText(currentUser.getString("parroquia"));
+                    valueComite.setText(currentUser.getString("comite"));
+                    puntosActivismo.setText(String.valueOf(currentUser.getInt("puntosActivismo")));
+                    puntosTrivia.setText(String.valueOf(currentUser.getInt("puntos")));
+
+                }
+
+            }
+        });
 
             // Handle Save Button
 

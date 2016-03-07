@@ -285,6 +285,17 @@
                     android:visibility="gone"/>
 
                 <Button
+                    android:id="@+id/buttonCancelar"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancelar"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center_horizontal"
+                    android:visibility="gone"/>
+
+                <Button
                     android:id="@+id/buttonEliminar"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"

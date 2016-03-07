@@ -71,7 +71,8 @@ public class FragmentListarConversacion extends Fragment {
 
         Log.d(TAG, "List contains " + conversacionArrayList.size() + " elements");
 
-      //  initializeList(conversacionArrayList);
+        //initializeList(conversacionArrayList);
+
 
 
         botonCrearConversacion.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +90,9 @@ public class FragmentListarConversacion extends Fragment {
                         .replace(R.id.content_frame, fragment)
                         .addToBackStack(null)
                         .commit();
+
+                listarConversacionAdapter.clear();
+                listarConversacionAdapter=null;
             }
         });
 
