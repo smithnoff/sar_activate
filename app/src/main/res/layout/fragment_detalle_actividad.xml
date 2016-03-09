@@ -34,7 +34,7 @@
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/labelPuntaje"
                 android:text="@string/puntaje"
                 />
@@ -43,12 +43,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/valuePuntaje"
+                android:textColor="@color/black"
                 />
             <TextView
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/labelDescripcion"
                 android:text="@string/descripcion"
                 />
@@ -60,35 +61,39 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/valueDescripcion"
                 android:enabled="false"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 />
             <TextView
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/objetivo"
                 />
 
             <TextView
+                android:textColor="@color/black"
                 android:textSize="16dp"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:hint="@string/hintObjetivo"
+                android:textColorHint="@color/black"
                 android:layout_height="wrap_content"
-                android:id="@+id/valueObjetivo"
-                />
+                android:id="@+id/valueObjetivo"/>
+
             <TextView
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/ubicacion"/>
             <TextView
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
                 android:text="@string/prueba"
                 android:id="@+id/valueUbicacion"
+                android:textColor="@color/black"
                 />
             <TextView
                 android:textSize="16dp"
@@ -144,7 +149,7 @@
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/encargado"/>
 
             <TextView
@@ -153,12 +158,14 @@
                 android:hint="@string/hintEncargado"
                 android:layout_height="wrap_content"
                 android:id="@+id/valueEncargado"
-                />
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"/>
             <TextView
+
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/creador"/>
 
             <TextView
@@ -166,12 +173,12 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/valueCreador"
-                />
+                android:textColor="@color/black" />
             <TextView
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/estatus"/>
             <Spinner
                 android:layout_width="fill_parent"
@@ -182,7 +189,7 @@
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/inicio"/>
 
             <TextView
@@ -191,12 +198,13 @@
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="dd/MM/yyyy"
-                android:id="@+id/textViewFechaInicio" />
+                android:id="@+id/textViewFechaInicio"
+                android:textColor="@color/black" />
             <TextView
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/fin"/>
 
             <TextView
@@ -205,13 +213,12 @@
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="dd/MM/yyyy"
-                android:id="@+id/textViewFechaFin" />
-
-
+                android:id="@+id/textViewFechaFin"
+                android:textColor="@color/black" />
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="5dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/grisOscuro"
                 />
 
@@ -227,7 +234,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_add_to_photos"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:visibility="gone"
                     />
@@ -238,9 +245,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cantidadImagenesEjemplo"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="40dp"
                     android:visibility="gone"
+
                     />
 
                 <ImageButton
@@ -248,8 +256,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_delete"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="18dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
                     android:visibility="gone"
                     />
 

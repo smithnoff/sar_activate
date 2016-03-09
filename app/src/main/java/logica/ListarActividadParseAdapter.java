@@ -138,6 +138,7 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
             holder.textNombre = (TextView)v.findViewById(R.id.nombreActividad);
             holder.textEstatus = (TextView)v.findViewById(R.id.valueEjecucion);
             holder.textCreador = (TextView)v.findViewById(R.id.valueCreador);
+            holder.textUbicacion = (TextView)v.findViewById(R.id.valueUbicacion);
 
             holder.textInicio = (TextView)v.findViewById(R.id.valueInicio);
             holder.textFin = (TextView)v.findViewById(R.id.valueFin);
@@ -211,6 +212,7 @@ public class ListarActividadParseAdapter extends ParseQueryAdapter<ParseObject> 
         holder.textNombre.setText(tipoActividad.getString("nombre"));
         holder.textEstatus.setText(object.getString("estatus"));
         holder.textCreador.setText(creador.getString("nombre")+" "+creador.getString("apellido"));
+        holder.textUbicacion.setText(object.getString("ubicacion"));
 
         cantidad_likes = String.valueOf(object.getInt("meGusta"));
 

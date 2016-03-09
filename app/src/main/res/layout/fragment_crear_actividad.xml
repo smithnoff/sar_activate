@@ -3,24 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="100"
-        >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="90"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp">
-
-            <ScrollView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+    <ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="15dp"
+    android:layout_marginLeft="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -32,8 +20,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="@string/actividad"/>
+                        android:text="@string/actividad"
+                        android:textSize="16dp"/>
 
                     <Spinner
                         android:layout_width="fill_parent"
@@ -74,7 +62,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"
                         android:text="@string/objetivo"/>
 
                     <EditText
@@ -96,7 +85,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"
                         android:text="@string/ubicacion"/>
 
                     <Spinner
@@ -149,7 +139,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"
                         android:text="@string/encargado"/>
 
                     <EditText
@@ -162,7 +153,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"
                         android:text="@string/creador"/>
 
                     <EditText
@@ -173,7 +165,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"
                         android:text="@string/inicio"/>
 
                     <TextView
@@ -187,7 +180,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"
                         android:text="@string/fin"/>
 
 
@@ -202,7 +196,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"
                         android:text="@string/adjuntarImagenes"/>
 
                     <View
@@ -305,6 +300,4 @@
 
                 </LinearLayout>
             </ScrollView>
-        </RelativeLayout>
-    </LinearLayout>
-</FrameLayout>
+    </FrameLayout>

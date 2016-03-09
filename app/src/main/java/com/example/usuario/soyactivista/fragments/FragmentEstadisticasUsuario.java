@@ -153,6 +153,7 @@ public class FragmentEstadisticasUsuario extends Fragment {
 
         }
         else{
+            dialog.dismiss();
             Toast.makeText(getActivity(), "Todavía no has jugado tu primera partida.", Toast.LENGTH_LONG).show();
             valuePosicion.setText("Ninguno");
             valuePosicion.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left));

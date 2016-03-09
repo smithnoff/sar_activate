@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="20dp"
+    android:padding="15dp"
     android:descendantFocusability="blocksDescendants"
     >
 
@@ -64,6 +64,29 @@
         android:text="@string/prueba"
         />
 
+    <TextView
+        android:id="@+id/labelUbicacion"
+        android:textSize="@dimen/txt_15sp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelCreador"
+        android:text="@string/ubicacion"
+        />
+
+    <TextView
+        android:id="@+id/valueUbicacion"
+        android:layout_marginLeft="5dp"
+        android:textSize="@dimen/txt_15sp"
+        android:textColor="@color/grisOscuro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/valueCreador"
+        android:layout_toRightOf="@+id/labelUbicacion"
+        android:text="@string/prueba"
+        />
+
+
     <!-- Start/END Dates -->
 
     <TextView
@@ -72,7 +95,7 @@
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/labelCreador"
+        android:layout_below="@+id/labelUbicacion"
         android:text="@string/inicioCorto"
         />
 
@@ -84,18 +107,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/labelInicio"
-        android:layout_below="@+id/valueCreador"
+        android:layout_below="@+id/valueUbicacion"
         android:text="@string/prueba"
         />
 
     <TextView
         android:id="@+id/labelFin"
-        android:layout_marginLeft="2dp"
+        android:layout_marginLeft="5dp"
         android:textSize="@dimen/txt_15sp"
         android:textColor="@color/grisOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/labelCreador"
+        android:layout_below="@+id/labelUbicacion"
         android:layout_toRightOf="@+id/valueInicio"
         android:text="@string/finCorto"
         />
@@ -108,7 +131,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/labelFin"
-        android:layout_below="@+id/valueCreador"
+        android:layout_below="@+id/valueUbicacion"
         android:text="@string/prueba"
         />
 

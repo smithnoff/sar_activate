@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white">
 <ScrollView
     android:layout_marginLeft="15dp"
     android:layout_marginTop="5dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,12 +45,15 @@
             </RelativeLayout>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@string/username"/>
 
             <EditText
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -55,29 +63,34 @@
 
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/nombre"/>
 
             <EditText
+                android:textColorHint="@color/black"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName|textCapWords"
                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóúÁÉÍÓÚ"
                 android:singleLine="true"
-
+                android:textColor="@color/black"
                 android:hint="@string/nombreEjemplo"
                 android:id="@+id/editNombre"
                 android:enabled="false"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/apellido"/>
 
             <EditText
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:layout_width="fill_parent"
                 android:hint="@string/apellidoEjemplo"
                 android:layout_height="wrap_content"
@@ -88,12 +101,15 @@
                 android:enabled="false"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/correo"/>
 
             <EditText
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:layout_width="fill_parent"
                 android:hint="@string/correoEjemplo"
                 android:layout_height="wrap_content"
@@ -103,6 +119,7 @@
                 android:enabled="false"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -111,15 +128,18 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:hint="@string/cargoEjemplo"
+                android:textColorHint="@color/black"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:id="@+id/editCargo"
-                android:enabled="false"/>
+                android:enabled="false"
+                android:textColor="@color/black"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/estadoSuscripcion"/>
 
             <TextView
@@ -127,7 +147,6 @@
                 android:text="@string/estadoEjemplo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/txt_18sp"
                 />
@@ -139,9 +158,10 @@
                 android:visibility="gone"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/municipioSuscripcion"/>
 
             <TextView
@@ -149,7 +169,6 @@
                 android:text="@string/municipioEjemplo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/txt_18sp"
                 />
@@ -161,9 +180,10 @@
                 android:visibility="gone"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/parroquiaSuscripcion"/>
             
             <TextView
@@ -171,7 +191,6 @@
                 android:text="@string/parroquiaEjemplo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/txt_18sp"
                 />
@@ -184,9 +203,10 @@
 
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/comitePertenencia"/>
 
             <TextView
@@ -194,7 +214,6 @@
                 android:text="@string/comiteEjemplo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/txt_18sp"
                 />
@@ -206,9 +225,10 @@
                 android:visibility="gone"/>
 
             <TextView
+                android:textSize="16dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/rol_spinner_label"/>
 
             <TextView
@@ -216,7 +236,6 @@
                 android:text="@string/rolEjemplo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/txt_18sp"
                 />
@@ -228,6 +247,8 @@
                 android:visibility="gone"/>
 
             <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/puntos_trivia"
@@ -238,9 +259,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/puntosEjemplo"
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_18sp"
                 />
 
             <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/puntos_actividades"
@@ -251,6 +276,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/puntosEjemplo"
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_18sp"
                 />
 
 
@@ -310,3 +337,4 @@
         </LinearLayout>
 
     </ScrollView>
+</LinearLayout>
