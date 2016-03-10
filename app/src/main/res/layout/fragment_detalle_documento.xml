@@ -53,7 +53,7 @@
             android:layout_weight="1"
             android:textColor="@color/white"
             android:text="@string/eliminar"
-            android:id="@+id/subirDoc" />
+            android:id="@+id/buttonEliminar" />
 
         <Button
             android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
             android:layout_weight="1"
             android:textColor="@color/white"
             android:text="@string/regresar"
-            android:id="@+id/salir" />
+            android:id="@+id/buttonRegresar" />
     </LinearLayout>
 
 </LinearLayout>

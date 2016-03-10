@@ -72,6 +72,7 @@ public class FragmentListarDocumentos extends Fragment {
                 SimpleDateFormat format = new SimpleDateFormat("HH:mm dd/MM/yyyy");
 
                 Bundle datos = new Bundle();
+                datos.putString("id", documento.getObjectId());
                 datos.putString("titulo", documento.getString("titulo"));
                 datos.putString("descripcion", documento.getString("descripcion"));
                 datos.putString("adjunto", adjunto.getUrl());
