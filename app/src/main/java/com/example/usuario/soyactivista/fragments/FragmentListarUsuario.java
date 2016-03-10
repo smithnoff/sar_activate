@@ -112,10 +112,9 @@ public class FragmentListarUsuario extends Fragment{
                     datos.putString("rol", usuario.getRolName());
                     datos.putInt("puntos", usuario.getPuntos());
                     datos.putInt("puntosActivismo", usuario.getPuntosActivismo());
-                    if(pic.getUrl()!=null)
-                    {
+
+                    if( pic != null)
                         datos.putString("foto",pic.getUrl());
-                    }
 
 
                     // Redirect View to next Fragment
