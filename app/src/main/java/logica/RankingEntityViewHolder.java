@@ -102,6 +102,7 @@ public class RankingEntityViewHolder extends RecyclerView.ViewHolder implements 
         Bundle datos = new Bundle();
         datos.putString("estado", entidad.getNombre());
 
+
         Log.d(TAG, "Bundle Created with " + entidad.getNombre());
 
         // Redirect View to next Fragment

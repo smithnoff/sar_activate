@@ -1,4 +1,5 @@
 package logica;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -19,29 +20,19 @@ public class ListarTopUsuariosAdapter extends RecyclerView.Adapter<TopUsuariosVi
     private List<Usuario> usuarios;
     private String entidad;
     private View itemView;
+    private Context context;
+    private Boolean clickable;
 
-    public ListarTopUsuariosAdapter(List<Usuario> userArrayList, String entidad) {
+    public ListarTopUsuariosAdapter(Context context, List<Usuario> userArrayList, String entidad, Boolean onClick) {
         this.usuarios = userArrayList;
         this.entidad = entidad;
+        this.context = context;
+        this.clickable = onClick;
     }
 
     @Override
     public TopUsuariosViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
 
-        /*switch(i) {
-            case VIEW_TYPE_EMPTY_LIST_PLACEHOLDER:
-                // return view holder for your placeholder
-                itemView = LayoutInflater.
-                        from(viewGroup.getContext()).
-                        inflate(R.layout.card_view_top_usuarios_empty, viewGroup,false);
-                break;
-            case VIEW_TYPE_OBJECT_VIEW:
-                itemView = LayoutInflater.
-                        from(viewGroup.getContext()).
-                        inflate(R.layout.card_view_top_usuarios, viewGroup, false);
-                // return view holder for your normal list item
-                break;
-        }*/
         itemView = LayoutInflater.
                 from(viewGroup.getContext()).
                 inflate(R.layout.card_view_top_usuarios, viewGroup, false);
@@ -50,7 +41,7 @@ public class ListarTopUsuariosAdapter extends RecyclerView.Adapter<TopUsuariosVi
 
     @Override
     public void onBindViewHolder(TopUsuariosViewHolder topUsuariosViewHolder, int i) {
-        topUsuariosViewHolder.setUsuario(usuarios.get(i),i+1, entidad);
+        topUsuariosViewHolder.setUsuario(usuarios.get(i),i+1, entidad,(ActivityPantallaMenu)context, clickable);
     }
 
     @Override
@@ -58,13 +49,5 @@ public class ListarTopUsuariosAdapter extends RecyclerView.Adapter<TopUsuariosVi
         return usuarios.size();
     }
 
-    /*@Override
-    public int getItemViewType(int position) {
-        if (usuarios.isEmpty()) {
-            return VIEW_TYPE_EMPTY_LIST_PLACEHOLDER;
-        } else {
-            return VIEW_TYPE_OBJECT_VIEW;
-        }
-    }*/
 
 }

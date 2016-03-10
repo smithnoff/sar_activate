@@ -61,6 +61,7 @@ private TextView vacio;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        Boolean clickable = true;
 
         View v = inflater.inflate(R.layout.fragment_tab_top_usuarios, container, false);
 
@@ -74,11 +75,11 @@ private TextView vacio;
 
         if(getArguments()!= null)
         {
-            adapter = new ListarTopUsuariosAdapter(usuarioArrayList, "Municipio");
+            adapter = new ListarTopUsuariosAdapter(getActivity(), usuarioArrayList, "Municipio", clickable);
         }
         else
         {
-            adapter = new ListarTopUsuariosAdapter(usuarioArrayList, "Estado");
+            adapter = new ListarTopUsuariosAdapter(getActivity(), usuarioArrayList, "Municipio", clickable);
         }
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerListTopUsuarios);
@@ -133,9 +134,11 @@ private TextView vacio;
                         vacio.setVisibility(View.GONE);
                     for (int i = 0; i < object.size(); i++) {
                         usuario = new Usuario();
+                        usuario.setId(object.get(i).getObjectId());
                         usuario.setNombre(object.get(i).getString("nombre"));
                         usuario.setApellido(object.get(i).getString("apellido"));
                         usuario.setCargo(object.get(i).getString("cargo"));
+                        usuario.setEmail(object.get(i).getEmail());
                         if(getArguments()!= null)
                         {
                             usuario.setMunicipio(object.get(i).getString("municipio"));
@@ -144,8 +147,13 @@ private TextView vacio;
                         {
                             usuario.setMunicipio(object.get(i).getString("estado"));
                         }
+                        usuario.setEstado(object.get(i).getString("estado"));
+                        usuario.setParroquia(object.get(i).getString("parroquia"));
+                        usuario.setComite(object.get(i).getString("comite"));
+                        usuario.setRol(object.get(i).getInt("rol"));
 
                         usuario.setPuntosActivismo(object.get(i).getInt("puntosActivismo"));
+                        usuario.setPuntos(object.get(i).getInt("puntos"));
                         usuario.setFoto(object.get(i).getParseFile("fotoPerfil"));
                         usuarioArrayList.add(usuario);
                     }
