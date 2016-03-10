@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -94,6 +95,8 @@ public class FragmentListarUsuario extends Fragment{
 
                     // Store data in bundle to send to next fragment
                     Usuario usuario = (Usuario) listView.getItemAtPosition(position);
+                    ParseFile pic;
+                    pic = usuario.getFoto();
 
                     Bundle datos = new Bundle();
                     datos.putString("id", usuario.getId());
@@ -109,6 +112,11 @@ public class FragmentListarUsuario extends Fragment{
                     datos.putString("rol", usuario.getRolName());
                     datos.putInt("puntos", usuario.getPuntos());
                     datos.putInt("puntosActivismo", usuario.getPuntosActivismo());
+                    if(pic.getUrl()!=null)
+                    {
+                        datos.putString("foto",pic.getUrl());
+                    }
+
 
                     // Redirect View to next Fragment
                     Fragment fragment = new FragmentEditarUsuario();
@@ -228,14 +236,19 @@ public class FragmentListarUsuario extends Fragment{
                         usuario.setNombre(object.get(i).getString("nombre"));
                         usuario.setApellido(object.get(i).getString("apellido"));
                         usuario.setEmail(object.get(i).getEmail());
-                        usuario.setCargo( object.get(i).getString("cargo"));
-                        usuario.setEstado( object.get(i).getString("estado"));
-                        usuario.setMunicipio( object.get(i).getString("municipio"));
-                        usuario.setParroquia( object.get(i).getString("parroquia"));
+                        usuario.setCargo(object.get(i).getString("cargo"));
+                        usuario.setEstado(object.get(i).getString("estado"));
+                        usuario.setMunicipio(object.get(i).getString("municipio"));
+                        usuario.setParroquia(object.get(i).getString("parroquia"));
                         usuario.setComite(object.get(i).getString("comite"));
                         usuario.setRol(object.get(i).getInt("rol"));
                         usuario.setPuntosActivismo(object.get(i).getInt("puntosActivismo"));
                         usuario.setPuntos(object.get(i).getInt("puntos"));
+                        if(object.get(i).getParseFile("fotoPerfil")!= null)
+                        {
+                            usuario.setFoto(object.get(i).getParseFile("fotoPerfil"));
+                        }
+
                         list.add(usuario);
                     }
                     Log.d(TAG, "List have " + list.size() + " items.");

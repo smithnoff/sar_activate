@@ -116,8 +116,8 @@ public class FragmentEditarUsuario extends Fragment {
 
 
         // Show edit button depending on Role
-        if (currentUser.getInt("rol") == 1) {
-            buttonEditar.setVisibility(View.VISIBLE);
+        if (currentUser.getInt("rol") == 0) {
+            buttonEditar.setText("Editar foto Perfil");
         }
 
         // Load Spinners
@@ -169,6 +169,20 @@ public class FragmentEditarUsuario extends Fragment {
             valueRol.setText(getArguments().getString("rol"));
             puntosActivismo.setText(String.valueOf(getArguments().getInt("puntosActivismo")));
             puntosTrivia.setText(String.valueOf(getArguments().getInt("puntos")));
+
+            if(getArguments().getString("foto") != null){
+                Glide.with(getContext()).load(getArguments().getString("foto")).asBitmap().centerCrop().into(new BitmapImageViewTarget(photoUser)
+                {
+                    @Override
+                    protected void setResource(Bitmap resource)
+                    {
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(getContext().getResources(), resource);
+                        circularBitmapDrawable.setCircular(true);
+                        photoUser.setImageDrawable(circularBitmapDrawable);
+                    }
+                });
+            }
         }
         // Fill From current user
         else {
@@ -220,35 +234,45 @@ public class FragmentEditarUsuario extends Fragment {
             buttonEditar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    buttonEditar.setVisibility(View.GONE);
-                    buttonGuardar.setVisibility(View.VISIBLE);
-                    buttonEliminar.setVisibility(View.GONE);
-                    buttonCancelar.setVisibility(View.VISIBLE);
+                    if(currentUser.getInt("rol")!=1)
+                    {
+                        editPhoto.setVisibility(View.VISIBLE);
+                        buttonEliminar.setVisibility(View.GONE);
+                        buttonCancelar.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        buttonEditar.setVisibility(View.GONE);
+                        buttonGuardar.setVisibility(View.VISIBLE);
+                        buttonEliminar.setVisibility(View.GONE);
+                        buttonCancelar.setVisibility(View.VISIBLE);
 
-                    // Enable all edit Text
-                    //editUsername.setEnabled(true);
-                    editNombre.setEnabled(true);
-                    editApellido.setEnabled(true);
-                    editEmail.setEnabled(true);
-                    editCargo.setEnabled(true);
+                        // Enable all edit Text
+                        //editUsername.setEnabled(true);
+                        editNombre.setEnabled(true);
+                        editApellido.setEnabled(true);
+                        editEmail.setEnabled(true);
+                        editCargo.setEnabled(true);
 
-                    // Hide All Values
-                    valueEstado.setVisibility(View.GONE);
-                    valueMunicipio.setVisibility(View.GONE);
-                    valueParroquia.setVisibility(View.GONE);
-                    valueComite.setVisibility(View.GONE);
-                    valueRol.setVisibility(View.GONE);
+                        // Hide All Values
+                        valueEstado.setVisibility(View.GONE);
+                        valueMunicipio.setVisibility(View.GONE);
+                        valueParroquia.setVisibility(View.GONE);
+                        valueComite.setVisibility(View.GONE);
+                        valueRol.setVisibility(View.GONE);
 
-                    // Show all Spinners
-                    spinEstado.setVisibility(View.VISIBLE);
-                    spinMunicipio.setVisibility(View.VISIBLE);
-                    spinParroquia.setVisibility(View.VISIBLE);
-                    spinComite.setVisibility(View.VISIBLE);
-                    spinRol.setVisibility(View.VISIBLE);
-                       if(currentUser.getInt("rol")==1)
-                           spinRol.setSelection(1);
-                    //Show edit photo
-                    editPhoto.setVisibility(View.VISIBLE);
+                        // Show all Spinners
+                        spinEstado.setVisibility(View.VISIBLE);
+                        spinMunicipio.setVisibility(View.VISIBLE);
+                        spinParroquia.setVisibility(View.VISIBLE);
+                        spinComite.setVisibility(View.VISIBLE);
+                        spinRol.setVisibility(View.VISIBLE);
+                        if(currentUser.getInt("rol")==1)
+                            spinRol.setSelection(1);
+                        //Show edit photo
+                        editPhoto.setVisibility(View.VISIBLE);
+                    }
+
                 }
             });
 

@@ -54,6 +54,8 @@ public class FragmentTriviaPrincipal extends Fragment{
         if(currentUser.getInt("rol") != 1){
             adminPreguntas.setEnabled(false);
             adminPreguntas.setVisibility(View.GONE);
+            cargarArchivos.setEnabled(false);
+            cargarArchivos.setVisibility(View.GONE);
         }
 
 

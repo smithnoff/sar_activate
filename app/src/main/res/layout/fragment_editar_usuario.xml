@@ -297,7 +297,6 @@
                     android:text="@string/editar"
                     android:textColor="@color/white"
                     android:layout_gravity="center_horizontal"
-                    android:visibility="gone"
                     />
 
                 <Button
