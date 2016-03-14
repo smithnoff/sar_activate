@@ -76,7 +76,7 @@ public class ListarMensajeDirectoParseAdapter extends ParseQueryAdapter<ParseObj
 
         valueNombre.setText(autor.getString("nombre"));
         valueApellido.setText(autor.getString("apellido"));
-        valueEstado.setText(autor.getString("estado"));
+        valueEstado.setText(autor.getString("estado")+" -");
         valueMunicipio.setText(autor.getString("municipio"));
         valueTexto.setText(object.getString("texto"));
 
