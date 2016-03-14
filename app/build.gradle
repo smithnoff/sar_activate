@@ -17,7 +17,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "soy_activista.quartzapp.com.soy_activista"
+        applicationId "com.burizalabs.soyactivista"
         minSdkVersion 16
         targetSdkVersion 21
         versionCode 1

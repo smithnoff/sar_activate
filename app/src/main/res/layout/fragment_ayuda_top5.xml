@@ -6,7 +6,7 @@
     android:paddingLeft="50dp"
     android:paddingRight="50dp"
     android:background="@color/white"
-    tools:context="com.example.usuario.soyactivista.fragments.FragmentAyudaTop5">
+    tools:context=".ui.FragmentAyudaTop5">
 
     <TextView
         android:id="@+id/help_text"
