@@ -71,10 +71,6 @@ public class FragmentListarConversacion extends Fragment {
 
         Log.d(TAG, "List contains " + conversacionArrayList.size() + " elements");
 
-        //initializeList(conversacionArrayList);
-
-
-
         botonCrearConversacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,7 +197,6 @@ public class FragmentListarConversacion extends Fragment {
     }
 
 
-    // TODO: Structure query / table to not need both queries to get the final list.
     // Initializes list and sets listView adapter to the newly createde adapter.
     public void initializeList(final ArrayList<Conversacion> list) {
         // Show loading Dialog
@@ -241,6 +236,7 @@ public class FragmentListarConversacion extends Fragment {
                             conversacion.usuario.setCargo(objects.get(i).getParseUser("receptor").getString("cargo"));
                             conversacion.usuario.setEstado(objects.get(i).getParseUser("receptor").getString("estado"));
                             conversacion.usuario.setMunicipio(objects.get(i).getParseUser("receptor").getString("municipio"));
+                            conversacion.usuario.setComite(objects.get(i).getParseUser("receptor").getString("comite"));
                             conversacion.usuario.setRol(objects.get(i).getParseUser("receptor").getInt("rol"));
                             conversacionesAbiertas.add(conversacion.usuario.getId());
                             Log.d(TAG, "Conversacion "+conversacion.getId()+" date "+conversacion.getUltimaActividad());
@@ -280,6 +276,6 @@ public class FragmentListarConversacion extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-      initializeList(conversacionArrayList);
+        initializeList(conversacionArrayList);
     }
 }

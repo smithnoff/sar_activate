@@ -176,5 +176,17 @@ public class ListarMensajeParseAdapter extends ParseQueryAdapter<ParseObject> {
         return v;
     }
 
+    @Override
+    public View getNextPageView(View v, ViewGroup parent) {
+        if (v == null) {
+            //   v = getDefaultView(parent.getContext());
+            v = View.inflate(getContext(), R.layout.list_load_more_footer, null);
+
+        }
+        TextView textView = (TextView) v.findViewById(R.id.load_more); //set the button
+        textView.setText("Cargar más mensajes...");
+        return v;
+    }
+
 
 }

@@ -245,5 +245,6 @@
     <string name="hint_fecha">dd/mm/yyyy</string>
     <string name="puntos_trivia">Puntos trivia de formación</string>
     <string name="puntos_actividades">Puntos por actividades realizadas</string>
+    <string name="cargar_mas">Cargar más...</string>
 
 </resources>
