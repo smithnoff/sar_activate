@@ -27,6 +27,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.burizalabs.soyactivista.utils.ErrorCodeHelpers;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -40,8 +42,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import com.burizalabs.soyactivista.utils.TextHelpers;
 import com.burizalabs.soyactivista.R;
@@ -64,13 +68,12 @@ public class FragmentCrearActividad extends Fragment {
     private ParseObject tipoActividad; // TipoActividad to be associated with Actividad
     private DialogDatePicker picker1;
     private DialogDatePicker picker2;
+    private View view;
+    private ParseUser usuarioActual;
 
     // Image Storing Variables/Constants
     private Bitmap bitmap;
     static int random = (int) (Math.random() *1000) + 1;
-    static int random2 = (int) (Math.random() *1000) + 1;
-    static int random3 = (int) (Math.random() *1000) + 1;
-    static int random4 = (int) (Math.random() *1000) + 1;
     private static byte[] imagenSeleccionada = null;
     private static byte[] imagenSeleccionada2 = null;
     private static byte[] imagenSeleccionada3 = null;
@@ -82,131 +85,27 @@ public class FragmentCrearActividad extends Fragment {
     private final int PHOTO_CODE = 100;
     private final int SELECT_PICTURE = 200;
 
+    private ArrayList<ParseObject> activityTypes;
+    private ArrayList<String> activityTypeNames;
+
     // Class Constructor
     public FragmentCrearActividad(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
         //Choose fragment to inflate
-        View v = inflater.inflate(R.layout.fragment_crear_actividad, container, false);
+        view = inflater.inflate(R.layout.fragment_crear_actividad, container, false);
 
         //Gets Current User
-        final ParseUser usuarioActual = ParseUser.getCurrentUser();
+        usuarioActual = ParseUser.getCurrentUser();
 
-        //Asign TextViews to Holders
-        labelPuntaje = (TextView)v.findViewById(R.id.labelPuntaje);
-        labelDescripcion = (TextView)v.findViewById(R.id.labelDescripcion);
-        labelEstado = (TextView)v.findViewById(R.id.labelEstado);
-        labelMunicipio = (TextView)v.findViewById(R.id.labelMunicipio);
-        labelParroquia = (TextView)v.findViewById(R.id.labelParroquia);
-        labelFotos = (TextView)v.findViewById(R.id.valueFoto);
-        textCharCountObjetive = (TextView)v.findViewById(R.id.textCharCountObjetive);
+        initializeComponents();
 
-
-        //Asign Text Edit to holders
-        puntaje = (EditText)v.findViewById(R.id.editPuntaje);
-        descripcion = (EditText)v.findViewById(R.id.editDescripcion);
-        objetivo = (EditText)v.findViewById(R.id.editObjetivo);
-        encargado = (EditText)v.findViewById(R.id.editEncargado);
-        creador = (EditText)v.findViewById(R.id.editCreador);
-        inicio = (TextView)v.findViewById(R.id.textViewFechaInicio);
-        fin = (TextView)v.findViewById(R.id.textViewFechaFin);
-
-        // Update CharCount on writting
-        objetivo.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                textCharCountObjetive.setText(String.valueOf(objetivo.getText().length()) + "/500");
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        inicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                fin.setSelected(false);
-                fin.setEnabled(true);
-                inicio.setSelected(true);
-                picker1 = new DialogDatePicker();
-                picker1.show(getFragmentManager(), "Fecha de inicio");
-            }
-        });
-
-        fin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              fin.setSelected(true);
-              inicio.setSelected(false);
-                picker2 = new DialogDatePicker();
-                picker2.show(getFragmentManager(), "Fecha de Fin");
-            }
-        });
-
-        // Asigns Spinners to holders
-        nombre = (Spinner)v.findViewById(R.id.spinNombreActividad);
-        ubicacion = (Spinner)v.findViewById(R.id.spinUbicacion);
-        estado = (Spinner)v.findViewById(R.id.spinEstado);
-        municipio = (Spinner)v.findViewById(R.id.spinMunicipio);
-        parroquia = (Spinner)v.findViewById(R.id.spinParroquia);
-
-        // Asign Buttons to holders
-        crear = (Button)v.findViewById(R.id.botonCrear);
-        cancelar = (Button)v.findViewById(R.id.botonCancelar);
-        adjuntarFoto = (ImageButton)v.findViewById(R.id.botonAdjuntarFoto);
-
-        // Load Defaults
-        creador.setEnabled(false);
-        creador.setText(usuarioActual.getString("nombre"));
+        fetchActivityTypes();
 
         //Fill Spinners with Preset Options
         this.llenarSpinnerdesdeId(ubicacion, R.array.Ubicaciones);
         this.llenarSpinnerdesdeId(estado, R.array.Estados);
-
-        // Fill Name Spinner from parse
-        ParseQueryAdapter.QueryFactory<ParseObject> factory = new ParseQueryAdapter.QueryFactory<ParseObject>() {
-            public ParseQuery create() {
-                ParseQuery query = new ParseQuery("TipoActividad");
-                query.whereEqualTo("activa",true);
-                return query;
-            }
-        };
-        // Overriding ParseQueryAdapter getViewTypeCount method to get past issue 79011
-        final ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(this.getActivity(), factory){
-            @Override
-            public int getViewTypeCount(){
-                return 1;
-            }
-        };
-
-        adapter.setTextKey("nombre");
-        nombre.setAdapter(adapter);
-
-        // On Activity selected populate puntaje and descripcion
-        nombre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                tipoActividad = adapter.getItem(position);
-                puntaje.setText(Integer.toString(tipoActividad.getInt("puntaje")));
-                labelPuntaje.setVisibility(View.VISIBLE);
-                puntaje.setVisibility(View.VISIBLE);
-                descripcion.setText(tipoActividad.getString("descripcion"));
-                labelDescripcion.setVisibility(View.VISIBLE);
-                descripcion.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         // Spinner OnItemSelected Listeners
         ubicacion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -274,7 +173,7 @@ public class FragmentCrearActividad extends Fragment {
                         if (options[seleccion] == "Tomar foto") {
                             tomarFoto();
                         } else if (options[seleccion] == "Elegir de galeria") {
-                            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                             intent.setType("image/*");
                             startActivityForResult(intent.createChooser(intent, "Selecciona app de imagen"), SELECT_PICTURE);
                         } else if (options[seleccion] == "Cancelar") {
@@ -512,7 +411,147 @@ public class FragmentCrearActividad extends Fragment {
 
 
 
-        return v;
+        return view;
+    }
+
+    /**
+     * Queries Parse.com db for Activity Types and initializes activity name spinner.
+     */
+    private void fetchActivityTypes() {
+
+        dialog = ProgressDialog.show(getContext(),"Buscando Tipos de Actividad","Cargando",true);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("TipoActividad");
+        query.whereEqualTo("activa", true);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if(e == null){
+                    dialog.dismiss();
+                    if(objects.size() > 0){
+                        activityTypes = new ArrayList<ParseObject>();
+                        activityTypeNames = new ArrayList<String>();
+
+                        for (int i = 0; i<objects.size();i++){
+                            activityTypes.add(objects.get(i));
+                            activityTypeNames.add(objects.get(i).getString("nombre"));
+                        }
+
+                        ArrayAdapter<String> tipoActividadAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,activityTypeNames);
+                        tipoActividadAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        nombre.setAdapter(tipoActividadAdapter);
+
+                        // On Activity selected populate puntaje and descripcion
+                        nombre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                tipoActividad = activityTypes.get(position);
+                                puntaje.setText(Integer.toString(tipoActividad.getInt("puntaje")));
+                                labelPuntaje.setVisibility(View.VISIBLE);
+                                puntaje.setVisibility(View.VISIBLE);
+                                descripcion.setText(tipoActividad.getString("descripcion"));
+                                labelDescripcion.setVisibility(View.VISIBLE);
+                                descripcion.setVisibility(View.VISIBLE);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+                    }
+                    else{
+                        Toast.makeText(getContext(),"No existen tipos de actividad creados.",Toast.LENGTH_LONG).show();
+                    }
+                }
+                else{
+                    dialog.dismiss();
+                    Log.e(TAG, ErrorCodeHelpers.resolveLogErrorString(e.getCode(),e.getMessage()));
+                    Toast.makeText(getContext(),ErrorCodeHelpers.resolveErrorCode(e.getCode()),Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    /**
+     * Method that initializes all view components and sets default values
+     */
+    private void initializeComponents() {
+
+        //Asign TextViews to Holders
+        labelPuntaje = (TextView)view.findViewById(R.id.labelPuntaje);
+        labelDescripcion = (TextView)view.findViewById(R.id.labelDescripcion);
+        labelEstado = (TextView)view.findViewById(R.id.labelEstado);
+        labelMunicipio = (TextView)view.findViewById(R.id.labelMunicipio);
+        labelParroquia = (TextView)view.findViewById(R.id.labelParroquia);
+        labelFotos = (TextView)view.findViewById(R.id.valueFoto);
+        textCharCountObjetive = (TextView)view.findViewById(R.id.textCharCountObjetive);
+
+
+        //Asign Text Edit to holders
+        puntaje = (EditText)view.findViewById(R.id.editPuntaje);
+        descripcion = (EditText)view.findViewById(R.id.editDescripcion);
+        objetivo = (EditText)view.findViewById(R.id.editObjetivo);
+        encargado = (EditText)view.findViewById(R.id.editEncargado);
+        creador = (EditText)view.findViewById(R.id.editCreador);
+        inicio = (TextView)view.findViewById(R.id.textViewFechaInicio);
+        fin = (TextView)view.findViewById(R.id.textViewFechaFin);
+
+        // Update CharCount on writting
+        objetivo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                textCharCountObjetive.setText(String.valueOf(objetivo.getText().length()) + "/500");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        inicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                fin.setSelected(false);
+                fin.setEnabled(true);
+                inicio.setSelected(true);
+                picker1 = new DialogDatePicker();
+                picker1.show(getFragmentManager(), "Fecha de inicio");
+            }
+        });
+
+        fin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fin.setSelected(true);
+                inicio.setSelected(false);
+                picker2 = new DialogDatePicker();
+                picker2.show(getFragmentManager(), "Fecha de Fin");
+            }
+        });
+
+        // Asigns Spinners to holders
+        nombre = (Spinner)view.findViewById(R.id.spinNombreActividad);
+        ubicacion = (Spinner)view.findViewById(R.id.spinUbicacion);
+        estado = (Spinner)view.findViewById(R.id.spinEstado);
+        municipio = (Spinner)view.findViewById(R.id.spinMunicipio);
+        parroquia = (Spinner)view.findViewById(R.id.spinParroquia);
+
+        // Asign Buttons to holders
+        crear = (Button)view.findViewById(R.id.botonCrear);
+        cancelar = (Button)view.findViewById(R.id.botonCancelar);
+        adjuntarFoto = (ImageButton)view.findViewById(R.id.botonAdjuntarFoto);
+
+        // Load Defaults
+        creador.setEnabled(false);
+        creador.setText(usuarioActual.getString("nombre"));
+
     }
 
     //Auxiliar method for filling spinners with String Arrays
