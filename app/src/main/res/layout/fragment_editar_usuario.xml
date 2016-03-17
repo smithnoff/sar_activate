@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/white">
+    android:background="@color/background_color"
+    >
 <ScrollView
     android:layout_marginLeft="15dp"
     android:layout_marginTop="5dp"

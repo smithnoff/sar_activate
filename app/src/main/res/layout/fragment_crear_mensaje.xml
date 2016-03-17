@@ -1,105 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/coordinatorLayout"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:elevation="5dp">
+    android:background="@color/background_color"
+    >
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp">
-
-    <!-- Message Text -->
-
-    <EditText
-        android:id="@+id/editText"
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:maxLength="200"/>
+        android:layout_height="match_parent"
+        android:elevation="5dp">
 
-    <TextView
-        android:id="@+id/textCharCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:textSize="12dp"
-        android:text="@string/totalChars"/>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
 
-    <ImageView
-        android:id="@+id/imageAttachmentPreview"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/grisOscuro"
-        android:visibility="gone"/>
+            <!-- Message Text -->
 
-    <!-- Add Data Buttons -->
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:maxLength="200"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:gravity="center">
+            <TextView
+                android:id="@+id/textCharCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textSize="12dp"
+                android:text="@string/totalChars"/>
 
-        <ImageButton
-            android:id="@+id/buttonAddFile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/ic_attach_file"/>
+            <ImageView
+                android:id="@+id/imageAttachmentPreview"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/grisOscuro"
+                android:visibility="gone"/>
 
-        <View
-            android:layout_width="2dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="30dp"
-            android:background="@color/grisOscuro"/>
+            <!-- Add Data Buttons -->
 
-        <ImageButton
-            android:id="@+id/buttonAddImage"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/ic_image"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
 
-        <View
-            android:layout_width="2dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="30dp"
-            android:background="@color/grisOscuro"/>
+                <ImageButton
+                    android:id="@+id/buttonAddFile"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/ic_attach_file"/>
 
-        <ImageButton
-            android:id="@+id/buttonAddLocation"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_place"/>
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@color/grisOscuro"/>
 
-    </LinearLayout>
+                <ImageButton
+                    android:id="@+id/buttonAddImage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/ic_image"/>
 
-    <Button
-        android:id="@+id/buttonCreateMessage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/publicar"
-        android:textColor="@color/white"/>
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@color/grisOscuro"/>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="20dp"
-        android:layout_marginBottom="35dp"
-        android:visibility="gone"/>
+                <ImageButton
+                    android:id="@+id/buttonAddLocation"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/ic_place"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonCreateMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/publicar"
+                android:textColor="@color/white"/>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:layout_marginBottom="35dp"
+                android:visibility="gone"/>
 
 
-</LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
-    </FrameLayout>
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</FrameLayout>

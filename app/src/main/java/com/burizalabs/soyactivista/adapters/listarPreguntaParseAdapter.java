@@ -14,11 +14,11 @@ import com.parse.ParseQueryAdapter;
 /**
  * Created by darwin on 28/12/2015.
  */
-public class listarPreguntaParseAdapter extends ParseQueryAdapter<ParseObject> {
+public class ListarPreguntaParseAdapter extends ParseQueryAdapter<ParseObject> {
 
 
 
-    public listarPreguntaParseAdapter(Context context) {
+    public ListarPreguntaParseAdapter(Context context) {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 ParseQuery query = new ParseQuery("Pregunta");
@@ -28,7 +28,7 @@ public class listarPreguntaParseAdapter extends ParseQueryAdapter<ParseObject> {
         });
     }
 
-    public listarPreguntaParseAdapter(Context context, final String constraint) {
+    public ListarPreguntaParseAdapter(Context context, final String constraint) {
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
 
@@ -73,11 +73,24 @@ public class listarPreguntaParseAdapter extends ParseQueryAdapter<ParseObject> {
 
         NombrePreguntaTextView.setText(object.getString("pregunta"));
         puntajePreguntaTextView.setText("Puntos: "+object.getNumber("puntaje").toString());
-        NivelDificultadTextView.setText("Nivel: "+object.getString("dificultad"));
+        NivelDificultadTextView.setText("Nivel: " + object.getString("dificultad"));
 
 
         return v;
     }
+
+    @Override
+    public View getNextPageView(View v, ViewGroup parent) {
+        if (v == null) {
+            //   v = getDefaultView(parent.getContext());
+            v = View.inflate(getContext(), R.layout.list_load_more_footer, null);
+
+        }
+        TextView textView = (TextView) v.findViewById(R.id.load_more); //set the button
+        textView.setText("Cargar más preguntas...");
+        return v;
+    }
+
 
 
 }

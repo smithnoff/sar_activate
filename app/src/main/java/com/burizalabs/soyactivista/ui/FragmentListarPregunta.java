@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.burizalabs.soyactivista.adapters.listarPreguntaParseAdapter;
+import com.burizalabs.soyactivista.adapters.ListarPreguntaParseAdapter;
 import com.burizalabs.soyactivista.R;
 
 /**
@@ -31,7 +31,7 @@ import com.burizalabs.soyactivista.R;
  */
 public class FragmentListarPregunta extends Fragment {
     private ListView listView;
-    private listarPreguntaParseAdapter mainAdapter;
+    private ListarPreguntaParseAdapter mainAdapter;
     private TextView listaVacia;
     private ProgressDialog progressDialog;
 
@@ -43,7 +43,7 @@ public class FragmentListarPregunta extends Fragment {
         View view = inflater.inflate(R.layout.fragment_listar_pregunta, container, false);
 
         // Initialize main ParseQueryAdapter
-        mainAdapter = new listarPreguntaParseAdapter(this.getContext());
+        mainAdapter = new ListarPreguntaParseAdapter(this.getContext());
 
         // Initialize list view
         listView = (ListView)view.findViewById(R.id.listaPreguntas);
@@ -53,31 +53,14 @@ public class FragmentListarPregunta extends Fragment {
         listView.setEmptyView(listaVacia);
 
         // Show loading questions progress dialog
-        progressDialog = ProgressDialog.show(getContext(),"Buscando Preguntas","Cargando",true);
-        mainAdapter.addOnQueryLoadListener(new ParseQueryAdapter.OnQueryLoadListener<ParseObject>() {
-            @Override
-            public void onLoading() {
-                if (progressDialog == null)
-                    progressDialog = ProgressDialog.show(getContext(), "Buscando Preguntas", "Cargando", true);
-            }
+        mainAdapter.addOnQueryLoadListener(loadListener);
 
-            @Override
-            public void onLoaded(List<ParseObject> objects, Exception e) {
-                progressDialog.dismiss();
-            }
-        });
+        mainAdapter.clear();
+        listView.setAdapter(mainAdapter);
+        mainAdapter.loadObjects();
+        if (progressDialog.isShowing())
+            progressDialog.dismiss();
 
-
-        if(mainAdapter == null)
-        {
-            listView.setEmptyView(listaVacia);
-        }
-        else
-        {
-            mainAdapter.clear();
-            listView.setAdapter(mainAdapter);
-            mainAdapter.loadObjects();
-        }
 
 
         // Handle Item OnClick Events
@@ -172,16 +155,18 @@ public class FragmentListarPregunta extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                        alertDialogPuntaje.dismiss();
                         // Request List to filter
-                        // TODO: Create Progress Dialog
-
-
                         mainAdapter.clear();
 
-                        mainAdapter = new listarPreguntaParseAdapter(getContext(),"puntaje=" + listViewDialogPuntaje.getItemAtPosition(position).toString());
+                        mainAdapter = new ListarPreguntaParseAdapter(getContext(),"puntaje=" + listViewDialogPuntaje.getItemAtPosition(position).toString());
+
+                        mainAdapter.addOnQueryLoadListener(loadListener);
 
                         listView.setAdapter(mainAdapter);
 
                         mainAdapter.loadObjects();
+
+                        if (progressDialog.isShowing())
+                            progressDialog.dismiss();
 
                         mainAdapter.notifyDataSetChanged();
 
@@ -216,38 +201,30 @@ public class FragmentListarPregunta extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         alertDialogPuntaje.dismiss();
-                        // Request List to filter
-                        // TODO: Create Progress Dialog
 
                         mainAdapter.clear();
 
-                        mainAdapter = new listarPreguntaParseAdapter(getContext(), "nivel=" + listViewDialogNivel.getItemAtPosition(position).toString());
+                        mainAdapter = new ListarPreguntaParseAdapter(getContext(), "nivel=" + listViewDialogNivel.getItemAtPosition(position).toString());
+
+                        mainAdapter.addOnQueryLoadListener(loadListener);
 
                         listView.setAdapter(mainAdapter);
 
                         mainAdapter.loadObjects();
 
                         mainAdapter.notifyDataSetChanged();
-
-                        // Log.d(TAG, "Adapter has " + mainAdapter.getCount() + " items");
-
-
                     }
                 });
 
                 return true;
 
-
-
-
-
-
-
             case R.id.filtroTodas:
 
                 mainAdapter.clear();
 
-                mainAdapter = new listarPreguntaParseAdapter(getContext());
+                mainAdapter = new ListarPreguntaParseAdapter(getContext());
+
+                mainAdapter.addOnQueryLoadListener(loadListener);
 
                 listView.setAdapter(mainAdapter);
 
@@ -261,6 +238,28 @@ public class FragmentListarPregunta extends Fragment {
         }
    //  return true;
     }
+
+    // Load listener to show loading dialog when querying elements.
+    ParseQueryAdapter.OnQueryLoadListener<ParseObject> loadListener = new ParseQueryAdapter.OnQueryLoadListener<ParseObject>() {
+        @Override
+        public void onLoading() {
+            if(progressDialog != null){
+                if (progressDialog.isShowing())
+                    progressDialog.dismiss();
+                else
+                    progressDialog = ProgressDialog.show(getContext(),"Buscando Preguntas","Cargando",true);
+            }
+            else{
+                progressDialog = ProgressDialog.show(getContext(),"Buscando Preguntas","Cargando",true);
+            }
+        }
+
+        @Override
+        public void onLoaded(List<ParseObject> objects, Exception e) {
+            if (progressDialog.isShowing())
+                progressDialog.dismiss();
+        }
+    };
 
 
 }

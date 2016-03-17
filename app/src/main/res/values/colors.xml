@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Color de fondo -->
+    <color name="background_color">#FFFFFF</color>
     <color name="grey200">#EEEEEE</color>
 
     <!-- Blanco y Negro -->
@@ -37,4 +38,5 @@
     <color name="main_color_gray_dk">#3b3b3b</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="gray_light">#e8e8e8</color>
+
 </resources>

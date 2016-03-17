@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
@@ -241,6 +242,13 @@ public class ActivityPantallaMenu extends AppCompatActivity {
 
                             // Conclude Fragment loading/view Change
                             if(fragmentTransaction) {
+
+                                // Erase all back navigation history when user selects a new module.
+                                FragmentManager fm = getSupportFragmentManager();
+                                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                                    fm.popBackStack();
+                                }
+
                                 getSupportFragmentManager()
                                         .beginTransaction()
                                         .replace(R.id.content_frame, fragment)

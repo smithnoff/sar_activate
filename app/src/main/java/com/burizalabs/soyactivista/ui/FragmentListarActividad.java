@@ -194,6 +194,9 @@ public class FragmentListarActividad extends Fragment {
             public void onClick(View v) {
 
                 Fragment fragment = new FragmentCrearActividad();
+                Bundle data = new Bundle();
+                data.putBoolean("nueva",true);
+                fragment.setArguments(data);
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, fragment)

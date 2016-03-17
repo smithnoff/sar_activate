@@ -96,6 +96,12 @@ public class FragmentCrearActividad extends Fragment {
         //Choose fragment to inflate
         view = inflater.inflate(R.layout.fragment_crear_actividad, container, false);
 
+        // Init Images
+        imagenSeleccionada = null;
+        imagenSeleccionada2 = null;
+        imagenSeleccionada3 = null;
+        imagenSeleccionada4 = null;
+
         //Gets Current User
         usuarioActual = ParseUser.getCurrentUser();
 

@@ -103,4 +103,17 @@ public class ListarUsuarioParseAdapter extends ParseQueryAdapter<ParseObject> im
             }
         };
     }
+
+    @Override
+    public View getNextPageView(View v, ViewGroup parent) {
+        if (v == null) {
+            //   v = getDefaultView(parent.getContext());
+            v = View.inflate(getContext(), R.layout.list_load_more_footer, null);
+
+        }
+        TextView textView = (TextView) v.findViewById(R.id.load_more); //set the button
+        textView.setText("Cargar más usuarios...");
+        return v;
+    }
+
 }

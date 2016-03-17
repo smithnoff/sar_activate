@@ -127,6 +127,7 @@ public class FragmentContestarPregunta extends Fragment {
         circularButtonRespuesta1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                disableButtons();
                 valor = 1;
                 animar = (CircularProgressButton)v;
                 if(Integer.valueOf(correctas.get(preguntaActual)) == 1){
@@ -191,6 +192,7 @@ public class FragmentContestarPregunta extends Fragment {
         circularButtonRespuesta2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                disableButtons();
                 valor = 2;
                 animar = (CircularProgressButton)v;
                 if(Integer.valueOf(correctas.get(preguntaActual)) == 2){
@@ -247,6 +249,7 @@ public class FragmentContestarPregunta extends Fragment {
         circularButtonRespuesta3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                disableButtons();
                 valor = 3;
                 animar=(CircularProgressButton)v;
                 if (Integer.valueOf(correctas.get(preguntaActual)) == 3){
@@ -301,6 +304,7 @@ public class FragmentContestarPregunta extends Fragment {
         circularButtonRespuesta4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                disableButtons();
                 valor = 4;
                 animar=(CircularProgressButton)v;
                 if(Integer.valueOf(correctas.get(preguntaActual)) == 4){
@@ -389,6 +393,15 @@ public class FragmentContestarPregunta extends Fragment {
         });
 
         return view;
+    }
+
+    // Disable all answer buttons.
+    private void disableButtons() {
+
+        circularButtonRespuesta1.setClickable(false);
+        circularButtonRespuesta2.setClickable(false);
+        circularButtonRespuesta3.setClickable(false);
+        circularButtonRespuesta4.setClickable(false);
     }
 
     // Show incorrect Message and remove points
